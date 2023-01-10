@@ -1,7 +1,0 @@
-D:\Azure\ISIA\_bin\FX\ISIA.COMMON.dll
-D:\Azure\ISIA\_bin\FX\ISIA.COMMON.pdb
-D:\Azure\ISIA\ISIA\COMMON\ISIA.COMMON\obj\Debug\ISIA.COMMON.csproj.AssemblyReference.cache
-D:\Azure\ISIA\ISIA\COMMON\ISIA.COMMON\obj\Debug\ISIA.COMMON.csproj.CoreCompileInputs.cache
-D:\Azure\ISIA\ISIA\COMMON\ISIA.COMMON\obj\Debug\ISIA.COMMON.csproj.CopyComplete
-D:\Azure\ISIA\ISIA\COMMON\ISIA.COMMON\obj\Debug\ISIA.COMMON.dll
-D:\Azure\ISIA\ISIA\COMMON\ISIA.COMMON\obj\Debug\ISIA.COMMON.pdb
