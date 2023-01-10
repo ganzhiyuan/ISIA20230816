@@ -8,3 +8,11 @@
 /ISIA/**/Debug
 *.log
 /.vs
+/_bin/FX/ISIA.application
+/_bin/FX/ISIA.exe
+/_bin/FX/ISIA.exe.manifest
+/_bin/FX/ISIA.pdb
+/_bin/FX/app.publish
+
+
+
