@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.UIControls</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.UIControls.EnumBuitInDispay">
+            <summary>
+            This is Buit-In Display lisrt
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.EnumBuitInDispay.CODE">
+            <summary>
+            Code Model
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.EnumBuitInDispay.NONE">
+            <summary>
+            Does not use buit-in dispay
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.EnumHorizontalAlignment">
+            <summary>
+            This is horizontal alignment list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.EnumHorizontalAlignment.LEFT">
+            <summary>
+            Left
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.EnumHorizontalAlignment.CENTER">
+            <summary>
+            Center
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.EnumHorizontalAlignment.RIGHT">
+            <summary>
+            Right
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.UIControlHeader">
+            <summary>
+            This is UI control header of TAPFX
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.UIControlHeader._WRAPPED_PROPERTY">
+            <summary>
+            Properties of Wrapped control
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.IUIControl">
+            <summary>
+            This is interface of TAPFX UI controls
+            </summary> 
+        </member>
+        <member name="P:TAP.UIControls.IUIControl.RepresentativeValue">
+            <summary>
+            Representative value of control.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.IUIControl.ControlID">
+            <summary>
+            Identificator of control.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.IUIControl.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.IUIControl.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.IUIControl.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+    </members>
+</doc>

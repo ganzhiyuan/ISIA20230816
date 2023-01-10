@@ -1,0 +1,14 @@
+D:\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csproj.CoreCompileInputs.cache
+D:\Source\ISEM\_bin\FX_Server\ISEM.BIZ.COMMON.dll
+D:\Source\ISEM\_bin\FX_Server\ISEM.BIZ.COMMON.pdb
+D:\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csproj.CopyComplete
+D:\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.dll
+D:\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.pdb
+D:\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csproj.AssemblyReference.cache
+D:\01. project\Source\ISEM\_bin\FX_Server\ISEM.BIZ.COMMON.dll
+D:\01. project\Source\ISEM\_bin\FX_Server\ISEM.BIZ.COMMON.pdb
+D:\01. project\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csprojAssemblyReference.cache
+D:\01. project\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csproj.CoreCompileInputs.cache
+D:\01. project\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.csproj.CopyComplete
+D:\01. project\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.dll
+D:\01. project\Source\ISEM\ISEM\ISEM.BIZ.COMMON\obj\Debug\ISEM.BIZ.COMMON.pdb

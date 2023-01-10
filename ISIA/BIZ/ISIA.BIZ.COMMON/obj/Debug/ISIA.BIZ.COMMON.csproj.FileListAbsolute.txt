@@ -1,0 +1,7 @@
+D:\Azure\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\obj\Debug\ISIA.BIZ.COMMON.csproj.AssemblyReference.cache
+D:\Azure\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\obj\Debug\ISIA.BIZ.COMMON.csproj.CoreCompileInputs.cache
+D:\Azure\ISIA\_bin\FX_Server\ISIA.BIZ.COMMON.dll
+D:\Azure\ISIA\_bin\FX_Server\ISIA.BIZ.COMMON.pdb
+D:\Azure\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\obj\Debug\ISIA.BIZ.COMMON.csproj.CopyComplete
+D:\Azure\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\obj\Debug\ISIA.BIZ.COMMON.dll
+D:\Azure\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\obj\Debug\ISIA.BIZ.COMMON.pdb

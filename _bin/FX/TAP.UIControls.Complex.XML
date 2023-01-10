@@ -1,0 +1,2265 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.UIControls.Complex</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.UIControls.Complex.BoardItem">
+            <summary>
+            This class is item of SquareBoard control.
+            </summary>
+        </member>
+        <member name="E:TAP.UIControls.Complex.BoardItem.GetSelectedCell">
+            <summary>
+            This events will be occured when user selects a box control
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.BoardItem.ControlClickEventHandler">
+            <summary>
+            This is delegate for ControlClickEventHandler.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.ModelItem">
+            <summary>
+            Model that assigned to control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.Text">
+            <summary>
+            Text of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.SelectedTime">
+            <summary>
+            Time that was selected latel
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.FontSize">
+            <summary>
+            Font size
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.Selected">
+            <summary>
+            If "TRUE", this item was selected
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.ForeColor">
+            <summary>
+            Fore color of control
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.#ctor(System.String)">
+            <summary>
+            This creates instance of BoardItem.
+            </summary>
+            <param name="text">String</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.#ctor(TAP.Models.Model)">
+            <summary>
+            This creates instance of BoardItem.
+            </summary>
+            <param name="model">Model</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.#ctor(TAP.Models.Model,System.String)">
+            <summary>
+            This creates instance of BoardItem.
+            </summary>
+            <param name="model">Model</param>
+            <param name="displayProperty">Proprty for binding top lable</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.#ctor(TAP.Models.Model,System.String,System.String)">
+            <summary>
+            This creates instance of BoardItem.<br></br>
+            BoardItem 개체의 인스턴스를 생성합니다.
+            </summary>
+            <param name="model">Model</param>
+            <param name="displayProperty1">Proprty for binding top lable</param>
+            <param name="displayProperty2">Proprty for binding top lable</param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.BoardItem.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:TAP.UIControls.Complex.BoardItem.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.BoardItem.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlDBInfo">
+            <summary>
+            This is db connection information control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.GroupName">
+            <summary>
+            Group name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.DBName">
+            <summary>
+            DB name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.User">
+            <summary>
+            User
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.Database">
+            <summary>
+            Database
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.IsConnected">
+            <summary>
+            If 'TRUE', database is conncted
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDBInfo.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.Connect">
+            <summary>
+            This method connects to database
+            </summary>
+            <returns>If 'TRUE', database is connected</returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.#ctor">
+            <summary>
+            This creates instance of ControlDBInfo
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDBInfo.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDBInfo.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlDirectoryBrowser">
+            <summary>
+            This is directory browser control
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlDirectoryBrowser.TreeView_AfterSelectHandler">
+            <summary>
+            Event Handler of TreeView_AfterSelectHandler
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlDirectoryBrowser.TreeView_AfterExpandHandler">
+            <summary>
+            TEvent Handler of TreeView_AfterExpandHandler
+            </summary>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlDirectoryBrowser.TreeView_AfterSelected">
+            <summary>
+            This event will be occured after selecting directory.
+            </summary>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlDirectoryBrowser.TreeView_AfterExpanded">
+            <summary>
+            This event will be occured after expanding.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.RootPath">
+            <summary>
+            Root path
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.RootDirectory">
+            <summary>
+            Directory information of Root
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.SelectedDirectory">
+            <summary>
+            Directory information of selected directory
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.#ctor">
+            <summary>
+            This creates instance of ControlDirectoryBrowser.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.Initialize(System.String)">
+            <summary>
+            This method initializes control
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.SetSelectedDirectory(System.String)">
+            <summary>
+            This method sets selected directory.
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryBrowser.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.Translate">
+            <summary>
+            This is not supported
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.ValidateUserInput">
+            <summary>
+            This is not supported
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryBrowser.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryBrowser.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance3.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance3.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance3.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance3.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.UserLanguage">
+            <summary>
+            User Language
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.#ctor(TAP.Fressage.EnumLanguage)">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+            <param name="userlanguage">User Language</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.Save(TAP.UIControls.Complex.ControlModelViewAdvance3.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance3.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance3.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance3.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance2.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance2.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance2.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance2.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.UserLanguage">
+            <summary>
+            User Language
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.#ctor(TAP.Fressage.EnumLanguage)">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+            <param name="userlanguage">User Language</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.Save(TAP.UIControls.Complex.ControlModelViewAdvance2.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance2.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance2.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance2.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance1.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance1.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance1.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance1.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.UserLanguage">
+            <summary>
+            User Language
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.#ctor(TAP.Fressage.EnumLanguage)">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+            <param name="userlanguage">User Language</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.Save(TAP.UIControls.Complex.ControlModelViewAdvance1.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance1.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance1.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance1.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.UserLanguage">
+            <summary>
+            User Language
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.#ctor(TAP.Fressage.EnumLanguage)">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+            <param name="userlanguage">User Language</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.Save(TAP.UIControls.Complex.ControlModelViewAdvanceSeq.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvanceSeq.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelViewAdvance.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelViewAdvance.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.UserLanguage">
+            <summary>
+            User Language
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.#ctor(TAP.Fressage.EnumLanguage)">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+            <param name="userlanguage">User Language</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.Save(TAP.UIControls.Complex.ControlModelViewAdvance.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelViewAdvance.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelViewAdvance.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelViewAdvance.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView_New.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView_New.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView_New.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView_New.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView_New.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView_New.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView_New.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView_New.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView_New.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.HierachicalInfoHeaderColor">
+            <summary>
+            Hierachical Info header color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.CommonInfoHeaderColor">
+            <summary>
+            Common info header color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.EventTimeInfoHeaderColor">
+            <summary>
+            Event info header color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.Save(TAP.UIControls.Complex.ControlModelView_New.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView_New.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView_New.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView_New.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView">
+            <summary>
+            This is TAP model view control.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.ModelView_SaveModelEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView.ModelView_SavedModel">
+            <summary>
+            This event will be occured when model saved.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.ModelView_DeleteModelEventHandler">
+            <summary>
+            Event Handler of ModelView_DeleteModelEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+            <param name="detailInfo">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView.ModelView_DeletedModel">
+            <summary>
+            This event will be occured when model deleted.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.ModelView_ValidateEventHandler">
+            <summary>
+            Event Handler of ModelView_ValidateEventHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="isSuccess">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView.ModelView_Validated">
+            <summary>
+            This event will be occured after validating user inputs.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.ModelView_SaveConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="saveMode">Save mode</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView.ModelView_ConfirmedSave">
+            <summary>
+            This event will be occured when user clicks save button or copy button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.ModelView_DeleteConfimEventHandler">
+            <summary>
+            Event Handler of ModelView_SaveConfimEventHandler
+            </summary>
+            <param name="sender">Sender</param>
+        </member>
+        <member name="E:TAP.UIControls.Complex.ControlModelView.ModelView_ConfirmedDelete">
+            <summary>
+            This event will be occured when user clicks delete button.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlModelView.EnumModelSaveMode">
+            <summary>
+            Save mode list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView.EnumModelSaveMode.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView.EnumModelSaveMode.MODIFY">
+            <summary>
+            Modify
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView.EnumModelSaveMode.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView._Model">
+            <summary>
+            Model of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.HierachicalInfo">
+            <summary>
+            Hierachical structure of this control6
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.User">
+            <summary>
+            User Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.IsDirectCopy">
+            <summary>
+            If 'YES', this control does not ask to user 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.IsViewOnly">
+            <summary>
+            If 'YES', this control does not provides editing funcitons
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.IsHierachicalInfoLock">
+            <summary>
+            If 'YES', users can not edit hierachical structure information.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.ModelName">
+            <summary>
+            Model name in name textbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.UseUpperCaseDefaultInfo">
+            <summary>
+            If "TRUE", name of model uses upper case.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.#ctor">
+            <summary>
+            This creates instance of ControlModelView
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.Save(TAP.UIControls.Complex.ControlModelView.EnumModelSaveMode)">
+            <summary>
+            This method saves model
+            </summary>
+            <param name="saveMode">Save modes: create, modify or copy</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.Delete">
+            <summary>
+            This method deletes model
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.RepresentativeValue">
+            <summary>
+            Hierachical structure of this control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlModelView.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.SetModelMemberValues">
+            <summary>
+            This methods bind value to model members
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.BindHierachicalToModel">
+            <summary>
+            This methods bind value to model hierachical members
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlModelView.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlModelView.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.IComplexControl">
+            <summary>
+            This is interface of Compex control of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.IComplexControl.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.IComplexControl.ValidateUserInput">
+            <summary>
+            This method validates user's inputs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.UIControls.Complex.Properties.Resources">
+            <summary>
+              지역화된 문자열 등을 찾기 위한 강력한 형식의 리소스 클래스입니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.Properties.Resources.ResourceManager">
+            <summary>
+              이 클래스에서 사용하는 캐시된 ResourceManager 인스턴스를 반환합니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.Properties.Resources.Culture">
+            <summary>
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.SquareBoard">
+            <summary>
+            This is control that displays item boxes as two dimensional.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.MultiSelect">
+            <summary>
+            If 'TRUE', items will be selected
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.MultiText1">
+            <summary>
+            Porperty name that will be displayed on each items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.MultiText2">
+            <summary>
+            Porperty name that will be displayed on each items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ItemCount">
+            <summary>
+            Number of items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.DisplayMode">
+            <summary>
+            Display mode(Vectical or Horizontal
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ModelSetItem">
+            <summary>
+            Model set to assigning to box items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.TextItem">
+            <summary>
+            String typed-array to assigning to box items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ImageItem">
+            <summary>
+            Image type-array to assigning to box items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.SelectedItem">
+            <summary>
+            Selected box item
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.SelectedItems">
+            <summary>
+            Selected items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.SelectedTexts">
+            <summary>
+            Test array of selected items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.SelectedText">
+            <summary>
+            Test of selected items
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ItemBackgroundColor">
+            <summary>
+            Backfroud color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ItemForeColor">
+            <summary>
+            Fore color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ItemSelectedBackgroundColor">
+            <summary>
+            Selected backgroud color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ItemSelectedForeColor">
+            <summary>
+            Selected back color
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.#ctor">
+            <summary>
+            This creates instance of SquareBoard.<br></br>
+            SquareBoard 개체의 인스턴스를 생성합니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.BindCotrol">
+            <summary>
+            This method binds box controls on this.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.Clear">
+            <summary>
+            This method removes information of selection.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.SquareBoard.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:TAP.UIControls.Complex.SquareBoard.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.SquareBoard.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.UsedList">
+            <summary>
+            This is used list form.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.UsedList.SelectedInfo">
+            <summary>
+            Selected info
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.UsedList.#ctor(TAP.UIControls.Complex.EnumUsedListCategory)">
+            <summary>
+            This creates instance of UsedList.
+            </summary>
+            <param name="category">Category</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.UsedList.SaveDirectoryInfo(System.String,System.String,System.String,System.String)">
+            <summary>
+            Save directory information
+            </summary>
+            <param name="path">Path</param>
+            <param name="user">User</param>
+            <param name="domain">Domain</param>
+            <param name="password">Password</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.UsedList.SaveDBInfo(System.String,System.String,System.String)">
+            <summary>
+            Save DB connection information
+            </summary>
+            <param name="tns">TNS name</param>
+            <param name="user">User</param>
+            <param name="password">Password</param>
+        </member>
+        <member name="F:TAP.UIControls.Complex.UsedList.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.UsedList.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.UsedList.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.EnumUsedListCategory">
+            <summary>
+            This is used list category list.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.EnumUsedListCategory.FILE">
+            <summary>
+            File
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.EnumUsedListCategory.DB">
+            <summary>
+            Database
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.Complex.ControlDirectoryInfo">
+            <summary>
+            This is directory information control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.IsImpersonate">
+            <summary>
+            If 'TRUE', connection will be impersonated.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.IsConnected">
+            <summary>
+            If 'TRUE', target path was connected.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.IsNetworkDrive">
+            <summary>
+            If 'TRUE', target directory is in remote computer
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.GroupName">
+            <summary>
+            Group name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.Path">
+            <summary>
+            Path
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.User">
+            <summary>
+            User
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.Domain">
+            <summary>
+            Domain
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.ConnectedDrive">
+            <summary>
+            Connected drive name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.NewtoworkInfo">
+            <summary>
+            Network Information
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.Directory">
+            <summary>
+            Directory
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.Complex.ControlDirectoryInfo.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.Translate">
+            <summary>
+            This method translates including controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.ValidateUserInput">
+            <summary>
+            This method validates user's inputs.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.#ctor">
+            <summary>
+            This cretaes instance of ControlDirectoryInfo.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.Connect">
+            <summary>
+            This method connects to specified directory
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.Disconnect">
+            <summary>
+            This method disconnects network directory
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.ChangeDirectory(System.IO.DirectoryInfo)">
+            <summary>
+            This method changes directory
+            </summary>
+            <param name="dir">Directory Info</param>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryInfo.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.Complex.ControlDirectoryInfo.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryInfo.txtPassword">
+            <summary>
+            Textbox for password
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryInfo.txtPath">
+            <summary>
+            Textbox for path
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryInfo.txtUser">
+            <summary>
+            Textbox for user
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.Complex.ControlDirectoryInfo.txtDomain">
+            <summary>
+            Textbox for domain
+            </summary>
+        </member>
+    </members>
+</doc>

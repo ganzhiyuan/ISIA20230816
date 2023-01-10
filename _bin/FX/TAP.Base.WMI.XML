@@ -1,0 +1,2841 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Base.WMI</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Base.WMI.Containers.WMILogicalDisk">
+            <summary>
+            This class is logical disk WMI containter
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Compressed">
+            <summary>
+            If True, the logical volume exists as a single compressed entity, such as a DoubleSpace volume
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ConfigManagerUserConfig">
+            <summary>
+            If True, the device is using a user-defined configuration
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ErrorCleared">
+            <summary>
+            If True, the error reported in LastErrorCode is now cleared
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.PowerManagementSupported">
+            <summary>
+            If True, the device can be power-managed (can be put into suspend mode, and so on).
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.QuotasDisabled">
+            <summary>
+            Indicates that quota management is not enabled (TRUE) on this system.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.QuotasIncomplete">
+            <summary>
+            ndicates that the quota management was used but has been disabled (True)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.QuotasRebuilding">
+            <summary>
+            If True, indicates that the file system is in the active process of compiling information and setting the disk up for quota management.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.SupportsDiskQuotas">
+            <summary>
+            If True, this volume supports disk quotas
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.SupportsFileBasedCompression">
+            <summary>
+            If True, the logical disk partition supports file-based compression, such as is the case with the NTFS file system
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.VolumeDirty">
+            <summary>
+            If True, the disk requires ChkDsk to be run at the next restart.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Access">
+            <summary>
+            Type of media access available. This property is inherited from CIM_StorageExtent
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Availability">
+            <summary>
+            Availability and status of the device
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.StatusInfo">
+            <summary>
+            State of the logical device. If this property does not apply to the logical device, the value 5 (Not Applicable) should be used
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.PowerManagementCapabilities">
+            <summary>
+            Array of the specific power-related capabilities of a logical device
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ConfigManagerErrorCode">
+            <summary>
+            Windows Configuration Manager error code
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.DriveType">
+            <summary>
+            Numeric value that corresponds to the type of disk drive this logical disk represents
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.LastErrorCode">
+            <summary>
+            Last error code reported by the logical device
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.MaximumComponentLength">
+            <summary>
+            Maximum length of a filename component supported by the Windows drive
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.MediaType">
+            <summary>
+            Type of media currently present in the logical drive
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.BlockSize">
+            <summary>
+            Size, in bytes, of the blocks that form this storage extent. If unknown or if a block concept is not valid (for example, for aggregate extents, memory or logical disks), enter 1
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.FreeSpace">
+            <summary>
+            Space, in bytes, available on the logical disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.NumberOfBlocks">
+            <summary>
+            Total number of consecutive blocks, each block the size of the value contained in the BlockSize property, which form this storage extent
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Size">
+            <summary>
+            Size of the disk drive
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Caption">
+            <summary>
+            Short description of the object—a one-line string
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.CreationClassName">
+            <summary>
+            Name of the first concrete class to appear in the inheritance chain used in the creation of an instance
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Description">
+            <summary>
+            Description of the object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.DeviceID">
+            <summary>
+            Unique identifier of the logical disk from other devices on the system
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ErrorDescription">
+            <summary>
+            More information about the error recorded in LastErrorCode, and information on any corrective actions that may be taken
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ErrorMethodology">
+            <summary>
+            Type of error detection and correction supported by this storage extent.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.FileSystem">
+            <summary>
+            File system on the logical disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Name">
+            <summary>
+            Label by which the object is known. When subclassed, this property can be overridden to be a key property
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.PNPDeviceID">
+            <summary>
+            Windows Plug and Play device identifier of the logical device
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.ProviderName">
+            <summary>
+            Network path to the logical device
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Purpose">
+            <summary>
+            Free-form string describing the media and its use
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.Status">
+            <summary>
+            Current status of the object. Various operational and nonoperational statuses can be defined
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.SystemCreationClassName">
+            <summary>
+            Value of the scoping computer CreationClassName property
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.SystemName">
+            <summary>
+            Name of the scoping system
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.VolumeName">
+            <summary>
+            Volume name of the logical disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.VolumeSerialNumber">
+            <summary>
+            Volume serial number of the logical disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMILogicalDisk.InstallDate">
+            <summary>
+            Date and time the object was installed
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMILogicalDisk.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of WMILogicalDisk of remote computer
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIPerfLogicalDisk">
+            <summary>
+            This class is performace WMI container of logical disk.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerRead">
+            <summary>
+            Average number of bytes transferred from the disk during read operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerRead_Base">
+            <summary>
+            Base value for AvgDiskBytesPerRead. This value represents the accumulated number of operations that have taken place
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerTransfer">
+            <summary>
+            Average number of bytes transferred to or from the disk during write or read operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerTransfer_Base">
+            <summary>
+            Base value for AvgDiskBytesPerTransfer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerWrite">
+            <summary>
+            Average number of bytes transferred to the disk during write operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskBytesPerWrite_Base">
+            <summary>
+            Base value for AvgDiskBytesPerWrite
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskQueueLength">
+            <summary>
+            Average number of both read and write requests that were queued for the selected disk during the sample interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskReadQueueLength">
+            <summary>
+            Average number of read requests that were queued for the selected disk during the sample interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerRead">
+            <summary>
+            Average time, in seconds, of a read operation of data from the disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerRead_Base">
+            <summary>
+            Base value for AvgDiskSecPerRead
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerTransfer">
+            <summary>
+            Time, in seconds, of the average disk transfer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerTransfer_Base">
+            <summary>
+            Base value for AvgDiskSecPerTransfer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerWrite">
+            <summary>
+            Average time, in seconds, of a write operation of data to the disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskSecPerWrite_Base">
+            <summary>
+            Base value for AvgDiskSecPerWrite
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.AvgDiskWriteQueueLength">
+            <summary>
+            Average number of write requests that were queued for the selected disk during the sample interval. The time base is 100 nanoseconds
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Caption">
+            <summary>
+            Short textual description 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.CurrentDiskQueueLength">
+            <summary>
+            Number of requests outstanding on the disk at the time the performance data is collected. It includes requests in service at the time of the snapshot
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Description">
+            <summary>
+            Textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskBytesPerSec">
+            <summary>
+            Rate at which bytes are transferred to or from the disk during write or read operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskReadBytesPerSec">
+            <summary>
+            Rate at which bytes are transferred from the disk during read operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskReadsPerSec">
+            <summary>
+            Rate of read operations on the disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskTransfersPerSec">
+            <summary>
+            Rate of read and write operations on the disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskWriteBytesPerSec">
+            <summary>
+            Rate at which bytes are transferred to the disk during write operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.DiskWritesPerSec">
+            <summary>
+            Rate of write operations on the disk
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.FreeMegabytes">
+            <summary>
+            Unallocated space on the disk drive in megabytes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Frequency_Object">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Frequency_PerfTime">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Frequency_Sys100NS">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Sys100NS (10000000)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Name">
+            <summary>
+            Label by which the statistic or metric is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskReadTime">
+            <summary>
+            Percentage of elapsed time that the selected disk drive is busy servicing read requests
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskReadTime_Base">
+            <summary>
+            Base value for PercentDiskReadTime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskTime">
+            <summary>
+            Percentage of elapsed time that the selected disk drive is busy servicing read or write requests
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskTime_Base">
+            <summary>
+            Base value for PercentDiskTime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskWriteTime">
+            <summary>
+            Percentage of elapsed time that the selected disk drive is busy servicing write requests
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentDiskWriteTime_Base">
+            <summary>
+            Base value for PercentDiskWriteTime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentFreeSpace">
+            <summary>
+            Ratio of the free space available on the logical disk unit to the total usable space provided by the selected logical disk drive
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentFreeSpace_Base">
+            <summary>
+            Base value for PercentFreeSpace
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentIdleTime">
+            <summary>
+            Percentage of time during the sample interval that the disk was idle
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.PercentIdleTime_Base">
+            <summary>
+            Base value for PercentIdleTime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.SplitIOPerSec">
+            <summary>
+            Rate at which I/Os to the disk were split into multiple I/Os
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Timestamp_Object">
+            <summary>
+            Object-defined timestamp, defined by the provider
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Timestamp_PerfTime">
+            <summary>
+            High Performance counter timestamp
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.Timestamp_Sys100NS">
+            <summary>
+            Timestamp value in 100 nanosecond units
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIPerfLogicalDisk.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of PerfLogicalDisk
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIPerfPageFile">
+            <summary>
+            This class is performace WMI container of PF.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Caption">
+            <summary>
+            Short textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Description">
+            <summary>
+            Textual description 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Name">
+            <summary>
+            Label by which the statistic or metric is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.PercentUsage">
+            <summary>
+            Percentage of the page file instance in use
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.PercentUsagePeak">
+            <summary>
+            Peak usage of the page file instance in percent.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Frequency_Object">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Frequency_PerfTime">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Frequency_Sys100NS">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Sys100NS (10000000)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Timestamp_Object">
+            <summary>
+            Object-defined timestamp, defined by the provider
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Timestamp_PerfTime">
+            <summary>
+            High Performance counter timestamp
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfPageFile.Timestamp_Sys100NS">
+            <summary>
+            Timestamp value in 100 nanosecond units
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIPerfPageFile.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of PerfPageFile
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIPerfProcess">
+            <summary>
+            This class is performace WMI container of logical disk.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Caption">
+            <summary>
+            Short textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.CreatingProcessID">
+            <summary>
+            Process ID of the process that created the process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Description">
+            <summary>
+            Textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.ElapsedTime">
+            <summary>
+            Elapsed time in seconds this process has been running
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Frequency_Object">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Frequency_PerfTime">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Frequency_Sys100NS">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Sys100NS (10000000)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.HandleCount">
+            <summary>
+            Total number of handles the process has open
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IDProcess">
+            <summary>
+            Unique identifier of this process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IODataOperationsPerSec">
+            <summary>
+            Rate at which the process is reading and writing bytes in I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOOtherOperationsPerSec">
+            <summary>
+            Rate at which the process is issuing read and write I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOReadBytesPerSec">
+            <summary>
+            Rate at which the process is reading bytes from I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOReadOperationsPerSec">
+            <summary>
+            Rate at which the process is issuing read I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOWriteBytesPerSec">
+            <summary>
+            Rate at which the process is writing bytes to I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOWriteOperationsPerSec">
+            <summary>
+            Rate at which the process is issuing write I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IODataBytesPerSec">
+            <summary>
+            Rate at which the process is bytes to I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.IOOtherBytesPerSec">
+            <summary>
+            Rate at which the process is issuing I/O operations
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Name">
+            <summary>
+            Label by which the statistic or metric is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PageFaultsPerSec">
+            <summary>
+            Rate of page faults by the threads executing in this process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PageFileBytes">
+            <summary>
+            Current number of bytes this process has used in the paging file(s)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PageFileBytesPeak">
+            <summary>
+            Maximum number of bytes this process has used in the paging file(s)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PercentPrivilegedTime">
+            <summary>
+            Percentage of elapsed time that this thread has spent executing code in privileged mode
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PercentProcessorTime">
+            <summary>
+            Returns elapsed time that all of the threads of this process used the processor to execute instructions in 100 nanoseconds
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PercentUserTime">
+            <summary>
+            Percentage of elapsed time that this process's threads have spent executing code in user mode. Applications, environment subsystems and integral subsystems execute in user mode
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PoolNonpagedBytes">
+            <summary>
+            Pool Nonpaged Bytes is the number of bytes in the nonpaged pool, an area of system memory (physical memory used by the operating system) for objects that cannot be written to disk, but must remain in physical memory as long as they are allocated
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PoolPagedBytes">
+            <summary>
+            Number of bytes in the paged pool, an area of system memory (physical memory used by the operating system) for objects that can be written to disk when they are not being used
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PriorityBase">
+            <summary>
+            Current base priority of this process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.PrivateBytes">
+            <summary>
+            Current number of bytes this process has allocated that cannot be shared with other processes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.ThreadCount">
+            <summary>
+            Number of threads currently active in this process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Timestamp_Object">
+            <summary>
+            Object-defined timestamp, defined by the provider.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Timestamp_PerfTime">
+            <summary>
+            High Performance counter timestamp
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.Timestamp_Sys100NS">
+            <summary>
+            Timestamp value in 100 nanosecond units
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.VirtualBytes">
+            <summary>
+            Current size, in bytes, of the virtual address space that the process is using
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.VirtualBytesPeak">
+            <summary>
+            Maximum number of bytes of virtual address space that the process has used at any one time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.WorkingSet">
+            <summary>
+            Maximum number of bytes in the working set of this process at any point in time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcess.WorkingSetPeak">
+            <summary>
+            Maximum number of bytes in the working set of this process at any point in time
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIPerfProcess.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of PerfProcess
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIPerfProcessor">
+            <summary>
+            This class is performace WMI container of processor.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.C1TransitionsPerSec">
+            <summary>
+            Rate at which the CPU enters the C1 low-power idle state
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.C2TransitionsPerSec">
+            <summary>
+            Rate at which the CPU enters the C2 low-power idle state
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.C3TransitionsPerSec">
+            <summary>
+            Rate at which the CPU enters the C3 low-power idle state
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Caption">
+            <summary>
+            Short textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Description">
+            <summary>
+            Textual description of the statistic or metric
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.DPCRate">
+            <summary>
+            Rate at which deferred procedure calls (DPCs) are added to the processor DPC queue between the timer tics of the processor clock
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.DPCsQueuedPerSec">
+            <summary>
+            Overall rate at which deferred procedure calls are added to the processor DPC queue
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Frequency_Object">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Frequency_PerfTime">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Frequency_Sys100NS">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Sys100NS (10000000)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.InterruptsPerSec">
+            <summary>
+            Average number of hardware interrupts that the processor is receiving and servicing in each second
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Name">
+            <summary>
+            Label by which the statistic or metric is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentC1Time">
+            <summary>
+            Percentage of time that the processor spends in the C1 low-power idle state, which is a subset of the total processor idle time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentC2Time">
+            <summary>
+            Percentage of time that the processor spends in the C-2 low-power idle state, which is a subset of the total processor idle time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentC3Time">
+            <summary>
+            Percentage of time that the processor spends in the C3 low-power idle state, which is a subset of the total processor idle time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentDPCTime">
+            <summary>
+            Percentage of time that the processor spent receiving and servicing deferred procedure calls during the sample interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentIdleTime">
+            <summary>
+            Percentage of time during the sample interval that the processor was idle
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentInterruptTime">
+            <summary>
+            Percentage of time that the processor spent receiving and servicing hardware interrupts during the sample interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentPrivilegedTime">
+            <summary>
+            Percentage of non-idle processor time spent in privileged mode. Privileged mode is a processing mode designed for operating system components and hardware-manipulating drivers
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentProcessorTime">
+            <summary>
+            Percentage of time that the processor is executing a non-idle thread
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.PercentUserTime">
+            <summary>
+            Percentage of non-idle processor time spent in user mode
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Timestamp_Object">
+            <summary>
+            Object-defined timestamp, defined by the provider
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Timestamp_PerfTime">
+            <summary>
+            High Performance counter timestamp
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIPerfProcessor.Timestamp_Sys100NS">
+            <summary>
+            Timestamp value in 100 nanosecond units
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIPerfProcessor.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of PerfProcessor<br></br>
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIOperatingSystem">
+            <summary>
+            This class is operating systems WMI containter
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.BootDevice">
+            <summary>
+            Disk drive name that os starts
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.BuildNumber">
+            <summary>
+            Build number of OS
+            This property includes clearer information than version number. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.BuildType">
+            <summary>
+            Build type of OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Caption">
+            <summary>
+            Short description of object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CodeSet">
+            <summary>
+            Code page value that os uses
+            Code page incldues character table that os uses when os translates other languages. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CountryCode">
+            <summary>
+            Contry or region code that os uses
+            This property is base on contry ocde of international call
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CreationClassName">
+            <summary>
+            First concrete class name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CSCreationClassName">
+            <summary>
+            Creating class name of target computer system
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CSDVersion">
+            <summary>
+            String indicates last installing service pack on computer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CSName">
+            <summary>
+            Traget computer name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.CurrentTimeZone">
+            <summary>
+            Offset indicates time inverval from GMT
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.DataExecutionPrevention_Available">
+            <summary>
+            If this property set to "TRUE", DEP will be enabeld.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.DataExecutionPrevention_32BitApplications">
+            <summary>
+            When current os has available to use DEP function, if this property set to "TRUE", DEP function will be applicated to 32bit-applications(Windows Server 2008, Windows Vista, Windows 7).
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.DataExecutionPrevention_Drivers">
+            <summary>
+            When current os has available to use DEP function, if this property set to "TRUE", DEP function will be applicated to drivers(Windows Server 2008, Windows Vista, Windows 7).
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.DataExecutionPrevention_SupportPolicy">
+            <summary>
+            Status of DEP
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Debug">
+            <summary>
+            If this property set to "TRUE", debuging version of "user.exe" will be installed
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Description">
+            <summary>
+            Description of object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Distributed">
+            <summary>
+            If this property set to "TRUE", os will be distributed on several computer system. these computer system consists cluster.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.EncryptionLevel">
+            <summary>
+            Encryption level(Windows Server 2003/Windows XP)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.ForegroundApplicationBoost">
+            <summary>
+            Status of boost
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.FreePhysicalMemory">
+            <summary>
+            Physical memory size that is using and can be used(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.FreeSpaceInPagingFiles">
+            <summary>
+            File page size that can be mapped avoid influencing to other pages(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.FreeVirtualMemory">
+            <summary>
+            Memory size that is using and can be used(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.InstallDate">
+            <summary>
+            Time that os was installed<br></br>
+            OS가 인스톨된 시간
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.LargeSystemCache">
+            <summary>
+            This property indicates that memory application-optimize or perfomance-optimize.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.LastBootUpTime">
+            <summary>
+            Time that os was booted latly
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.LocalDateTime">
+            <summary>
+            OS local time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Locale">
+            <summary>
+            Language indentificator that os uses
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Manufacturer">
+            <summary>
+            OS manufacture information
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.MaxNumberOfProcesses">
+            <summary>
+            Max context count that OS supports
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.MaxProcessMemorySize">
+            <summary>
+            Max memory size that assign to one process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Muilanguages">
+            <summary>
+            MUI pack list that was installed on OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Name">
+            <summary>
+            object name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.NumberOfLicensedUsers">
+            <summary>
+            Number of licences
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.NumberOfProcesses">
+            <summary>
+            Number of contexts that was loaded or is executing
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.NumberOfUsers">
+            <summary>
+            Number of user session
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OperatingSystemSKU">
+            <summary>
+            SKU status for OS(Windows Server 2008, Windows Vista, Windows 7)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Organization">
+            <summary>
+            Company name that was resistered on OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OSArchitecture">
+            <summary>
+            OS Architecature(Windows Server 2008, Windows Vista, Windows 7)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OSLanguage">
+            <summary>
+            Language version was installed on OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OSProductSuite">
+            <summary>
+            Suitable information of OS installed
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OSType">
+            <summary>
+            Type of os
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.OtherTypeDescription">
+            <summary>
+            Additional information of OS version
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.PAEEnabled">
+            <summary>
+            If this property set to "TRUE", PAE will be enabled(Windows Server 2008, Windows Vista, Windows 7).
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.PlusProductID">
+            <summary>
+            Product id added on Windows
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.PlusVersionNumber">
+            <summary>
+            Version id added on Windows
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Primary">
+            <summary>
+            Primary os or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.ProductType">
+            <summary>
+            installed OS type 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.RegisteredUser">
+            <summary>
+            User name that registered on OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SerialNumber">
+            <summary>
+            OS serial number
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.ServicePackMajorVersion">
+            <summary>
+            Major number of service pack installed on OS(Windows Server 2003,Windows XP, Windows Server 2008, Windows Vista, Windows 7)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.ServicePackMinorVersion">
+            <summary>
+            Minor number of service pack installed on OS(Windows Server 2003,Windows XP, Windows Server 2008, Windows Vista, Windows 7)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SizeStoredInPagingFiles">
+            <summary>
+            Number of KB that can be saved to OS page file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Status">
+            <summary>
+            Current status of object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SuiteMask">
+            <summary>
+            System suitable
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SystemDevice">
+            <summary>
+            Partition of physical disk that os was intalled
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SystemDirectory">
+            <summary>
+            System directory of OS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.SystemDrive">
+            <summary>
+            Drive that OS was installed
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.TotalSwapSpaceSize">
+            <summary>
+            Swap space(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.TotalVirtualMemorySize">
+            <summary>
+            Virtual memory size(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.TotalVisibleMemorySize">
+            <summary>
+            Physical memory size(KB)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.Version">
+            <summary>
+            OS version
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIOperatingSystem.WindowsDirectory">
+            <summary>
+            Windows directory
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.#ctor">
+            <summary>
+            This creates instance of WMIOperatingSystem of local computer
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of WMIOperatingSystem of remote computer
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Reboot">
+            <summary>
+            This method restarts OS
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Shutdown">
+            <summary>
+            This method shuts down OS
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.SetDateTime(System.DateTime)">
+            <summary>
+            This method changes date/time of OS
+            </summary>
+            <param name="dateTime">New date and time</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Win32Shutdown(TAP.Base.WMI.EnumShutDowFlag)">
+            <summary>
+            This method shuts down OS.
+            </summary>
+            <param name="shutdownFlag">Option flag</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Win32ShutdownTracker(System.Int32,System.String,System.Int32,TAP.Base.WMI.EnumShutDowFlag)">
+            <summary>
+            This method shuts down OS.
+            </summary>
+            <param name="timeout">Waiting time for shutting down</param>
+            <param name="comment">Comment of shutting down</param>
+            <param name="reasonCode">Reson of shutting down</param>
+            <param name="shutdownFlag">Option flags</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_DataExecutionPrevention_SupportPolicy(System.UInt16)">
+            <summary>
+            DEP 설정 적용상태에 대한 설명을 가져옵니다.
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_ForegroundApplicationBoost(System.UInt16)">
+            <summary>
+            부스트 적용상태에 대한 설명을 가져옵니다.
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_LargeSystemCache(System.UInt32)">
+            <summary>
+            메모리의 애플리케이션 최적화/퍼포먼스 최적화 적용상태에 대한 설명을 가져옵니다.
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_OperatingSystemSKU(System.UInt32)">
+            <summary>
+            적용된 SKU에 대한 설명을 가져옵니다. 
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_OSProductSuite(System.UInt32)">
+            <summary>
+            적용된 추가정보에 대한 설명을 가져옵니다.
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_OSType(System.UInt32)">
+            <summary>
+            OS 타입에 대한 설명을 가져옵니다. 
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_ProductType(System.UInt32)">
+            <summary>
+            제품 타입에 대한 설명을 가져옵니다. 
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_SuiteMask(System.UInt32)">
+            <summary>
+            시스템 적합성에 대한 설명을 가져옵니다. 
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIOperatingSystem.Get_OSLanguage(System.UInt32)">
+            <summary>
+            적용된 언어에 대한 설명을 가져옵니다. 
+            </summary>
+            <param name="flag">플래그</param>
+            <returns>설명</returns>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMIProcess">
+            <summary>
+            This class is process WMI containter.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Caption">
+            <summary>
+            Short description of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.CommandLine">
+            <summary>
+            Command line for executing process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.CreationClassName">
+            <summary>
+            Creation class name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.CreationDate">
+            <summary>
+            Time that process was started
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.CSCreationClassName">
+            <summary>
+            Creating class of target computer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.CSName">
+            <summary>
+            Name of target computer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Description">
+            <summary>
+            Description of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ExecutablePath">
+            <summary>
+            Executable path of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ExecutionState">
+            <summary>
+            This property was not implemeted.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Handle">
+            <summary>
+            Proces handle
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.HandleCount">
+            <summary>
+            Number of process handle that this process was opend
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.InstallDate">
+            <summary>
+            Installed time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.KernelModeTime">
+            <summary>
+            Time in kernel mode
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.MaximumWorkingSetSize">
+            <summary>
+            Max working size of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.MinimumWorkingSetSize">
+            <summary>
+            Min working size of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Name">
+            <summary>
+            Process label
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.OSCreationClassName">
+            <summary>
+            OS creation class name of target compute
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.OSName">
+            <summary>
+            OS name of target compute
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.OtherOperationCount">
+            <summary>
+            I/O operation count that reading and write occured
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.OtherTransferCount">
+            <summary>
+            Data size taht reading and write occured
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PageFaults">
+            <summary>
+            Page fault count taht process create
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PageFileUsage">
+            <summary>
+            Fie space size that process uses
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ParentProcessId">
+            <summary>
+            Ideintificator of parent process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PeakPageFileUsage">
+            <summary>
+            Address space that process can use
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PeakVirtualSize">
+            <summary>
+            Peak working set size of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PeakWorkingSetSize">
+            <summary>
+            Max working set size of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Priority">
+            <summary>
+            Priority of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.PrivatePageCount">
+            <summary>
+            Page count that assigned to process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ProcessId">
+            <summary>
+            Identitifactor of process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.QuotaNonPagedPoolUsage">
+            <summary>
+            Usage of non-paged pool that assigned to process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.QuotaPagedPoolUsage">
+            <summary>
+            Usage of paged pool that assigned to process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.QuotaPeakNonPagedPoolUsage">
+            <summary>
+            Peak usage of non-paged pool that assigned to process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.QuotaPeakPagedPoolUsage">
+            <summary>
+            Peak usage of paged pool that assigned to process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ReadOperationCount">
+            <summary>
+            Number of excutin
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ReadTransferCount">
+            <summary>
+            Data size of reading
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.SessionId">
+            <summary>
+            Identificator of session
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.Status">
+            <summary>
+            Process status
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.TerminationDate">
+            <summary>
+            Time that process was stopped or pursed
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.ThreadCount">
+            <summary>
+            Thread count that runs in process
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.UserModeTime">
+            <summary>
+            User mode time
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.VirtualSize">
+            <summary>
+            Virtual address size that process uses
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.WindowsVersion">
+            <summary>
+            Windows version
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.WorkingSetSize">
+            <summary>
+            Memory size for excuting process efficiently(Byte)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.WriteOperationCount">
+            <summary>
+            Number of writing operation
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMIProcess.WriteTransferCount">
+            <summary>
+            Data size writed
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.#ctor">
+            <summary>
+            This creates instance of WMIProcess of local computer.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of WMIProcess of remote computer.
+            </summary>
+            <param name="scope">Managed scope</param>
+            <param name="argObject">Managed object</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.Dispose">
+            <summary>
+            This method disposes this instance
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.Start">
+            <summary>
+            This method starts process.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.Start(System.String)">
+            <summary>
+            This method starts process using command line
+            </summary>
+            <param name="commandLine">Commad line</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.Kill(System.String)">
+            <summary>
+            This process kills process.
+            </summary>
+            <param name="processID">Process ID</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.FindProcessByName(System.String)">
+            <summary>
+            This process checks that process has assigned name exists.
+            </summary>
+            <param name="processName">Process name</param>
+            <returns>If process has assigned name is existed, this method returns "TRUE".</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.FindProcessByProcessID(System.String)">
+            <summary>
+            This process checks that process has assigned ID exists.
+            </summary>
+            <param name="processID">Process ID</param>
+            <returns>If process has assigned ID is existed, this method returns "TRUE".</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMIProcess.ConvertProcessStartExitCode(System.String)">
+            <summary>
+            This method converts result code to user-friendly message.
+            </summary>
+            <param name="exitCode">Result code</param>
+            <returns>User-friendly message correspoding result code</returns>
+        </member>
+        <member name="T:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration">
+            <summary>
+            This class is network adapter WMI containter.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ArpAlwaysSourceRoute">
+            <summary>
+            If this property set to "TRUE", TCP/IP transmits Address Resolution Protocol (ARP) queries with source routing enabled on Token Ring networks. By default (FALSE), ARP first queries without source routing, and then retries with source routing enabled if no reply is received. 
+            Source routing allows the routing of network packets across different types of networks.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ArpUseEtherSNAP">
+            <summary>
+            If this property set to "TRUE", Ethernet packets follow the IEEE 802.3 Sub-Network Access Protocol (SNAP) encoding. Setting this parameter to 1 forces TCP/IP to transmit Ethernet packets by using 802.3 SNAP encoding. 
+            By default (FALSE), the stack transmits packets in DIX Ethernet format. Windows 2000 systems can receive both
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.Caption">
+            <summary>
+            Short description of object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DatabasePath">
+            <summary>
+            Valid Windows file path to standard Internet database files (HOSTS, LMHOSTS, NETWORKS, and PROTOCOLS)
+            The file path is used by the Windows Sockets interface. This property is only available on computer systems running Windows 2000.<br></br>
+            This file path is used by Windows socket interface.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DeadGWDetectEnabled">
+            <summary>
+            If this property set to "TRUE", dead gateway detection occurs. 
+            With this feature enabled, Transmission Control Protocol (TCP) asks Internet Protocol (IP) to change to a backup gateway if it retransmits a segment several times without receiving a response.
+            If this property is enabled, TCP asks to internet protocol that changes gatewary or not when did not cath reply after sending segment several times.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DefaultIPGateway">
+            <summary>
+            Array of IP addresses of default gateways that the computer system uses
+            Example: "192.168.12.1 192.168.46.1"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DefaultTOS">
+            <summary>
+            Default Type Of Service (TOS) value set in the header of outgoing IP packets defined by RFC 791 
+            Valid ranged is 0~255
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DefaultTTL">
+            <summary>
+            Default Time To Live (TTL) value set in the header of outgoing IP packets
+            Default value is 32. Valid ranged is 1~255.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.Description">
+            <summary>
+            Description of object
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DHCPEnabled">
+            <summary>
+            If this property set to "TRUE", the dynamic host configuration protocol (DHCP) server automatically assigns an IP address to the computer system when establishing a network connection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DHCPLeaseExpires">
+            <summary>
+            Expiration date and time for a leased IP address that was assigned to the computer by the dynamic host configuration protocol (DHCP) server
+            Example: 20521201000230.000000000
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DHCPLeaseObtained">
+            <summary>
+            Date and time the lease was obtained for the IP address assigned to the computer by the dynamic host configuration protocol (DHCP) server
+            Example: 19521201000230.000000000
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DHCPServer">
+            <summary>
+            IP address of the dynamic host configuration protocol (DHCP) server
+            Example: "10.55.34.2"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DNSDomain">
+            <summary>
+            DNS domain name
+            Example: "tap-proejct.com"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DNSDomainSuffixSearchOrder">
+            <summary>
+            FQDN
+            Example: "samples.tap-proejct.com example.tap-proejct.com"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DNSEnabledForWINSResolution">
+            <summary>
+            If this property set to "TRUE", the Domain Name System (DNS) is enabled for name resolution over Windows Internet Naming Service (WINS) resolution. 
+            If the name cannot be resolved using DNS, the name request is forwarded to WINS for resolution.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DNSHostName">
+            <summary>
+            Host name used to identify the local computer for authentication by some utilities. Other TCP/IP-based utilities can use this value to acquire the name of the local computer. 
+            Host names are stored on DNS servers in a table that maps names to IP addresses for use by DNS. 
+            The name can be any combination of the letters A through Z, the numerals 0 through 9, and the hyphen (-), plus the period (.) character used as a separator. 
+            By default, this value is the Microsoft networking computer name, but the network administrator can assign another host name without affecting the computer name.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DNSServerSearchOrder">
+            <summary>
+            IP address array for querying to DNS server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DomainDNSRegistrationEnabled">
+            <summary>
+            the IP addresses for this connection are registered in DNS under the domain name of this connection in addition to being registered under the computer's full DNS name. 
+            The domain name of this connection is either set using the SetDNSDomain() method or assigned by DSCP. 
+            The registered name is the host name of the computer with the domain name appended
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ForwardBufferMemory">
+            <summary>
+            Memory allocated by IP to store packet data in the router packet queue. When this buffer space is filled, the router begins discarding packets at random from its queue. 
+            Packet queue data buffers are 256 bytes in length, so the value of this parameter should be a multiple of 256. Multiple buffers are chained together for larger packets. 
+            The IP header for a packet is stored separately. 
+            This parameter is ignored and no buffers are allocated if the IP router is not enabled. 
+            The buffer size can range from the network MTU to a value smaller than 0xFFFFFFFF. 
+            Default: 74240 (fifty 1480-byte packets, rounded to a multiple of 256)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.FullDNSRegistrationEnabled">
+            <summary>
+            If this property set to "TRUE", IP addresses for this connection are registered in DNS under the computer's full DNS name. 
+            The full DNS name of the computer is displayed on the Network Identification tab in the System application in Control Panel. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.GatewayCostMetric">
+            <summary>
+            Integer typed-cost matric value(1-9999) array
+            This value uses for calcuating router that is fastest, reliable and low-costed.
+            This parameter is one to one mapped to DefaultIPGateway property.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IGMPLevel">
+            <summary>
+            This property expends system that supports IP multi-casting and joins to IGMP.
+            Level 0 means that system does not support multi-casting.
+            Level 1 means that system supports IP multi-casting for transporing only.
+            Level 2 means that system supports IP multi-casting for transporing and receive multi-casting packet and join to IGMP.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.Index">
+            <summary>
+            Index number of Windows network adapter configuration<br></br>
+            This number will be used when two or more confiuration is possibled.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.InterfaceIndex">
+            <summary>
+            Index value for identifacting local network interface
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPAddress">
+            <summary>
+            All IP addresses array assigned to current network adapter<br></br>
+            This property includes IPv4 address and IPv6 address on Windows vista later verison.<br></br>
+            Example IPv6 address: "2010:836B:4179::836B:4179"
+            Example: "172.16.22.0"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPConnectionMetric">
+            <summary>
+            Cost for using route configurated for IP-bounded adapter<br></br>
+            If many route that can go to destination exist, lowest-route will be used.
+            Default value is 1.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPEnabled">
+            <summary>
+            If this property set to "TRUE", TCP/IP will be enabled on this network adapter.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPFilterSecurityEnabled">
+            <summary>
+            If this property set to "TRUE", security of IP port will be enabled on all IP-Area network adapter statically.
+            This property will be used with IPSecPermitTCPPorts, IPSecPermitUDPPorts, IPSecPermitIPProtocols properties.
+            If this property set to "FALSE", sercurity of IP Fillter will be disabled on all IP-Area network adapter statically.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPPortSecurityEnabled">
+            <summary>
+            This propertiy is not used.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPSecPermitIPProtocols">
+            <summary>
+            Protocol list can be accessed<br></br>
+            Protocol list can be defined by calling EnableIPSec method.
+            This list can be empty or includes numeric values.
+            "0" means that all protocol was permitted to access.
+            When IPFilterSecurityEnabled property set to "TRUE", empty list means that no protocol was permitted to access.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPSecPermitTCPPorts">
+            <summary>
+            Port list that was permitted to access to TCP<br></br>
+            This list can be defined by calling EnableIPSec method.
+            This list can be empty or includes numeric values.
+            "0" means that all protocol was permitted to access.
+            When IPFilterSecurityEnabled property set to "TRUE", empty list means that no protocol was permitted to access.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPSecPermitUDPPorts">
+            <summary>
+            Port list that was permitted to access to UDP<br></br>
+            This list can be defined by calling EnableIPSec method.
+            This list can be empty or includes numeric values.
+            "0" means that all protocol was permitted to access.
+            When IPFilterSecurityEnabled property set to "TRUE", empty list means that no protocol was permitted to access.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPSubnet">
+            <summary>
+            Array of all subnet masks
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPUseZeroBroadcast">
+            <summary>
+            If this property set to "TRUE", IP zeros-broadcasts will be enabled using (0.0.0.0) and system uses ones-broadcasts (255.255.255.255).
+            Generally, computer system uses ones-broadcasts but this is derived from BSD implemeted use zeros-broadcasts.
+            This will not be interacted with system uses other broadcasts.
+            Default value is "FALSE".
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXAddress">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXEnabled">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXFrameType">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXMediaType">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXNetworkNumber">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.IPXVirtualNetNumber">
+            <summary>
+            IPX techonology is not used any more, this propety does not include useful data.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.KeepAliveInterval">
+            <summary>
+            Interval of Keep Alive Retransmissions untill obtaining respose
+            Default value is 1000, valid range is 1 - 0xFFFFFFFF.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.KeepAliveTime">
+            <summary>
+            This property indicates how many time tcp cheks connection using transporting Keep Alive packet on idle status.
+            Remote system transports receiving status for maintaining transporting continuely.
+            Defaultly, Kepp Alive packet is not transported.
+            This function will be enabled by appliction connection.
+            Default value is 7,200,000(2hours).
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.MACAddress">
+            <summary>
+            Mac address of network adapter<br></br>
+            Example: "00:80:C7:8F:6C:96"
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.MTU">
+            <summary>
+            MTU
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.NumForwardPackets">
+            <summary>
+            Number of IP packet header that is assigned to router packet queue<br></br>
+            When all header is using, router will start to remove packet randomly.
+            This value must be larger than ForwardBufferMemory value that is devided by max IP data size of connected network.
+            This value must be smaller than ForwardBufferMemory value devided by 256.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.PMTUBHDetectEnabled">
+            <summary>
+            If this property set to "TRUE", detection of black hole routers occurs while TCP discovers the path of the Maximum Transmission Unit. 
+            A black hole router does not return ICMP Destination Unreachable messages when it needs to fragment an IP datagram with the Don't Fragment bit set. 
+            TCP depends on receiving these messages to perform Path MTU Discovery. 
+            With this feature enabled, TCP will try to send segments without the Don't Fragment bit set if several retransmissions of a segment go unacknowledged. 
+            If the segment is acknowledged as a result, the MSS will be decreased and the Don't Fragment bit will be set in future packets on the connection. 
+            Enabling black hole detection increases the maximum number of retransmissions performed for a given segment. 
+            The default value of this property is FALSE.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.PMTUDiscoveryEnabled">
+            <summary>
+            If this property set to "TRUE", the Maximum Transmission Unit (MTU) path is discovered over the path to a remote host. 
+            Default value is "TRUE".
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ServiceName">
+            <summary>
+            Service name of the network adapter
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SettingID">
+            <summary>
+            Identifier by which the CIM_Setting object is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpipNetbiosOptions">
+            <summary>
+            Bitmap of the possible settings related to NetBIOS over TCP/IP.<br></br>
+            0 0x0 EnableNetbiosViaDhcp
+            1 0x1 EnableNetbios 
+            2 0x2 DisableNetbios
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpMaxConnectRetransmissions">
+            <summary>
+            Number of times TCP attempts to retransmit a Connect Request before terminating the connection
+            The initial retransmission timeout is 3 seconds. 
+            The retransmission timeout doubles for each attempt. Default: 3, Valid Range: 0 - 0xFFFFFFFF.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpMaxDataRetransmissions">
+            <summary>
+            Number of times TCP retransmits an individual data segment (nonconnect segment) before terminating the connection
+            The retransmission timeout doubles with each successive retransmission on a connection. 
+            Default: 5, Valid Range: 0 - 0xFFFFFFFF.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpNumConnections">
+            <summary>
+            Maximum number of connections that TCP can have open simultaneously
+            Default: 0xFFFFFE, Valid Range: 0 - 0xFFFFFE.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpUseRFC1122UrgentPointer">
+            <summary>
+            If this property set to "TRUE",  TCP uses the RFC 1122 specification for urgent data
+            If FALSE (default), TCP uses the mode used by Berkeley Software Design (BSD) derived systems. 
+            The two mechanisms interpret the urgent pointer differently and are not interoperable. 
+            The default value is FALSE
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.TcpWindowSize">
+            <summary>
+            Maximum TCP Receive Window size offered by the system
+            The Receive Window specifies the number of bytes a sender may transmit without receiving an acknowledgment. 
+            In general, larger receiving windows will improve performance over high-delay and high-bandwidth networks. 
+            For efficiency, the receiving window should be an even multiple of the TCP Maximum Segment Size (MSS). 
+            Default: Four times the maximum TCP data size or an even multiple of TCP data size rounded up to the nearest multiple of 8192. 
+            Ethernet networks default to 8760. Valid range: 0 - 65535.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.WINSEnableLMHostsLookup">
+            <summary>
+            If this property set to "TRUE",   local lookup files are used. Lookup files will contain a map of IP addresses to host names. 
+            If they exist on the local system, they will be found in %SystemRoot%\system32\drivers\etc.<br></br>
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.WINSHostLookupFile">
+            <summary>
+            Path to a WINS lookup file on the local system<br></br>
+            This file will contain a map of IP addresses to host names. 
+            If the file specified in this property is found, it will be copied to the %SystemRoot%\system32\drivers\etc folder of the local system. 
+            Valid only if the WINSEnableLMHostsLookup property is TRUE.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.WINSPrimaryServer">
+            <summary>
+            IP address for the primary WINS server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.WINSScopeID">
+            <summary>
+            Value appended to the end of the NetBIOS name that isolates a group of computer systems communicating with only each other
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.WINSSecondaryServer">
+            <summary>
+            IP address for the secondary WINS server
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.#ctor">
+            <summary>
+            This creates instance of WMINetworkAdapterConfiguration of local computer
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of WMINetworkAdapterConfiguration of remote computer
+            </summary>
+            <param name="scope">Managed scope</param>
+            <param name="obj">Managed object</param>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.DisableIPSec">
+            <summary>
+            This method enables IP-security
+            </summary>
+            <returns>결과값</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableDHCP">
+            <summary>
+            This method enables DHCP.
+            </summary>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableDNS(System.String,System.String,System.String[],System.String[])">
+            <summary>
+            This method enables DNS.
+            </summary>
+            <param name="dnsHostName">DNS host name</param>
+            <param name="dnsDomain">DNS domain</param>
+            <param name="dnsServerSearchOrder">IP address list of DNS servers</param>
+            <param name="dnsDomainSuffixSearchOrder">FQDN list</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableIPFilterSec(System.Boolean)">
+            <summary>
+            This method enables IP-security on network adapter of IP-area statically.
+            </summary>
+            <param name="ipFilterSecurityEnabled">If TRUE, this method enables IP-security.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableIPSec(System.String[],System.String[],System.String[])">
+            <summary>
+             This method enables IPsec on this specific TCP/IP-enabled network adapter.
+            </summary>
+            <param name="ipSecPermitTCPPorts">Port list that has permission that accesses to TCP</param>
+            <param name="ipSecPermitUDPPorts">Port list that has permission that accesses to UDP</param>
+            <param name="ipSecPermitIPProtocols">Protocol list that has permission that can be excuted between IPs</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableStatic(System.String[],System.String[])">
+            <summary>
+            This method enables static TCP/IP addressing for the target network adapter.
+            </summary>
+            <param name="ipAddress">Static IP address list for assigning to current network Example: 155.34.22.0.</param>
+            <param name="subnetMask">Subnet mask list for assigning to current network Example: 255.255.0.0. </param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.EnableWINS(System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            This method enables WINS settings specific to TCP/IP, but independent of the network adapter.
+            </summary>
+            <param name="dnsEnabledForWINSResolution">If TRUE, this method enables WINS.</param>
+            <param name="winsEnableLMHostsLookup">If TRUE, WINS will use lookup file.</param>
+            <param name="winsHostLookupFile">Path of lookup file</param>
+            <param name="winsScopeID">Scope identificator</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ReleaseDHCPLease">
+            <summary>
+            This method releases the IP address bound to a specific DHCP-enabled network adapter.
+            </summary>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.ReleaseDHCPLeaseAll">
+            <summary>
+            This method releases the IP addresses bound to all DHCP-enabled network adapters.
+            </summary>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.RenewDHCPLease">
+            <summary>
+            This method renews the IP address on specific DHCP-enabled network adapters.
+            </summary>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.RenewDHCPLeaseAll">
+            <summary>
+             This mehtod renews the IP addresses on all DHCP-enabled network adapters.
+            </summary>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetArpAlwaysSourceRoute(System.Boolean)">
+            <summary>
+            This method sets the transmission of ARP queries by the TCP/IP.
+            </summary>
+            <param name="arpAlwaysSourceRoute">If TURE, ARP enables Source routing on network and executes querying.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetArpUseEtherSNAP(System.Boolean)">
+            <summary>
+            This method enables Ethernet packets to use 802.3 SNAP encoding.
+            </summary>
+            <param name="arpUseEtherSNAP">If TRUE, TCP/IP transports packet using IEEE 802.3 SNAP Encoding.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDatabasePath(System.String)">
+            <summary>
+             This method sets the path to the standard Internet database files (HOSTS, LMHOSTS, NETWORKS, and PROTOCOLS).
+            </summary>
+            <param name="databasePath">Valid path for standard internet interface file that used by Windows socket interface</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDeadGWDetect(System.Boolean)">
+            <summary>
+             This method eables dead gateway detection.
+            </summary>
+            <param name="deadGWDetectEnabled">If TRUE, this method method eables dead gateway detection.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDefaultTOS(System.UInt16)">
+            <summary>
+            This method is not used any more.
+            </summary>
+            <param name="defaultTOS"></param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDefaultTTL(System.UInt16)">
+            <summary>
+            This method sets the default Time to Live (TTL) value in the header of outgoing IP packets.
+            </summary>
+            <param name="defaultTTL">Default TTL value</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDNSDomain(System.String)">
+            <summary>
+            This method sets the DNS domain.
+            </summary>
+            <param name="dnsDomain">Domain corresponding DNS Example: "microsoft.com"</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDNSServerSearchOrder(System.String[])">
+            <summary>
+            This method sets the server search order as an array of elements.
+            </summary>
+            <param name="dnsServerSearchOrder">IP Address array for querying to DNS server</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDNSSuffixSearchOrder(System.String[])">
+            <summary>
+            This method sets the suffix search order as an array of elements.
+            </summary>
+            <param name="dnsDomainSuffixSearchOrder">DNS suffix array</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetDynamicDNSRegistration(System.Boolean,System.Boolean)">
+            <summary>
+            This method indicates dynamic DNS registration of IP addresses for this IP-bound adapter. This method is new for Windows XP.
+            </summary>
+            <param name="fullDNSRegistrationEnabled">If TRUE, IP Addresses for this connection will be registered on DNS full name.</param>
+            <param name="domainDNSRegistrationEnabled">If TRUE, IP Addresses for this connection will be registered on connection full name.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetForwardBufferMemory(System.UInt32)">
+            <summary>
+            This method specifies how much memory IP allocates to store packet data in the router packet queue
+            </summary>
+            <param name="forwardBufferMemory">Memory size that is assigned to IP for saving paket data to router packet queue.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetGateways(System.String[],System.UInt16[])">
+            <summary>
+            This method specifies a list of gateways for routing packets destined for a different subnet than the one this adapter is connected to.
+            </summary>
+            <param name="defaultIPGateway">Default gateway list</param>
+            <param name="gatewayCostMetric">Cost matric table</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIGMPLevel(System.UInt16)">
+            <summary>
+            This method sets the extent to which the system supports IP multicasting and participates in the Internet Group Management Protocol.
+            </summary>
+            <param name="igmpLevel">IGMP level</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIPConnectionMetric(System.UInt32)">
+            <summary>
+            This method sets the routing metric associated with this IP-bound adapter. 
+            </summary>
+            <param name="ipConnectionMetric">Cost that consumes for using configurated route for IP-bound adapter</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIPUseZeroBroadcast(System.Boolean)">
+            <summary>
+            This method is not used any more.
+            </summary>
+            <param name="ipUseZeroBroadcast"></param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIPXFrameTypeNetworkPairs(System.String[],System.UInt32[])">
+            <summary>
+            The Internetwork Packet Exchange (IPX) technology is no longer available for use as of Windows Vista, and this method is obsolete.
+            </summary>
+            <param name="ipxNetworkNumber"></param>
+            <param name="ipxFrameType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIPXVirtualNetworkNumber(System.String)">
+            <summary>
+            The Internetwork Packet Exchange (IPX) technology is no longer available for use as of Windows Vista, and this method is obsolete.
+            </summary>
+            <param name="ipxVirtualNetNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetKeepAliveInterval(System.UInt32)">
+            <summary>
+             This method sets the interval separating Keep Alive Retransmissions until a response is received.
+            </summary>
+            <param name="keepAliveInterval">Interval of Keep Alive Retransmissions for receive reply</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetKeepAliveTime(System.UInt32)">
+            <summary>
+            This method sets how often TCP attempts to verify that an idle connection is still available by sending a Keep Alive packet.
+            </summary>
+            <param name="keepAliveTime">KeepAliveTime property indicates how many times TCP checks network status using Keep Alive packet.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetMTU(System.UInt32)">
+            <summary>
+            This method sets the default Maximum Transmission Unit (MTU) for a network interface.
+            </summary>
+            <param name="mtu">MTU</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetNumForwardPackets(System.UInt32)">
+            <summary>
+            This method sets the number of IP packet headers allocated for the router packet queue.
+            </summary>
+            <param name="numForwardPackets">Number of IP packet header assigned to router packet queue</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetPMTUBHDetect(System.Boolean)">
+            <summary>
+            This method enables detection of Black Hole routers.
+            </summary>
+            <param name="pmTUBHDetectEnabled">If TRUE, TCP enables black hole router detection when TCP find MTU path.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetPMTUDiscovery(System.Boolean)">
+            <summary>
+            This method enables Maximum Transmission Unit (MTU) discovery.
+            </summary>
+            <param name="pmTUDiscoveryEnabled">If TRUE, TCP will find MTU path in all remote host path.</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpipNetbios(System.UInt32)">
+            <summary>
+            This method sets the default operation of NetBIOS over TCP/IP. 
+            </summary>
+            <param name="tcpipNetbiosOptions">BIT map that can be set with NetBIOS over TCP/IP</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpMaxConnectRetransmissions(System.UInt32)">
+            <summary>
+            This method sets the number of attempts TCP will retransmit a connect request before aborting.
+            </summary>
+            <param name="tcpMaxConnectRetransmissions">Number of attempts TCP will retransmit a connect request before aborting</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpMaxDataRetransmissions(System.UInt32)">
+            <summary>
+            This method sets the number of times TCP will retransmit an individual data segment before aborting the connection.
+            </summary>
+            <param name="tcpMaxDataRetransmissions">Number of times TCP will retransmit an individual data segment before aborting the connection</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpNumConnections(System.UInt32)">
+            <summary>
+            This method sets the maximum number of connections that TCP may have open simultaneously.
+            </summary>
+            <param name="tcpNumConnections">Maximum number of connections that TCP may have open simultaneously</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpUseRFC1122UrgentPointer(System.Boolean)">
+            <summary>
+            This method specifies whether TCP uses the RFC 1122 specification for urgent data, or the mode used by Berkeley Software Design (BSD) derived systems.
+            </summary>
+            <param name="tcpUseRFC1122UrgentPointer">If TRUE,  TCP uses the RFC 1122 specification for urgent data</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetTcpWindowSize(System.UInt16)">
+            <summary>
+            This method sets the maximum TCP Receive Window size offered by the system.
+            </summary>
+            <param name="TcpWindowSize">Maximum TCP Receive Window size offered by the system</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetWINSServer(System.String,System.String)">
+            <summary>
+            This method sets the primary and secondary Windows Internet Naming Service (WINS) servers on this TCP/IP-bound network adapter.
+            </summary>
+            <param name="winsPrimaryServer">Primary WINS Server  IP address</param>
+            <param name="winsSecondaryServer">Secondary WINS server IP address</param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.Containers.WMINetworkAdapterConfiguration.SetIP(System.String,System.String,System.String)">
+            <summary>
+            This method assinges static IP address to assigned network adapter.
+            This method can not be used for remote computers.
+            IF remote computer calls this method, WMI connection will be released without changing gateway and subnet masks.
+            </summary>
+            <param name="ipAddress">IP address</param>
+            <param name="subnetMask">Subnet mask</param>
+            <param name="gateway">Gateway</param>
+        </member>
+        <member name="T:TAP.Base.WMI.Conainers.Processor">
+            <summary>
+            This class is processor WMI containter.
+            </summary>
+        </member>
+        <member name="T:TAP.Base.WMI.Conainers.WMIContainer">
+            <summary>
+            WMI Container class for other WMI classes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.Conainers.WMIContainer.Instance">
+            <summary>
+            Static accessor of TapBase
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.Conainers.WMIContainer.instant">
+            <summary>
+            This is TapBase-Typed global varaiable.
+            </summary>
+        </member>
+        <member name="T:TAP.Base.WMI.OperatingSystem">
+            <summary>
+            This enumeratior is kind of windows operating systems.<br></br>
+            윈도우 운영체제 종류 목록입니다.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.OperatingSystem.VistaLater">
+            <summary>
+            Vista later version<br></br>
+            비스타 이후 버전입니다.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.OperatingSystem.XPLater">
+            <summary>
+            XP version<br></br>
+            XP 이후, 비스타 버전입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.OperatingSystem.NTor2K">
+            <summary>
+            NT or 2K version<br></br>
+            2K 이전 버전입니다. 
+            </summary>
+        </member>
+        <member name="T:TAP.Base.WMI.EnumShutDowFlag">
+            <summary>
+            This enumeratior is kind of shutdowns.<br></br>
+            셧다운 타입 목록입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.LogOff">
+            <summary>
+            Logoff<br></br>
+            로그오프입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ForcedLogOff">
+            <summary>
+            Forced-logoff<br></br>
+            강제 로그오프입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ShutDown">
+            <summary>
+            Shutdown<br></br>
+            셧다운입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ForcedShutDown">
+            <summary>
+            Forced-shutdown<br></br>
+            강제 셧다운입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ReBoot">
+            <summary>
+            Reboot<br></br>
+            재부팅입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ForcedReBoot">
+            <summary>
+            Forced-reboot<br></br>
+            강제 재부팅입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.PowerOff">
+            <summary>
+            Power off<br></br>
+            전원종료입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.EnumShutDowFlag.ForcedPowerOff">
+            <summary>
+            Forced-power off<br></br>
+            강제전원종료입니다. 
+            </summary>
+        </member>
+        <member name="T:TAP.Base.WMI.WMIPerfMemory">
+            <summary>
+            This class is performace WMI container of memory.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.AvailableBytes">
+            <summary>
+            Amount of physical memory in bytes available to processes running on the computer
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.AvailableKBytes">
+            <summary>
+            Amount of physical memory available to processes running on the computer, in kilobytes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.AvailableMBytes">
+            <summary>
+            Amount of physical memory available to processes running on the computer, in megabytes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.CacheBytes">
+            <summary>
+            Number of bytes currently being used by the file system cache
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.CacheBytesPeak">
+            <summary>
+            Maximum number of CacheBytes after the system was last restarted
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.CacheFaultsPerSec">
+            <summary>
+            Number of faults which occur when a page sought in the file system cache is not found there and must be retrieved from elsewhere in memory (soft fault) or from disk (hard fault)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Caption">
+            <summary>
+            short textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.CommitLimit">
+            <summary>
+            Amount of virtual memory, in bytes, that can be committed without having to extend the paging file(s)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.CommittedBytes">
+            <summary>
+            Amount of committed virtual memory, in bytes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.DemandZeroFaultsPerSec">
+            <summary>
+            Number of page faults that require a zeroed page to satisfy the fault
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Description">
+            <summary>
+            Textual description
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.FreeSystemPageTableEntries">
+            <summary>
+            Number of page table entries not being used by the system
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Frequency_Object">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Frequency_PerfTime">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Perftime
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Frequency_Sys100NS">
+            <summary>
+            Frequency, in ticks per second, of Timestamp_Sys100NS (10000000)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Name">
+            <summary>
+            Label by which the statistic or metric is known
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PageFaultsPerSec">
+            <summary>
+            Overall rate at which faulted pages are handled by the processor. A page fault occurs when a process requires code or data that is not in its working set (its space in physical memory)
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PageReadsPerSec">
+            <summary>
+            Number of times the disk was read to resolve hard page faults
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PagesInputPerSec">
+            <summary>
+            Number of pages read from disk to resolve hard page faults
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PagesOutputPerSec">
+            <summary>
+            Number of pages written to disk to free up space in physical memo
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PagesPerSec">
+            <summary>
+            Number of pages read from or written to the disk to resolve hard page faults
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PageWritesPerSec">
+            <summary>
+            Number of times pages were written to disk to free up space in physical memory
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PercentCommittedBytesInUse">
+            <summary>
+            Ratio of Memory: Committed Bytes to Memory
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PercentCommittedBytesInUse_Base">
+            <summary>
+            Base value for PercentCommittedBytesInUse
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PoolNonpagedAllocs">
+            <summary>
+            Number of calls to allocate space in the non-paged pool, regardless of the amount of space allocated in each call
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PoolNonpagedBytes">
+            <summary>
+            Number of bytes in the non-paged pool, an area of system memory (physical memory used by the operating system) for objects that cannot be written to disk, but must remain in physical memory as long as they are allocated
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PoolPagedAllocs">
+            <summary>
+            Number of calls to allocate space in the paged pool, regardless of the amount of space allocated in each call
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PoolPagedBytes">
+            <summary>
+            Number of bytes in the paged pool, an area of system memory (physical memory used by the operating system) for objects that can be written to disk when they are not being used
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.PoolPagedResidentBytes">
+            <summary>
+            Current size of paged pool in bytes
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.SystemCacheResidentBytes">
+            <summary>
+            Number of bytes of pageable operating system code in the file system cache
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.SystemCodeResidentBytes">
+            <summary>
+            Number of bytes of operating system code currently in physical memory that can be written to disk when not in use
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.SystemCodeTotalBytes">
+            <summary>
+            Number of bytes of pageable operating system code currently in virtual memory
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.SystemDriverResidentBytes">
+            <summary>
+            Number of bytes of pageable physical memory being used by device drivers
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.SystemDriverTotalBytes">
+            <summary>
+            Number of bytes of pageable virtual memory currently being used by device drivers
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Timestamp_Object">
+            <summary>
+            Object-defined timestamp, defined by the provider
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Timestamp_PerfTime">
+            <summary>
+            High Performance counter timestamp
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.Timestamp_Sys100NS">
+            <summary>
+            imestamp value in 100 nanosecond units
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.TransitionFaultsPerSec">
+            <summary>
+            Number of page faults resolved by recovering pages that were on the modified page list, on the standby list, or being written to disk at the time of the page fault
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIPerfMemory.WriteCopiesPerSec">
+            <summary>
+            Number of page faults caused by attempts to write that have been satisfied by copying the page from elsewhere in physical memory
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIPerfMemory.#ctor(System.Management.ManagementScope,System.Management.ManagementObject)">
+            <summary>
+            This creates instance of PerfMemory
+            </summary>
+            <param name="scope">Management scope</param>
+            <param name="obj">Management object</param>
+        </member>
+        <member name="T:TAP.Base.WMI.WMIDynamicExecuter">
+            <summary>
+            This is WMI executer queries non-built in objects.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIDynamicExecuter.ConnectServer(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method connects target server.
+            </summary>
+            <param name="machineIP">Target machine IP</param>
+            <param name="user">User</param>
+            <param name="domain">Domain</param>
+            <param name="password">Password</param>
+            <param name="nameSpace">Namespace of WIN32 WMI class</param>
+            <param name="processName">Process name</param>
+        </member>
+        <member name="T:TAP.Base.WMI.WMIExecuter">
+            <summary>
+            This class proviceds method to execute WMI query for remote computer.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.WMIExecuter.machineName">
+            <summary>
+            대상 머신의 이름입니다.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.WMIExecuter.connOption">
+            <summary>
+            연결 옵션입니다. 
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.WMIExecuter.scope">
+            <summary>
+            연결개체입니다. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.WMIExecuter.MachineName">
+            <summary>
+            Machine name
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.#ctor">
+            <summary>
+            This creator creates instance of WMIExecuter
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            This creator creates instance of WMIExecuter.
+            </summary>
+            <param name="machineIP">IP address of target computer</param>
+            <param name="user">Login account</param>
+            <param name="domain">Domain</param>
+            <param name="password">Password</param>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This creator creates instance of WMIExecuter.
+            </summary>
+            <param name="machineIP">IP address of target computer</param>
+            <param name="user">Login account</param>
+            <param name="domain">Domain</param>
+            <param name="password">Password</param>
+            <param name="nameSpace">WMI namespace</param>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.Disconnect">
+            <summary>
+            This method disconnects from target computer.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadProcessList">
+            <summary>
+            This method loads all executing processes of target computer. 
+            </summary>
+            <returns>Process list</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadProcessList(System.String)">
+            <summary>
+            This method loads all executing processes of target computer. 
+            </summary>
+            <param name="processName">Process name</param>
+            <returns>Process list</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadProcess(System.String)">
+            <summary>
+            This method load process specified process name
+            </summary>
+            <param name="processName">Process name</param>
+            <returns>Intance of WMIProcess</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadOperatingSystem">
+            <summary>
+            This method loads operating system information of target computer.
+            </summary>
+            <returns>Operating system information</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadGetNetworkAdapterConfiguration">
+            <summary>
+            This method loads primary network adapter information of target computer.
+            </summary>
+            <returns>Network primary adapter information</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadGetNetworkAdapterConfigurations">
+            <summary>
+            This method loads all networkadapter information of target computer. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadProcessorPerformance(System.String)">
+            <summary>
+            This method loads performace information of processor of target computer.
+            </summary>
+            <param name="processor">Processor name</param>
+            <returns>Instance of WMIPerfProcessor</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadMemoryPerformace">
+            <summary>
+            This method loads performace information of memory of target computer.
+            </summary>
+            <returns>Instance of WMIPerfMemory</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadPageFilePerformace">
+            <summary>
+            This method loads performace information of page file of target computer.
+            </summary>
+            <returns>Instance of WMIPerfPageFile</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadDiskPerformace(System.String)">
+            <summary>
+            This method loads performace information of disk of target computer.
+            </summary>
+            <param name="diskName">Disk volmne label</param>
+            <returns>Instance of WMIPerfLogicalDisk</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadLogicalDisk(System.String)">
+            <summary>
+            This method loads logical disk information of target computer.
+            </summary>
+            <param name="volumeLabel">Disk volmne label</param>
+            <returns>Instance of WMILogicalDisk</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadProcessPerformance(System.String)">
+            <summary>
+            This method loads performance data of process specified on target computer
+            </summary>
+            <param name="processName">Process name</param>
+            <returns>Instance of WMIPerfProcess</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.LoadOtherInformation(System.String)">
+            <summary>
+            This method loads WMI-information using path.
+            </summary>
+            <param name="path">WMI path</param>
+            <returns>Instance of ManagementObject</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.ConnectServer(System.String,System.String,System.String,System.String)">
+            <summary>
+            대상 컴퓨터에 연결합니다. 
+            </summary>
+            <param name="machineIP">대상 컴퓨터의 IP  어드레스</param>
+            <param name="user">로그인 계정</param>
+            <param name="domain">도메인</param>
+            <param name="password">패스워드</param>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.DisconnectServer">
+            <summary>
+            대상 컴퓨터의 Scop을 제거하고, 필드에 할당된 모든 값을 초기화합니다.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.ExecuteQuery(System.String)">
+            <summary>
+            This method queries user's request in target computer.
+            </summary>
+            <param name="argQuery">쿼리문</param>
+            <returns>쿼리 수행 결과</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.GetProcessList">
+            <summary>
+            This method loads process list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.GetOperatingSystem">
+            <summary>
+            운영체제 정보를 로드합니다. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIExecuter.GetNetworkAdapterConfiguration">
+            <summary>
+            네트워크 어댑터 구성정보를 로드합니다. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.Base.WMI.AsyncHandler">
+            <summary>
+            This class supports async querying.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.AsyncHandler.#ctor">
+            <summary>
+            This creator creates instance of AsyncHandler.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.AsyncHandler.isComplete">
+            <summary>
+            완료여부입니다.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.AsyncHandler.retVal">
+            <summary>
+            수행결과입니다. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.AsyncHandler.IsComplete">
+            <summary>
+            Completed or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.WMI.AsyncHandler.RetVal">
+            <summary>
+            Result of excuting
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.AsyncHandler.Done(System.Object,System.Management.ObjectReadyEventArgs)">
+            <summary>
+            Trigger Done events when InvokeMethod is completed.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:TAP.Base.WMI.WMIBase">
+            <summary>
+            This class is abstract class of WMI Wrapper.
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.WMIBase.scope">
+            <summary>
+            Connection object
+            </summary>
+        </member>
+        <member name="F:TAP.Base.WMI.WMIBase.connOption">
+            <summary>
+            Connection option
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIBase.ConvertToDateTime(System.String)">
+            <summary>
+            This method converts WIN32 date and time format to .NET date and time format.
+            </summary>
+            <param name="argDateTime">WIN32 format date and time</param>
+            <returns>.NET format date and time</returns>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIBase.Dispose">
+            <summary>
+            This method disposes instance of WMIBase.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.WMI.WMIBase.ExecuteMethod(System.Management.ManagementClass,System.String,System.Management.ManagementBaseObject)">
+            <summary>
+            This method calls WMI method.
+            </summary>
+            <param name="managementClass">Target WIN32 WMI class</param>
+            <param name="methodName">Target method name</param>
+            <param name="parameters">Parameters</param>
+            <returns>Exit  Code</returns>
+        </member>
+    </members>
+</doc>

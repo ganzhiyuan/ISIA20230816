@@ -1,0 +1,1710 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Base.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Base.Configuration.AppConfigBase">
+            <summary>
+            This provides application configuration
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String)">
+            <summary>
+            This creates instance of AppConfigBase
+            </summary>
+            <param name="configurationFileName">Configuration file name</param>
+            <param name="rootNode">Root node</param>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String,System.String)">
+            <summary>
+            This creates instance of AppConfigBase
+            </summary>
+            <param name="configurationFileName">Configuration file name</param>
+            <param name="rootNode">Root node</param>
+            <param name="region">Region</param>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            This creates instance of AppConfigBase
+            </summary>
+            <param name="configurationFilePath">Configuration file path</param>
+            <param name="configurationFileName">Configuration file name</param>
+            <param name="rootNode">Root node</param>
+            <param name="region">Region</param>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.DefinedCollection">
+            <summary>
+            Defined collection list
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.HostCollection">
+            <summary>
+            Host collection list
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.RootNode">
+            <summary>
+            Root node of configuration
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.ConfigurationFileName">
+            <summary>
+            Configuration file name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.ConfigurationFilePath">
+            <summary>
+            Configuration file path
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.Region">
+            <summary>
+            Region of current configuration
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.definedNode">
+            <summary>
+            Defined collection node
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.hostNode">
+            <summary>
+            Host collection node
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.GetDefinedCollection(System.String)">
+            <summary>
+            This method gets defined collections
+            </summary>
+            <param name="section">Section</param>
+            <returns>Defined collection</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.GetNameValueCollection(System.String,System.String)">
+            <summary>
+            This method gets host collections
+            </summary>
+            <param name="node">Node</param>
+            <param name="section">Section</param>
+            <returns>Host collection</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.AppConfigBase.ChangeConfigSetup">
+            <summary>
+            This method saves configuration to file
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.ConfigurationFunction">
+            <summary>
+            This provides path of application configuration file
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.ConfigurationFunction.GetConfigurationFunction(System.String)">
+            <summary>
+            This method gets path of configuration file
+            </summary>
+            <param name="configuraionFileName">File name</param>
+            <returns>Path of configuration file</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.ConfigurationManager">
+            <summary>
+            This class manages settings of configuration file.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.Instance">
+            <summary>
+            Static accessor of ConfigurationManager
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.AdminListenerSection">
+            <summary>
+            Administrator listener configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.DatabaseSection">
+            <summary>
+            Database configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.FrameworkSection">
+            <summary>
+            Framework configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.LogSection">
+            <summary>
+            Remote log configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.LocalLogSection">
+            <summary>
+            Local log configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.MessagingSection">
+            <summary>
+            Messaging configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.ProcessWatcherSection">
+            <summary>
+            Process watcher configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.RemoteListenerSection">
+            <summary>
+            Listener configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.SMTPSection">
+            <summary>
+            SMTP configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.TraceSection">
+            <summary>
+            Trace configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.RemoteAdapterSection">
+            <summary>
+            Remote adapter configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.RemoteDeploySection">
+            <summary>
+            Remote component deploying configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.DataSourceSection">
+            <summary>
+            Data source configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.XmlSection">
+            <summary>
+            XML configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.EnvironmentSection">
+            <summary>
+            Environment configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.AppSection">
+            <summary>
+            CST application configuration section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.CorssLanguageSection">
+            <summary>
+            Cross language section
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.ConfigurationManager.InstallInfoSection">
+            <summary>
+            Install info section
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.ConfigurationManager.#ctor">
+            <summary>
+            This creator creates instance of ConfigurationManager
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.AdminListenerSection">
+            <summary>
+            This class is administrator listener configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AdminListenerSection.AdminListener">
+            <summary>
+            Administrator listener configuration element
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.AdminListenerElement">
+            <summary>
+            This class is administrator configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AdminListenerElement.IP">
+            <summary>
+            IP address of server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AdminListenerElement.Port">
+            <summary>
+            Port number that administrator listener uses
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.InstallInfoSection">
+            <summary>
+            This class is cross language configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.InstallInfoSection.DBSetup">
+            <summary>
+            If 'YES', user must setup database information when setups application
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.InstallInfoSection.SMTPSetup">
+            <summary>
+            If 'YES', user must setup smtp information when setups application
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.InstallInfoSection.BatchSetup">
+            <summary>
+            If 'YES', user must install batches.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.InstallInfoSection.Batches">
+            <summary>
+            Batch collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.BatchElementCollection">
+            <summary>
+            This class is batch element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.BatchElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.BatchElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.BatchElement">
+            <summary>
+            This class is Database element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElement.Key">
+            <summary>
+            Key
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElement.Sequence">
+            <summary>
+            Key
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BatchElement.File">
+            <summary>
+            File
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.DatabaseSection">
+            <summary>
+            This class is database configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseSection.Default">
+            <summary>
+            Key of default DBMS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseSection.TimeOut">
+            <summary>
+            Default time-out
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseSection.Connections">
+            <summary>
+            Database element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.DatabaseElementCollection">
+            <summary>
+            This class is database element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.DatabaseElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.DatabaseElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.DatabaseElement">
+            <summary>
+            This class is Database element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.Key">
+            <summary>
+            Database key
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.DBMS">
+            <summary>
+            Kind of DBMS
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.DTC">
+            <summary>
+            Distributed trasaction enable or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.ConnectionString">
+            <summary>
+            Connecion string
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.SelectCommandMethod">
+            <summary>
+            Method of select from DB
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DatabaseElement.ModifyCommandMethod">
+            <summary>
+            Method of modify to DB
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.DataSourceSection">
+            <summary>
+            This class is Data Source configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DataSourceSection.DataSource">
+            <summary>
+            Kind of data source
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.DataSourceSection.InfoBase">
+            <summary>
+            Kind of data source
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.EnvironmentSection">
+            <summary>
+            This class is environment configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.EnvironmentSection.Region">
+            <summary>
+             Region information
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.EnvironmentSection.ExecutePath">
+            <summary>
+            Execute path
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.EnvironmentSection.InstallType">
+            <summary>
+             Install Type
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.FrameworkSection">
+            <summary>
+            This class is framework configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.FrameworkSection.Version">
+            <summary>
+            Key of local path
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.FrameworkSection.Framework">
+            <summary>
+            Local path element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LocalPathElementCollection">
+            <summary>
+            This class is local path element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalPathElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalPathElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalPathElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.LocalPathElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.LocalPathElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LocalPathElement">
+            <summary>
+            This class is local path element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalPathElement.Key">
+            <summary>
+            Key of local path
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalPathElement.Path">
+            <summary>
+            Local path of framework
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.MessagingSection">
+            <summary>
+            This class is messaging configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MessagingSection.Protocols">
+            <summary>
+            Messaging protocol configuration element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MessagingSection.PublicInterval">
+            <summary>
+            Common messaging interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MessagingSection.HeartBeatInterval">
+            <summary>
+            Messaging heart-beat interval
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ProtocolElementCollection">
+            <summary>
+            This class is messaging protocol configuration element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ProtocolElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ProtocolElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ProtocolElement">
+            <summary>
+            This class is messaging protocol configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElement.Type">
+            <summary>
+            Identification type of protocol 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElement.ReceiverPort">
+            <summary>
+            Prot number that receives message
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProtocolElement.AppBrowserReceiverPort">
+            <summary>
+            Port number that receives Main Form
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ProcessWatcherSection">
+            <summary>
+            This class is process watcher configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProcessWatcherSection.CriticalMemorySize">
+            <summary>
+            Critical point of memory usage
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProcessWatcherSection.CheckInterval">
+            <summary>
+            Interval of checking memoery usage
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProcessWatcherSection.ClosingWaitTime">
+            <summary>
+            Wating time for checking process closing
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProcessWatcherSection.LastDataWaitTime">
+            <summary>
+            Waiting time for transporting last data
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ProcessWatcherSection.LastDataWaitCount">
+            <summary>
+            Conut of waiting for transporting last data
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.RemoteAdapterSection">
+            <summary>
+            This class is remote adapter configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteAdapterSection.HostIP">
+            <summary>
+            IP address of listner host
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteAdapterSection.HostPort">
+            <summary>
+            Port number of listner host
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteAdapterSection.IsDebugMode">
+            <summary>
+            Using debug mode or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteAdapterSection.TestDBCode">
+            <summary>
+            Adding Test DB
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteAdapterSection.LocalPort">
+            <summary>
+            Local port
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.RemoteDeploySection">
+            <summary>
+            This class is Remote BIZ componet deploy section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.Path">
+            <summary>
+            File path of remote BIZ component file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.ClientDeployInfo">
+            <summary>
+            Client Deploy configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.BizComponents">
+            <summary>
+             Remote BIZ component configuration element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.BizComponentCollection">
+            <summary>
+            This class is remote BIZ component confugration element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentCollection.Item(System.String)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="assembly">Key</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentCollection.Count">
+            <summary>
+            Count of elements in collection
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.BizComponentCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.BizComponentCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.BizComponentElement">
+            <summary>
+            This class is Remote BIZ component configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentElement.Assembly">
+            <summary>
+            Assembly name of Remote BIZ component
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.BizComponentElement.SubPath">
+            <summary>
+            File path of Remote BIZ component assembly file
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ClientDeployInfoElement">
+            <summary>
+            This class is Client Deploy configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.NeedToDeploy">
+            <summary>
+            If TRUE download last application files from deploy server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.HostName">
+            <summary>
+            Deploy server host name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.RootDirectory">
+            <summary>
+            Root Directory of Deploy server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.UserName">
+            <summary>
+            User name for depoly server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.Password">
+            <summary>
+            Password for depoly server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ClientDeployInfoElement.IgnoreExcetion">
+            <summary>
+            If TRUE application ignore excetion when download application files
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.RemoteListenerSection">
+            <summary>
+            This class is remote listener configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteListenerSection.ListenerHost">
+            <summary>
+            Listener host configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteListenerSection.Listeners">
+            <summary>
+            Listener configuration element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteListenerSection.MultiConsole">
+            <summary>
+            Using OS shell program or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteListenerSection.ListenerWatcher">
+            <summary>
+            Listener watcher configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteListenerSection.Emergency">
+            <summary>
+            Listener emergency-stop configuration element
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ListenerHostElement">
+            <summary>
+            This class is listener host configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerHostElement.IP">
+            <summary>
+            IP address of listener host
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerHostElement.Port">
+            <summary>
+            Port number of listener host
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerHostElement.MinRemoteCount">
+            <summary>
+            Count of remote listeners for re-requesting new policy
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerHostElement.RetryCount">
+            <summary>
+            Count of retrying when connecting faliure is occured
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerHostElement.RetryInterval">
+            <summary>
+            Interval of retrying when connecting faliure is occured
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ListenerElementCollection">
+            <summary>
+            This class is listener configuration element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="index">Index</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElementCollection.Count">
+            <summary>
+            Count of elements in collection
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ListenerElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ListenerElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ListenerElement">
+            <summary>
+            This class is listener configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElement.No">
+            <summary>
+            Indentifactor
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElement.Port">
+            <summary>
+            Port numbe
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerElement.Enabled">
+            <summary>
+            Listener enabled or not
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ListenerWatcherElement">
+            <summary>
+            This class is listener watcher configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ListenerWatcherElement.Interval">
+            <summary>
+            Interval of watching
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.EmergencyElement">
+            <summary>
+            This class is emergency-stop configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.EmergencyElement.Key">
+            <summary>
+            Hot key for Emergency-stop 
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LogSection">
+            <summary>
+            This class is log configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogSection.Log">
+            <summary>
+            Log configuration element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LocalLogSection">
+            <summary>
+            This class is local log configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LocalLogSection.LocalLog">
+            <summary>
+            Log configuration element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LogElementCollection">
+            <summary>
+            This class is log configuration element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.LogElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.LogElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.LogElement">
+            <summary>
+            This class is log configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElement.Type">
+            <summary>
+            Identificator of log type
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElement.Logging">
+            <summary>
+            Logging enable or not
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElement.Path">
+            <summary>
+            Physical path of log file
+            This path is under path that is assigned at 'Remote Log' or 'Service Log' configuration element of 'Framework' configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElement.Extension">
+            <summary>
+            Extension of log file 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.LogElement.MaxSize">
+            <summary>
+            Maximum size of log file
+            If size of log file is larger specified size, system will create new log file.
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.SMTPSection">
+            <summary>
+            This class is SMTP configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPSection.Default">
+            <summary>
+            Default SMTP identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPSection.SMTPServerList">
+            <summary>
+            SMTP configuration element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.SMTPElementCollection">
+            <summary>
+            This class is SMTP configuration element collection. 
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.SMTPElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.SMTPElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.SMTPElement">
+            <summary>
+            This class is SMTP configuration element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.Key">
+            <summary>
+            Identifcator of SMTP server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.ServerIP">
+            <summary>
+            IP address or DNS of SMTP server
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.ServerDomain">
+            <summary>
+            SMTP Server domain
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.MailLogDirectory">
+            <summary>
+            Mail log directory
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.UserID">
+            <summary>
+            User ID
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SMTPElement.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.TraceSection">
+            <summary>
+            This class is Tracing configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.TraceSection.Enabled">
+            <summary>
+            Tracing enabled or not
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.XMLSection">
+            <summary>
+            This class is XML configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.XMLSection.FileName">
+            <summary>
+            Physical path of XML file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.XMLSection.RootNode">
+            <summary>
+            Root node of XML
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.XMLSection.BackupPath">
+            <summary>
+            Default backup path of XML file
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.AppSection">
+            <summary>
+            This class is LODE application section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.Facility">
+            <summary>
+            Server name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.ServerName">
+            <summary>
+            Server name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.ServerIP">
+            <summary>
+            ServerIP
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.UserLanguage">
+            <summary>
+            User's Laguage
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.ServiceInterval">
+            <summary>
+            Service Interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.UIRefreshInterval">
+            <summary>
+            Refresh interval for UI
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.UILogging">
+            <summary>
+            UI Logging
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.ProductName">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.MDIName">
+            <summary>
+            MDI Name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.AppDirectory">
+            <summary>
+            MDI Name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.MDIDisplayName">
+            <summary>
+            MDI Display name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.AppConfigFileName">
+            <summary>
+            Application configuration file name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.AppConfigName">
+            <summary>
+            Application Configuration name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.MainMenus">
+            <summary>
+            Menu element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.ServiceGroups">
+            <summary>
+            Service element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.Apps">
+            <summary>
+            App element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.StartupUI">
+            <summary>
+            Administrator listener configuration element
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.MainMenuElementCollection">
+            <summary>
+            This is main menu element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.MainMenuElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.MainMenuElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.MainMenuElement">
+            <summary>
+            This is main menu element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElement.Key">
+            <summary>
+            Menu identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElement.DisplayName">
+            <summary>
+            Display name of menu
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElement.Sequence">
+            <summary>
+            Sequence
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MainMenuElement.Menus">
+            <summary>
+            Menu element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.MenuElementCollection">
+            <summary>
+            This is menu element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.MenuElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.MenuElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.MenuElement">
+            <summary>
+            This is menu element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.Key">
+            <summary>
+            Menu identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.MainMenu">
+            <summary>
+            Parent menu
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.DisplayName">
+            <summary>
+            Display name of menu
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.Icon">
+            <summary>
+            Icon
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.Sequence">
+            <summary>
+            Sequence
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.AssemblyFileName">
+            <summary>
+            AssemblyFileName
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.AssemblyName">
+            <summary>
+            AssemblyName
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.MenuElement.Argument">
+            <summary>
+            Argument
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ServiceGroupElementCollection">
+            <summary>
+            This is service group element collection.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ServiceGroupElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ServiceGroupElement">
+            <summary>
+            This is Service Group Element.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElement.Key">
+            <summary>
+            Menu identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElement.Sequence">
+            <summary>
+            Sequence
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceGroupElement.Services">
+            <summary>
+            Menu element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ServiceElementCollection">
+            <summary>
+            This is service element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ServiceElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.ServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.ServiceElement">
+            <summary>
+            This is service element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.Key">
+            <summary>
+            Menu identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.ServiceName">
+            <summary>
+            Display name of menu
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.Sequence">
+            <summary>
+            Sequence
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.StartTime">
+            <summary>
+            Interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.EndTime">
+            <summary>
+            Interval
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.ProcessCount">
+            <summary>
+            AssemblyName
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.AssemblyFileName">
+            <summary>
+            AssemblyFileName
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.AssemblyName">
+            <summary>
+            AssemblyName
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.ServiceElement.Argument">
+            <summary>
+            Argument
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.AppElementCollection">
+            <summary>
+            This is application element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.AppElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.AppElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.AppElement">
+            <summary>
+            This is application element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElement.Key">
+            <summary>
+            Menu identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElement.Sequence">
+            <summary>
+            Sequence
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppElement.SubApps">
+            <summary>
+            Menu element collection
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.SubAppElementCollection">
+            <summary>
+            This is Sub application element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElementCollection.CollectionType">
+            <summary>
+            Type of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElementCollection.ElementName">
+            <summary>
+            Name of specified configuration element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElementCollection.Item(System.String)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="Key">Key</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElementCollection.Item(System.Int32)">
+            <summary>
+            Specified configuration configuration element
+            </summary>
+            <param name="sequence">Sequence</param>
+            <returns>Configuration component</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.SubAppElementCollection.CreateNewElement">
+            <summary>
+            This method creates new configuration element.
+            </summary>
+            <returns>New configuration element</returns>
+        </member>
+        <member name="M:TAP.Base.Configuration.Sections.SubAppElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This method returns key of specified configuration element.
+            </summary>
+            <param name="element">Configuration element</param>
+            <returns>Key</returns>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.SubAppElement">
+            <summary>
+            This is MES element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.Key">
+            <summary>
+            APP identificator
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.AppDirectory">
+            <summary>
+            Application directory
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.Image">
+            <summary>
+            Image
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.Argument">
+            <summary>
+            Argument
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.AppConfg">
+            <summary>
+            Application configuration file name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.Enabled">
+            <summary>
+            Enabled
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.DisplayName">
+            <summary>
+            Display Name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.SubAppElement.HoverImage">
+            <summary>
+            Display Name
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.StartupUIElement">
+            <summary>
+            This is Startup UI Element
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.StartupUIElement.Enabled">
+            <summary>
+            If "TRUE" this application activate specified UI.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.StartupUIElement.StartUpMainMenu">
+            <summary>
+            Main Menu name of Startup UI.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.StartupUIElement.StartUpMenu">
+            <summary>
+            Menu name of Startup UI.
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.Sections.CrossLanguageSection">
+            <summary>
+            This class is cross language configuration section.
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.LocalPath">
+            <summary>
+            Physical directory for saving cross language data file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.LocalFile">
+            <summary>
+            File name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.ServerDirectory">
+            <summary>
+            Virtual path for downloading cross language data file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.SupportedLanguage">
+            <summary>
+            Supported language List
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.NeedToDownLoad">
+            <summary>
+            If 'TRUE', this application needs to download fressage code file
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.CrossLanguageSection.NeedToApply">
+            <summary>
+            If 'TRUE', this application uses fressage
+            </summary>
+        </member>
+        <member name="T:TAP.Base.Configuration.TapConfigurations">
+            <summary>
+            This class of section list of TAP configurations.
+            </summary>
+        </member>
+    </members>
+</doc>

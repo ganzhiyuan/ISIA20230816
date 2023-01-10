@@ -1,0 +1,8 @@
+D:\Azure\ISIA\ISIA\SERVICE\ISIA.SERVICE\obj\Debug\ISIA.SERVICE.csproj.AssemblyReference.cache
+D:\Azure\ISIA\ISIA\SERVICE\ISIA.SERVICE\obj\Debug\ISIA.SERVICE.csproj.CoreCompileInputs.cache
+D:\Azure\ISIA\_bin\Service\ISIA.SERVICE.dll.config
+D:\Azure\ISIA\_bin\Service\ISIA.SERVICE.dll
+D:\Azure\ISIA\_bin\Service\ISIA.SERVICE.pdb
+D:\Azure\ISIA\ISIA\SERVICE\ISIA.SERVICE\obj\Debug\ISIA.SERVICE.csproj.CopyComplete
+D:\Azure\ISIA\ISIA\SERVICE\ISIA.SERVICE\obj\Debug\ISIA.SERVICE.dll
+D:\Azure\ISIA\ISIA\SERVICE\ISIA.SERVICE\obj\Debug\ISIA.SERVICE.pdb

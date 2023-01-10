@@ -1,0 +1,16 @@
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.csproj.AssemblyReference.cache
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.csproj.GenerateResource.cache
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.csproj.CoreCompileInputs.cache
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.ChooseVendor.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.EquipmentInfoWaitForm.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.DockUIBase1T1.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.DockUIBase1T2.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.DockUIBase1T3.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.DockUIBase1T4.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.TemplateChart.resources
+D:\Azure\ISIA\_bin\FX\ISIA.UI.BASE.dll
+D:\Azure\ISIA\_bin\FX\ISIA.UI.BASE.pdb
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.Properties.Resources.resources
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.dll.licenses
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.dll
+D:\Azure\ISIA\ISIA\UI\ISIA.UI.BASE\obj\Debug\ISIA.UI.BASE.pdb

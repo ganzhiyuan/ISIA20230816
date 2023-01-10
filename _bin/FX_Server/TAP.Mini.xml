@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Mini</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Mini.MDBDatabase">
+            <summary>
+            This class connects to MDB and excutes 'Selec', 'Insert', 'Update'.
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MDBDatabase.#ctor">
+            <summary>
+            This creates instance of this clases
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MDBDatabase.#ctor(System.String)">
+            <summary>
+            This creates instance of this clases
+            </summary>
+            <param name="dbFile">MDB File path</param>
+        </member>
+        <member name="M:TAP.Mini.MDBDatabase.Select(System.String)">
+            <summary>
+            This executes "SELECT" query
+            </summary>
+            <param name="query">SQL Statement</param>
+            <returns>Data Set</returns>
+        </member>
+        <member name="M:TAP.Mini.MDBDatabase.Save(System.String[])">
+            <summary>
+            This executes "INSERT/UPDATE/DELETE" statement
+            </summary>
+            <param name="query">SQL Statement</param>
+        </member>
+        <member name="T:TAP.Mini.MiniModel">
+            <summary>
+            This is Mini model class
+            </summary>
+        </member>
+        <member name="F:TAP.Mini.MiniModel._mdbAccessor">
+            <summary>
+            DB Accessor
+            </summary>
+        </member>
+        <member name="F:TAP.Mini.MiniModel._id">
+            <summary>
+            Model ID
+            </summary>
+        </member>
+        <member name="F:TAP.Mini.MiniModel._tableName">
+            <summary>
+            Relational Table name
+            </summary>
+        </member>
+        <member name="F:TAP.Mini.MiniModel._newModel">
+            <summary>
+            New model
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.InitializeFields">
+            <summary>
+            This initializes fields
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.Initialize">
+            <summary>
+            This initializes model instance
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.AssignMembers(System.Data.DataRow)">
+            <summary>
+            This method assigns data to model members
+            </summary>
+            <param name="dr"></param>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.Save">
+            <summary>
+            This saves model
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.Delete">
+            <summary>
+            This deletes model
+            </summary>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.LoadData(System.String)">
+            <summary>
+            This loads data for model instance
+            </summary>
+            <param name="sql">SQL statement</param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetAttributes">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Attribute Collection</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetClassName">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Class name</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetComponentName">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Component name</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetConverter">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Type Converter</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetDefaultEvent">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Default event</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetDefaultProperty">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Default properties</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetEditor(System.Type)">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <param name="editorBaseType"></param>
+            <returns>Default editor</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetEvents(System.Attribute[])">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <param name="attributes"></param>
+            <returns>Event collection</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetEvents">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Event collection</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetProperties(System.Attribute[])">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <param name="attributes"></param>
+            <returns>Prpperty collection</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetPropertyOwner(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <param name="pd"></param>
+            <returns>This instance</returns>
+        </member>
+        <member name="M:TAP.Mini.MiniModel.GetProperties">
+            <summary>
+            Implementaion of ICustomTypeDescriptor
+            </summary>
+            <returns>Property collection of this instance</returns>
+        </member>
+    </members>
+</doc>

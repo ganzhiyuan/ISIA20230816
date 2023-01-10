@@ -1,0 +1,3085 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.UI</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.UI.AsyncMessage">
+            <summary>
+            This is message of asynchronous process
+            </summary>
+        </member>
+        <member name="P:TAP.UI.AsyncMessage.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="P:TAP.UI.AsyncMessage.Progress">
+            <summary>
+            Progress
+            </summary>
+        </member>
+        <member name="T:TAP.UI.BackgroundProcessor">
+            <summary>
+            This runs background work.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.BackgroundProcessor.RunFunction">
+            <summary>
+            Function delegate
+            </summary>
+        </member>
+        <member name="F:TAP.UI.BackgroundProcessor._backgroundWorker">
+            <summary>
+            Background worker
+            </summary>
+        </member>
+        <member name="F:TAP.UI.BackgroundProcessor._runFunction">
+            <summary>
+            Function
+            </summary>
+        </member>
+        <member name="M:TAP.UI.BackgroundProcessor.#ctor(TAP.UI.BackgroundProcessor.RunFunction,System.Windows.Forms.Form,System.Int64)">
+            <summary>
+            This creates instnace of BackgroundProcessor
+            </summary>
+            <param name="function">Function for run</param>
+            <param name="form">Form</param>
+            <param name="total">Total progress</param>
+        </member>
+        <member name="M:TAP.UI.BackgroundProcessor.#ctor(TAP.UI.BackgroundProcessor.RunFunction,System.Windows.Forms.Form,System.Int64,System.Boolean)">
+            <summary>
+            This creates instnace of BackgroundProcessor
+            </summary>
+            <param name="function">Function for run</param>
+            <param name="form">Form</param>
+            <param name="total">Total progress</param>
+            <param name="isInitializing">If true, this is initializeing background processor</param>
+        </member>
+        <member name="M:TAP.UI.BackgroundProcessor.Start">
+            <summary>
+            This method starts  background work
+            </summary>
+        </member>
+        <member name="M:TAP.UI.BackgroundProcessor.Stop">
+            <summary>
+            This method stops backgorund work.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.BackgroundProcessor.Dispose">
+            <summary>
+            Disposer
+            </summary>
+        </member>
+        <member name="T:TAP.UI.EnumMsgType">
+            <summary>
+            This enumeratior is message type list.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumMsgType.INFORMATION">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumMsgType.CONFIRM">
+            <summary>
+            Confirm
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumMsgType.WARNING">
+            <summary>
+            Warning
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumMsgType.ERROR">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="T:TAP.UI.EnumDataObject">
+            <summary>
+            This enumeratior is data object list used by user interface
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumDataObject.MODELSET">
+            <summary>
+            Model set
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumDataObject.MODELLIST">
+            <summary>
+            Model list
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumDataObject.DATASET">
+            <summary>
+            Data Set
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumDataObject.STRING">
+            <summary>
+            String
+            </summary>
+        </member>
+        <member name="F:TAP.UI.EnumDataObject.NONE">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="T:TAP.UI.FormInitializing">
+            <summary>
+            This is backgruond working form
+            </summary>
+        </member>
+        <member name="T:TAP.UI.FormInitializing.AbortProcessingHandler">
+            <summary>
+            This is event handler of AbortProcessing event
+            </summary>
+            <param name="form"></param>
+        </member>
+        <member name="E:TAP.UI.FormInitializing.AbortProcessing">
+            <summary>
+            Abort handler
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormInitializing.OnAbortProcessing">
+            <summary>
+            This aborts background work
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormInitializing.ViewProcessing">
+            <summary>
+            This display working progress
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormInitializing.#ctor(System.Int64)">
+            <summary>
+            This creates instance of FormProcessing
+            </summary>
+            <param name="total">Total job count</param>
+        </member>
+        <member name="F:TAP.UI.FormInitializing.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormInitializing.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.FormInitializing.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.FormProcessing">
+            <summary>
+            This is backgruond working form
+            </summary>
+        </member>
+        <member name="T:TAP.UI.FormProcessing.AbortProcessingHandler">
+            <summary>
+            This is event handler of AbortProcessing event
+            </summary>
+            <param name="form"></param>
+        </member>
+        <member name="E:TAP.UI.FormProcessing.AbortProcessing">
+            <summary>
+            Abort handler
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormProcessing.OnAbortProcessing">
+            <summary>
+            This aborts background work
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormProcessing.ViewProcessing">
+            <summary>
+            This display working progress
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormProcessing.#ctor(System.Int64)">
+            <summary>
+            This creates instance of FormProcessing
+            </summary>
+            <param name="total">Total job count</param>
+        </member>
+        <member name="F:TAP.UI.FormProcessing.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.FormProcessing.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.FormProcessing.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.Properties.Resources">
+            <summary>
+              지역화된 문자열 등을 찾기 위한 강력한 형식의 리소스 클래스입니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.ResourceManager">
+            <summary>
+              이 클래스에서 사용하는 캐시된 ResourceManager 인스턴스를 반환합니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.Culture">
+            <summary>
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.bgtest">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.btnStop">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.btnStop_rollover">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.close">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.closeUI_rollover">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.closeUIy">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.destar16">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.destar24">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.star16">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.star24">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.xls">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.xls_rollover">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.Properties.Resources.xls1">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.TAPMsgBox">
+            <summary>
+            This class is base of message box.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.TAPMsgBox.Instance">
+            <summary>
+            Static accessor of instance
+            </summary>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.#ctor">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.ShowMessage(System.String,TAP.UI.EnumMsgType,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method display user message.
+            </summary>
+            <param name="title">Title of message box</param>
+            <param name="messageType">Message type</param>
+            <param name="message">Message</param>
+            <param name="detail">Detail message</param>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.ShowMessage(System.String,TAP.UI.EnumMsgType,System.String,System.String)">
+            <summary>
+            This method display user message.
+            </summary>
+            <param name="title">Title of message box</param>
+            <param name="messageType">Message type</param>
+            <param name="message">Message</param>
+            <param name="detail">Detail message</param>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.ShowMessage(System.String,TAP.UI.EnumMsgType,System.String)">
+            <summary>
+            This method display user message.
+            </summary>
+            <param name="title">Title of message box</param>
+            <param name="messageType">Message type</param>
+            <param name="message">Message</param>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.ShowMessage(TAP.UI.EnumMsgType,System.String)">
+            <summary>
+            This method display user message.
+            </summary>
+            <param name="messageType">Message type</param>
+            <param name="message">Message</param>
+        </member>
+        <member name="F:TAP.UI.TAPMsgBox.components">
+            <summary>
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.Dispose(System.Boolean)">
+            <summary>
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UI.TAPMsgBox.InitializeComponent">
+            <summary>
+            디자이너 지원에 필요한 메서드입니다.
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UIBaseDesigner">
+            <summary>
+            This is implementation of System.Windows.Forms.Design.DocumentDesigner
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UILog">
+            <summary>
+            This is UI log class
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UILog.MakeFilePath(System.String,System.String)">
+            <summary>
+            This method makes log file path
+            </summary>
+            <param name="objectName">Object name</param>
+            <param name="logType">Log type</param>
+            <returns>If 'TURE', making log file path succeed.</returns>
+        </member>
+        <member name="T:TAP.UI.UITemplate2.UITemplate2T1A">
+            <summary>
+            This class is UI templage Type 1A of Layer 2.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplate2T1A.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplate2T1A.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplate2T1A.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplate2T1A.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplate2T1A.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplate2T1A.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplate2T1A.tSplitter1">
+            <summary>
+            Splitter between A and B
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate2.UITemplateL2T1B">
+            <summary>
+            This class is UI templage Type 1B of Layer 2.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplateL2T1B.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplateL2T1B.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplateL2T1B.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate2.UITemplateL2T1B.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplateL2T1B.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplateL2T1B.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate2.UITemplateL2T1B.tSplitter1">
+            <summary>
+            Spliter between A and B
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate3.UITemplateL3T1">
+            <summary>
+            This class is UI templage Type 1 of Layer 3.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T1.#ctor">
+            <summary>
+            This creates instance of this object.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T1.components">
+            <summary>
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T1.Dispose(System.Boolean)">
+            <summary>
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T1.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T1.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T1.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate3.UITemplateL3T2">
+            <summary>
+            This class is UI templage Type 2 of Layer 3.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2.#ctor">
+            <summary>
+            This creates instance of this object.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate3.UITemplateL3T2A">
+            <summary>
+            This class is UI templage Type 2 of Layer 3.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2A.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2A.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate3.UITemplateL3T2A.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.BaseOfAB">
+            <summary>
+            Base of A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.tSplitter2">
+            <summary>
+            Splitter between A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate3.UITemplateL3T2A.tSplitter1">
+            <summary>
+            Splitter between AB and C
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T1">
+            <summary>
+            This class is UI Template Type1 of Layer 4
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T1.#ctor">
+            <summary>
+            This creates intance of this object.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.BaseOfBC">
+            <summary>
+            Base of B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T1.splitter1">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T2A">
+            <summary>
+            This class is UI templage Vectical-Type#2A
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2A.#ctor">
+            <summary>
+            This creates instance of UITemplateV2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2A.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2A.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2A.InitializeComponent">
+            <summary>
+            This method draws template.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2A.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2A.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2A.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2A.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T2">
+            <summary>
+            This class is UI templage Vectical-Type#2.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2.#ctor">
+            <summary>
+            This creates instance of UITemplateV2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T2.InitializeComponent">
+            <summary>
+            This method draws template.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.baseofBC">
+            <summary>
+            Base of B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T2.splitter1">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T3">
+            <summary>
+            This class is UI templage Vectical-Type#3.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T3.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T3.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T3.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.BaseOfAB">
+            <summary>
+            Base of A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.splABandC">
+            <summary>
+            Splitter between AB and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T3.splAandB">
+            <summary>
+            Splitter between A and B
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T4">
+            <summary>
+            This class is UI templage Vectical-Type#4.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T4.#ctor">
+            <summary>
+            This is UI Template 4LT4
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T4.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T4.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseOfAB">
+            <summary>
+            Base A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.BaseOfABC">
+            <summary>
+            Base A, B and  C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.tSplitter1">
+            <summary>
+            Splitter A, B, C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.tSplitter2">
+            <summary>
+            Splitter A, B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T4.tSplitter3">
+            <summary>
+            Spliter A and B
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T5">
+            <summary>
+            This class is UI templage Vectical-Type#5.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5.#ctor">
+            <summary>
+            This is UI Template 4LT5
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseOfAB">
+            <summary>
+            Base Of A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.BaseOFCD">
+            <summary>
+            Base of C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.tSplitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.tSplitter2">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5.tSplitter3">
+            <summary>
+            Splitter 3
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate4.UITemplateL4T5A">
+            <summary>
+            This class is UI templage Vectical-Type#5A.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5A.#ctor">
+            <summary>
+            This is UI Template 4LT5A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5A.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate4.UITemplateL4T5A.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseOfAB">
+            <summary>
+            Base of A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.BaseOFCD">
+            <summary>
+            Base of C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.tSplitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.tSplitter3">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate4.UITemplateL4T5A.tSplitter2">
+            <summary>
+            Splitter 3
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T1">
+            <summary>
+            This class is UI template Type 1 of Lyaer 5
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T1.#ctor">
+            <summary>
+            This creates intance of this object.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseOfABCD">
+            <summary>
+            Base of Base A, B, C, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseOFAC">
+            <summary>
+            Base of Base A, C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.BaseOFBD">
+            <summary>
+            Base of Base B, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T1.splitter1">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T2">
+            <summary>
+            This class is UI templage Type 2 of Layer 5
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T2.#ctor">
+            <summary>
+            This creates intance of this object.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T2.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseofBC">
+            <summary>
+            Base of Base B, C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.splitter1">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T2.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T3">
+            <summary>
+            This class is UI templage Type 3 of Layer 5
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T3.#ctor">
+            <summary>
+            This creates intance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T3.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T3.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.BaseOfBC">
+            <summary>
+            Base of B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3.splitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T3L">
+            <summary>
+            This class is UI Template Type3L of Layer 3
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T3L.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T3L.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseF">
+            <summary>
+            Bsse F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.BaseOfBC">
+            <summary>
+            Base between B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.tSplitter3">
+            <summary>
+            Splitter 3
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.tSplitter2">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T3L.tSplitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T5">
+            <summary>
+            This class is UI Template Type 4 of Layer 5
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T5.#ctor">
+            <summary>
+            This is UI Template type 5
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T5.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T5.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T5.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate5.UITemplateL5T4">
+            <summary>
+            This class is UI Template Type 4 of Layer 5
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T4.#ctor">
+            <summary>
+            This is UI Template type 3
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T4.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate5.UITemplateL5T4.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseOfBC">
+            <summary>
+            Base of B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.BaseOfBCD">
+            <summary>
+            Base of B, C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.splitter2">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate5.UITemplateL5T4.splitter1">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplate6T4L.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplate6T4L.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplate6T4L.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T3L">
+            <summary>
+            This class is UI Template Type 3 of Layer 6 - left fill
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3L.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3L.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3L.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseOfBCD">
+            <summary>
+            Base of B, C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.BaseOfBCDE">
+            <summary>
+            Base of B, C, D and E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.tSplitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.tSplitter3">
+            <summary>
+            Splitter 3
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3L.tSplitter2">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T5">
+            <summary>
+            This class is UI Template Type 5 of Layer 6
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T5.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T5.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T5.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseOfBCD">
+            <summary>
+            Base of B, C and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.BaseOfBC">
+            <summary>
+            Base of B and C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.splBCandD">
+            <summary>
+            Splitter between BC and D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T5.splBandC">
+            <summary>
+            Splitter between B and C
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T1">
+            <summary>
+            This class is UI UI Template Type 1 of Layer 6
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T1.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseOfBC">
+            <summary>
+            Base BC
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseOfDE">
+            <summary>
+            Base DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.BaseOfBCDE">
+            <summary>
+            Base of BCDE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.splitter3">
+            <summary>
+            Sppliter DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.splitter1">
+            <summary>
+            Sppliter  BC DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T1.splitter2">
+            <summary>
+            Sppliter BC
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T2">
+            <summary>
+            This class is UI UI Template Type 2 of Layer 6
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T2.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T2.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.baseOfBC">
+            <summary>
+            Base BC
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.baseOfDE">
+            <summary>
+            Base DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.baseOfBCDE">
+            <summary>
+            Base of BCDE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.tSplitter1">
+            <summary>
+            Sppliter DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.tSplitter3">
+            <summary>
+            Sppliter  BC DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T2.tSplitter2">
+            <summary>
+            Sppliter BC
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T3">
+            <summary>
+            This class is UI Template Type 3 of Layer 6
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T3.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseOfBCDE">
+            <summary>
+            Base of BCDE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseOfBCD">
+            <summary>
+            Base of BCD
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.BaseOfCD">
+            <summary>
+            Base of CD
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.splitter1">
+            <summary>
+            Splitter BCDE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.splitter3">
+            <summary>
+            Splitter CD
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T3.splitter2">
+            <summary>
+            Splitter BCD
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate6.UITemplateL6T4">
+            <summary>
+            This class is UI UI Template Type 4 of Layer 6
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T4.#ctor">
+            <summary>
+            This creates instance of this object
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T4.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate6.UITemplateL6T4.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseOfAB">
+            <summary>
+            Base of A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseOfDE">
+            <summary>
+            Base of D and E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseOfCDE">
+            <summary>
+            Base of C, D and E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.BaseOfABCDE">
+            <summary>
+            Base of A, B, C, D and E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.splitter1">
+            <summary>
+            Splitter between AB and CDE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.splitter2">
+            <summary>
+            Splitter between A and B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.splitter3">
+            <summary>
+            Splitter between C and DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate6.UITemplateL6T4.splitter4">
+            <summary>
+            Splitter between D and E
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate7.UITemplateL7T2">
+            <summary>
+            This class is UI templage Type 2 of Layer 7
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T2.#ctor">
+            <summary>
+            This creates intance of UITemplateB2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T2.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T2.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseG">
+            <summary>
+            Base G
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseOFAB">
+            <summary>
+            Base of A, B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseOfCD">
+            <summary>
+            Base of C, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseOfEF">
+            <summary>
+            Base of E, F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.BaseOFCDEF">
+            <summary>
+            Base of CD, EF
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.splAB">
+            <summary>
+            Splitter A, B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.splEF">
+            <summary>
+            Splitter E, F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.splCD">
+            <summary>
+            Splitter C, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T2.splCD_EF">
+            <summary>
+            Splitter CD, EF
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplate7.UITemplateL7T1">
+            <summary>
+            This class is UI templage Type 1 of Layer 7
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T1.#ctor">
+            <summary>
+            This creates intance of UITemplateB2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplate7.UITemplateL7T1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseF">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseG">
+            <summary>
+            Base G
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseofCD">
+            <summary>
+            Base of C, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseOfEF">
+            <summary>
+            Base of E, F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseOfABCDEF">
+            <summary>
+            Base of Base A, B, C, D, E, F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseOFACD">
+            <summary>
+            Base of Base A, C, D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.BaseOFBEF">
+            <summary>
+            Base of Base B, E, F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.splitter1">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.splitter3">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplate7.UITemplateL7T1.splitter2">
+            <summary>
+            Splitter
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UITemplateComplex.UITemplateXMINALCD">
+            <summary>
+            This class is UI templage Vectical-Type#X-MINA
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplateComplex.UITemplateXMINALCD.#ctor">
+            <summary>
+            This creates instance of this.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UITemplateComplex.UITemplateXMINALCD.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UI.UITemplateComplex.UITemplateXMINALCD.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseA">
+            <summary>
+            Base A
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseB">
+            <summary>
+            Base B
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseC">
+            <summary>
+            Base C
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseD">
+            <summary>
+            Base D
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseE">
+            <summary>
+            Base E
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseG">
+            <summary>
+            Base F
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseF">
+            <summary>
+            Base G
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseH">
+            <summary>
+            Base H
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseI">
+            <summary>
+            Base I
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseJ">
+            <summary>
+            Base J
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfABCDEFGHI">
+            <summary>
+            Base of ABCDEFGHI
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfABC">
+            <summary>
+            Base of ABC
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfBC">
+            <summary>
+            Base of BC
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfDEFGHI">
+            <summary>
+            Base of DEFGHI
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfDEFG">
+            <summary>
+            Base of DEFG
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfDE">
+            <summary>
+            Base of DE
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfEFG">
+            <summary>
+            Base of EFG
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.BaseOfEF">
+            <summary>
+            Base of EF
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter1">
+            <summary>
+            Splitter 1
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter2">
+            <summary>
+            Splitter 2
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter3">
+            <summary>
+            Splitter 3
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter4">
+            <summary>
+            Splitter 4
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter5">
+            <summary>
+            Splitter 5
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter6">
+            <summary>
+            Splitter 6
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter7">
+            <summary>
+            Splitter 7
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter8">
+            <summary>
+            Splitter 8
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UITemplateComplex.UITemplateXMINALCD.splitter9">
+            <summary>
+            Splitter 9
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UIBase">
+            <summary>
+            This class is base of UI TAP-based.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.#ctor">
+            <summary>
+            This creates instance of UIBase
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_FACILITY_NAME">
+            <summary>
+            Facility combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_TECH_NAME">
+            <summary>
+            Tech combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_LOTCODE_NAME">
+            <summary>
+            Lot Code combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_DEVICE_NAME">
+            <summary>
+            Device combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_MAINOP_NAME">
+            <summary>
+            Main operation combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_OPEARTION_NAME">
+            <summary>
+            Oeration combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_PART_NAME">
+            <summary>
+            Part combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_PARAMETER_NAME">
+            <summary>
+            Parameter combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_RECIPE_NAME">
+            <summary>
+            Recipe combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_BAY_NAME">
+            <summary>
+            Bay combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_AREA_NAME">
+            <summary>
+            Area combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_LINE_NAME">
+            <summary>
+            Line combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_MAINEQUIPMENT_NAME">
+            <summary>
+            Main Equipment combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._COMBOBOX_EQUIPMENT_NAME">
+            <summary>
+            Equipment combobox name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._converter">
+            <summary>
+            Converter for cross-language
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._translator">
+            <summary>
+            Translator of cross-language
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._ui">
+            <summary>
+            UI model information
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._containers">
+            <summary>
+            Container for management controls
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase.tPanelBottomBase">
+            <summary>
+            Bottom panel
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase.tLabel1">
+            <summary>
+            Label on bottom panel
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._useUIAutomation">
+            <summary>
+            If 'YES', this UI applys UI Automation of TAPFX
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase._excelFilePath">
+            <summary>
+            Path for saving excel file
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase.tPanelTop">
+            <summary>
+            Top panel
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIBase.tPanelMain">
+            <summary>
+            Main panel
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.UIInformation">
+            <summary>
+            UI informtaion
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.UseUIAutomation">
+            <summary>
+            If 'YES', this UI applys UI Automation of TAPFX
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.InProgress">
+            <summary>
+            if 'YES', form is in progressing
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.UIBaseArgument">
+            <summary>
+            UI base argument
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase._UILog">
+            <summary>
+            UI Log
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.TabControl">
+            <summary>
+            Tab control related with this UI
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.TabPage">
+            <summary>
+            Tab page related with this UI
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.UITitle">
+            <summary>
+            UI Title
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIBase.BookMarkAssign">
+            <summary>
+            BookMark Assign
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UIBase.RefreshUIStatusEventHandler">
+            <summary>
+            Refresh UI Status delegate
+            </summary>
+            <param name="message">Message</param>
+        </member>
+        <member name="T:TAP.UI.UIBase.SetWorkStatusHandler">
+            <summary>
+            Work status handler delegate
+            </summary>
+            <param name="msgType">Message type</param>
+            <param name="message">Message</param>
+        </member>
+        <member name="T:TAP.UI.UIBase.SetBookMarkEventHandler">
+            <summary>
+            BookMark Status delegate
+            </summary>
+            <param name="flag"></param>
+            <param name="uiBasicModel"></param>
+        </member>
+        <member name="T:TAP.UI.UIBase.AsyncCallEndEventHandler">
+            <summary>
+            Asynchronous callback delegate
+            </summary>
+            <param name="callMethodName"></param>
+        </member>
+        <member name="E:TAP.UI.UIBase.RefreshUIStatusHandler">
+            <summary>
+            Refresh UI Status event handler
+            </summary>
+        </member>
+        <member name="E:TAP.UI.UIBase.SetBookMarkHandler">
+            <summary>
+            BookMark Status event handler
+            </summary>
+        </member>
+        <member name="E:TAP.UI.UIBase.AsyncCallCancel">
+            <summary>
+            Asynchronous working event handler
+            </summary>
+        </member>
+        <member name="E:TAP.UI.UIBase.AsyncCallEnd">
+            <summary>
+            Asynchronous callback event handler
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Search">
+            <summary>
+            Write code for "Search" in this method. Button assigned command type "Search" will call this method.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Command">
+            <summary>
+            Write code for Main action in this method. Button assigned command type "Command" will call this method.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Delete">
+            <summary>
+            Write code for "Delete" in this method. Button assigned command type "Delete" will call this method.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Add">
+            <summary>
+            Write code for "Add" in this method. Button assigned command type "Add" will call this method.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Initialize">
+            <summary>
+            This method initialize UI. This method loads controls of all containers and sets events as default.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ExecuteCommand(TAP.ArgumentPack)">
+            <summary>
+            Write excuting default action code in this method. Other UI will call this command for executing this UI.
+            </summary>
+            <param name="arguments"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.SetEvents">
+            <summary>
+            Write assigning code that assigns event handler to control in this method.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ExecuteContextMenu(System.String)">
+            <summary>
+            Wirte code for context menu in this method.
+            </summary>
+            <param name="menuName"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.OpenContextMenu(System.Windows.Forms.ContextMenuStrip)">
+            <summary>
+            Write code for opening context menu.
+            </summary>
+            <param name="contextMenu">Instance of context menu object</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.InitializeUI">
+            <summary>
+            This method Initializes UI
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.InitializeUIManually">
+            <summary>
+            This method initialize UI in manually type UI
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.InitializeUIAutomation">
+            <summary>
+            This method applys UI Automation of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.SetText(System.Windows.Forms.Control)">
+            <summary>
+            This method sets fressage code
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ConvertContextMenu(System.Windows.Forms.ContextMenuStrip)">
+            <summary>
+            This method translates item text of context menu
+            </summary>
+            <param name="context">Context menu</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ApplyOtherControls">
+            <summary>
+            This method is not used.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.GetUserAuthority">
+            <summary>
+            This method collects authority for this UI.
+            </summary>
+            <returns>Numeric value for authority</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.CallRemoteMethod(System.String,System.String,System.String,TAP.ArgumentPack[])">
+            <summary>
+            This method is not used
+            </summary>
+            <param name="assemblyName">Assembly name</param>
+            <param name="className">Class name</param>
+            <param name="methodName">Method name</param>
+            <param name="tmpPack">Argument list</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.DrawCustomControls(System.String,TAP.Models.ModelSet,System.Boolean)">
+            <summary>
+            This method draw controls that is not designed from UI-Modeler.
+            </summary>
+            <param name="containerName">Container name</param>
+            <param name="models">Model</param>
+            <param name="enabels">If "TRUE", this control is enabled</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.FindControl(System.String)">
+            <summary>
+            This method finds control using specified control ID.
+            </summary>
+            <param name="controlID">Control ID</param>
+            <returns>Control</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.FindControlOnUnManagedPanel(TAP.UIControls.BasicControls.TPanel,System.String)">
+            <summary>
+            This method finds control in specified panel using specified control ID.
+            </summary>
+            <param name="panel">Panel</param>
+            <param name="controlID">Control ID</param>
+            <returns>Control</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.Exit">
+            <summary>
+            This methods closes current UI.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearControls">
+            <summary>
+            This method removes value on all controls.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearControls(TAP.UIControls.BasicControls.TPanel)">
+            <summary>
+            This method revmoes value on specified panel.
+            </summary>
+            <param name="panel">Panel</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearControls(System.String)">
+            <summary>
+            This method revmoes value on specified container.
+            </summary>
+            <param name="containerName">Container name</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearControls(System.String,TAP.UIControls.BasicControls.TPanel)">
+            <summary>
+            This method delete value on panel has specified name.
+            </summary>
+            <param name="containerName">Container name</param>
+            <param name="panel">Panel</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.GetControlStringValue(System.String)">
+            <summary>
+            This method collects string value of specified control.
+            </summary>
+            <param name="controlName">Control name</param>
+            <returns>String typed value of specified control</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.SetControlValue(System.String,System.Object)">
+            <summary>
+            This method sets string typed value on specified control.
+            </summary>
+            <param name="controlName">Control name</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonExitEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Exit" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonClearEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Clear" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonDeleteEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Delete" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonCommandEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Main" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonSearchEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Search" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ButtonBoxAddEventHandler(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for button excutes "Add" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.TextBoxSearchEventHandler(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            This event handler is for textbox excutes "Search" command.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ContextMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            This event handler is for context menu.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ContextMenu_Opening(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            This event will be excuted when context menu is open.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.TimerStart(System.Object,System.EventArgs)">
+            <summary>
+            Current Time Update
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BeginAsyncCall(System.String,System.String)">
+            <summary>
+            This method starts asynchronous working
+            </summary>
+            <param name="asyncMethod">Asynchronous method</param>
+            <param name="callBackMethod">Callback method</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BeginAsyncCall(System.String,System.String,TAP.UI.EnumDataObject)">
+            <summary>
+            This method starts asynchronous working
+            </summary>
+            <param name="asyncMethod">Asynchronous method</param>
+            <param name="callBackMethod">Callback method</param>
+            <param name="dataObject">Object type</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BeginAsyncCall(System.String,System.String,TAP.UI.EnumDataObject,System.Object[])">
+            <summary>
+            This method starts asynchronous working
+            </summary>
+            <param name="asyncMethod">Asynchronous method</param>
+            <param name="callBackMethod">Callback method</param>
+            <param name="dataObject">Object type</param>
+            <param name="parameters">Parameters</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.CancelAsync">
+            <summary>
+            This method cancels async job.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.StartProgress">
+            <summary>
+            This method starts progress bar
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.EndProgress">
+            <summary>
+            This method ends progress bar
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.SetWorkStatus(TAP.UI.EnumMsgType,System.String)">
+            <summary>
+            This method displays status message
+            </summary>
+            <param name="msgType">Message type</param>
+            <param name="message">Message</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.RefreshUIStatus(System.String)">
+            <summary>
+            This method refrehs UI Status
+            </summary>
+            <param name="message">Message</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.ValidateUserInput(TAP.UIControls.BasicControls.TPanel)">
+            <summary>
+            This method validate user's input 
+            </summary>
+            <param name="panel">Panel</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ValidateUserInput(TAP.UIControls.BasicControls.TGroupBox)">
+            <summary>
+            This method validate user's input 
+            </summary>
+            <param name="groupBox">Group box</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ValidateUserInput(TAP.UIControls.BasicControls.TTitledGroupBox)">
+            <summary>
+            This method validate user's input 
+            </summary>
+            <param name="titledGroupBox">Group box</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearUserInput(TAP.UIControls.BasicControls.TPanel)">
+            <summary>
+            This method clears user's input 
+            </summary>
+            <param name="panel">Panel</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearUserInput(TAP.UIControls.BasicControls.TGroupBox)">
+            <summary>
+            This method clears user's input 
+            </summary>
+            <param name="groupBox">Group box</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ClearUserInput(TAP.UIControls.BasicControls.TTitledGroupBox)">
+            <summary>
+            This method clears user's input 
+            </summary>
+            <param name="titledGroupBox">Group box</param>
+            <returns>If 'TRUE', user's input is valid.</returns>
+        </member>
+        <member name="M:TAP.UI.UIBase.ExportsViaExcel">
+            <summary>
+            This method exports data via excel.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ExportToExcelStart">
+            <summary>
+            This method makes excel object using UI data. Developer must edit this.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.ExportToExcelEnd">
+            <summary>
+            This is call back method of Excel-Export.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindTechCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of TECH.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindLotCodeCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Lot Code.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindDeviceCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Device.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindMainOperationCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Main operation.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindOperationCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Operation.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindLineCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Line.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindAreaCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Area.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindBayCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Bay.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindMainEquipmentCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of Main equipment.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.BindEquipmentCombobox(System.Boolean)">
+            <summary>
+            This method binds comboox of equipment.
+            </summary>
+            <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
+        </member>
+        <member name="M:TAP.UI.UIBase.InitializeComponent">
+            <summary>
+            This method initialized components
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIBase.Dispose(System.Boolean)">
+            <summary>
+            Disposer
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:TAP.UI.UIBase.UI_Load(System.Object,System.EventArgs)">
+            <summary>
+            This event hander will be executed when from load
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:TAP.UI.InfoBase">
+            <summary>
+            This class is information of UI.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase._MDI_INFO">
+            <summary>
+            MDI Infomation
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase._USER_INFO">
+            <summary>
+            User information
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase._USER_GROUP">
+            <summary>
+            User group information
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase._USER_GROUP_MEMBER">
+            <summary>
+            User Group Member Infomation
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase.FormTypeName">
+            <summary>
+            Excuting UI type name
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase.FormInstanceID">
+            <summary>
+            ID of Excuting UI
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase.WorkStateReceiverPortNo">
+            <summary>
+            Receive port for WorkState
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase.CurrentCommand">
+            <summary>
+            Command in excuting
+            </summary>
+        </member>
+        <member name="F:TAP.UI.InfoBase.UserID">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UIColumnBase">
+            <summary>
+            This class provides user-friendly column names.
+            </summary>
+        </member>
+        <member name="F:TAP.UI.UIColumnBase.columns">
+            <summary>
+            Column list
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIColumnBase.Columns">
+            <summary>
+            Column list
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UIColumnBase.Instance">
+            <summary>
+            Static accessor of UIColumnBase
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UIColumnBase.#ctor">
+            <summary>
+            This creates instance of UIColumnBase.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UICallBase">
+            <summary>
+            This class provides method that call method of other UI.
+            </summary>
+        </member>
+        <member name="P:TAP.UI.UICallBase.Instance">
+            <summary>
+            Static accessor of UICallBase
+            </summary>
+        </member>
+        <member name="E:TAP.UI.UICallBase.OpenChildUI">
+            <summary>
+            This is eventhandler for open child UI.
+            </summary>
+        </member>
+        <member name="T:TAP.UI.UICallBase.OpenChildUIEventHandler">
+            <summary>
+            This is delegate for OpenChildUIEventHandler typed event handler.
+            </summary>
+            <param name="mainMenu">Main menu name</param>
+            <param name="menu">Menu name</param>
+            <param name="arguments">Argument list for executing</param>
+        </member>
+        <member name="M:TAP.UI.UICallBase.#ctor">
+            <summary>
+            This creates instance of UICallBase.
+            </summary>
+        </member>
+        <member name="M:TAP.UI.UICallBase.OpenAndCommand(System.String,System.String,TAP.ArgumentPack)">
+            <summary>
+            This method open UI specified and excute default command.
+            </summary>
+            <param name="mainMenu">Main menu name</param>
+            <param name="menu">Menu name</param>
+            <param name="arguments">Argument list for executing</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,58 @@
+D:\Source\ISEM\_bin\FX\ISEM.UI.ADMINISTRATOE.dll
+D:\Source\ISEM\_bin\FX\ISEM.UI.ADMINISTRATOE.pdb
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmAreaManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmAuthorityManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicMainMenu.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicUI.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmCodeManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmGroupUserManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmLineManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmMessageGroupManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmShiftManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmUserMailManagement.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmUserWorkFlow.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.GroupListAdd.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.GroupListUpdate.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.Properties.Resources.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserAdd.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserUpdate.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserWorkFlowModify.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.WorkGroupAdd.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.WorkUser.resources
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.GenerateResource.cache
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.CoreCompileInputs.cache
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.CopyComplete
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.dll
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.pdb
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.AssemblyReference.cache
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.dll.licenses
+D:\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicSubMenu.resources
+D:\01. project\Source\ISEM\_bin\FX\ISEM.UI.ADMINISTRATOE.dll
+D:\01. project\Source\ISEM\_bin\FX\ISEM.UI.ADMINISTRATOE.pdb
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csprojAssemblyReference.cache
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmAreaManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmAuthorityManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicMainMenu.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicSubMenu.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmClassicUI.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmCodeManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmGroupUserManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmLineManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmMessageGroupManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmShiftManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmUserMailManagement.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.FrmUserWorkFlow.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.GroupListAdd.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.GroupListUpdate.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.Properties.Resources.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserAdd.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserUpdate.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.UserWorkFlowModify.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.WorkGroupAdd.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.WorkUser.resources
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.GenerateResource.cache
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.dll.licenses
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.CoreCompileInputs.cache
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.csproj.CopyComplete
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.dll
+D:\01. project\Source\ISEM\ISEM\ISEM.UI.ADMINISTRATOE\obj\Debug\ISEM.UI.ADMINISTRATOE.pdb

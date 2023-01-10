@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="TAPConfiguration"
+             type="TAP.Base.Configuration.TapConfigurations,TAP.Base.Configuration" />
+  </configSections>
+  <TAPConfiguration>
+
+    <!-- Environment Section-->
+    <!-- Developer must edit this section!!!-->
+    <EnvironmentSection Region ="CELL" ExecutePath="" InstallType="SERVER"  />
+
+    <!-- Administrator-->
+    <!-- Developer must edit this section!!!-->
+    <AdminListenerSection>
+      <AdminListener IP="localhost" Port="9039"/>
+    </AdminListenerSection>
+
+    <!-- Data Source-->
+    <!-- If system uses database set 'DB' -->
+    <!-- If system uses xml file set 'XML' -->
+    <!-- Developer must edit this section!!!-->
+    <DataSourceSection DataSource="DB" InfoBase ="FX"  />
+
+    <!-- Database-->
+    <!-- Developer must edit this section!!!-->
+    <DatabaseSection Default="DEFAULT" TimeOut="500">
+      <!--<Connection Key="DEFAULT" DBMS="MSSQL" DTC = "false" ConnectionString="Server=172.16.45.92;Database=ISEM_NEW;Uid=TAP_NEW;Password=1234@qwe" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT" />-->
+      <Connection Key="DEFAULT" DBMS="ORACLE" DTC = "false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.45.125)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = cellmes)));User ID=cellmes;Password=cellmes2021;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT" />
+    </DatabaseSection>
+
+    <!-- XML Source-->
+    <!-- Developer must edit this section!!!-->
+    <XMLSection FileName="C:\TAP\CLUSTER\CLUSTERMODEL.XML" RootNode="MODEL" BackupPath="C:\TAP\CLUSTER\BACKUP\" />
+
+    <!-- Framework-->
+    <FrameworkSection>
+      <LocalPath Key ="LocalLog" Path="C:\TAP\LocalLog\" />
+      <LocalPath Key ="UILog" Path="ui" />
+      <LocalPath Key ="ServiceLog" Path="service" />
+      <LocalPath Key ="ModelLog" Path="model" />
+      <LocalPath Key ="WorkflowLog" Path="workflow" />
+      <LocalPath Key ="RemoteLog" Path="remote" />
+    </FrameworkSection>
+
+    <!-- Logging-->
+    <LogSection>
+      <!-- Information Log-->
+      <Log Type="I" Logging="true" Path="Info" Extension="ilog" MaxSize="100000" />
+      <!-- SQL Log-->
+      <Log Type="S" Logging="true" Path="Sql" Extension="slog" MaxSize="100000" />
+      <!-- Trace Log-->
+      <Log Type="T" Logging="true" Path="Trace" Extension="tlog" MaxSize="100000" />
+      <!--Unknown Log-->
+      <Log Type="W" Logging="true" Path="Warning" Extension="wlog" MaxSize="100000" />
+      <!--Extend Log-->
+      <Log Type="E" Logging="true" Path="Error" Extension="elog" MaxSize="100000" />
+    </LogSection>
+
+    <LocalLogSection>
+      <Log Type="MODEL" Logging="true" Path="Model" Extension="mlog" MaxSize="100" />
+    </LocalLogSection>
+
+    <!-- Messaging-->
+    <MessagingSection PublicMessageInterval="30" HeartBeatInterval="60">
+      <Protocol Type="TCP" ReceiverPort="9031" AppBrowserReceiverPort="9032"/>
+      <Protocol Type="UDP" ReceiverPort="9033" AppBrowserReceiverPort="9034"/>
+    </MessagingSection>
+
+    <!-- Memory Watcher-->
+    <ProcessWatcherSection CriticalMemorySize="307200" CheckInterval="1000" ClosingWaitTime="1000"  LastDataWaitTime ="1000" LastDataWaitCount="10" />
+
+    <!-- Listener-->
+    <!-- Developer must edit this section!!!-->
+    <RemoteListenerSection MultiConsole = "true">
+      <ListenerHost IP="localhost" Port="9040" MinRemoteCount="1" RetryCount="3" RetryInterval="150000" />
+      <ListenerWatcher Interval="1000" />
+      <Emergency Key="F8FF170E-0046-42af-A555-09B0BF96AF6F" />
+      <Listeners>
+        <Listener No="1"  Port="9001" Enabled="true"/>
+        <Listener No="2"  Port="9002" Enabled="false"/>
+        <Listener No="3"  Port="9003" Enabled="false"/>
+        <Listener No="4"  Port="9004" Enabled="false"/>
+        <Listener No="5"  Port="9005" Enabled="false"/>
+      </Listeners>
+    </RemoteListenerSection>
+
+    <!--Mailing-->
+    <!-- Developer must edit this section!!!-->
+    <SMTPSection Default="DEFAUL">
+      <SMTPServer Key="DEFAUL" ServerIP="localhost" />
+    </SMTPSection>
+
+    <TraceSection Enabled="true"></TraceSection>
+
+    <!--Remote Section-->
+    <!-- Developer must edit this section!!!-->
+    <RemoteAdapterSection HostIP="isetsvr" HostPort="9040" IsDebugMode="true" TestDBCode="" />
+
+    <!-- Remote Biz Component Section-->
+    <RemoteDeploySection Path ="BIZ">
+      <BizComponent Assembly = "" SubPath ="" />
+    </RemoteDeploySection>
+
+    <!-- Application Section-->
+    <!-- Developer must edit this section!!!-->
+    <AppSection Facility="T1"
+                   ServerName ="LOCAL"
+                   ServerIP="localhost"
+                   UserLanguage="KR"
+                   UILogging ="false"
+                   ProductName ="TAP MES Modeler Beta1"
+                   MDIName ="Remoting"
+                   AppDirectory ="FX_Server"
+                   MDIDisplayName ="TAP MES Modeler Beta1"
+                   AppConfigFileName ="TAPminaSolar.config" AppConfigName="TAP.mina.Solar.Configuration">
+      <MainMenus/>
+      <ServiceGroups/>
+    </AppSection>
+
+    <!-- Cross language section-->
+    <CrossLanguageSection
+      LocalFile="tapModeler_cc.mdb"
+      ServerDirectory=""
+      NeedToDownLoad ="false"
+      NeedToApply ="true"
+      />
+
+    <!-- Install section-->
+    <InstallInfoSection
+      DBSetup="true"
+      SMTPSetup ="true"
+      BatchSetup ="true">
+      <Batches>
+        <Batch Key ="TapLodeService" Sequence ="1" File ="TAPLodeService.exe"/>
+        <Batch Key ="TapLodeService2" Sequence ="2" File ="TAPLodeService2.exe"/>
+      </Batches>
+    </InstallInfoSection>
+
+  </TAPConfiguration>
+  <appSettings>
+    <add key="codebase" value="dev"/>
+  </appSettings>
+
+
+
+</configuration>

@@ -1,0 +1,2783 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.UIControls.BasicControlsDEV</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.UIControls.BasicControlsDEV.BorderDrawer">
+            <summary>
+            This is border color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.BorderDrawer.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.BorderDrawer.DrawBorder(System.Windows.Forms.Message@,System.Int32,System.Int32)">
+            <summary>
+            This method draws border
+            </summary>
+            <param name="message"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.RepresentativeValue">
+            <summary>
+            Start time
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.dateTimePickerTest.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.EnumLabelType">
+            <summary>
+            This is label type list.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumLabelType.DEFAULT">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumLabelType.NECESSARINESS">
+            <summary>
+            Necessariness
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumLabelType.OPTION">
+            <summary>
+            Option
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.EnumCommandType">
+            <summary>
+            This is button type list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.ADD">
+            <summary>
+            Add
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.ANALYSIS">
+            <summary>
+            Analysis
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.ASSIGN">
+            <summary>
+            Assign
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.CANCEL">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.CLOSE">
+            <summary>
+            Close
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.CONFIRM">
+            <summary>
+            Confirm
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.CONNECT">
+            <summary>
+            Connect
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.COMPLETE">
+            <summary>
+            Complete
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.COPY">
+            <summary>
+            Copy
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DEASSIGN">
+            <summary>
+            Deassign
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DELETE">
+            <summary>
+            Delete
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DOWN">
+            <summary>
+            Down
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DDOWN">
+            <summary>
+            To Bottom
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DOWNLOAD">
+            <summary>
+            Download
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.EDIT">
+            <summary>
+            Edit
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.HOLD">
+            <summary>
+            Hold
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.OTHERS">
+            <summary>
+            Others
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.LOAD">
+            <summary>
+            Load
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.LOOP">
+            <summary>
+            Loop
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.NEW">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.NG">
+            <summary>
+            NG
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.OPEN">
+            <summary>
+            Open
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.OUT">
+            <summary>
+            Out
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.READ">
+            <summary>
+            Read
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.RECEIVE">
+            <summary>
+            Receive
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.REGISTER">
+            <summary>
+            Register
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.REFRESH">
+            <summary>
+            Refresh
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.REMOVE">
+            <summary>
+            Remove
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.SAVE">
+            <summary>
+            Save
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH">
+            <summary>
+            Search
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.SEND">
+            <summary>
+            Send
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.SETUP">
+            <summary>
+            Setup
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.START">
+            <summary>
+            Start
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.STOP">
+            <summary>
+            Stop
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.UP">
+            <summary>
+            Up
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.UUP">
+            <summary>
+            To Top
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.UPLOAD">
+            <summary>
+            Upload
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.VIEW">
+            <summary>
+            View
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.DIRECTION">
+            <summary>
+            Direction
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumCommandType.WRITE">
+            <summary>
+            Write
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.FrmLargeImage.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.FrmLargeImage.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.FrmLargeImage.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.Resource1">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_ANALYSIS">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_CLOSE">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_CONNECT">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_COPY">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_DOWNLOAD">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_LOOP">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_NEW">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_OPEN">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_OUT">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_READ">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_REGISTER">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_SEND">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_SETUP">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_UPLOAD">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.BTN_WRITE">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.cancel">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.collapse1">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.expands">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_add">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_assign">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_complete">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_confirm">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_create">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_ddown">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_deassign">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_default">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_down">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_edit">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_execute">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_left">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_hold">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_ng">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_refresh">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_release">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_remove">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_save">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_search">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_setting">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_start">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_stop">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_up">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_uup">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.Resource1.s_view">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TButton">
+            <summary>
+            This is default button of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TButton.#ctor">
+            <summary>
+            This creates instance of TButton
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.CommandType">
+            <summary>
+            Command type
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TButton.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TButton.Text">
+            <summary>
+            Text
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TButton.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TButton.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TButton.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TCheckBox">
+            <summary>
+            This is default checkbox of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckBox.#ctor">
+            <summary>
+            This creates instance of TCheckBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TCheckBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckComboBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckComboBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckComboBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckComboBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckComboBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckComboBox.BindData(System.Data.DataTable,System.Boolean)">
+            <summary>
+            This method binds data using assigned dataset.
+            </summary>
+            <param name="ds">DataSet</param>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TCheckComboBox.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckComboBox.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckComboBox.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TCheckedListBox">
+            <summary>
+            This is default checked list box of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.#ctor">
+            <summary>
+            This creates instance of this.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckedListBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckedListBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckedListBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckedListBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.BindItems(TAP.Models.ModelSet)">
+            <summary>
+            This methods bind items to checked box list
+            </summary>
+            <param name="modelSet"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCheckedListBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TCheckedListBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCheckedListBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel">
+            <summary>
+            This is collapsible panel
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.Collapsed">
+            <summary>
+            If 'TRUE', this panel was collapsed
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.UseAnimation">
+            <summary>
+            If 'TRUE', this panel uses animation
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.ShowHeaderSeparator">
+            <summary>
+            If 'TRUE', this panel shows line separating 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.RoundedCorners">
+            <summary>
+            If 'TRUE', Draws a panel with rounded top corners
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderTextAutoEllipsis">
+            <summary>
+            Enables the automatic handling of text that extends beyond the width of the label control.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.UseHeaderGradation">
+            <summary>
+            If 'TRUE', header will be filled with gradation.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.UseCollapsible">
+            <summary>
+            If 'TRUE', this control uses collapsible 
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderCornersRadius">
+            <summary>
+            Radius of header corner
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderText">
+            <summary>
+            Header text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderTextAlignment">
+            <summary>
+            Header text alignment
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderTextColor">
+            <summary>
+            Header text color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderBackColor">
+            <summary>
+            Header back color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderGradationStartColor">
+            <summary>
+            Starting color of header gradation
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderGradationEndColor">
+            <summary>
+            End Color of header gradation
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.BorderColor">
+            <summary>
+            Border Color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderImage">
+            <summary>
+            Header image
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.HeaderFont">
+            <summary>
+            Header font
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.BackColor">
+            <summary>
+            Back color
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.#ctor">
+            <summary>
+            This creates instance of this class
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.DrawHeaderConrners(System.Drawing.Graphics,System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            This method draws cornners
+            </summary>
+            <param name="g"></param>
+            <param name="brush"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="radius"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            This method draws control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.OnResize(System.EventArgs)">
+            <summary>
+            This method overrides OnSize of parent
+            </summary>
+            <param name="eventargs"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.OnSizeChanged(System.EventArgs)">
+            <summary>
+            This method overrides OnSizeChanged of parents 
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TCollapsiblePanel.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TControlContainer.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TControlContainer.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TControlContainer.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.RepresentativeValue">
+            <summary>
+            Start time
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerDEV.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TDockManager.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDockManager.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDockManager.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TDockPanel.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDockPanel.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDockPanel.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TImageComboBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TImageComboBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TImageComboBox.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TImageComboBox.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TImageComboBox.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TImageList.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TImageList.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TImageList.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMemoEdit.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMemoEdit.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TMemoEdit.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMemoEdit.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMemoEdit.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TSolidProgressBar">
+            <summary>
+            This is color progress bar
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.FillStyles">
+            <summary>
+            Fill style list
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.FillStyles.Solid">
+            <summary>
+            Solid
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.FillStyles.Dashed">
+            <summary>
+            Dashed
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Value">
+            <summary>
+            Current value
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Minimum">
+            <summary>
+            Minimum
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Maximum">
+            <summary>
+            Maximum
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Step">
+            <summary>
+            Step
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.BarColor">
+            <summary>
+            Bar color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.BorderColor">
+            <summary>
+            Border Color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.FillStyle">
+            <summary>
+            Fill style
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.#ctor">
+            <summary>
+            This creates instance of this.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.PerformStep">
+            <summary>
+            This method increases the value by step amount
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.PerformStepBack">
+            <summary>
+            This method decreases the value by step amount
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Increase(System.Int32)">
+            <summary>
+            This method increase the value by argument 
+            </summary>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.Decrease(System.Int32)">
+            <summary>
+            This method decrease the value by argument 
+            </summary>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.DrawBorder(System.Drawing.Graphics)">
+            <summary>
+            This method draws border
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSolidProgressBar.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            This method overrides OnPaint of parent
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TComboBox">
+            <summary>
+            This is default comobox of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.#ctor">
+            <summary>
+            This creates instance of TComboBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.RepresentativeValue">
+            <summary>
+            Value of Selected item
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.BuiltInIncludeAll">
+            <summary>
+            If 'TRUE', items of combobox includes 'ALL'
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.BuiltInDispay">
+            <summary>
+            This sets using Buit-In display or not
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.BuiltInCategory">
+            <summary>
+            Category in built-In Display
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.BuiltInSubCategory">
+            <summary>
+            Sub category in built-In Display
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.SelectedText">
+            <summary>
+            Selected text
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.SetSelectedValue(System.String)">
+            <summary>
+            This method sets selected value
+            </summary>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindBuiltInData">
+            <summary>
+            This method binds data "Built-In Dispay Case"
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindBuiltInData(System.Boolean)">
+            <summary>
+            This method binds data "Built-In Dispay Case"
+            </summary>
+            <param name="includeAll">If "TRUE", upper item will be "ALL"</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindBuiltInData(System.Boolean,System.String)">
+            <summary>
+            This method binds "Built-In Display Case".
+            This method will be used in case of dynamic assigning sub-category.
+            Ex)User selects category in other combobox and category user selected is sub-category of this combobox.
+            </summary>
+            <param name="includeAll">If "TRUE", upper item will be "ALL"</param>
+            <param name="subCategory">Sub category</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(TAP.Models.ModelSet,System.Boolean)">
+            <summary>
+            This method binds data using assigned model set.
+            </summary>
+            <param name="modelSet">Model set</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.String[])">
+            <summary>
+            This method binds data using assigned string array.
+            </summary>
+            <param name="dataSource">String array</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.String[],System.Boolean)">
+            <summary>
+            This method binds data using assigned string array.
+            </summary>
+            <param name="dataSource">String array</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Collections.Generic.List{System.String})">
+            <summary>
+            This method binds data using assigned string array.
+            </summary>
+            <param name="dataSource">String array</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            This method binds data using assigned string array.
+            </summary>
+            <param name="dataSource">String array</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Data.DataTable,System.Boolean)">
+            <summary>
+            This method binds data using assigned dataset.
+            </summary>
+            <param name="ds">DataSet</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Data.DataSet,System.Boolean)">
+            <summary>
+            This method binds data using assigned dataset.
+            </summary>
+            <param name="ds">DataSet</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Data.DataSet,System.String,System.Boolean)">
+            <summary>
+            This method binds data using assigned dataset.
+            </summary>
+            <param name="ds">DataSet</param>
+            <param name="tableName">Table name</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.BindData(System.Data.DataSet,System.String,System.String,System.Boolean)">
+            <summary>
+            This method binds data using assigned dataset.
+            </summary>
+            <param name="ds">DataSet</param>
+            <param name="tableName">Table name</param>
+            <param name="columnName">Column name</param>
+            <param name="includeAll">If "TRUE", upper item will be "ALL".</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TComboBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TComboBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TComboBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TContextMenu">
+            <summary>
+            This is context menu strip of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TContextMenu.#ctor">
+            <summary>
+            This creates instance of TContextMenu
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TContextMenu.RepresentativeValue">
+            <summary>
+             Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TContextMenu.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TContextMenu.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TContextMenu.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TContextMenu.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TContextMenu.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TContextMenu.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TContextMenu.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TDateTimePicker">
+            <summary>
+            This is default DateTimePicker of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePicker.#ctor">
+            <summary>
+            This creates instance of TDateTimePicker
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePicker.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePicker.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePicker.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePicker.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePicker.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePicker.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns>Date time as "yyyyMMddHHmmss"</returns>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePicker.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TDateTimePicker.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePicker.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePicker.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE">
+            <summary>
+            This is complex control of TDateTimePicker 
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.#ctor">
+            <summary>
+            This creates instance of TDateTimePickerSE
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.RepresentativeValue">
+            <summary>
+            Start time
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.StartDate">
+            <summary>
+            Value of first DateTimePicker
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.EndDate">
+            <summary>
+            Value of second DateTimePicker
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.StartDateString">
+            <summary>
+            String value of first DateTimePicker
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.EndDateString">
+            <summary>
+            String value of second DateTimePicker
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TGroupBox">
+            <summary>
+            This is default group box of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TGroupBox.#ctor">
+            <summary>
+            This creates instance of TGroupBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TGroupBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TGroupBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TGroupBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TGroupBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TGroupBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TGroupBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TGroupBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TGroupBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TIconLabel">
+            <summary>
+            This is icon label of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TIconLabel.#ctor">
+            <summary>
+            This creates instance of TLabel
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TIconLabel.SetToolTip(System.String)">
+            <summary>
+            This method sets tool-tip
+            </summary>
+            <param name="toolTipMessage"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TIconLabel.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TIconLabel.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TIconLabel.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TIconLabel.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TIconLabel.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TIconLabel.Label">
+            <summary>
+            Label
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TIconLabel.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TIconLabel.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TIconLabel.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TLabel">
+            <summary>
+            This is default label of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TLabel.#ctor">
+            <summary>
+            This creates instance of TLabel
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TLabel.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TLabel.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TLabel.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TLabel.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TLabel.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TLabel.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TLabel.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TLabel.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TListBox">
+            <summary>
+            This is default listbox of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListBox.#ctor">
+            <summary>
+            This is list box of TAPFX
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.SelectedItem">
+            <summary>
+            This sets or gets selected item
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TListBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TListView">
+            <summary>
+            This is default listView of TAPFX
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TListView.ListView_ColumnClickHandler">
+            <summary>
+            Event Handler of ListView_ColumnClickHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TListView.ListView_KeyDownHandler">
+            <summary>
+            Event Handler of ListView_KeyDownHandler
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">Event argument</param>
+        </member>
+        <member name="E:TAP.UIControls.BasicControlsDEV.TListView.ListView_ColunmClicked">
+            <summary>
+            This event will be occured when clicks listview column.
+            </summary>
+        </member>
+        <member name="E:TAP.UIControls.BasicControlsDEV.TListView.ListView_KeyDowned">
+            <summary>
+            This event will be occured when downs key on listview column.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.#ctor">
+            <summary>
+            This is list view of TAPFX
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListView.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListView.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListView.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListView.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.CollectItemStrings">
+            <summary>
+            This method collects items strings
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.CopyItems">
+            <summary>
+            This method sorts items
+            </summary>
+            <param name="column"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.TListView_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            TListView_KeyDown
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListView.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TListView.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListView.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TListViewSorter">
+            <summary>
+            This is sorter for TListView
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListViewSorter.Flag">
+            <summary>
+            Flag for sorting
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListViewSorter.CurrCol">
+            <summary>
+            Current column index
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListViewSorter.PrevCol">
+            <summary>
+            Prev. column index
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TListViewSorter.Sorting">
+            <summary>
+            Sorting type
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListViewSorter.Compare(System.Object,System.Object)">
+            <summary>
+            This method compares two objects
+            </summary>
+            <param name="x">Object x</param>
+            <param name="y">Ojbect y</param>
+            <returns>Sorting type</returns>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TListViewSorter.#ctor">
+            <summary>
+            This creates instance of TListViewSorter
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.EnumSorting">
+            <summary>
+            Sorting type
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumSorting.ASC">
+            <summary>
+            Ascending
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.EnumSorting.DESC">
+            <summary>
+            Descending
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TMenuItem">
+            <summary>
+            This is menu item of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMenuItem.#ctor">
+            <summary>
+            This creates instance of TMenuItem
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMenuItem.RepresentativeValue">
+            <summary>
+             Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMenuItem.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMenuItem.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMenuItem.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TMenuItem.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TMenuItem.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMenuItem.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TMenuItem.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TNumericBox">
+            <summary>
+            This is numeric box of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TNumericBox.#ctor">
+            <summary>
+            This creates instance of TNumericBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TNumericBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TNumericBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TNumericBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TNumericBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TNumericBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TNumericBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TNumericBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TNumericBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TNumericBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TNumericBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TPanel">
+            <summary>
+            This is default panel of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPanel.#ctor">
+            <summary>
+            This creates instance of TPanel
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPanel.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPanel.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPanel.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPanel.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPanel.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TPanel.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPanel.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPanel.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TPictureBox">
+            <summary>
+            This is default picturebox of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPictureBox.#ctor">
+            <summary>
+            This creates instance of TPictureBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPictureBox.RollOverImage">
+            <summary>
+            This is image dislayed when rollover
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPictureBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPictureBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPictureBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPictureBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TPictureBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TPictureBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPictureBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TPictureBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TProgressBar">
+            <summary>
+            This is default progress bar of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TProgressBar.#ctor">
+            <summary>
+            This creates instance of TProgressBar
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TProgressBar.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TProgressBar.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TProgressBar.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TProgressBar.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TProgressBar.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TProgressBar.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TProgressBar.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TProgressBar.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TRadionButton">
+            <summary>
+            This is default radio button of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRadionButton.#ctor">
+            <summary>
+            This creates instance of TRadionButton
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRadionButton.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRadionButton.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRadionButton.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRadionButton.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRadionButton.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TRadionButton.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRadionButton.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRadionButton.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TRichTextBox">
+            <summary>
+            This is default RichTextBox of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRichTextBox.#ctor">
+            <summary>
+            This creates instance of TRichTextBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRichTextBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRichTextBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRichTextBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRichTextBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TRichTextBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TRichTextBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRichTextBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TRichTextBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TSplitContainerControl.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitContainerControl.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitContainerControl.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TSplitter">
+            <summary>
+            This is default splitter of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitter.#ctor">
+            <summary>
+            This creates instance of TSplitter
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSplitter.CommandType">
+            <summary>
+            Command type
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSplitter.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSplitter.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSplitter.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitter.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TSplitter.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TSplitter.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitter.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TSplitter.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TTabControl">
+            <summary>
+            This default tabcontrol of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.#ctor">
+            <summary>
+            This creates instance of TTabControl
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.ShowClosingButton">
+            <summary>
+            If 'TRUE', tab page shows colosing button
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TTabControl.SelectedTextColor">
+            <summary>
+            Selected text color
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.ActiveColor">
+            <summary>
+            The color of selected page
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.BackTabColor">
+            <summary>
+            The color of non-selected page
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.HeaderColor">
+            <summary>
+            The color of non-selected page
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.HorizontalLineColor">
+            <summary>
+            The color of the horizontal line which is located under the headers of teh page
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.TextColor">
+            <summary>
+            The color of the title of page
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.ShowClosingMessage">
+            <summary>
+            If 'TRUE', the mesasge will be shown before closing
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTabControl.ClosingMessage">
+            <summary>
+            The message that will be shown before closing
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.CreateHandle">
+            <summary>
+            Sets the tabs on the top
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Holds the selected page until it set down
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Abondons the selected tab
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TTabControl.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTabControl.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TTextBox">
+            <summary>
+            This is default textbox of TAPFX
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TTextBox.Enter_Down">
+            <summary>
+            Event Handler of Enter_Down
+            </summary>
+        </member>
+        <member name="E:TAP.UIControls.BasicControlsDEV.TTextBox.Enter_Downed">
+            <summary>
+            This event will be occured when enter key downed
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTextBox.#ctor">
+            <summary>
+            This creates instance of TTextBox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTextBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTextBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTextBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTextBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTextBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTextBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTextBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TTextBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTextBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTextBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TTitledGroupBox">
+            <summary>
+            This is titled groupbox
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.HeaderBackColor">
+            <summary>
+            Back color of header
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.HeaderTextColor">
+            <summary>
+            Color of header text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.HeaderFont">
+            <summary>
+            Header font
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.#ctor">
+            <summary>
+            This creates instnace of this
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.RepresentativeValue">
+            <summary>
+            Representative value of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Onpaint
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTitledGroupBox.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="T:TAP.UIControls.BasicControlsDEV.TTreeView">
+            <summary>
+            This is default TreeView of TAPFX
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTreeView.#ctor">
+            <summary>
+            This creates instnace of TTreeView
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTreeView.RepresentativeValue">
+            <summary>
+            Button Text
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTreeView.ControlID">
+            <summary>
+            Control name
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTreeView.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTreeView.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTreeView.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTreeView.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WindProc
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControlsDEV.TTreeView.BorderColor">
+            <summary>
+            Border color
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TTreeView.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTreeView.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TTreeView.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControlsDEV.TUserControl.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TUserControl.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControlsDEV.TUserControl.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+    </members>
+</doc>
