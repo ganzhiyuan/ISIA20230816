@@ -23,6 +23,7 @@ namespace ISIA.BIZ.ADMINISTRATOE
             DBCommunicator db = new DBCommunicator();
             try
             {
+
                 DataSet ds = new DataSet();
 
                 StringBuilder groupdtsql = new StringBuilder();

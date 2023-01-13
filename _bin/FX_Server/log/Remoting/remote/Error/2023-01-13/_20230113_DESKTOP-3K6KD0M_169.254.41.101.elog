@@ -1,0 +1,18 @@
+﻿"2023-01-13 15:09:59:760","Executing Remote Broker (17228638) was failed: System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> System.Exception: 13201-连接请求超时
+   在 TAP.Remoting.Server.Biz.BIZDBComponent.SelectText(SPContainer spContainer) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Biz\BIZDBComponent.cs:行号 131
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, RemoteInfo remote, List`1 arguments, List`1& outputArguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 233
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 91
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-13 15:10:28:869","Executing Remote Broker (61377084) was failed: System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> System.Exception: 13201-连接请求超时
+   在 TAP.Remoting.Server.Biz.BIZDBComponent.SelectText(SPContainer spContainer) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Biz\BIZDBComponent.cs:行号 131
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, RemoteInfo remote, List`1 arguments, List`1& outputArguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 233
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 91
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-13 15:22:43:878","Executing Remote Broker (37121646) was failed: System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> System.Exception: 13201-连接请求超时
+   在 TAP.Remoting.Server.Biz.BIZDBComponent.SelectText(SPContainer spContainer) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Biz\BIZDBComponent.cs:行号 131
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, RemoteInfo remote, List`1 arguments, List`1& outputArguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 233
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 91
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
