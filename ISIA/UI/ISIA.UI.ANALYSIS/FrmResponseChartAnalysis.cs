@@ -20,12 +20,12 @@ using DevExpress.XtraTab;
 using DevExpress.XtraCharts;
 using DevExpress.XtraVerticalGrid;
 
-namespace ISEM.UI.REPORT
+namespace ISIA.UI.ANALYSIS
 {
-    public partial class FrmEquipmentBMPMChartReport : DockUIBase1T1
+    public partial class FrmResponseChartAnalysis : DockUIBase1T1
     {
 
-        public FrmEquipmentBMPMChartReport()
+        public FrmResponseChartAnalysis()
         {
             InitializeComponent();
             InitializeComboBox();

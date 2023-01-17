@@ -1,6 +1,6 @@
-﻿namespace ISEM.UI.REPORT
+﻿namespace ISIA.UI.ANALYSIS
 {
-    partial class FrmEquipmentBMPMChartReport
+    partial class FrmResponseChartAnalysis
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmResponseChartAnalysis));
             this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -125,14 +126,14 @@
             this.xtraUserControl1.Appearance.Options.UseForeColor = true;
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraUserControl1.Size = new System.Drawing.Size(1312, 667);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.tabPane1);
             this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
-            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft_Container.Size = new System.Drawing.Size(82, 634);
             // 
             // dpnlRight
@@ -140,7 +141,7 @@
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
             this.dpnlRight.Location = new System.Drawing.Point(92, 0);
-            this.dpnlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlRight.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -149,7 +150,7 @@
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(1001, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(983, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.Size = new System.Drawing.Size(1220, 667);
             // 
@@ -157,7 +158,7 @@
             // 
             this.dpnlRight_Container.Controls.Add(this.panelControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
-            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight_Container.Size = new System.Drawing.Size(1212, 632);
             // 
             // dpnlLeft
@@ -168,26 +169,26 @@
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
-            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(52, 153);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(69, 153);
             this.dpnlLeft.Size = new System.Drawing.Size(92, 667);
             // 
             // tPanelBottomBase
             // 
             this.tPanelBottomBase.Location = new System.Drawing.Point(0, 687);
-            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelBottomBase.Size = new System.Drawing.Size(1312, 20);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelTop.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelTop.Size = new System.Drawing.Size(1312, 20);
             // 
             // tPanelMain
             // 
-            this.tPanelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelMain.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelMain.Size = new System.Drawing.Size(1312, 667);
             // 
             // navBarGroup13
@@ -314,7 +315,7 @@
             this.tabPane1.LookAndFeel.SkinName = "Office 2013";
             this.tabPane1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tabPane1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tabPane1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPane1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
@@ -344,7 +345,7 @@
             this.tPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tPanel7.IsRequired = false;
             this.tPanel7.Location = new System.Drawing.Point(0, 561);
-            this.tPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tPanel7.Name = "tPanel7";
             this.tPanel7.NeedToTranslate = true;
             this.tPanel7.RepresentativeValue = "tPanel7 [TAP.UIControls.BasicControlsDEV.TPanel]";
@@ -366,6 +367,7 @@
             this.tbnSeach.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbnSeach.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tbnSeach.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.tbnSeach.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tbnSeach.ImageOptions.Image")));
             this.tbnSeach.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tbnSeach.IsRequired = false;
             this.tbnSeach.Location = new System.Drawing.Point(0, 0);
@@ -449,7 +451,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(80, 496);
@@ -463,8 +465,8 @@
             this.cboequipment.DominantControl = "cbofacility,cboworkshop,cboprocess";
             this.cboequipment.EditValue = "";
             this.cboequipment.IsRequired = false;
-            this.cboequipment.Location = new System.Drawing.Point(167, 167);
-            this.cboequipment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboequipment.Location = new System.Drawing.Point(166, 166);
+            this.cboequipment.Margin = new System.Windows.Forms.Padding(4);
             this.cboequipment.Name = "cboequipment";
             this.cboequipment.NeedToTranslate = false;
             this.cboequipment.ParameterID = "MAINEQUIPMENT";
@@ -474,7 +476,7 @@
             this.cboequipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboequipment.RepresentativeValue = "";
-            this.cboequipment.Size = new System.Drawing.Size(169, 25);
+            this.cboequipment.Size = new System.Drawing.Size(171, 27);
             this.cboequipment.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetMainEQ";
             this.cboequipment.SqlDataBase = "";
             this.cboequipment.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -489,8 +491,8 @@
             this.cbomainequipment.DominantControl = "cbofacility,cboworkshop,cboprocess";
             this.cbomainequipment.EditValue = "";
             this.cbomainequipment.IsRequired = false;
-            this.cbomainequipment.Location = new System.Drawing.Point(167, 136);
-            this.cbomainequipment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbomainequipment.Location = new System.Drawing.Point(166, 135);
+            this.cbomainequipment.Margin = new System.Windows.Forms.Padding(4);
             this.cbomainequipment.Name = "cbomainequipment";
             this.cbomainequipment.NeedToTranslate = false;
             this.cbomainequipment.ParameterID = "EQUIPMENT";
@@ -500,7 +502,7 @@
             this.cbomainequipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbomainequipment.RepresentativeValue = "";
-            this.cbomainequipment.Size = new System.Drawing.Size(169, 25);
+            this.cbomainequipment.Size = new System.Drawing.Size(171, 27);
             this.cbomainequipment.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetEQ";
             this.cbomainequipment.SqlDataBase = "";
             this.cbomainequipment.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -512,11 +514,11 @@
             // 
             this.lblmainequipment.ControlID = "tLabel2";
             this.lblmainequipment.IsRequired = false;
-            this.lblmainequipment.Location = new System.Drawing.Point(4, 167);
+            this.lblmainequipment.Location = new System.Drawing.Point(3, 166);
             this.lblmainequipment.Name = "lblmainequipment";
             this.lblmainequipment.NeedToTranslate = true;
             this.lblmainequipment.RepresentativeValue = "MAINEQUIPMENT";
-            this.lblmainequipment.Size = new System.Drawing.Size(157, 25);
+            this.lblmainequipment.Size = new System.Drawing.Size(159, 27);
             this.lblmainequipment.StyleController = this.layoutControl1;
             this.lblmainequipment.TabIndex = 21;
             this.lblmainequipment.Text = "MAINEQUIPMENT";
@@ -525,11 +527,11 @@
             // 
             this.lblequipment.ControlID = "tLabel2";
             this.lblequipment.IsRequired = false;
-            this.lblequipment.Location = new System.Drawing.Point(4, 136);
+            this.lblequipment.Location = new System.Drawing.Point(3, 135);
             this.lblequipment.Name = "lblequipment";
             this.lblequipment.NeedToTranslate = true;
             this.lblequipment.RepresentativeValue = "EQUIPMENT";
-            this.lblequipment.Size = new System.Drawing.Size(157, 25);
+            this.lblequipment.Size = new System.Drawing.Size(159, 27);
             this.lblequipment.StyleController = this.layoutControl1;
             this.lblequipment.TabIndex = 20;
             this.lblequipment.Text = "EQUIPMENT";
@@ -541,8 +543,8 @@
             this.cboprocess.DominantControl = "";
             this.cboprocess.EditValue = "";
             this.cboprocess.IsRequired = true;
-            this.cboprocess.Location = new System.Drawing.Point(167, 105);
-            this.cboprocess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboprocess.Location = new System.Drawing.Point(166, 104);
+            this.cboprocess.Margin = new System.Windows.Forms.Padding(4);
             this.cboprocess.Name = "cboprocess";
             this.cboprocess.NeedToTranslate = false;
             this.cboprocess.ParameterID = "AREA";
@@ -552,7 +554,7 @@
             this.cboprocess.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboprocess.RepresentativeValue = "";
-            this.cboprocess.Size = new System.Drawing.Size(169, 25);
+            this.cboprocess.Size = new System.Drawing.Size(171, 27);
             this.cboprocess.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetArea";
             this.cboprocess.SqlDataBase = "";
             this.cboprocess.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -564,11 +566,11 @@
             // 
             this.lblprocess.ControlID = "tLabel2";
             this.lblprocess.IsRequired = false;
-            this.lblprocess.Location = new System.Drawing.Point(4, 105);
+            this.lblprocess.Location = new System.Drawing.Point(3, 104);
             this.lblprocess.Name = "lblprocess";
             this.lblprocess.NeedToTranslate = true;
             this.lblprocess.RepresentativeValue = "PROCESS";
-            this.lblprocess.Size = new System.Drawing.Size(157, 25);
+            this.lblprocess.Size = new System.Drawing.Size(159, 27);
             this.lblprocess.StyleController = this.layoutControl1;
             this.lblprocess.TabIndex = 18;
             this.lblprocess.Text = "PROCESS";
@@ -580,8 +582,8 @@
             this.cboworkshop.DominantControl = "cbofacility";
             this.cboworkshop.EditValue = "";
             this.cboworkshop.IsRequired = true;
-            this.cboworkshop.Location = new System.Drawing.Point(167, 74);
-            this.cboworkshop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboworkshop.Location = new System.Drawing.Point(166, 73);
+            this.cboworkshop.Margin = new System.Windows.Forms.Padding(4);
             this.cboworkshop.Name = "cboworkshop";
             this.cboworkshop.NeedToTranslate = false;
             this.cboworkshop.ParameterID = "LINE";
@@ -591,7 +593,7 @@
             this.cboworkshop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboworkshop.RepresentativeValue = "";
-            this.cboworkshop.Size = new System.Drawing.Size(169, 25);
+            this.cboworkshop.Size = new System.Drawing.Size(171, 27);
             this.cboworkshop.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetLine";
             this.cboworkshop.SqlDataBase = "";
             this.cboworkshop.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -603,11 +605,11 @@
             // 
             this.lblfacility.ControlID = "tLabel2";
             this.lblfacility.IsRequired = false;
-            this.lblfacility.Location = new System.Drawing.Point(4, 74);
+            this.lblfacility.Location = new System.Drawing.Point(3, 73);
             this.lblfacility.Name = "lblfacility";
             this.lblfacility.NeedToTranslate = true;
             this.lblfacility.RepresentativeValue = "WORKSHOP";
-            this.lblfacility.Size = new System.Drawing.Size(157, 25);
+            this.lblfacility.Size = new System.Drawing.Size(159, 27);
             this.lblfacility.StyleController = this.layoutControl1;
             this.lblfacility.TabIndex = 16;
             this.lblfacility.Text = "WORKSHOP";
@@ -619,8 +621,8 @@
             this.cbofacility.DominantControl = "";
             this.cbofacility.EditValue = "";
             this.cbofacility.IsRequired = true;
-            this.cbofacility.Location = new System.Drawing.Point(167, 43);
-            this.cbofacility.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbofacility.Location = new System.Drawing.Point(166, 42);
+            this.cbofacility.Margin = new System.Windows.Forms.Padding(4);
             this.cbofacility.Name = "cbofacility";
             this.cbofacility.NeedToTranslate = false;
             this.cbofacility.ParameterID = "FACILITY";
@@ -630,7 +632,7 @@
             this.cbofacility.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbofacility.RepresentativeValue = "";
-            this.cbofacility.Size = new System.Drawing.Size(169, 25);
+            this.cbofacility.Size = new System.Drawing.Size(171, 27);
             this.cbofacility.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetFab";
             this.cbofacility.SqlDataBase = "";
             this.cbofacility.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -642,11 +644,11 @@
             // 
             this.lbLfacylity.ControlID = "tLabel2";
             this.lbLfacylity.IsRequired = false;
-            this.lbLfacylity.Location = new System.Drawing.Point(4, 43);
+            this.lbLfacylity.Location = new System.Drawing.Point(3, 42);
             this.lbLfacylity.Name = "lbLfacylity";
             this.lbLfacylity.NeedToTranslate = true;
             this.lbLfacylity.RepresentativeValue = "FACILITY";
-            this.lbLfacylity.Size = new System.Drawing.Size(157, 25);
+            this.lbLfacylity.Size = new System.Drawing.Size(159, 27);
             this.lbLfacylity.StyleController = this.layoutControl1;
             this.lbLfacylity.TabIndex = 14;
             this.lbLfacylity.Text = "FACILITY";
@@ -657,12 +659,12 @@
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
             this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.IsRequired = false;
-            this.tDateTimePickerSE1.Location = new System.Drawing.Point(4, 4);
+            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
             this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
             this.tDateTimePickerSE1.NeedToTranslate = true;
             this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
-            this.tDateTimePickerSE1.Size = new System.Drawing.Size(332, 33);
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(334, 35);
             this.tDateTimePickerSE1.StartDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.TabIndex = 0;
             // 
@@ -840,7 +842,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1212, 632);
             this.panelControl1.TabIndex = 0;
@@ -851,7 +853,7 @@
             this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.tGroupBox1);
@@ -868,7 +870,7 @@
             this.tGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tGroupBox1.IsRequired = false;
             this.tGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.tGroupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tGroupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.tGroupBox1.Name = "tGroupBox1";
             this.tGroupBox1.NeedToTranslate = true;
             this.tGroupBox1.RepresentativeValue = "Details";
@@ -881,7 +883,7 @@
             this.vGridControl1.BandsInterval = 3;
             this.vGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.vGridControl1.Location = new System.Drawing.Point(3, 23);
-            this.vGridControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.vGridControl1.Margin = new System.Windows.Forms.Padding(4);
             this.vGridControl1.Name = "vGridControl1";
             this.vGridControl1.OptionsView.FixedLineWidth = 3;
             this.vGridControl1.OptionsView.MinRowAutoHeight = 13;
@@ -895,7 +897,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 707);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmEquipmentBMPMChartReport";
             this.Text = "BMPMChartReport";
             this.xtraUserControl1.ResumeLayout(false);
