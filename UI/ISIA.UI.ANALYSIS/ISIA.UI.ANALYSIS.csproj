@@ -111,6 +111,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmResponseChartAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmResponseChartAnalysis.Designer.cs">
+      <DependentUpon>FrmResponseChartAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmEquipmentAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FrmResponseChartAnalysis.resx">
+      <DependentUpon>FrmResponseChartAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmEquipmentAnalysis.resx">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
     </EmbeddedResource>
