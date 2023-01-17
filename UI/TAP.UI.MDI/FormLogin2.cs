@@ -143,7 +143,7 @@ namespace TAP.UI.MDI
 
                 _UserDefaultInfo = new UserDefaultInfo();
                 _UserDefaultInfo.Region = this.comboBoxRegion.Text;
-                _UserDefaultInfo.Facility = "5";
+                _UserDefaultInfo.Facility = "T1";
                 _UserDefaultInfo.UserID = this.textBoxUserID.Text.ToUpper();
                 _UserDefaultInfo.User = Form1._CURR_USER;
 
