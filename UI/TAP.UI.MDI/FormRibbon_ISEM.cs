@@ -580,12 +580,12 @@ namespace TAP.UI.MDI
                     tmpRegion = TAP.Base.Configuration.ConfigurationManager.Instance.EnvironmentSection.Region;
                     tmpFacility = TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.Facility;
 
-                    tmpMainMenuSql = "SELECT * FROM TAPSTBMAINMENU WHERE MDI = '{0}' AND REGION = '{1}' AND FACILITY = 'ALL'  AND ISALIVE = 'YES' ";
-                    //tmpUISql = "SELECT * FROM TAPSTBUI WHERE  MDI = '{0}' AND REGION = '{1}' AND FACILITY = '{2}'  AND ISALIVE = 'YES'  ";
-                    tmpUISql = "SELECT * FROM TAPSTBUI WHERE  MDI = '{0}' AND REGION = '{1}' AND FACILITY = 'ALL'  AND ISALIVE = 'YES'  ";
+                    tmpMainMenuSql = "SELECT * FROM TAPSTBMAINMENU WHERE MDI = '{0}' AND REGION = '{1}' AND FACILITY = '{2}'  AND ISALIVE = 'YES' ";
+                    tmpUISql = "SELECT * FROM TAPSTBUI WHERE  MDI = '{0}' AND REGION = '{1}' AND FACILITY = '{2}'  AND ISALIVE = 'YES'  ";
+                    //tmpUISql = "SELECT * FROM TAPSTBUI WHERE  MDI = '{0}' AND REGION = '{1}' AND FACILITY = 'ALL'  AND ISALIVE = 'YES'  ";
 
-                    tmpMainMenuSql = string.Format(tmpMainMenuSql, tmpMDIInfo.Name, tmpRegion);
-                    tmpUISql = string.Format(tmpUISql, tmpMDIInfo.Name, tmpRegion);
+                    tmpMainMenuSql = string.Format(tmpMainMenuSql, tmpMDIInfo.Name, tmpRegion, tmpFacility);
+                    tmpUISql = string.Format(tmpUISql, tmpMDIInfo.Name, tmpRegion, tmpFacility);
 
                     tmpDataClient = new DataClient();
                     tmpDsMainMenu = tmpDataClient.SelectData(tmpMainMenuSql, "MAINMENU");
