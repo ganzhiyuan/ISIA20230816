@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ISIA.UI.ANALYSIS</RootNamespace>
     <AssemblyName>ISIA.UI.ANALYSIS</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -21,7 +21,7 @@
     <OutputPath>..\..\..\_bin\FX\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -83,6 +83,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\DevExpress.XtraVerticalGrid.v18.1.dll</HintPath>
     </Reference>
+    <Reference Include="ISIA.UI.BASE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\ISIA.UI.BASE.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -104,10 +108,6 @@
     <Reference Include="TAP.UIControls.BasicControlsDEV, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.UIControls.BasicControlsDEV.dll</HintPath>
-    </Reference>
-    <Reference Include="TAP.UIControls.Charts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_bin\FX\TAP.UIControls.Charts.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,17 +143,9 @@
       <Project>{9d518d66-e40b-4836-93ce-aa4e187e7782}</Project>
       <Name>ISIA.BIZ.COMMON</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">
-      <Project>{4017597e-0dc9-4441-8492-f1512f907ebf}</Project>
-      <Name>ISIA.COMMON</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\INTERFACE\ISIA.INTERFACE.ARGUMENTSPACK\ISIA.INTERFACE.ARGUMENTSPACK.csproj">
       <Project>{3a02ff43-6d96-4400-9678-ab2bc1d73606}</Project>
       <Name>ISIA.INTERFACE.ARGUMENTSPACK</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ISIA.UI.BASE\ISIA.UI.BASE.csproj">
-      <Project>{470938f4-22d4-4732-a377-aefc897415b2}</Project>
-      <Name>ISIA.UI.BASE</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

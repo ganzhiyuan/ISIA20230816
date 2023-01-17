@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3086336">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3085824">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MmglHHI9m8iSqev0LbjB2Ii5m4PrFfOOUdIO1BE4qcw=</dsig:DigestValue>
+        <dsig:DigestValue>INkEMoxoDoUkd6IZFAV8po1z9d4dqgdIrBGCHis4y5M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -331,26 +331,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.Communication.dll" size="11776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.Communication.dll" size="12288">
       <assemblyIdentity name="TAP.Base.Communication" version="1.0.0.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gYnAV+aIjmpBsDbmU3B3hO6DavbEWtBLk8tMRtC1wSI=</dsig:DigestValue>
+        <dsig:DigestValue>Bzn9scnBB+u6QtLhUPDk6IS5hLmLGwVlA2Pse5RA4tw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.Configuration.dll" size="51200">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.Configuration.dll" size="49664">
       <assemblyIdentity name="TAP.Base.Configuration" version="1.0.5.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UppijiAY3mZ8xwKZbCUFZEbwCIvn9mZcRJCpyw5na+U=</dsig:DigestValue>
+        <dsig:DigestValue>bY7qUWT6p99mDhAFyKz1VaZJ5s7HzZ96W/4jmJHSOwg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -367,14 +367,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Data.DataBase.dll" size="33792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Data.DataBase.dll" size="30720">
       <assemblyIdentity name="TAP.Data.DataBase" version="1.0.5.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ca0I+vTfNOsqOHlu41kQWrMbH2AsYxBj5weJ4W9QyzY=</dsig:DigestValue>
+        <dsig:DigestValue>lP4q79I1dD/GVbwTERW/zG84u9b+sBRDexD6oW/m4m4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -434,7 +434,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>os3EpwYWGWS8eJhgvtekv5e+h7yxLhx3+muoF89FnTk=</dsig:DigestValue>
+        <dsig:DigestValue>wfkCsdn1QFlgBs4EQ+TPKzEywGk/Qm0QQqFQDmnu97M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -458,7 +458,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8BGcl53NkAmPb1ZYRPTeiqUP76do2CJh466GW8lxPRY=</dsig:DigestValue>
+        <dsig:DigestValue>xMlAyVdt3fIeMQk1Z8z227FDWNTaaN2kqeTGtsnNxtA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -3119,9 +3119,9 @@ namespace TAP.UI.MDI
             string tmpRegion = TAP.Base.Configuration.ConfigurationManager.Instance.EnvironmentSection.Region;
             string tmpFacility = TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.Facility;
 
-            string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE MDI = '{0}' AND REGION = '{1}' AND FACILITY = 'ALL'  AND MAINMENU = '{2}' AND ISALIVE = 'YES'  ORDER BY SEQUENCES";
+            string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE MDI = '{0}' AND REGION = '{1}' AND FACILITY = '{2}'  AND MAINMENU = '{3}' AND ISALIVE = 'YES'  ORDER BY SEQUENCES";
 
-            tmpMainMenuSql = string.Format(tmpMainMenuSql, _mdiName, tmpRegion, mainMenu);
+            tmpMainMenuSql = string.Format(tmpMainMenuSql, _mdiName, tmpRegion,tmpFacility, mainMenu);
 
             DataClient tmpDataClient = new DataClient();
             retVal = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
