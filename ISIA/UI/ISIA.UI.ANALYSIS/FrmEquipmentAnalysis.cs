@@ -71,13 +71,18 @@ namespace ISIA.UI.ANALYSIS
             dateStart.DateTime = dt.AddDays(-1);
             dateEnd.DateTime = dt;
             toolTipController.Appearance.Font = new Font("Courier New", 9);
+
+            this.cbodata.Properties.Items.Add("DATA BASE1");
+            this.cbodata.Properties.Items.Add("DATA BASE2");
+            this.cbodata.Properties.Items.Add("DATA BASE3");
+
         }
         public DataSet LoadData()
         {
             try
             {
                 string FAB = cboFab.Text;
-                string Line = cboLine.Text;
+                string Line = cbooper.Text;
 
                 args.DateTimeStart = dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd").Substring(0, 8);
                 args.DateTimeEnd = dateEnd.DateTime.ToString("yyyyMMdd").Substring(0, 8);
@@ -1077,6 +1082,18 @@ namespace ISIA.UI.ANALYSIS
                 {
                     chartControl1.Series["OutPut"].Points[i].Color = Color.Orange;
 
+                }
+            }
+        }
+
+
+        private void chTime1_ItemChecking(object sender, DevExpress.XtraEditors.Controls.ItemCheckingEventArgs e)
+        {
+            for (int i = 0; i < chTime1.Items.Count; i++)
+            {
+                if (i != e.Index)
+                {
+                    chTime1.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
                 }
             }
         }

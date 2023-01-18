@@ -134,13 +134,13 @@
             this.dpnlLeft_Container.Controls.Add(this.tabPane1);
             this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlLeft_Container.Size = new System.Drawing.Size(82, 634);
+            this.dpnlLeft_Container.Size = new System.Drawing.Size(350, 634);
             // 
             // dpnlRight
             // 
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
-            this.dpnlRight.Location = new System.Drawing.Point(92, 0);
+            this.dpnlRight.Location = new System.Drawing.Point(360, 0);
             this.dpnlRight.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
@@ -150,16 +150,16 @@
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(983, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(782, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
-            this.dpnlRight.Size = new System.Drawing.Size(1220, 667);
+            this.dpnlRight.Size = new System.Drawing.Size(952, 667);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.panelControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(1212, 632);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(944, 632);
             // 
             // dpnlLeft
             // 
@@ -172,8 +172,8 @@
             this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(69, 153);
-            this.dpnlLeft.Size = new System.Drawing.Size(92, 667);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(270, 153);
+            this.dpnlLeft.Size = new System.Drawing.Size(360, 667);
             // 
             // tPanelBottomBase
             // 
@@ -319,9 +319,9 @@
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(82, 634);
+            this.tabPane1.RegularSize = new System.Drawing.Size(350, 634);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(82, 634);
+            this.tabPane1.Size = new System.Drawing.Size(350, 634);
             this.tabPane1.TabIndex = 2;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -335,7 +335,7 @@
             this.tabNavigationPage1.Controls.Add(this.tPanel7);
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(82, 600);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(350, 600);
             // 
             // tPanel7
             // 
@@ -349,7 +349,7 @@
             this.tPanel7.Name = "tPanel7";
             this.tPanel7.NeedToTranslate = true;
             this.tPanel7.RepresentativeValue = "tPanel7 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel7.Size = new System.Drawing.Size(82, 39);
+            this.tPanel7.Size = new System.Drawing.Size(350, 39);
             this.tPanel7.TabIndex = 7;
             // 
             // tbnSeach
@@ -399,8 +399,8 @@
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 82;
-            this.navBarControl1.Size = new System.Drawing.Size(82, 600);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 350;
+            this.navBarControl1.Size = new System.Drawing.Size(350, 600);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -432,7 +432,7 @@
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(80, 496);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(348, 496);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
@@ -454,7 +454,7 @@
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(80, 496);
+            this.layoutControl1.Size = new System.Drawing.Size(348, 496);
             this.layoutControl1.TabIndex = 97;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -664,7 +664,7 @@
             this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
             this.tDateTimePickerSE1.NeedToTranslate = true;
             this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
-            this.tDateTimePickerSE1.Size = new System.Drawing.Size(334, 35);
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(342, 35);
             this.tDateTimePickerSE1.StartDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.TabIndex = 0;
             // 
@@ -687,7 +687,7 @@
             this.layoutControlItem4});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(340, 475);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(348, 496);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -696,7 +696,7 @@
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 194);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(139, 31);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(338, 279);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(346, 300);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -707,7 +707,7 @@
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(0, 39);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(7, 39);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(338, 39);
+            this.layoutControlItem13.Size = new System.Drawing.Size(346, 39);
             this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
@@ -731,7 +731,7 @@
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(175, 31);
+            this.layoutControlItem6.Size = new System.Drawing.Size(183, 31);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
@@ -755,7 +755,7 @@
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(175, 31);
+            this.layoutControlItem8.Size = new System.Drawing.Size(183, 31);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -779,7 +779,7 @@
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(175, 31);
+            this.layoutControlItem10.Size = new System.Drawing.Size(183, 31);
             this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
@@ -815,7 +815,7 @@
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(175, 31);
+            this.layoutControlItem3.Size = new System.Drawing.Size(183, 31);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -827,7 +827,7 @@
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(175, 31);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(175, 31);
+            this.layoutControlItem4.Size = new System.Drawing.Size(183, 31);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
@@ -844,7 +844,7 @@
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1212, 632);
+            this.panelControl1.Size = new System.Drawing.Size(944, 632);
             this.panelControl1.TabIndex = 0;
             // 
             // splitContainerControl1
@@ -858,7 +858,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.tGroupBox1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1212, 632);
+            this.splitContainerControl1.Size = new System.Drawing.Size(944, 632);
             this.splitContainerControl1.SplitterPosition = 402;
             this.splitContainerControl1.TabIndex = 6;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -874,7 +874,7 @@
             this.tGroupBox1.Name = "tGroupBox1";
             this.tGroupBox1.NeedToTranslate = true;
             this.tGroupBox1.RepresentativeValue = "Details";
-            this.tGroupBox1.Size = new System.Drawing.Size(1212, 226);
+            this.tGroupBox1.Size = new System.Drawing.Size(944, 226);
             this.tGroupBox1.TabIndex = 2;
             this.tGroupBox1.Text = "Details";
             // 
@@ -889,16 +889,16 @@
             this.vGridControl1.OptionsView.MinRowAutoHeight = 13;
             this.vGridControl1.RecordWidth = 133;
             this.vGridControl1.RowHeaderWidth = 133;
-            this.vGridControl1.Size = new System.Drawing.Size(1206, 200);
+            this.vGridControl1.Size = new System.Drawing.Size(938, 200);
             this.vGridControl1.TabIndex = 4;
             // 
-            // FrmEquipmentBMPMChartReport
+            // FrmResponseChartAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 707);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmEquipmentBMPMChartReport";
+            this.Name = "FrmResponseChartAnalysis";
             this.Text = "BMPMChartReport";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
