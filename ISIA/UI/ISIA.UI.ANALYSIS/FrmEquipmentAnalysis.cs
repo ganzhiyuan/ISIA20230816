@@ -18,6 +18,8 @@ using System.Windows.Forms;
 using TAP.Data.Client;
 using TAP.UI;
 using ISIA.UI.BASE;
+using DevExpress.XtraEditors.Controls;
+using TAP.UIControls.BasicControlsDEV;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -45,6 +47,9 @@ namespace ISIA.UI.ANALYSIS
         ComboBoxControl ComboBoxControl = new ComboBoxControl();
         DataTable mindata = new DataTable();
         int shift = 0;
+
+
+        List<string> ts  = new List<string>();
         #endregion
 
         #region Method
@@ -72,9 +77,18 @@ namespace ISIA.UI.ANALYSIS
             dateEnd.DateTime = dt;
             toolTipController.Appearance.Font = new Font("Courier New", 9);
 
-            this.cbodata.Properties.Items.Add("DATA BASE1");
-            this.cbodata.Properties.Items.Add("DATA BASE2");
-            this.cbodata.Properties.Items.Add("DATA BASE3");
+            
+            this.cbodata.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
+            string[] data = new string[] { "DATAZS", "DATALS", "DATAWW", "DATAZL", "DATATQ" };
+
+
+            cbodata.Properties.Items.AddRange(data);
+            /*cbodata.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbodata.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            ts = cbodata.Items;*/
+
+
 
         }
         public DataSet LoadData()
@@ -1096,6 +1110,46 @@ namespace ISIA.UI.ANALYSIS
                     chTime1.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
                 }
             }
+        }
+
+        private void cbodata_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string Main;
+            if (cbodata.Text == "")
+            {
+                Main = e.KeyChar.ToString();
+            }
+            else {
+                Main = cbodata.Text + e.KeyChar.ToString();
+            }
+             
+            //var a = cbodata.Properties.Items.Where(Func);
+
+            /*var a = cbodata.Properties.Items.SelectM<CheckedListBoxItem, List<string>>(
+                (s) => s.   );*/
+
+            //var a = from cbodata.Properties.Items in 
+
+            //var a = cbodata.Properties.Items.Where((s) => s.Value.ToString().Contains(Main)   ).ToList();
+
+            foreach (CheckedListBoxItem item in cbodata.Properties.Items)
+            {
+                if (item.Value.ToString().Contains(Main))
+                {
+                    ts.Add(item.Value.ToString());
+                }
+            }
+
+            
+            cbodata.Properties.Items.Clear();
+
+
+            foreach (string tsa in ts)
+            {
+                cbodata.Properties.Items.Add(tsa);
+            }
+
+
         }
     }
 }
