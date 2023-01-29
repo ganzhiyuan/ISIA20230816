@@ -397,7 +397,7 @@
             this.cbodata.StyleController = this.layoutControl1;
             this.cbodata.TabIndex = 70;
             this.cbodata.ValueMember = null;
-            this.cbodata.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbodata_KeyPress);
+            this.cbodata.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbodata_KeyUp);
             // 
             // tCheckBox1
             // 

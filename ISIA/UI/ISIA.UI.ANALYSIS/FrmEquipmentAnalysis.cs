@@ -48,7 +48,7 @@ namespace ISIA.UI.ANALYSIS
         DataTable mindata = new DataTable();
         int shift = 0;
 
-
+        List<string> tsAll = new List<string>();
         List<string> ts  = new List<string>();
         #endregion
 
@@ -1112,44 +1112,44 @@ namespace ISIA.UI.ANALYSIS
             }
         }
 
-        private void cbodata_KeyPress(object sender, KeyPressEventArgs e)
+
+
+        private void cbodata_KeyUp(object sender, KeyEventArgs e)
         {
             string Main;
-            if (cbodata.Text == "")
+
+            if (cbodata.Text == "" )
             {
-                Main = e.KeyChar.ToString();
+                return;
             }
-            else {
-                Main = cbodata.Text + e.KeyChar.ToString();
+            else
+            {
+                Main = cbodata.Text ;
             }
-             
-            //var a = cbodata.Properties.Items.Where(Func);
 
-            /*var a = cbodata.Properties.Items.SelectM<CheckedListBoxItem, List<string>>(
-                (s) => s.   );*/
-
-            //var a = from cbodata.Properties.Items in 
-
-            //var a = cbodata.Properties.Items.Where((s) => s.Value.ToString().Contains(Main)   ).ToList();
-
+            if (tsAll.Count == 0) { 
             foreach (CheckedListBoxItem item in cbodata.Properties.Items)
             {
-                if (item.Value.ToString().Contains(Main))
-                {
-                    ts.Add(item.Value.ToString());
+                    tsAll.Add(item.Value.ToString());
                 }
             }
 
-            
-            cbodata.Properties.Items.Clear();
+            foreach (string item in tsAll)
+            {
+                if (item.ToUpper().Contains(Main.ToUpper()))
+                {
+                    ts.Add(item);
+                }
+            }
 
+            cbodata.Properties.Items.Clear();
 
             foreach (string tsa in ts)
             {
                 cbodata.Properties.Items.Add(tsa);
             }
 
-
+             cbodata.Text = Main ;
         }
     }
 }
