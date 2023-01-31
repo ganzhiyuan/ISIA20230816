@@ -5444,7 +5444,7 @@ namespace ISIA.BIZ.COMMON
 
 
 
-        //ANALYSIS
+        //ISIA.BIZ
         //--------------------------------------------------------------------------------------------------
 
         public void getDataBase()
@@ -5453,7 +5453,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT AREA FROM TAPFTEQUIPMENT");
+                tmpSql.Append("SELECT DISTINCT NAME ,CUSTOM01 FROM TAPCTCODES WHERE 1=1 GROUP BY CUSTOM01，NAME");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -5467,6 +5467,54 @@ namespace ISIA.BIZ.COMMON
                 throw ex;
             }
         }
+
+
+        public void GetMETRIC()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT METRIC_NAME FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA WHERE 1 =1");
+                tmpSql.Append(" GROUP BY METRIC_NAME");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetMETRIC(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT METRIC_NAME FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA WHERE 1=1 ");
+                if (!string.IsNullOrEmpty((string)arguments["NAME"].ArgumentValue))
+                {
+                    //tmpSql.AppendFormat(" AND QUALITYTYPE IN ({0})", Utils.MakeSqlQueryIn((string)arguments["QUALITYTYPE"].ArgumentValue, ','));
+                    tmpSql.AppendFormat(" AND DBID IN {0}", Utils.MakeSqlQueryIn2((string)arguments["NAME"].ArgumentValue));
+                }
+                tmpSql.Append(" GROUP BY METRIC_NAME");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
 
     }
 }

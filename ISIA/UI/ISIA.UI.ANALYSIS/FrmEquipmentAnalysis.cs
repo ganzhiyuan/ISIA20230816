@@ -25,18 +25,11 @@ namespace ISIA.UI.ANALYSIS
 {
     public partial class FrmEquipmentAnalysis : DockUIBase1T1
     {
-        public FrmEquipmentAnalysis()
-        {
-            InitializeComponent();
-
-            bs = new BizDataClient("ISEM.BIZ.REPORT.DLL", "ISEM.BIZ.REPORT.EquipmentLineProductionCapacity");
-            InitializeDate();
-        }
 
         #region Field 
 
         BizDataClient bs;
-        CommonArgsPack args = new CommonArgsPack();
+        //CommonArgsPack args = new CommonArgsPack();
         DataSet dataSet;
         DataTable dtLinePlan;
         DataTable dtBMinfo;
@@ -48,9 +41,26 @@ namespace ISIA.UI.ANALYSIS
         DataTable mindata = new DataTable();
         int shift = 0;
 
+
+
+        //
+        DataTable dtMetric;
         List<string> tsAll = new List<string>();
-        List<string> ts  = new List<string>();
+        List<string> ts = new List<string>();
+        EquipmentArgsPack args = new EquipmentArgsPack();
+        //
         #endregion
+
+
+        public FrmEquipmentAnalysis()
+        {
+            InitializeComponent();
+
+            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.EquipmentAnalysis");
+            InitializeDate();
+        }
+
+
 
         #region Method
         private void InitializeDate()
@@ -78,11 +88,11 @@ namespace ISIA.UI.ANALYSIS
             toolTipController.Appearance.Font = new Font("Courier New", 9);
 
             
-            this.cbodata.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
-            string[] data = new string[] { "DATAZS", "DATALS", "DATAWW", "DATAZL", "DATATQ" };
+            this.cbometric.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
+            //string[] data = new string[] { "DATAZS", "DATALS", "DATAWW", "DATAZL", "DATATQ" };
 
 
-            cbodata.Properties.Items.AddRange(data);
+            //cbodata.Properties.Items.AddRange(data);
             /*cbodata.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbodata.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -96,18 +106,28 @@ namespace ISIA.UI.ANALYSIS
             try
             {
                 string FAB = cboFab.Text;
-                string Line = cbooper.Text;
+                string Line = cbometric.Text;
+
+                string DATABASE = cbodata.Text;
+                string METRIC = cbometric.Text;
 
                 args.DateTimeStart = dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd").Substring(0, 8);
                 args.DateTimeEnd = dateEnd.DateTime.ToString("yyyyMMdd").Substring(0, 8);
-                args.Facility = FAB;
-                args.Line = Line;
-                dataSet = bs.ExecuteDataSet("GetEquipmentProduction", args.getPack());
+                /*args.Facility = FAB;
+                args.Line = Line;*/
+
+
+                /*dataSet = bs.ExecuteDataSet("GetEquipmentProduction", args.getPack());
                 dtLinePlan = bs.ExecuteDataSet("GetLineCapacityPlan", args.getPack()).Tables[0];
                 dtBMinfo = bs.ExecuteDataSet("GetEQBMInfo", args.getPack()).Tables[0];
                 dt_eqinfo = bs.ExecuteDataSet("GetEquipmentCapacity").Tables[0];
-                dtLineSum = bs.ExecuteDataSet("GetLineCapacitySum", args.getPack()).Tables[0];
+                dtLineSum = bs.ExecuteDataSet("GetLineCapacitySum", args.getPack()).Tables[0];*/
 
+                //
+                args.DataBase = DATABASE;
+                args.Metric = METRIC;
+                dataSet = bs.ExecuteDataSet("GetMetric", args.getPack());
+                //
                 return dataSet;
             }
             catch (Exception)
@@ -121,16 +141,15 @@ namespace ISIA.UI.ANALYSIS
             {
                 return;
             }
-            gridControl1.DataSource = null;
-            gridView1.Columns.Clear();
+            
             xtraTabPage1.Controls.Clear();
             xtraTabPage2.Controls.Clear();
 
             table = FilterDNTable(dataSet.Tables[0]);
             DataTable data = LineChartTable(table);
-            gridControl1.DataSource = data;
+            //gridControl1.DataSource = data;
             CreateChart(data);
-            GridViewStyle(gridView1);
+            //GridViewStyle(gridView1);
 
         }
 
@@ -941,7 +960,7 @@ namespace ISIA.UI.ANALYSIS
         }
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
-            DataTable dt = gridControl1.DataSource as DataTable;
+           /* DataTable dt = gridControl1.DataSource as DataTable;
             DataTable dataTable = dt.Clone();
             var dataRowViews1 = GetGridViewFilteredAndSortedData(gridView1);
             foreach (DataRowView item in dataRowViews1)
@@ -956,11 +975,11 @@ namespace ISIA.UI.ANALYSIS
                 return;
             }
 
-            ProcessChartTable(currentDr);
+            ProcessChartTable(currentDr);*/
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
-            try
+           /* try
             {
                 if (gridControl1.DataSource == null || (gridControl1.DataSource as DataTable).Rows.Count == 0)
                 {
@@ -974,7 +993,7 @@ namespace ISIA.UI.ANALYSIS
             }
             catch
             {
-            }
+            }*/
 
         }
 
@@ -1114,22 +1133,23 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-        private void cbodata_KeyUp(object sender, KeyEventArgs e)
+        private void cbooper_KeyUp(object sender, KeyEventArgs e)
         {
             string Main;
 
-            if (cbodata.Text == "" )
+            if (cbodata.Text == "")
             {
                 return;
             }
             else
             {
-                Main = cbodata.Text ;
+                Main = cbodata.Text;
             }
 
-            if (tsAll.Count == 0) { 
-            foreach (CheckedListBoxItem item in cbodata.Properties.Items)
+            if (tsAll.Count == 0)
             {
+                foreach (CheckedListBoxItem item in cbodata.Properties.Items)
+                {
                     tsAll.Add(item.Value.ToString());
                 }
             }
@@ -1149,7 +1169,7 @@ namespace ISIA.UI.ANALYSIS
                 cbodata.Properties.Items.Add(tsa);
             }
 
-             cbodata.Text = Main ;
+            cbodata.Text = Main;
         }
     }
 }

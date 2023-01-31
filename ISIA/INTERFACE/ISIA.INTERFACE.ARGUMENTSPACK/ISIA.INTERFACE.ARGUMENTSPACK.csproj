@@ -47,6 +47,10 @@
     <Reference Include="TAP.Base">
       <HintPath>..\..\..\_bin\FX\TAP.Base.dll</HintPath>
     </Reference>
+    <Reference Include="TAP.Data.DataBase, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Data.DataBase.dll</HintPath>
+    </Reference>
     <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Models.dll</HintPath>
