@@ -1,0 +1,81 @@
+﻿"2023-01-28 08:19:00:047","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:00:819","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:01:849","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:02:869","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:03:866","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:08:345","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:09:372","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:10:343","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:11:391","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"

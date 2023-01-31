@@ -1,0 +1,176 @@
+﻿"2023-01-28 08:18:59:406","TAP Remoting Host Started."
+"2023-01-28 08:18:59:595","Remote Agent Started"
+"2023-01-28 08:18:59:899","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:00:026","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:00:798","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:00:817","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:01:826","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:01:846","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:02:847","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:02:867","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:03:846","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:03:864","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:04:149","Remote Agent unregistred."
+"2023-01-28 08:19:07:971","TAP Remoting Host Started."
+"2023-01-28 08:19:08:121","Remote Agent Started"
+"2023-01-28 08:19:08:322","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:08:343","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:09:350","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:09:370","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:10:321","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:10:341","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:11:370","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:11:390","Exception occured during creating remote on port '9001' : System.Net.Sockets.SocketException (0x80004005): 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+   在 System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   在 System.Net.Sockets.TcpListener.Start(Int32 backlog)
+   在 System.Runtime.Remoting.Channels.ExclusiveTcpListener.Start(Boolean exclusiveAddressUse)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.StartListening(Object data)
+   在 System.Runtime.Remoting.Channels.Tcp.TcpServerChannel.SetupChannel()
+   在 TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(Int32 remoteNo, Int32 portNo) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\RemoteEntryManager.cs:行号 52
+   在 TAP.Remoting.Server.Listener.AppMain..ctor(Int32 listenerNo, Int32 portNo) 位置 D:\SRC\Remoting\TAP.Remoting.Server.Listener\Program.cs:行号 114"
+"2023-01-28 08:19:11:751","Remote Agent unregistred."
+"2023-01-28 08:19:45:814","TAP Remoting Host Started."
+"2023-01-28 08:19:45:933","Remote Agent Started"
+"2023-01-28 08:19:46:145","Linstener Started. RemoteNo_0001 PortNo_9001"
+"2023-01-28 08:19:46:165"," URI 'TAP.Remoting.Server.Listener.bin' was published."
+"2023-01-28 08:19:59:966","Remote Broker (17228638) was created."
+"2023-01-28 08:19:59:974","Remote Broker (17228638) was called."
+"2023-01-28 08:20:00:007","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:00:011","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:06:762","Remote Broker (41912650) was created."
+"2023-01-28 08:20:06:793","Remote Broker (41912650) was called."
+"2023-01-28 08:20:06:817","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:06:821","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:07:167","Remote Broker (51133656) was created."
+"2023-01-28 08:20:07:179","Remote Broker (51133656) was called."
+"2023-01-28 08:20:07:185","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:07:191","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:08:463","Remote Broker (64500199) was created."
+"2023-01-28 08:20:08:475","Remote Broker (64500199) was called."
+"2023-01-28 08:20:08:496","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:08:506","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:08:674","Remote Broker (13756533) was created."
+"2023-01-28 08:20:08:682","Remote Broker (13756533) was called."
+"2023-01-28 08:20:08:688","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:08:691","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:08:892","Remote Broker (57139332) was created."
+"2023-01-28 08:20:08:899","Remote Broker (57139332) was called."
+"2023-01-28 08:20:08:903","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:08:906","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:08:937","Remote Broker (42506770) was created."
+"2023-01-28 08:20:08:949","Remote Broker (42506770) was called."
+"2023-01-28 08:20:08:956","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:08:960","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:012","Remote Broker (44209441) was created."
+"2023-01-28 08:20:09:021","Remote Broker (44209441) was called."
+"2023-01-28 08:20:09:027","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:030","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:060","Remote Broker (27546031) was created."
+"2023-01-28 08:20:09:068","Remote Broker (27546031) was called."
+"2023-01-28 08:20:09:073","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:076","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:112","Remote Broker (50089918) was created."
+"2023-01-28 08:20:09:119","Remote Broker (50089918) was called."
+"2023-01-28 08:20:09:123","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:127","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:162","Remote Broker (60362572) was created."
+"2023-01-28 08:20:09:168","Remote Broker (60362572) was called."
+"2023-01-28 08:20:09:173","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:175","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:268","Remote Broker (20974680) was created."
+"2023-01-28 08:20:09:275","Remote Broker (20974680) was called."
+"2023-01-28 08:20:09:283","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:287","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:341","Remote Broker (52638671) was created."
+"2023-01-28 08:20:09:358","Remote Broker (52638671) was called."
+"2023-01-28 08:20:09:365","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:368","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:392","Remote Broker (48388231) was created."
+"2023-01-28 08:20:09:397","Remote Broker (48388231) was called."
+"2023-01-28 08:20:09:402","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:406","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:419","Remote Broker (23091838) was created."
+"2023-01-28 08:20:09:426","Remote Broker (23091838) was called."
+"2023-01-28 08:20:09:430","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:432","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:568","Remote Broker (38803894) was created."
+"2023-01-28 08:20:09:573","Remote Broker (38803894) was called."
+"2023-01-28 08:20:09:579","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:581","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:730","Remote Broker (53062379) was created."
+"2023-01-28 08:20:09:747","Remote Broker (53062379) was called."
+"2023-01-28 08:20:09:757","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:762","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:09:809","Remote Broker (49607738) was created."
+"2023-01-28 08:20:09:819","Remote Broker (49607738) was called."
+"2023-01-28 08:20:09:826","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:09:830","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."
+"2023-01-28 08:20:17:218","Remote Broker (47441089) was created."
+"2023-01-28 08:20:17:223","Remote Broker (47441089) was called."
+"2023-01-28 08:20:17:230","Remote type 'DB_COMMAND' has been called."
+"2023-01-28 08:20:17:235","Remote 'TAP.Remoting.Server.Biz.BIZDBComponent' ready to execute."

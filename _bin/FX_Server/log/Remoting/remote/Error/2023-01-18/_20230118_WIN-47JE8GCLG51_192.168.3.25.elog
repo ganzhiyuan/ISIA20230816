@@ -1,0 +1,6 @@
+﻿"2023-01-18 10:24:30:343","Assigned file 'D:\ISIA\_bin\FX_Server\ISEM.BIZ.COMMON.dll' does not exsit."
+"2023-01-18 10:24:30:406","Executing Remote Broker (63311483) was failed: TAP.Remoting.TAPRemotingException: REMOTE.CheckAssembly:
+Assigned file 'D:\ISIA\_bin\FX_Server\ISEM.BIZ.COMMON.dll' does not exsit.
+   在 TAP.Remoting.Server.Biz.BizComponentCreator.Create(RemoteInfo remoteInfo, String requesterIP) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Biz\BizComponentCreator.cs:行号 147
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 78
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
