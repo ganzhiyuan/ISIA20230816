@@ -111,8 +111,8 @@ namespace ISIA.UI.ANALYSIS
                 string DATABASE = cbodata.Text;
                 string METRIC = cbometric.Text;
 
-                args.DateTimeStart = dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd").Substring(0, 8);
-                args.DateTimeEnd = dateEnd.DateTime.ToString("yyyyMMdd").Substring(0, 8);
+                /*args.DateTimeStart = dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd").Substring(0, 8);
+                args.DateTimeEnd = dateEnd.DateTime.ToString("yyyyMMdd").Substring(0, 8);*/
                 /*args.Facility = FAB;
                 args.Line = Line;*/
 

@@ -38,7 +38,7 @@ namespace ISIA.BIZ.ANALYSIS
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
-                this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
+                this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {

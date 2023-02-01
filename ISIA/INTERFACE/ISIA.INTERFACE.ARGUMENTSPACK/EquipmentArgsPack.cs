@@ -6,7 +6,7 @@ using TAP;
 namespace ISIA.INTERFACE.ARGUMENTSPACK
 {
     [Serializable]
-    public class EquipmentArgsPack : CommonArgsPack
+    public class EquipmentArgsPack 
     {
         private string _Facility = null;
         private string _Region = null;
