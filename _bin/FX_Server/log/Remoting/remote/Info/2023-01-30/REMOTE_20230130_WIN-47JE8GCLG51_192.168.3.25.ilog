@@ -1,0 +1,2 @@
+﻿"2023-01-30 17:12:49:269","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","TAP.Remoting.Messages.NotifyResultMessage Start(Int32)","Restart Process","Succeed","1","9001"
+"2023-01-30 17:12:52:819","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","Void InstructRemoteExecuter(Boolean)","<Remote Terminated","TAP.Remoting.Server.Listener","19328","1","tcp://192.168.3.25:9001/TAP.Remoting.Server.Listener.bin"

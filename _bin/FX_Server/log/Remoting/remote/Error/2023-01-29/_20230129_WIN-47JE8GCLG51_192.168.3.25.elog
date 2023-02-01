@@ -1,0 +1,42 @@
+﻿"2023-01-29 14:39:54:595"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 14:39:54:617","Executing Remote Broker (51781231) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-29 14:52:35:382"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 14:52:35:393","Executing Remote Broker (55452829) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-29 15:04:57:786"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 15:04:57:798","Executing Remote Broker (38814472) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-29 16:04:46:584"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 16:04:46:598","Executing Remote Broker (66753638) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-29 16:07:31:196"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 16:07:31:210","Executing Remote Broker (41752852) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"
+"2023-01-29 16:31:35:515"," Biz Component Exception occured: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-01722: 无效数字
+   在 TAP.Data.DataBase.Communicators.DBCommunicator.Select(String query)
+   在 ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC(ArgumentPack arguments) 位置 D:\ISIA\ISIA\BIZ\ISIA.BIZ.COMMON\ComboBoxData.cs:行号 5508"
+"2023-01-29 16:31:35:528","Executing Remote Broker (66921295) was failed: System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 TAP.Remoting.Server.Base.Executer.InvokeMethod(BizComponentBase biz, MethodInfo method, RequesterInfo requester, ArgumentPack arguments) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 323
+   在 TAP.Remoting.Server.Base.Executer.ExecuteMessage() 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\Executer.cs:行号 105
+   在 TAP.Remoting.Server.Base.RemoteBroker.Execute(RequestMessage message) 位置 D:\Project\ISFA\TAP\Remoting\TAP.Remoting.Server\Base\RemoteBroker.cs:行号 106"

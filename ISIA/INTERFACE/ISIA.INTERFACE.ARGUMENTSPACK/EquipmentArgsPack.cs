@@ -6,7 +6,7 @@ using TAP;
 namespace ISIA.INTERFACE.ARGUMENTSPACK
 {
     [Serializable]
-    public class EquipmentArgsPack
+    public class EquipmentArgsPack 
     {
         private string _Facility = null;
         private string _Region = null;
@@ -29,6 +29,12 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private string _StartTime = null;
         private string _EndTime = null;
         private string _ModelLevels = null;
+
+        //
+        private string _DataBase = null;
+        private string _Metric = null;
+
+        //
 
         private ArgumentPack argsPack = new ArgumentPack();
 
@@ -57,6 +63,13 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string EndTime { get { return _EndTime; } set { _EndTime = value; } }
 
         public string ModelLevels { get { return _ModelLevels; } set { _ModelLevels = value; } }
+
+        //
+        public string DataBase { get { return _DataBase; } set { _DataBase = value; } }
+
+        public string Metric { get { return _Metric; } set { _Metric = value; } }
+        //
+
 
         public ArgumentPack getPack()
         {
