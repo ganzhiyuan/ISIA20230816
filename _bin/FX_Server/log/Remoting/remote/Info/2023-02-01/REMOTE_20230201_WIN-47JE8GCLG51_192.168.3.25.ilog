@@ -2,3 +2,7 @@
 "2023-02-01 08:55:26:465","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","Void InstructRemoteExecuter(Boolean)","<Remote Terminated","TAP.Remoting.Server.Listener","37624","1","tcp://192.168.3.25:9001/TAP.Remoting.Server.Listener.bin"
 "2023-02-01 09:28:59:313","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","TAP.Remoting.Messages.NotifyResultMessage Start(Int32)","Restart Process","Succeed","1","9001"
 "2023-02-01 09:29:01:596","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","Void InstructRemoteExecuter(Boolean)","<Remote Terminated","TAP.Remoting.Server.Listener","32996","1","tcp://192.168.3.25:9001/TAP.Remoting.Server.Listener.bin"
+"2023-02-01 09:59:12:599","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","TAP.Remoting.Messages.NotifyResultMessage Start(Int32)","Restart Process","Succeed","1","9001"
+"2023-02-01 09:59:14:264","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","Void InstructRemoteExecuter(Boolean)","<Remote Terminated","TAP.Remoting.Server.Listener","24632","1","tcp://192.168.3.25:9001/TAP.Remoting.Server.Listener.bin"
+"2023-02-01 17:25:44:338","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","TAP.Remoting.Messages.NotifyResultMessage Start(Int32)","Restart Process","Succeed","1","9001"
+"2023-02-01 17:25:48:022","file:///D:/ISIA/_bin/FX_Server/TAP.Remoting.Server.DLL","Void InstructRemoteExecuter(Boolean)","<Remote Terminated","TAP.Remoting.Server.Listener","34184","1","tcp://192.168.3.25:9001/TAP.Remoting.Server.Listener.bin"

@@ -20,6 +20,10 @@ using TAP.UI;
 using ISIA.UI.BASE;
 using DevExpress.XtraEditors.Controls;
 using TAP.UIControls.BasicControlsDEV;
+using Steema.TeeChart;
+using Steema.TeeChart.Styles;
+using Series1 = DevExpress.XtraCharts.Series;
+using Series = Steema.TeeChart.Styles.Series;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -48,6 +52,7 @@ namespace ISIA.UI.ANALYSIS
         List<string> tsAll = new List<string>();
         List<string> ts = new List<string>();
         EquipmentArgsPack args = new EquipmentArgsPack();
+        List<Series> series = new List<Series>();
         //
         #endregion
 
@@ -145,13 +150,67 @@ namespace ISIA.UI.ANALYSIS
             xtraTabPage1.Controls.Clear();
             xtraTabPage2.Controls.Clear();
 
-            table = FilterDNTable(dataSet.Tables[0]);
-            DataTable data = LineChartTable(table);
+            /*table = FilterDNTable(dataSet.Tables[0]);
+            DataTable data = LineChartTable(table);*/
             //gridControl1.DataSource = data;
-            CreateChart(data);
+            CreateTeeChart(dataSet.Tables[0]);
             //GridViewStyle(gridView1);
 
         }
+
+
+        private void CreateTeeChart(DataTable dsTable)
+        {
+            TChart chart = new TChart();
+            chart.Series.Clear();
+            series.Clear();
+            chart.Dock = DockStyle.Fill;
+            chart.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
+            chart.Header.Text = "PARAMETER";//teechart标题
+            chart.Legend.Visible = true;
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["METRIC_NAME"].ToString());
+            if (result != null && result.Count() > 0)
+            {
+                foreach (IGrouping<string, DataRow> rows in result)
+                {
+                    DataTable dataTable = rows.ToArray().CopyToDataTable();
+                    dataTable.TableName = rows.Key;
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        dataSet.Tables.Add(dataTable);
+                    }
+                }
+            }
+            if (dataSet.Tables.Count > 1) {
+
+                foreach (DataTable dt in dataSet.Tables) {
+                    if (dt.TableName != "TABLE")
+                    {
+                        Line line = CreateLine(dt);
+                        series.Add(line);
+                        chart.Series.Add(line);
+                    }
+                }
+            }
+            chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH";
+            chart.Axes.Bottom.Labels.ExactDateTime = true;
+            //line.Legend.Visible = true;
+            this.splitContainerControl1.Panel1.Controls.Add(chart);
+        }
+
+
+        private Line CreateLine(DataTable dstable) {
+            Line line = new Line();
+            line.DataSource = dstable;
+            line.YValues.DataMember = "NUM_INTERVAL";
+            line.XValues.DataMember = "BEGIN_TIME";
+            line.ShowInLegend = true;
+            line.Legend.Text = dstable.TableName;
+            line.Legend.BorderRound = 10;
+            line.XValues.DateTime = true;
+            return line;
+        }
+
 
         private DataTable BMTable(DataTable BMtable)
         {
@@ -697,9 +756,9 @@ namespace ISIA.UI.ANALYSIS
                 dataBar.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], dsTable.Rows[i]["QUANTITY"] });
                 dataLinePlan.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], capacity });
             }
-            Series seriesBar = new Series("OutPut", ViewType.Bar);
-            Series seriesPoint = new Series("RunTime", ViewType.Point);
-            Series seriesLinePlan = new Series("Target", ViewType.Line);
+            Series1 seriesBar = new Series1("OutPut", ViewType.Bar);
+            Series1 seriesPoint = new Series1("RunTime", ViewType.Point);
+            Series1 seriesLinePlan = new Series1("Target", ViewType.Line);
             seriesBar.DataSource = dataBar;
             seriesPoint.DataSource = dataLine;
             seriesLinePlan.DataSource = dataLinePlan;
@@ -761,7 +820,7 @@ namespace ISIA.UI.ANALYSIS
         }
         private void CreateProcessChart(DataTable dsTable)
         {
-            xtraTabPage2.Controls.Clear();
+            /*xtraTabPage2.Controls.Clear();
             chartControl2.Series.Clear();
             chartControl2.Dock = DockStyle.Fill;
             chartControl2.RuntimeHitTesting = true;
@@ -843,7 +902,7 @@ namespace ISIA.UI.ANALYSIS
             {
                 label.Position = BarSeriesLabelPosition.BottomInside;
             }
-            xtraTabPage2.Controls.Add(chartControl2);
+            xtraTabPage2.Controls.Add(chartControl2);*/
         }
 
         public System.Collections.IList GetGridViewFilteredAndSortedData(DevExpress.XtraGrid.Views.Grid.GridView view)
@@ -1005,7 +1064,7 @@ namespace ISIA.UI.ANALYSIS
             ChartHitInfo hitInfo = chartControl1.CalcHitInfo(e.Location);
             if (hitInfo.InSeries)
             {
-                if (((Series)hitInfo.Series).Name.ToString() == "OutPut")
+                if (((Series1)hitInfo.Series).Name.ToString() == "OutPut")
                 {
                     StringBuilder builder = new StringBuilder();
                     if (hitInfo.InSeriesPoint)
