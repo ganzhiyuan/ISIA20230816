@@ -261,7 +261,7 @@
             this.btnSelect.ControlID = "btnSave";
             this.btnSelect.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSelect.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnSelect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.ImageOptions.Image")));
             this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSelect.IsRequired = false;
@@ -543,7 +543,7 @@
             this.btnSave.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SAVE;
             this.btnSave.ControlID = "btnSave";
             this.btnSave.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnSave.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnSave.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSave.IsRequired = false;
@@ -950,7 +950,7 @@
             this.btnUpdate.ControlID = "btnSave";
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnUpdate.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnUpdate.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnUpdate.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
             this.btnUpdate.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnUpdate.IsRequired = false;
@@ -983,7 +983,7 @@
             this.btnDelete.ControlID = "btnSave";
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnDelete.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnDelete.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnDelete.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
             this.btnDelete.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnDelete.IsRequired = false;
@@ -1166,7 +1166,7 @@
             this.btnPDF.ControlID = "btnPDF";
             this.btnPDF.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnPDF.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnPDF.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnPDF.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnPDF.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPDF.ImageOptions.Image")));
             this.btnPDF.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnPDF.IsRequired = false;
