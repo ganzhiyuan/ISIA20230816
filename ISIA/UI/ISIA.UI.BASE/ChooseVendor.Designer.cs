@@ -152,7 +152,7 @@
             this.btnOK.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.CONFIRM;
             this.btnOK.ControlID = "btnInstall";
             this.btnOK.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnOK.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnOK.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnOK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInstall.ImageOptions.Image")));
             this.btnOK.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnOK.IsRequired = false;
@@ -181,7 +181,7 @@
             this.btnCancel.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.CANCEL;
             this.btnCancel.ControlID = "btnInstall";
             this.btnCancel.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnCancel.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            //this.btnCancel.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
             this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCancel.IsRequired = false;
