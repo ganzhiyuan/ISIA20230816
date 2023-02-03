@@ -7,53 +7,54 @@ using TAP.Data.Client;
 
 namespace UIHelper
 {
-   public abstract class CommonUIService<T, K> : IUIService<T, K>   
+   public abstract class CommonUIService<Frm, Args, ArgPack> : IUIService<Frm, Args, ArgPack>   
     {
-        private T frm;
-        private K args;
+        private Frm frmWork;
+        private Args eventArgs;
         BizDataClient bs = null;
 
+        public Frm FrmWork { get => frmWork; set => frmWork = value; }
+        public Args EventArgs { get => eventArgs; set => eventArgs = value; }
 
-        public CommonUIService(T frm, K args)
+        public CommonUIService(Frm frm, Args args)
         {
-            this.Frm = frm;
-            this.Args = args;
+            this.FrmWork = frm;
+            this.EventArgs = args;
             bs = new BizDataClient(frm);
 
         }
         public CommonUIService()
         {
-           
+
         }
 
-        public T Frm { get => frm; set => frm = value; }
-        public K Args { get => args; set => args = value; }
+
 
         public virtual object ConvertData(object data) {
             return data;
         }
 
-        public virtual void DisplayData(T frm, object data) {
+        public virtual void DisplayData(Frm frm, object data) {
             
         }
 
 
-        public virtual object GetData(K args)
+        public virtual object GetData(ArgPack pack)
         {
             return null;
         }
 
 
-        public virtual void HandleArugument(T frm)
+        public virtual ArgPack HandleArugument(Frm frm)
         {
-
+            return default(ArgPack);
         }
 
         public void Run()
         {
-            HandleArugument(frm);
-            Object data= ConvertData(GetData(args));
-            DisplayData(frm, data);
+            ArgPack pack=HandleArugument(frmWork);
+            Object data= ConvertData(GetData(pack));
+            DisplayData(frmWork, data);
         }
        
 

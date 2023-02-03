@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using ISIA.UI.ANALYSIS;
 namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
 {
-    public class SerchUiService : CommonUIService<FrmOrclParmsTrendChart, object>
+    public class SerchUiService : CommonUIService<FrmOrclParmsTrendChart, object,object>
     {
 
-        public SerchUiService(FrmOrclParmsTrendChart frm, object args)
+        public SerchUiService(FrmOrclParmsTrendChart frm, object args) :base(frm, args)
         {
-            this.Frm = frm;
-            this.Args = args;
+         
         }
 
         public override object ConvertData(object data)
@@ -40,9 +39,9 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             return base.GetHashCode();
         }
 
-        public override void HandleArugument(FrmOrclParmsTrendChart frm)
+        public override object HandleArugument(FrmOrclParmsTrendChart frm)
         {
-            base.HandleArugument(frm);
+             return base.HandleArugument(frm);
         }
 
         public override string ToString()

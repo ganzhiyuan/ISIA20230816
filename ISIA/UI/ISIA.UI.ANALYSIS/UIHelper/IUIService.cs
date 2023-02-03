@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace UIHelper
 {
-    public interface IUIService<Frm,Args> :IRun
+    public interface IUIService<Frm,Args,ArgPack> :IRun
     {
-        void HandleArugument(Frm frm);
-        Object GetData(Args args);
+        ArgPack HandleArugument(Frm frm);
+        Object GetData(ArgPack pack);
         Object ConvertData(Object data);
         void DisplayData(Frm frm, Object data);
 
