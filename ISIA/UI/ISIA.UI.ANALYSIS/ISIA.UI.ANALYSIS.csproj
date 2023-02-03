@@ -149,6 +149,9 @@
     <Compile Include="UIHelper\IInitService.cs" />
     <Compile Include="UIHelper\IRun.cs" />
     <Compile Include="UIHelper\IUIService.cs" />
+    <Compile Include="UIHelper\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
+    <Compile Include="UIHelper\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationComboxParmTypeUIService.cs" />
+    <Compile Include="UIHelper\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationUIService.cs" />
     <Compile Include="UIHelper\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\SerchUiService.cs" />
   </ItemGroup>
   <ItemGroup>

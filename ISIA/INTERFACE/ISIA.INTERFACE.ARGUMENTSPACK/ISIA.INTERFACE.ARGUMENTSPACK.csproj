@@ -65,6 +65,7 @@
     <Compile Include="CommonArgsPack.cs" />
     <Compile Include="CustomizedFieldArgsPack.cs" />
     <Compile Include="DefaultReworkFlowArgsPack.cs" />
+    <Compile Include="AwrArgsPack.cs" />
     <Compile Include="WareHouseShelfArgsPack.cs" />
     <Compile Include="DeviceSetupArgsPack.cs" />
     <Compile Include="ELArgsPack.cs" />

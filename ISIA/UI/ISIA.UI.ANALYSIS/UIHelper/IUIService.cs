@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UIHelper
 {
-    public interface IUIService<Frm,Args,ArgPack> :IRun
+    public interface IUIService<Frm, Args, ArgPack> : IRun
     {
         ArgPack HandleArugument(Frm frm);
         Object GetData(ArgPack pack);

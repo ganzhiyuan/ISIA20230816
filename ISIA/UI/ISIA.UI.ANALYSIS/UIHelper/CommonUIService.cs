@@ -7,7 +7,7 @@ using TAP.Data.Client;
 
 namespace UIHelper
 {
-   public abstract class CommonUIService<Frm, Args, ArgPack> : IUIService<Frm, Args, ArgPack>   
+    public abstract class CommonUIService<Frm, Args, ArgPack> : IUIService<Frm, Args, ArgPack>
     {
         private Frm frmWork;
         private Args eventArgs;
@@ -15,12 +15,13 @@ namespace UIHelper
 
         public Frm FrmWork { get => frmWork; set => frmWork = value; }
         public Args EventArgs { get => eventArgs; set => eventArgs = value; }
+        public BizDataClient Bs { get => bs; set => bs = value; }
 
         public CommonUIService(Frm frm, Args args)
         {
             this.FrmWork = frm;
             this.EventArgs = args;
-            bs = new BizDataClient(frm);
+            Bs = new BizDataClient(frm);
 
         }
         public CommonUIService()
@@ -30,12 +31,14 @@ namespace UIHelper
 
 
 
-        public virtual object ConvertData(object data) {
+        public virtual object ConvertData(object data)
+        {
             return data;
         }
 
-        public virtual void DisplayData(Frm frm, object data) {
-            
+        public virtual void DisplayData(Frm frm, object data)
+        {
+
         }
 
 
@@ -52,11 +55,11 @@ namespace UIHelper
 
         public void Run()
         {
-            ArgPack pack=HandleArugument(frmWork);
-            Object data= ConvertData(GetData(pack));
+            ArgPack pack = HandleArugument(frmWork);
+            Object data = ConvertData(GetData(pack));
             DisplayData(frmWork, data);
         }
-       
+
 
     }
 }

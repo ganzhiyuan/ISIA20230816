@@ -430,7 +430,7 @@
             this.tLabel6.Name = "tLabel6";
             this.tLabel6.NeedToTranslate = true;
             this.tLabel6.RepresentativeValue = "~";
-            this.tLabel6.Size = new System.Drawing.Size(11, 18);
+            this.tLabel6.Size = new System.Drawing.Size(9, 18);
             this.tLabel6.StyleController = this.layoutControl1;
             this.tLabel6.TabIndex = 15;
             this.tLabel6.Text = "~";
@@ -438,7 +438,7 @@
             // dateEnd
             // 
             this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(157, 3);
+            this.dateEnd.Location = new System.Drawing.Point(155, 3);
             this.dateEnd.Margin = new System.Windows.Forms.Padding(4);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -446,7 +446,7 @@
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Properties.Mask.EditMask = "G";
-            this.dateEnd.Size = new System.Drawing.Size(129, 24);
+            this.dateEnd.Size = new System.Drawing.Size(131, 24);
             this.dateEnd.StyleController = this.layoutControl1;
             this.dateEnd.TabIndex = 14;
             // 
@@ -626,11 +626,11 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.dateEnd;
-            this.layoutControlItem6.Location = new System.Drawing.Point(154, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(152, 0);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 28);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(66, 28);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(133, 28);
+            this.layoutControlItem6.Size = new System.Drawing.Size(135, 28);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
@@ -640,7 +640,7 @@
             this.layoutControlItem15.Control = this.tLabel6;
             this.layoutControlItem15.Location = new System.Drawing.Point(139, 0);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(15, 28);
+            this.layoutControlItem15.Size = new System.Drawing.Size(13, 28);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -817,7 +817,7 @@
             this.xtraTabPage2.Controls.Add(this.tChart1);
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1001, 251);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1092, 257);
             this.xtraTabPage2.Text = "Process Chart";
             // 
             // tChart1

@@ -21,6 +21,8 @@ using ISIA.UI.BASE;
 using DevExpress.XtraEditors.Controls;
 using TAP.UIControls.BasicControlsDEV;
 using UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend;
+using ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend;
+
 namespace ISIA.UI.ANALYSIS
 {
     public partial class FrmOrclParmsTrendChart : DockUIBase1T1
@@ -28,24 +30,22 @@ namespace ISIA.UI.ANALYSIS
         public FrmOrclParmsTrendChart()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.EquipmentAnalysis");
-
+            new InitializationUIService(this, null).Run();
+            new InitializationComboxParmTypeUIService(this, null).Run();
         }
 
-        #region Field 
-        BizDataClient bs;
-
-
-
-
-
-
-
-        #endregion
+     
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
             new SerchUiService(this, e).Run();
+        }
+
+      
+        private void tCheckComboBoxParmType_EditValueChanged(object sender, EventArgs e)
+        {
+            new ShowComboxParmNamesUIService(this, e).Run();
+
         }
     }
 }
