@@ -16,23 +16,23 @@ namespace ISIA.BIZ.ANALYSIS
     {
 
 
-        public void GetMetric(EquipmentArgsPack arguments)
+        public void GetPara(EquipmentArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
                 
-                tmpSql.Append("SELECT * FROM  RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA WHERE 1=1  ");
-                
+                tmpSql.Append("SELECT A.DBID , A.STAT_NAME , A.VALUE , B.BEGIN_INTERVAL_TIME  FROM  RAW_DBA_HIST_SYSSTAT_ISFA  A  JOIN RAW_DBA_HIST_SNAPSHOT_ISFA B ON A.SNAP_ID = B.SNAP_ID ");
+                tmpSql.Append(" WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(arguments.DataBase))
                 {
-                    tmpSql.AppendFormat("AND  DBID IN ({0})", Utils.MakeSqlQueryIn2(arguments.DataBase));
+                    tmpSql.AppendFormat(" AND  A.DBID IN ({0})", Utils.MakeSqlQueryIn2(arguments.DataBase));
                 }
-                if (!string.IsNullOrEmpty(arguments.Metric))
+                if (!string.IsNullOrEmpty(arguments.ParameterName))
                 {
-                    tmpSql.AppendFormat("AND  METRIC_NAME IN ({0})", Utils.MakeSqlQueryIn2(arguments.Metric));
+                    tmpSql.AppendFormat(" AND  A.STAT_NAME IN ({0})", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
                 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

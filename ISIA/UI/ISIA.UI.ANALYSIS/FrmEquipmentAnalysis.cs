@@ -90,10 +90,14 @@ namespace ISIA.UI.ANALYSIS
 
             dateStart.DateTime = dt.AddDays(-1);
             dateEnd.DateTime = dt;
+
+            /*DateTime dt = Convert.ToDateTime((DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString()) + " 07:30");
+            tDateTimePickerSE1.StartDate = dt;
+            tDateTimePickerSE1.EndDate = dt.AddDays(1);*/
             toolTipController.Appearance.Font = new Font("Courier New", 9);
 
             
-            this.cbometric.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
+            this.cbopara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
             //string[] data = new string[] { "DATAZS", "DATALS", "DATAWW", "DATAZL", "DATATQ" };
 
 
@@ -110,11 +114,10 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                string FAB = cboFab.Text;
-                string Line = cbometric.Text;
+                
 
                 string DATABASE = cbodata.Text;
-                string METRIC = cbometric.Text;
+                string PARAMETERNAME = cbopara.Text;
 
                 /*args.DateTimeStart = dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd").Substring(0, 8);
                 args.DateTimeEnd = dateEnd.DateTime.ToString("yyyyMMdd").Substring(0, 8);*/
@@ -130,8 +133,8 @@ namespace ISIA.UI.ANALYSIS
 
                 //
                 args.DataBase = DATABASE;
-                args.Metric = METRIC;
-                dataSet = bs.ExecuteDataSet("GetMetric", args.getPack());
+                args.ParameterName = PARAMETERNAME;
+                dataSet = bs.ExecuteDataSet("GetPara", args.getPack());
                 //
                 return dataSet;
             }
@@ -161,14 +164,15 @@ namespace ISIA.UI.ANALYSIS
 
         private void CreateTeeChart(DataTable dsTable)
         {
+            this.splitContainerControl1.Panel1.Controls.Clear();
             TChart chart = new TChart();
             chart.Series.Clear();
             series.Clear();
             chart.Dock = DockStyle.Fill;
             chart.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
-            chart.Header.Text = "PARAMETER";//teechart标题
+            chart.Header.Text = "PARAMETER";//teechart标题 
             chart.Legend.Visible = true;
-            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["METRIC_NAME"].ToString());
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["STAT_NAME"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -192,7 +196,7 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
-            chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH";
+            chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             chart.Axes.Bottom.Labels.ExactDateTime = true;
             //line.Legend.Visible = true;
             this.splitContainerControl1.Panel1.Controls.Add(chart);
@@ -202,12 +206,13 @@ namespace ISIA.UI.ANALYSIS
         private Line CreateLine(DataTable dstable) {
             Line line = new Line();
             line.DataSource = dstable;
-            line.YValues.DataMember = "NUM_INTERVAL";
-            line.XValues.DataMember = "BEGIN_TIME";
+            line.YValues.DataMember = "VALUE";
+            line.XValues.DataMember = "BEGIN_INTERVAL_TIME";
             line.ShowInLegend = true;
             line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
             line.XValues.DateTime = true;
+            
             return line;
         }
 
@@ -1192,22 +1197,22 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-        private void cbooper_KeyUp(object sender, KeyEventArgs e)
+        private void cbopara_KeyUp(object sender, KeyEventArgs e)
         {
             string Main;
 
-            if (cbodata.Text == "")
+            if (cbopara.Text == "")
             {
                 return;
             }
             else
             {
-                Main = cbodata.Text;
+                Main = cbopara.Text;
             }
 
             if (tsAll.Count == 0)
             {
-                foreach (CheckedListBoxItem item in cbodata.Properties.Items)
+                foreach (CheckedListBoxItem item in cbopara.Properties.Items)
                 {
                     tsAll.Add(item.Value.ToString());
                 }
@@ -1221,14 +1226,14 @@ namespace ISIA.UI.ANALYSIS
                 }
             }
 
-            cbodata.Properties.Items.Clear();
+            cbopara.Properties.Items.Clear();
 
             foreach (string tsa in ts)
             {
-                cbodata.Properties.Items.Add(tsa);
+                cbopara.Properties.Items.Add(tsa);
             }
 
-            cbodata.Text = Main;
+            cbopara.Text = Main;
         }
     }
 }

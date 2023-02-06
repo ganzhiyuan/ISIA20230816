@@ -460,7 +460,6 @@
             // cboequipment
             // 
             this.cboequipment.ControlID = "cboequipment";
-            this.cboequipment.DescriptionMember = null;
             this.cboequipment.DisplayMember = null;
             this.cboequipment.DominantControl = "cbofacility,cboworkshop,cboprocess";
             this.cboequipment.EditValue = "";
@@ -476,7 +475,6 @@
             this.cboequipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboequipment.RepresentativeValue = "";
-            this.cboequipment.ShowDescription = false;
             this.cboequipment.Size = new System.Drawing.Size(171, 27);
             this.cboequipment.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetMainEQ";
             this.cboequipment.SqlDataBase = "";
@@ -488,7 +486,6 @@
             // cbomainequipment
             // 
             this.cbomainequipment.ControlID = "cboequipment";
-            this.cbomainequipment.DescriptionMember = null;
             this.cbomainequipment.DisplayMember = null;
             this.cbomainequipment.DominantControl = "cbofacility,cboworkshop,cboprocess";
             this.cbomainequipment.EditValue = "";
@@ -504,7 +501,6 @@
             this.cbomainequipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbomainequipment.RepresentativeValue = "";
-            this.cbomainequipment.ShowDescription = false;
             this.cbomainequipment.Size = new System.Drawing.Size(171, 27);
             this.cbomainequipment.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetEQ";
             this.cbomainequipment.SqlDataBase = "";
@@ -542,7 +538,6 @@
             // cboprocess
             // 
             this.cboprocess.ControlID = "cbofacility";
-            this.cboprocess.DescriptionMember = null;
             this.cboprocess.DisplayMember = null;
             this.cboprocess.DominantControl = "";
             this.cboprocess.EditValue = "";
@@ -558,7 +553,6 @@
             this.cboprocess.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboprocess.RepresentativeValue = "";
-            this.cboprocess.ShowDescription = false;
             this.cboprocess.Size = new System.Drawing.Size(171, 27);
             this.cboprocess.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetArea";
             this.cboprocess.SqlDataBase = "";
@@ -583,7 +577,6 @@
             // cboworkshop
             // 
             this.cboworkshop.ControlID = "cbofaclilty";
-            this.cboworkshop.DescriptionMember = null;
             this.cboworkshop.DisplayMember = null;
             this.cboworkshop.DominantControl = "cbofacility";
             this.cboworkshop.EditValue = "";
@@ -599,7 +592,6 @@
             this.cboworkshop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboworkshop.RepresentativeValue = "";
-            this.cboworkshop.ShowDescription = false;
             this.cboworkshop.Size = new System.Drawing.Size(171, 27);
             this.cboworkshop.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetLine";
             this.cboworkshop.SqlDataBase = "";
@@ -624,7 +616,6 @@
             // cbofacility
             // 
             this.cbofacility.ControlID = "cbofacility";
-            this.cbofacility.DescriptionMember = null;
             this.cbofacility.DisplayMember = null;
             this.cbofacility.DominantControl = "";
             this.cbofacility.EditValue = "";
@@ -640,7 +631,6 @@
             this.cbofacility.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbofacility.RepresentativeValue = "";
-            this.cbofacility.ShowDescription = false;
             this.cbofacility.Size = new System.Drawing.Size(171, 27);
             this.cbofacility.Sql = "ISEM.BIZ.COMMON.ComboBoxData.GetFab";
             this.cbofacility.SqlDataBase = "";
