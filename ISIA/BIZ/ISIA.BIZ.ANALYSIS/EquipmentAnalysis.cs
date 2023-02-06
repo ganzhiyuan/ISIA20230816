@@ -23,7 +23,7 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
                 
-                tmpSql.Append("SELECT A.DBID , A.STAT_NAME , A.VALUE , B.BEGIN_INTERVAL_TIME  FROM  RAW_DBA_HIST_SYSSTAT_ISFA  A  JOIN RAW_DBA_HIST_SNAPSHOT_ISFA B ON A.SNAP_ID = B.SNAP_ID ");
+                tmpSql.Append(" SELECT  A.SNAP_ID , A.DBID , A.INSTANCE_NUMBER , A.STAT_ID , A.STAT_NAME  , A.VALUE , B.BEGIN_INTERVAL_TIME  FROM  RAW_DBA_HIST_SYSSTAT_ISFA  A  JOIN RAW_DBA_HIST_SNAPSHOT_ISFA B ON A.SNAP_ID = B.SNAP_ID ");
                 tmpSql.Append(" WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(arguments.DataBase))
@@ -34,7 +34,15 @@ namespace ISIA.BIZ.ANALYSIS
                 {
                     tmpSql.AppendFormat(" AND  A.STAT_NAME IN ({0})", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
-                
+                if (!string.IsNullOrEmpty(arguments.StartTime))
+                {
+                    tmpSql.AppendFormat(" AND b.begin_interval_time > = to_date({0}, 'yyyy-mm-dd hh24:mi:ss')", Utils.MakeSqlQueryIn2(arguments.StartTime));
+                }
+                if (!string.IsNullOrEmpty(arguments.EndTime))
+                {
+                    tmpSql.AppendFormat(" AND b.begin_interval_time < = to_date({0}, 'yyyy-mm-dd hh24:mi:ss')", Utils.MakeSqlQueryIn2(arguments.EndTime));
+                }
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 

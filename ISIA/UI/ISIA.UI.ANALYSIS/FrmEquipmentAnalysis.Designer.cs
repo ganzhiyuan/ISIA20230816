@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -37,15 +37,9 @@
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.chTime1 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.tLabel6 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.dateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.dateStart = new DevExpress.XtraEditors.DateEdit();
             this.cboBay = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -73,10 +67,13 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tTabControl1 = new TAP.UIControls.BasicControlsDEV.TTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tChart1 = new Steema.TeeChart.TChart();
             this.line1 = new Steema.TeeChart.Styles.Line();
+            this.tDateTimePickerSE1 = new TAP.UIControls.BasicControlsDEV.TDateTimePickerSE();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -93,16 +90,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chTime1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.navBarGroupControlContainer2.SuspendLayout();
@@ -126,8 +116,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).BeginInit();
             this.tTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -283,7 +275,7 @@
             this.navBarGroup14.Caption = "Period Selection";
             this.navBarGroup14.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarGroup14.Expanded = true;
-            this.navBarGroup14.GroupClientHeight = 129;
+            this.navBarGroup14.GroupClientHeight = 131;
             this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup14.Name = "navBarGroup14";
             // 
@@ -296,15 +288,13 @@
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(289, 128);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(289, 130);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.tDateTimePickerSE1);
             this.layoutControl1.Controls.Add(this.chTime1);
-            this.layoutControl1.Controls.Add(this.tLabel6);
-            this.layoutControl1.Controls.Add(this.dateEnd);
-            this.layoutControl1.Controls.Add(this.dateStart);
             this.layoutControl1.Controls.Add(this.cboBay);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -313,68 +303,23 @@
             this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(289, 128);
+            this.layoutControl1.Size = new System.Drawing.Size(289, 130);
             this.layoutControl1.TabIndex = 83;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // chTime1
             // 
+            this.chTime1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
             this.chTime1.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "DAY"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "HOUR"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "MINUTES")});
-            this.chTime1.Location = new System.Drawing.Point(3, 31);
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("day", "DAY"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("hour", "HOUR"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("min", "MINUTES")});
+            this.chTime1.Location = new System.Drawing.Point(3, 38);
             this.chTime1.Name = "chTime1";
             this.chTime1.Size = new System.Drawing.Size(283, 79);
             this.chTime1.StyleController = this.layoutControl1;
             this.chTime1.TabIndex = 3;
             this.chTime1.ItemChecking += new DevExpress.XtraEditors.Controls.ItemCheckingEventHandler(this.chTime1_ItemChecking);
-            // 
-            // tLabel6
-            // 
-            this.tLabel6.ControlID = "tLabel4";
-            this.tLabel6.IsRequired = false;
-            this.tLabel6.Location = new System.Drawing.Point(142, 3);
-            this.tLabel6.Margin = new System.Windows.Forms.Padding(4);
-            this.tLabel6.Name = "tLabel6";
-            this.tLabel6.NeedToTranslate = true;
-            this.tLabel6.RepresentativeValue = "~";
-            this.tLabel6.Size = new System.Drawing.Size(11, 18);
-            this.tLabel6.StyleController = this.layoutControl1;
-            this.tLabel6.TabIndex = 15;
-            this.tLabel6.Text = "~";
-            // 
-            // dateEnd
-            // 
-            this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(157, 3);
-            this.dateEnd.Margin = new System.Windows.Forms.Padding(4);
-            this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.Mask.EditMask = "G";
-            this.dateEnd.Size = new System.Drawing.Size(129, 24);
-            this.dateEnd.StyleController = this.layoutControl1;
-            this.dateEnd.TabIndex = 14;
-            // 
-            // dateStart
-            // 
-            this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(3, 3);
-            this.dateStart.Margin = new System.Windows.Forms.Padding(4);
-            this.dateStart.Name = "dateStart";
-            this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.EditFormat.FormatString = "G";
-            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateStart.Properties.Mask.EditMask = "G";
-            this.dateStart.Size = new System.Drawing.Size(135, 24);
-            this.dateStart.StyleController = this.layoutControl1;
-            this.dateStart.TabIndex = 13;
             // 
             // cboBay
             // 
@@ -415,53 +360,18 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem15,
             this.layoutControlItem1,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlItem3});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(289, 128);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(289, 130);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.dateStart;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 28);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(66, 28);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(139, 28);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.dateEnd;
-            this.layoutControlItem6.Location = new System.Drawing.Point(154, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 28);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(66, 28);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(133, 28);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.tLabel6;
-            this.layoutControlItem15.Location = new System.Drawing.Point(139, 0);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(15, 28);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.chTime1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 35);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(0, 83);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(66, 83);
             this.layoutControlItem1.Name = "layoutControlItem1";
@@ -473,9 +383,9 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 111);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 118);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(287, 15);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(287, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navBarGroupControlContainer2
@@ -854,24 +764,11 @@
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.chartControl1);
+            this.xtraTabPage1.Controls.Add(this.gridControl1);
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1001, 251);
             this.xtraTabPage1.Text = "DATA";
-            // 
-            // chartControl1
-            // 
-            this.chartControl1.Legend.Name = "Default Legend";
-            this.chartControl1.Location = new System.Drawing.Point(0, 84);
-            this.chartControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.chartControl1.Name = "chartControl1";
-            this.chartControl1.RuntimeHitTesting = true;
-            this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.chartControl1.Size = new System.Drawing.Size(850, 167);
-            this.chartControl1.TabIndex = 1;
-            this.chartControl1.MouseLeave += new System.EventHandler(this.chartControl1_MouseLeave);
-            this.chartControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartControl1_MouseMove);
             // 
             // xtraTabPage2
             // 
@@ -879,7 +776,7 @@
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(1001, 251);
-            this.xtraTabPage2.Text = "Process Chart";
+            this.xtraTabPage2.Text = "TOP 10 Chart";
             // 
             // tChart1
             // 
@@ -889,6 +786,10 @@
             // 
             // 
             // 
+            this.tChart1.Axes.Bottom.Automatic = false;
+            this.tChart1.Axes.Bottom.AutomaticMaximum = false;
+            this.tChart1.Axes.Bottom.AutomaticMinimum = false;
+            this.tChart1.Axes.Bottom.Increment = 1D;
             // 
             // 
             // 
@@ -941,6 +842,8 @@
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
+            this.tChart1.Axes.Bottom.Maximum = 24D;
+            this.tChart1.Axes.Bottom.Minimum = 0D;
             // 
             // 
             // 
@@ -1761,7 +1664,7 @@
             this.tChart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Location = new System.Drawing.Point(152, 36);
+            this.tChart1.Location = new System.Drawing.Point(57, 36);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1803,7 +1706,7 @@
             margins1.Top = 100;
             this.tChart1.Printer.Margins = margins1;
             this.tChart1.Series.Add(this.line1);
-            this.tChart1.Size = new System.Drawing.Size(497, 139);
+            this.tChart1.Size = new System.Drawing.Size(922, 139);
             // 
             // 
             // 
@@ -2118,13 +2021,14 @@
             // 
             // 
             // 
-            this.line1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.line1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.Lowered;
             // 
             // 
             // 
             this.line1.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.line1.Marks.Brush.Solid = true;
             this.line1.Marks.Brush.Visible = true;
+            this.line1.Marks.DrawEvery = 3;
             // 
             // 
             // 
@@ -2132,7 +2036,7 @@
             // 
             // 
             // 
-            this.line1.Marks.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line1.Marks.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
             this.line1.Marks.Font.Brush.Solid = true;
             this.line1.Marks.Font.Brush.Visible = true;
             // 
@@ -2146,6 +2050,7 @@
             this.line1.Marks.Font.Shadow.Brush.Visible = true;
             this.line1.Marks.Font.Size = 8;
             this.line1.Marks.Font.SizeFloat = 8F;
+            this.line1.Marks.FontSeriesColor = true;
             // 
             // 
             // 
@@ -2164,6 +2069,7 @@
             this.line1.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
             this.line1.Marks.Shadow.Brush.Solid = true;
             this.line1.Marks.Shadow.Brush.Visible = true;
+            this.line1.Marks.Style = Steema.TeeChart.Styles.MarksStyles.Legend;
             // 
             // 
             // 
@@ -2203,6 +2109,7 @@
             this.line1.Marks.TailParams.Margin = 0F;
             this.line1.Marks.TailParams.PointerHeight = 8D;
             this.line1.Marks.TailParams.PointerWidth = 8D;
+            this.line1.Marks.Visible = true;
             this.line1.OriginalCursor = System.Windows.Forms.Cursors.Default;
             // 
             // 
@@ -2213,19 +2120,69 @@
             this.line1.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
             this.line1.Pointer.Brush.Solid = true;
             this.line1.Pointer.Brush.Visible = true;
+            this.line1.Pointer.Dark3D = false;
+            this.line1.Pointer.Draw3D = false;
+            this.line1.Pointer.HorizSize = 3;
             this.line1.Pointer.SizeDouble = 0D;
             this.line1.Pointer.SizeUnits = Steema.TeeChart.Styles.PointerSizeUnits.Pixels;
+            this.line1.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Circle;
+            this.line1.Pointer.VertSize = 3;
+            this.line1.Pointer.Visible = true;
             this.line1.Title = "线条图1";
             this.line1.UseExtendedNumRange = false;
             // 
             // 
             // 
             this.line1.XValues.DataMember = "X";
-            this.line1.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            this.line1.XValues.DateTime = true;
             // 
             // 
             // 
             this.line1.YValues.DataMember = "Y";
+            // 
+            // tDateTimePickerSE1
+            // 
+            this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
+            this.tDateTimePickerSE1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 2, 7, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.IsRequired = false;
+            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
+            this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
+            this.tDateTimePickerSE1.NeedToTranslate = true;
+            this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(283, 31);
+            this.tDateTimePickerSE1.StartDate = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.TabIndex = 0;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.tDateTimePickerSE1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 35);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(5, 35);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(287, 35);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1001, 251);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // FrmEquipmentAnalysis
             // 
@@ -2252,16 +2209,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chTime1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.navBarGroupControlContainer2.ResumeLayout(false);
@@ -2285,8 +2235,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).EndInit();
             this.tTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2304,16 +2256,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel6;
-        private DevExpress.XtraEditors.DateEdit dateEnd;
-        private DevExpress.XtraEditors.DateEdit dateStart;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private TAP.UIControls.BasicControlsDEV.TTabControl tTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraCharts.ChartControl chartControl1;
         private DevExpress.XtraEditors.CheckedListBoxControl chTime1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
@@ -2340,5 +2285,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private TAP.UIControls.BasicControlsDEV.TDateTimePickerSE tDateTimePickerSE1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }
