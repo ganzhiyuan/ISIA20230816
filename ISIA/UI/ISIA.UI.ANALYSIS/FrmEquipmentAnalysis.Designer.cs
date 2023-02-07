@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
+            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.tDateTimePickerSE1 = new TAP.UIControls.BasicControlsDEV.TDateTimePickerSE();
             this.chTime1 = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.cboBay = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.tCheckBox2 = new TAP.UIControls.BasicControls.TCheckBox();
@@ -67,13 +69,11 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tTabControl1 = new TAP.UIControls.BasicControlsDEV.TTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.tChart1 = new Steema.TeeChart.TChart();
-            this.line1 = new Steema.TeeChart.Styles.Line();
-            this.tDateTimePickerSE1 = new TAP.UIControls.BasicControlsDEV.TDateTimePickerSE();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.tChart1 = new Steema.TeeChart.TChart();
+            this.bar1 = new Steema.TeeChart.Styles.Bar();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -95,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.navBarGroupControlContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
@@ -116,10 +117,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).BeginInit();
             this.tTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.xtraTabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -307,6 +307,21 @@
             this.layoutControl1.TabIndex = 83;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // tDateTimePickerSE1
+            // 
+            this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
+            this.tDateTimePickerSE1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 2, 7, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.IsRequired = false;
+            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
+            this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
+            this.tDateTimePickerSE1.NeedToTranslate = true;
+            this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(283, 31);
+            this.tDateTimePickerSE1.StartDate = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.TabIndex = 0;
+            // 
             // chTime1
             // 
             this.chTime1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
@@ -387,6 +402,18 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(287, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.tDateTimePickerSE1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 35);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(5, 35);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(287, 35);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // navBarGroupControlContainer2
             // 
@@ -770,6 +797,23 @@
             this.xtraTabPage1.Size = new System.Drawing.Size(1001, 251);
             this.xtraTabPage1.Text = "DATA";
             // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1001, 251);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.tChart1);
@@ -786,10 +830,6 @@
             // 
             // 
             // 
-            this.tChart1.Axes.Bottom.Automatic = false;
-            this.tChart1.Axes.Bottom.AutomaticMaximum = false;
-            this.tChart1.Axes.Bottom.AutomaticMinimum = false;
-            this.tChart1.Axes.Bottom.Increment = 1D;
             // 
             // 
             // 
@@ -842,8 +882,6 @@
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
-            this.tChart1.Axes.Bottom.Maximum = 24D;
-            this.tChart1.Axes.Bottom.Minimum = 0D;
             // 
             // 
             // 
@@ -1444,6 +1482,7 @@
             this.tChart1.Axes.Top.Title.Shadow.Brush.Visible = true;
             this.tChart1.Axes.Top.UseMaxPixelPos = true;
             this.tChart1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // 
             // 
@@ -1664,7 +1703,7 @@
             this.tChart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Location = new System.Drawing.Point(57, 36);
+            this.tChart1.Location = new System.Drawing.Point(0, 0);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1705,8 +1744,8 @@
             margins1.Right = 100;
             margins1.Top = 100;
             this.tChart1.Printer.Margins = margins1;
-            this.tChart1.Series.Add(this.line1);
-            this.tChart1.Size = new System.Drawing.Size(922, 139);
+            this.tChart1.Series.Add(this.bar1);
+            this.tChart1.Size = new System.Drawing.Size(1001, 251);
             // 
             // 
             // 
@@ -1949,240 +1988,192 @@
             this.tChart1.Zoom.Brush.Solid = true;
             this.tChart1.Zoom.Brush.Visible = false;
             // 
-            // line1
+            // bar1
             // 
+            this.bar1.BarRound = Steema.TeeChart.Styles.BarRounding.AtValue;
             // 
             // 
             // 
-            this.line1.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.line1.Brush.Solid = true;
-            this.line1.Brush.Visible = true;
-            this.line1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.line1.ColorEach = false;
+            this.bar1.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
+            this.bar1.Brush.Solid = true;
+            this.bar1.Brush.Visible = true;
+            this.bar1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
+            this.bar1.ColorEach = false;
+            this.bar1.LabelMember = "条形";
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.bar1.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.line1.Legend.Brush.Color = System.Drawing.Color.White;
-            this.line1.Legend.Brush.Solid = true;
-            this.line1.Legend.Brush.Visible = true;
+            this.bar1.Legend.Brush.Color = System.Drawing.Color.White;
+            this.bar1.Legend.Brush.Solid = true;
+            this.bar1.Legend.Brush.Visible = true;
             // 
             // 
             // 
-            this.line1.Legend.Font.Bold = false;
+            this.bar1.Legend.Font.Bold = false;
             // 
             // 
             // 
-            this.line1.Legend.Font.Brush.Color = System.Drawing.Color.Black;
-            this.line1.Legend.Font.Brush.Solid = true;
-            this.line1.Legend.Font.Brush.Visible = true;
+            this.bar1.Legend.Font.Brush.Color = System.Drawing.Color.Black;
+            this.bar1.Legend.Font.Brush.Solid = true;
+            this.bar1.Legend.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.line1.Legend.Font.Shadow.Brush.Solid = true;
-            this.line1.Legend.Font.Shadow.Brush.Visible = true;
-            this.line1.Legend.Font.Size = 8;
-            this.line1.Legend.Font.SizeFloat = 8F;
+            this.bar1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.bar1.Legend.Font.Shadow.Brush.Solid = true;
+            this.bar1.Legend.Font.Shadow.Brush.Visible = true;
+            this.bar1.Legend.Font.Size = 8;
+            this.bar1.Legend.Font.SizeFloat = 8F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.line1.Legend.ImageBevel.Brush.Solid = true;
-            this.line1.Legend.ImageBevel.Brush.Visible = true;
+            this.bar1.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.bar1.Legend.ImageBevel.Brush.Solid = true;
+            this.bar1.Legend.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.line1.Legend.Shadow.Brush.Solid = true;
-            this.line1.Legend.Shadow.Brush.Visible = true;
+            this.bar1.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.bar1.Legend.Shadow.Brush.Solid = true;
+            this.bar1.Legend.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.line1.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(92)))), ((int)(((byte)(128)))));
             // 
             // 
             // 
+            this.bar1.Marks.Arrow.Visible = false;
             // 
             // 
             // 
-            this.line1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.Lowered;
+            this.bar1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.line1.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.line1.Marks.Brush.Solid = true;
-            this.line1.Marks.Brush.Visible = true;
-            this.line1.Marks.DrawEvery = 3;
+            this.bar1.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.bar1.Marks.Brush.Solid = true;
+            this.bar1.Marks.Brush.Visible = true;
             // 
             // 
             // 
-            this.line1.Marks.Font.Bold = false;
+            this.bar1.Marks.Font.Bold = false;
             // 
             // 
             // 
-            this.line1.Marks.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.line1.Marks.Font.Brush.Solid = true;
-            this.line1.Marks.Font.Brush.Visible = true;
+            this.bar1.Marks.Font.Brush.Color = System.Drawing.Color.Black;
+            this.bar1.Marks.Font.Brush.Solid = true;
+            this.bar1.Marks.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.line1.Marks.Font.Shadow.Brush.Solid = true;
-            this.line1.Marks.Font.Shadow.Brush.Visible = true;
-            this.line1.Marks.Font.Size = 8;
-            this.line1.Marks.Font.SizeFloat = 8F;
-            this.line1.Marks.FontSeriesColor = true;
+            this.bar1.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.bar1.Marks.Font.Shadow.Brush.Solid = true;
+            this.bar1.Marks.Font.Shadow.Brush.Visible = true;
+            this.bar1.Marks.Font.Size = 8;
+            this.bar1.Marks.Font.SizeFloat = 8F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.line1.Marks.ImageBevel.Brush.Solid = true;
-            this.line1.Marks.ImageBevel.Brush.Visible = true;
+            this.bar1.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.bar1.Marks.ImageBevel.Brush.Solid = true;
+            this.bar1.Marks.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
-            this.line1.Marks.Shadow.Brush.Solid = true;
-            this.line1.Marks.Shadow.Brush.Visible = true;
-            this.line1.Marks.Style = Steema.TeeChart.Styles.MarksStyles.Legend;
+            this.bar1.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
+            this.bar1.Marks.Shadow.Brush.Solid = true;
+            this.bar1.Marks.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.bar1.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.line1.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
-            this.line1.Marks.Symbol.Brush.Solid = true;
-            this.line1.Marks.Symbol.Brush.Visible = true;
+            this.bar1.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
+            this.bar1.Marks.Symbol.Brush.Solid = true;
+            this.bar1.Marks.Symbol.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.line1.Marks.Symbol.ImageBevel.Brush.Solid = true;
-            this.line1.Marks.Symbol.ImageBevel.Brush.Visible = true;
+            this.bar1.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.bar1.Marks.Symbol.ImageBevel.Brush.Solid = true;
+            this.bar1.Marks.Symbol.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.line1.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.line1.Marks.Symbol.Shadow.Brush.Solid = true;
-            this.line1.Marks.Symbol.Shadow.Brush.Visible = true;
+            this.bar1.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.bar1.Marks.Symbol.Shadow.Brush.Solid = true;
+            this.bar1.Marks.Symbol.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.line1.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
-            this.line1.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos")));
-            this.line1.Marks.TailParams.Margin = 0F;
-            this.line1.Marks.TailParams.PointerHeight = 8D;
-            this.line1.Marks.TailParams.PointerWidth = 8D;
-            this.line1.Marks.Visible = true;
-            this.line1.OriginalCursor = System.Windows.Forms.Cursors.Default;
+            this.bar1.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
+            this.bar1.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos")));
+            this.bar1.Marks.TailParams.Margin = 0F;
+            this.bar1.Marks.TailParams.PointerHeight = 8D;
+            this.bar1.Marks.TailParams.PointerWidth = 8D;
+            this.bar1.MultiBar = Steema.TeeChart.Styles.MultiBars.None;
+            this.bar1.OriginalCursor = System.Windows.Forms.Cursors.Arrow;
             // 
             // 
             // 
+            this.bar1.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(92)))), ((int)(((byte)(128)))));
+            this.bar1.SeriesData = resources.GetString("bar1.SeriesData");
             // 
             // 
             // 
-            this.line1.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.line1.Pointer.Brush.Solid = true;
-            this.line1.Pointer.Brush.Visible = true;
-            this.line1.Pointer.Dark3D = false;
-            this.line1.Pointer.Draw3D = false;
-            this.line1.Pointer.HorizSize = 3;
-            this.line1.Pointer.SizeDouble = 0D;
-            this.line1.Pointer.SizeUnits = Steema.TeeChart.Styles.PointerSizeUnits.Pixels;
-            this.line1.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Circle;
-            this.line1.Pointer.VertSize = 3;
-            this.line1.Pointer.Visible = true;
-            this.line1.Title = "线条图1";
-            this.line1.UseExtendedNumRange = false;
             // 
             // 
             // 
-            this.line1.XValues.DataMember = "X";
-            this.line1.XValues.DateTime = true;
+            this.bar1.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.bar1.Shadow.Brush.Solid = true;
+            this.bar1.Shadow.Brush.Visible = true;
+            this.bar1.Title = "条形图1";
+            this.bar1.UseExtendedNumRange = false;
             // 
             // 
             // 
-            this.line1.YValues.DataMember = "Y";
+            this.bar1.XValues.DataMember = "X";
+            this.bar1.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
             // 
-            // tDateTimePickerSE1
             // 
-            this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
-            this.tDateTimePickerSE1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 2, 7, 10, 14, 54, 723);
-            this.tDateTimePickerSE1.IsRequired = false;
-            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
-            this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
-            this.tDateTimePickerSE1.NeedToTranslate = true;
-            this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
-            this.tDateTimePickerSE1.Size = new System.Drawing.Size(283, 31);
-            this.tDateTimePickerSE1.StartDate = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
-            this.tDateTimePickerSE1.TabIndex = 0;
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.tDateTimePickerSE1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 35);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(5, 35);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(287, 35);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1001, 251);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.bar1.YValues.DataMember = "条形";
             // 
             // FrmEquipmentAnalysis
             // 
@@ -2214,6 +2205,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.navBarGroupControlContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
@@ -2235,10 +2227,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).EndInit();
             this.tTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.xtraTabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2263,7 +2254,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private Steema.TeeChart.TChart tChart1;
-        private Steema.TeeChart.Styles.Line line1;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer2;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private TAP.UIControls.BasicControls.TCheckBox tCheckBox2;
@@ -2289,5 +2279,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private Steema.TeeChart.Styles.Bar bar1;
     }
 }

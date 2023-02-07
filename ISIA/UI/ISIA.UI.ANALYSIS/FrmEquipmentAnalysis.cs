@@ -120,14 +120,13 @@ namespace ISIA.UI.ANALYSIS
             }
             
             
-            xtraTabPage2.Controls.Clear();
-
             /*table = FilterDNTable(dataSet.Tables[0]);
             DataTable data = LineChartTable(table);*/
             //gridControl1.DataSource = data;
             CreateTeeChart(dataSet.Tables[0]);
             GridViewDataBinding();
             GridViewStyle(gridView1);
+            CreateBar();
 
         }
 
@@ -166,23 +165,23 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
-
-            if (chTime1.CheckedItems[0].ToString() == "day") {
+            if (chTime1.CheckedItems[0].ToString() == "day" || chTime1.CheckedItems[0].ToString() == null) {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";//x轴横坐标值
             }
             else if (chTime1.CheckedItems[0].ToString() == "hour") 
             {
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH";
+                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH";
             }
             else if (chTime1.CheckedItems[0].ToString() == "min")
             {
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
             }
             chart.Axes.Bottom.Labels.Angle = 1;
             //chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             //line.Legend.Visible = true;
             this.splitContainerControl1.Panel1.Controls.Add(chart);
+            return;
         }
 
 
@@ -196,6 +195,33 @@ namespace ISIA.UI.ANALYSIS
             line.Legend.BorderRound = 10;
             line.XValues.DateTime = true;
             return line;
+        }
+
+        private void  CreateBar()
+        {
+
+            tChart1.Series.Clear();
+            Bar bar = new Bar(tChart1.Chart);
+            DataTable dt1 = new DataTable();
+            dt1.Columns.AddRange(new DataColumn[2] {
+            new DataColumn("Name", typeof(string)),
+            new DataColumn("NUM", typeof(int)) });
+            if (dataSet.Tables.Count > 1)
+            {
+                foreach (DataTable dt in dataSet.Tables)
+                {
+                    if (dt.TableName != "TABLE")
+                    {
+                        int num = Convert.ToInt32(dt.Compute("avg(VALUE)",""));
+                        dt1.Rows.Add(dt.TableName,num);
+                    }
+                }
+            }
+            bar.ColorEach = true;
+            bar.DataSource = dt1;
+            bar.YValues.DataMember = "NUM";
+            bar.LabelMember = "Name";
+            return;
         }
 
         public void GridViewDataBinding()
@@ -1185,6 +1211,13 @@ namespace ISIA.UI.ANALYSIS
 
             if (cbopara.Text == "")
             {
+                if (tsAll.Count != 0)
+                {
+                    foreach (string item  in tsAll)
+                    {
+                        cbopara.Properties.Items.Add(item);
+                    }
+                }
                 return;
             }
             else
@@ -1207,8 +1240,9 @@ namespace ISIA.UI.ANALYSIS
                     ts.Add(item);
                 }
             }
-
+            cbopara.Sql = null;
             cbopara.Properties.Items.Clear();
+            
 
             foreach (string tsa in ts)
             {
