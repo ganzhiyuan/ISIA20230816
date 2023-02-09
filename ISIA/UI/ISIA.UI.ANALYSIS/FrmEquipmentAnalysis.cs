@@ -127,10 +127,11 @@ namespace ISIA.UI.ANALYSIS
 
         private void CreateTeeChart(DataTable dsTable)
         {
-            
-            this.tPanel6.Controls.Clear();
+
+            this.splitContainerControl1.Panel1.Controls.Clear();
             chart.Series.Clear();
             series.Clear();
+            chart.ContextMenuStrip = contextMenuStrip1;
             chart.Dock = DockStyle.Fill;
             chart.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
             chart.Header.Text = "TEECHART";//teechart标题 
@@ -177,7 +178,7 @@ namespace ISIA.UI.ANALYSIS
             chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             //line.Legend.Visible = true;
             //this.splitContainerControl1.Panel1.Controls.Add(chart);
-            this.tPanel6.Controls.Add(chart);
+            this.splitContainerControl1.Panel1.Controls.Add(chart);
             return;
         }
 
@@ -232,7 +233,10 @@ namespace ISIA.UI.ANALYSIS
 
             void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
+                //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
+                e.MarkText = "NAME :"+$"{dt1.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt1.Rows[e.ValueIndex]["NUM"]}";
+
+
             }
             
             bar.ColorEach = true;
@@ -247,10 +251,7 @@ namespace ISIA.UI.ANALYSIS
             return;
         }
 
-        private void Bar_MouseEnter(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public void GridViewDataBinding()
         {
@@ -1254,7 +1255,9 @@ namespace ISIA.UI.ANALYSIS
             cbopara.Text = Main;
         }
 
-        private void btnedit_Click(object sender, EventArgs e)
+
+
+        private void editChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             chart.ShowEditor();
         }

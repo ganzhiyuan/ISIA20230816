@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -63,8 +64,6 @@
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.tPanel8 = new TAP.UIControls.BasicControls.TPanel();
-            this.btnedit = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tTabControl1 = new TAP.UIControls.BasicControlsDEV.TTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -72,7 +71,8 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tChart1 = new Steema.TeeChart.TChart();
             this.bar1 = new Steema.TeeChart.Styles.Bar();
-            this.tPanel6 = new TAP.UIControls.BasicControls.TPanel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -111,13 +111,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            this.tPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).BeginInit();
             this.tTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -701,8 +701,6 @@
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.tPanel6);
-            this.splitContainerControl1.Panel1.Controls.Add(this.tPanel8);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.tTabControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
@@ -710,56 +708,6 @@
             this.splitContainerControl1.SplitterPosition = 332;
             this.splitContainerControl1.TabIndex = 5;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // tPanel8
-            // 
-            this.tPanel8.BackColor = System.Drawing.Color.White;
-            this.tPanel8.ControlID = "tPanel8";
-            this.tPanel8.Controls.Add(this.btnedit);
-            this.tPanel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tPanel8.IsRequired = false;
-            this.tPanel8.Location = new System.Drawing.Point(0, 0);
-            this.tPanel8.MaximumSize = new System.Drawing.Size(0, 46);
-            this.tPanel8.MinimumSize = new System.Drawing.Size(0, 46);
-            this.tPanel8.Name = "tPanel8";
-            this.tPanel8.NeedToTranslate = true;
-            this.tPanel8.Padding = new System.Windows.Forms.Padding(7);
-            this.tPanel8.RepresentativeValue = "tPanel8 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
-    "BorderStyle.None";
-            this.tPanel8.Size = new System.Drawing.Size(963, 46);
-            this.tPanel8.TabIndex = 6;
-            // 
-            // btnedit
-            // 
-            this.btnedit.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnedit.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.btnedit.Appearance.Options.UseBackColor = true;
-            this.btnedit.Appearance.Options.UseBorderColor = true;
-            this.btnedit.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnedit.AppearanceHovered.Options.UseBackColor = true;
-            this.btnedit.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnedit.AppearancePressed.Options.UseBackColor = true;
-            this.btnedit.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.DELETE;
-            this.btnedit.ControlID = "btnDelete";
-            this.btnedit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnedit.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnedit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnedit.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnedit.IsRequired = false;
-            this.btnedit.Location = new System.Drawing.Point(833, 7);
-            this.btnedit.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnedit.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnedit.Margin = new System.Windows.Forms.Padding(4);
-            this.btnedit.MaximumSize = new System.Drawing.Size(123, 33);
-            this.btnedit.MinimumSize = new System.Drawing.Size(123, 33);
-            this.btnedit.Name = "btnedit";
-            this.btnedit.NeedToTranslate = true;
-            this.btnedit.RepresentativeValue = "Edit Chart";
-            this.btnedit.Size = new System.Drawing.Size(123, 33);
-            this.btnedit.TabIndex = 13;
-            this.btnedit.Text = "Edit Chart";
-            this.btnedit.UseVisualStyleBackColor = true;
-            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
             // 
             // tTabControl1
             // 
@@ -2167,18 +2115,20 @@
             // 
             this.bar1.YValues.DataMember = "条形";
             // 
-            // tPanel6
+            // contextMenuStrip1
             // 
-            this.tPanel6.ControlID = "tPanel6";
-            this.tPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tPanel6.IsRequired = false;
-            this.tPanel6.Location = new System.Drawing.Point(0, 46);
-            this.tPanel6.Name = "tPanel6";
-            this.tPanel6.NeedToTranslate = true;
-            this.tPanel6.RepresentativeValue = "tPanel6 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
-    "BorderStyle.None";
-            this.tPanel6.Size = new System.Drawing.Size(963, 286);
-            this.tPanel6.TabIndex = 7;
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editChartToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 28);
+            // 
+            // editChartToolStripMenuItem
+            // 
+            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
+            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.editChartToolStripMenuItem.Text = "Edit Chart";
+            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
             // 
             // FrmEquipmentAnalysis
             // 
@@ -2188,6 +2138,9 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmEquipmentAnalysis";
             this.Text = "EquipmentShiftProductionCapacity";
+            this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
+            this.Controls.SetChildIndex(this.tPanelTop, 0);
+            this.Controls.SetChildIndex(this.tPanelMain, 0);
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
@@ -2227,13 +2180,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            this.tPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).EndInit();
             this.tTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2279,9 +2232,8 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.RadioGroup radioGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private TAP.UIControls.BasicControls.TPanel tPanel8;
-        private TAP.UIControls.BasicControlsDEV.TButton btnedit;
         private Steema.TeeChart.Styles.Bar bar1;
-        private TAP.UIControls.BasicControls.TPanel tPanel6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editChartToolStripMenuItem;
     }
 }
