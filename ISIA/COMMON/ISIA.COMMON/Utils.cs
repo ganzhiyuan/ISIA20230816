@@ -64,6 +64,45 @@ namespace ISIA.COMMON
             return strTemp;
         }
 
+        public static string MakeSqlQueryIn2(List<object> str)
+        {
+            string strTemp = string.Empty;
+
+
+            if (str.Count>=2)
+            {
+
+                for (int j = 0; j < str.Count; j++)
+                {
+                    if (str[j].ToString() != "")
+                    {
+                        if (str[j].ToString().Contains("'"))
+                        {
+                            string specialStr =str[j].ToString();
+                            StringBuilder sb = new StringBuilder(specialStr);
+                            sb.Insert(specialStr.IndexOf("'"),"'");
+                            strTemp = strTemp + "'" + sb.ToString().Trim(' ') + "' ,";
+                            continue;
+                        }
+                        strTemp = strTemp + "'" + str[j].ToString().Trim(' ') + "' ,";
+                    }
+                }
+                strTemp = strTemp.Substring(0, strTemp.Length - 1);
+            }
+            else
+            {
+                if (str[0].ToString().Contains("'"))
+                {
+                    string specialStr = str[0].ToString();
+                    StringBuilder sb = new StringBuilder(specialStr);
+                    sb.Insert(specialStr.IndexOf("'"), "'");
+                    strTemp = strTemp + "'" + sb.ToString().Trim(' ') + "' ,";
+                }
+                strTemp = "'" + str[0].ToString() + "'";
+            }
+            return strTemp;
+        }
+
         public static DataSet DataRowToDataSet(DataRow dr)
         {
 

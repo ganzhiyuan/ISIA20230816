@@ -12,7 +12,7 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
     public class ShowComboxParmNamesUIService : CommonUIService<FrmOrclParmsTrendChart, object, AwrArgsPack>
     {
 
-        public ShowComboxParmNamesUIService(FrmOrclParmsTrendChart frm, object args) : base(frm, args)
+        public ShowComboxParmNamesUIService(FrmOrclParmsTrendChart frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
         {
 
         }
@@ -30,7 +30,6 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             foreach (DataRow dr in dt.Rows)
             {
                 frm.tCheckComboBoxParmNames.Properties.Items.Add(dr["parametername"]);
-
             }
         }
 

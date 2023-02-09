@@ -186,5 +186,10 @@
   <ItemGroup>
     <Folder Include="UIHelper\InitializationServicImpl\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TeeChart.licenses">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,6 +16,16 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _ParamType;
 
+        private List<object> _ParamNamesList;
+
+        private string _ParamNamesString;
+
+
+        private string _StartTime;
+
+        private string _EndTime;
+
+
         public string ParamType
         {
             get
@@ -26,6 +36,60 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _ParamType = value;
+            }
+        }
+
+
+
+        public string StartTime
+        {
+            get
+            {
+                return _StartTime;
+            }
+
+            set
+            {
+                _StartTime = value;
+            }
+        }
+
+        public string EndTime
+        {
+            get
+            {
+                return _EndTime;
+            }
+
+            set
+            {
+                _EndTime = value;
+            }
+        }
+
+        public List<object> ParamNamesList
+        {
+            get
+            {
+                return _ParamNamesList;
+            }
+
+            set
+            {
+                _ParamNamesList = value;
+            }
+        }
+
+        public string ParamNamesString
+        {
+            get
+            {
+                return _ParamNamesString;
+            }
+
+            set
+            {
+                _ParamNamesString = value;
             }
         }
 

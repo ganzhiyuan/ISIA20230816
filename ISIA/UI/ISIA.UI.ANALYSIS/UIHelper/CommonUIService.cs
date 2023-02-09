@@ -11,16 +11,19 @@ namespace UIHelper
     {
         private Frm frmWork;
         private Args eventArgs;
+        private ArgPack eventArgPack;
         BizDataClient bs = null;
 
         public Frm FrmWork { get => frmWork; set => frmWork = value; }
         public Args EventArgs { get => eventArgs; set => eventArgs = value; }
         public BizDataClient Bs { get => bs; set => bs = value; }
+        public ArgPack EventArgPack { get => eventArgPack; set => eventArgPack = value; }
 
-        public CommonUIService(Frm frm, Args args)
+        public CommonUIService(Frm frm, Args args, ArgPack argPack)
         {
             this.FrmWork = frm;
             this.EventArgs = args;
+            this.EventArgPack = argPack;
             Bs = new BizDataClient(frm);
 
         }
@@ -28,8 +31,17 @@ namespace UIHelper
         {
 
         }
+     
 
+        public virtual ArgPack HandleArugument(Frm frm)
+        {
+            return default(ArgPack);
+        }
 
+        public virtual object GetData(ArgPack pack)
+        {
+            return null;
+        }
 
         public virtual object ConvertData(object data)
         {
@@ -42,16 +54,9 @@ namespace UIHelper
         }
 
 
-        public virtual object GetData(ArgPack pack)
-        {
-            return null;
-        }
+      
 
-
-        public virtual ArgPack HandleArugument(Frm frm)
-        {
-            return default(ArgPack);
-        }
+     
 
         public void Run()
         {

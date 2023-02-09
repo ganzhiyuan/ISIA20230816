@@ -12,7 +12,7 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
     public class InitializationComboxParmTypeUIService : CommonUIService<FrmOrclParmsTrendChart, object, AwrArgsPack>
     {
 
-        public InitializationComboxParmTypeUIService(FrmOrclParmsTrendChart frm, object args) : base(frm, args)
+        public InitializationComboxParmTypeUIService(FrmOrclParmsTrendChart frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
         {
 
         }
