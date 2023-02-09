@@ -24,6 +24,7 @@ using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using Series1 = DevExpress.XtraCharts.Series;
 using Series = Steema.TeeChart.Styles.Series;
+using Steema.TeeChart.Tools;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -53,6 +54,7 @@ namespace ISIA.UI.ANALYSIS
         List<string> ts = new List<string>();
         EquipmentArgsPack args = new EquipmentArgsPack();
         List<Series> series = new List<Series>();
+        TChart chart = new TChart();
         //
         #endregion
 
@@ -75,29 +77,25 @@ namespace ISIA.UI.ANALYSIS
             tDateTimePickerSE1.EndDate = dt;
 
             toolTipController.Appearance.Font = new Font("Courier New", 9);
-            chTime1.CheckedItems.ToString();
             
             this.cbopara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
-
+            radioGroup1.SelectedIndex = 0;
         }
         public DataSet LoadData()
         {
             try
             {
-                
+                string DBID = cbodata.Text;
+                DataTable dtdb = bs.ExecuteDataSet("GetDBID", args.getPack()).Tables[0];
 
-                string DATABASE = cbodata.Text;
+
+                string DATABASE = dtdb.Rows[0]["NAME"].ToString();
+                
                 string PARAMETERNAME = cbopara.Text;
                 string STARTTIME = tDateTimePickerSE1.StartDate.ToString();
                 string ENDTIME = tDateTimePickerSE1.EndDate.ToString();
-
-              
-
-
                 /*dataSet = bs.ExecuteDataSet("GetEquipmentProduction", args.getPack());
-               
                 dtLineSum = bs.ExecuteDataSet("GetLineCapacitySum", args.getPack()).Tables[0];*/
-
                 //
                 args.StartTime = STARTTIME;
                 args.EndTime = ENDTIME;
@@ -118,8 +116,6 @@ namespace ISIA.UI.ANALYSIS
             {
                 return;
             }
-            
-            
             /*table = FilterDNTable(dataSet.Tables[0]);
             DataTable data = LineChartTable(table);*/
             //gridControl1.DataSource = data;
@@ -127,19 +123,17 @@ namespace ISIA.UI.ANALYSIS
             GridViewDataBinding();
             GridViewStyle(gridView1);
             CreateBar();
-
         }
-
 
         private void CreateTeeChart(DataTable dsTable)
         {
-            this.splitContainerControl1.Panel1.Controls.Clear();
-            TChart chart = new TChart();
+            
+            this.tPanel6.Controls.Clear();
             chart.Series.Clear();
             series.Clear();
             chart.Dock = DockStyle.Fill;
             chart.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
-            chart.Header.Text = "PARAMETER";//teechart标题 
+            chart.Header.Text = "TEECHART";//teechart标题 
             chart.Legend.Visible = true;
             IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["STAT_NAME"].ToString());
             if (result != null && result.Count() > 0)
@@ -165,14 +159,16 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
-            if (chTime1.CheckedItems[0].ToString() == "day" || chTime1.CheckedItems[0].ToString() == null) {
+            string daytime =  radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
+            if (daytime == "day" )
+            {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";//x轴横坐标值
             }
-            else if (chTime1.CheckedItems[0].ToString() == "hour") 
+            else if (daytime == "hour")
             {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH";
             }
-            else if (chTime1.CheckedItems[0].ToString() == "min")
+            else if (daytime == "min")
             {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
             }
@@ -180,7 +176,8 @@ namespace ISIA.UI.ANALYSIS
             //chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             //line.Legend.Visible = true;
-            this.splitContainerControl1.Panel1.Controls.Add(chart);
+            //this.splitContainerControl1.Panel1.Controls.Add(chart);
+            this.tPanel6.Controls.Add(chart);
             return;
         }
 
@@ -201,6 +198,9 @@ namespace ISIA.UI.ANALYSIS
         {
 
             tChart1.Series.Clear();
+            tChart1.Legend.LegendStyle = LegendStyles.Values;
+            var markstip = new MarksTip(tChart1.Chart);
+
             Bar bar = new Bar(tChart1.Chart);
             DataTable dt1 = new DataTable();
             dt1.Columns.AddRange(new DataColumn[2] {
@@ -217,21 +217,48 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
+
+            dt1.DefaultView.Sort = "NUM DESC";
+            dt1 = dt1.DefaultView.ToTable();
+
+            if (dt1.Rows.Count>10) {
+                for (int i = 0; i < dt1.Rows.Count; i++) {
+                    if (i > 9) {
+                        dt1.Rows.Remove(dt1.Rows[i]);
+                    }
+                }
+            
+            }
+
+            void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
+            }
+            
             bar.ColorEach = true;
             bar.DataSource = dt1;
             bar.YValues.DataMember = "NUM";
+            
             bar.LabelMember = "Name";
+            bar.Marks.Visible = false;
+            bar.GetSeriesMark += Bar_GetSeriesMark;
+
+            
             return;
+        }
+
+        private void Bar_MouseEnter(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void GridViewDataBinding()
         {
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
-
-           
             gridControl1.DataSource = dataSet.Tables[0];
         }
+
 
 
         private DataTable BMTable(DataTable BMtable)
@@ -1049,25 +1076,6 @@ namespace ISIA.UI.ANALYSIS
 
             ProcessChartTable(currentDr);*/
         }
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-           /* try
-            {
-                if (gridControl1.DataSource == null || (gridControl1.DataSource as DataTable).Rows.Count == 0)
-                {
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Please Search Data");
-                    return;
-                }
-                else
-                {
-                    ExportToExcel("", gridControl1);
-                }
-            }
-            catch
-            {
-            }*/
-
-        }
 
         #endregion
         ToolTipController toolTipController = new ToolTipController();
@@ -1192,16 +1200,10 @@ namespace ISIA.UI.ANALYSIS
         }
 
 */
-        private void chTime1_ItemChecking(object sender, DevExpress.XtraEditors.Controls.ItemCheckingEventArgs e)
-        {
-            for (int i = 0; i < chTime1.Items.Count; i++)
-            {
-                if (i != e.Index)
-                {
-                    chTime1.SetItemCheckState(i, System.Windows.Forms.CheckState.Unchecked);
-                }
-            }
-        }
+
+
+//-----------------------------------------------------------------------------------------------------------------
+        
 
 
 
@@ -1250,6 +1252,11 @@ namespace ISIA.UI.ANALYSIS
             }
 
             cbopara.Text = Main;
+        }
+
+        private void btnedit_Click(object sender, EventArgs e)
+        {
+            chart.ShowEditor();
         }
     }
 }

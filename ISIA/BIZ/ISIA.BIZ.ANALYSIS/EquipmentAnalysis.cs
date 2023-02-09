@@ -56,5 +56,33 @@ namespace ISIA.BIZ.ANALYSIS
             }
         }
 
+
+
+        public void GetDBID(EquipmentArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(" SELECT  * from TAPCTCODES ");
+                tmpSql.Append("  WHERE 1=1");
+
+                if (!string.IsNullOrEmpty(arguments.DBID))
+                {
+                    tmpSql.AppendFormat(" AND  CUSTOM01 IN ({0})", Utils.MakeSqlQueryIn2(arguments.DBID));
+                }
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
     }
 }
