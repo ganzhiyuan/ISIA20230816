@@ -70,9 +70,13 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tChart1 = new Steema.TeeChart.TChart();
-            this.bar1 = new Steema.TeeChart.Styles.Bar();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marksTip1 = new Steema.TeeChart.Tools.MarksTip();
+            this.cursorTool1 = new Steema.TeeChart.Tools.CursorTool();
+            this.nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint();
+            this.line1 = new Steema.TeeChart.Styles.Line();
+            this.line2 = new Steema.TeeChart.Styles.Line();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -1691,7 +1695,8 @@
             margins1.Right = 100;
             margins1.Top = 100;
             this.tChart1.Printer.Margins = margins1;
-            this.tChart1.Series.Add(this.bar1);
+            this.tChart1.Series.Add(this.line1);
+            this.tChart1.Series.Add(this.line2);
             this.tChart1.Size = new System.Drawing.Size(961, 251);
             // 
             // 
@@ -1798,6 +1803,9 @@
             this.tChart1.SubHeader.Shadow.Brush.Solid = true;
             this.tChart1.SubHeader.Shadow.Brush.Visible = true;
             this.tChart1.TabIndex = 0;
+            this.tChart1.Tools.Add(this.marksTip1);
+            this.tChart1.Tools.Add(this.cursorTool1);
+            this.tChart1.Tools.Add(this.nearestPoint1);
             // 
             // 
             // 
@@ -1935,186 +1943,6 @@
             this.tChart1.Zoom.Brush.Solid = true;
             this.tChart1.Zoom.Brush.Visible = false;
             // 
-            // bar1
-            // 
-            this.bar1.BarRound = Steema.TeeChart.Styles.BarRounding.AtValue;
-            // 
-            // 
-            // 
-            this.bar1.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.bar1.Brush.Solid = true;
-            this.bar1.Brush.Visible = true;
-            this.bar1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
-            this.bar1.ColorEach = false;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
-            // 
-            // 
-            // 
-            this.bar1.Legend.Brush.Color = System.Drawing.Color.White;
-            this.bar1.Legend.Brush.Solid = true;
-            this.bar1.Legend.Brush.Visible = true;
-            // 
-            // 
-            // 
-            this.bar1.Legend.Font.Bold = false;
-            // 
-            // 
-            // 
-            this.bar1.Legend.Font.Brush.Color = System.Drawing.Color.Black;
-            this.bar1.Legend.Font.Brush.Solid = true;
-            this.bar1.Legend.Font.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.bar1.Legend.Font.Shadow.Brush.Solid = true;
-            this.bar1.Legend.Font.Shadow.Brush.Visible = true;
-            this.bar1.Legend.Font.Size = 8;
-            this.bar1.Legend.Font.SizeFloat = 8F;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.bar1.Legend.ImageBevel.Brush.Solid = true;
-            this.bar1.Legend.ImageBevel.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.bar1.Legend.Shadow.Brush.Solid = true;
-            this.bar1.Legend.Shadow.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
-            // 
-            // 
-            // 
-            this.bar1.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.bar1.Marks.Brush.Solid = true;
-            this.bar1.Marks.Brush.Visible = true;
-            // 
-            // 
-            // 
-            this.bar1.Marks.Font.Bold = false;
-            // 
-            // 
-            // 
-            this.bar1.Marks.Font.Brush.Color = System.Drawing.Color.Black;
-            this.bar1.Marks.Font.Brush.Solid = true;
-            this.bar1.Marks.Font.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.bar1.Marks.Font.Shadow.Brush.Solid = true;
-            this.bar1.Marks.Font.Shadow.Brush.Visible = true;
-            this.bar1.Marks.Font.Size = 8;
-            this.bar1.Marks.Font.SizeFloat = 8F;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.bar1.Marks.ImageBevel.Brush.Solid = true;
-            this.bar1.Marks.ImageBevel.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
-            this.bar1.Marks.Shadow.Brush.Solid = true;
-            this.bar1.Marks.Shadow.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
-            // 
-            // 
-            // 
-            this.bar1.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
-            this.bar1.Marks.Symbol.Brush.Solid = true;
-            this.bar1.Marks.Symbol.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.bar1.Marks.Symbol.ImageBevel.Brush.Solid = true;
-            this.bar1.Marks.Symbol.ImageBevel.Brush.Visible = true;
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.bar1.Marks.Symbol.Shadow.Brush.Solid = true;
-            this.bar1.Marks.Symbol.Shadow.Brush.Visible = true;
-            // 
-            // 
-            // 
-            this.bar1.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
-            this.bar1.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos")));
-            this.bar1.Marks.TailParams.Margin = 0F;
-            this.bar1.Marks.TailParams.PointerHeight = 8D;
-            this.bar1.Marks.TailParams.PointerWidth = 8D;
-            this.bar1.OriginalCursor = null;
-            // 
-            // 
-            // 
-            this.bar1.Pen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(92)))), ((int)(((byte)(128)))));
-            // 
-            // 
-            // 
-            // 
-            // 
-            // 
-            this.bar1.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.bar1.Shadow.Brush.Solid = true;
-            this.bar1.Shadow.Brush.Visible = true;
-            this.bar1.Title = "条形图1";
-            this.bar1.UseExtendedNumRange = false;
-            // 
-            // 
-            // 
-            this.bar1.XValues.DataMember = "X";
-            this.bar1.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
-            // 
-            // 
-            // 
-            this.bar1.YValues.DataMember = "条形";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -2129,6 +1957,402 @@
             this.editChartToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
             this.editChartToolStripMenuItem.Text = "Edit Chart";
             this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
+            // 
+            // nearestPoint1
+            // 
+            // 
+            // 
+            // 
+            this.nearestPoint1.Brush.Color = System.Drawing.Color.White;
+            this.nearestPoint1.Brush.Solid = true;
+            this.nearestPoint1.Brush.Visible = true;
+            this.nearestPoint1.DrawLine = false;
+            // 
+            // 
+            // 
+            this.nearestPoint1.Pen.Color = System.Drawing.Color.White;
+            this.nearestPoint1.Series = this.line2;
+            this.nearestPoint1.Size = 10;
+            // 
+            // line1
+            // 
+            // 
+            // 
+            // 
+            this.line1.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
+            this.line1.Brush.Solid = true;
+            this.line1.Brush.Visible = true;
+            this.line1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
+            this.line1.ColorEach = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line1.Legend.Brush.Color = System.Drawing.Color.White;
+            this.line1.Legend.Brush.Solid = true;
+            this.line1.Legend.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.Legend.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line1.Legend.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line1.Legend.Font.Brush.Solid = true;
+            this.line1.Legend.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line1.Legend.Font.Shadow.Brush.Solid = true;
+            this.line1.Legend.Font.Shadow.Brush.Visible = true;
+            this.line1.Legend.Font.Shadow.Height = 1;
+            this.line1.Legend.Font.Shadow.Width = 1;
+            this.line1.Legend.Font.Size = 8;
+            this.line1.Legend.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line1.Legend.ImageBevel.Brush.Solid = true;
+            this.line1.Legend.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.Legend.ImageBevel.Pen.Color = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            this.line1.Legend.Pen.Color = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line1.Legend.Shadow.Brush.Solid = true;
+            this.line1.Legend.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(124)))), ((int)(((byte)(62)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line1.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.line1.Marks.Brush.Solid = true;
+            this.line1.Marks.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.Marks.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line1.Marks.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line1.Marks.Font.Brush.Solid = true;
+            this.line1.Marks.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line1.Marks.Font.Shadow.Brush.Solid = true;
+            this.line1.Marks.Font.Shadow.Brush.Visible = true;
+            this.line1.Marks.Font.Shadow.Height = 1;
+            this.line1.Marks.Font.Shadow.Width = 1;
+            this.line1.Marks.Font.Size = 8;
+            this.line1.Marks.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line1.Marks.ImageBevel.Brush.Solid = true;
+            this.line1.Marks.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.Marks.ImageBevel.Pen.Color = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            this.line1.Marks.Pen.Color = System.Drawing.Color.Black;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
+            this.line1.Marks.Shadow.Brush.Solid = true;
+            this.line1.Marks.Shadow.Brush.Visible = true;
+            this.line1.Marks.Shadow.Height = 1;
+            this.line1.Marks.Shadow.Width = 1;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line1.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
+            this.line1.Marks.Symbol.Brush.Solid = true;
+            this.line1.Marks.Symbol.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line1.Marks.Symbol.ImageBevel.Brush.Solid = true;
+            this.line1.Marks.Symbol.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line1.Marks.Symbol.Shadow.Brush.Solid = true;
+            this.line1.Marks.Symbol.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line1.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
+            this.line1.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos")));
+            this.line1.Marks.TailParams.Margin = 0F;
+            this.line1.Marks.TailParams.PointerHeight = 8D;
+            this.line1.Marks.TailParams.PointerWidth = 8D;
+            this.line1.Marks.Visible = true;
+            this.line1.OriginalCursor = null;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line1.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(153)))), ((int)(((byte)(214)))));
+            this.line1.Pointer.Brush.Solid = true;
+            this.line1.Pointer.Brush.Visible = true;
+            this.line1.Pointer.SizeDouble = 0D;
+            this.line1.Pointer.SizeUnits = Steema.TeeChart.Styles.PointerSizeUnits.Pixels;
+            this.line1.Title = "线条图1";
+            this.line1.UseExtendedNumRange = false;
+            // 
+            // 
+            // 
+            this.line1.XValues.DataMember = "X";
+            this.line1.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            // 
+            // 
+            // 
+            this.line1.YValues.DataMember = "条形";
+            // 
+            // line2
+            // 
+            // 
+            // 
+            // 
+            this.line2.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.Brush.Solid = true;
+            this.line2.Brush.Visible = true;
+            this.line2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.ColorEach = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Legend.Brush.Color = System.Drawing.Color.White;
+            this.line2.Legend.Brush.Solid = true;
+            this.line2.Legend.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line2.Legend.Font.Brush.Solid = true;
+            this.line2.Legend.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Legend.Font.Shadow.Brush.Solid = true;
+            this.line2.Legend.Font.Shadow.Brush.Visible = true;
+            this.line2.Legend.Font.Size = 8;
+            this.line2.Legend.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Legend.ImageBevel.Brush.Solid = true;
+            this.line2.Legend.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Legend.Shadow.Brush.Solid = true;
+            this.line2.Legend.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(124)))), ((int)(((byte)(62)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.line2.Marks.Brush.Solid = true;
+            this.line2.Marks.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line2.Marks.Font.Brush.Solid = true;
+            this.line2.Marks.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Marks.Font.Shadow.Brush.Solid = true;
+            this.line2.Marks.Font.Shadow.Brush.Visible = true;
+            this.line2.Marks.Font.Size = 8;
+            this.line2.Marks.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Marks.ImageBevel.Brush.Solid = true;
+            this.line2.Marks.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
+            this.line2.Marks.Shadow.Brush.Solid = true;
+            this.line2.Marks.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
+            this.line2.Marks.Symbol.Brush.Solid = true;
+            this.line2.Marks.Symbol.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Marks.Symbol.ImageBevel.Brush.Solid = true;
+            this.line2.Marks.Symbol.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Marks.Symbol.Shadow.Brush.Solid = true;
+            this.line2.Marks.Symbol.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
+            this.line2.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos1")));
+            this.line2.Marks.TailParams.Margin = 0F;
+            this.line2.Marks.TailParams.PointerHeight = 8D;
+            this.line2.Marks.TailParams.PointerWidth = 8D;
+            this.line2.OriginalCursor = null;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.Pointer.Brush.Solid = true;
+            this.line2.Pointer.Brush.Visible = true;
+            this.line2.Pointer.SizeDouble = 0D;
+            this.line2.Pointer.SizeUnits = Steema.TeeChart.Styles.PointerSizeUnits.Pixels;
+            this.line2.Title = "线条图2";
+            this.line2.UseExtendedNumRange = false;
+            // 
+            // 
+            // 
+            this.line2.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
             // 
             // FrmEquipmentAnalysis
             // 
@@ -2232,8 +2456,12 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.RadioGroup radioGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private Steema.TeeChart.Styles.Bar bar1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editChartToolStripMenuItem;
+        private Steema.TeeChart.Tools.MarksTip marksTip1;
+        private Steema.TeeChart.Tools.CursorTool cursorTool1;
+        private Steema.TeeChart.Tools.NearestPoint nearestPoint1;
+        private Steema.TeeChart.Styles.Line line1;
+        private Steema.TeeChart.Styles.Line line2;
     }
 }

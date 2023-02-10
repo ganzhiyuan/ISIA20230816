@@ -87,10 +87,7 @@ namespace ISIA.UI.ANALYSIS
             {
                 string DBID = cbodata.Text;
                 DataTable dtdb = bs.ExecuteDataSet("GetDBID", args.getPack()).Tables[0];
-
-
                 string DATABASE = dtdb.Rows[0]["NAME"].ToString();
-                
                 string PARAMETERNAME = cbopara.Text;
                 string STARTTIME = tDateTimePickerSE1.StartDate.ToString();
                 string ENDTIME = tDateTimePickerSE1.EndDate.ToString();
@@ -131,6 +128,24 @@ namespace ISIA.UI.ANALYSIS
             this.splitContainerControl1.Panel1.Controls.Clear();
             chart.Series.Clear();
             series.Clear();
+            var cuTool = new CursorTool(chart.Chart) {
+                Style = CursorToolStyles.Both,
+                FollowMouse = true,
+                
+            };
+            cuTool.Pen.Color = Color.Red;
+            chart.MouseEnter += Chart_MouseEnter;
+            chart.MouseLeave += Chart_MouseLeave;
+            void Chart_MouseEnter(object sender, EventArgs e)
+            {
+                cuTool.Pen.Visible = true;
+            }
+            void Chart_MouseLeave(object sender, EventArgs e)
+            {
+                cuTool.Pen.Visible = false;
+            }
+            
+            //chart.Chart.Series.Chart.GetASeries().Legend.Text.ToString();
             chart.ContextMenuStrip = contextMenuStrip1;
             chart.Dock = DockStyle.Fill;
             chart.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
@@ -182,9 +197,12 @@ namespace ISIA.UI.ANALYSIS
             return;
         }
 
+        
 
         private Line CreateLine(DataTable dstable) {
             Line line = new Line();
+            line.Pointer.Style = PointerStyles.Circle;
+            line.Pointer.Visible = true;
             line.DataSource = dstable;
             line.YValues.DataMember = "VALUE";
             line.XValues.DataMember = "BEGIN_INTERVAL_TIME";
@@ -235,7 +253,7 @@ namespace ISIA.UI.ANALYSIS
             {
                 //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
                 e.MarkText = "NAME :"+$"{dt1.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt1.Rows[e.ValueIndex]["NUM"]}";
-
+                
 
             }
             
@@ -246,11 +264,11 @@ namespace ISIA.UI.ANALYSIS
             bar.LabelMember = "Name";
             bar.Marks.Visible = false;
             bar.GetSeriesMark += Bar_GetSeriesMark;
-
+            
+            
             
             return;
         }
-
 
 
         public void GridViewDataBinding()
