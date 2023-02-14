@@ -133,6 +133,7 @@ namespace ISIA.UI.ANALYSIS
                 FollowMouse = true,
                 
             };
+            var markstip = new MarksTip(chart.Chart);
             cuTool.Pen.Color = Color.Red;
             chart.MouseEnter += Chart_MouseEnter;
             chart.MouseLeave += Chart_MouseLeave;
@@ -201,8 +202,24 @@ namespace ISIA.UI.ANALYSIS
 
         private Line CreateLine(DataTable dstable) {
             Line line = new Line();
-            line.Pointer.Style = PointerStyles.Circle;
-            line.Pointer.Visible = true;
+            /*var nearpoint = new NearestPoint(chart.Chart) {
+                Series = line,
+                Style = NearestPointStyles.None,
+                Direction = NearestPointDirection.Both,
+                Size = 1
+            };
+            nearpoint.Pen.Color = Color.Red;*/
+            //nearpoint.Pen.Visible = false;
+            //line.Pointer.Style = PointerStyles.Circle;
+            //line.Pointer.Visible = true;
+            //line.Pointer.HorizSize = 120;
+
+            //line.ClickPointer += Line_ClickPointer;
+            line.GetSeriesMark += Line_GetSeriesMark;
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = "PARAMETER :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "VALUE :" + $"{ dstable.Rows[e.ValueIndex]["BEGIN_INTERVAL_TIME"]}";
+            }
             line.DataSource = dstable;
             line.YValues.DataMember = "VALUE";
             line.XValues.DataMember = "BEGIN_INTERVAL_TIME";
@@ -212,6 +229,8 @@ namespace ISIA.UI.ANALYSIS
             line.XValues.DateTime = true;
             return line;
         }
+
+        
 
         private void  CreateBar()
         {
