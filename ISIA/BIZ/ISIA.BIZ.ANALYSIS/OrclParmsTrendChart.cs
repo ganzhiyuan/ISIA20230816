@@ -118,7 +118,7 @@ namespace ISIA.BIZ.ANALYSIS
                 }
 
                 //Batch data
-                int sqlDailyTrendDataInterval = 100;
+                int sqlDailyTrendDataInterval = 990;
                 int cutCount = GetCutCount(paramNames.Count, sqlDailyTrendDataInterval);
                 List<DataTable> tableSplitTotal = new List<DataTable>();
 
@@ -272,7 +272,7 @@ namespace ISIA.BIZ.ANALYSIS
             AppendWithCRLF(tmpSql, "t1_sysmetric_summary");
             AppendWithCRLF(tmpSql, "as");
             AppendWithCRLF(tmpSql, "(");
-            AppendWithCRLF(tmpSql, "select");
+            AppendWithCRLF(tmpSql, "select"); AppendWithCRLF(tmpSql, "/*+MATERIALIZE */");
             AppendMin(tmpSql, "begin_interval_time", "BEGIN_TIME");
             AppendMax(tmpSql, "end_interval_time", "END_TIME");
             AppendWithComma(tmpSql, "dbid");
@@ -288,9 +288,10 @@ namespace ISIA.BIZ.ANALYSIS
             tmpSql.Remove(tmpSql.Length - 1, 1);
             AppendWithCRLF(tmpSql, "");
             AppendWithCRLF(tmpSql, "FROM");
-            tmpSql.AppendFormat("(SELECT sm.*,sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA sm,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
+            tmpSql.AppendFormat("(SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */ " +
+                " sm.*,sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA sm,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
                  "WHERE  1=1 AND SM.dbid=sn.dbid AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER IN (1)      " +
-                 "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD') BETWEEN '{0}' AND '{1}') s ", arguments.StartTime, arguments.EndTime);
+                 "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, '{2}') BETWEEN '{0}' AND '{1}') s ", arguments.StartTime, arguments.EndTime,arguments.GroupingDateFormat);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
             AppendWithCRLF(tmpSql, ")");
@@ -305,7 +306,7 @@ namespace ISIA.BIZ.ANALYSIS
             AppendWithComma(tmpSql, "dbid");
             AppendWithComma(tmpSql, "inst_id");
             AppendMin(tmpSql, "snap_id", "SNAP_ID_MIN");
-            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'YYYYMMDD') workdate,");
+            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,",arguments.GroupingDateFormat);
             AppendMin(tmpSql, "BEGIN_TIME", "BEGIN_TIME");
             AppendMax(tmpSql, "END_TIME", "END_TIME");
             foreach (string param in metricParamNames)
@@ -314,7 +315,8 @@ namespace ISIA.BIZ.ANALYSIS
                 AppendWithComma(tmpSql, "");
             }
             tmpSql.Remove(tmpSql.Length - 1, 1);
-            AppendWithCRLF(tmpSql, "FROM t1_sysmetric_summary s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'YYYYMMDD')");
+            tmpSql.AppendFormat("FROM t1_sysmetric_summary s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'{0}')", arguments.GroupingDateFormat);
+            AppendWithCRLF(tmpSql, "");
             AppendWithCRLF(tmpSql, ")");
             AppendWithCRLF(tmpSql, "");
             //t1_sysstat
@@ -322,7 +324,7 @@ namespace ISIA.BIZ.ANALYSIS
             AppendWithCRLF(tmpSql, "t1_sysstat");
             AppendWithCRLF(tmpSql, "as");
             AppendWithCRLF(tmpSql, "(");
-            AppendWithCRLF(tmpSql, "select");
+            AppendWithCRLF(tmpSql, "select"); AppendWithCRLF(tmpSql, "/*+MATERIALIZE */");
             AppendMin(tmpSql, "begin_interval_time", "BEGIN_TIME");
             AppendMax(tmpSql, "end_interval_time", "END_TIME");
             AppendWithComma(tmpSql, "dbid");
@@ -337,9 +339,10 @@ namespace ISIA.BIZ.ANALYSIS
             tmpSql.Remove(tmpSql.Length - 1, 1);
             AppendWithCRLF(tmpSql, "");
             AppendWithCRLF(tmpSql, "FROM");
-            tmpSql.AppendFormat("(select ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_ISFA ss,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
+            tmpSql.AppendFormat("(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ " +
+                "ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_ISFA ss,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
                 " where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and sn.INSTANCE_NUMBER IN ({0}) " +
-                " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD') between '{1}' and '{2}') s ", 1, arguments.StartTime, arguments.EndTime);
+                " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, '{3}') between '{1}' and '{2}') s ", 1, arguments.StartTime, arguments.EndTime,arguments.GroupingDateFormat);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
             AppendWithCRLF(tmpSql, ")");
@@ -352,7 +355,7 @@ namespace ISIA.BIZ.ANALYSIS
             AppendWithComma(tmpSql, "dbid");
             AppendWithComma(tmpSql, "inst_id");
             AppendMin(tmpSql, "snap_id", "SNAP_ID_MIN");
-            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'YYYYMMDD') workdate,");
+            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,",arguments.GroupingDateFormat);
             AppendMin(tmpSql, "BEGIN_TIME", "BEGIN_TIME");
             AppendMax(tmpSql, "END_TIME", "END_TIME");
             foreach (string param in statisticParamNames)
@@ -361,7 +364,7 @@ namespace ISIA.BIZ.ANALYSIS
                 AppendWithComma(tmpSql, "");
             }
             tmpSql.Remove(tmpSql.Length - 1, 1);
-            AppendWithCRLF(tmpSql, "FROM t1_sysstat s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'YYYYMMDD')");
+            tmpSql.AppendFormat("FROM t1_sysstat s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'{0}')",arguments.GroupingDateFormat);
             AppendWithCRLF(tmpSql, ")");
             AppendWithCRLF(tmpSql, "");
             //stat end

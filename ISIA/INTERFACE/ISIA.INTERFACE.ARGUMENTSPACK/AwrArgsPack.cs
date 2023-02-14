@@ -25,6 +25,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _EndTime;
 
+        private string _GroupingDateFormat;
+
 
         public string ParamType
         {
@@ -90,6 +92,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _ParamNamesString = value;
+            }
+        }
+
+        public string GroupingDateFormat
+        {
+            get
+            {
+                return _GroupingDateFormat;
+            }
+
+            set
+            {
+                _GroupingDateFormat = value;
             }
         }
 

@@ -68,5 +68,7 @@ namespace ISIA.UI.ANALYSIS
         {
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
+
+      
     }
 }
