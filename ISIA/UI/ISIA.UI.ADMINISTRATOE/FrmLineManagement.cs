@@ -16,6 +16,8 @@ using System.IO;
 using ISIA.UI.BASE;
 using Spire.Pdf.Annotations;
 using Spire.Pdf.Annotations.Appearance;
+using EnumDataObject = TAP.UI.EnumDataObject;
+using EnumMsgType = TAP.UI.EnumMsgType;
 
 namespace ISIA.UI.ADMINISTRATOE
 {

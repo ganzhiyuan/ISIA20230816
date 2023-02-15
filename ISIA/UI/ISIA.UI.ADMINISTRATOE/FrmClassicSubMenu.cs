@@ -14,6 +14,8 @@ using TAP.Data.Client;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System.Linq;
 using ISIA.UI.BASE;
+using EnumMsgType = TAP.UI.EnumMsgType;
+using EnumDataObject = TAP.UI.EnumDataObject;
 
 namespace ISIA.UI.ADMINISTRATOE
 {

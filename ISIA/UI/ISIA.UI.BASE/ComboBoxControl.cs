@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using TAP.Fressage;
 using TAP.UI;
 using TAP.UIControls.BasicControlsDEV;
+using EnumMsgType = TAP.UI.EnumMsgType;
 
 namespace ISIA.UI.BASE
 {

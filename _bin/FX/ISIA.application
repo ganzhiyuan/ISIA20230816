@@ -11,17 +11,17 @@
     <deploymentProvider codebase="http://172.16.45.93:8005/ISIA.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ISIA.exe.manifest" size="37524">
+    <dependentAssembly dependencyType="install" codebase="ISIA.exe.manifest" size="37525">
       <assemblyIdentity name="ISIA.exe" version="1.1.0.1" publicKeyToken="0000000000000000" language="en" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>e/+VMSQLn4rxTw9SFZUvTR29NvuPZl/2RQHCUl8okUY=</dsig:DigestValue>
+        <dsig:DigestValue>gwabjE+7zGp3TbQTvf4s/5eyAVK0mPEQiDnXV6Bv0rU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

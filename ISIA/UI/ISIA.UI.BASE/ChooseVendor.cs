@@ -20,6 +20,7 @@ using TAP.Models.Factories.Facilities;
 using TAP.UI;
 using TAP.UIControls.BasicControlsDEV;
 using ISIA.COMMON;
+using EnumMsgType = TAP.UI.EnumMsgType;
 
 namespace ISIA.UI.BASE
 {

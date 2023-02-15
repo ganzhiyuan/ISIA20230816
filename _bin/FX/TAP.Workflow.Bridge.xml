@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Workflow.Bridge</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Workflow.Bridge.FactoryBridge">
+            <summary>
+            This class is workflow bridge
+            </summary>
+        </member>
+        <member name="M:TAP.Workflow.Bridge.FactoryBridge.ExecuteCommand(System.Collections.Generic.List{TAP.ArgumentPack},System.String,System.String,TAP.ArgumentPack)">
+            <summary>
+            This method is not provided.
+            </summary>
+            <param name="model"></param>
+            <param name="command"></param>
+            <param name="comment"></param>
+            <param name="wfPack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Workflow.Bridge.FactoryBridge.GetModels(System.Collections.Generic.List{TAP.ArgumentPack})">
+            <summary>
+            This method creates model using argument pack
+            </summary>
+            <param name="arguments">Argument Pack</param>
+            <returns>Model list</returns>
+        </member>
+    </members>
+</doc>

@@ -6,7 +6,7 @@
     <members>
         <member name="T:TAP.Base.Configuration.AppConfigBase">
             <summary>
-            This provides application configuration
+            This class provides the application configuration.
             </summary>
         </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String)">
@@ -18,7 +18,7 @@
         </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String,System.String)">
             <summary>
-            This creates instance of AppConfigBase
+            This creates an instance of this class.
             </summary>
             <param name="configurationFileName">Configuration file name</param>
             <param name="rootNode">Root node</param>
@@ -26,7 +26,7 @@
         </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
-            This creates instance of AppConfigBase
+            This creates instance of this class.
             </summary>
             <param name="configurationFilePath">Configuration file path</param>
             <param name="configurationFileName">Configuration file name</param>
@@ -41,6 +41,11 @@
         <member name="P:TAP.Base.Configuration.AppConfigBase.HostCollection">
             <summary>
             Host collection list
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.ShiftCollection">
+            <summary>
+            Shift collection list
             </summary>
         </member>
         <member name="P:TAP.Base.Configuration.AppConfigBase.RootNode">
@@ -73,16 +78,21 @@
             Host collection node
             </summary>
         </member>
+        <member name="P:TAP.Base.Configuration.AppConfigBase.ShiftNode">
+            <summary>
+            Shift collection node
+            </summary>
+        </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.GetDefinedCollection(System.String)">
             <summary>
-            This method gets defined collections
+            This method gets the defined collections.
             </summary>
             <param name="section">Section</param>
             <returns>Defined collection</returns>
         </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.GetNameValueCollection(System.String,System.String)">
             <summary>
-            This method gets host collections
+            This method gets the host collections.
             </summary>
             <param name="node">Node</param>
             <param name="section">Section</param>
@@ -90,12 +100,12 @@
         </member>
         <member name="M:TAP.Base.Configuration.AppConfigBase.ChangeConfigSetup">
             <summary>
-            This method saves configuration to file
+            This method saves configuration to file.
             </summary>
         </member>
         <member name="T:TAP.Base.Configuration.ConfigurationFunction">
             <summary>
-            This provides path of application configuration file
+            This provides path of application configuration file.
             </summary>
         </member>
         <member name="M:TAP.Base.Configuration.ConfigurationFunction.GetConfigurationFunction(System.String)">
@@ -107,12 +117,12 @@
         </member>
         <member name="T:TAP.Base.Configuration.ConfigurationManager">
             <summary>
-            This class manages settings of configuration file.
+            This class provides the framework configuration.
             </summary>
         </member>
         <member name="P:TAP.Base.Configuration.ConfigurationManager.Instance">
             <summary>
-            Static accessor of ConfigurationManager
+            Static accessor of this class.
             </summary>
         </member>
         <member name="P:TAP.Base.Configuration.ConfigurationManager.AdminListenerSection">
@@ -207,7 +217,7 @@
         </member>
         <member name="M:TAP.Base.Configuration.ConfigurationManager.#ctor">
             <summary>
-            This creator creates instance of ConfigurationManager
+            This creator creates an instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Base.Configuration.Sections.AdminListenerSection">
@@ -657,14 +667,14 @@
             File path of remote BIZ component file
             </summary>
         </member>
-        <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.ClientDeployInfo">
-            <summary>
-            Client Deploy configuration element
-            </summary>
-        </member>
         <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.BizComponents">
             <summary>
              Remote BIZ component configuration element collection
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.RemoteDeploySection.ClientDeployInfo">
+            <summary>
+            Client Deploy configuration element
             </summary>
         </member>
         <member name="T:TAP.Base.Configuration.Sections.BizComponentCollection">
@@ -1167,6 +1177,11 @@
         <member name="P:TAP.Base.Configuration.Sections.AppSection.AppConfigName">
             <summary>
             Application Configuration name
+            </summary>
+        </member>
+        <member name="P:TAP.Base.Configuration.Sections.AppSection.MappingFileName">
+            <summary>
+            Server name
             </summary>
         </member>
         <member name="P:TAP.Base.Configuration.Sections.AppSection.MainMenus">

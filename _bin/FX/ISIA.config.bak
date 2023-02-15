@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <TAP.ISIA.Configuration>
-    <T1>
+    <WX>
       <Host>
-        <MDIInit Status="NORMAL" Width="1274" Height="884" />
+        <MDIInit Status="FULL" Width="1274" Height="884" />
         <URLBASE VALUE="http://ISIA.hanwha-qcells.com:8000/" />
       </Host>
-      <Shift>
-        <WorkA StartTime="07:30:00" EndTime="19:29:59" />
-        <WorkB StartTime="19:30:00" EndTime="07:29:59" />
-      </Shift>
-      <Defined />
-    </T1>
+      <Defined>
+		<test key="ddd" value="aaaa" />
+      </Defined>
+    </WX>
   </TAP.ISIA.Configuration>
 </configuration>

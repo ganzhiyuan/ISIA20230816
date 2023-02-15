@@ -12,6 +12,8 @@ using TAP.UIControls.BasicControlsDEV;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using TAP.Data.Client;
 using ISIA.UI.BASE;
+using EnumDataObject = TAP.UI.EnumDataObject;
+using EnumMsgType = TAP.UI.EnumMsgType;
 
 namespace ISIA.UI.ADMINISTRATOE
 {

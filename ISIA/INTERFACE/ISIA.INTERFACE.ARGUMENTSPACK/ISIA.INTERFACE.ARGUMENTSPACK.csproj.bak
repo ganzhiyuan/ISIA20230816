@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A02FF43-6D96-4400-9678-AB2BC1D73606}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ISIA.INTERFACE.ARGUMENTSPACK</RootNamespace>
+    <AssemblyName>ISIA.INTERFACE.ARGUMENTSPACK</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\_bin\FX\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TAP.Base">
+      <HintPath>..\..\..\_bin\FX\TAP.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="TAP.Data.DataBase, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Data.DataBase.dll</HintPath>
+    </Reference>
+    <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Models.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BMArgsPack.cs" />
+    <Compile Include="BmCodeArgsPack.cs" />
+    <Compile Include="BMPMPriceArgsPack.cs" />
+    <Compile Include="ClassicUIArgsPack.cs" />
+    <Compile Include="CommonArgsPack.cs" />
+    <Compile Include="CustomizedFieldArgsPack.cs" />
+    <Compile Include="DefaultReworkFlowArgsPack.cs" />
+    <Compile Include="AwrArgsPack.cs" />
+    <Compile Include="WareHouseShelfArgsPack.cs" />
+    <Compile Include="DeviceSetupArgsPack.cs" />
+    <Compile Include="ELArgsPack.cs" />
+    <Compile Include="ElectricalPropertiesMonitorArgsPack.cs" />
+    <Compile Include="EQPartArgsPack.cs" />
+    <Compile Include="EquipmentArgsPack.cs" />
+    <Compile Include="FactorySetupArgsPack.cs" />
+    <Compile Include="FlowArgsPack.cs" />
+    <Compile Include="FmbArgsPack.cs" />
+    <Compile Include="MainMenuArgsPack.cs" />
+    <Compile Include="MessageArgsPack.cs" />
+    <Compile Include="MessageParaPack.cs" />
+    <Compile Include="MROArgsPack.cs" />
+    <Compile Include="OperationArgsPack.cs" />
+    <Compile Include="PartArgsPack.cs" />
+    <Compile Include="PartsRepairHistoryArgsPack.cs" />
+    <Compile Include="PMArgsPack.cs" />
+    <Compile Include="ProcessDailyInputArgsPack.cs" />
+    <Compile Include="ProductionPlannArgsPack.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReworkAlterFlowArgsPack.cs" />
+    <Compile Include="ShiftArgsPack.cs" />
+    <Compile Include="EqpDataSumArgsPack.cs" />
+    <Compile Include="SPProcessEqpArgsPack.cs" />
+    <Compile Include="SvcDataSummaryArgsPack.cs" />
+    <Compile Include="UPTArgsPack.cs" />
+    <Compile Include="UPTDataArgsPack.cs" />
+    <Compile Include="WorkFlowArgsPack.cs" />
+    <Compile Include="WorkGroupArgsPack.cs" />
+    <Compile Include="WaferArgsPack.cs" />
+    <Compile Include="WorkOrderArgsPack.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

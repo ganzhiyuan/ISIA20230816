@@ -6,7 +6,7 @@
     <members>
         <member name="T:TAP.App.Base.AppConfig">
             <summary>
-            Configuration of application
+            This class defines the accessor for AppConfg.
             </summary>
         </member>
         <member name="P:TAP.App.Base.AppConfig.ConfigManager">
@@ -16,25 +16,25 @@
         </member>
         <member name="M:TAP.App.Base.AppConfig.#cctor">
             <summary>
-            This creates AppConfig
+            Static accessor for AppConfig
             </summary> 
         </member>
         <member name="M:TAP.App.Base.AppConfig.#ctor(System.String,System.String,System.String)">
             <summary>
-            This creates AppConfig
+            This accesses the AppConfig.
             </summary>
-            <param name="path">Path</param>
-            <param name="fileName">File name</param>
-            <param name="configName">Config name</param>
+            <param name="path">Configuration file path</param>
+            <param name="fileName">Configuration file name</param>
+            <param name="configName">Configuration name</param>
         </member>
         <member name="T:TAP.App.Base.AppGeneralInfo">
             <summary>
-            General information of application
+            This class defines the general information of application. 
             </summary>
         </member>
         <member name="P:TAP.App.Base.AppGeneralInfo.Instance">
             <summary>
-            Static accessor of AppGeneralInfo
+            Creator of AppGeneralInfo
             </summary>
         </member>
         <member name="F:TAP.App.Base.AppGeneralInfo.instant">
@@ -49,12 +49,12 @@
         </member>
         <member name="P:TAP.App.Base.AppGeneralInfo.TemplateConveter">
             <summary>
-            Converter
+            Language converter
             </summary>
         </member>
         <member name="T:TAP.App.Base.ConsoleBase">
             <summary>
-            This is console Base Class.
+            This class defines the base of console application.
             </summary>
         </member>
         <member name="F:TAP.App.Base.ConsoleBase.COMMAND_QUIT">
@@ -114,7 +114,7 @@
         </member>
         <member name="M:TAP.App.Base.ConsoleBase.WriteLog(System.String,System.String)">
             <summary>
-            This method saves log
+            This method writes a log. 
             </summary>
             <param name="logType">Log type</param>
             <param name="message">Log message</param>
