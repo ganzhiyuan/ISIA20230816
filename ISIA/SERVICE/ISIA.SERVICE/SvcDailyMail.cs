@@ -18,6 +18,7 @@ namespace ISIA.SERVICE
         protected override void StartMainProcess(SystemBasicDefaultInfo defaultInfo)
         {
             SendDailyMail();
+            //test
         }
         private void SendDailyMail()
         {

@@ -331,9 +331,9 @@ namespace ISIA.UI.ADMINISTRATOE
             try
             {
                 this.cboFab.changeUpdateStatus(true);
-                this.cboFab2.changeUpdateStatus(true);
+                //this.cboFab2.changeUpdateStatus(true);
                 this.cboLine.changeUpdateStatus(true);
-                this.cboLine2.changeUpdateStatus(true);
+                //this.cboLine2.changeUpdateStatus(true);
                
                 this.cboFab.Properties.Items.Clear();
                 this.cboLine.Properties.Items.Clear();

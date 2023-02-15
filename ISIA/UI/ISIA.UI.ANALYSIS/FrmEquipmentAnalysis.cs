@@ -98,7 +98,21 @@ namespace ISIA.UI.ANALYSIS
                 args.EndTime = ENDTIME;
                 args.DataBase = DATABASE;
                 args.ParameterName = PARAMETERNAME;
-                dataSet = bs.ExecuteDataSet("GetPara", args.getPack());
+
+                string daytime = radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
+                if (daytime == "day")
+                {
+                    dataSet = bs.ExecuteDataSet("GetDAYPara", args.getPack());//x轴横坐标值
+                }
+                else if (daytime == "hour")
+                {
+                    dataSet = bs.ExecuteDataSet("GetHOURPara", args.getPack());
+                }
+                else if (daytime == "min")
+                {
+                    dataSet = bs.ExecuteDataSet("GetPara", args.getPack());
+                }
+                
                 //
                 return dataSet;
             }
@@ -176,7 +190,7 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
-            string daytime =  radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
+            /*string daytime =  radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
             if (daytime == "day" )
             {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";//x轴横坐标值
@@ -188,9 +202,9 @@ namespace ISIA.UI.ANALYSIS
             else if (daytime == "min")
             {
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
-            }
+            }*/
             chart.Axes.Bottom.Labels.Angle = 1;
-            //chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+            chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             //line.Legend.Visible = true;
             //this.splitContainerControl1.Panel1.Controls.Add(chart);
@@ -210,15 +224,15 @@ namespace ISIA.UI.ANALYSIS
             };
             nearpoint.Pen.Color = Color.Red;*/
             //nearpoint.Pen.Visible = false;
-            //line.Pointer.Style = PointerStyles.Circle;
-            //line.Pointer.Visible = true;
+            line.Pointer.Style = PointerStyles.Circle;
+            line.Pointer.Visible = true;
             //line.Pointer.HorizSize = 120;
 
             //line.ClickPointer += Line_ClickPointer;
             line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMETER :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "VALUE :" + $"{ dstable.Rows[e.ValueIndex]["BEGIN_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMETER :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["BEGIN_INTERVAL_TIME"]}";
             }
             line.DataSource = dstable;
             line.YValues.DataMember = "VALUE";
@@ -293,8 +307,11 @@ namespace ISIA.UI.ANALYSIS
         public void GridViewDataBinding()
         {
             gridControl1.DataSource = null;
-            gridView1.Columns.Clear();
+            //gridView1.Columns.Clear();
+            
             gridControl1.DataSource = dataSet.Tables[0];
+
+            
         }
 
 
@@ -1068,10 +1085,20 @@ namespace ISIA.UI.ANALYSIS
 
         public void GridViewStyle(GridView gridView)
         {
-            gridView1.OptionsBehavior.Editable = false;
+            /*gridView1.OptionsBehavior.Editable = false;
 
             gridView1.OptionsView.ColumnAutoWidth = false;
+
+            gridView1.BestFitColumns();*/
+
+
+            //gridView1.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            //gridView1.OptionsSelection.MultiSelect = true;
+            //gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            //gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             
+            gridView1.OptionsBehavior.Editable = true;
+            gridView1.OptionsView.ColumnAutoWidth = false;
             gridView1.BestFitColumns();
 
         }

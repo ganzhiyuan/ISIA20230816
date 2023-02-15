@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
-            Steema.TeeChart.Margins margins3 = new Steema.TeeChart.Margins();
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -80,6 +80,9 @@
             this.cursorTool1 = new Steema.TeeChart.Tools.CursorTool();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -766,6 +769,10 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -775,7 +782,7 @@
             this.xtraTabPage2.Controls.Add(this.tChart1);
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(961, 251);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1052, 277);
             this.xtraTabPage2.Text = "TOP 10 Chart";
             // 
             // tChart1
@@ -1696,12 +1703,12 @@
             // 
             // 
             // 
-            margins3.Bottom = 100;
-            margins3.Left = 100;
-            margins3.Right = 100;
-            margins3.Top = 100;
-            this.tChart1.Printer.Margins = margins3;
-            this.tChart1.Size = new System.Drawing.Size(961, 251);
+            margins1.Bottom = 100;
+            margins1.Left = 100;
+            margins1.Right = 100;
+            margins1.Top = 100;
+            this.tChart1.Printer.Margins = margins1;
+            this.tChart1.Size = new System.Drawing.Size(1052, 277);
             // 
             // 
             // 
@@ -1948,7 +1955,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.tChart2);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(961, 251);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1052, 277);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // tChart2
@@ -2867,14 +2874,14 @@
             // 
             // 
             // 
-            margins1.Bottom = 100;
-            margins1.Left = 100;
-            margins1.Right = 100;
-            margins1.Top = 100;
-            this.tChart2.Printer.Margins = margins1;
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChart2.Printer.Margins = margins2;
             this.tChart2.Series.Add(this.line1);
             this.tChart2.Series.Add(this.line2);
-            this.tChart2.Size = new System.Drawing.Size(961, 251);
+            this.tChart2.Size = new System.Drawing.Size(1052, 277);
             // 
             // 
             // 
@@ -3522,6 +3529,38 @@
             this.editChartToolStripMenuItem.Text = "Edit Chart";
             this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "STAT_NAME";
+            this.gridColumn1.FieldName = "STAT_NAME";
+            this.gridColumn1.MinWidth = 25;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 94;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "VALUE";
+            this.gridColumn2.FieldName = "VALUE";
+            this.gridColumn2.MinWidth = 25;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 94;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "BEGIN_INTERVAL_TIME";
+            this.gridColumn3.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumn3.FieldName = "BEGIN_INTERVAL_TIME";
+            this.gridColumn3.MinWidth = 25;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 94;
+            // 
             // FrmEquipmentAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -3634,5 +3673,8 @@
         private Steema.TeeChart.Tools.MarksTip marksTip1;
         private Steema.TeeChart.Tools.NearestPoint nearestPoint1;
         private Steema.TeeChart.Tools.CursorTool cursorTool1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }
