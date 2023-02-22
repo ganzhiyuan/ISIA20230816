@@ -27,6 +27,31 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _GroupingDateFormat;
 
+        private static List<string> _WorkloadParamNamesList =new List<string>();
+
+        static AwrArgsPack()
+        {
+            WorkloadParamNamesList.Add("CPU_Util_pct");
+            WorkloadParamNamesList.Add("CPU_Util_pct_max");
+            WorkloadParamNamesList.Add("LOGICAL_READS_PSEC");
+            WorkloadParamNamesList.Add("PHYSICAL_READS_PSEC");
+            WorkloadParamNamesList.Add("Physical_Writes_psec");
+            WorkloadParamNamesList.Add("Execs_psec_avg");
+            WorkloadParamNamesList.Add("Execs_psec_max");
+            WorkloadParamNamesList.Add("USER_CALLS_PSEC");
+            WorkloadParamNamesList.Add("Execs_psec_max");
+            WorkloadParamNamesList.Add("USER_CALLS_PSEC");
+            WorkloadParamNamesList.Add("Hard_Parse_Cnt_psec");
+            WorkloadParamNamesList.Add("DB_BLOCK_CHANGES_PSEC");
+            WorkloadParamNamesList.Add("SQL_Service_Response_Time");
+            WorkloadParamNamesList.Add("Commit_psec_avg");
+            WorkloadParamNamesList.Add("Redo_mb_psec_avg");
+            WorkloadParamNamesList.Add("DLM_MB_psec");
+            WorkloadParamNamesList.Add("NET_MB_To_Client_psec");
+            WorkloadParamNamesList.Add("NET_MB_From_Client_psec");
+            WorkloadParamNamesList.Add("NET_MB_From_DBLink_psec");
+            WorkloadParamNamesList.Add("NET_MB_To_DBLink_psec");
+        }
 
         public string ParamType
         {
@@ -105,6 +130,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _GroupingDateFormat = value;
+            }
+        }
+
+        public static List<string> WorkloadParamNamesList
+        {
+            get
+            {
+                return _WorkloadParamNamesList;
+            }
+
+            set
+            {
+                _WorkloadParamNamesList = value;
             }
         }
 

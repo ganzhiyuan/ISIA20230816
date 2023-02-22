@@ -53,10 +53,11 @@ namespace UIHelper
 
         }
 
-
+        public virtual void RunAsync()
+        {
+           
+        }
       
-
-     
 
         public void Run()
         {
