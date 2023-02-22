@@ -150,6 +150,12 @@
     <Compile Include="HeatMapUtils\CorrelationExecuter.cs" />
     <Compile Include="HeatMapUtils\IExecuter.cs" />
     <Compile Include="HeatMapUtils\ParmPairs.cs" />
+    <Compile Include="FrmWorkloadAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkloadAnalysis.designer.cs">
+      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIService\CommonUIService.cs" />
     <Compile Include="UIService\IInitService.cs" />
@@ -159,6 +165,8 @@
     <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationComboxParmTypeUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\SerchUiService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmWorkload\InitializationUIService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmWorkload\SearchUiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
@@ -172,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEquipmentAnalysis.resx">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
+      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
@@ -190,6 +201,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ISIA.UI.ANALYSIS.csproj.bak" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

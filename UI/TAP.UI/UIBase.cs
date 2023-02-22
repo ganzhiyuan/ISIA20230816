@@ -321,6 +321,9 @@ namespace TAP.UI
                     picBookMark.Image = Properties.Resources.destar16;
             }
         }
+
+        public Type ServiceType { get => _serviceType; set => _serviceType = value; }
+        public object ServiceObj { get => _serviceObj; set => _serviceObj = value; }
         #endregion
 
         #region Delegate
@@ -3174,6 +3177,71 @@ namespace TAP.UI
             #endregion
         }
 
+        private Type _serviceType = null;
+        private object _serviceObj = null;
+        public void BeginAsyncCallByType(string asyncMethod, string callBackMethod, EnumDataObject dataObject, Type serviceType, object obj, params object[] parameters)
+        {
+            #region Begin AsyncCall
+
+            this._dataObject = dataObject;
+
+            if (!this._isBusy)
+            {
+                this._asyncParameters = parameters;
+                this._isBackGroundCall = true;
+                this._asyncMethod = asyncMethod;
+                this._callBackMethod = callBackMethod;
+
+                #region Store Data for Undo
+
+                //Store data for Undo
+                //if (_1ststepParamvalues != string.Empty && _1ststepStorevalues != string.Empty)
+                //{
+                //    _2ndstepParamvalues = _1ststepParamvalues;
+                //    _2ndstepStorevalues = _1ststepStorevalues;
+                //}
+
+                //List<IParamAvailable> lstParams
+                //    = ((IParamAvailableControlAgent)_frmAgent.ControlAgents[typeof(IParamAvailable)])._paramControls;
+                //Dictionary<string, object> dicParams = new Dictionary<string, object>();
+                //foreach (IParamAvailable prmt in lstParams)
+                //{
+                //    if (prmt.ParamName != string.Empty)
+                //    {
+                //        string key = prmt.SubParamName != string.Empty
+                //            ? string.Format("{0}.{1}", prmt.ParamName, prmt.SubParamName) : prmt.ParamName;
+
+                //        if (!dicParams.ContainsKey(key))
+                //            dicParams.Add(key, prmt.ParamValue);
+                //    }
+                //}
+
+                //_1ststepParamvalues = Utility.ToXMLString(dicParams);
+                //_1ststepStorevalues = Utility.ToXMLString(_frmAgent.GetStoreControlValues());
+
+                #endregion
+
+                //Show progress
+                Thread tmpThread = new Thread(new ThreadStart(this.StartProgress));
+                tmpThread.Start();
+
+                //Set process time
+                this._processStartTime = DateTime.Now;
+
+                string tmpExecuteMsg = tmpExecuteMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXECUTE, EnumGeneralTemplateType.ING, "Command");
+                this.SetWorkStatus(EnumMsgType.INFORMATION, tmpExecuteMsg);
+
+                this._isBusy = true;
+                ServiceType = serviceType;
+                ServiceObj = obj;
+                this._workThread = new Thread(new ThreadStart(BeginTaskByType));
+                this._workThread.IsBackground = true;
+                this._workThread.Start();
+            }
+
+            #endregion
+        }
+
         private void BeginTask()
         {
             #region Begin Task
@@ -3216,6 +3284,60 @@ namespace TAP.UI
                 //this._asyncEnd = true;
 
                 string tmpErrorMsg = _translator.ConvertGeneralTemplate( EnumVerbs.EXECUTE, EnumGeneralTemplateType.FAIL, "Command");
+
+                this.SetWorkStatus(EnumMsgType.INFORMATION, tmpErrorMsg);
+                MessageBox.Show(ex.ToString());
+            }
+
+            #endregion
+        }
+
+        private void BeginTaskByType()
+        {
+            #region Begin Task
+
+            MethodInfo tmpMethod = null;
+
+            try
+            {
+                tmpMethod = ServiceType.GetMethod(_asyncMethod);
+
+                if (tmpMethod == null)
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "<" + _asyncMethod + ">");
+                    throw new Exception(string.Format(tmpMsg, _asyncMethod));
+                }
+
+                //_asyncEnd = false;
+
+                switch (this._dataObject)
+                {
+                    case EnumDataObject.MODELSET: this._modelSet = (Models.ModelSet)tmpMethod.Invoke(ServiceObj, _asyncParameters); break;
+                    case EnumDataObject.MODELLIST: this._modelList = (List<Models.Model>)tmpMethod.Invoke(ServiceObj, _asyncParameters); break;
+                    case EnumDataObject.DATASET: this._dataSet = (DataSet)tmpMethod.Invoke(ServiceObj, _asyncParameters); break;
+                    case EnumDataObject.STRING: this._resultString = (string)tmpMethod.Invoke(ServiceObj, _asyncParameters); break;
+                    case EnumDataObject.NONE: tmpMethod.Invoke(ServiceObj, _asyncParameters); break;
+                }
+
+                this._asyncParameters = null;
+
+                this.SetUIDataByType();
+                // _asyncEnd = true;
+            }
+            catch (ThreadAbortException te)
+            {
+                this._isBusy = false;
+
+                string tmpTe = te.ToString();
+            }
+            catch (System.Exception ex)
+            {
+                this._isBusy = false;
+
+                this.EndProgressBar();
+                //this._asyncEnd = true;
+
+                string tmpErrorMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXECUTE, EnumGeneralTemplateType.FAIL, "Command");
 
                 this.SetWorkStatus(EnumMsgType.INFORMATION, tmpErrorMsg);
                 MessageBox.Show(ex.ToString());
@@ -3331,6 +3453,129 @@ namespace TAP.UI
                 }
                 catch (System.Exception ex)
                 {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    this._modelSet = null;
+                    this._modelList = null;
+                    this._dataSet = null;
+                    this.EndProgressBar();
+                    this._isBackGroundCall = false;
+                }
+            }
+
+            #endregion
+        }
+
+        private void SetUIDataByType()
+        {
+            #region Set UI Data
+
+            string tmpResultCount = string.Empty;
+            string tmpResultTime = string.Empty;
+            string tmpResultText = string.Empty;
+
+            if (this.InvokeRequired)
+                this.Invoke(new SetUIDelegate(SetUIDataByType), null);
+            else
+            {
+                try
+                {
+                    MethodInfo tmpMethod = ServiceType.GetMethod(_callBackMethod);
+
+                    #region Ending Async
+
+                    if (tmpMethod == null)
+                    {
+                        string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "<" + _callBackMethod + ">");
+                        throw new Exception(string.Format(tmpMsg, _callBackMethod));
+                    }
+
+                    string tmpElapsedTime = Base.DateTimes.DateTimeBase.Instance.GetTimeLagByString(this._processStartTime, DateTime.Now);
+
+                    if (TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.UILogging == true)
+                        this.SaveUIUsageLog();
+
+                    this._processStartTime = DateTime.MinValue;
+
+                    tmpResultCount = " {0:#,##0} objects";
+                    tmpResultTime = string.Format(" Elapsed Time: {0}", tmpElapsedTime);
+
+                    switch (this._dataObject)
+                    {
+                        case EnumDataObject.MODELSET:
+                            tmpResultCount = _modelSet != null && _modelSet.Count > 0 ? string.Format(tmpResultCount, _modelSet.Count) : string.Empty;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
+                        case EnumDataObject.MODELLIST:
+                            tmpResultCount = _modelList != null && _modelList.Count > 0 ? string.Format(tmpResultCount, _modelList.Count) : string.Empty;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
+                        case EnumDataObject.DATASET:
+                            tmpResultCount = _dataSet != null && _dataSet.Tables[0].Rows.Count > 0 ? string.Format(tmpResultCount, _dataSet.Tables[0].Rows.Count) : string.Empty;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
+                        case EnumDataObject.STRING:
+                            tmpResultCount = _resultString != null && _resultString.Length > 0 ? string.Format(tmpResultCount, _resultString.Length) : string.Empty;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
+                        case EnumDataObject.NONE:
+                            tmpResultText = string.Format(" ElapsedTime : {0}", tmpElapsedTime);
+                            break;
+                    }
+
+                    tmpResultText = tmpResultCount;
+                    tmpResultText += ", ";
+                    tmpResultText += _converter.ConvertPhrase(tmpResultTime);
+
+                    #endregion
+
+                    //Call Displaying Method
+                    switch (this._dataObject)
+                    {
+                        case EnumDataObject.MODELSET: tmpMethod.Invoke(ServiceObj, new object[] { this._modelSet }); break;
+                        case EnumDataObject.MODELLIST: tmpMethod.Invoke(ServiceObj, new object[] { this._modelList }); break;
+                        case EnumDataObject.DATASET: tmpMethod.Invoke(ServiceObj, new object[] { this._dataSet }); break;
+                        case EnumDataObject.STRING: tmpMethod.Invoke(ServiceObj, new object[] { this._resultString }); break;
+                        case EnumDataObject.NONE: tmpMethod.Invoke(ServiceObj, null); break;
+                    }
+
+                    this.SetWorkStatus(EnumMsgType.INFORMATION, tmpResultText);
+
+                    this._isBusy = false;
+
+                    #region For Future
+
+                    #region ### Update Default values ###
+                    // KWON: DB에 있는 Default항목 정의에 따라 변경되도록(즉 코드 수정작업을 최소화도록) 수정할 것
+                    // SetDefaultValues - 실행이 끝난 다음 지정된 값을 Default로 변경작업 처리한다.
+                    //if (DefaultOptions.Options != null)
+                    //{
+                    //    List<IParamAvailable> list
+                    //        = ((IParamAvailableControlAgent)_frmAgent.ControlAgents[typeof(IParamAvailable)])._paramControls;
+                    //    for (int i = 0; i < list.Count; i++)
+                    //    {
+                    //        if (DefaultOptions.Contains(list[i].ParamName))
+                    //        {
+                    //            Linkage.LinkageAgent.DefaultSet(list[i].ParamName, list[i].ParamValue);
+                    //        }
+                    //    }
+                    //}
+                    #endregion
+
+                    // Chart생성을 위한 Mode인 경우 Chart를 여기서 생성한다.
+                    //if (_isServiceMode)
+                    //{
+                    //    if (_ds != null && _ds.Tables.Count > 0)
+                    //    {
+                    //        ((IChartControlAgent)_frmAgent.ControlAgents[typeof(IChart)]).Save(_chartSize.Width, _chartSize.Height, _chartFileName);
+                    //    }
+                    //}
+
+                    #endregion
+
+                    return;
+                }
+                catch (System.Exception ex)
+                {
+                    this._isBusy = false;
                     MessageBox.Show(ex.ToString());
                 }
                 finally
