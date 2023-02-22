@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CorrelationAnalysis.cs" />
     <Compile Include="OrclParmsTrendChart.cs" />
     <Compile Include="EquipmentAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
