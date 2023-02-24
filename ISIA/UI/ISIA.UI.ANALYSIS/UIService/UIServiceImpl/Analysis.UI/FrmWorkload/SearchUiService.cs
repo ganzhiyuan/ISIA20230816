@@ -37,25 +37,21 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
 
             if (startDateTime > endDateTime)
             {
-                EventArgPack.StartTime = endDateTime.ToString("yyyyMMdd");
-                EventArgPack.EndTime = startDateTime.ToString("yyyyMMdd");
+                EventArgPack.StartTime = endDateTime.ToString("yyyyMMddHHmmss");
+                EventArgPack.EndTime = startDateTime.ToString("yyyyMMddHHmmss");
 
             }
-            EventArgPack.StartTime = startDateTime.ToString("yyyyMMdd");
-            EventArgPack.EndTime = endDateTime.ToString("yyyyMMdd");
+            EventArgPack.StartTime = startDateTime.ToString("yyyyMMddHHmmss");
+            EventArgPack.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
             EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
             //xasix_interval check
             if (frm.checkEditHour.Checked)
             {
-                EventArgPack.StartTime = EventArgPack.StartTime + "00";
-                EventArgPack.EndTime = EventArgPack.EndTime + "23";
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
             }
             else if (frm.checkEditMin.Checked)
             {
-                EventArgPack.StartTime = EventArgPack.StartTime + "000";
-                EventArgPack.EndTime = EventArgPack.EndTime + "235";
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
 

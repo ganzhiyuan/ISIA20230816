@@ -128,7 +128,7 @@ namespace ISIA.BIZ.ANALYSIS
                     "AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER\r\n" +
                     "AND sm.snap_id = sn.snap_id\r\n" +
                     "AND sn.INSTANCE_NUMBER IN (1) --<< 조회 대상 instance number 입력\r\n" +
-                    "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, '{0}') BETWEEN '{1}'\r\n" +
+                    "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}'\r\n" +
                     "AND '{2}' --<< 조회 기간 입력\r\n" +
                     ")\r\n" +
                     "s\r\n" +
@@ -299,7 +299,7 @@ namespace ISIA.BIZ.ANALYSIS
                     "AND ss.snap_id = sn.snap_id\r\n" +
                     "AND sn.INSTANCE_NUMBER IN (1) --<< 조회 대상 instance number 입력))\r\n" +
                     "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME,\r\n" +
-                    "'{0}') BETWEEN '{1}'\r\n" +
+                    "'yyyyMMddHH24miss') BETWEEN '{1}'\r\n" +
                     "AND '{2}' --<< 조회 기간 입력\r\n" +
                     ")\r\n" +
                     "WHERE 1 = 1\r\n" +
