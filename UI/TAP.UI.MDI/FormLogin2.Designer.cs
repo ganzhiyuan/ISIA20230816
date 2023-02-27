@@ -208,7 +208,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::TAP.UI.MDI.Properties.Resources.ISEM;
+            this.pictureBox1.Image = global::TAP.UI.MDI.Properties.Resources.ISIA;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(300, 68);
@@ -236,7 +236,7 @@
             this.textBoxPassword.NeedToTranslate = false;
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.RepresentativeValue = "";
-            this.textBoxPassword.Size = new System.Drawing.Size(240, 21);
+            this.textBoxPassword.Size = new System.Drawing.Size(240, 24);
             this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.Enter_Downed += new TAP.UIControls.BasicControls.TTextBox.Enter_Down(this.textBoxPassword_Enter_Downed);
             // 
@@ -247,7 +247,7 @@
             this.label4.ForeColor = System.Drawing.Color.Lavender;
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(66, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "Password";
             // 
@@ -273,7 +273,7 @@
             this.textBoxUserID.Name = "textBoxUserID";
             this.textBoxUserID.NeedToTranslate = false;
             this.textBoxUserID.RepresentativeValue = "";
-            this.textBoxUserID.Size = new System.Drawing.Size(240, 21);
+            this.textBoxUserID.Size = new System.Drawing.Size(240, 24);
             this.textBoxUserID.TabIndex = 2;
             this.textBoxUserID.Enter_Downed += new TAP.UIControls.BasicControls.TTextBox.Enter_Down(this.textBoxUserID_Enter_Downed);
             // 
@@ -284,7 +284,7 @@
             this.label3.ForeColor = System.Drawing.Color.Lavender;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 1;
             this.label3.Text = "User ID";
             // 
@@ -314,7 +314,7 @@
             this.comboBoxFacility.Name = "comboBoxFacility";
             this.comboBoxFacility.NeedToTranslate = true;
             this.comboBoxFacility.RepresentativeValue = null;
-            this.comboBoxFacility.Size = new System.Drawing.Size(240, 21);
+            this.comboBoxFacility.Size = new System.Drawing.Size(240, 25);
             this.comboBoxFacility.TabIndex = 2;
             // 
             // label2
@@ -324,7 +324,7 @@
             this.label2.ForeColor = System.Drawing.Color.Lavender;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(55, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Factory";
             // 
@@ -354,7 +354,7 @@
             this.comboBoxRegion.Name = "comboBoxRegion";
             this.comboBoxRegion.NeedToTranslate = true;
             this.comboBoxRegion.RepresentativeValue = null;
-            this.comboBoxRegion.Size = new System.Drawing.Size(240, 21);
+            this.comboBoxRegion.Size = new System.Drawing.Size(240, 25);
             this.comboBoxRegion.TabIndex = 1;
             this.comboBoxRegion.Visible = false;
             this.comboBoxRegion.SelectedIndexChanged += new System.EventHandler(this.comboBoxRegion_SelectedIndexChanged);
@@ -367,14 +367,14 @@
             this.label1.ForeColor = System.Drawing.Color.Lavender;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(50, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Region";
             this.label1.Visible = false;
             // 
             // FormLogin2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(64)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(404, 200);

@@ -279,17 +279,12 @@ namespace ISIA.UI.ANALYSIS
                         dt1.Rows.Remove(dt1.Rows[i]);
                     }
                 }
-            
             }
-
             void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
             {
                 //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
                 e.MarkText = "NAME :"+$"{dt1.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt1.Rows[e.ValueIndex]["NUM"]}";
-                
-
             }
-            
             bar.ColorEach = true;
             bar.DataSource = dt1;
             bar.YValues.DataMember = "NUM";
@@ -297,9 +292,6 @@ namespace ISIA.UI.ANALYSIS
             bar.LabelMember = "Name";
             bar.Marks.Visible = false;
             bar.GetSeriesMark += Bar_GetSeriesMark;
-            
-            
-            
             return;
         }
 

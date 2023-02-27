@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3085824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3089408">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>n2IX88ZZGDDE25KbrAsylgbdQNEQ6aLyXoXuGZnfJ0E=</dsig:DigestValue>
+        <dsig:DigestValue>shfiT2qRp3kF9+duv3Y1e7Avi9mItXKsnadPIlNdxuA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -573,13 +573,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11306">
+  <file name="ISIA.exe.config" size="11286">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+TWPjfLLuThyycstvjGhULZv03p+puLX+FiJg8z0VSQ=</dsig:DigestValue>
+      <dsig:DigestValue>ZCa88Khg0n7afHWy6AgyIaT+/E1SERq7kIDdBiUtT7Y=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">
