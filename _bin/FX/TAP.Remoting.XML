@@ -6,87 +6,74 @@
     <members>
         <member name="T:TAP.Remoting.Admin.IAdminRemote">
             <summary>
-            This interface is for remote administrator.<br></br>
-            관리 리모트의 인터페이스입니다. 
+            This interface is for remoting administrator.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Admin.IAdminRemote.Notify(TAP.Remoting.Admin.NotifyMessage)">
             <summary>
-            This method post up administrator's message.<br></br>
-            관리자 메시지를 게시합니다. 
+            This method post up administrator's message.
             </summary>
             <param name="message">Administrator's message</param>
         </member>
         <member name="T:TAP.Remoting.Admin.NotifyArgument">
             <summary>
-            This class is provides arguments of administrator's message.<br></br>
-            관리자메시지 매개변수를 제공하는 클래스입니다. 
+            This class provides arguments of administrator's message.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Admin.NotifyArgument.NotifyType">
             <summary>
-            Type of administrator's message<br></br>
-            관리자메시지의 타입
+            Type of administrator's message
             </summary>
         </member>
         <member name="F:TAP.Remoting.Admin.NotifyArgument.NotifyInfo">
             <summary>
-            Contents of administrator's message<br></br>
-            관리자메시지 내용
+            Contents of administrator's message
             </summary>
         </member>
         <member name="M:TAP.Remoting.Admin.NotifyArgument.#ctor">
             <summary>
-            This is creates instance of NotifyArgument.<br></br>
-            NotifyArgument개체의 인스턴스를  생성합니다. 
+            This creates instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Admin.NotifyArgument.#ctor(TAP.Remoting.EnumNotifyTypes,System.String)">
             <summary>
-            This is creates instance of NotifyArgument.<br></br>
-            NotifyArgument개체의 인스턴스를  생성합니다. 
+            This creates instance of this class.
             </summary>
             <param name="notifyType">Type of administrator's message</param>
             <param name="notifyInfo">Contents of administrator's message</param>
         </member>
         <member name="M:TAP.Remoting.Admin.NotifyArgument.SetData(TAP.Remoting.EnumNotifyTypes,System.String)">
             <summary>
-            This method sets type and information of arguments.<br></br>
-            매개변수의 타입 및 정보를 설정합니다. 
+            This method sets type and information of arguments.
             </summary>
             <param name="notifyType">Type of administrator's message</param>
             <param name="notifyInfo">Contents of administrator's message</param>
         </member>
         <member name="T:TAP.Remoting.Admin.NotifyArgumentCollection">
             <summary>
-            This class is collection of administrator's message arugments.<br></br>
-            관리자 메시지 매개변수 컬렉션 클래스입니다. 
+            This class is collection of administrator's message arugments.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Admin.NotifyArgumentCollection.Item(System.Int32)">
             <summary>
-            Argument indicated by index<br></br>
-            인덱스가 지정하는 매개변수개체
+            Argument accessor
             </summary>
             <param name="i">Index</param>
-            <returns>Administrator's message arugments</returns>
+            <returns>Specified arugment</returns>
         </member>
         <member name="P:TAP.Remoting.Admin.NotifyArgumentCollection.NewNotifyParameter">
             <summary>
-            This property append empty argument.<br></br>
-            비어있는 매개변수를 추가합니다.  
+            This property appends empty argument.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Admin.NotifyArgumentCollection.Count">
             <summary>
-            Number of arguments<br></br>
-            매개변수의 개수
+            Number of arguments.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Admin.NotifyArgumentCollection.#ctor">
             <summary>
-            This creates instance of NotifyArgumentCollection.<br></br>
-            NotifyArgumentCollection개체의 인스턴스를 생성합니다.
+            This creates instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Admin.NotifyMessage">
@@ -139,7 +126,7 @@
         </member>
         <member name="T:TAP.Remoting.Caller.CallerInfo">
             <summary>
-            This class is caller's information class.
+            This class is caller's information.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Caller.CallerInfo.FunctionName">
@@ -169,7 +156,7 @@
         </member>
         <member name="T:TAP.Remoting.Data.SPContainer">
             <summary>
-            This class is information container for calling stored predure
+            This class defines information container for calling stored predure
             </summary>
         </member>
         <member name="P:TAP.Remoting.Data.SPContainer.RequesterIP">
@@ -199,14 +186,12 @@
         </member>
         <member name="M:TAP.Remoting.Data.SPContainer.#ctor">
             <summary>
-            This creates instance of SPContainer.<br></br>
-            SPContainer개체의 인스턴스를 생성합니다. 
+            This creates instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Data.TinyDc">
             <summary>
-            This class saves data of result set.<br></br>
-            결과셋의 데이터를 저장하고 있는 클래스입니다. 
+            This class is data container for result.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Data.TinyDc._TYPE_SEPERATOR">
@@ -241,19 +226,19 @@
         </member>
         <member name="M:TAP.Remoting.Data.TinyDc.#ctor">
             <summary>
-            This creates instance of TinyDc.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDc.Item(System.Int32)">
             <summary>
-            This property returns data table indicated by index.
+            Datatable accessor
             </summary>
             <param name="index">Index</param>
             <returns>Data table indicated by index</returns>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDc.TableCount">
             <summary>
-            Number of data table in result set
+            Number of data tables
             </summary>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDc.AddTable(System.Data.DataTable)">
@@ -282,80 +267,68 @@
         </member>
         <member name="T:TAP.Remoting.Data.TinyDs">
             <summary>
-            This class is virtual data set for result set.<br></br>
-            결과셋에 포함될 가상데이터셋 클래스입니다.
+            This class is data set for result.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDs.Item(System.Int32)">
             <summary>
-            This property returns data table indicated by index.<br></br>
-            지정된 인덱스의 DataTable을 가져옵니다. 
+            Datatable accessor
             </summary>
             <param name="index">Index</param>
             <returns>Data table indicatedy by index</returns>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDs.TableCount">
             <summary>
-            Number of virtual data table in virtual dataset<br></br>
-            가상 데이터셋내의 가상테이블의 개수
+            Number of virtual data tables
             </summary>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDs.#ctor">
             <summary>
-            This creates instance of TinyDs.<br></br>
-            TinyDs 개체의 인스턴스를 생성합니다. 
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDs.ToString">
             <summary>
-            This method id overriding of ToString().<br></br>
-            ToString()의 오버라이드입니다. 
+            This method id overriding of ToString().
             </summary>
             <returns>Numer of virtual data table in virtual data set</returns>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDs.AddTable(System.Data.DataTable)">
             <summary>
-            This method adds Datatable.<br></br>
-            DataTable을 추가합니다.  
+            This method adds Datatable.
             </summary>
             <param name="dataTable">DataTable</param>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDs.AddTable(System.Data.IDataReader)">
             <summary>
-            This mehtod adds DataReader.<br></br>
-            DataReader를 추가합니다. 
+            This mehtod adds DataReader.
             </summary>
             <param name="dataReader">DataReader</param>
         </member>
         <member name="T:TAP.Remoting.Data.TinyDt">
             <summary>
-            This class is virtual data table for virtual data set.<br></br>
-            가상 데이터셋에 포함될 가상데이터테이블 클래스입니다.
+            This class is data table for result.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDt.TableName">
             <summary>
-            Datatable name<br></br>
-            데이터테이블의 이름
+            Data table name
             </summary>
         </member>
         <member name="P:TAP.Remoting.Data.TinyDt.TableSize">
             <summary>
-            Datatable size<br></br>
-            테이블의 크기
+            Size of data table
             </summary>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDt.#ctor(System.Data.DataTable)">
             <summary>
-            This creates instance of TinyDt.<br></br>
-            TinyDt개체의 인스턴스를 생성합니다. 
+            This creates the instance of this class.
             </summary>
             <param name="table">DataTable for virtualization</param>
         </member>
         <member name="M:TAP.Remoting.Data.TinyDt.#ctor(System.Data.IDataReader)">
             <summary>
-            This creates instance of TinyDt.<br></br>
-            TinyDt개체의 인스턴스를 생성합니다. 
+            This creates the instance of this class.
             </summary>
             <param name="reader">DataReader for virtualization</param>
         </member>
@@ -411,8 +384,7 @@
         </member>
         <member name="T:TAP.Remoting.EnumNotifyTypes">
             <summary>
-            This enumeratior is type of notify.<br></br>
-            공지 메시지의 타입목록입니다.
+            This enumeratior is type of notify.
             </summary>
         </member>
         <member name="F:TAP.Remoting.EnumNotifyTypes.UNKNOWN">
@@ -427,32 +399,32 @@
         </member>
         <member name="T:TAP.Remoting.Messages.RequesterInfo">
             <summary>
-            This class represents remote requester.
+            This class defines remote requester.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.Name">
             <summary>
-            Requester who requests remote
+            Requester name
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.IP">
             <summary>
-            Requester's client IP address
+            IP address of requester
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.FunctionName">
             <summary>
-            Transporting working-UI
+            Function name of requester
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.MDIName">
             <summary>
-            Identificator of Requester's MDI
+            MDI name of requester
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.ClientPort">
             <summary>
-            TCP/IP port that receives WorkingState message from application server
+            TCP/IP port that receives WorkingState message from server
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RequesterInfo.CommandName">
@@ -462,23 +434,20 @@
         </member>
         <member name="T:TAP.Remoting.Messages.MessageTypeConverter">
             <summary>
-            This class provides converter that supports converting obect to string and reverse converting.<br></br>
-            개체를 문자열로 컨버팅하거나 문자열로 컨버팅된 개체를 원시 타입으로 컨버팅하는 메서드를 제공하는 클래스입니다.  
+            This class provides encoding and decdding for remoting object.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Messages.MessageTypeConverter.ConvertToOriginValue(System.String,System.String)">
             <summary>
-            This method re-converts stirng to original typed-value.<br></br>
-            문자열로 컨버팅되어 있는 값을 원시 타입의 값으로 컨버팅합니다. 
+            This method decodes remoting object to original object.
             </summary>
-            <param name="type">Type string</param>
-            <param name="value">Value string</param>
+            <param name="type">Type of remoting object</param>
+            <param name="value">Value of remoting object</param>
             <returns>Original typed-value</returns>
         </member>
         <member name="M:TAP.Remoting.Messages.MessageTypeConverter.FindArgument(TAP.ArgumentPack,System.String)">
             <summary>
-            This method finds argument object matched with method signature in argument list.<br></br>
-            매개변수 목록에서 서비스 메서드의 시그너쳐와 일치하는 매개변수 개체를 찾습니다. 
+            This method finds method have same signature with specified ArgumentPack
             </summary>
             <param name="arguments">Argument list</param>
             <param name="methodArgumentName">Argument on service method signature</param>
@@ -486,16 +455,14 @@
         </member>
         <member name="M:TAP.Remoting.Messages.MessageTypeConverter.ConvertToOrignType(System.String)">
             <summary>
-            This method re-converts string to original type.<br></br>
-            문자열로되어 있는 타입을 원시 타입개체로 컨버팅합니다. 
+            This method converts string to original data type.
             </summary>
             <param name="typeName">Type string</param>
             <returns>Orignal type</returns>
         </member>
         <member name="T:TAP.Remoting.Messages.RemoteInfo">
             <summary>
-            This class is remote information.<br></br>
-            리모트 정보 클래스입니다. 
+            This class defines remote information.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Messages.RemoteInfo.TypeName">
@@ -535,7 +502,7 @@
         </member>
         <member name="M:TAP.Remoting.Messages.RemoteInfo.#ctor(System.String,System.String,System.String)">
             <summary>
-            This creates instance of RemoteInfo.
+            This creates the instance of this class.
             </summary>
             <param name="containterName">Assembly name</param>
             <param name="typeName">Type name</param>
@@ -543,7 +510,7 @@
         </member>
         <member name="M:TAP.Remoting.Messages.RemoteInfo.#ctor">
             <summary>
-            This creates instance of RemoteInfo.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Messages.NotifyResultMessage">
@@ -553,25 +520,22 @@
         </member>
         <member name="P:TAP.Remoting.Messages.NotifyResultMessage.Successd">
             <summary>
-            If "TRUE", request is succeed.<br></br>
-            요청사항의 성공/실패 여부
+            If "TRUE", request is succeed.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.NotifyResultMessage.ErrorInfo">
             <summary>
-            Error information when processing request is failed.<br></br>
-            요청처리가 정상적으로 이루어지지 않았을 경우의 오류정보
+            Error information when processing request is failed.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Messages.NotifyResultMessage.#ctor">
             <summary>
-            This creates instance of NotifyResultMessage.<br></br>
-            NotifyResultMessage 개체의 인스턴스를 생성합니다. 
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Messages.RequestMessage">
             <summary>
-            This class provides reuest message.
+            This class defines reuest message.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.RequestMessage.Requester">
@@ -601,7 +565,7 @@
         </member>
         <member name="M:TAP.Remoting.Messages.RequestMessage.#ctor">
             <summary>
-            This creates instance of RequestMessage.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Messages.RequestMessage.AddStoredProcedure(System.String,TAP.ArgumentPack)">
@@ -667,7 +631,7 @@
         </member>
         <member name="M:TAP.Remoting.Messages.RequestRemoteService.#ctor">
             <summary>
-            This creates instance of RequestRemote.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Messages.ResponseMessage">
@@ -677,7 +641,7 @@
         </member>
         <member name="M:TAP.Remoting.Messages.ResponseMessage.#ctor">
             <summary>
-            This creates instance of ResponseMessage.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseMessage.Success">
@@ -709,67 +673,59 @@
         </member>
         <member name="M:TAP.Remoting.Messages.ResponseMessage.GetRemote(System.String)">
             <summary>
-            This method finds remote inidicated by remote name.
+            This method finds remote object identified by remote name.
             </summary>
             <param name="remoteName">remote name</param>
             <returns>Remote inidicated by remote name</returns>
         </member>
         <member name="T:TAP.Remoting.Messages.ResponseResult">
             <summary>
-            This class includes result of processing.
+            This class defines response result.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseResult.VirtualDataSet">
             <summary>
-            Virtual dataset<br></br>
-             가상 데이터셋
+            Virtual dataset
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseResult.DataSet">
             <summary>
-            DataSet<br></br>
-            데이터셋
+            DataSe
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseResult.SerivceResults">
             <summary>
-            Result list that remote returned<br></br>
-            리모트가 반환한 결과 목록
+            Result list that remote object returned
             </summary>
         </member>
         <member name="M:TAP.Remoting.Messages.ResponseResult.#ctor">
             <summary>
-            This creates intance of ResponseResult.<br></br>
-            ResponseResult 개체의 인스턴스를 생성합니다.
+            This creates the intance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Messages.ResponseRemote">
             <summary>
-            This class represents response remote.
+            This class provides response service.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseRemote.RemoteInfos">
             <summary>
-            Remote list<br></br>
-            리모트 목록
+            Remote list
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseRemote.Results">
             <summary>
-            Processing result<br></br>
-            처리 결과
+            Processing result
             </summary>
         </member>
         <member name="P:TAP.Remoting.Messages.ResponseRemote.ResultArgumentList">
             <summary>
-            Result argument list<br></br>
-            결과 매개변수 목록
+            Result argument list
             </summary>
         </member>
         <member name="M:TAP.Remoting.Messages.ResponseRemote.#ctor">
             <summary>
-            This creates instance of ResponseRemote.<br></br>
-            ResponseRemote개체의 인스턴스를 생성합니다. 
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.RemotingLog">
@@ -803,151 +759,129 @@
             <param name="logType">Log type</param>
             <param name="clientIP">Client IP</param>
             <param name="mesasge">Message</param>
+            <param name="consoleOnly">If "TRUE", log does not save as file.</param>
         </member>
         <member name="T:TAP.Remoting.Remotes.IRemote">
             <summary>
-            This interface provides method that is used by client for calling remote object.<br></br>
-            리모트 호출을 위한 인터페이스입니다.
-            애플리케이션 서버의 리모트를 호출할 때 사용합니다. 
+            This interface provides method for client calls remote object.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Remotes.IRemote.Execute(TAP.Remoting.Messages.RequestMessage)">
             <summary>
-            This method calls remote.<br></br>
-            리모트를 호출합니다. 
+            This method calls remote.
             </summary>
             <param name="message">Request message</param>
             <returns>Reults as repsonse message</returns>
         </member>
         <member name="T:TAP.Remoting.Remotes.IRemoteManager">
             <summary>
-            This interface provides method for management remote listners.<br></br>
-            리모트 리스너관리를 위한 인터페이스입니다.
+            This interface provides method for management remote listners.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Remotes.IRemoteManager.GetRemotePolicy">
             <summary>
-            This method returns remote policy includes calling listener information.<br></br>
-            리스너에 대한 호출정보를 포함한 리모팅 정책을 반환합니다. 
+            This method returns remote policy includes calling listener information.
             </summary>
             <returns>Remote policy</returns>
         </member>
         <member name="M:TAP.Remoting.Remotes.IRemoteManager.Stop(System.Int32,System.String,System.DateTime)">
             <summary>
-            This method stops specified listener.<br></br>
-            특정 리스너를 중지시킵니다. 
+            This method stops specified listener.
             </summary>
             <param name="portNo">Port number</param>
             <param name="emergencyKey">Emergency key</param>
             <param name="requestTimeStamp">Requested time</param>
-            <returns>처리결과</returns>
+            <returns>Result of processing</returns>
         </member>
         <member name="T:TAP.Remoting.Remotes.RemoteServerInfo">
             <summary>
-            This class represents remote server information.<br></br>
-            리모트 서버정보 클래스입니다. 
+            This class defines remote server information.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemoteServerInfo.IP">
             <summary>
-            IP address of remote server<br></br>
-            리모트 서버의 IP 주소
+            IP address of remote server
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemoteServerInfo.Port">
             <summary>
-            Port for communication<br></br>
-            통신 포트
+            Port for communication
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemoteServerInfo.URI">
             <summary>
-            URI of remote server<br></br>
-            리모트 서버의 URI
+            URI of remote server
             </summary>
         </member>
         <member name="P:TAP.Remoting.Remotes.RemoteServerInfo.URL">
             <summary>
-            URL of remote server<br></br>
-            리모트서버의 URL
+            URL of remote server
             </summary>
         </member>
         <member name="M:TAP.Remoting.Remotes.RemoteServerInfo.#ctor">
             <summary>
-            This creates instance of RemoteServerInfo.<br></br>
+            This creates the instance of this class.
             RemoteServerInfo개체의 인스턴스를 생성합니다. 
             </summary>
         </member>
         <member name="T:TAP.Remoting.Remotes.RemotePolicy">
             <summary>
-            This class represents remote policy.<br></br>
-            리모트정책 클래스입니다.
+            This class defines remote policy.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.ExecuterServer">
             <summary>
-            Executer server information <br></br>
-            요청처리 서버 정보
+            Executer server information 
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.AdministartorServer">
             <summary>
-            Administrator server information<br></br>
-            관리서버정보
+            Administrator server information
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.RemoteURLList">
             <summary>
-            Listner URL list<br></br>
-            리스너의 URI 목록
+            Listner URL list
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.RemoteCount">
             <summary>
-            Number of listeners<br></br>
-            리스너의 개수
+            Number of listeners
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.MinRemoteCount">
             <summary>
-            Min number of remote service that permits for client<br></br>
-            클라이언트에 허용된 원격서비스의 최소 개수
+            Min number of remote service that permits for client
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.RetryCount">
             <summary>
-            Number of retry request when calling remote is falied<br></br>
-            원격서비스 호출에서 예외가 발생할 경우의 재호출 가능 횟수
+            Number of retry request when calling remote is falied
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.RetryInterval">
             <summary>
-            Interval of re-calling when request needs to retry<br></br>
-            원격 서비스를 재호출 할 경우, 이전 호출과 다음 호출간의 ms단위의 간격
+            Interval of re-calling when request needs to retry
             </summary>
         </member>
         <member name="F:TAP.Remoting.Remotes.RemotePolicy.StopKey">
             <summary>
-            Certification code for stopping remote service<br></br>
-            원격서비스 중지요청을 위한 인증코드입니다. 
+            Certification code for stopping remote service
             </summary>
         </member>
         <member name="M:TAP.Remoting.Remotes.RemotePolicy.#ctor">
             <summary>
-            This creates instance of RemotePolicy.<br></br>
-            RemotePolicy개체의 인스턴스를 생성합니다.
+            This creates instance of RemotePolicy.
             </summary>
         </member>
         <member name="T:TAP.Remoting.TAPRemotingException">
             <summary>
-            This is TAP Remote exception<br></br>
-            TAP 프레임워크의 리모트 예외 개체입니다. 
+            This is TAP Remote exception
             </summary>
         </member>
         <member name="M:TAP.Remoting.TAPRemotingException.#ctor(System.Reflection.MethodBase,System.Exception)">
             <summary>
-            This creates instance of TAPRemotingException.<br></br>
-            TAPRemotingException 개체의 인스턴스를 생성합니다. 
+            This creates instance of TAPRemotingException.
             </summary>
             <param name="methodName">Method information</param>
             <param name="ex">Instance of System.Exception</param>

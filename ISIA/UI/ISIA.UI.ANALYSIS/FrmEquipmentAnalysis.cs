@@ -24,6 +24,8 @@ using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using Series1 = DevExpress.XtraCharts.Series;
 using Series = Steema.TeeChart.Styles.Series;
+using EnumDataObject = TAP.UI.EnumDataObject;
+using EnumMsgType = TAP.UI.EnumMsgType;
 using Steema.TeeChart.Tools;
 
 namespace ISIA.UI.ANALYSIS

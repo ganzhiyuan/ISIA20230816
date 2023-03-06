@@ -276,8 +276,8 @@
         </member>
         <member name="P:TAP.UIControls.BasicControls.Resource1.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
-              속성을 재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
+              재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.UIControls.BasicControls.Resource1.BTN_ANALYSIS">
@@ -832,6 +832,49 @@
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마십시오.
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControls.TDateTimePickerDEV.RepresentativeValue">
+            <summary>
+            Start time
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControls.TDateTimePickerDEV.ControlID">
+            <summary>
+            Identificator of control
+            </summary>
+        </member>
+        <member name="P:TAP.UIControls.BasicControls.TDateTimePickerDEV.IsRequired">
+            <summary>
+            If 'TRUE', this controls is required
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControls.TDateTimePickerDEV.SetBackColor(System.Drawing.Color)">
+            <summary>
+            This method sets back color of control
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="P:TAP.UIControls.BasicControls.TDateTimePickerDEV.NeedToTranslate">
+            <summary>
+            If 'TRUE', text of this control is translated
+            </summary>
+        </member>
+        <member name="F:TAP.UIControls.BasicControls.TDateTimePickerDEV.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:TAP.UIControls.BasicControls.TDateTimePickerDEV.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:TAP.UIControls.BasicControls.TDateTimePickerDEV.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要修改
+            使用代码编辑器修改此方法的内容。
             </summary>
         </member>
         <member name="F:TAP.UIControls.BasicControls.TImageList.components">

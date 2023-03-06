@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78F57803-0868-4941-8954-833C045664B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TAP.UI</RootNamespace>
+    <AssemblyName>TAP.UI</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>tap_sn.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\_bin\FX\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOCAL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LOCAL</DefineConstants>
+    <DocumentationFile>bin\Debug\TAP.UI.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>..\..\_bin\FX\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TAP.App.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.App.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Base.Configuration, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Base.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Data.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Data.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Fressage, Version=1.2.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Fressage.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Models.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Models.Factories, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Models.Factories.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Models.Systems, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Models.Systems.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.Remoting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.UIControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.UIControls.BasicControls, Version=1.1.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.BasicControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.UIControls.BasicControlsDEV, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.BasicControlsDEV.dll</HintPath>
+    </Reference>
+    <Reference Include="TAP.UIControls.Complex, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.Complex.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.UIControls.Sheets, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.Sheets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TAP.UIControls.SheetsDEV, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UIControls.SheetsDEV.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncMessage.cs" />
+    <Compile Include="BackgroundProcessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Enums.cs" />
+    <Compile Include="FormInitializing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInitializing.Designer.cs">
+      <DependentUpon>FormInitializing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProcessing.Designer.cs">
+      <DependentUpon>FormProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TAPMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TAPMsgBox.Designer.cs">
+      <DependentUpon>TAPMsgBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIBaseDesigner.cs" />
+    <Compile Include="UILog.cs" />
+    <Compile Include="UITemplate2\UITemplate2T1A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate2\UITemplate2T1A.Designer.cs">
+      <DependentUpon>UITemplate2T1A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate2\UITemplateL2T1B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate2\UITemplateL2T1B.Designer.cs">
+      <DependentUpon>UITemplateL2T1B.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T1.Designer.cs">
+      <DependentUpon>UITemplateL3T1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T2.Designer.cs">
+      <DependentUpon>UITemplateL3T2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T2A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate3\UITemplateL3T2A.Designer.cs">
+      <DependentUpon>UITemplateL3T2A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T1.Designer.cs">
+      <DependentUpon>UITemplateL4T1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T2A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T2A.Designer.cs">
+      <DependentUpon>UITemplateL4T2A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T2.Designer.cs">
+      <DependentUpon>UITemplateL4T2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T3.Designer.cs">
+      <DependentUpon>UITemplateL4T3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T4.Designer.cs">
+      <DependentUpon>UITemplateL4T4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T5.Designer.cs">
+      <DependentUpon>UITemplateL4T5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T5A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate4\UITemplateL4T5A.Designer.cs">
+      <DependentUpon>UITemplateL4T5A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T1.Designer.cs">
+      <DependentUpon>UITemplateL5T1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T2.Designer.cs">
+      <DependentUpon>UITemplateL5T2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T3.Designer.cs">
+      <DependentUpon>UITemplateL5T3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T3L.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T3L.Designer.cs">
+      <DependentUpon>UITemplateL5T3L.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T5.Designer.cs">
+      <DependentUpon>UITemplateL5T5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplate6T4L.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplate6T4L.Designer.cs">
+      <DependentUpon>UITemplate6T4L.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T3L.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T3L.Designer.cs">
+      <DependentUpon>UITemplateL6T3L.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T5.Designer.cs">
+      <DependentUpon>UITemplateL6T5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T1.Designer.cs">
+      <DependentUpon>UITemplateL6T1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate5\UITemplateL5T4.Designer.cs">
+      <DependentUpon>UITemplateL5T4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T2.Designer.cs">
+      <DependentUpon>UITemplateL6T2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T3.Designer.cs">
+      <DependentUpon>UITemplateL6T3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate6\UITemplateL6T4.Designer.cs">
+      <DependentUpon>UITemplateL6T4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate7\UITemplateL7T2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate7\UITemplateL7T2.Designer.cs">
+      <DependentUpon>UITemplateL7T2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplate7\UITemplateL7T1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplate7\UITemplateL7T1.Designer.cs">
+      <DependentUpon>UITemplateL7T1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITemplateComplex\UITemplateXMINALCD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UITemplateComplex\UITemplateXMINALCD.Designer.cs">
+      <DependentUpon>UITemplateXMINALCD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBase.cs" />
+    <Compile Include="UIColumnBase.cs" />
+    <Compile Include="UIHelpBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tap_sn.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormInitializing.resx">
+      <DependentUpon>FormInitializing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProcessing.resx">
+      <DependentUpon>FormProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TAPMsgBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TAPMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>UIBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate2\UITemplate2T1A.resx">
+      <DependentUpon>UITemplate2T1A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate2\UITemplateL2T1B.resx">
+      <DependentUpon>UITemplateL2T1B.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate3\UITemplateL3T1.resx">
+      <DependentUpon>UITemplateL3T1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate3\UITemplateL3T2.resx">
+      <DependentUpon>UITemplateL3T2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate3\UITemplateL3T2A.resx">
+      <DependentUpon>UITemplateL3T2A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T1.resx">
+      <DependentUpon>UITemplateL4T1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T2A.resx">
+      <DependentUpon>UITemplateL4T2A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T2.resx">
+      <DependentUpon>UITemplateL4T2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T3.resx">
+      <DependentUpon>UITemplateL4T3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T4.resx">
+      <DependentUpon>UITemplateL4T4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T5.resx">
+      <DependentUpon>UITemplateL4T5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate4\UITemplateL4T5A.resx">
+      <DependentUpon>UITemplateL4T5A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T1.resx">
+      <DependentUpon>UITemplateL5T1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T2.resx">
+      <DependentUpon>UITemplateL5T2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T3.resx">
+      <DependentUpon>UITemplateL5T3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T3L.resx">
+      <DependentUpon>UITemplateL5T3L.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T5.resx">
+      <DependentUpon>UITemplateL5T5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T1.resx">
+      <DependentUpon>UITemplateL6T1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate5\UITemplateL5T4.resx">
+      <DependentUpon>UITemplateL5T4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T2.resx">
+      <DependentUpon>UITemplateL6T2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T3.resx">
+      <DependentUpon>UITemplateL6T3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T3L.resx">
+      <DependentUpon>UITemplateL6T3L.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T4.resx">
+      <DependentUpon>UITemplateL6T4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate6\UITemplateL6T5.resx">
+      <DependentUpon>UITemplateL6T5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate7\UITemplateL7T1.resx">
+      <DependentUpon>UITemplateL7T1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplate7\UITemplateL7T2.resx">
+      <DependentUpon>UITemplateL7T2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITemplateComplex\UITemplateXMINALCD.resx">
+      <DependentUpon>UITemplateXMINALCD.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgtest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeUIy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeUI_rollover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xls_rollover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnStop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnStop_rollover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xls1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\destar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\destar16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star16.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -6,12 +6,12 @@
     <members>
         <member name="T:TAP.Remoting.Server.Base.Executer">
             <summary>
-            This class represents executer for remote request.
+            This class defines executer for remote request.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Base.Executer.#ctor(TAP.Remoting.Messages.RequestMessage,TAP.Remoting.Messages.ResponseMessage)">
             <summary>
-            This creates instance of Executer.
+            This creates the instance of this class.
             </summary>
             <param name="requestMessage">Request message</param>
             <param name="responseMessage">Response message</param>
@@ -23,23 +23,23 @@
         </member>
         <member name="T:TAP.Remoting.Server.Base.RemoteBroker">
             <summary>
-            This class represnet remote-broker.
+            This class defines remote-broker.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Base.RemoteBroker.#ctor">
             <summary>
-            This creates instance of RemoteBroker.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Base.RemoteBroker.#ctor(System.Boolean)">
             <summary>
-            This creates instance of RemoteBroker.
+            This creates the instance of this class.
             </summary>
             <param name="isTestMode">If "TRUE", this broker is exucted as test mode.</param>
         </member>
         <member name="M:TAP.Remoting.Server.Base.RemoteBroker.Finalize">
             <summary>
-            This dispose instance of RemoteBroker.
+            This dispose the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Base.RemoteBroker.Execute(TAP.Remoting.Messages.RequestMessage)">
@@ -51,12 +51,12 @@
         </member>
         <member name="T:TAP.Remoting.Server.Biz.BizAssemblyProvider">
             <summary>
-            This class represents assembly manager in application domain-boundary.
+            This class defines assembly manager in application domain-boundary.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.Biz.BizComponentBase">
             <summary>
-            This class is starndard interface of remote BIZ component.
+            This class defines starndard interface of remote BIZ component.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.Biz.BizComponentBase._executingResult">
@@ -111,7 +111,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.Biz.BizComponentBase.#ctor">
             <summary>
-            This creates instance of BizComponentBase.
+            This creates an instance of this class.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.Biz.BizComponentCreator">
@@ -126,7 +126,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.Biz.BizComponentCreator.#ctor">
             <summary>
-            This creates instance of BizComponentCreator.
+            This creates an instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Biz.BizComponentCreator.Create(TAP.Remoting.Messages.RemoteInfo,System.String)">
@@ -190,7 +190,7 @@
         </member>
         <member name="T:TAP.Remoting.Server.Biz.ReturnContainer">
             <summary>
-            This class is a container that includes result of processing.
+            This class defines container that includes result of processing.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Server.Biz.ReturnContainer.Dataset">
@@ -230,65 +230,58 @@
         </member>
         <member name="M:TAP.Remoting.Server.Biz.ReturnContainer.Initialize">
             <summary>
-            This method initialize this instance.
+            This method initializes this instance.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.EunmRemoteState">
             <summary>
-            This enumeratior is status of listener.<br></br>
-            府胶呈狼 惑怕 格废涝聪促. 
+            This is list of listener status.
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.NotStarted">
             <summary>
-            Before strating<br></br>
-            啊悼傈
+            Before strating
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.Starting">
             <summary>
-            Starting<br></br>
-            啊悼吝
+            Starting
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.Started">
             <summary>
-            Stated<br></br>
-            啊悼凳
+            Stated
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.Stopping">
             <summary>
-            Stopping<br></br>
-            吝瘤吝
+            Stopping
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.Stopped">
             <summary>
             Stopped<br></br>
-            吝瘤凳
+            중지됨
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.ForbidStarting">
             <summary>
-            Forbid starting<br></br>
-            啊悼陛瘤
+            Forbid starting
             </summary>
         </member>
         <member name="F:TAP.Remoting.Server.EunmRemoteState.ForbidStopping">
             <summary>
-            Forbid stopping<br></br>
-            吝瘤陛瘤
+            Forbid stopping
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.ListenerExecuter">
             <summary>
-            This class represents listener executer.
+            This class defines listener executer.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerExecuter.#ctor">
             <summary>
-            This creates instance of ListenerExecuter.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerExecuter.Start">
@@ -298,12 +291,12 @@
         </member>
         <member name="M:TAP.Remoting.Server.ListenerExecuter.Stop">
             <summary>
-            This method stop listener.
+            This method stops listener.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.ListenerManager">
             <summary>
-            This class represents listener list manager that is cnotrolled by listener executer
+            This class defines listener list manager that is cnotrolled by listener executer
             </summary>
         </member>
         <member name="P:TAP.Remoting.Server.ListenerManager.IsTapExecuterRemoteStarted">
@@ -324,7 +317,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.ListenerManager.#ctor">
             <summary>
-            This creates instance of ListenerManager.
+            This creates the instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerManager.Start(System.Int32)">
@@ -361,20 +354,20 @@
         </member>
         <member name="M:TAP.Remoting.Server.ListenerManager.WriteLog(System.Object[])">
             <summary>
-            肺弊甫 扁废钦聪促. 
+            로그를 기록합니다. 
             </summary>
-            <param name="messageList">肺弊郴侩</param>
+            <param name="messageList">로그내용</param>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerManager.ProcessExist(System.Int32)">
             <summary>
-            橇肺技胶啊 粮犁窍绰瘤甫 馆券钦聪促. 
+            프로세스가 존재하는지를 반환합니다. 
             </summary>
-            <param name="processID">八祸且 橇肺技胶狼 酒捞叼</param>
-            <returns>橇肺技胶啊 皋葛府俊 粮犁且 版快 true</returns>
+            <param name="processID">검색할 프로세스의 아이디</param>
+            <returns>프로세스가 메모리에 존재할 경우 true</returns>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerManager.NotifyEmergencyStop(TAP.Remoting.Server.ListenerInfo,System.String,System.DateTime)">
             <summary>
-            备泅登瘤 臼疽嚼聪促. 
+            구현되지 않았습니다. 
             </summary>
             <param name="remoteInfo"></param>
             <param name="emergencyKey"></param>
@@ -382,44 +375,39 @@
         </member>
         <member name="T:TAP.Remoting.Server.ListenerWatcher">
             <summary>
-            This class represents listener watcher.
+            This class defines listener watcher.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Server.ListenerWatcher.ProcessCheckInterval">
             <summary>
-            Interval of watching(unit: ms)<br></br>
-            橇肺技胶 皑矫 牢磐国(窜困 ms)
+            Interval of watching(unit: ms)
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerWatcher.Initialize">
             <summary>
-            This method initialize environment.<br></br>
-            角青券版阑 檬扁拳钦聪促. 
+            This method initializes environment.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerWatcher.Initialize(System.Int32)">
             <summary>
-            This method initialize environment.<br></br>
-            角青券版阑 檬扁拳钦聪促. 
+            This method initializes environment.
             </summary>
             <param name="processCheckInterval">Interval of watching</param>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerWatcher.Start(TAP.Remoting.Server.ListenerManager)">
             <summary>
-            This method starts watcher.<br></br>
-            坑媚甫 啊悼矫诺聪促. 
+            This method starts watcher.
             </summary>
             <param name="invoker">Listener manager for watching</param>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerWatcher.Stop">
             <summary>
-            This method stops watcher.<br></br>
-            坑媚甫 吝瘤矫诺聪促. 
+            This method stops watcher.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.ListenerEntryManager">
             <summary>
-            This class represent manager that manages regiserging and expiring listeners.
+            This class defines manager that manages regiserging and expiring listeners.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.ListenerEntryManager.RegisterRemoteBrokerEntry(System.Int32,System.Int32)">
@@ -432,14 +420,13 @@
         </member>
         <member name="M:TAP.Remoting.Server.ListenerEntryManager.UnregisterRemoteBrokerEntry(System.Int32)">
             <summary>
-            This method expires specified remote.<br></br>
-            瘤沥等 府葛飘甫 殿废秦力钦聪促. 
+            This method expires specified remote.
             </summary>
             <param name="remoteNo">Remote number</param>
         </member>
         <member name="T:TAP.Remoting.Server.ListenerInfo">
             <summary>
-            This class is represents listener information.
+            This class defines listener information.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Server.ListenerInfo.RemoteURI">
@@ -474,33 +461,29 @@
         </member>
         <member name="M:TAP.Remoting.Server.ListenerInfo.#ctor(System.String)">
             <summary>
-            This creates instance of ListenerInfo.
+            This creates the instance of this class.
             </summary>
             <param name="remoteURI">URI of listener</param>
         </member>
         <member name="T:TAP.Remoting.Server.Sink.TinyServerSink">
             <summary>
-            This is represents server channel sink.<br></br>
-            辑滚盲澄教农 努贰胶涝聪促. 
+            This class defines represents server channel sink.
             </summary>
         </member>
         <member name="P:TAP.Remoting.Server.Sink.TinyServerSink.NextChannelSink">
             <summary>
-            This property returns next channel sink.<br></br>
-            盲澄狼 促澜 教农甫 馆券钦聪促. 
+            This property returns next channel sink.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSink.#ctor(System.Runtime.Remoting.Channels.IServerChannelSink)">
             <summary>
-            This creates intance of TinyServerSink.<br></br>
-            TinyServerSink俺眉狼 牢胶畔胶甫 积己钦聪促. 
+            This creates intance of TinyServerSink. 
             </summary>
-            <param name="nextSink">盲澄狼 促澜 教农</param>
+            <param name="nextSink">Next sink</param>
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSink.AsyncProcessResponse(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream)">
             <summary>
-            This method process next sink stack.<br></br>
-            教农胶琶狼 促澜贸府甫 柳青钦聪促. 
+            This method process next sink stack.
             </summary>
             <param name="sinkStack">Sink stack</param>
             <param name="state">State</param>
@@ -510,8 +493,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSink.GetResponseStream(System.Runtime.Remoting.Channels.IServerResponseChannelSinkStack,System.Object,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders)">
             <summary>
-            This method returns response stream.<br></br>
-            览翠 胶飘覆阑 馆券钦聪促. 
+            This method returns response stream.
             </summary>
             <param name="sinkStack">Sink stack</param>
             <param name="state">State</param>
@@ -521,8 +503,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSink.ProcessMessage(System.Runtime.Remoting.Channels.IServerChannelSinkStack,System.Runtime.Remoting.Messaging.IMessage,System.Runtime.Remoting.Channels.ITransportHeaders,System.IO.Stream,System.Runtime.Remoting.Messaging.IMessage@,System.Runtime.Remoting.Channels.ITransportHeaders@,System.IO.Stream@)">
             <summary>
-            This method processes message using sink chain.<br></br>
-            教农眉牢阑 烹秦 皋矫瘤甫 贸府钦聪促. 
+            This method processes message using sink chain.
             </summary>
             <param name="sinkStack">Sink stack</param>
             <param name="requestMsg">Request message</param>
@@ -535,22 +516,19 @@
         </member>
         <member name="T:TAP.Remoting.Server.Sink.TinyServerSinkProvider">
             <summary>
-            This class is provider of server sink channel.<br></br>
-            辑滚盲澄教农 橇肺官捞歹 努贰胶涝聪促. 
+            This class defines provider of server sink channel.
             </summary>
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSinkProvider.#ctor(System.Collections.IDictionary,System.Collections.ICollection)">
             <summary>
-            This creates instance of TinyServerSinkProvider.<br></br>
-            TinyServerSinkProvider俺眉狼 牢胶畔胶甫 积己钦聪促. 
+            This creates an instance of this class. 
             </summary>
             <param name="properties">NOT USED</param>
             <param name="providerData">OT USED</param>
         </member>
         <member name="M:TAP.Remoting.Server.Sink.TinyServerSinkProvider.CreateSink(System.Runtime.Remoting.Channels.IChannelReceiver)">
             <summary>
-            This method creates sink of specified channel.<br></br>
-            瘤沥等 盲澄狼 教农甫 积己钦聪促. 
+            This method creates sink of specified channel.
             </summary>
             <param name="channel">Channel</param>
             <returns>Channel sink</returns>
@@ -559,12 +537,11 @@
             <summary>
             This method is not supported
             </summary>
-            <param name="channelData">盲澄单捞磐</param>
+            <param name="channelData">채널데이터</param>
         </member>
         <member name="P:TAP.Remoting.Server.Sink.TinyServerSinkProvider.Next">
             <summary>
-            This method returns next server channel sink provider.<br></br>
-            促澜 辑滚 盲澄 教农 橇肺官捞歹涝聪促. 
+            This method returns next server channel sink provider.
             </summary>
         </member>
     </members>

@@ -1,0 +1,570 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Workflow</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Workflow.EnumWorkflowCommand">
+            <summary>
+            This enumeratior is workflow commands.
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CREATE">
+            <summary>
+            Create
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.MOVE_STEP">
+            <summary>
+            Move step
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.HOLD">
+            <summary>
+            Hold
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.TRACK_IN">
+            <summary>
+            Trak in
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.TRACK_OUT">
+            <summary>
+            Track out
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.ROLLBACK">
+            <summary>
+            Rollback
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.RELEASE">
+            <summary>
+            Release
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.SCRAP">
+            <summary>
+            Scrap
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CHANGE_LOTNAME">
+            <summary>
+            Change lot name
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CHANGE_GRADE">
+            <summary>
+            Change grade
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CHANGE_DEVICE">
+            <summary>
+            Change device
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.REMOVE_LOT">
+            <summary>
+            Remove lot
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.REMOVE_PRODUCT">
+            <summary>
+            Remove product
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.REWORK_IN">
+            <summary>
+            Rework in
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.REWORK_OUT">
+            <summary>
+            Rework out
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.NG">
+            <summary>
+            Not good
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.PACKAGE">
+            <summary>
+            Package
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.PALLETIZE">
+            <summary>
+            Palletize
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.SHIP">
+            <summary>
+            Ship
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.FABIN">
+            <summary>
+            Fab in
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.FABOUT">
+            <summary>
+            Fab out
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CANCEL_FABIN">
+            <summary>
+            Cancel fab in
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CALCEL_FABOUT">
+            <summary>
+            Cancel fab out
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.CANCEL_REWORK">
+            <summary>
+            Cancel rework
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.SEND">
+            <summary>
+            Send
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.REPAIR">
+            <summary>
+            Repair
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumWorkflowCommand.RESET">
+            <summary>
+            Reset
+            </summary>
+        </member>
+        <member name="T:TAP.Workflow.EnumSerialNumberingType">
+            <summary>
+            This enumeratior is creating serial type. 
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumSerialNumberingType.DIGIT">
+            <summary>
+            This option uses 0~9 for one digit of lot name
+            This option is default
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumSerialNumberingType.HEX">
+            <summary>
+            This option uses hex-characters for one digit for lot name
+            (NOT SUPPORTED)
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.EnumSerialNumberingType.ALPHABET">
+            <summary>
+            This option uses 0~9 and a~z for one digit of lot name
+            (NOT SUPPORTED)
+            </summary>
+        </member>
+        <member name="T:TAP.Workflow.WorkflowLog">
+            <summary>
+            This is UI log class
+            </summary>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowLog.MakeFilePath(System.String,System.String)">
+            <summary>
+            This method makes log file path
+            </summary>
+            <param name="objectName">Object name</param>
+            <param name="logType">Log type</param>
+            <returns>If 'TURE', making log file path succeed.</returns>
+        </member>
+        <member name="T:TAP.Workflow.WorkflowBase">
+            <summary>
+            This is workflow base
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowBase._objectName">
+            <summary>
+            Object name
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowBase._serviceBasic">
+            <summary>
+            Service basic information
+            </summary>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(TAP.Models.Model,System.String,System.String,System.String)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(TAP.Models.Model,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+            <param name="comment">Comment</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(TAP.Models.Model,System.String,System.String,System.String,System.String,TAP.ArgumentPack)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+            <param name="comment">Comment</param>
+            <param name="parameters">Parameters of command</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(System.Collections.Generic.List{TAP.Models.Model},System.String,System.String,System.String)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(System.Collections.Generic.List{TAP.Models.Model},System.String,System.String,System.String,System.String)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+            <param name="comment">Comment</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.ExecuteCommand(System.Collections.Generic.List{TAP.Models.Model},System.String,System.String,System.String,System.String,TAP.ArgumentPack)">
+            <summary>
+            This method executes requester's command
+            </summary>
+            <param name="model">BIZ Model</param>
+            <param name="command">Command</param>
+            <param name="requester">Equipment or Method</param>
+            <param name="user">User</param>
+            <param name="comment">Comment</param>
+            <param name="parameters">Parameters of command</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.CreateJobCode(System.String)">
+            <summary>
+            This method creates job code corresponding specified command.
+            </summary>
+            <param name="command">Command</param>
+            <returns>Job code</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.CreateEventCode(System.String)">
+            <summary>
+            This method creates event code corresponding specified event.
+            </summary>
+            <param name="events">Event</param>
+            <returns>Event code</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.WriteLog(System.String,System.String)">
+            <summary>
+            This saves log and dipslays message
+            </summary>
+            <param name="logType">Log Type</param>
+            <param name="mesasge">Message</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.MakeServiceBasicInfo(System.String,System.String,System.String,System.String,TAP.EnumFlagYN)">
+            <summary>
+             This makes service basic info model
+            </summary>
+            <param name="facilityName">Facility name</param>
+            <param name="serverName">Server name</param>
+            <param name="groupName">Group name</param>
+            <param name="serviceName">Service name</param>
+            <param name="loadNestModes">If 'YES', this model includes nest models</param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowBase.MakeServiceBasicInfo(TAP.Models.SystemBasic.SystemBasicDefaultInfo,TAP.EnumFlagYN)">
+            <summary>
+             This makes service basic info model
+            </summary>
+            <param name="defaultInfo">Default info</param>
+            <param name="loadNestModes">If 'YES', this model includes nest models</param>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.Workflow.WorkflowCommonBase">
+            <summary>
+            This class provides common method and constants of workflow.
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_COMMAND">
+            <summary>
+            Argument name of command
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_SUBCOMMAND">
+            <summary>
+            Argument name of sub-command
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_JOBCODE">
+            <summary>
+            Argument name of job code
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_EXPECTEDEVENT">
+            <summary>
+            Argument name of expected event
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_COMMENT">
+            <summary>
+            Argument name of comment
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_PALLET">
+            <summary>
+            Argument name of pallet
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_BOX">
+            <summary>
+            Argument name of box
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_MAPTITLE_DEFECT">
+            <summary>
+            Argument name of defect map
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_REPAIRITEMS">
+            <summary>
+            Argument name of repair items
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_NEXTOPERATION">
+            <summary>
+            Argument name of next operation specified
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_NEXTMAINOPERATION">
+            <summary>
+            Argument name of next main operation specified
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_OPEARTIONRESULT">
+            <summary>
+            Argument name of operation result
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_REASONCODE">
+            <summary>
+            Argument name of reason code
+            </summary>
+        </member>
+        <member name="F:TAP.Workflow.WorkflowCommonBase._ARGUMENTKEY_PARTS">
+            <summary>
+            Argument name of parts
+            </summary>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.ConvetToBasicInfoDefaultInfo(TAP.Models.ModelDefaultInfo)">
+            <summary>
+            This method converts BIZ Model default info to Basic Info default Info.
+            </summary>
+            <param name="bizDefaultInfo">BIZ factory default info</param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetSerial(System.String,System.String,System.Int32@)">
+            <summary>
+            This method calculates serial number from specified identification.
+            </summary>
+            <param name="namingRule">Naming rule</param>
+            <param name="currentID">Identification</param>
+            <param name="numberOfSerial">Number of Serial</param>
+            <returns>Serial number of identification</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.MakeNewID(System.String,System.String,System.String)">
+            <summary>
+            This method makes new identification.
+            </summary>
+            <param name="namingRule">Naming rule</param>
+            <param name="newSerial">New serial</param>
+            <param name="lotCode">Required string</param>
+            <returns>New identification</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.DefineSerialNumbering(System.String,System.String)">
+            <summary>
+            This method define serial numbering method and define next serial number.
+            </summary>
+            <param name="namingRule">Naming rule</param>
+            <param name="currentSerialNumber">Current serial number</param>
+            <returns>Next serial number</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.CalculateNumericSerialNumber(System.String,System.String)">
+            <summary>
+            This method makes new serial number using numeric characters only.
+            </summary>
+            <param name="currentSerialNumber">Current serial number</param>
+            <param name="namingRule">format</param>
+            <returns>New serial number</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.CalculateHexSerialNumber(System.String,System.String)">
+            <summary>
+            This method makes new serial number using hex characters.
+            This version does not support this method.
+            </summary>
+            <param name="currentSerialNumber">Current serial number</param>
+            <param name="namingRule">format</param>
+            <returns>New serial number</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.CalculateAlphabetSerialNumber(System.String,System.String)">
+            <summary>
+            This method makes new serial number using numeric and un-numeric characters.
+            This version does not support this method.
+            </summary>
+            <param name="currentSerialNumber">Current serial number</param>
+            <param name="namingRule">format</param>
+            <returns>New serial number</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.CreateJobCode(System.String)">
+            <summary>
+            This method creates job code corresponding specified command.
+            </summary>
+            <param name="command">Command</param>
+            <returns>Job code</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.CreateEventCode(System.String)">
+            <summary>
+            This method creates event code corresponding specified event.
+            </summary>
+            <param name="events">Event</param>
+            <returns>Event code</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.VerifyCurrentSetp(TAP.Models.ModelDefaultInfo,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="defaultInfo"></param>
+            <param name="step"></param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.Process(System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes status of BIZ objects by specified command.
+            </summary>
+            <param name="product">BIZ object</param>
+            <param name="command">Workflow command</param>
+            <param name="step">Current step of BIZ object</param>
+            <param name="comment">Comment of current command</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.MoveStep(System.String,System.String,System.String@,System.String@)">
+            <summary>
+            This method moves step of BIZ object by specfied command
+            </summary>
+            <param name="command">Workflow command</param>
+            <param name="step">Current step of BIZ object</param>
+            <param name="mainOP">Main operation</param>
+            <param name="nextStep">Next step</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetNextStep(System.String)">
+            <summary>
+            This method calcuates next step
+            </summary>
+            <param name="step">Current step</param>
+            <returns>Next step</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetNextMainOperation(System.String)">
+            <summary>
+            This method calculates next main operation
+            </summary>
+            <param name="mainOP">Current main operation</param>
+            <returns>Next main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetFirstStep(System.String)">
+            <summary>
+            This method gets first step of specified main operation.
+            </summary>
+            <param name="mainOP">Main operation</param>
+            <returns>First step of specified main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetEndStep(System.String)">
+            <summary>
+            This method gets end step of specfied main operation.
+            </summary>
+            <param name="mainOP">Main operation</param>
+            <returns>Last step of specified main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetPrevStep(System.String)">
+            <summary>
+            This method gets previous step
+            </summary>
+            <param name="step">Current step</param>
+            <returns>Previous step</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetPrevMainOperation(System.String)">
+            <summary>
+            This method gets previous main operation.
+            </summary>
+            <param name="mainOP">Main operation</param>
+            <returns>Previous Main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetFirstMainOperation">
+            <summary>
+            This method gets first main operation
+            </summary>
+            <returns>First Main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetEndMainOperation">
+            <summary>
+            This method gets end main operaiton
+            </summary>
+            <returns>End main operation</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.FindBackupPoint(System.String,System.String,System.String@,System.String@)">
+            <summary>
+            This method finds event point of normal process of BIZ object.
+            </summary>
+            <param name="product">BIZ object</param>
+            <param name="events">Event which is oldest abnormal event</param>
+            <param name="mainOP">Normal Main operation</param>
+            <param name="step">Normal Step</param>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetConditionStatus(System.String)">
+            <summary>
+            This method collects status list for executing specified command.
+            </summary>
+            <param name="command">Command</param>
+            <returns>Status list</returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetAdvanceEvent(System.String)">
+            <summary>
+            This method collects event list for executing specified command.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Workflow.WorkflowCommonBase.GetValidCommand(System.String,System.String,System.Boolean)">
+            <summary>
+            This method collects executable command list in current status.
+            </summary>
+            <param name="status">Current status</param>
+            <param name="lastEvent">Last event</param>
+            <param name="isRework">If "TRUE", biz objecat is in rework main operation</param>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.Workflow.TAPWorkflowException">
+            <summary>
+            This is TAP Workflow exception
+            </summary>
+        </member>
+        <member name="M:TAP.Workflow.TAPWorkflowException.#ctor(System.Reflection.MethodBase,System.Exception)">
+            <summary>
+            This creates instance of this object.
+            </summary>
+            <param name="methodName">Method</param>
+            <param name="ex">Instance of System.Exception object</param>
+        </member>
+    </members>
+</doc>

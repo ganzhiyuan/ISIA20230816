@@ -74,8 +74,7 @@
         </member>
         <member name="M:TAP.Remoting.Server.NTHost.Program.Main">
             <summary>
-            This method is main entry point.<br></br>
-            해당 응용 프로그램의 주 진입점입니다.
+            This method is main entry point.
             </summary>
         </member>
         <member name="T:TAP.Remoting.Server.NTHost.Properties.Resources">
@@ -90,8 +89,8 @@
         </member>
         <member name="P:TAP.Remoting.Server.NTHost.Properties.Resources.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
-              속성을 재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
+              재정의합니다.
             </summary>
         </member>
     </members>

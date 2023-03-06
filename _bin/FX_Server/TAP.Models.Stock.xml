@@ -1,0 +1,2924 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Models.Stock</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Models.Stock.StockBasicModel">
+            <summary>
+            This class base model of Stock basic information models.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_FGGROUP">
+            <summary>
+            FG Group Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_FGCODE">
+            <summary>
+            FG Code Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_GRADE">
+            <summary>
+            Grade Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_REVISION">
+            <summary>
+            Reviosn Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_CHECKINCODE">
+            <summary>
+            Check In code Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._ARGUMENTKEY_DOMESTICEXPORT">
+            <summary>
+            Domestic or export Argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._STOCK_TABLE_NAME_GRADE_BASE">
+            <summary>
+            Stock Grade Basic Info table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._STOCK_TABLE_NAME_REVISON_BASE">
+            <summary>
+            Stock revision basic info table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._STOCK_TABLE_NAME_CHECKINCODE_BASE">
+            <summary>
+            Stock check in code basic info table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._STOCK_TABLE_NAME_STANDARDWEIGHT_BASE">
+            <summary>
+            Stock domenstic/export basic info table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_FGGROUP">
+            <summary>
+            FG Group column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_FGCODE">
+            <summary>
+            FG Code column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_GRADE">
+            <summary>
+            Grade column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_REVISION">
+            <summary>
+            Reviosn column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_CHECKINCODE">
+            <summary>
+            Check In code column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicModel._COLUMN_NAME_DOMESTICEXPORT">
+            <summary>
+            Domestic or export column name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicModel.DefaultInformation">
+            <summary>
+            Hierachical structure of stock model
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicModel.Region">
+            <summary>
+            Region level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicModel.Facility">
+            <summary>
+            Facility level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicModel.FGGroup">
+            <summary>
+            FG Group level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicModel.FGCode">
+            <summary>
+            FG Code level
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.ValidateDefaultInformation(System.Int32,System.Boolean)">
+            <summary>
+            This method validates Hierachy structure of model.
+            </summary>
+            <param name="level">Hierachy sequence</param>
+            <param name="needtoCheckAll">If 'TRUE', this method checks value 'ALL'.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.ExtractDefaultInformationList(System.Int32)">
+            <summary>
+            This method extracts name list of hierachical structure.
+            </summary>
+            <returns>Array includes name list of hierachical structure that is consist this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.MakeDefaultArgumentPack">
+            <summary>
+            This method makes the ArgumentPack for loading model data.
+            </summary>
+            <returns>Argument list</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.MakeParentArgumentPack">
+            <summary>
+            This method makes the Argumentpack for loading nest model data of current model.
+            </summary>
+            <returns>Argument list</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.GetChangedLevel(TAP.Models.ModelDefaultInfo)">
+            <summary>
+            This method gets the member that changed by changing default info event.
+            </summary>
+            <param name="defaultInfo">Model defult Info.</param>
+            <returns>Beggest level changed</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.LoadBasicModel(System.Int32)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <returns>System basic model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.LoadMailReceiverList(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.CreateMailMessage(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <param name="mailType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicModel.AssignArrayValues(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:TAP.Models.Stock.StockBasicDefaultInfo">
+            <summary>
+            This class is hierachical structure of stock basic model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.fgGroup">
+            <summary>
+            Device category level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.fgCode">
+            <summary>
+            Device group level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicDefaultInfo.FGGroup">
+            <summary>
+            Device category level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockBasicDefaultInfo.FGCode">
+            <summary>
+            Device group level
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.#ctor(System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultData">Hierachical structure data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.Dispose">
+            <summary>
+            This dispoes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.CreateInstance(System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultData">Hierachy structure data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.Copy">
+            <summary>
+            This method makes the copy of hierachical structure.
+            </summary>
+            <returns>Copy of hierachical structure</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.CreateXPath(System.Int32)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.ChangeModelDefaultInfo(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32)">
+            <summary>
+             This method changes the DefaultInfo of the model.
+            </summary>
+            <param name="infoDictionary">New values</param>
+            <param name="modelLevel">Level of current model</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.ChangeModelDefaultInfo(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+             This method changes the DefaultInfo of the model.
+            </summary>
+            <param name="infoDictionary">New values</param>
+            <param name="modelLevel">Level of current model</param>
+            <param name="defaultInfoMembers">Default information members</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.GetMemberLevel(System.String)">
+            <summary>
+             This method returns value of specified level.
+            </summary>
+            <param name="memberName">Level of specified member</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.GetCurrentDefaultInfo">
+            <summary>
+            This method extracts the default info string as dictionary.
+            </summary>
+            <returns>Member dictionary</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.StockBasicDefaultInfo.HierarchicalDefaultInfo">
+            <summary>
+            Enumeratior of hierachical structure
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.HierarchicalDefaultInfo.REGION">
+            <summary>
+            Region level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.HierarchicalDefaultInfo.FACILITY">
+            <summary>
+            Facility level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.HierarchicalDefaultInfo.FGGROUP">
+            <summary>
+            FG Group level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockBasicDefaultInfo.HierarchicalDefaultInfo.FGCODE">
+            <summary>
+            FG Code level
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.MakeArgumentPack">
+            <summary>
+            This method makes the ArgumentPack using hierachical structure. <br/>
+            The argumentPack does not contain identification argument.
+            </summary>
+            <returns>Argument pack</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockBasicDefaultInfo.MakeArgumentPack(System.Int32,System.Boolean)">
+            <summary>
+            This method makes the ArgumentPack using default info. <br/>
+            The argumentPack contains identification argument.
+            </summary>
+            <param name="level">Level of current model.</param>
+            <param name="isParent">If this argument set to false, This method return data for one model only.</param>
+            <returns>Argument pack</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockRTCategory">
+            <summary>
+            This enumeratior is RT flag list.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockRTCategory.N">
+            <summary>
+            Default 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockRTCategory.Y">
+            <summary>
+            Back
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockDomesticExport">
+            <summary>
+            This enumeratior is Domestic or export flag.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockDomesticExport.DOMESTIC">
+            <summary>
+            Domestic
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockDomesticExport.EXPORT">
+            <summary>
+            Export
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockERPMessage">
+            <summary>
+            This enumeratior is ERP message flag.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPMessage.DEFAULT">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPMessage.STOCKIN">
+            <summary>
+            Stock in report
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPMessage.STOCKIN_COMPLETE">
+            <summary>
+            Stock out report
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockStockInOutStatus">
+            <summary>
+            This enumeratior is Stock In/Out flag.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockStockInOutStatus.WAIT">
+            <summary>
+            Wait
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockStockInOutStatus.STOCKIN">
+            <summary>
+            Stock in
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockStockInOutStatus.STOCKOUT">
+            <summary>
+            Stock out
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockPalletStockInStatus">
+            <summary>
+            This enumeratior is pallet status in warehouse.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletStockInStatus.NORMAL_STOCKIN">
+            <summary>
+            Normal stock 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletStockInStatus.RESERVATION">
+            <summary>
+            Reservation
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletStockInStatus.CONFIRM">
+            <summary>
+            Confirm
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletStockInStatus.STOCKOUT">
+            <summary>
+            Stock out
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletStockInStatus.HOLDING">
+            <summary>
+            Hold
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockERPPalletMessage">
+            <summary>
+            This enumeratior is ERP message flag about pallet .
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.STOCKIN">
+            <summary>
+            Stock in 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.STOCKIN_COMPLETE">
+            <summary>
+            Stock in complete 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.STOCKCANCEL">
+            <summary>
+            Cancel stock 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.STOCKCANCEL_COMPLETE">
+            <summary>
+            Cancel stock complete
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.HOLD">
+            <summary>
+            Hold
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.HOLD_COMPLETE">
+            <summary>
+            Hold complete
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.HOLDCANCEL">
+            <summary>
+            Cancel hold
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockERPPalletMessage.HOLDCANCEL_COMPLETE">
+            <summary>
+            Cancel hold complete
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockLocationLug">
+            <summary>
+            Load exist or not on location.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationLug.EPMTY">
+            <summary>
+            Empty
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationLug.EXIST">
+            <summary>
+            Exist
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockLocationSend">
+            <summary>
+            This enumeratior is sending location flag. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationSend.WAIT">
+            <summary>
+            Wait
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationSend.STOCKIN">
+            <summary>
+            Stock in complete
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationSend.STOCKIN_COMPLETE">
+            <summary>
+            Processing stock in complete
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockLocationSend.STOCKOUT">
+            <summary>
+            Stock out complete
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockInvoiceERPMessge">
+            <summary>
+            This enumeratior is ERP message of invoice. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceERPMessge.NORMAL_REQUEST">
+            <summary>
+            Normal request
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceERPMessge.RT">
+            <summary>
+            RT request
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceERPMessge.OTHER_REQUEST">
+            <summary>
+            Request for other using
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceERPMessge.CANCEL">
+            <summary>
+            Cancel stock out
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockInvoiceStatus">
+            <summary>
+            This enumeratior is invoice status flag. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceStatus.RESERVATION">
+            <summary>
+            Reservation
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceStatus.CONFIRM">
+            <summary>
+            Confirm
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceStatus.STOCKOUT">
+            <summary>
+            Stock out
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockInvoiceStatus.CANCEL">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockProductEvent">
+            <summary>
+            This enumeratior is Product event flag.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.RT_CHECKOUT">
+            <summary>
+            RT checkout
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.RT_OUT_MES">
+            <summary>
+            RT out to MES
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.RT_OUT_CANCEL">
+            <summary>
+            Cancel RT out 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.SPLIT_CHANGE_BOX">
+            <summary>
+            Split
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.MERGE_CHANGE_BOX">
+            <summary>
+            Merge
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockProductEvent.CHECKIN_CANCEL">
+            <summary>
+            Cancel check in 
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockBoxEvent">
+            <summary>
+            This enumeratior is box event flag. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.PALLETIZING">
+            <summary>
+            PALLETIZING
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.SPLIT_CREATE">
+            <summary>
+            SPLIT_CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.SPLT_TERMINATE">
+            <summary>
+            SPLT_TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.MERGE_CREATE">
+            <summary>
+            MERGE_CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.MERGE_TERMINATE">
+            <summary>
+            MERGE_TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHANGE_CREATE">
+            <summary>
+            CHANGE_CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHNAGE_PALLETIZING">
+            <summary>
+            CHNAGE_PALLETIZING
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHECKIN">
+            <summary>
+            CHECKIN
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHECKOUNT">
+            <summary>
+            CHECKOUNT
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHECKIN_CANCEL">
+            <summary>
+            CHECKIN_CANCEL
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHECKOUT_CANCEL">
+            <summary>
+            CHECKOUT_CANCEL
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.TERMINATE">
+            <summary>
+            TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHANGE_QTY">
+            <summary>
+            CHANGE_QTY
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.CHANGE_AREA">
+            <summary>
+            CHANGE_AREA
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.REPACKING">
+            <summary>
+            REPACKING
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.SPLIT_CHANGE_PALLET">
+            <summary>
+            SPLIT_CHANGE_PALLET
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockBoxEvent.MERGE_CHANGE_PALLET">
+            <summary>
+            MERGE_CHANGE_PALLET
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockPalletEvent">
+            <summary>
+            This enumeratior is pallet event flag list. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.CREATE">
+            <summary>
+            CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.SPLIT_CREATE">
+            <summary>
+            SPLIT_CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.MERGE_CREATE">
+            <summary>
+            MERGE_CREATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.TERMINATE">
+            <summary>
+            TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.SPLIT_TERMINATE">
+            <summary>
+            SPLIT_TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.MERGE_TERMINATE">
+            <summary>
+            MERGE_TERMINATE
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.CHECKIN">
+            <summary>
+            CHECKIN
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.CHECKOUT">
+            <summary>
+            CHECKOUT
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.CHECKOUT_CANCEL">
+            <summary>
+            CHECKOUT_CANCEL
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.CHNAGE_AREA">
+            <summary>
+            CHNAGE_AREA
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.HOLDING">
+            <summary>
+            HOLDING
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPalletEvent.HOLDING_CANCEL">
+            <summary>
+            HOLDING_CANCEL
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.EnumStockPanelParent">
+            <summary>
+            This enumeratior is packaged resources. 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPanelParent.BOX">
+            <summary>
+            Box
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.EnumStockPanelParent.EPPBOX">
+            <summary>
+            EPP Box
+            </summary>
+        </member>
+        <member name="T:TAP.Models.Stock.LocationStockModel">
+            <summary>
+            This is location stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._COLUMN_NAME_STOCKER">
+            <summary>
+            Stocker column name<br></br>
+            스토커 컬럼 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._COLUMN_NAME_Z">
+            <summary>
+            Row column name<br></br>
+            행 컬럼 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._COLUMN_NAME_X">
+            <summary>
+            Address column name<br></br>
+            주소 컬럼 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._COLUMN_NAME_Y">
+            <summary>
+            Bundle column name<br></br>
+            번들 컬럼 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._ARGUMENTKEY_STOCKER">
+            <summary>
+            Stocker argument key<br></br>
+            스토커 매개변수 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._ARGUMENTKEY_Z">
+            <summary>
+            Row argument key<br></br>
+            행 매개변수 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._ARGUMENTKEY_X">
+            <summary>
+            Address argument key<br></br>
+            어드레스 매개변수 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._ARGUMENTKEY_Y">
+            <summary>
+            Bundle argument key <br></br>
+            번들 매개변수 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.LocationStockModel._STOCK_TABLE_NAME_LOCATION">
+            <summary>
+            Location table name<br></br>
+            로케이션 테이블 이름
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Usage">
+            <summary>
+            If "YES", this location is in using
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Pallet">
+            <summary>
+            Pallete
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Send">
+            <summary>
+            Send
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Stocker">
+            <summary>
+            Stocker
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Z">
+            <summary>
+            Row
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.X">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModel.Y">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.#ctor">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.#ctor(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.#ctor(TAP.Models.IndependentDefaultInfo)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.CreateInstance(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This method creates instance of this model. 
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.Dispose">
+            <summary>
+            This method disposes this model.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.Copy">
+            <summary>
+            This method makes copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads history of this model
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.LocationStockModelSet">
+            <summary>
+            This is location stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModelSet.#ctor">
+            <summary>
+            This method creates instance of this.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModelSet.Item(System.String)">
+            <summary>
+            This property returns model indicated by name.
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.LocationStockModelSet.Models">
+            <summary>
+            This method returns all models in model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModelSet.Copy">
+            <summary>
+            This method copies models in model set.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.LocationStockModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This model loads models and fills model set using loaded data.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.CustomerModel">
+            <summary>
+            This is customer stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.CustomerModel._COLUMN_NAME_CUSTOMER">
+            <summary>
+            Customer column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.CustomerModel._ARGUMENTKEY_CUSTOMER">
+            <summary>
+            Customer argument name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.CustomerModel._STOCK_TABLE_NAME_CUSTOMER">
+            <summary>
+            Customer table name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.CustomerName">
+            <summary>
+            Customer name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.Destination">
+            <summary>
+            Destination
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.Address1">
+            <summary>
+            Adddress 1
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.Address2">
+            <summary>
+            Address 2
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.Address3">
+            <summary>
+            Address 3
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.ContactNo1">
+            <summary>
+            Contact number 1
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.ContactNo2">
+            <summary>
+            Contact number 2
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.FaxNo">
+            <summary>
+            Fax number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.EMail">
+            <summary>
+            E-mail address
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModel.PersonOfCharge">
+            <summary>
+            Person of Charge
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.#ctor">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.#ctor(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.#ctor(TAP.Models.IndependentDefaultInfo)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.CreateInstance(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This method creates instance of this model. 
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.Dispose">
+            <summary>
+            This method disposes this model.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.Copy">
+            <summary>
+            This method makes copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads history of this model
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.CustomerModelSet">
+            <summary>
+            This is customer stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModelSet.#ctor">
+            <summary>
+            This method creates instance of this.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModelSet.Item(System.String)">
+            <summary>
+            This property returns model indicated by name.
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.CustomerModelSet.Models">
+            <summary>
+            This method returns all models in model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModelSet.Copy">
+            <summary>
+            This method copies models in model set.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.CustomerModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This model loads models and fills model set using loaded data.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.SupplierModel">
+            <summary>
+            This is supplier model of stock model group
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.SupplierModel._COLUMN_NAME_SUPPLIER">
+            <summary>
+            Customer column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.SupplierModel._ARGUMENTKEY_SUPPLIER">
+            <summary>
+            Customer argument name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.SupplierModel._STOCK_TABLE_NAME_SUPPLIER">
+            <summary>
+            Customer table name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.SupplierName">
+            <summary>
+            Supplier name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.President">
+            <summary>
+            President
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.PersonOfCharge">
+            <summary>
+            Person Of Charge
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.EMail">
+            <summary>
+            E-Mail
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.Contacts">
+            <summary>
+            Contacts
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.Country">
+            <summary>
+            Country
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModel.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.#ctor">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.#ctor(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.#ctor(TAP.Models.IndependentDefaultInfo)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachical structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.CreateInstance(System.String)">
+            <summary>
+            This creator creates instance of this.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This method creates instance of this model. 
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.Dispose">
+            <summary>
+            This method disposes this model.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.Copy">
+            <summary>
+            This method makes copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads history of this model
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.SupplierModelSet">
+            <summary>
+            This is customer stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModelSet.#ctor">
+            <summary>
+            This method creates instance of this.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModelSet.Item(System.String)">
+            <summary>
+            This property returns model indicated by name.
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.SupplierModelSet.Models">
+            <summary>
+            This method returns all models in model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModelSet.Copy">
+            <summary>
+            This method copies models in model set.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.SupplierModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This model loads models and fills model set using loaded data.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.StockModel">
+            <summary>
+            This class is the base model of all stock models.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._ARGUMENTKEY_INVOICE">
+            <summary>
+            Inovice argument key 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._ARGUMENTKEY_PALLET">
+            <summary>
+            Pallet argument key 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._ARGUMENTKEY_BOX">
+            <summary>
+            Box argument key 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._ARGUMENTKEY_PRODUCT">
+            <summary>
+            Product argument key
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._ARGUMENTKEY_AREA">
+            <summary>
+            Area argument key 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_FGCODE">
+            <summary>
+            FG Code table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_WEIGHT">
+            <summary>
+            Base weight table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_INVOICE">
+            <summary>
+            Invoice table name 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_PALLET">
+            <summary>
+            Pallet table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_BOX">
+            <summary>
+            Box table name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._STOCK_TABLE_NAME_PRODUCT">
+            <summary>
+            Product table name<br></br>
+            제품 테이블 이름
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_INVOICE">
+            <summary>
+            Invoice column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_PALLET">
+            <summary>
+            Pallet column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_BOX">
+            <summary>
+            Box column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_PRODUCT">
+            <summary>
+            Product column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_AREA">
+            <summary>
+            Area column name 
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_CURRENT_STEP">
+            <summary>
+            Current step column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_CURRENT_OPERATION">
+            <summary>
+            Current operation column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_CAPACITY">
+            <summary>
+            Capacity operation column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_PRODUCTTYPE">
+            <summary>
+            Product type column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockModel._COLUMN_NAME_INVOICE_NO">
+            <summary>
+            Invoice column number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.DefaultInformation">
+            <summary>
+            Hierachical structure of stock model
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.Region">
+            <summary>
+            Region level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.Facility">
+            <summary>
+            Facility level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.FGGroup">
+            <summary>
+            FG Group level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.FGCode">
+            <summary>
+            FG Code level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.Grade">
+            <summary>
+            Grade
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.Revision">
+            <summary>
+            Revision
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.CheckInCode">
+            <summary>
+            Check In Code
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.CurrentStep">
+            <summary>
+            Current Step
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.CurrentOperation">
+            <summary>
+            Current Operation
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.ProductType">
+            <summary>
+            Product type
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockModel.DomesticExport">
+            <summary>
+            Domestic or Export
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.InitializeFields">
+            <summary>
+            This method intializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.Dispose">
+            <summary>
+            This disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.ValidateDefaultInformation(System.Int32,System.Boolean)">
+            <summary>
+            This method validates Hierachy structure of model.
+            </summary>
+            <param name="level">Hierachy sequence</param>
+            <param name="needtoCheckAll">If 'TRUE', this method checks value 'ALL'.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.ExtractDefaultInformationList(System.Int32)">
+            <summary>
+            This method extracts name list of hierachical structure.
+            </summary>
+            <returns>Array includes name list of hierachical structure that is consist this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.MakeDefaultArgumentPack">
+            <summary>
+            This method makes the ArgumentPack for loading model data.
+            </summary>
+            <returns>Argument list</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.MakeParentArgumentPack">
+            <summary>
+            This method makes the Argumentpack for loading nest model data of current model.
+            </summary>
+            <returns>Argument list</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.GetChangedLevel(TAP.Models.ModelDefaultInfo)">
+            <summary>
+            This method gets the member that changed by changing default info event.
+            </summary>
+            <param name="defaultInfo">Model defult Info.</param>
+            <returns>Beggest level changed</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.LoadBasicModel(System.Int32)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <returns>System basic model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.LoadMailReceiverList(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.CreateMailMessage(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <param name="mailType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockModel.AssignArrayValues(System.String)">
+            <summary>
+            This methods is not supported in this version.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:TAP.Models.Stock.StockDefaultInfo">
+            <summary>
+            This class is hierachical structure of stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.fgGroup">
+            <summary>
+            Invoice level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.pallet">
+            <summary>
+            Pallet level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.box">
+            <summary>
+            Box level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.product">
+            <summary>
+            Product level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockDefaultInfo.FGGroup">
+            <summary>
+            FG Group
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockDefaultInfo.FGCode">
+            <summary>
+            FG Code
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockDefaultInfo.Pallet">
+            <summary>
+            Pallet level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockDefaultInfo.Box">
+            <summary>
+            Box level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StockDefaultInfo.Product">
+            <summary>
+            Product level
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.#ctor(System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultData">Hierachical structure data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.Dispose">
+            <summary>
+            This dispoes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.CreateInstance(System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultData">Hierachy structure data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.Copy">
+            <summary>
+            This method makes the copy of hierachical structure.
+            </summary>
+            <returns>Copy of hierachical structure</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.CreateXPath(System.Int32)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.GetMemberLevel(System.String)">
+            <summary>
+             This method returns value of specified level.
+            </summary>
+            <param name="memberName">Level of specified member</param>
+        </member>
+        <member name="T:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo">
+            <summary>
+            Enumeratior of hierachical structure
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.REGION">
+            <summary>
+            Region level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.FACILITY">
+            <summary>
+            Facility level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.FGGROUP">
+            <summary>
+            FG Group level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.FGCODE">
+            <summary>
+            FG Code level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.PALLET">
+            <summary>
+            Pallet level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.BOX">
+            <summary>
+            Box level
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.StockDefaultInfo.HierarchicalDefaultInfo.PRODUCT">
+            <summary>
+            Product level
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.MakeArgumentPack">
+            <summary>
+            This method makes the ArgumentPack using hierachical structure. <br/>
+            The argumentPack does not contain identification argument.
+            </summary>
+            <returns>Argument pack</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.MakeArgumentPack(System.Int32,System.Boolean)">
+            <summary>
+             This method makes the ArgumentPack using default info. <br/>
+             The argumentPack contains identification argument.
+            </summary>
+            <param name="level">Level of current model.</param>
+            <param name="isParent">If this argument set to false, This method return data for one model only.</param>
+            <returns>Argument pack</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StockDefaultInfo.GetCurrentDefaultInfo">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <returns>Member dictionary</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.BoxStockModel">
+            <summary>
+            This class supports the box stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.BoxStockModel._ARGUMENTKEY_BOXSTATUS">
+            <summary>
+            Argument key of box status
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.BoxStockModel._COLUMN_NAME_BOXSTATUS">
+            <summary>
+            Column name of box status
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.BoxStockModel.products">
+            <summary>
+            Product list
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.Capacity">
+            <summary>
+            Capacity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.RealQuantity">
+            <summary>
+            Real quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.ProductDistinction">
+            <summary>
+            Product distinction
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.PackingUser">
+            <summary>
+            Packing user
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.PackingTime">
+            <summary>
+            Packing time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.StockInTime">
+            <summary>
+            Stock in time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.StockOutTime">
+            <summary>
+            Stock out time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.ComputingOutTime">
+            <summary>
+            Computing out time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.BoxStatus">
+            <summary>
+            Box status
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.PackingShift">
+            <summary>
+            Packing shift
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.QRACheck">
+            <summary>
+            QRA check
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.QRACheckTime">
+            <summary>
+            QRA check time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.CheckINDocumentNo">
+            <summary>
+            Check In doucment number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.Products">
+            <summary>
+            Product list
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.Pallet">
+            <summary>
+            Pallet level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModel.Name">
+            <summary>
+            Model identity
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.CreateInstance(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.Dispose">
+            <summary>
+            This method disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.Copy">
+            <summary>
+            This method makes a copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.AssignArrayValues">
+            <summary>
+            This method assings data to nest models.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method assings data to specified nest models.
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.ChangeName(System.String)">
+            <summary>
+            This method changes identification member of model.
+            </summary>
+            <param name="name">New name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.MergeModel(TAP.Models.Model,System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="model">Model</param>
+            <param name="updateUser">User</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModel.SplitModel(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="splitModelName">Model for splitting</param>
+            <param name="nestModelNames">Nest model name list that splits </param>
+            <param name="updateUser">Users</param>
+            <returns>Splitted model</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.BoxStockModelSet">
+            <summary>
+            This class supports the box stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModelSet.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModelSet.Item(System.String)">
+            <summary>
+            Model accessor
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.BoxStockModelSet.Models">
+            <summary>
+            Model list
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModelSet.Copy">
+            <summary>
+            This method copies models in ModelSet.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModelSet.ChangeDefaultInfo(TAP.Models.ModelDefaultInfo,System.String,TAP.Models.EnumEventFlag,System.DateTime,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <param name="defaultInfo">Hierachical structure</param>
+            <param name="events">Event</param>
+            <param name="eventFlag">Event flag</param>
+            <param name="eventTime">Date and time of event</param>
+            <param name="eventComment">Last event comment</param>
+            <param name="mainOperation">Last Main operation</param>
+            <param name="operation">Last operation</param>
+            <param name="step">Last setp</param>
+            <param name="status">Last setp</param>
+        </member>
+        <member name="M:TAP.Models.Stock.BoxStockModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This method loads mdoels.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.InvoiceStockModel">
+            <summary>
+            This class supports the invoice stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.InvoiceStockModel._COLUMN_NAME_INVOICE_CATEGORY">
+            <summary>
+            Column name of Inovice category
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.InvoiceCategory">
+            <summary>
+            Invoice category
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.RequestedQuantity">
+            <summary>
+            Requested quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.SelectedQuantity">
+            <summary>
+            Selected quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.CustomerID">
+            <summary>
+            Customer ID
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.SeqenceNumber">
+            <summary>
+            Sequence number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.SetNumber">
+            <summary>
+            Set number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.InvoiceExportNumber">
+            <summary>
+            Invoice export number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.TotalWeight">
+            <summary>
+            Total weight
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.ProductWeight">
+            <summary>
+            Product weight
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.Volume">
+            <summary>
+            Volume
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.PalletQuantity">
+            <summary>
+            Pallet quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.BoxQuantity">
+            <summary>
+            Box quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.RequestTime">
+            <summary>
+            Requested time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.CancelTime">
+            <summary>
+            Cancel time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.ReportTime">
+            <summary>
+            Report time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.OutTime">
+            <summary>
+            Out time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.DomesticExport">
+            <summary>
+            Demestic or export
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.InvoiceStatus">
+            <summary>
+            Invoice status
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.PalletMappingCheck">
+            <summary>
+            Pallet mapping check
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.WorkingCheck">
+            <summary>
+            Working check
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModel.Pallets">
+            <summary>
+            Pallet list
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.#ctor(TAP.Models.IndependentDefaultInfo)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.#ctor(TAP.Models.IndependentDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.CreateInstance(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.Dispose">
+            <summary>
+            This method disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.Copy">
+            <summary>
+            This method makes a copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.AssignArrayValues">
+            <summary>
+            This method assings data to nest models.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads model history data. 
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.InvoiceStockModelSet">
+            <summary>
+            This class supports the invoice stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModelSet.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModelSet.Item(System.String)">
+            <summary>
+            Model accessor
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.InvoiceStockModelSet.Models">
+            <summary>
+            Model list
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModelSet.Copy">
+            <summary>
+            This method copies models in ModelSet.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModelSet.ChangeDefaultInfo(TAP.Models.ModelDefaultInfo,System.String,TAP.Models.EnumEventFlag,System.DateTime,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <param name="defaultInfo">Hierachical structure</param>
+            <param name="events">Event</param>
+            <param name="eventFlag">Event flag</param>
+            <param name="eventTime">Date and time of event</param>
+            <param name="eventComment">Last event comment</param>
+            <param name="mainOperation">Last Main operation</param>
+            <param name="operation">Last operation</param>
+            <param name="step">Last setp</param>
+            <param name="status">Last setp</param>
+        </member>
+        <member name="M:TAP.Models.Stock.InvoiceStockModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This method loads mdoels.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.PalletStockModel">
+            <summary>
+            This class supports pallet stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.PalletStockModel._COLUMN_NAME_BOX_QUANTITY">
+            <summary>
+            Box Quantity Column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.PalletStockModel._COLUMN_NAME_PRODUCT_QUANTITY">
+            <summary>
+            Product quantity Column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.PalletStockModel._COLUMN_NAME_IO_STATUS">
+            <summary>
+            IO status column name
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.PalletStockModel._COLUMN_NAME_IN_STATUS">
+            <summary>
+            In status column name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.InvoiceNo">
+            <summary>
+            Invoice no.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.InvoiceCategory">
+            <summary>
+            Invoice category
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.Location">
+            <summary>
+            Location
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.IOPosition">
+            <summary>
+            IO Position
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.HoldNumber">
+            <summary>
+            Hold number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.HoldComments">
+            <summary>
+            Hold comment
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.HoldUser">
+            <summary>
+            Hold user
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.ReservationNumber">
+            <summary>
+            Reservation number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.CheckInDocumentNumber">
+            <summary>
+            Check in document number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.HoldCode">
+            <summary>
+            Hold code
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.EmptyBoxQuantity">
+            <summary>
+            Empty box quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.ProductQuantity">
+            <summary>
+            Product quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.BoxQuantity">
+            <summary>
+            Box quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.Height">
+            <summary>
+            Hieght
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.StockInTime">
+            <summary>
+            Stock in time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.StockOutTime">
+            <summary>
+            Stock out time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.HoldTime">
+            <summary>
+            Hold time
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.IOStatus">
+            <summary>
+            IO Status
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.INStatus">
+            <summary>
+            IN Status
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.Boxes">
+            <summary>
+            Box list
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModel.Name">
+            <summary>
+            Model identity
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.CreateInstance(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.Dispose">
+            <summary>
+            This method disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.Copy">
+            <summary>
+            This method makes a copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.AssignArrayValues">
+            <summary>
+            This method assings data to nest models.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads model history data.
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.ChangeName(System.String)">
+            <summary>
+            This method changes identification member of model.
+            </summary>
+            <param name="name">New name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.MergeModel(TAP.Models.Model,System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="model">Model</param>
+            <param name="updateUser">User</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModel.SplitModel(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="splitModelName">Model for splitting</param>
+            <param name="nestModelNames">Nest model name list that splits </param>
+            <param name="updateUser">Users</param>
+            <returns>Splitted model</returns>
+        </member>
+        <member name="T:TAP.Models.Stock.PalletStockModelSet">
+            <summary>
+            This class supports the pallet stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModelSet.#ctor">
+            <summary>
+            This creates an instance of this.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModelSet.Item(System.String)">
+            <summary>
+            Model accessor
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.PalletStockModelSet.Models">
+            <summary>
+            Model list
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModelSet.Copy">
+            <summary>
+            This method copies models in ModelSet.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModelSet.ChangeDefaultInfo(TAP.Models.ModelDefaultInfo,System.String,TAP.Models.EnumEventFlag,System.DateTime,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <param name="defaultInfo">Hierachical structure</param>
+            <param name="events">Event</param>
+            <param name="eventFlag">Event flag</param>
+            <param name="eventTime">Date and time of event</param>
+            <param name="eventComment">Last event comment</param>
+            <param name="mainOperation">Last Main operation</param>
+            <param name="operation">Last operation</param>
+            <param name="step">Last setp</param>
+            <param name="status">Last setp</param>
+        </member>
+        <member name="M:TAP.Models.Stock.PalletStockModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This method loads mdoels.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.ProductStockModel">
+            <summary>
+            This class supports the product stock model.
+            </summary>
+        </member>
+        <member name="F:TAP.Models.Stock.ProductStockModel._standardWeight">
+            <summary>
+            Device stock basic info model
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.Pallet">
+            <summary>
+            Pallet level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.Box">
+            <summary>
+            Box level
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.Name">
+            <summary>
+            Model identity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.OrderNumber">
+            <summary>
+            Order number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.CustomerID">
+            <summary>
+            Customer serial number
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModel.PackingTime">
+            <summary>
+            Packing time
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.#ctor(TAP.Models.Stock.StockDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.CreateInstance(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.Dispose">
+            <summary>
+            This method disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.Copy">
+            <summary>
+            This method makes a copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads model history data. 
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.LoadBasicModel(System.Int32)">
+            <summary>
+            This methods loads the master data model.
+            </summary>
+            <returns>System basic model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.ChangeName(System.String)">
+            <summary>
+            This method changes identification member of model.
+            </summary>
+            <param name="name">New name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.AssignArrayValues(System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.AssignArrayValues">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.MergeModel(TAP.Models.Model,System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="model"></param>
+            <param name="updateUser"></param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModel.SplitModel(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="splitModelName"></param>
+            <param name="nestModelNames"></param>
+            <param name="updateUser"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.Models.Stock.ProductStockModelSet">
+            <summary>
+            This class supports the product stock model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModelSet.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModelSet.Item(System.String)">
+            <summary>
+            Model accessor
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.ProductStockModelSet.Models">
+            <summary>
+            Model list. 
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModelSet.Copy">
+            <summary>
+            This method copies models in ModelSet.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModelSet.ChangeDefaultInfo(TAP.Models.ModelDefaultInfo,System.String,TAP.Models.EnumEventFlag,System.DateTime,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <param name="defaultInfo">Hierachical structure</param>
+            <param name="events">Event</param>
+            <param name="eventFlag">Event flag</param>
+            <param name="eventTime">Date and time of event</param>
+            <param name="eventComment">Last event comment</param>
+            <param name="mainOperation">Last Main operation</param>
+            <param name="operation">Last operation</param>
+            <param name="step">Last setp</param>
+            <param name="status">Last setp</param>
+        </member>
+        <member name="M:TAP.Models.Stock.ProductStockModelSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This method loads mdoels.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+        <member name="T:TAP.Models.Stock.StandardWeightStockBasicInfo">
+            <summary>
+            This class supports the standard weight info stock basic model.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Name">
+            <summary>
+            Model identity
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Manufacturer">
+            <summary>
+            Manufacturer 
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.ProductWeight">
+            <summary>
+            Product weight
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.FullBoxWeight">
+            <summary>
+            Full box weight
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.EmptyBoxWeight">
+            <summary>
+            Empty box weight
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.PalletWeight">
+            <summary>
+            Pallet weigtht
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Wrapper">
+            <summary>
+            Wrapper
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Length">
+            <summary>
+            Length
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Height">
+            <summary>
+            First floor height 
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Height1">
+            <summary>
+            First floor height 
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Height2">
+            <summary>
+            Second floor height
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Height3">
+            <summary>
+            Third floor height
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Height4">
+            <summary>
+            Forth floor height
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.WorkingDescription">
+            <summary>
+            Working description
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.FriendlyName">
+            <summary>
+            Friendly name
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Provider">
+            <summary>
+            Provider
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Grade">
+            <summary>
+            Grade
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.Revision">
+            <summary>
+            Revision
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.CheckInCode">
+            <summary>
+            Check In Code
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfo.DomesticExport">
+            <summary>
+            Domestic or Export
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.#ctor(TAP.Models.Stock.StockBasicDefaultInfo)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.#ctor(TAP.Models.Stock.StockBasicDefaultInfo,System.Data.DataRow)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.#ctor(TAP.Models.Stock.StockBasicDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default model data</param>
+            <param name="includeNestData">If "TRUE", this model loads nest models.</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.CreateInstance(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="name">Model Name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.CreateInstance(TAP.Models.ModelDefaultInfo,System.Data.DataRow,TAP.EnumFlagYN)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="defaultInformation">Hierachy structure</param>
+            <param name="defaultData">Default data</param>
+            <param name="includeNestData">Including nest data or not</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.InitializeFields">
+            <summary>
+            This method initializes all fields.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.Dispose">
+            <summary>
+            This method disposes the instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.Copy">
+            <summary>
+            This method makes a copy of this model.
+            </summary>
+            <returns>Copy of this model</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.LoadModelHistory(TAP.ArgumentPack)">
+            <summary>
+            This method loads model history data. 
+            </summary>
+            <param name="arguments">Arguments</param>
+            <returns>Model history array</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.ChangeName(System.String)">
+            <summary>
+            This method changes identification member of model.
+            </summary>
+            <param name="name">New name</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.AssignArrayValues">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.MergeModel(TAP.Models.Model,System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="model"></param>
+            <param name="updateUser"></param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfo.SplitModel(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This method is not supported in this version.
+            </summary>
+            <param name="splitModelName"></param>
+            <param name="nestModelNames"></param>
+            <param name="updateUser"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TAP.Models.Stock.StandardWeightStockBasicInfoSet">
+            <summary>
+            This class supports the standard weight info stock basic model set.
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfoSet.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfoSet.Item(System.String)">
+            <summary>
+            Model accessor
+            </summary>
+            <param name="name">Model name</param>
+            <returns>Model indicated by name</returns>
+        </member>
+        <member name="P:TAP.Models.Stock.StandardWeightStockBasicInfoSet.Models">
+            <summary>
+            Model list
+            </summary>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfoSet.Copy">
+            <summary>
+            This method copies models in ModelSet.
+            </summary>
+            <returns>Model set</returns>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfoSet.ChangeDefaultInfo(TAP.Models.ModelDefaultInfo,System.String,TAP.Models.EnumEventFlag,System.DateTime,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method changes the hierachical structure of all models.
+            </summary>
+            <param name="defaultInfo">Hierachical structure</param>
+            <param name="events">Event</param>
+            <param name="eventFlag">Event flag</param>
+            <param name="eventTime">Date and time of event</param>
+            <param name="eventComment">Last event comment</param>
+            <param name="mainOperation">Last Main operation</param>
+            <param name="operation">Last operation</param>
+            <param name="step">Last setp</param>
+            <param name="status">Last setp</param>
+        </member>
+        <member name="M:TAP.Models.Stock.StandardWeightStockBasicInfoSet.LoadModels(TAP.ArgumentPack,System.String,TAP.EnumFlagYN,System.Boolean)">
+            <summary>
+            This method loads mdoels.
+            </summary>
+            <param name="arguments">Argument list</param>
+            <param name="users">User</param>
+            <param name="includeNestModels">If "TRUE", each models includes nest model.</param>
+            <param name="parentMode">If "TRUE", this method using "Parent-Type" query.</param>
+        </member>
+    </members>
+</doc>

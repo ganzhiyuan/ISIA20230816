@@ -11,7 +11,7 @@
     <RootNamespace>TAP.UI.MDI</RootNamespace>
     <AssemblyName>ISIA</AssemblyName>
     <ApplicationIcon>ISEM_B_64.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -119,58 +119,60 @@
     <AssemblyOriginatorKeyFile>TAP.UI.MDI_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.BonusSkins.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.Data.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Images.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.Images.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Images.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.RichEdit.v18.1.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.Utils.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v18.1.UI, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.Utils.v18.1.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.XtraBars.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.XtraEditors.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v22.2.UI, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.XtraLayout.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\_bin\FX\DevExpress\DevExpress.XtraRichEdit.v18.1.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_bin\FX\Newtonsoft.Json.dll</HintPath>
@@ -188,15 +190,13 @@
       <HintPath>..\..\_bin\FX\System.Windows.Forms.Ribbon35.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="TAP.App.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+    <Reference Include="TAP.App.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_bin\FX\TAP.App.Base.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=x86">
+    <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\_bin\FX\TAP.Base.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="TAP.Base.Configuration, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -561,7 +561,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="DevExpress.BonusSkins.v18.1">
+    <PublishFile Include="DevExpress.BonusSkins.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -571,7 +571,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Data.v18.1">
+    <PublishFile Include="DevExpress.Data.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -581,7 +581,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Images.v18.1">
+    <PublishFile Include="DevExpress.Images.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -591,7 +591,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Office.v18.1.Core">
+    <PublishFile Include="DevExpress.Office.v22.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -601,7 +601,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Pdf.v18.1.Core">
+    <PublishFile Include="DevExpress.Pdf.v22.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -611,7 +611,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Printing.v18.1.Core">
+    <PublishFile Include="DevExpress.Printing.v22.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -621,7 +621,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.RichEdit.v18.1.Core">
+    <PublishFile Include="DevExpress.RichEdit.v22.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -631,7 +631,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Sparkline.v18.1.Core">
+    <PublishFile Include="DevExpress.Sparkline.v22.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -641,7 +641,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Utils.v18.1">
+    <PublishFile Include="DevExpress.Utils.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -651,7 +651,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Utils.v18.1.UI">
+    <PublishFile Include="DevExpress.Utils.v22.2.UI">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -661,7 +661,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraBars.v18.1">
+    <PublishFile Include="DevExpress.XtraBars.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -671,7 +671,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraEditors.v18.1">
+    <PublishFile Include="DevExpress.XtraEditors.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -681,7 +681,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraGrid.v18.1">
+    <PublishFile Include="DevExpress.XtraGrid.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -691,7 +691,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraLayout.v18.1">
+    <PublishFile Include="DevExpress.XtraLayout.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -701,7 +701,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraNavBar.v18.1">
+    <PublishFile Include="DevExpress.XtraNavBar.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -711,7 +711,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraPrinting.v18.1">
+    <PublishFile Include="DevExpress.XtraPrinting.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -721,7 +721,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraRichEdit.v18.1">
+    <PublishFile Include="DevExpress.XtraRichEdit.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -731,7 +731,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraTreeList.v18.1">
+    <PublishFile Include="DevExpress.XtraTreeList.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -741,7 +741,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.XtraVerticalGrid.v18.1">
+    <PublishFile Include="DevExpress.XtraVerticalGrid.v22.2">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -922,7 +922,6 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

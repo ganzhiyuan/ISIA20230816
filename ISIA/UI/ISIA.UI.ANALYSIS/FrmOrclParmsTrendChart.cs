@@ -33,7 +33,7 @@ namespace ISIA.UI.ANALYSIS
         public FrmOrclParmsTrendChart()
         {
             InitializeComponent();
-            new InitializationUIService(this, null, null).Run();
+            new InitializationUIService(this, null, new AwrArgsPack()).Run();
             new InitializationComboxParmTypeUIService(this, null, null).Run();
         }
 
@@ -42,7 +42,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                new SerchUiService(this, e, new AwrArgsPack()).Run();
+                new SerchUiService(this, e, new AwrArgsPack()).RunAsync();
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -54,7 +54,6 @@ namespace ISIA.UI.ANALYSIS
         private void tCheckComboBoxParmType_EditValueChanged(object sender, EventArgs e)
         {
             new ShowComboxParmNamesUIService(this, e, null).Run();
-
         }
 
     
