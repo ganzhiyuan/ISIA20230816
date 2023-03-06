@@ -13,6 +13,8 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
     public class InitializationUIService : CommonUIService<FrmWorkloadAnalysis, object, AwrArgsPack>
     {
 
+        public static string PERIOD_DATE_INIT_CONFIG_PATH = "configuration/TAP.ISIA.Configuration/WX/Shift";
+
         public InitializationUIService(FrmWorkloadAnalysis frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
         {
 
@@ -22,9 +24,10 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
         {
             return base.ConvertData(data);
         }
-
+        
         public override void DisplayData(FrmWorkloadAnalysis frm, object data)
         {
+            //init dbname 
             DataSet ds = (DataSet)data;
             DataTable dt=ds.Tables[0];
             foreach ( DataRow dr in dt.Rows)
@@ -48,7 +51,7 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
             DataSet ds = Bs.ExecuteDataSet("GetDBName", args.getPack());
             XmlDocument doc = new XmlDocument();
             doc.Load(@".\ISIA.config");
-            XmlNodeList nodeList = doc.SelectNodes("configuration/TAP.ISIA.Configuration/WX/Shift");
+            XmlNodeList nodeList = doc.SelectNodes(PERIOD_DATE_INIT_CONFIG_PATH);
             foreach (XmlNode node in nodeList)
             {
                 EventArgPack.StartTime = node[TIME_SELECTION].Attributes["StartTime"].Value;
