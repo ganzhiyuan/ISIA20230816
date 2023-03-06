@@ -37,7 +37,6 @@ namespace ISIA.UI.ANALYSIS
         {
             InitializeComponent();
             new InitializationUIService(this, null, new AwrArgsPack()).Run();
-
         }
 
         private int SeriesIndex = -1;

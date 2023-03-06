@@ -27,6 +27,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _GroupingDateFormat;
 
+        private int _ClustersNumber;
+
         private static List<string> _WorkloadParamNamesList =new List<string>();
 
         static AwrArgsPack()
@@ -143,6 +145,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _WorkloadParamNamesList = value;
+            }
+        }
+
+        public int ClustersNumber
+        {
+            get
+            {
+                return _ClustersNumber;
+            }
+
+            set
+            {
+                _ClustersNumber = value;
             }
         }
 

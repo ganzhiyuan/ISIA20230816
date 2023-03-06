@@ -88,10 +88,8 @@ namespace ISIA.BIZ.ANALYSIS
         public void GetParmDailyTrendData(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
-
             try
             {
-
                 List<object> paramNames = arguments.ParamNamesList;
                 int interval = 500;
                 List<List<object>> paramNamesList = new List<List<object>>();
@@ -385,13 +383,11 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 tmpSql.AppendFormat("ss.\"{0}\"", param);
                 AppendWithComma(tmpSql, "");
-
             }
             tmpSql.Remove(tmpSql.Length - 1, 1);
             AppendWithCRLF(tmpSql, "from t2_sysmetric_summary sm,t2_sysstat ss " +
                 "where sm.dbid=ss.dbid(+) and sm.inst_id= ss.inst_id(+) and sm.workdate=ss.workdate(+) " +
                 " order by dbid, workdate");
-            ;
 
 
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
