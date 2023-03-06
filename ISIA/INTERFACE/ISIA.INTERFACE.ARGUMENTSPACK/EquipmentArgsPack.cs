@@ -32,7 +32,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         //
         private string _DataBase = null;
-        private string _Metric = null;
+        private string _ParameterName = null;
+        private string _DBID = null;
+
 
         //
 
@@ -67,7 +69,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         //
         public string DataBase { get { return _DataBase; } set { _DataBase = value; } }
 
-        public string Metric { get { return _Metric; } set { _Metric = value; } }
+        public string ParameterName { get { return _ParameterName; } set { _ParameterName = value; } }
+        public string DBID { get { return _DBID; } set { _DBID = value; } }
         //
 
 

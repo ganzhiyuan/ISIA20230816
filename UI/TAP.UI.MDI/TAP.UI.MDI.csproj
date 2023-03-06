@@ -516,6 +516,7 @@
     <None Include="Resources\en.png" />
     <None Include="Resources\kr.png" />
     <None Include="Resources\cn.png" />
+    <None Include="Resources\ISIA.png" />
     <Content Include="s_admin.ico" />
     <Content Include="s_favicon.ico" />
     <Content Include="Utils_Icosn.ico" />
@@ -760,7 +761,27 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
+    <PublishFile Include="TAP.Base">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
     <PublishFile Include="TAP.Base.Communication">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="TAP.Base.Configuration">
       <Visible>False</Visible>
       <Group>
       </Group>

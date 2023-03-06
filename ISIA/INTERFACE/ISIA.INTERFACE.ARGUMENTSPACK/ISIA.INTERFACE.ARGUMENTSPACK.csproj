@@ -69,6 +69,7 @@
     <Compile Include="DefaultReworkFlowArgsPack.cs" />
     <Compile Include="AwrArgsPack.cs" />
     <Compile Include="MonitorArgsPack.cs" />
+    <Compile Include="DataBaseManagementArgsPack.cs" />
     <Compile Include="WareHouseShelfArgsPack.cs" />
     <Compile Include="DeviceSetupArgsPack.cs" />
     <Compile Include="ELArgsPack.cs" />

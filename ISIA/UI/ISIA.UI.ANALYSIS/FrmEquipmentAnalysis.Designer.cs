@@ -28,52 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.RadioGroupItem radioGroupItem1 = new DevExpress.XtraEditors.Controls.RadioGroupItem();
+            DevExpress.XtraEditors.Controls.RadioGroupItem radioGroupItem2 = new DevExpress.XtraEditors.Controls.RadioGroupItem();
+            DevExpress.XtraEditors.Controls.RadioGroupItem radioGroupItem3 = new DevExpress.XtraEditors.Controls.RadioGroupItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipmentAnalysis));
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
+            this.dpnlLeft_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dpnlRight = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dpnlRight_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.dpnlLeft = new DevExpress.XtraBars.Docking.DockPanel();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.cbodata = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.tCheckBox1 = new TAP.UIControls.BasicControls.TCheckBox();
-            this.tLabel5 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.tLabel4 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.chTime1 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.cbometric = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.tLabel6 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.dateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.dateStart = new DevExpress.XtraEditors.DateEdit();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
+            this.tDateTimePickerSE1 = new TAP.UIControls.BasicControlsDEV.TDateTimePickerSE();
             this.cboBay = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.cboFab = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.tLabel3 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.cbopara = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
+            this.tLabel9 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.cboparatype = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
+            this.tLabel8 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.cbodata = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
+            this.tLabel7 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tTabControl1 = new TAP.UIControls.BasicControlsDEV.TTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tChart1 = new Steema.TeeChart.TChart();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.tChart2 = new Steema.TeeChart.TChart();
             this.line1 = new Steema.TeeChart.Styles.Line();
+            this.line2 = new Steema.TeeChart.Styles.Line();
+            this.marksTip1 = new Steema.TeeChart.Tools.MarksTip();
+            this.nearestPoint1 = new Steema.TeeChart.Tools.NearestPoint();
+            this.cursorTool1 = new Steema.TeeChart.Tools.CursorTool();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dpnlRight.SuspendLayout();
             this.dpnlRight_Container.SuspendLayout();
             this.dpnlLeft.SuspendLayout();
@@ -81,43 +101,38 @@
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
             this.tabPane1.SuspendLayout();
-            this.tabNavigationPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
-            this.navBarGroupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbodata.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chTime1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbometric.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBay.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboFab.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbopara.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboparatype.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbodata.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).BeginInit();
             this.tTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -131,7 +146,7 @@
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraUserControl1.Size = new System.Drawing.Size(1312, 667);
+            this.xtraUserControl1.Size = new System.Drawing.Size(1312, 687);
             // 
             // dpnlLeft_Container
             // 
@@ -139,14 +154,43 @@
             this.dpnlLeft_Container.Controls.Add(this.tabPane1);
             this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlLeft_Container.Size = new System.Drawing.Size(291, 634);
+            this.dpnlLeft_Container.Name = "dpnlLeft_Container";
+            this.dpnlLeft_Container.Size = new System.Drawing.Size(331, 654);
+            this.dpnlLeft_Container.TabIndex = 0;
+            // 
+            // dockManager1
+            // 
+            this.dockManager1.AllowGlyphSkinning = true;
+            this.dockManager1.AutoHiddenPanelShowMode = DevExpress.XtraBars.Docking.AutoHiddenPanelShowMode.MouseClick;
+            this.dockManager1.DockMode = DevExpress.XtraBars.Docking.Helpers.DockMode.Standard;
+            this.dockManager1.Form = this.xtraUserControl1;
+            this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dpnlLeft,
+            this.dpnlRight});
+            this.dockManager1.Style = DevExpress.XtraBars.Docking2010.Views.DockingViewStyle.Classic;
+            this.dockManager1.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.StatusBar",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane",
+            "DevExpress.XtraBars.TabFormControl",
+            "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl"});
             // 
             // dpnlRight
             // 
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
-            this.dpnlRight.Location = new System.Drawing.Point(301, 0);
+            this.dpnlRight.Controls.Add(this.dpnlRight_Container);
+            this.dpnlRight.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
+            this.dpnlRight.ID = new System.Guid("e877e830-0736-41fe-bd5f-5ce98b775e12");
+            this.dpnlRight.Location = new System.Drawing.Point(341, 0);
             this.dpnlRight.Margin = new System.Windows.Forms.Padding(4);
+            this.dpnlRight.Name = "dpnlRight";
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -155,16 +199,18 @@
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(826, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(796, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
-            this.dpnlRight.Size = new System.Drawing.Size(1011, 667);
+            this.dpnlRight.Size = new System.Drawing.Size(971, 687);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.splitContainerControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(1003, 632);
+            this.dpnlRight_Container.Name = "dpnlRight_Container";
+            this.dpnlRight_Container.Size = new System.Drawing.Size(963, 654);
+            this.dpnlRight_Container.TabIndex = 0;
             // 
             // dpnlLeft
             // 
@@ -174,31 +220,40 @@
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
+            this.dpnlLeft.Controls.Add(this.dpnlLeft_Container);
+            this.dpnlLeft.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.dpnlLeft.FloatSize = new System.Drawing.Size(40, 30);
+            this.dpnlLeft.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpnlLeft.ForeColor = System.Drawing.Color.Black;
+            this.dpnlLeft.ID = new System.Guid("19033d06-40d4-4ecd-914d-24c32beba911");
+            this.dpnlLeft.Location = new System.Drawing.Point(0, 0);
             this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.dpnlLeft.Name = "dpnlLeft";
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(226, 153);
-            this.dpnlLeft.Size = new System.Drawing.Size(301, 667);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(256, 153);
+            this.dpnlLeft.Size = new System.Drawing.Size(341, 687);
+            this.dpnlLeft.Text = "condition";
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 687);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 697);
             this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1312, 20);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1312, 10);
             // 
             // tPanelTop
             // 
             this.tPanelTop.Margin = new System.Windows.Forms.Padding(4);
-            this.tPanelTop.Size = new System.Drawing.Size(1312, 20);
+            this.tPanelTop.Size = new System.Drawing.Size(1312, 10);
             // 
             // tPanelMain
             // 
+            this.tPanelMain.Location = new System.Drawing.Point(0, 10);
             this.tPanelMain.Margin = new System.Windows.Forms.Padding(4);
-            this.tPanelMain.Size = new System.Drawing.Size(1312, 667);
+            this.tPanelMain.Size = new System.Drawing.Size(1312, 687);
             // 
             // tabPane1
             // 
-            this.tabPane1.AllowCollapse = DevExpress.Utils.DefaultBoolean.Default;
             this.tabPane1.Appearance.BackColor = System.Drawing.Color.White;
             this.tabPane1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tabPane1.Appearance.Options.UseBackColor = true;
@@ -218,9 +273,9 @@
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(291, 634);
+            this.tabPane1.RegularSize = new System.Drawing.Size(331, 654);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(291, 634);
+            this.tabPane1.Size = new System.Drawing.Size(331, 654);
             this.tabPane1.TabIndex = 5;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -232,27 +287,30 @@
             this.tabNavigationPage1.Appearance.Options.UseFont = true;
             this.tabNavigationPage1.Caption = "Condition";
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
+            this.tabNavigationPage1.Enabled = true;
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(291, 600);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(331, 620);
             // 
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.navBarGroup14;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
+            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer2);
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup14});
+            this.navBarGroup14,
+            this.navBarGroup1});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 364;
-            this.navBarControl1.Size = new System.Drawing.Size(364, 750);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 331;
+            this.navBarControl1.Size = new System.Drawing.Size(331, 620);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -271,7 +329,7 @@
             this.navBarGroup14.Caption = "Period Selection";
             this.navBarGroup14.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarGroup14.Expanded = true;
-            this.navBarGroup14.GroupClientHeight = 319;
+            this.navBarGroup14.GroupClientHeight = 145;
             this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup14.Name = "navBarGroup14";
             // 
@@ -284,24 +342,14 @@
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(362, 318);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(329, 144);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.cbodata);
-            this.layoutControl1.Controls.Add(this.tCheckBox1);
-            this.layoutControl1.Controls.Add(this.tLabel5);
-            this.layoutControl1.Controls.Add(this.tLabel4);
-            this.layoutControl1.Controls.Add(this.chTime1);
-            this.layoutControl1.Controls.Add(this.cbometric);
-            this.layoutControl1.Controls.Add(this.tLabel6);
-            this.layoutControl1.Controls.Add(this.dateEnd);
-            this.layoutControl1.Controls.Add(this.dateStart);
+            this.layoutControl1.Controls.Add(this.radioGroup1);
+            this.layoutControl1.Controls.Add(this.tDateTimePickerSE1);
             this.layoutControl1.Controls.Add(this.cboBay);
-            this.layoutControl1.Controls.Add(this.cboFab);
-            this.layoutControl1.Controls.Add(this.tLabel2);
-            this.layoutControl1.Controls.Add(this.tLabel3);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem13});
@@ -309,167 +357,52 @@
             this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(362, 318);
+            this.layoutControl1.Size = new System.Drawing.Size(329, 144);
             this.layoutControl1.TabIndex = 83;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // cbodata
+            // radioGroup1
             // 
-            this.cbodata.ControlID = "cbodata";
-            this.cbodata.DescriptionMember = null;
-            this.cbodata.DisplayMember = "NAME";
-            this.cbodata.DominantControl = "";
-            this.cbodata.EditValue = "";
-            this.cbodata.IsRequired = false;
-            this.cbodata.Location = new System.Drawing.Point(126, 114);
-            this.cbodata.Name = "cbodata";
-            this.cbodata.NeedToTranslate = false;
-            this.cbodata.ParameterID = "NAME";
-            this.cbodata.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbodata.Properties.Appearance.Options.UseFont = true;
-            this.cbodata.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbodata.RepresentativeValue = "";
-            this.cbodata.ShowDescription = false;
-            this.cbodata.Size = new System.Drawing.Size(233, 24);
-            this.cbodata.Sql = "ISIA.BIZ.COMMON.ComboBoxData.getDataBase";
-            this.cbodata.SqlDataBase = "";
-            this.cbodata.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cbodata.StyleController = this.layoutControl1;
-            this.cbodata.TabIndex = 70;
-            this.cbodata.ValueMember = null;
+            this.radioGroup1.Location = new System.Drawing.Point(3, 38);
+            this.radioGroup1.Name = "radioGroup1";
             // 
-            // tCheckBox1
             // 
-            this.tCheckBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.tCheckBox1.ControlID = "tCheckBox1";
-            this.tCheckBox1.IsRequired = false;
-            this.tCheckBox1.Location = new System.Drawing.Point(126, 198);
-            this.tCheckBox1.Name = "tCheckBox1";
-            this.tCheckBox1.NeedToTranslate = true;
-            this.tCheckBox1.RepresentativeValue = "";
-            this.tCheckBox1.Size = new System.Drawing.Size(233, 25);
-            this.tCheckBox1.TabIndex = 3;
-            this.tCheckBox1.UseVisualStyleBackColor = true;
             // 
-            // tLabel5
+            radioGroupItem1.Description = "DAY";
+            radioGroupItem1.Value = "day";
+            radioGroupItem2.Description = "HOUR";
+            radioGroupItem2.Value = "hour";
+            radioGroupItem3.Description = "MIN";
+            radioGroupItem3.Value = "min";
+            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            radioGroupItem1,
+            radioGroupItem2,
+            radioGroupItem3});
+            this.radioGroup1.Size = new System.Drawing.Size(323, 91);
+            this.radioGroup1.StyleController = this.layoutControl1;
+            this.radioGroup1.TabIndex = 0;
             // 
-            this.tLabel5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabel5.Appearance.Options.UseFont = true;
-            this.tLabel5.ControlID = "tLabel3";
-            this.tLabel5.IsRequired = false;
-            this.tLabel5.Location = new System.Drawing.Point(3, 198);
-            this.tLabel5.Name = "tLabel5";
-            this.tLabel5.NeedToTranslate = true;
-            this.tLabel5.RepresentativeValue = "TOP 10";
-            this.tLabel5.Size = new System.Drawing.Size(119, 25);
-            this.tLabel5.StyleController = this.layoutControl1;
-            this.tLabel5.TabIndex = 113;
-            this.tLabel5.Text = "TOP 10";
+            // tDateTimePickerSE1
             // 
-            // tLabel4
-            // 
-            this.tLabel4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabel4.Appearance.Options.UseFont = true;
-            this.tLabel4.ControlID = "tLabel2";
-            this.tLabel4.IsRequired = false;
-            this.tLabel4.Location = new System.Drawing.Point(3, 114);
-            this.tLabel4.Name = "tLabel4";
-            this.tLabel4.NeedToTranslate = true;
-            this.tLabel4.RepresentativeValue = "DATA BASE";
-            this.tLabel4.Size = new System.Drawing.Size(119, 24);
-            this.tLabel4.StyleController = this.layoutControl1;
-            this.tLabel4.TabIndex = 112;
-            this.tLabel4.Text = "DATA BASE";
-            // 
-            // chTime1
-            // 
-            this.chTime1.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "DAY"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "HOUR"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(null, "MINUTES")});
-            this.chTime1.Location = new System.Drawing.Point(3, 31);
-            this.chTime1.Name = "chTime1";
-            this.chTime1.Size = new System.Drawing.Size(356, 79);
-            this.chTime1.StyleController = this.layoutControl1;
-            this.chTime1.TabIndex = 3;
-            this.chTime1.ItemChecking += new DevExpress.XtraEditors.Controls.ItemCheckingEventHandler(this.chTime1_ItemChecking);
-            // 
-            // cbometric
-            // 
-            this.cbometric.ControlID = "cbometric";
-            this.cbometric.DescriptionMember = null;
-            this.cbometric.DisplayMember = "";
-            this.cbometric.DominantControl = "cbodata";
-            this.cbometric.EditValue = "";
-            this.cbometric.IsRequired = true;
-            this.cbometric.Location = new System.Drawing.Point(126, 170);
-            this.cbometric.Margin = new System.Windows.Forms.Padding(4);
-            this.cbometric.Name = "cbometric";
-            this.cbometric.NeedToTranslate = true;
-            this.cbometric.ParameterID = "";
-            this.cbometric.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbometric.RepresentativeValue = "";
-            this.cbometric.ShowDescription = false;
-            this.cbometric.Size = new System.Drawing.Size(233, 24);
-            this.cbometric.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetMETRIC";
-            this.cbometric.SqlDataBase = "";
-            this.cbometric.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cbometric.StyleController = this.layoutControl1;
-            this.cbometric.TabIndex = 111;
-            this.cbometric.ValueMember = null;
-            this.cbometric.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbooper_KeyUp);
-            // 
-            // tLabel6
-            // 
-            this.tLabel6.ControlID = "tLabel4";
-            this.tLabel6.IsRequired = false;
-            this.tLabel6.Location = new System.Drawing.Point(177, 3);
-            this.tLabel6.Margin = new System.Windows.Forms.Padding(4);
-            this.tLabel6.Name = "tLabel6";
-            this.tLabel6.NeedToTranslate = true;
-            this.tLabel6.RepresentativeValue = "~";
-            this.tLabel6.Size = new System.Drawing.Size(11, 18);
-            this.tLabel6.StyleController = this.layoutControl1;
-            this.tLabel6.TabIndex = 15;
-            this.tLabel6.Text = "~";
-            // 
-            // dateEnd
-            // 
-            this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(192, 3);
-            this.dateEnd.Margin = new System.Windows.Forms.Padding(4);
-            this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.Mask.EditMask = "G";
-            this.dateEnd.Size = new System.Drawing.Size(167, 24);
-            this.dateEnd.StyleController = this.layoutControl1;
-            this.dateEnd.TabIndex = 14;
-            // 
-            // dateStart
-            // 
-            this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(3, 3);
-            this.dateStart.Margin = new System.Windows.Forms.Padding(4);
-            this.dateStart.Name = "dateStart";
-            this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.EditFormat.FormatString = "G";
-            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateStart.Properties.Mask.EditMask = "G";
-            this.dateStart.Size = new System.Drawing.Size(170, 24);
-            this.dateStart.StyleController = this.layoutControl1;
-            this.dateStart.TabIndex = 13;
+            this.tDateTimePickerSE1.Appearance.Font = new System.Drawing.Font("Tahoma", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDateTimePickerSE1.Appearance.Options.UseFont = true;
+            this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
+            this.tDateTimePickerSE1.CustomFormat = "yyyy-MM-dd HH:mm";
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 2, 7, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.IsRequired = false;
+            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
+            this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
+            this.tDateTimePickerSE1.NeedToTranslate = true;
+            this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.SetDateInterval = TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.DateInterval.Day;
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(323, 31);
+            this.tDateTimePickerSE1.StartDate = new System.DateTime(2023, 1, 31, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.TabIndex = 0;
             // 
             // cboBay
             // 
-            this.cboBay.ControlID = "cboFacility";
+            this.cboBay.ControlID = "cboBay";
             this.cboBay.DescriptionMember = null;
             this.cboBay.DisplayMember = null;
             this.cboBay.DominantControl = "cboFab,cboLine,cboArea";
@@ -479,6 +412,9 @@
             this.cboBay.Name = "cboBay";
             this.cboBay.NeedToTranslate = false;
             this.cboBay.ParameterID = "BAY";
+            // 
+            // 
+            // 
             this.cboBay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboBay.RepresentativeValue = "";
@@ -491,62 +427,6 @@
             this.cboBay.TabIndex = 87;
             this.cboBay.ValueMember = "";
             this.cboBay.Visible = false;
-            // 
-            // cboFab
-            // 
-            this.cboFab.ControlID = "cboFab";
-            this.cboFab.DescriptionMember = null;
-            this.cboFab.DisplayMember = null;
-            this.cboFab.DominantControl = "";
-            this.cboFab.EditValue = "";
-            this.cboFab.IsRequired = false;
-            this.cboFab.Location = new System.Drawing.Point(126, 142);
-            this.cboFab.Name = "cboFab";
-            this.cboFab.NeedToTranslate = false;
-            this.cboFab.ParameterID = "";
-            this.cboFab.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboFab.Properties.Appearance.Options.UseFont = true;
-            this.cboFab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFab.RepresentativeValue = "";
-            this.cboFab.ShowDescription = false;
-            this.cboFab.Size = new System.Drawing.Size(233, 24);
-            this.cboFab.Sql = "";
-            this.cboFab.SqlDataBase = "";
-            this.cboFab.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cboFab.StyleController = this.layoutControl1;
-            this.cboFab.TabIndex = 69;
-            this.cboFab.ValueMember = null;
-            // 
-            // tLabel2
-            // 
-            this.tLabel2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabel2.Appearance.Options.UseFont = true;
-            this.tLabel2.ControlID = "tLabel2";
-            this.tLabel2.IsRequired = false;
-            this.tLabel2.Location = new System.Drawing.Point(3, 142);
-            this.tLabel2.Name = "tLabel2";
-            this.tLabel2.NeedToTranslate = true;
-            this.tLabel2.RepresentativeValue = "Facility";
-            this.tLabel2.Size = new System.Drawing.Size(119, 24);
-            this.tLabel2.StyleController = this.layoutControl1;
-            this.tLabel2.TabIndex = 74;
-            this.tLabel2.Text = "Facility";
-            // 
-            // tLabel3
-            // 
-            this.tLabel3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabel3.Appearance.Options.UseFont = true;
-            this.tLabel3.ControlID = "tLabel3";
-            this.tLabel3.IsRequired = false;
-            this.tLabel3.Location = new System.Drawing.Point(3, 170);
-            this.tLabel3.Name = "tLabel3";
-            this.tLabel3.NeedToTranslate = true;
-            this.tLabel3.RepresentativeValue = "METRIC";
-            this.tLabel3.Size = new System.Drawing.Size(119, 24);
-            this.tLabel3.StyleController = this.layoutControl1;
-            this.tLabel3.TabIndex = 75;
-            this.tLabel3.Text = "METRIC";
             // 
             // layoutControlItem13
             // 
@@ -562,158 +442,301 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem9,
-            this.layoutControlItem11,
-            this.layoutControlItem12,
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem15,
-            this.layoutControlItem14,
-            this.layoutControlItem1,
             this.emptySpaceItem3,
             this.layoutControlItem3,
-            this.layoutControlItem4,
-            this.layoutControlItem7,
-            this.layoutControlItem8});
+            this.layoutControlItem1});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(362, 318);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(329, 144);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.tLabel3;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 167);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(28, 21);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(123, 28);
-            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.tLabel2;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 139);
-            this.layoutControlItem11.MinSize = new System.Drawing.Size(44, 21);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(123, 28);
-            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem11.TextVisible = false;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.cboFab;
-            this.layoutControlItem12.Location = new System.Drawing.Point(123, 139);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(237, 28);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.dateStart;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 28);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(66, 28);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(174, 28);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.dateEnd;
-            this.layoutControlItem6.Location = new System.Drawing.Point(189, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 28);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(66, 28);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(171, 28);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.tLabel6;
-            this.layoutControlItem15.Location = new System.Drawing.Point(174, 0);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(15, 28);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.cbometric;
-            this.layoutControlItem14.Location = new System.Drawing.Point(123, 167);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(237, 28);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.chTime1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 28);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(0, 83);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(66, 83);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(360, 83);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 224);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 130);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(360, 92);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(327, 12);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.tLabel4;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 111);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(44, 21);
+            this.layoutControlItem3.Control = this.tDateTimePickerSE1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 35);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(5, 35);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(123, 28);
+            this.layoutControlItem3.Size = new System.Drawing.Size(327, 35);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // layoutControlItem4
+            // layoutControlItem1
             // 
-            this.layoutControlItem4.Control = this.tLabel5;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 195);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(34, 21);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(123, 29);
-            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
+            this.layoutControlItem1.Control = this.radioGroup1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 35);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(0, 95);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(66, 95);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(327, 95);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
-            // layoutControlItem7
+            // navBarGroupControlContainer2
             // 
-            this.layoutControlItem7.Control = this.tCheckBox1;
-            this.layoutControlItem7.Location = new System.Drawing.Point(123, 195);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(29, 29);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(237, 29);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
+            this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer2.Controls.Add(this.layoutControl2);
+            this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(329, 101);
+            this.navBarGroupControlContainer2.TabIndex = 1;
             // 
-            // layoutControlItem8
+            // layoutControl2
             // 
-            this.layoutControlItem8.Control = this.cbodata;
-            this.layoutControlItem8.Location = new System.Drawing.Point(123, 111);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(237, 28);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
+            this.layoutControl2.Controls.Add(this.cbopara);
+            this.layoutControl2.Controls.Add(this.tLabel9);
+            this.layoutControl2.Controls.Add(this.cboparatype);
+            this.layoutControl2.Controls.Add(this.tLabel8);
+            this.layoutControl2.Controls.Add(this.cbodata);
+            this.layoutControl2.Controls.Add(this.tLabel7);
+            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl2.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.layoutControl2.Name = "layoutControl2";
+            this.layoutControl2.Root = this.layoutControlGroup2;
+            this.layoutControl2.Size = new System.Drawing.Size(329, 101);
+            this.layoutControl2.TabIndex = 0;
+            this.layoutControl2.Text = "layoutControl2";
+            // 
+            // cbopara
+            // 
+            this.cbopara.ControlID = "cbopara";
+            this.cbopara.DescriptionMember = null;
+            this.cbopara.DisplayMember = "PARAMETERNAME";
+            this.cbopara.DominantControl = "cboparatype";
+            this.cbopara.EditValue = "";
+            this.cbopara.IsRequired = true;
+            this.cbopara.Location = new System.Drawing.Point(136, 59);
+            this.cbopara.Margin = new System.Windows.Forms.Padding(4);
+            this.cbopara.Name = "cbopara";
+            this.cbopara.NeedToTranslate = true;
+            this.cbopara.ParameterID = "";
+            // 
+            // 
+            // 
+            this.cbopara.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbopara.RepresentativeValue = "";
+            this.cbopara.ShowDescription = false;
+            this.cbopara.Size = new System.Drawing.Size(190, 24);
+            this.cbopara.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetPara";
+            this.cbopara.SqlDataBase = "";
+            this.cbopara.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.cbopara.StyleController = this.layoutControl2;
+            this.cbopara.TabIndex = 118;
+            this.cbopara.ValueMember = null;
+            this.cbopara.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbopara_KeyUp);
+            // 
+            // tLabel9
+            // 
+            this.tLabel9.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLabel9.Appearance.Options.UseFont = true;
+            this.tLabel9.ControlID = "tLabel9";
+            this.tLabel9.IsRequired = false;
+            this.tLabel9.Location = new System.Drawing.Point(3, 59);
+            this.tLabel9.Name = "tLabel9";
+            this.tLabel9.NeedToTranslate = true;
+            this.tLabel9.RepresentativeValue = "Parameter";
+            this.tLabel9.Size = new System.Drawing.Size(129, 24);
+            this.tLabel9.StyleController = this.layoutControl2;
+            this.tLabel9.TabIndex = 117;
+            this.tLabel9.Text = "Parameter";
+            // 
+            // cboparatype
+            // 
+            this.cboparatype.ControlID = "cboparatype";
+            this.cboparatype.DescriptionMember = null;
+            this.cboparatype.DisplayMember = "PARAMETERTYPE";
+            this.cboparatype.DominantControl = "";
+            this.cboparatype.EditValue = "";
+            this.cboparatype.IsRequired = false;
+            this.cboparatype.Location = new System.Drawing.Point(136, 31);
+            this.cboparatype.Name = "cboparatype";
+            this.cboparatype.NeedToTranslate = false;
+            this.cboparatype.ParameterID = "PARAMETERTYPE";
+            // 
+            // 
+            // 
+            this.cboparatype.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboparatype.Properties.Appearance.Options.UseFont = true;
+            this.cboparatype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboparatype.RepresentativeValue = "";
+            this.cboparatype.ShowDescription = false;
+            this.cboparatype.Size = new System.Drawing.Size(190, 24);
+            this.cboparatype.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetParaType";
+            this.cboparatype.SqlDataBase = "";
+            this.cboparatype.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.cboparatype.StyleController = this.layoutControl2;
+            this.cboparatype.TabIndex = 116;
+            this.cboparatype.ValueMember = null;
+            // 
+            // tLabel8
+            // 
+            this.tLabel8.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLabel8.Appearance.Options.UseFont = true;
+            this.tLabel8.ControlID = "tLabel8";
+            this.tLabel8.IsRequired = false;
+            this.tLabel8.Location = new System.Drawing.Point(3, 31);
+            this.tLabel8.Name = "tLabel8";
+            this.tLabel8.NeedToTranslate = true;
+            this.tLabel8.RepresentativeValue = "ParameterType";
+            this.tLabel8.Size = new System.Drawing.Size(129, 24);
+            this.tLabel8.StyleController = this.layoutControl2;
+            this.tLabel8.TabIndex = 115;
+            this.tLabel8.Text = "ParameterType";
+            // 
+            // cbodata
+            // 
+            this.cbodata.ControlID = "cbodata";
+            this.cbodata.DescriptionMember = null;
+            this.cbodata.DisplayMember = "CUSTOM01";
+            this.cbodata.DominantControl = "";
+            this.cbodata.EditValue = "";
+            this.cbodata.IsRequired = false;
+            this.cbodata.Location = new System.Drawing.Point(136, 3);
+            this.cbodata.Name = "cbodata";
+            this.cbodata.NeedToTranslate = false;
+            this.cbodata.ParameterID = "CUSTOM01";
+            // 
+            // 
+            // 
+            this.cbodata.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbodata.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            this.cbodata.Properties.Appearance.Options.UseFont = true;
+            this.cbodata.Properties.Appearance.Options.UseForeColor = true;
+            this.cbodata.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbodata.RepresentativeValue = "";
+            this.cbodata.ShowDescription = false;
+            this.cbodata.Size = new System.Drawing.Size(190, 24);
+            this.cbodata.Sql = "ISIA.BIZ.COMMON.ComboBoxData.getDataBase";
+            this.cbodata.SqlDataBase = "";
+            this.cbodata.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.cbodata.StyleController = this.layoutControl2;
+            this.cbodata.TabIndex = 114;
+            this.cbodata.ValueMember = "";
+            // 
+            // tLabel7
+            // 
+            this.tLabel7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLabel7.Appearance.Options.UseFont = true;
+            this.tLabel7.ControlID = "tLabel7";
+            this.tLabel7.IsRequired = false;
+            this.tLabel7.Location = new System.Drawing.Point(3, 3);
+            this.tLabel7.Name = "tLabel7";
+            this.tLabel7.NeedToTranslate = true;
+            this.tLabel7.RepresentativeValue = "DATA BASE";
+            this.tLabel7.Size = new System.Drawing.Size(129, 24);
+            this.tLabel7.StyleController = this.layoutControl2;
+            this.tLabel7.TabIndex = 113;
+            this.tLabel7.Text = "DATA BASE";
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem16,
+            this.layoutControlItem10,
+            this.layoutControlItem17,
+            this.layoutControlItem18,
+            this.layoutControlItem19,
+            this.emptySpaceItem1});
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(329, 101);
+            this.layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.tLabel7;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(74, 21);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(133, 28);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.tLabel8;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem16.MinSize = new System.Drawing.Size(44, 21);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(133, 28);
+            this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.cbodata;
+            this.layoutControlItem10.Location = new System.Drawing.Point(133, 0);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(194, 28);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.cboparatype;
+            this.layoutControlItem17.Location = new System.Drawing.Point(133, 28);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(194, 28);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.tLabel9;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 56);
+            this.layoutControlItem18.MinSize = new System.Drawing.Size(52, 21);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(133, 28);
+            this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.cbopara;
+            this.layoutControlItem19.Location = new System.Drawing.Point(133, 56);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(194, 28);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem19.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 84);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(327, 15);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.navBarGroup1.Appearance.Options.UseBackColor = true;
+            this.navBarGroup1.Caption = "Basic Selection";
+            this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer2;
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.GroupClientHeight = 102;
+            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroup1.Name = "navBarGroup1";
             // 
             // btnSelect
             // 
@@ -731,10 +754,11 @@
             this.btnSelect.ControlID = "btnSelect";
             this.btnSelect.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSelect.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.btnSelect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.ImageOptions.Image")));
             this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSelect.IsRequired = false;
-            this.btnSelect.Location = new System.Drawing.Point(0, 601);
+            this.btnSelect.Location = new System.Drawing.Point(0, 621);
             this.btnSelect.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnSelect.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnSelect.Margin = new System.Windows.Forms.Padding(4);
@@ -756,10 +780,24 @@
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // 
+            // 
+            this.splitContainerControl1.Panel1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Panel1.Name = "";
+            this.splitContainerControl1.Panel1.Size = new System.Drawing.Size(963, 332);
+            this.splitContainerControl1.Panel1.TabIndex = 0;
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // 
+            // 
             this.splitContainerControl1.Panel2.Controls.Add(this.tTabControl1);
+            this.splitContainerControl1.Panel2.Location = new System.Drawing.Point(0, 347);
+            this.splitContainerControl1.Panel2.Name = "";
+            this.splitContainerControl1.Panel2.Size = new System.Drawing.Size(963, 307);
+            this.splitContainerControl1.Panel2.TabIndex = 1;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1003, 632);
+            this.splitContainerControl1.Size = new System.Drawing.Size(963, 654);
             this.splitContainerControl1.SplitterPosition = 332;
             this.splitContainerControl1.TabIndex = 5;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -783,42 +821,84 @@
             this.tTabControl1.SelectedTabPage = this.xtraTabPage1;
             this.tTabControl1.ShowClosingButton = false;
             this.tTabControl1.ShowClosingMessage = false;
-            this.tTabControl1.Size = new System.Drawing.Size(1003, 285);
+            this.tTabControl1.Size = new System.Drawing.Size(963, 307);
             this.tTabControl1.TabIndex = 0;
             this.tTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.xtraTabPage2,
+            this.xtraTabPage3});
             this.tTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.chartControl1);
+            this.xtraTabPage1.Controls.Add(this.gridControl1);
+            this.xtraTabPage1.Enabled = true;
             this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1001, 251);
-            this.xtraTabPage1.Text = "Line Chart";
+            this.xtraTabPage1.Size = new System.Drawing.Size(961, 273);
+            this.xtraTabPage1.Text = "DATA";
             // 
-            // chartControl1
+            // gridControl1
             // 
-            this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartControl1.Legend.Name = "Default Legend";
-            this.chartControl1.Location = new System.Drawing.Point(0, 0);
-            this.chartControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.chartControl1.Name = "chartControl1";
-            this.chartControl1.RuntimeHitTesting = true;
-            this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            this.chartControl1.Size = new System.Drawing.Size(1251, 314);
-            this.chartControl1.TabIndex = 1;
-            this.chartControl1.MouseLeave += new System.EventHandler(this.chartControl1_MouseLeave);
-            this.chartControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartControl1_MouseMove);
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(961, 273);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "STAT_NAME";
+            this.gridColumn1.FieldName = "STAT_NAME";
+            this.gridColumn1.MinWidth = 25;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 94;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "VALUE";
+            this.gridColumn2.FieldName = "VALUE";
+            this.gridColumn2.MinWidth = 25;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 94;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "BEGIN_INTERVAL_TIME";
+            this.gridColumn3.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumn3.FieldName = "BEGIN_INTERVAL_TIME";
+            this.gridColumn3.MinWidth = 25;
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 94;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.tChart1);
+            this.xtraTabPage2.Enabled = true;
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1092, 257);
-            this.xtraTabPage2.Text = "Process Chart";
+            this.xtraTabPage2.Size = new System.Drawing.Size(1052, 279);
+            this.xtraTabPage2.Text = "TOP 10 Chart";
             // 
             // tChart1
             // 
@@ -880,6 +960,7 @@
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
             this.tChart1.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
+            this.tChart1.Axes.Bottom.Labels.Style = Steema.TeeChart.AxisLabelStyle.Text;
             // 
             // 
             // 
@@ -1480,6 +1561,7 @@
             this.tChart1.Axes.Top.Title.Shadow.Brush.Visible = true;
             this.tChart1.Axes.Top.UseMaxPixelPos = true;
             this.tChart1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // 
             // 
@@ -1613,7 +1695,7 @@
             // 
             // 
             // 
-            this.tChart1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
             this.tChart1.Legend.Font.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Font.Shadow.Brush.Visible = true;
             this.tChart1.Legend.Font.Size = 9;
@@ -1700,7 +1782,7 @@
             this.tChart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Location = new System.Drawing.Point(122, 28);
+            this.tChart1.Location = new System.Drawing.Point(0, 0);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1741,8 +1823,7 @@
             margins1.Right = 100;
             margins1.Top = 100;
             this.tChart1.Printer.Margins = margins1;
-            this.tChart1.Series.Add(this.line1);
-            this.tChart1.Size = new System.Drawing.Size(398, 111);
+            this.tChart1.Size = new System.Drawing.Size(1052, 279);
             // 
             // 
             // 
@@ -1985,6 +2066,1183 @@
             this.tChart1.Zoom.Brush.Solid = true;
             this.tChart1.Zoom.Brush.Visible = false;
             // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.tChart2);
+            this.xtraTabPage3.Enabled = true;
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(1052, 279);
+            this.xtraTabPage3.Text = "xtraTabPage3";
+            // 
+            // tChart2
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.Bottom.Labels.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.Bottom.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Bottom.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Bottom.Labels.Font.Size = 9;
+            this.tChart2.Axes.Bottom.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Bottom.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Angle = 0;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.Bottom.Title.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.Bottom.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Bottom.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Bottom.Title.Font.Size = 11;
+            this.tChart2.Axes.Bottom.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Bottom.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Bottom.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Bottom.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Bottom.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Bottom.UseMaxPixelPos = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.Depth.Labels.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.Depth.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Depth.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Depth.Labels.Font.Size = 9;
+            this.tChart2.Axes.Depth.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Depth.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Depth.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Angle = 0;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.Depth.Title.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.Depth.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Depth.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Depth.Title.Font.Size = 11;
+            this.tChart2.Axes.Depth.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Depth.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Depth.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Depth.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Depth.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Depth.UseMaxPixelPos = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.DepthTop.Labels.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.DepthTop.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.DepthTop.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.DepthTop.Labels.Font.Size = 9;
+            this.tChart2.Axes.DepthTop.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.DepthTop.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.DepthTop.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Angle = 0;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.DepthTop.Title.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.DepthTop.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.DepthTop.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.DepthTop.Title.Font.Size = 11;
+            this.tChart2.Axes.DepthTop.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.DepthTop.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.DepthTop.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.DepthTop.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.DepthTop.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.DepthTop.UseMaxPixelPos = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.Left.Labels.Brush.Solid = true;
+            this.tChart2.Axes.Left.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.Left.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.Left.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Left.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Left.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Left.Labels.Font.Size = 9;
+            this.tChart2.Axes.Left.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Left.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Left.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Left.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Left.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Angle = 90;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.Left.Title.Brush.Solid = true;
+            this.tChart2.Axes.Left.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.Left.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.Left.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Left.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Left.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Left.Title.Font.Size = 11;
+            this.tChart2.Axes.Left.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Left.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Left.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Left.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Left.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Left.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Left.UseMaxPixelPos = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.Right.Labels.Brush.Solid = true;
+            this.tChart2.Axes.Right.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.Right.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.Right.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Right.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Right.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Right.Labels.Font.Size = 9;
+            this.tChart2.Axes.Right.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Right.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Right.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Right.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Right.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Angle = 270;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.Right.Title.Brush.Solid = true;
+            this.tChart2.Axes.Right.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.Right.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.Right.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Right.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Right.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Right.Title.Font.Size = 11;
+            this.tChart2.Axes.Right.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Right.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Right.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Right.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Right.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Right.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Right.UseMaxPixelPos = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Axes.Top.Labels.Brush.Solid = true;
+            this.tChart2.Axes.Top.Labels.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Axes.Top.Labels.Font.Brush.Solid = true;
+            this.tChart2.Axes.Top.Labels.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Top.Labels.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Top.Labels.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Top.Labels.Font.Size = 9;
+            this.tChart2.Axes.Top.Labels.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Top.Labels.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Top.Labels.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Top.Labels.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Top.Labels.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Angle = 0;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Axes.Top.Title.Brush.Solid = true;
+            this.tChart2.Axes.Top.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Axes.Top.Title.Font.Brush.Solid = true;
+            this.tChart2.Axes.Top.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Top.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Top.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Top.Title.Font.Size = 11;
+            this.tChart2.Axes.Top.Title.Font.SizeFloat = 11F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Axes.Top.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Axes.Top.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Axes.Top.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Axes.Top.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Axes.Top.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Axes.Top.UseMaxPixelPos = true;
+            this.tChart2.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Footer.Brush.Solid = true;
+            this.tChart2.Footer.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Font.Brush.Color = System.Drawing.Color.Red;
+            this.tChart2.Footer.Font.Brush.Solid = true;
+            this.tChart2.Footer.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Footer.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Footer.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Footer.Font.Size = 8;
+            this.tChart2.Footer.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Footer.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Footer.ImageBevel.Brush.Solid = true;
+            this.tChart2.Footer.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Footer.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Footer.Shadow.Brush.Solid = true;
+            this.tChart2.Footer.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Header.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Header.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tChart2.Header.Brush.Solid = true;
+            this.tChart2.Header.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Header.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Header.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.Header.Font.Brush.Solid = true;
+            this.tChart2.Header.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Header.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Header.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Header.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Header.Font.Size = 12;
+            this.tChart2.Header.Font.SizeFloat = 12F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Header.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Header.ImageBevel.Brush.Solid = true;
+            this.tChart2.Header.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Header.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.tChart2.Header.Shadow.Brush.Solid = true;
+            this.tChart2.Header.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Legend.Brush.Solid = true;
+            this.tChart2.Legend.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tChart2.Legend.Font.Brush.Solid = true;
+            this.tChart2.Legend.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Legend.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Legend.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Legend.Font.Size = 9;
+            this.tChart2.Legend.Font.SizeFloat = 9F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Legend.ImageBevel.Brush.Solid = true;
+            this.tChart2.Legend.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tChart2.Legend.Shadow.Brush.Solid = true;
+            this.tChart2.Legend.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Legend.Symbol.Shadow.Brush.Solid = true;
+            this.tChart2.Legend.Symbol.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Legend.Title.Brush.Solid = true;
+            this.tChart2.Legend.Title.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Font.Bold = true;
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Font.Brush.Color = System.Drawing.Color.Black;
+            this.tChart2.Legend.Title.Font.Brush.Solid = true;
+            this.tChart2.Legend.Title.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Legend.Title.Font.Shadow.Brush.Solid = true;
+            this.tChart2.Legend.Title.Font.Shadow.Brush.Visible = true;
+            this.tChart2.Legend.Title.Font.Size = 8;
+            this.tChart2.Legend.Title.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Legend.Title.ImageBevel.Brush.Solid = true;
+            this.tChart2.Legend.Title.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Legend.Title.Shadow.Brush.Solid = true;
+            this.tChart2.Legend.Title.Shadow.Brush.Visible = true;
+            this.tChart2.Location = new System.Drawing.Point(0, 0);
+            this.tChart2.Name = "tChart2";
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Panel.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Panel.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tChart2.Panel.Brush.Solid = true;
+            this.tChart2.Panel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Panel.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Panel.ImageBevel.Brush.Solid = true;
+            this.tChart2.Panel.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Panel.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Panel.Shadow.Brush.Solid = true;
+            this.tChart2.Panel.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChart2.Printer.Margins = margins2;
+            this.tChart2.Series.Add(this.line1);
+            this.tChart2.Series.Add(this.line2);
+            this.tChart2.Size = new System.Drawing.Size(1052, 279);
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.SubFooter.Brush.Solid = true;
+            this.tChart2.SubFooter.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Font.Brush.Color = System.Drawing.Color.Red;
+            this.tChart2.SubFooter.Font.Brush.Solid = true;
+            this.tChart2.SubFooter.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.SubFooter.Font.Shadow.Brush.Solid = true;
+            this.tChart2.SubFooter.Font.Shadow.Brush.Visible = true;
+            this.tChart2.SubFooter.Font.Size = 8;
+            this.tChart2.SubFooter.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.SubFooter.ImageBevel.Brush.Solid = true;
+            this.tChart2.SubFooter.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubFooter.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.SubFooter.Shadow.Brush.Solid = true;
+            this.tChart2.SubFooter.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tChart2.SubHeader.Brush.Solid = true;
+            this.tChart2.SubHeader.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tChart2.SubHeader.Font.Brush.Solid = true;
+            this.tChart2.SubHeader.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.SubHeader.Font.Shadow.Brush.Solid = true;
+            this.tChart2.SubHeader.Font.Shadow.Brush.Visible = true;
+            this.tChart2.SubHeader.Font.Size = 12;
+            this.tChart2.SubHeader.Font.SizeFloat = 12F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.SubHeader.ImageBevel.Brush.Solid = true;
+            this.tChart2.SubHeader.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.SubHeader.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.tChart2.SubHeader.Shadow.Brush.Solid = true;
+            this.tChart2.SubHeader.Shadow.Brush.Visible = true;
+            this.tChart2.TabIndex = 0;
+            this.tChart2.Tools.Add(this.marksTip1);
+            this.tChart2.Tools.Add(this.nearestPoint1);
+            this.tChart2.Tools.Add(this.cursorTool1);
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Back.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Back.Brush.Color = System.Drawing.Color.Silver;
+            this.tChart2.Walls.Back.Brush.Solid = true;
+            this.tChart2.Walls.Back.Brush.Visible = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Back.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Walls.Back.ImageBevel.Brush.Solid = true;
+            this.tChart2.Walls.Back.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Back.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Walls.Back.Shadow.Brush.Solid = true;
+            this.tChart2.Walls.Back.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Bottom.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Bottom.Brush.Color = System.Drawing.Color.White;
+            this.tChart2.Walls.Bottom.Brush.Solid = true;
+            this.tChart2.Walls.Bottom.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Bottom.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Walls.Bottom.ImageBevel.Brush.Solid = true;
+            this.tChart2.Walls.Bottom.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Bottom.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Walls.Bottom.Shadow.Brush.Solid = true;
+            this.tChart2.Walls.Bottom.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Left.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Left.Brush.Color = System.Drawing.Color.LightYellow;
+            this.tChart2.Walls.Left.Brush.Solid = true;
+            this.tChart2.Walls.Left.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Left.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Walls.Left.ImageBevel.Brush.Solid = true;
+            this.tChart2.Walls.Left.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Left.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Walls.Left.Shadow.Brush.Solid = true;
+            this.tChart2.Walls.Left.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Right.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Right.Brush.Color = System.Drawing.Color.LightYellow;
+            this.tChart2.Walls.Right.Brush.Solid = true;
+            this.tChart2.Walls.Right.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Right.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.tChart2.Walls.Right.ImageBevel.Brush.Solid = true;
+            this.tChart2.Walls.Right.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Walls.Right.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.tChart2.Walls.Right.Shadow.Brush.Solid = true;
+            this.tChart2.Walls.Right.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.tChart2.Zoom.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.tChart2.Zoom.Brush.Solid = true;
+            this.tChart2.Zoom.Brush.Visible = false;
+            // 
             // line1
             // 
             // 
@@ -2142,7 +3400,7 @@
             this.line1.Marks.TailParams.Margin = 0F;
             this.line1.Marks.TailParams.PointerHeight = 8D;
             this.line1.Marks.TailParams.PointerWidth = 8D;
-            this.line1.OriginalCursor = System.Windows.Forms.Cursors.Default;
+            this.line1.OriginalCursor = null;
             // 
             // 
             // 
@@ -2166,6 +3424,227 @@
             // 
             this.line1.YValues.DataMember = "Y";
             // 
+            // line2
+            // 
+            // 
+            // 
+            // 
+            this.line2.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.Brush.Solid = true;
+            this.line2.Brush.Visible = true;
+            this.line2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.ColorEach = false;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Legend.Brush.Color = System.Drawing.Color.White;
+            this.line2.Legend.Brush.Solid = true;
+            this.line2.Legend.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line2.Legend.Font.Brush.Solid = true;
+            this.line2.Legend.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Legend.Font.Shadow.Brush.Solid = true;
+            this.line2.Legend.Font.Shadow.Brush.Visible = true;
+            this.line2.Legend.Font.Size = 8;
+            this.line2.Legend.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Legend.ImageBevel.Brush.Solid = true;
+            this.line2.Legend.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Legend.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Legend.Shadow.Brush.Solid = true;
+            this.line2.Legend.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.LinePen.Color = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(124)))), ((int)(((byte)(62)))));
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Marks.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.line2.Marks.Brush.Solid = true;
+            this.line2.Marks.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Bold = false;
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Brush.Color = System.Drawing.Color.Black;
+            this.line2.Marks.Font.Brush.Solid = true;
+            this.line2.Marks.Font.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Marks.Font.Shadow.Brush.Solid = true;
+            this.line2.Marks.Font.Shadow.Brush.Visible = true;
+            this.line2.Marks.Font.Size = 8;
+            this.line2.Marks.Font.SizeFloat = 8F;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Marks.ImageBevel.Brush.Solid = true;
+            this.line2.Marks.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Shadow.Brush.Color = System.Drawing.Color.Gray;
+            this.line2.Marks.Shadow.Brush.Solid = true;
+            this.line2.Marks.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Brush.Color = System.Drawing.Color.White;
+            this.line2.Marks.Symbol.Brush.Solid = true;
+            this.line2.Marks.Symbol.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.line2.Marks.Symbol.ImageBevel.Brush.Solid = true;
+            this.line2.Marks.Symbol.ImageBevel.Brush.Visible = true;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Marks.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.line2.Marks.Symbol.Shadow.Brush.Solid = true;
+            this.line2.Marks.Symbol.Shadow.Brush.Visible = true;
+            // 
+            // 
+            // 
+            this.line2.Marks.TailParams.Align = Steema.TeeChart.Styles.TailAlignment.Auto;
+            this.line2.Marks.TailParams.CustomPointPos = ((System.Drawing.PointF)(resources.GetObject("resource.CustomPointPos1")));
+            this.line2.Marks.TailParams.Margin = 0F;
+            this.line2.Marks.TailParams.PointerHeight = 8D;
+            this.line2.Marks.TailParams.PointerWidth = 8D;
+            this.line2.OriginalCursor = null;
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.line2.Pointer.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(104)))));
+            this.line2.Pointer.Brush.Solid = true;
+            this.line2.Pointer.Brush.Visible = true;
+            this.line2.Pointer.SizeDouble = 0D;
+            this.line2.Pointer.SizeUnits = Steema.TeeChart.Styles.PointerSizeUnits.Pixels;
+            this.line2.Title = "线条图2";
+            this.line2.UseExtendedNumRange = false;
+            // 
+            // 
+            // 
+            this.line2.XValues.DataMember = "X";
+            this.line2.XValues.Order = Steema.TeeChart.Styles.ValueListOrder.Ascending;
+            // 
+            // 
+            // 
+            this.line2.YValues.DataMember = "Y";
+            // 
+            // marksTip1
+            // 
+            this.marksTip1.Style = Steema.TeeChart.Styles.MarksStyles.XY;
+            // 
+            // nearestPoint1
+            // 
+            // 
+            // 
+            // 
+            this.nearestPoint1.Brush.Color = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.nearestPoint1.Brush.Gradient.Visible = true;
+            this.nearestPoint1.Brush.Solid = false;
+            this.nearestPoint1.Brush.Visible = true;
+            this.nearestPoint1.DrawLine = false;
+            // 
+            // 
+            // 
+            this.nearestPoint1.Pen.Color = System.Drawing.Color.White;
+            this.nearestPoint1.Pen.Visible = false;
+            this.nearestPoint1.Series = this.line1;
+            this.nearestPoint1.Style = Steema.TeeChart.Tools.NearestPointStyles.None;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editChartToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 28);
+            // 
+            // editChartToolStripMenuItem
+            // 
+            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
+            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.editChartToolStripMenuItem.Text = "Edit Chart";
+            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
+            // 
             // FrmEquipmentAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -2174,8 +3653,12 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmEquipmentAnalysis";
             this.Text = "EquipmentShiftProductionCapacity";
+            this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
+            this.Controls.SetChildIndex(this.tPanelTop, 0);
+            this.Controls.SetChildIndex(this.tPanelMain, 0);
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dpnlRight.ResumeLayout(false);
             this.dpnlRight_Container.ResumeLayout(false);
             this.dpnlLeft.ResumeLayout(false);
@@ -2184,43 +3667,38 @@
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
             this.tabPane1.ResumeLayout(false);
-            this.tabNavigationPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
-            this.navBarGroupControlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cbodata.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chTime1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbometric.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBay.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboFab.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbopara.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboparatype.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbodata.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tTabControl1)).EndInit();
             this.tTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2235,39 +3713,53 @@
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private TAP.UIControls.BasicControlsDEV.TCheckComboBox cboBay;
-        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cboFab;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel2;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel6;
-        private DevExpress.XtraEditors.DateEdit dateEnd;
-        private DevExpress.XtraEditors.DateEdit dateStart;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cbometric;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private TAP.UIControls.BasicControlsDEV.TTabControl tTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraCharts.ChartControl chartControl1;
-        private DevExpress.XtraEditors.CheckedListBoxControl chTime1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private TAP.UIControls.BasicControls.TCheckBox tCheckBox1;
-        private TAP.UIControls.BasicControlsDEV.TLabel tLabel5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cbodata;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private Steema.TeeChart.TChart tChart1;
+        private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer2;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cbopara;
+        private TAP.UIControls.BasicControlsDEV.TLabel tLabel9;
+        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cboparatype;
+        private TAP.UIControls.BasicControlsDEV.TLabel tLabel8;
+        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cbodata;
+        private TAP.UIControls.BasicControlsDEV.TLabel tLabel7;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private TAP.UIControls.BasicControlsDEV.TDateTimePickerSE tDateTimePickerSE1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.RadioGroup radioGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editChartToolStripMenuItem;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private Steema.TeeChart.TChart tChart2;
         private Steema.TeeChart.Styles.Line line1;
+        private Steema.TeeChart.Styles.Line line2;
+        private Steema.TeeChart.Tools.MarksTip marksTip1;
+        private Steema.TeeChart.Tools.NearestPoint nearestPoint1;
+        private Steema.TeeChart.Tools.CursorTool cursorTool1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraBars.Docking.ControlContainer dpnlLeft_Container;
+        private DevExpress.XtraBars.Docking.DockManager dockManager1;
+        private DevExpress.XtraBars.Docking.DockPanel dpnlLeft;
+        private DevExpress.XtraBars.Docking.DockPanel dpnlRight;
+        private DevExpress.XtraBars.Docking.ControlContainer dpnlRight_Container;
     }
 }
