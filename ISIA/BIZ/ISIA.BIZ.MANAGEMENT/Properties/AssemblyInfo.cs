@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("ISIA.UI.MANAGEMENT")]
+[assembly: AssemblyTitle("ISIA.BIZ.MANAGEMENT")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ISIA.UI.MANAGEMENT")]
+[assembly: AssemblyProduct("ISIA.BIZ.MANAGEMENT")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("1951964b-fbc2-4649-8f4c-dd5117fdfd55")]
+[assembly: Guid("ca94df6d-ac74-4757-96b1-2e2268bbd02f")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
