@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ISIA.BIZ.MANAGEMENT</RootNamespace>
     <AssemblyName>ISIA.BIZ.MANAGEMENT</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,16 +40,21 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TAP.Base">
-      <HintPath>..\..\..\_bin\FX\TAP.Base.dll</HintPath>
+    <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
+    <Reference Include="TAP.Data.DataBase, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\Service\TAP.Data.DataBase.dll</HintPath>
     </Reference>
-    <Reference Include="TAP.Data.DataBase">
-      <HintPath>..\..\..\_bin\FX\TAP.Data.DataBase.dll</HintPath>
-    </Reference>
-    <Reference Include="TAP.Remoting">
+    <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Remoting.dll</HintPath>
     </Reference>
-    <Reference Include="TAP.Remoting.Server">
+    <Reference Include="TAP.Remoting.Client, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Remoting.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="TAP.Remoting.Server, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Remoting.Server.dll</HintPath>
     </Reference>
     <Reference Include="TAP.Remoting.Server.BIZ.Componets">

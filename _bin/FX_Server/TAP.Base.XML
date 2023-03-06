@@ -6,7 +6,7 @@
     <members>
         <member name="T:TAP.Argument">
             <summary>
-            This class defines the argument.
+            This class is a item of  ArgumentPack.
             </summary>
         </member>
         <member name="F:TAP.Argument.argumentName">
@@ -41,19 +41,19 @@
         </member>
         <member name="P:TAP.Argument.ArgumentString">
             <summary>
-            String type value of argument
+            String type value
             </summary>
         </member>
         <member name="M:TAP.Argument.#ctor(System.String,System.Type)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of Argument.
             </summary>
             <param name="argumentName">Argument name</param>
             <param name="argumentType">Argument type</param>
         </member>
         <member name="M:TAP.Argument.#ctor(System.String,System.Type,System.Object)">
             <summary>
-             This creates an instance of this class.
+             This Creator creates instance of Argument.
             </summary>
             <param name="argumentName">Argument name</param>
             <param name="argumentType">Argument type</param>
@@ -61,7 +61,7 @@
         </member>
         <member name="M:TAP.Argument.Creates(System.String,System.Type,System.Object)">
             <summary>
-            This creates an instance of this class.
+            This Creator creates instance of this.
             </summary>
             <param name="argArgumentName">Argument name</param>
             <param name="argArgumentType">Argument type</param>
@@ -69,19 +69,19 @@
         </member>
         <member name="M:TAP.Argument.ToString">
             <summary>
-            This method is overloaded from 'ToString()'. <br/>
-            This method converts arguemt value as string type.
+            This method is overloaded method of 'ToString()'.
+            This method converts arguemt value to string.
             </summary>
             <returns>Value</returns>
         </member>
         <member name="M:TAP.Argument.Dispose">
             <summary>
-            This disposes the instance of Argument.
+            This disposes instance of Argument.
             </summary>
         </member>
         <member name="T:TAP.ArgumentPack">
             <summary>
-            This class defines the  argument collcation.
+            This class is collection of arguments.
             </summary>
         </member>
         <member name="F:TAP.ArgumentPack.ArgumentNameList">
@@ -96,22 +96,22 @@
         </member>
         <member name="M:TAP.ArgumentPack.AssignValues(System.Object[])">
             <summary>
-            This method assigns argument values to corresponding argument name.
+            This method assigns argument value to corresponding argument name.
             </summary>
             <param name="argumentValues">Array of argument value</param>
         </member>
         <member name="P:TAP.ArgumentPack.Item(System.String)">
             <summary>
-            Argument 
+            Argument of specified argument name
             </summary>
             <param name="argumentName">Argument name</param>
             <returns>Argument</returns>
         </member>
         <member name="P:TAP.ArgumentPack.Item(System.Int32)">
             <summary>
-            Argument 
+            Argument of specified index
             </summary>
-            <param name="index">Index of argument</param>
+            <param name="index">Index</param>
             <returns>Argument</returns>
         </member>
         <member name="P:TAP.ArgumentPack.ArgumentNames">
@@ -121,17 +121,17 @@
         </member>
         <member name="P:TAP.ArgumentPack.Count">
             <summary>
-            Number of arguments
+            Count of arguments
             </summary>
         </member>
         <member name="M:TAP.ArgumentPack.#ctor">
             <summary>
-            This creates the instance of ArgumentPack.
+            This creates instance of ArgumentPack.
             </summary>
         </member>
         <member name="M:TAP.ArgumentPack.AddArgument(System.String,System.Type,System.Object)">
             <summary>
-            This method adds the argument to ArgumentPack
+            This method adds argument to ArgumentPack
             </summary>
             <param name="argumentName">Argument name</param>
             <param name="argumentType">Argument data type</param>
@@ -139,38 +139,38 @@
         </member>
         <member name="M:TAP.ArgumentPack.AddArgument(System.String,System.Type)">
             <summary>
-            This method adds the argument to ArgumentPack.
+            This method adds argument to ArgumentPack.
             </summary>
             <param name="argumentName">Argument name</param>
             <param name="argumentType">Argument data type</param>
         </member>
         <member name="M:TAP.ArgumentPack.AddArgument(TAP.Argument)">
             <summary>
-            This method adds the argument to ArgumentPack.
+            This method adds argument to ArgumentPack.
             </summary>
             <param name="argument">Argument</param>
         </member>
         <member name="M:TAP.ArgumentPack.RemoveArgument(System.String)">
             <summary>
-            This method removes the specified argument.
+            This method remove specified argument.
             </summary>
             <param name="argumentName">Argument name</param>
         </member>
         <member name="M:TAP.ArgumentPack.IsContainArgument(System.String)">
             <summary>
-            This method checks whether specfied argument exist.
+            This method checks that specfied argument exist or not.
             </summary>
             <param name="argumentName">Argument name</param>
             <returns>If specified argument exist, method returns 'TRUE'</returns>
         </member>
         <member name="M:TAP.ArgumentPack.ClearArguments">
             <summary>
-            This method removes all arguments.
+            This method remove all arguments.
             </summary>
         </member>
         <member name="M:TAP.ArgumentPack.Copy(System.String[])">
             <summary>
-            This method copies arguments that specified argument list.
+            This method makes copy of specified argument list.
             </summary>
             <param name="argumentNames">Argument list</param>
             <returns>Copy of specified argument list</returns>
@@ -194,63 +194,63 @@
         </member>
         <member name="M:TAP.ArgumentPack.GetAttributes">
             <summary>
-            This is the implement of ICustomTypeDescriptor
+            This is implement of ICustomTypeDescriptor
             </summary>
             <returns>Attribute collection</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetClassName">
             <summary>
-            This is the implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Class name</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetComponentName">
             <summary>
-            This is the implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Component name</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetConverter">
             <summary>
-            This is the implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Type Converter</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetDefaultEvent">
             <summary>
-             This is the implement of ICustomTypeDescriptor. 
+             This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Default event</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetDefaultProperty">
             <summary>
-            This is the implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Default property</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetEditor(System.Type)">
             <summary>
-            This is the  implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <param name="editorBaseType"></param>
             <returns>Default type editor</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetEvents(System.Attribute[])">
             <summary>
-            This is the  implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <param name="attributes">Attribute array filter</param>
             <returns>Event collection</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetEvents">
             <summary>
-            This is the  implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <returns>Event collection</returns>
         </member>
         <member name="M:TAP.ArgumentPack.GetProperties(System.Attribute[])">
             <summary>
-            This is the implement of ICustomTypeDescriptor. 
+            This is implement of ICustomTypeDescriptor. 
             </summary>
             <param name="attributes">Attribute array filter</param>
             <returns>Property collection</returns>
@@ -263,21 +263,21 @@
         </member>
         <member name="M:TAP.ArgumentPack.GetPropertyOwner(System.ComponentModel.PropertyDescriptor)">
             <summary>
-             This is the implement of ICustomTypeDescriptor. 
+             This is implement of ICustomTypeDescriptor. 
             </summary>
             <param name="pd">Property Descripteor</param>
             <returns>Current instance</returns>
         </member>
         <member name="T:TAP.ArgumentPack.ArgumentPackEnumerator">
             <summary>
-            This class defines the enumerator of ArgumentPack 
+            Enumerator of ArgumentPack instance
             </summary>
         </member>
         <member name="M:TAP.ArgumentPack.ArgumentPackEnumerator.#ctor(TAP.ArgumentPack)">
             <summary>
-            This creates the instance of ArgumentPackEnumerator
+            This creator creates instance of this
             </summary>
-            <param name="argumentPack">ArgumentPack</param>
+            <param name="argumentPack">ArgumentPack instance</param>
         </member>
         <member name="P:TAP.ArgumentPack.ArgumentPackEnumerator.Current">
             <summary>
@@ -301,13 +301,13 @@
         </member>
         <member name="M:TAP.ArgumentPack.ArgumentPackEnumerator.MoveNext">
             <summary>
-            This method moves the indexer to next argument
+            This method lets indexer move.
             </summary>
-            <returns>If "TRUE", indexer moved successfully.</returns>
+            <returns>If index moves successfully, this method returns 'TRUE'.</returns>
         </member>
         <member name="M:TAP.ArgumentPack.ArgumentPackEnumerator.Reset">
             <summary>
-            This method resets the indexer
+            This method resets indexer
             </summary>
         </member>
         <member name="M:TAP.ArgumentPack.ArgumentPackEnumerator.ValidateIndex">
@@ -315,90 +315,14 @@
             인덱서의 유효성을 체크합니다.
             </summary>
         </member>
-        <member name="T:TAP.ArgumentPackPropertyDescriptor">
-            <summary>
-            This defines ArgumentPack Property Descriptor
-            </summary>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.#ctor(TAP.ArgumentPack,System.String)">
-            <summary>
-            This creates the instance of ArgumentPackPropertyDescriptor.
-            </summary>
-            <param name="argumentPack">ArgumentPack</param>
-            <param name="argumentName">Name of argument</param>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.IsReadOnly">
-            <summary>
-            If "TRUE", this is read-only.
-            </summary>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.Attributes">
-            <summary>
-            This returns the AttributeCollection.
-            </summary>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.ComponentType">
-            <summary>
-            This returns the ComponentType.
-            </summary>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.PropertyType">
-            <summary>
-            This returns the PropertyType.
-            </summary>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.Name">
-            <summary>
-            This returns the ArgumentName.
-            </summary>
-        </member>
-        <member name="P:TAP.ArgumentPackPropertyDescriptor.DisplayName">
-            <summary>
-            This returns the DisplayName
-            </summary>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.CanResetValue(System.Object)">
-            <summary>
-            This method is not supported. 
-            </summary>
-            <param name="component"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.GetValue(System.Object)">
-            <summary>
-            This method is not supported. 
-            </summary>
-            <param name="component"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.ShouldSerializeValue(System.Object)">
-            <summary>
-            This method is not supported.
-            </summary>
-            <param name="component"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.ResetValue(System.Object)">
-            <summary>>
-            This method is not supported.
-            </summary>
-            <param name="component"></param>
-        </member>
-        <member name="M:TAP.ArgumentPackPropertyDescriptor.SetValue(System.Object,System.Object)">
-            <summary>
-            This method is not supported.
-            </summary>
-            <param name="component"></param>
-            <param name="value"></param>
-        </member>
         <member name="T:TAP.Base.Assemblies.AssemblyBase">
             <summary>
-            This class defines and manages the assembly.
+            This is assembly class of TAP FX
             </summary>
         </member>
         <member name="P:TAP.Base.Assemblies.AssemblyBase.Instance">
             <summary>
-            Static accessor of this class
+            Static accessor of TFileControl
             </summary>
         </member>
         <member name="F:TAP.Base.Assemblies.AssemblyBase.instant">
@@ -408,7 +332,7 @@
         </member>
         <member name="M:TAP.Base.Assemblies.AssemblyBase.#ctor">
             <summary>
-            This creates an instance of this class
+            This creates of this.
             </summary>
         </member>
         <member name="M:TAP.Base.Assemblies.AssemblyBase.FixAssemblyName(System.String)">
@@ -436,12 +360,12 @@
         </member>
         <member name="T:TAP.Base.BIZ.BIZBase">
             <summary>
-            This class defines the work code of TAP FX.
+            This is BIZ base class of TAP FX
             </summary>
         </member>
         <member name="P:TAP.Base.BIZ.BIZBase.Instance">
             <summary>
-            Static accessor of This class
+            Static accessor of TFileControl
             </summary>
         </member>
         <member name="F:TAP.Base.BIZ.BIZBase.instant">
@@ -451,7 +375,7 @@
         </member>
         <member name="M:TAP.Base.BIZ.BIZBase.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates of this.
             </summary>
         </member>
         <member name="M:TAP.Base.BIZ.BIZBase.MakeWorkCode(System.String)">
@@ -471,7 +395,7 @@
         </member>
         <member name="T:TAP.Base.Crypto.Crypto">
             <summary>
-            This class executes encryption and decrytion.
+            This class executes encryption and decrytion 
             </summary>
         </member>
         <member name="F:TAP.Base.Crypto.Crypto.KEY">
@@ -501,12 +425,12 @@
         </member>
         <member name="T:TAP.Base.DateTimes.DateTimeBase">
             <summary>
-            This class provides the datetime conversion.
+            This is Date and Time base class of TAP FX
             </summary>
         </member>
         <member name="P:TAP.Base.DateTimes.DateTimeBase.Instance">
             <summary>
-            Static accessor of This class
+            Static accessor of TFileControl
             </summary>
         </member>
         <member name="F:TAP.Base.DateTimes.DateTimeBase.instant">
@@ -516,54 +440,54 @@
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.#ctor">
             <summary>
-            This  creates an instance of this class.
+            This  creates instance.
             </summary>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertStringToDateTimeTapStandard(System.String)">
             <summary>
-            This method converts to datetime type using Tap-standard string as 'yyyy-MM-dd HH:mm:ss'.
+            This method convert to datetime type using Tap-standard string as 'yyyy-MM-dd HH:mm:ss'.
             </summary>
             <param name="dateTime">Tap-standard datetime string</param>
             <returns>DateTime</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertStringToTapDateTimeStandard(System.String)">
             <summary>
-            This method converts specfied formated string "yyyyMMddHHmmss" to "yyyy-mm-dd HH:mm:ss" format.
+            This method convert to "yyyy-mm-dd HH:mm:ss" formated string using 14 character string as 'yyyyMMddHHmmss'.
             </summary>
             <param name="dateTime">String format as 'yyyyMMddHHmmss' </param>
             <returns>Date Time string</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertDateTimeToStringTapStandard(System.DateTime)">
             <summary>
-            This method converts specified DateTime to "yyyy-mm-dd HH:mm:ss" format.
+            This method convert DateTime to "yyyy-mm-dd HH:mm:ss" formated string
             </summary>
             <param name="dateTime">Datetime</param>
             <returns>Date Time string</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertDateTimeToStringTapStandardDetail(System.DateTime)">
             <summary>
-            This method converts specified DateTime to "yyyy-mm-dd HH:mm:ss.fff" format.
+            This method convert DateTime to "yyyy-mm-dd HH:mm:ss.fff" formated string
             </summary>
             <param name="dateTime">Datetime</param>
             <returns>Date Time string</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertDateTimeToStringTapStandardDateOnly(System.DateTime)">
             <summary>
-            This method converts specified DateTime to "yyyy-mm-dd" format.
+            This method convert DateTime to "yyyy-mm-dd" formated string
             </summary>
             <param name="dateTime">Datetime</param>
             <returns>Date string</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.ConvertDateTimeToStringTapStandardTimeOnly(System.DateTime)">
             <summary>
-            This method converts specified DateTime to "HH:mm:ss" format.
+            This method convert DateTime to "HH:mm:ss" formated string
             </summary>
             <param name="dateTime">Datetime</param>
             <returns>Time string</returns>
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.GetTimeLagBySeconds(System.DateTime,System.DateTime)">
             <summary>
-            This methods calcuates the time lag.
+            This methods calcuates time lag
             </summary>
             <param name="dateTime1">Older time</param>
             <param name="dateTime2">Newer time</param>
@@ -571,7 +495,7 @@
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.GetTimeLagByDateTime(System.DateTime,System.DateTime)">
             <summary>
-            This methods calcuates the time lag.
+            This methods calcuates time lag
             </summary>
             <param name="dateTime1">Older time</param>
             <param name="dateTime2">Newer time</param>
@@ -579,7 +503,7 @@
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.GetTimeLagByShortSeconds(System.DateTime,System.DateTime)">
             <summary>
-            This methods calcuates the time lag.
+            This methods calcuates time lag
             </summary>
             <param name="dateTime1">Older time</param>
             <param name="dateTime2">Newer time</param>
@@ -587,7 +511,7 @@
         </member>
         <member name="M:TAP.Base.DateTimes.DateTimeBase.GetTimeLagByString(System.DateTime,System.DateTime)">
             <summary>
-            This methods calcuates the time lag.
+            This methods calcuates time lag
             </summary>
             <param name="dateTime1">Older time</param>
             <param name="dateTime2">Newer time</param>
@@ -615,12 +539,12 @@
         </member>
         <member name="T:TAP.Base.IO.FileBase">
             <summary>
-            This class provides file processing methods.
+            This class is file control methods
             </summary>
         </member>
         <member name="P:TAP.Base.IO.FileBase.Instance">
             <summary>
-            Static accessor of tihs class
+            Static accessor of TFileControl
             </summary>
         </member>
         <member name="F:TAP.Base.IO.FileBase.instant">
@@ -630,7 +554,7 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.#ctor">
             <summary>
-            This  creates an instance of this class
+            This  creates instance.
             </summary>
         </member>
         <member name="M:TAP.Base.IO.FileBase.FixPath(System.String)">
@@ -642,28 +566,28 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.ValidateDirectoryFormat(System.String)">
             <summary>
-            This method validates specified path.
+            This method validates whether specified string is valid path. 
             </summary>
             <param name="directoryName">Local path</param>
             <returns>If 'TRUE', specfioed string is valid path</returns>
         </member>
         <member name="M:TAP.Base.IO.FileBase.CompressStream(System.IO.Stream)">
             <summary>
-            This method compresses specfied stream.
+            This method compresses stream
             </summary>
             <param name="stream">Stream for compressing</param>
             <returns>Compressed stream</returns>
         </member>
         <member name="M:TAP.Base.IO.FileBase.DicompressStream(System.IO.Stream)">
             <summary>. 
-            This method dicompresses compressed stream.
+            This method dicompresses stream that was compressed
             </summary>
             <param name="stream">Compressed stream</param>
             <returns>Normal Stream</returns>
         </member>
         <member name="M:TAP.Base.IO.FileBase.CreateBackupPath(System.String)">
             <summary>
-            This method makes the backup path using current date
+            This method makes backup path using current date
             </summary>
             <param name="backupPath">Default backup directory</param>
             <returns>Backup directory that includes date and time</returns>
@@ -676,7 +600,7 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.BackupFile(System.String,System.String,System.Boolean)">
             <summary>
-            This method backups the file to specified directory
+            This method backup file to specified directory
             </summary>
             <param name="backupPath">Default backup path</param>
             <param name="filePath">File path to backup</param>
@@ -699,7 +623,7 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.IsSamePath(System.String,System.String)">
             <summary>
-            This method compare two path if they are same directory.
+            This method compare two path are same directory
             </summary>
             <param name="path1">Path1</param>
             <param name="path2">Path2</param>
@@ -707,21 +631,21 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.GetAPPDirectory(System.String)">
             <summary>
-            This method returns the directory of Application files.
+            This method returns directory of Application files
             </summary>
             <param name="mdiName">Application Name</param>
             <returns></returns>
         </member>
         <member name="M:TAP.Base.IO.FileBase.CopyFile(System.String,System.String)">
             <summary>
-            This method copies specified file.
+            This method copies file.
             </summary>
             <param name="sourcePath">File path of source file</param>
             <param name="targetPath">File path of target file</param>
         </member>
         <member name="M:TAP.Base.IO.FileBase.CopyFile(System.String,System.String,TAP.Base.IO.EnumOverwriteMode,System.Boolean)">
             <summary>
-            This method copies specified file.
+            This method copies file.
             </summary>
             <param name="sourcePath">File path of source file</param>
             <param name="targetPath">File path of target file</param>
@@ -730,7 +654,7 @@
         </member>
         <member name="M:TAP.Base.IO.FileBase.ReadFile(System.String)">
             <summary>
-            This method reads file contents
+            This method read file contents
             </summary>
             <param name="filePath">File path</param>
             <returns>File contents</returns>
@@ -816,13 +740,13 @@
         </member>
         <member name="M:TAP.Base.Mathematics.ArithmeticCalculator.CalculatePostfix">
             <summary>
-            This method operates the postfix arithmetic association.
+            This method operates postfix arithmetic association.
             </summary>
             <returns>Result of arithmetic association</returns>
         </member>
         <member name="M:TAP.Base.Mathematics.ArithmeticCalculator.CreateAssiciation(System.String)">
             <summary>
-            This method makes the array that presents arithmetic association.
+            This method makes array that presents arithmetic association.
             </summary>
             <param name="argAssociation">Arithmetic association text</param>
             <returns>Array of arithmetic operation</returns>
@@ -885,71 +809,9 @@
             <param name="argIndex">단일 연산 수행결과를 저장할 Index</param>
             <returns>수정된 Array Result</returns>
         </member>
-        <member name="T:TAP.Base.Mathematics.Classifications">
-            <summary>
-            This class supports calculation of Kmens
-            </summary>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.Unified(System.Double[][])">
-            <summary>
-            
-            </summary>
-            <param name="input">double[][]</param>
-            <returns>double[][]</returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.PreProcessing(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="numTuples"></param>
-            <param name="ClustersNumber"></param>
-            <param name="IntRandom"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.Prepare(System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="ClustersNumber"></param>
-            <param name="columnsNumbers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.MeansUpdate(System.Double[][],System.Int32[],System.Double[][])">
-            <summary>
-            
-            </summary>
-            <param name="data"></param>
-            <param name="clustering"></param>
-            <param name="process"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.UpdateClustering(System.Double[][],System.Int32[],System.Double[][])">
-            <summary>
-            
-            </summary>
-            <param name="data"></param>
-            <param name="clustering"></param>
-            <param name="process"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.Ecart(System.Double[],System.Double[])">
-            <summary>
-            
-            </summary>
-            <param name="data"></param>
-            <param name="mean"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Classifications.LowIndex(System.Double[])">
-            <summary>
-            
-            </summary>
-            <param name="ecart"></param>
-            <returns></returns>
-        </member>
         <member name="T:TAP.Base.Mathematics.MeasureBase">
             <summary>
-            This class supports calculation of digital quantity
+            This is measure base class of TAP FX
             </summary>
         </member>
         <member name="P:TAP.Base.Mathematics.MeasureBase.Instance">
@@ -998,14 +860,14 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateSum(System.Collections.Generic.List{System.Decimal})">
             <summary>
-            This method opererates the sum of sample.
+            This method opererates sum of sample.
             </summary>
             <param name="items">Sample</param>
             <returns>Sum of sample</returns>
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateAverage(System.Collections.Generic.List{System.Decimal},System.Int32)">
             <summary>
-            This method operates the average of sample.
+            This method operates average of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1014,7 +876,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.FindMin(System.Collections.Generic.List{System.Decimal})">
             <summary>
-            This method finds the minimum value in sample.
+            This method finds minimum value of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1022,7 +884,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.FindMax(System.Collections.Generic.List{System.Decimal})">
             <summary>
-            This method finds the maximum value in sample.
+            This method finds maximum value of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1030,7 +892,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateMedian(System.Collections.Generic.List{System.Decimal},System.Int32)">
             <summary>
-            This methods calculates the median of sample.
+            This methods calculates median of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1039,7 +901,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateStandardDeviation(System.Collections.Generic.List{System.Decimal},System.Int32)">
             <summary>
-            This method calculates the standard deviation of sample.
+            This method standard deviation of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1048,7 +910,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateUpperSpecificationLimit(System.Collections.Generic.List{System.Decimal},System.Int32)">
             <summary>
-            This method calculates the USL(Upper Specification Limit) of sample using 3-sigma.
+            This method calculates USL(Upper Specification Limit) of sample using 3-sigma.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1057,7 +919,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateLowerSpecificationLimit(System.Collections.Generic.List{System.Decimal},System.Int32)">
             <summary>
-            This method calculates the LSL(Lower Specification Limit) of sample using 3-sigma.
+            This method calculates LSL(Lower Specification Limit) of sample using 3-sigma.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1066,7 +928,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCP(System.Collections.Generic.List{System.Decimal},System.Decimal,System.Decimal,System.Int32)">
             <summary>
-            This method calculates the CP of sample.
+            This method calculates CP of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1077,7 +939,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPU(System.Collections.Generic.List{System.Decimal},System.Decimal,System.Int32)">
             <summary>
-            This method calculates the CPU of sample.
+            This method calculates CPU of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1087,7 +949,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPL(System.Collections.Generic.List{System.Decimal},System.Decimal,System.Int32)">
             <summary>
-            This method calculates the CPL of sample.
+            This method calculates CPL of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1097,7 +959,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPCPK(System.Collections.Generic.List{System.Decimal},System.Decimal,System.Decimal,System.Int32)">
             <summary>
-            This method calculates the CPK of sample.
+            This method calculates CPK of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1108,14 +970,14 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateSum(System.Collections.Generic.List{System.Double})">
             <summary>
-            This method opererates the sum of sample.
+            This method opererates sum of sample.
             </summary>
             <param name="items">Sample</param>
             <returns>Sum of sample</returns>
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateAverage(System.Collections.Generic.List{System.Double},System.Int32)">
             <summary>
-            This method operates the average of sample.
+            This method operates average of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1124,7 +986,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.FindMin(System.Collections.Generic.List{System.Double})">
             <summary>
-            This method finds the minimum value in sample.
+            This method finds minimum value of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1132,7 +994,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.FindMax(System.Collections.Generic.List{System.Double})">
             <summary>
-            This method finds the maximum value in sample.
+            This method finds maximum value of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1140,7 +1002,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateMedian(System.Collections.Generic.List{System.Double},System.Int32)">
             <summary>
-            This methods calculates the median of sample.
+            This methods calculates median of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1149,7 +1011,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateStandardDeviation(System.Collections.Generic.List{System.Double},System.Int32)">
             <summary>
-            This method calculates the standard deviation of sample.
+            This method standard deviation of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1158,7 +1020,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateUpperSpecificationLimit(System.Collections.Generic.List{System.Double},System.Int32)">
             <summary>
-            This method calculates the USL(Upper Specification Limit) of sample using 3-sigma.
+            This method calculates USL(Upper Specification Limit) of sample using 3-sigma.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1167,7 +1029,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateLowerSpecificationLimit(System.Collections.Generic.List{System.Double},System.Int32)">
             <summary>
-            This method calculates the LSL(Lower Specification Limit) of sample using 3-sigma.
+            This method calculates LSL(Lower Specification Limit) of sample using 3-sigma.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1176,7 +1038,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCP(System.Collections.Generic.List{System.Double},System.Double,System.Double,System.Int32)">
             <summary>
-            This method calculates the CP of sample.
+            This method calculates CP of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1187,7 +1049,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPU(System.Collections.Generic.List{System.Double},System.Double,System.Int32)">
             <summary>
-            This method calculates the CPU of sample.
+            This method calculates CPU of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1197,7 +1059,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPL(System.Collections.Generic.List{System.Double},System.Double,System.Int32)">
             <summary>
-            This method calculates the CPL of sample.
+            This method calculates CPL of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1207,7 +1069,7 @@
         </member>
         <member name="M:TAP.Base.Mathematics.Statistics.CalculateCPCPK(System.Collections.Generic.List{System.Double},System.Double,System.Double,System.Int32)">
             <summary>
-            This method calculates the CPK of sample.
+            This method calculates CPK of sample.
             If quantity of sample is 0, this method returns 0.
             </summary>
             <param name="items">Sample</param>
@@ -1216,25 +1078,9 @@
             <param name="decimalPlace">Decimal point for rounding. If decimal point is negative, this method don't execute rounding.Rouding.</param>
             <returns>CPK of sample</returns>
         </member>
-        <member name="M:TAP.Base.Mathematics.Statistics.CorrelationPearson(System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double})">
-            <summary>
-            Computes the Pearson Product-Moment Correlation coefficient.
-            </summary>
-            <param name="dataA"></param>
-            <param name="dataB"></param>
-            <returns>The Pearson Product-Moment correlation coefficient.</returns>
-        </member>
-        <member name="M:TAP.Base.Mathematics.Statistics.KMeans(System.Double[][],System.Int32)">
-            <summary>
-            Computes the KMeans Cluster.
-            </summary>
-            <param name="input">Data of type Double to categorize</param>
-            <param name="ClustersNumber">Number of groups to be separated</param>
-            <returns>Return group numbers in order of data</returns>
-        </member>
         <member name="T:TAP.Base.Network.TAPImpersonate">
             <summary>
-            This class supports the impersonate connection
+            This is impersonate connection
             </summary>
         </member>
         <member name="M:TAP.Base.Network.TAPImpersonate.LogonUser(System.String,System.String,System.String,System.Int32,System.Int32,System.IntPtr@)">
@@ -1273,7 +1119,7 @@
         </member>
         <member name="M:TAP.Base.Network.TAPImpersonate.#ctor">
             <summary>
-            This creates the impersonate connection
+            This creates impersonate connection
             </summary>
         </member>
         <member name="M:TAP.Base.Network.TAPImpersonate.CreateImpersonateUser(System.String,System.String,System.String)">
@@ -1312,12 +1158,12 @@
         </member>
         <member name="T:TAP.Base.Network.NetworkBase">
             <summary>
-            This class supports networking methods.
+            This is network base class of TAP FX
             </summary>
         </member>
         <member name="P:TAP.Base.Network.NetworkBase.Instance">
             <summary>
-            Static accessor of this class.
+            Static accessor of TFileControl
             </summary>
         </member>
         <member name="F:TAP.Base.Network.NetworkBase.instant">
@@ -1354,7 +1200,7 @@
         </member>
         <member name="T:TAP.Base.Network.NetworkDrive">
             <summary>
-            This class supports the network drive
+            This creates network drive
             </summary>
         </member>
         <member name="M:TAP.Base.Network.NetworkDrive.Connect(System.String,System.String,System.String,System.String)">
@@ -1376,12 +1222,12 @@
         </member>
         <member name="T:TAP.Base.Network.NetworkDriveConnection">
             <summary>
-            This manages the network drive connections
+            This manages network drive connections
             </summary>
         </member>
         <member name="M:TAP.Base.Network.NetworkDriveConnection.GetConnectedPath(System.String)">
             <summary>
-            This methods gets path mapped on specified drive.
+            This methods gets path mapped on specified drive
             </summary>
             <param name="driveName">Drive name</param>
             <returns>Network path</returns>
@@ -1395,55 +1241,38 @@
         </member>
         <member name="T:TAP.Base.Office.ExcelAutomation">
             <summary>
-            This class provodies the Excel automation.
+            This class for Excel automation
             </summary>
         </member>
         <member name="M:TAP.Base.Office.ExcelAutomation.#ctor(System.String)">
             <summary>
-            This creates an instance of this class
+            This creates instance of this
             </summary>
-            <param name="filePath">Directory for saving</param>
-        </member>
-        <member name="M:TAP.Base.Office.ExcelAutomation.#ctor(System.String,System.Int32)">
-            <summary>
-            This creates an instance of this class
-            </summary>
-            <param name="filePath"></param>
-            <param name="UpdateLinks">int</param>
+            <param name="filePath">Directory for savin</param>
         </member>
         <member name="M:TAP.Base.Office.ExcelAutomation.#ctor(System.String,System.String)">
             <summary>
-            This creates an instance of this class
+            This creates instance of this
             </summary>
             <param name="savingDirectory">Directory for savin</param>
             <param name="fileName">Excel file name</param>
         </member>
         <member name="M:TAP.Base.Office.ExcelAutomation.SetHeader(System.Int32,System.String)">
             <summary>
-            This method adds specified data to header.
+            This method adds data to header
             </summary>
             <param name="column"></param>
             <param name="data"></param>
         </member>
         <member name="M:TAP.Base.Office.ExcelAutomation.AddData(System.Int32,System.Int32,System.String)">
             <summary>
-            This method adds specified data to cell.
+            This method adds data to cell
             </summary>
             <param name="column">Column index</param>
             <param name="row">Row index</param>
             <param name="data">Data</param>
         </member>
         <member name="M:TAP.Base.Office.ExcelAutomation.SaveFile">
-            <summary>
-            This methods saces the  excel file.
-            </summary>
-        </member>
-        <member name="M:TAP.Base.Office.ExcelAutomation.BaseSaveFile">
-            <summary>
-            Save Excel File
-            </summary>
-        </member>
-        <member name="M:TAP.Base.Office.ExcelAutomation.BaseSaveFile(System.String)">
             <summary>
             Save Excel File
             </summary>
@@ -1515,14 +1344,14 @@
         </member>
         <member name="M:TAP.Base.QRCode.QRDecoder.ByteArrayToStr(System.Byte[])">
             <summary>
-            This method converts the byte arraty to string using UTF8 encoding.
+            Convert byte array to string using UTF8 encoding
             </summary>
             <param name="DataArray">Input array</param>
             <returns>Output string</returns>
         </member>
         <member name="M:TAP.Base.QRCode.QRDecoder.ImageDecoder(System.Drawing.Bitmap)">
             <summary>
-            This method decodes the QR Code image.
+            QRCode image decoder
             </summary>
             <param name="InputImage">Input image</param>
             <returns>Output byte arrays</returns>
@@ -1540,7 +1369,7 @@
         </member>
         <member name="T:TAP.Base.QRCode.QRCodeCommandLine">
             <summary>
-            This class provides command line.
+            Command line class
             </summary>
         </member>
         <member name="F:TAP.Base.QRCode.QRCodeCommandLine.Help">
@@ -1550,13 +1379,13 @@
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeCommandLine.Encode(System.String)">
             <summary>
-            This method encodes QR Code using command line.
+            Encode QRCode using command line class
             </summary>
             <param name="CommandLine">Command line text</param>
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeCommandLine.Encode(System.String[])">
             <summary>
-            This method encodes QR Code using array.
+            Command line encode
             </summary>
             <param name="Args">Arguments array</param>
         </member>
@@ -1567,33 +1396,33 @@
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeEncoder.SaveQRCodeToPngFile(System.String)">
             <summary>
-            This method Saves the QRCode image to PNG file.
+            Save QRCode image to PNG file
             </summary>
             <param name="FileName">PNG file name</param>
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeEncoder.SaveQRCodeToPngFile(System.IO.Stream)">
             <summary>
-            This method saves the QRCode image to PNG stream.
+            Save QRCode image to PNG stream
             </summary>
             <param name="OutputStream">PNG output stream</param>
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeEncoder.SaveQRCodeToFile(System.String,System.Drawing.Imaging.ImageFormat)">
             <summary>
-            This method saves barcode bitmap to file.
+            Save barcode Bitmap to file
             </summary>
             <param name="FileName">File name</param>
             <param name="Format">Image file format (i.e. PNG, BMP, JPEG)</param>
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeEncoder.SaveQRCodeToFile(System.IO.Stream,System.Drawing.Imaging.ImageFormat)">
             <summary>
-            This method saves barcode bitmap to stream.
+            Save barcode Bitmap to stream
             </summary>
             <param name="OutputStream">Output stream</param>
             <param name="Format">Image file format (i.e. PNG, BMP, JPEG)</param>
         </member>
         <member name="M:TAP.Base.QRCode.QRCodeEncoder.CreateQRCodeBitmap">
             <summary>
-            This method creates the bitmap image of the Pdf417 barcode.
+            Create Bitmap image of the Pdf417 barcode
             </summary>
             <returns>Barcode Bitmap</returns>
         </member>
@@ -1768,33 +1597,33 @@
         </member>
         <member name="M:TAP.Base.QRCode.QREncoder.Encode(System.String)">
             <summary>
-            This method encodes one string into QRCode boolean matrix.
+            Encode one string into QRCode boolean matrix
             </summary>
             <param name="StringDataSegment">string data segment</param>
         </member>
         <member name="M:TAP.Base.QRCode.QREncoder.Encode(System.String[])">
             <summary>
-            This method encodes array of strings into QRCode boolean matrix.
+            Encode array of strings into QRCode boolean matrix
             </summary>
             <param name="StringDataSegments">string data segments</param>
         </member>
         <member name="M:TAP.Base.QRCode.QREncoder.Encode(System.Byte[])">
             <summary>
-            This method encodes one data segment into QRCode boolean matrix.
+            Encode one data segment into QRCode boolean matrix
             </summary>
             <param name="SingleDataSeg">Data segment byte array</param>
             <returns>QR Code boolean matrix</returns>
         </member>
         <member name="M:TAP.Base.QRCode.QREncoder.Encode(System.Byte[][])">
             <summary>
-            This method encodes data segments array into QRCode boolean matrix.
+            Encode data segments array into QRCode boolean matrix
             </summary>
             <param name="DataSegArray">Data array of byte arrays</param>
             <returns>QR Code boolean matrix</returns>
         </member>
         <member name="M:TAP.Base.QRCode.QREncoder.ConvertQRCodeMatrixToPixels">
             <summary>
-            This method converts black and white matrix to black and white image.
+            convert black and white matrix to black and white image
             </summary>
             <returns>Black and white image in pixels</returns>
         </member>
@@ -1805,19 +1634,19 @@
         </member>
         <member name="T:TAP.Base.Zip.ZipFiles">
             <summary>
-            This provides the file archving.
+            This provides file archving.
             </summary>
         </member>
         <member name="M:TAP.Base.Zip.ZipFiles.ArchiveFile(System.String,System.String)">
             <summary>
-            This method archives the file.
+            This method archives file
             </summary>
             <param name="fileFullName">File name</param>
             <param name="targetDirectory">Target directory</param>
         </member>
         <member name="M:TAP.Base.Zip.ZipFiles.ArchiveFile(System.String,System.String,System.Boolean)">
             <summary>
-            This method archives the file.
+            This method archives file
             </summary>
             <param name="fileFullName">File name</param>
             <param name="targetDirectory">Target directory</param>
@@ -1825,7 +1654,7 @@
         </member>
         <member name="M:TAP.Base.Zip.ZipFiles.ArchiveFile(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
-            This method archives the file
+            This method archives file
             </summary>
             <param name="fileFullName">File name</param>
             <param name="targetDirectory">Target directory</param>
@@ -1834,69 +1663,67 @@
         </member>
         <member name="T:TAP.TapBase">
             <summary>
-            This class defines common methods and constants.
+            This supports common methods and constants.
             </summary>
         </member>
         <member name="F:TAP.TapBase._TRUE_STRING">
             <summary>
-            "TRUE" Flags. <br/>
-            This flags mean "Pass", "True" and "YES".
+            This constant is flags means 'true'.
             </summary>
         </member>
         <member name="F:TAP.TapBase._DOT_STRING">
             <summary>
-            Period (".")
+            This constant is string ".".
             </summary>
         </member>
         <member name="F:TAP.TapBase._NA">
             <summary>
-             'Not Applicable' 
+            This constant means 'Not Applicable'.
             </summary>
         </member>
         <member name="F:TAP.TapBase._DEFAULTIP">
             <summary>
-            "0.0.0.0" <br/>
-            This means "No IP Address".
+            This constant means 'IP address did not assigned'.
             </summary>
         </member>
         <member name="F:TAP.TapBase._ARGUMENT_PREFIX">
             <summary>
-            Argument prefix that is used for call database
+            This constant is prefix of argument for calling database procedure.
             </summary>
         </member>
         <member name="F:TAP.TapBase._SPLITER">
             <summary>
-            Default splitter character
+            This constant is default splitter character.
             </summary>
         </member>
         <member name="F:TAP.TapBase._ARGUMENTKEY_TABLENAME">
             <summary>
-            Argument key of table name.
+            This constant is argument key of table name.
             </summary>
         </member>
         <member name="F:TAP.TapBase._NULL">
             <summary>
-            Empty (Null) string
+            This constant means empty string.
             </summary>
         </member>
         <member name="F:TAP.TapBase._UNDER_BAR">
             <summary>
-            Underbar ("_")
+            This constant is string "_".
             </summary>
         </member>
         <member name="F:TAP.TapBase._DEFAULT">
             <summary>
-            Default
+            This constant means default setting.
             </summary>
         </member>
         <member name="F:TAP.TapBase._LOG_DATETIME_FORMAT">
             <summary>
-            Datetime string format incldues millisecond
+            This is string format of datetime for logging
             </summary>
         </member>
         <member name="F:TAP.TapBase._LOG_TEMP_DIRECTORY">
             <summary>
-            Temp log directory
+            This is temp log directory
             </summary>
         </member>
         <member name="F:TAP.TapBase._DEFAULT_REGION">
@@ -1931,12 +1758,12 @@
         </member>
         <member name="P:TAP.TapBase.Instance">
             <summary>
-            Static accessor of This class
+            Static accessor of TapBase
             </summary>
         </member>
         <member name="F:TAP.TapBase.instant">
             <summary>
-            This is  global varaiable of this class
+            This is TapBase-Typed global varaiable.
             </summary>
         </member>
         <member name="P:TAP.TapBase.IPAddress">
@@ -1956,7 +1783,7 @@
         </member>
         <member name="P:TAP.TapBase.ApplicationPath">
             <summary>
-            Application path<br/>
+            Application path.
             This path will be defined after initializing application
             </summary>
         </member>
@@ -1967,12 +1794,12 @@
         </member>
         <member name="M:TAP.TapBase.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of TapBase.
             </summary>
         </member>
         <member name="M:TAP.TapBase.SplitStringToList(System.String,System.Char)">
             <summary>
-            This method splits specified string using specified splitter and then saves to list.<br/>
+            This method splits specified string using specified splitter and then saves to list.
             If 'splitter' was not assigned, this method uses ',' as splitter.
             </summary>
             <param name="stringObject">String</param>
@@ -2004,7 +1831,7 @@
         </member>
         <member name="M:TAP.TapBase.SplitStringToArray(System.String,System.Char,System.Int32)">
             <summary>
-            This method splits specified string using assigned splitter and then saves to array.<br/>
+            This method splits string using assigned splitter.
             If item count of result array does not match to 'expectedItemCount', this method adds or removes items.
             </summary>
             <param name="oneString">String for split</param>
@@ -2014,22 +1841,22 @@
         </member>
         <member name="M:TAP.TapBase.SplitStringToArray(System.String,System.Char,TAP.EnumFlagYN)">
             <summary>
-            This method splits specified string using assigned character and then saves to array.
+            This method splits string using assigned character.
             </summary>
             <param name="oneString">String for split</param>
             <param name="oneChar">Character for spli</param>
-            <param name="needTrim">If 'YES', this method trims each items of resut array</param>
+            <param name="needTrim">If this argument set to 'YES', this method trims each items of resut array</param>
             <returns>String array</returns>
         </member>
         <member name="M:TAP.TapBase.SplitStringToArray(System.String,System.Char,System.Int32,TAP.EnumFlagYN)">
             <summary>
-            This method splits string using assigned character and then saves to array.<br/>
-            If item count of result array does not match to 'expectedItemCount', this method adds or removes items. <br/>
+            This method splits string using assigned character.
+            If item count of result array does not match to 'expectedItemCount', this method adds or removes items. 
             </summary>
             <param name="oneString">String for split</param>
             <param name="oneChar">Character for split</param>
             <param name="expectedItemCount">Expected item count of result array</param>
-            <param name="needTrim">If 'YES', this method trims each items of resut array</param>
+            <param name="needTrim">If this argument set to 'YES', this method trims each items of resut array</param>
             <returns>String array</returns>
         </member>
         <member name="M:TAP.TapBase.ExtendArray(System.Object[],System.Int32)">
@@ -2074,7 +1901,7 @@
         </member>
         <member name="M:TAP.TapBase.TrimMiddle(System.String)">
             <summary>
-            If one string has many empty space and length of each empty spaces are different, this method adjusts length of each spaces to 1.
+            If one string has many empty space and length of each empty spaces are different, this method arranges length of each spaces to 1.
             </summary>
             <param name="longString">String</param>
             <returns>String has many spaces that have same length</returns>
@@ -2089,7 +1916,7 @@
         </member>
         <member name="M:TAP.TapBase.SubString(System.String,System.Int32,System.Int32)">
             <summary>
-            This method makes a substring of specified string that starts on 'startIndex' index.
+            This method makes substring of specified string that starts on 'startIndex' index.
             </summary>
             <param name="stringObject">String</param>
             <param name="startIndex">Start index</param>
@@ -2098,7 +1925,7 @@
         </member>
         <member name="M:TAP.TapBase.SubString(System.String,System.String)">
             <summary>
-            This method makes a substring of specified string that is revmoved 'removeString'.
+            This method makes substring of specified string that is revmoved 'removeString'.
             </summary>
             <param name="stringObject">String</param>
             <param name="removeString">String for removing</param>
@@ -2106,7 +1933,7 @@
         </member>
         <member name="M:TAP.TapBase.SubString(System.String,System.Char)">
             <summary>
-            This method makes a substring of specified string that is removed string after specified character.
+            This method makes substring of specified string that is removed string after specified character.
             </summary>
             <param name="stringObject">String</param>
             <param name="remoValStartChar">Start character for removing</param>
@@ -2114,7 +1941,7 @@
         </member>
         <member name="M:TAP.TapBase.SubString(System.Char,System.String)">
             <summary>
-            This method makes a substring of specified string that is starts with specified string.
+            This method makes substring of specified string that is starts with specified string.
             </summary>
             <param name="remoValStartChar">String</param>
             <param name="stringObject">Start character for substring</param>
@@ -2140,7 +1967,7 @@
             This method converts number to alphabet.
             </summary>
             <param name="number">Number</param>
-            <param name="isHexCode">If 'TRUE', this method uses 'HEX' alphabet(A,B,C,D,E,F) only.</param>
+            <param name="isHexCode">If this argument sets to 'TRUE', this method uses 'HEX' alphabet(A,B,C,D,E,F) only.</param>
             <returns>Alphabet orresponding assigned number</returns>
         </member>
         <member name="M:TAP.TapBase.FormatNumericString(System.String,System.Boolean,System.Int32)">
@@ -2155,7 +1982,7 @@
         </member>
         <member name="M:TAP.TapBase.GetNumericValueFormText(System.String)">
             <summary>
-            This method converts specified string to decimal value.
+            This method converts specified to decimal value
             </summary>
             <param name="text">Text</param>
             <returns>Decimal value</returns>
@@ -2175,35 +2002,35 @@
         </member>
         <member name="M:TAP.TapBase.IsNumeric(System.String)">
             <summary>
-            This method checks if specified string can be parsed to numeric value.
+            This method checks that specified string can be parsed to numeric value.
             </summary>
             <param name="stringObject">String</param>
             <returns>If specified string can be parsed to numeric value, this method will be return 'TRUE'.</returns>
         </member>
         <member name="M:TAP.TapBase.RemoveNonNumericCharacter(System.String)">
             <summary>
-            This method removes non-numeric character in specified text.
+            This method remove non-numeric character in specified text.
             </summary>
             <param name="text">String</param>
             <returns>String without non-numeric characters</returns>
         </member>
         <member name="M:TAP.TapBase.ConvertToHexString(System.Int32)">
-            <summary>.0
-            This methods converts to HEX string.
+            <summary>
+            This methods convert to HEX string 
             </summary>
             <param name="number">digit number</param>
             <returns>HEX String</returns>
         </member>
         <member name="M:TAP.TapBase.ConvertToInt(System.String)">
             <summary>
-            This method converts to integer.
+            This method convert to integer
             </summary>
             <param name="hex">Hex string</param>
             <returns>Integer</returns>
         </member>
         <member name="M:TAP.TapBase.ConvertDataType(System.Type,System.String)">
             <summary>
-            This method converts the value as specified type.
+            This method convert data as specified type
             </summary>
             <param name="argType">Type</param>
             <param name="argValue">Value</param>
@@ -2211,7 +2038,7 @@
         </member>
         <member name="M:TAP.TapBase.ConvertDataString(System.Type,System.Object)">
             <summary>
-            This method converts the vale as string type.
+            This method convert data as string type
             </summary>
             <param name="argType">Type</param>
             <param name="argValue">Value</param>
@@ -2219,20 +2046,20 @@
         </member>
         <member name="M:TAP.TapBase.IsNumericType(System.Type)">
             <summary>
-            This method returns true when argument is numeric type.
+            This method returns true when argument is numeric type
             </summary>
             <param name="type">Type</param>
             <returns>If 'TRUE', argument is numeric type</returns>
         </member>
         <member name="M:TAP.TapBase.Log(System.Exception)">
             <summary>
-            This method creates XML log.
+            This method creates XML log
             </summary>
             <param name="ex">System.Exception object</param>
         </member>
         <member name="M:TAP.TapBase.WriteTempLog(System.String,System.Collections.Generic.List{System.String})">
             <summary>
-            This method writes temp log.
+            This method writes temp log
             </summary>
             <param name="fileName">File name</param>
             <param name="logMessage">Log message</param>
@@ -2595,7 +2422,7 @@
         </member>
         <member name="T:TAP.ExceptionBase">
             <summary>
-            This is abstract class of Exception
+            This is default exception type of TAP Framework
             </summary>
         </member>
         <member name="F:TAP.ExceptionBase._methodNo">

@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3085312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3088896">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QnJAcLWkOZmlebb80h18sA0mI267MB5CcVd2g1JLtmk=</dsig:DigestValue>
+        <dsig:DigestValue>dqg4UcWfCICEXEEv/rEs72UBm1gLdBE7KjV5VHp5UAc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -379,14 +379,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Fressage.dll" size="239104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Fressage.dll" size="238080">
       <assemblyIdentity name="TAP.Fressage" version="1.2.0.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>63WNxmzWnmX6pozTo/XbhGLG76rJqa6n4K8TaiyYW7M=</dsig:DigestValue>
+        <dsig:DigestValue>MEWoiHYzu/9un0mqfvQrTkenOHwH5Qj9+4oTGqkREVY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -458,7 +458,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8L81FzayVXIn/k7l5inn4xjvShJFbocM3z+LN2kOVbM=</dsig:DigestValue>
+        <dsig:DigestValue>cuj6DA6jjIZmN+TtG94noA4ZAJ4ma1QFC9tU4Rv/1oQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -573,13 +573,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11306">
+  <file name="ISIA.exe.config" size="11286">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>5UxV79sO6+ZFB1bARl4SX2U0aznbHoKBztUKrWRgPcE=</dsig:DigestValue>
+      <dsig:DigestValue>ewDLtEYYi3O6TRTdpGUMAS07IYZxeX530Qx2eeSw/94=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">

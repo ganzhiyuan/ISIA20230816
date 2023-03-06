@@ -17,11 +17,12 @@ using TAP.Models.Factories.Facilities;*/
 using TAP.UI;
 using ISIA.UI.BASE;
 using DevExpress.XtraTab;
-using DevExpress.XtraCharts;
-using DevExpress.XtraVerticalGrid;
+//using DevExpress.XtraCharts;
+//using DevExpress.XtraVerticalGrid;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace ISIA.UI.MANAGEMENT
 {
@@ -34,8 +35,8 @@ namespace ISIA.UI.MANAGEMENT
         DataBaseManagementArgsPack args = new DataBaseManagementArgsPack();
 
         DataSet ds = new DataSet();
-        private DataSet ds_NUM;
-        private DataSet ds_OUTPUT;
+        //private DataSet ds_NUM;
+        //private DataSet ds_OUTPUT;
         #endregion
 
 
