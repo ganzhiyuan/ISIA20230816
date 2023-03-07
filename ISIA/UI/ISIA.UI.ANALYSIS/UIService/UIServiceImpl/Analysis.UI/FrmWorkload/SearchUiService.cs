@@ -206,7 +206,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
 
         public DataSet LoadData()
         {
-            return (DataSet)GetData(HandleArugument(FrmWork));
+            return (DataSet)GetData(EventArgPack);
         }
 
         public void Display(DataSet ds)
@@ -223,6 +223,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
         {
             try
             {
+                HandleArugument(FrmWork);
                 FrmWork.BeginAsyncCallByType("LoadData", "Display", EnumDataObject.DATASET, this.GetType(),this, null);
             }
             catch (Exception ex)
