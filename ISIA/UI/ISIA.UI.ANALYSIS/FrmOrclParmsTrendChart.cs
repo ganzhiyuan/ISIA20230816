@@ -43,9 +43,10 @@ namespace ISIA.UI.ANALYSIS
             try
             {
                 new SerchUiService(this, e, new AwrArgsPack()).RunAsync();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
             }
 
         }
@@ -56,7 +57,7 @@ namespace ISIA.UI.ANALYSIS
             new ShowComboxParmNamesUIService(this, e, null).Run();
         }
 
-    
+
 
         private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

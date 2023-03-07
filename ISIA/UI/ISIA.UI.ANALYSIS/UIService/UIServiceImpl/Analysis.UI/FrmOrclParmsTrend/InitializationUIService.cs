@@ -35,7 +35,7 @@ namespace ISIA.UI.ANALYSIS.UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             }
             for (int i = 1; i <= ClusteringMaxNum; i++)
             {
-                frm.tCheckComboBoxClusteringCnt.Properties.Items.Add(i);
+                frm.comboBoxEditClusteringCnt.Properties.Items.Add(i);
             }
             //init date period 
             frm.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);

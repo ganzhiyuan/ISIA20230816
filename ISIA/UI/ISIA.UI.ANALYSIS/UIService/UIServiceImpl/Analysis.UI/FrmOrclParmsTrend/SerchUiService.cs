@@ -45,6 +45,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             {
                 string errMessage = "Please select StartTime or EndTime";
                 throw new Exception(errMessage);
+
             }
             DateTime startDateTime = (DateTime)frm.dateStart.EditValue;
             DateTime endDateTime = (DateTime)frm.dateEnd.EditValue;
@@ -71,8 +72,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
                 EventArgPack.EndTime = EventArgPack.EndTime + "235";
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
-            object clusterNum = frm.tCheckComboBoxClusteringCnt.Properties.Items.GetCheckedValues()[0];
-            EventArgPack.ClustersNumber = (int)clusterNum;
+            string clusterNum = frm.comboBoxEditClusteringCnt.Text;
+            EventArgPack.ClustersNumber = int.Parse(clusterNum);
             EventArgPack.ClustersNumber = EventArgPack.ClustersNumber < paramList.Count ? EventArgPack.ClustersNumber : paramList.Count;
             return base.EventArgPack;
         }
@@ -104,12 +105,16 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             marksTip.Style = MarksStyles.XY;
             chart.MouseMove += new MouseEventHandler(tChart_MouseMove);
             marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);
+            //END
+            //show chart edit 
             chart.ContextMenuStrip = frm.contextMenuStrip1;
-            //
+            //END
             chart.Dock = DockStyle.Fill;
-            chart.Legend.LegendStyle = LegendStyles.Series;
             chart.Header.Text = "PARAMETER TREND";
+            //chart legend config 
             chart.Legend.Visible = true;
+            chart.Legend.LegendStyle = LegendStyles.Series;
+            //END
             DataTableCollection tables = (DataTableCollection)data;
             //axex show multi-line
             chart.Axes.Bottom.Labels.MultiLine = true;
@@ -157,7 +162,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
                 chartCluster.Size = new System.Drawing.Size(800, 400);
                 chartCluster.Axes.Bottom.Labels.MultiLine = true;
                 chartCluster.ContextMenuStrip = frm.contextMenuStrip1;
-                //
+                chartCluster.Legend.LegendStyle = LegendStyles.Series;
+                
                 //show tooltip
                 MarksTip marksTipCluster = new MarksTip(chartCluster.Chart);
                 marksTipCluster.Active = true;
@@ -176,7 +182,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
                     chartCluster.Axes.Bottom.Ticks.Width = 0;
                 }
             }
-            //layout loacation
+            //chartlayout loacation
             int locationWidth = 0;
             int locationLength = 0;
             foreach (TChart ele in frm.chartLayout1.Charts)
@@ -193,7 +199,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
         }
         public DataSet LoadData()
         {
-            return (DataSet)GetData(HandleArugument(FrmWork));
+            return (DataSet)GetData(EventArgPack);
         }
 
         public void Display(DataSet ds)
@@ -207,13 +213,11 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
 
         public override void RunAsync()
         {
-            try
-            {
+            
+                HandleArugument(FrmWork);
                 FrmWork.BeginAsyncCallByType("LoadData", "Display", EnumDataObject.DATASET, this.GetType(), this, null);
-            }
-            catch (Exception ex)
-            {
-            }
+            
+          
         }
 
         public override bool Equals(object obj)
