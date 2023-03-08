@@ -59,7 +59,6 @@ namespace ISIA.BIZ.ADMINISTRATOE
                 throw ex;
             }
         }
-
         public void DeleteAuthority(CommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -71,6 +70,10 @@ namespace ISIA.BIZ.ADMINISTRATOE
                 tmpSql.AppendFormat(" AND NAME = '{0}' \n", arguments.Name);
                 tmpSql.AppendFormat(" AND MEMBERTYPE = '{0}' \n", arguments.MemberType);
                 tmpSql.AppendFormat(" AND MDI = '{0}' \n", arguments.MDI);
+                if (!string.IsNullOrEmpty(arguments.Custom01))
+                {
+                    tmpSql.AppendFormat(" AND UI = '{0}' \n", arguments.Custom01);
+                }
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                         tmpSql.ToString(), false);
