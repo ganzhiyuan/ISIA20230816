@@ -108,7 +108,7 @@ namespace ISIA.UI.ADMINISTRATOE
         {
             string addName = txtName.Text;
             string addREGION = _region;
-            string addFACILITY = "T1";
+            string addFACILITY = "5";
             string addDEPARTMENT = txtDEPARTMENT.Text;
             string addPOSITION = txtPOSITION.Text;
             string addUSERNAME = txtUSERNAME.Text;

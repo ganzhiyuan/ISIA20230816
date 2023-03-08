@@ -312,12 +312,6 @@
     <Compile Include="FrmAreaManagement.Designer.cs">
       <DependentUpon>FrmAreaManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAuthorityManagementCopy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAuthorityManagementCopy.Designer.cs">
-      <DependentUpon>FrmAuthorityManagementCopy.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmAuthorityManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,12 +341,6 @@
     </Compile>
     <Compile Include="FrmCodeManagement.Designer.cs">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmGroupUserManagementCopy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmGroupUserManagementCopy.Designer.cs">
-      <DependentUpon>FrmGroupUserManagementCopy.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmGroupUserManagement.cs">
       <SubType>Form</SubType>
@@ -443,9 +431,6 @@
     <EmbeddedResource Include="FrmAreaManagement.resx">
       <DependentUpon>FrmAreaManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAuthorityManagementCopy.resx">
-      <DependentUpon>FrmAuthorityManagementCopy.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmAuthorityManagement.resx">
       <DependentUpon>FrmAuthorityManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,9 +445,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCodeManagement.resx">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmGroupUserManagementCopy.resx">
-      <DependentUpon>FrmGroupUserManagementCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGroupUserManagement.resx">
       <DependentUpon>FrmGroupUserManagement.cs</DependentUpon>

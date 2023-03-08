@@ -746,7 +746,7 @@ namespace TAP.UI.MDI
                 tmpUserDefaultInfo = new UserDefaultInfo();
                 tmpUserDefaultInfo.Region = InfoBase._USER_INFO.Region;
                 //tmpUserDefaultInfo.Facility = InfoBase._USER_INFO.Facility;
-                //tmpUserDefaultInfo.Facility = "T1";
+                tmpUserDefaultInfo.Facility = "ALL";
 
                 if (TAP.Base.Configuration.ConfigurationManager.Instance.DatabaseSection.Connections["DEFAULT"].DBMS == "ORACLE")
                     tmpstr = string.Format("SELECT USERGROUP FROM( SELECT USERGROUP FROM TAPUTGROUPMEMBER WHERE NAME = '{0}' ORDER BY USERGROUP ) WHERE rownum = 1", InfoBase._USER_INFO.Name);
@@ -839,7 +839,7 @@ namespace TAP.UI.MDI
                 tmpUIDefaultInfo = new UIBasicDefaultInfo();
                 tmpUIDefaultInfo.Region = InfoBase._USER_INFO.Region;
                 //tmpUIDefaultInfo.Facility = InfoBase._USER_INFO.Facility;
-                //tmpUIDefaultInfo.Facility = "ALL";
+                tmpUIDefaultInfo.Facility = "ALL";
 
                 InfoBase._MDI_INFO = new MDIBasicModelSet();
                 InfoBase._MDI_INFO.LoadModels(tmpUIDefaultInfo);

@@ -16,9 +16,6 @@ using TAP.Models.UIBasic;
 using TAP.Models.User;
 using TAP.UI;
 using ISIA.UI.BASE;
-using DevExpress.XtraTreeList;
-using DevExpress.XtraTreeList.Nodes;
-using DevExpress.XtraRichEdit.Model;
 
 namespace ISIA.UI.ADMINISTRATOE
 {
@@ -62,8 +59,6 @@ namespace ISIA.UI.ADMINISTRATOE
         UIAuthorityBasicModel uiAuthorityBasicModel = new UIAuthorityBasicModel();
         DataTable dtTemporary = new DataTable();
         string region = TAP.Base.Configuration.ConfigurationManager.Instance.EnvironmentSection.Region;
-
-        List<treeListInfo> listDataAll = new List<treeListInfo>();
         #endregion
 
         #region Method
@@ -79,8 +74,7 @@ namespace ISIA.UI.ADMINISTRATOE
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 allgroupitems.Add(dt.Rows[i]["NAME"].ToString(), null);
-                //TreeNode treeNode = new TreeNode(dt.Rows[i]["NAME"].ToString(), GetGroupMember(dt.Rows[i]["NAME"].ToString()));
-                TreeNode treeNode = new TreeNode();
+                TreeNode treeNode = new TreeNode(dt.Rows[i]["NAME"].ToString(), GetGroupMember(dt.Rows[i]["NAME"].ToString()));
                 if (dt.Rows[i]["NAME"].ToString() == "ADMIN")
                 {
                     treeNode.ImageIndex = 1;
@@ -105,10 +99,38 @@ namespace ISIA.UI.ADMINISTRATOE
             GroupListtw.Nodes.AddRange(treeNodess);         
         }
 
+        private TreeNode[] GetGroupMember(string groupname)
+        {            
+            DataTable dt=groupMemberModel.LoadModelDataList(retVal);
+            DataRow[] drs = dt.Select("USERGROUP= '"+groupname+"'");
+
+            DataTable dtNew = dt.Clone();
+            foreach (DataRow dr in drs)
+            {
+                dtNew.ImportRow(dr);
+            }
+            
+            //string sql = string.Format("select NAME from TAPUTGROUPMEMBER where USERGROUP='{0}' AND ISALIVE='YES'", groupname);
+            //DataSet ds = DEC.SelectDataSet(sql, "");
+            List<TreeNode> treeNodes = new List<TreeNode>();
+            List<string> itmenames = new List<string>();
+            for (int i = 0; i < dtNew.Rows.Count; i++)
+            {
+                itmenames.Add(dtNew.Rows[i]["NAME"].ToString());
+                TreeNode treeNode = new TreeNode(dtNew.Rows[i]["NAME"].ToString());
+                treeNode.Name = dtNew.Rows[i]["NAME"].ToString();
+                treeNode.Text = dtNew.Rows[i]["NAME"].ToString();
+                treeNode.ImageIndex = 0;
+                treeNodes.Add(treeNode);
+            }
+            allgroupitems[groupname] = itmenames;
+            TreeNode[] treeNodess = treeNodes.ToArray<TreeNode>();
+            return treeNodess;
+        }
 
         private void InitializeUIGroup()
         {
-            DataTable dt = uiBasicModel.LoadModelDataList(retVal); //当前所有菜单
+            DataTable dt = uiBasicModel.LoadModelDataList(retVal);
             DataRow[] drs = dt.Select("MDI='" + MDI + "'");
             DataTable dtNew = dt.Clone();
             foreach (DataRow dr in drs)
@@ -119,306 +141,380 @@ namespace ISIA.UI.ADMINISTRATOE
             DataView dv = dtNew.DefaultView;
             dtTemporary = dv.ToTable(true, "MAINMENU");
 
-            listDataAll= GetBindSource(dt);
+            //string sql = string.Format("select distinct(MAINMENU) MAINMENU from TAPSTBUI  WHERE MDI='{0}'AND ISALIVE='YES' ", MDI);
+            //DataSet ds = DEC.SelectDataSet(sql, "");
+            //uids = ds;
+            List<TreeNode> treeNodes = new List<TreeNode>();
 
-            treeList1.KeyFieldName = "CID";
-            treeList1.ParentFieldName = "PID";
-            treeList1.DataSource = listDataAll;
-            if (listDataAll!=null)
+            for (int i = 0; i < dtTemporary.Rows.Count; i++)
             {
-                treeList1.Columns[0].Visible = false;
-                treeList1.Columns[2].Visible = false;
-                treeList1.Columns[3].Visible = false;
-                treeList1.Columns[4].Visible = false;
-            }
-            
-            treeList1.ExpandAll();
+                alluiitems.Add(dtTemporary.Rows[i]["MAINMENU"].ToString(), null);
+                TreeNode treeNode = new TreeNode(dtTemporary.Rows[i]["MAINMENU"].ToString(), GetUIGroupName(dtTemporary.Rows[i]["MAINMENU"].ToString()));
+                treeNode.Name = dtTemporary.Rows[i]["MAINMENU"].ToString();
+                treeNode.Text = dtTemporary.Rows[i]["MAINMENU"].ToString();
+                treeNode.Tag = dtTemporary.Rows[i]["MAINMENU"].ToString();
 
-            treeList2.KeyFieldName = "CID";
-            treeList2.ParentFieldName = "PID";
-            var listTe= GetBindSourceUser("");
-            treeList2.DataSource = listTe;
-            if (listTe!=null)
-            {
-                treeList2.Columns[0].Visible = false;
-                treeList2.Columns[2].Visible = false;
-                treeList2.Columns[3].Visible = false;
-                treeList2.Columns[4].Visible = false;
+                treeNodes.Add(treeNode);
             }
-            treeList2.ExpandAll();
+            TreeNode[] treeNodess = treeNodes.ToArray<TreeNode>();
+
+            UiGrouptw.Nodes.AddRange(treeNodess);
+            UiGrouptw.CheckBoxes = true;           
         }
 
-        private List<treeListInfo> GetBindSourceUser(string groupID="ADMIN")
+        private TreeNode[] GetUIGroupName(string mainmenuname)
         {
-            DataClient tmpDataClient = new DataClient();
-            string UserUISql = string.Format("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", groupID);
-            DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "TAPSTBUIAUTHORITY").Tables[0];//用户对应所有权限
-            List<treeListInfo> UserAllUI = GetList<treeListInfo>(UserUIList);
-            if (UserAllUI==null)
+            DataTable dt = uiBasicModel.LoadModelDataList(retVal);
+
+            DataRow[] drs = dt.Select("MDI='" + MDI + "' AND MAINMENU='"+ mainmenuname + "'");
+            DataTable dtNew = dt.Clone();
+            foreach (DataRow dr in drs)
             {
-                return null;
+                dtNew.ImportRow(dr);
             }
-            List<string> listTm = UserAllUI.Select(x => x.UI).ToList();
-            List<treeListInfo> listP = listDataAll.Where(x => listTm.Contains(x.MAINMENU)||x.UI!="0").ToList();
 
-            var parentIDList = listP.Where(x => x.PID == 0).Select(x => x.CID).ToList();//一级的CID
-           
+            //string sql = string.Format("select distinct(DISPLAYNAME) DISPLAYNAME from TAPSTBUI where MAINMENU='{0}'AND MDI='{1}' AND ISALIVE='YES'", mainenuname, MDI);
+            //DataSet ds = DEC.SelectDataSet(sql, "");
+            List<TreeNode> treeNodes = new List<TreeNode>();
+            List<string> itemnames = new List<string>();
 
-            
+            for (int i = 0; i < dtNew.Rows.Count; i++)
+            {
+                itemnames.Add(dtNew.Rows[i]["DISPLAYNAME"].ToString());
+                TreeNode treeNode = new TreeNode(dtNew.Rows[i]["DISPLAYNAME"].ToString());
+                treeNode.Name = dtNew.Rows[i]["DISPLAYNAME"].ToString();
+                treeNode.Text = dtNew.Rows[i]["DISPLAYNAME"].ToString();
+                treeNodes.Add(treeNode);
+            }
+            alluiitems[mainmenuname] = itemnames;
 
-
-            //var temp = listP.Where(x => !parentIDList.Contains(x.PID)&&x.UI=="0").ToList();//取出没有子集的二级菜单
-            //foreach (var item in temp)
-            //{
-            //    listP.Remove(item);
-            //}
-
-            
-
-            return listP;
+            TreeNode[] treeNodess = treeNodes.ToArray<TreeNode>();
+            return treeNodess;
         }
 
-        private List<treeListInfo> GetBindSourceAll(List<treeListInfo> list,TreeList treeList)
+        private void Information(string name)
         {
+            ArgumentPack tempPack = new ArgumentPack();
 
-            treeList.DataSource = null;
-            treeList.DataSource = listDataAll;
-            treeList.ExpandAll();
-            if (list==null)
-            {
-               
-                return null;
+            tempPack.AddArgument("NAME", typeof(string), name);
+
+            DataTable dt = userModel.LoadModelDataList(tempPack);
+            
+            //string sql = String.Format("select * from TAPUTUSERS where NAME='{0}'", name);
+            //DataSet ds = DEC.SelectDataSet(sql, "");
+            //DataTable dt = ds.Tables[0];
+            if (dt.Rows.Count>0) {
+                txtDEPARTMENT.Text = dt.Rows[0]["DEPARTMENT"].ToString().Trim();
+                txtPOSITION.Text = dt.Rows[0]["POSITION"].ToString().Trim();
+                txtUSERNAME.Text = dt.Rows[0]["USERNAME"].ToString().Trim();
+                txtCONTACTNO.Text = dt.Rows[0]["CONTACTNO"].ToString().Trim();
+                txtMOBILENO.Text = dt.Rows[0]["MOBILENO"].ToString().Trim();
+                txtMAILADDRESS.Text = dt.Rows[0]["MAILADDRESS"].ToString().Trim();
+                txtDESCRIPTION.Text = dt.Rows[0]["DESCRIPTION"].ToString().Trim();
             }
-            List<string> listTm = list.Where(x => x.UI == "0").Select(x => x.MAINMENU).ToList();
-            foreach (TreeListNode node in treeList.Nodes)
+            else
             {
-                foreach (TreeListNode item in node.Nodes)
+                txtDEPARTMENT.Text = "";
+                txtPOSITION.Text = "";
+                txtUSERNAME.Text = "";
+                txtCONTACTNO.Text = "";
+                txtMOBILENO.Text = "";
+                txtMAILADDRESS.Text = "";
+                txtDESCRIPTION.Text = "";
+            }
+        }
+
+        private void ShowDescription(string item)
+        {
+            txtDESCRIPTION.Text = "DESCRIPTION: ";
+
+            DataTable dt = userGroupModel.LoadModelDataList(retVal);
+            DataRow[] drs = dt.Select("NAME='" + item + "'");
+            DataTable dtNew = dt.Clone();
+            foreach (DataRow dr in drs)
+            {
+                dtNew.ImportRow(dr);
+            }
+
+            //string sql = string.Format("select DESCRIPTION from TAPUTGROUP where NAME ='{0}' ", item);
+            //DataSet ds = DEC.SelectDataSet(sql, "");
+            
+            txtDESCRIPTION.Text = dtNew.Rows[0]["DESCRIPTION"].ToString();
+            txtDEPARTMENT.Text = "";
+            txtPOSITION.Text = "";
+            txtUSERNAME.Text = "";
+            txtCONTACTNO.Text = "";
+            txtMOBILENO.Text = "";
+            txtMAILADDRESS.Text = "";
+        }
+
+        public void SetCheckGroupItems(string strgroup)
+        {
+            for (int i = 0; i < allgroupitems.Count; i++)
+            {
+                var element = allgroupitems.ElementAt(i);
+                string Key = element.Key;
+                if (Key.ToUpper().Contains(strgroup.ToUpper()))
                 {
-                    foreach (TreeListNode child in item.Nodes)
+                    checkgroupitems.Add(Key);
+                }
+                List<string> Value = element.Value;
+                for (int j = 0; j < Value.Count; j++)
+                {
+                    if (Value[j].ToUpper().Contains(strgroup.ToUpper()))
                     {
-                        var drRow = treeList.GetDataRecordByNode(child);
-                        if (drRow != null)
+                        checkgroupitems.Add(Key + "-" + Value[j]);
+                    }
+                }
+            }
+        }
+
+        public void SetFindCheckGroup(int index)
+        {
+            string value = checkgroupitems[index];
+            if (value.Contains("-"))
+            {
+                string[] str = value.Split('-');
+                foreach (TreeNode node in GroupListtw.Nodes)
+                {
+                    if (node.Name.ToUpper() == str[0].ToUpper())
+                    {
+                        foreach (TreeNode node1 in node.Nodes)
                         {
-                            string menuName = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).MAINMENU;
-                            if (listTm.Contains(menuName))
+                            if (node1.Name.ToUpper() == str[1].ToUpper())
                             {
-                                child.CheckState = CheckState.Checked;
-                                SetCheckedParentNodes(child, child.CheckState);
+                                GroupListtw.SelectedNode = node1;//选中
+                                node1.Expand();
                             }
-
                         }
                     }
-                    
                 }
             }
-            
-
-
-            List<treeListInfo> listP = listDataAll.Where(x => !listTm.Contains(x.MAINMENU) || x.UI != "0").ToList();
-
-            var parentIDList = listP.Where(x => x.PID == 0).Select(x=>x.CID).ToList();
-            var temp = listP.Where(x => !parentIDList.Contains(x.PID)&&x.UI=="0").ToList();//取出没有子集的一级二级菜单
-            foreach (var item in temp)
+            else
             {
-                //listP.Remove(item);
-            }
-            //foreach (var item in parentIDList)
-            //{
-            //    var parent2IDList = listP.Where(x => x.PID == item && x.UI != "0").Select(x => x.CID).ToList();//二级的CID
-            //    foreach (var item2 in parent2IDList)//2级CID有没有PID决定是否有子集
-            //    {
-            //        var tempChild = listP.Where(x => parentIDList.Contains(x.PID) && x.UI == "0").ToList();//取出没有子集的二级菜单
-            //        if (!tempChild.Any())
-            //        {
-            //            listP.Remove(listP.FirstOrDefault(x => x.CID == item2));
-            //        }
-            //    }
-            //}
-            return listP;
-        }
-
-        private List<treeListInfo> GetBindSource(DataTable dt)
-        {
-            //定义绑定LIST，下标值
-            List<treeListInfo> listData = new List<treeListInfo>();
-            int count = 1;
-
-            //取出来一二级，一级MAINMENU 二级 NAME  三级（UI表  父级-SUBMENU 对应二级NAME字段）
-            DataClient tmpDataClient = new DataClient();
-            string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
-            DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
-            List<treeListInfo> listMENU = GetList<treeListInfo>(retVal1);
-            //取出一级名称
-            List<string> listStr = listMENU.Select(x => x.MAINMENU).Distinct().ToList();
-            foreach (var item in listStr)
-            {
-                treeListInfo info = new treeListInfo();
-                info.CID = count++;
-                info.MAINMENU = item;
-                info.typ = "0";
-                listData.Add(info);
-            }
-            //根据一级取出二级名称加入list
-            List<treeListInfo> listName = GetList<treeListInfo>(retVal1);
-            foreach (var item in listName)
-            {
-                treeListInfo info = new treeListInfo();
-                info.CID = count++;
-                info.MAINMENU = item.NAME;
-                info.typ = "1";
-                var pItem = listData.FirstOrDefault(x => x.MAINMENU == item.MAINMENU);
-                if (pItem!=null)
+                foreach (TreeNode node in GroupListtw.Nodes)
                 {
-                    info.PID = pItem.CID;
-                }
-                listData.Add(info);
-            }
-            //取出三级名称加入list
-            List<treeListInfo> listChild = GetList<treeListInfo>(dt);
-            foreach (var item in listChild)
-            {
-                treeListInfo info = new treeListInfo();
-                info.CID = count++;
-                info.MAINMENU = item.NAME;
-                info.SUBMENU = item.SUBMENU;
-                info.UI = "0";
-                info.typ = "2";
-                var pItem = listData.FirstOrDefault(x => x.MAINMENU == item.SUBMENU&&x.PID!=0);
-                if (pItem != null)
-                    info.PID = pItem.CID;
-                listData.Add(info);
-            }
-            return listData;
-        }
-
-        public class treeListInfo
-        {
-            public string typ { get; set; }
-            public string MAINMENU { get; set; }
-            public string NAME { get; set; }
-
-            public string SUBMENU { get; set; }
-
-            public string UI { get; set; }
-            public int CID { get; set; }
-            public int PID { get; set; }
-
-        }
-
-        public List<T> GetList<T>(DataTable table)
-        {
-            List<T> list = new List<T>();
-            T t = default(T);
-            PropertyInfo[] propertypes = null;
-            string tempName = string.Empty;
-            foreach (DataRow row in table.Rows)
-            {
-                t = Activator.CreateInstance<T>();
-                propertypes = t.GetType().GetProperties();
-                foreach (PropertyInfo pro in propertypes)
-                {
-                    tempName = pro.Name;
-                    if (table.Columns.Contains(tempName))
+                    if (node.Name.ToUpper() == value.ToUpper())
                     {
-                        object value = row[tempName];
-                        if (!value.ToString().Equals(""))
+                        GroupListtw.SelectedNode = node;//选中
+                        node.Expand();
+                    }
+                }
+            }
+        }
+
+        public void SetCheckUIItems(string strui)
+        {
+            for (int i = 0; i < alluiitems.Count; i++)
+            {
+                var element = alluiitems.ElementAt(i);
+                string Key = element.Key;
+                if (Key.ToUpper().Contains(strui.ToUpper()))
+                {
+                    checkuiitems.Add(Key);
+                }
+                List<string> Value = element.Value;
+                for (int j = 0; j < Value.Count; j++)
+                {
+                    if (Value[j].ToUpper().Contains(strui.ToUpper()))
+                    {
+                        checkuiitems.Add(Key + "-" + Value[j]);
+                    }
+                }
+            }
+        }
+
+        public void SetFindCheckUI(int index)
+        {
+            string value = checkuiitems[index];
+            if (value.Contains("-"))
+            {
+                string[] str = value.Split('-');
+                foreach (TreeNode node in UiGrouptw.Nodes)
+                {
+                    if (node.Name.ToUpper() == str[0].ToUpper())
+                    {
+                        foreach (TreeNode node1 in node.Nodes)
                         {
-                            pro.SetValue(t, value, null);
+                            if (node1.Name.ToUpper() == str[1].ToUpper())
+                            {
+                                UiGrouptw.SelectedNode = node1;//选中
+                                node1.Expand();
+                            }
                         }
                     }
                 }
-                list.Add(t);
             }
-            return list.Count ==0  ? null : list;
-        }
-        public DataSet ConvertToDataSet<T>(IList<T> list)
-        {
-            if (list == null || list.Count <= 0)
+            else
             {
-                return null;
-            }
-
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable(typeof(T).Name);
-            DataColumn column;
-            DataRow row;
-
-            System.Reflection.PropertyInfo[] myPropertyInfo = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-
-            foreach (T t in list)
-            {
-                if (t == null)
+                foreach (TreeNode node in UiGrouptw.Nodes)
                 {
-                    continue;
-                }
-
-                row = dt.NewRow();
-
-                for (int i = 0, j = myPropertyInfo.Length; i < j; i++)
-                {
-                    System.Reflection.PropertyInfo pi = myPropertyInfo[i];
-
-                    string name = pi.Name;
-
-                    if (dt.Columns[name] == null)
+                    if (node.Name.ToUpper() == value.ToUpper())
                     {
-                        column = new DataColumn(name, pi.PropertyType);
-                        dt.Columns.Add(column);
+                        UiGrouptw.SelectedNode = node;//选中
+                        node.Expand();
                     }
-
-                    row[name] = pi.GetValue(t, null);
                 }
-
-                dt.Rows.Add(row);
             }
-
-            ds.Tables.Add(dt);
-
-            return ds;
         }
-
-        
         #endregion
-
-
-
-
 
         #region Event
         private void GroupListtw_MouseDown(object sender, MouseEventArgs e)
         {
             if ((sender as TreeView) != null)
             {
-                addmembertype = EnumAuthorityOwnerType.USERGROUP;
                 TreeView treeView = (TreeView)sender;
                 treeView.SelectedNode = treeView.GetNodeAt(e.X, e.Y);
                 if (treeView.SelectedNode == null)
                 {
-                    treeList2.DataSource = null;
-
-                    GetBindSourceAll(null, treeList1);
                     return;
                 }
+                foreach (TreeNode node in UiGrouptw.Nodes)
+                {
+                    //取消节点选中状态之后，取消该节点所有子节点选中状态
+                    setChildNodeCheckedState(node, false);
+                    node.Checked = false;
+                    //如果节点存在父节点，取消父节点的选中状态
+                    if (node.Parent != null)
+                    {
+                        setParentNodeCheckedState(node, false);
+                    }
+                }
 
-                BindSourceChange(treeView);
+                DataSet dsUIName = bs.ExecuteDataSet("GetUIName");
+
+                if (treeView.SelectedNode.Parent != null)
+                {
+                    string name = treeView.SelectedNode.Text;
+                    addmembertype =EnumAuthorityOwnerType.USER ;
+                    addname = name;
+
+                    DataTable dt = uiAuthorityBasicModel.LoadModelDataList(retVal);
+                    DataRow[] drs = dt.Select("MEMBERTYPE='USER' AND NAME='"+ name + "' AND MDI='"+ MDI + "'");
+
+                    DataTable dtNew = dt.Clone();
+                    foreach (DataRow dr in drs)
+                    {
+                        dtNew.ImportRow(dr);
+                    }
+
+                    //string sql = string.Format("select distinct(MAINMENU) MAINMENU from TAPSTBUIAUTHORITY t where MEMBERTYPE='USER' and NAME='{0}'AND MDI='{1}'AND ISALIVE='YES'", name, MDI);
+                    //DataSet ds = DEC.SelectDataSet(sql, "");
+
+                    List<int> uiindexs = new List<int>();
+
+                    foreach (TreeNode node in UiGrouptw.Nodes)
+                    {
+                        for (int j = 0; j < dtNew.Rows.Count; j++)
+                        {
+                            //比较父级节点
+                            if (dtNew.Rows[j]["MAINMENU"].ToString().Replace(" ", "").ToUpper() == node.Name.ToString().Replace(" ", "").ToUpper())
+                            {
+                                foreach (TreeNode node1 in node.Nodes)
+                                {
+                                    //比较子级节点                                   
+                                    DataRow[] drs1 = dt.Select("MEMBERTYPE='"+ addmembertype + "' AND NAME='" + name + "' AND MDI='" + MDI + "' AND MAINMENU='"+ dtNew.Rows[j]["MAINMENU"].ToString() + "'");
+
+                                    DataTable dtNew1 = dt.Clone();
+                                    foreach (DataRow dr in drs1)
+                                    {
+                                        dtNew1.ImportRow(dr);
+                                    }
+
+                                    //string allchildnode = string.Format("select distinct(UI) UI from TAPSTBUIAUTHORITY where MAINMENU='{0}' and MEMBERTYPE='{1}' and NAME='{2}'AND MDI='{3}' AND ISALIVE='YES'", ds.Tables[0].Rows[j]["MAINMENU"].ToString(), addmembertype, name, MDI);
+                                    //DataSet allchildnodeds = DEC.SelectDataSet(allchildnode, "");
+                                    for (int o = 0; o < dtNew1.Rows.Count; o++)
+                                    {
+                                        DataTable dtUiName = new DataTable();
+                                        string sqlWhere = " NAME IN('" + dtNew1.Rows[o]["UI"].ToString() + "')";
+                                        DataRow[] drs2 = dsUIName.Tables[0].Select(sqlWhere);
+                                        dtUiName = dsUIName.Tables[0].Clone();
+                                        foreach (DataRow row in drs2)
+                                        {
+                                            dtUiName.ImportRow(row);
+                                        }
+
+                                        if (dtUiName.Rows.Count == 0 || dtUiName == null) return;
+
+                                        if (node1.Name.ToString().Replace(" ", "").ToUpper() == dtUiName.Rows[0]["DISPLAYNAME"].ToString().Replace(" ", "").ToUpper())
+                                        {
+                                            node1.Checked = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Information(addname);
+                }
+                else
+                {
+                    {
+                        string name = treeView.SelectedNode.Text;
+                        addname = name;
+                        addmembertype = EnumAuthorityOwnerType.USERGROUP;
+
+                        DataTable dt = uiAuthorityBasicModel.LoadModelDataList(retVal);
+                        DataRow[] drs = dt.Select("MEMBERTYPE='USERGROUP' AND NAME='" + name + "' AND MDI='" + MDI + "'");
+
+                        DataTable dtNew = dt.Clone();
+                        foreach (DataRow dr in drs)
+                        {
+                            dtNew.ImportRow(dr);
+                        }
+
+                        //string sql = string.Format("select distinct(MAINMENU) MAINMENU from TAPSTBUIAUTHORITY t where MEMBERTYPE='USERGROUP' and NAME='{0}'AND MDI='{1}'AND ISALIVE='YES'", name, MDI);
+                        //DataSet ds = DEC.SelectDataSet(sql, "");
+
+                        List<int> uiindexs = new List<int>();
+
+                        foreach (TreeNode node in UiGrouptw.Nodes)
+                        {
+                            for (int j = 0; j < dtNew.Rows.Count; j++)
+                            {
+                                //比较父级节点
+                                if (dtNew.Rows[j]["MAINMENU"].ToString().Replace(" ", "").ToUpper() == node.Name.ToString().Replace(" ", "").ToUpper())
+                                {
+                                    foreach (TreeNode node1 in node.Nodes)
+                                    {
+                                        //比较子级节点
+                                        DataRow[] drs1 = dt.Select("MEMBERTYPE='" + addmembertype + "' AND NAME='" + name + "' AND MDI='" + MDI + "' AND MAINMENU='" + dtNew.Rows[j]["MAINMENU"].ToString() + "'");
+
+                                        DataTable dtNew1 = dt.Clone();
+                                        foreach (DataRow dr in drs1)
+                                        {
+                                            dtNew1.ImportRow(dr);
+                                        }
+
+                                        //string allchildnode = string.Format("select DISTINCT(UI) UI  from TAPSTBUIAUTHORITY where MAINMENU='{0}'and  NAME='{1}' and MEMBERTYPE='{2}' AND MDI='{3}' AND ISALIVE='YES'", ds.Tables[0].Rows[j]["MAINMENU"].ToString(), name, addmembertype, MDI);
+                                        //DataSet allchildnodeds = DEC.SelectDataSet(allchildnode, "");
+                                        for (int o = 0; o < dtNew1.Rows.Count; o++)
+                                        {
+                                            DataTable dtUiName = new DataTable();
+                                            string sqlWhere = " NAME IN('" + dtNew1.Rows[o]["UI"].ToString() + "')";
+                                            DataRow[] drs2 = dsUIName.Tables[0].Select(sqlWhere);
+                                            dtUiName = dsUIName.Tables[0].Clone();
+                                            foreach (DataRow row in drs2)
+                                            {
+                                                dtUiName.ImportRow(row);
+                                            }
+
+                                            if (dtUiName.Rows.Count == 0 || dtUiName == null) return;
+
+                                            if (node1.Name.ToString().Replace(" ", "").ToUpper() == dtUiName.Rows[0]["DISPLAYNAME"].ToString().Replace(" ", "").ToUpper())
+                                            {
+                                                node1.Checked = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ShowDescription(addname);
+                }
             }
-        }
-
-        private void BindSourceChange(TreeView treeView)
-        {
-            var list= GetBindSourceUser(treeView.SelectedNode.Text);
-            treeList2.DataSource = list;
-            if (list!=null)
-            {
-                treeList2.Columns[0].Visible = false;
-                treeList2.Columns[2].Visible = false;
-                treeList2.Columns[3].Visible = false;
-                treeList2.Columns[4].Visible = false;
-
-            }
-            treeList2.ExpandAll();
-            GetBindSourceAll(list,treeList1);
-
         }
 
         //取消节点选中状态之后，取消所有父节点的选中状态
@@ -446,302 +542,236 @@ namespace ISIA.UI.ADMINISTRATOE
             }
         }
 
-
-        #endregion
-
-        #region 拖拽-暂时不用
-        TreeListHitInfo downHitInfo = null;
-        private void treeList1_MouseMove(object sender, MouseEventArgs e)
+        private void UiGrouptw_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            //TreeList treelist = sender as TreeList;
-            //if (e.Button == MouseButtons.Left && downHitInfo != null)
-            //{
-            //    if (treeList1.Selection.Count == 0)
-            //        return;
-            //    Size dragSize = SystemInformation.DragSize;
-            //    Rectangle dragRect = new Rectangle(new Point(downHitInfo.MousePoint.X - dragSize.Width / 2,
-            //        downHitInfo.MousePoint.Y - dragSize.Height /2 ), dragSize);
-
-            //    if (!dragRect.Contains(new Point(e.X, e.Y)))
-            //    {
-            //        List<TreeListNode> node = new List<TreeListNode>();
-            //        foreach (TreeListNode n in treeList1.Selection)
-            //        {
-            //            node.Add(n);
-            //        }
-            //        treelist.DoDragDrop(downHitInfo.Node, DragDropEffects.Move);
-            //        downHitInfo = null;
-            //        DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = true;
-            //    }
-            //}
-        }
-
-        private void treeList1_MouseDown(object sender, MouseEventArgs e)
-        {
-            //TreeList treelist = sender as TreeList;
-            //downHitInfo = null;
-            //TreeListHitInfo hitInfo = treelist.CalcHitInfo(new Point(e.X, e.Y));
-
-            //if (Control.ModifierKeys != Keys.None) return;
-            //if (e.Button == MouseButtons.Left)
-            //{
-            //    downHitInfo = hitInfo;
-            //}
-        }
-
-        private void treeList2_DragOver(object sender, DragEventArgs e)
-        {
-            //TreeList treelist = sender as TreeList;
-            //if (treelist != null)
-            //{
-            //    e.Effect = DragDropEffects.Move;
-            //}
-        }
-
-        private void treeList2_DragEnter(object sender, DragEventArgs e)
-        {
-            //e.Effect = DragDropEffects.Move;
-        }
-
-        private void treeList2_DragDrop(object sender, DragEventArgs e)
-        {
-            //List<TreeListNode> nodes = e.Data.GetData(typeof(List<TreeListNode>)) as List<TreeListNode>;
-            //TreeList grid = sender as TreeList;
-            //DataTable table = grid.DataSource as DataTable;
-
-            //if (nodes != null && nodes.Count >0  && table != null)
-            //{
-            //    foreach (TreeListNode node in nodes)
-            //    {
-            //        treeList1.Nodes.Add(node);
-            //    }
-            //}
-        }
-
-        #endregion
-
-        private void treeList1_AfterCheckNode(object sender, NodeEventArgs e)
-        {
-            SetCheckedChildNodes(e.Node, e.Node.CheckState);
-            SetCheckedParentNodes(e.Node, e.Node.CheckState);
-        }
-
-        private void treeList1_BeforeCheckNode(object sender, CheckNodeEventArgs e)
-        {
-            e.State = (e.PrevState == CheckState.Checked ? CheckState.Unchecked : CheckState.Checked);
-        }
-
-        private void SetCheckedChildNodes(TreeListNode node, CheckState check)
-        {
-            for (int i = 0; i < node.Nodes.Count; i++)
+            if (e.Action == TreeViewAction.ByMouse)
             {
-                node.Nodes[i].CheckState = check;
-                SetCheckedChildNodes(node.Nodes[i], check);
-            }
-        }
-        private void SetCheckedParentNodes(TreeListNode node, CheckState check)
-        {
-            if (node.ParentNode != null)
-            {
-                bool b = false;
-                CheckState state;
-                for (int i = 0; i < node.ParentNode.Nodes.Count; i++)
+                if (e.Node.Checked == true)
                 {
-                    state = (CheckState)node.ParentNode.Nodes[i].CheckState;
-                    if (!check.Equals(state))
+                    //选中节点之后，选中该节点所有的子节点
+                    setChildNodeCheckedState(e.Node, true);
+                }
+                else if (e.Node.Checked == false)
+                {
+                    //取消节点选中状态之后，取消该节点所有子节点选中状态
+                    setChildNodeCheckedState(e.Node, false);
+                    //如果节点存在父节点，取消父节点的选中状态
+                    if (e.Node.Parent != null)
                     {
-                        b = !b;
-                        break;
+                        setParentNodeCheckedState(e.Node, false);
                     }
                 }
-                node.ParentNode.CheckState = b ? CheckState.Indeterminate : check;
-                SetCheckedParentNodes(node.ParentNode, check);
+            }
+            if (e.Node != null)
+            {
+                if (e.Node.Parent != null)
+                {
+                    if (e.Node.Parent.Nodes.Count != 0)
+                    {
+                        int a = 0;
+                        foreach (TreeNode node1 in e.Node.Parent.Nodes)
+                        {
+                            if (node1.Checked == true)
+                            {
+                                a += 1;
+                            }
+                        }
+                        if (a == e.Node.Parent.Nodes.Count)
+                        {
+                            setParentNodeCheckedState(e.Node, true);
+                        }
+                    }
+                }
             }
         }
 
-        List<string> listCID = new List<string>();
-        private void tButton2_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (GroupListtw.SelectedNode==null)
+            Dictionary<string, List<string>> myDictionary = new Dictionary<string, List<string>>();
+
+            //获取选中的项
+            foreach (TreeNode node in UiGrouptw.Nodes)
             {
-                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "Please choose userGroup.");
-                return;
-            }
-            listCID = new List<string>();
-            if (treeList1.Nodes.Count>0)
-            {
-                string name = GroupListtw.SelectedNode.Text;
-                addname = name;
-                foreach (TreeListNode root in treeList1.Nodes)
+                //父级
+                if (node.Checked == true)
                 {
-                    GetCheckNodeID(root,treeList1);
-                }
-                if (listCID.Count==0)
-                {
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "Please choose UI.");
-                    return;
-                }
-                var list = listDataAll.Where(x => listCID.Contains(x.CID.ToString())&&x.UI=="0").ToList();
-
-                DataTable dtUI = new DataTable();
-                dtUI.Columns.Add("MAINMENU", typeof(string));
-                dtUI.Columns.Add("UI", typeof(string));
-                foreach (var item in list)
-                {
-                    dtUI.Rows.Add(item.SUBMENU, item.MAINMENU);
-                }
-                string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.UPDATE, EnumGeneralTemplateType.CONFIRM, "");
-                DialogResult dialog = TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.CONFIRM, tmpMessage);
-                if (dialog.ToString() == "Yes")
-                {
-                    args.Name = addname;
-                    args.MemberType = addmembertype;
-                    args.MDI = MDI;
-
-                    int DeleteCount = bs.ExecuteModify("DeleteAuthority", args.getPack());
-
-                    //DEC.ModifyData(string.Format("DELETE FROM TAPSTBUIAUTHORITY WHERE NAME ='{0}' AND MEMBERTYPE='{1}' AND MDI='{2}'AND ISALIVE='YES'", addname, addmembertype, MDI));
-                    int SaveCount = 0;
-
-
-                    args.Dt = dtUI;
-                    args.UserID = addname;
-                    args.MDI = MDI;
-                    args.Region = region;
-                    args.MemberType = addmembertype;
-                    args.InsertUser = InfoBase._USER_INFO.UserName;
-                    SaveCount = bs.ExecuteModify("SaveAuthority", args.getPack());
-
-                    args.Facility = "T1";
-                    int UpdateCount = bs.ExecuteModify("UpdateAuthority", args.getPack());
-
-                    if (SaveCount > 0)
+                    if (node.Nodes.Count > 0)
                     {
-                        TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.INFORMATION, "Update completed.");
+                        List<string> vs = new List<string>();
+                        foreach (TreeNode node1 in node.Nodes)
+                        {
+                            vs.Add(node1.Name);
+                        }
+                        myDictionary.Add(node.Name, vs);
                     }
-                    var listTe = GetBindSourceUser(addname);
-                    treeList2.DataSource = listTe;
-                    if (listTe != null)
-                    {
-                        treeList2.Columns[0].Visible = false;
-                        treeList2.Columns[2].Visible = false;
-                        treeList2.Columns[3].Visible = false;
-                        treeList2.Columns[4].Visible = false;
-                    }
-                    treeList2.ExpandAll();
                 }
                 else
                 {
-                    return;
-                }
-            }
-        }
-
-
-        private void tButton1_Click(object sender, EventArgs e)
-        {
-            listCID = new List<string>();
-            if (treeList2.Nodes.Count > 0)
-            {
-                string name = GroupListtw.SelectedNode.Text;
-                addname = name;
-                foreach (TreeListNode root in treeList2.Nodes)
-                {
-                    GetCheckNodeID(root, treeList2);
-                }
-                if (listCID.Count == 0)
-                {
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "Please choose UserUI.");
-                    return;
-                }
-
-                var list = listDataAll.Where(x => listCID.Contains(x.CID.ToString())).ToList();
-
-                string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.UPDATE, EnumGeneralTemplateType.CONFIRM, "");
-                DialogResult dialog = TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.CONFIRM, tmpMessage);
-                if (dialog.ToString() == "Yes")
-                {
-                    foreach (var item in list)
+                    if (node.Nodes.Count > 0)
                     {
-                        args.Name = addname;
-                        args.MemberType = addmembertype;
-                        args.MDI = MDI;
-                        args.Custom01 = item.MAINMENU;
-                        int DeleteCount = bs.ExecuteModify("DeleteAuthority", args.getPack());
+                        List<string> vs = new List<string>();
+                        foreach (TreeNode node1 in node.Nodes)
+                        {
+                            if (node1.Checked == true)
+                            {
+                                vs.Add(node1.Name);
+                            }
+                        }
+                        if (vs.Count != 0)
+                        {
+                            myDictionary.Add(node.Name, vs);
+                        }
                     }
-                    
                 }
-                //GroupListtw.MouseDown+= GroupListtw_MouseDown;
-
-                var list2 = GetBindSourceUser(addname);
-
-
-                treeList2.DataSource = null;
-                treeList2.DataSource = list2;
-                if (list2 != null)
-                {
-                    treeList2.Columns[0].Visible = false;
-                    treeList2.Columns[2].Visible = false;
-                    treeList2.Columns[3].Visible = false;
-                    treeList2.Columns[4].Visible = false;
-
-                }
-                treeList2.ExpandAll();
-                GetBindSourceAll(list2, treeList1);
             }
+
+            if (addname == "" || addname == null)
+            {
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.CONFIRM, "Please choose Group List..");
+                return;
+            }
+
+            List<string> updatesql = new List<string>();
             
-        }
-        private void GetCheckNodeID(TreeListNode parentNode,TreeList treeList)
-        {
-            if (parentNode.Nodes.Count==0)
+            string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.UPDATE, EnumGeneralTemplateType.CONFIRM, "");
+            DialogResult dialog = TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.CONFIRM, tmpMessage);
+            if (dialog.ToString() == "Yes")
+            {
+                args.Name = addname;
+                args.MemberType = addmembertype;
+                args.MDI = MDI;
+
+                int DeleteCount = bs.ExecuteModify("DeleteAuthority", args.getPack());
+
+                //DEC.ModifyData(string.Format("DELETE FROM TAPSTBUIAUTHORITY WHERE NAME ='{0}' AND MEMBERTYPE='{1}' AND MDI='{2}'AND ISALIVE='YES'", addname, addmembertype, MDI));
+                int SaveCount = 0;
+                DataTable dtUI = new DataTable();
+                dtUI.Columns.Add("MAINMENU",typeof(string));
+                dtUI.Columns.Add("UI", typeof(string));
+                DataSet dsUIName = bs.ExecuteDataSet("GetUIName");
+
+                foreach (KeyValuePair<string, List<string>> item in myDictionary)
+                {
+                    for (int i = 0; i < item.Value.Count; i++)
+                    {
+                        Console.WriteLine(item.Key + "-----" + item.Value[i]);
+                        try
+                        {
+                            DataTable dtUiName = new DataTable();
+                            string sqlWhere = " DISPLAYNAME IN('" + item.Value[i] + "')";
+                            DataRow[] drs = dsUIName.Tables[0].Select(sqlWhere);
+                            dtUiName = dsUIName.Tables[0].Clone();
+                            foreach (DataRow row in drs)
+                            {
+                                dtUiName.ImportRow(row);
+                            }
+
+                            dtUI.Rows.Add(item.Key, dtUiName.Rows[0]["NAME"].ToString());
+                            
+                            //uiBasicDefaultInfo.MDI = MDI;
+                            //uiBasicDefaultInfo.MainMenu = item.Key;
+                            //uiBasicDefaultInfo.UI = item.Value[i].Replace(" ", "");
+                            //uiBasicDefaultInfo.Container = "BASED";
+                            //uiBasicDefaultInfo.UIFunction = "SAVE";
+                            //uiBasicDefaultInfo.UIAuthority = addname;
+
+                            //uiBasicDefaultInfo.Region = region;
+                            //uiBasicDefaultInfo.Facility = "T1";
+
+                            //uiAuthorityBasicModel = new UIAuthorityBasicModel(uiBasicDefaultInfo);
+                            
+                            //uiAuthorityBasicModel.CommandType = EnumCommandType.COMMAND;
+                            //uiAuthorityBasicModel.MemberType = addmembertype;
+                            //uiAuthorityBasicModel.InsertUser = InfoBase._USER_INFO.UserName;
+                           
+                            //SaveCount =uiAuthorityBasicModel.Save(InfoBase._USER_INFO.UserName);                            
+                        }
+                        catch (System.Exception ex)
+                        {
+                            TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
+                        }
+                    }
+                }
+
+                args.Dt = dtUI;
+                args.UserID = addname;
+                args.MDI = MDI;
+                args.Region = region;
+                args.MemberType = addmembertype;
+                args.InsertUser= InfoBase._USER_INFO.UserName;
+                SaveCount = bs.ExecuteModify("SaveAuthority", args.getPack());
+
+                args.Facility = "ALL";
+                int UpdateCount = bs.ExecuteModify("UpdateAuthority", args.getPack());
+
+                if (SaveCount > 0)
+                {
+                    TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.INFORMATION, "Update completed.");
+                }
+            }
+            else
             {
                 return;
             }
-            foreach (TreeListNode item in parentNode.Nodes)
+        }
+
+        //Group Next
+        private void btnGroupNext_Click(object sender, EventArgs e)
+        {
+            string strgroup = txtGroup.Text;
+            if (findgroupstr.ToUpper() != strgroup.ToUpper())
             {
-                if (item.CheckState==CheckState.Checked)
+                checkgroupitems = new List<string>();
+                findgroupstr = strgroup;
+                SetCheckGroupItems(strgroup);
+                nowgroupindex = 0;
+            }
+            else
+            {
+                nowgroupindex = nowgroupindex + 1;
+                if (nowgroupindex >= checkgroupitems.Count)
                 {
-                    var drRow = treeList.GetDataRecordByNode(item);
-                    if (drRow != null)
-                    {
-                        int selId = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).CID;
-                        listCID.Add(selId.ToString());
-                    }
+                    nowgroupindex = 0;
                 }
-                GetCheckNodeID(item,treeList);
+            }
+            if (checkgroupitems.Count < 1)
+            {
+                return;
+            }
+            if (nowgroupindex < checkgroupitems.Count)
+            {
+                SetFindCheckGroup(nowgroupindex);
             }
         }
 
-        private void treeList2_AfterCheckNode(object sender, NodeEventArgs e)
+        //UI next
+        private void btnUINext_Click(object sender, EventArgs e)
         {
-
-            SetCheckedChildNodes(e.Node, e.Node.CheckState);
-            SetCheckedParentNodes(e.Node, e.Node.CheckState);
+            string strui = txtUI.Text;
+            if (finduistr.ToUpper() != strui.ToUpper())
+            {
+                checkuiitems = new List<string>();
+                finduistr = strui;
+                SetCheckUIItems(strui);
+                nowuiindex = 0;
+            }
+            else
+            {
+                nowuiindex = nowuiindex + 1;
+                if (nowuiindex >= checkuiitems.Count)
+                {
+                    nowuiindex = 0;
+                }
+            }
+            if (checkuiitems.Count < 1)
+            {
+                return;
+            }
+            if (nowuiindex < checkuiitems.Count)
+            {
+                SetFindCheckUI(nowuiindex);
+            }
         }
-
-        private void treeList2_BeforeCheckNode(object sender, CheckNodeEventArgs e)
-        {
-
-            e.State = (e.PrevState == CheckState.Checked ? CheckState.Unchecked : CheckState.Checked);
-        }
-
-        private void treeList1_CustomDrawNodeImages(object sender, CustomDrawNodeImagesEventArgs e)
-        {
-            if (e.Node.GetValue("typ") != null)
-                e.SelectImageIndex = int.Parse(e.Node.GetValue("typ").ToString());
-            if (e.Node.HasChildren)
-                if (e.Node.Expanded)
-                    e.SelectImageIndex = 3;
-        }
-
-        private void treeList2_CustomDrawNodeImages(object sender, CustomDrawNodeImagesEventArgs e)
-        {
-            if (e.Node.GetValue("typ") != null)
-                e.SelectImageIndex = int.Parse(e.Node.GetValue("typ").ToString());
-
-            if (e.Node.HasChildren)
-                if (e.Node.Expanded)
-                    e.SelectImageIndex = 3;
-        }
+        #endregion
     }
 }
