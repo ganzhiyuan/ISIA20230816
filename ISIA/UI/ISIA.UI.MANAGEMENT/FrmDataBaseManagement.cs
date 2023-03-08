@@ -103,7 +103,10 @@ namespace ISIA.UI.MANAGEMENT
 
             gridControl1.DataSource = ds.Tables[0];
 
-            DevExpress.XtraGrid.Columns.GridColumn gridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+
+            //gridview 内增加按钮
+            
+            /*DevExpress.XtraGrid.Columns.GridColumn gridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
 
             gridView1.Columns.Add(gridColumn);
             gridColumn.Visible = true;
@@ -120,13 +123,14 @@ namespace ISIA.UI.MANAGEMENT
             gridControl1.RepositoryItems.Add(edit);
             gridColumn.ColumnEdit = edit;
 
-            gridColumn.ShowButtonMode = (DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum)ShowButtonModeEnum.ShowAlways;
+            gridColumn.ShowButtonMode = (DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum)ShowButtonModeEnum.ShowAlways;*/
 
 
-
+            
 
         }
 
+        
 
         public void GridViewStyle(GridView gridView)
         {
@@ -515,41 +519,7 @@ namespace ISIA.UI.MANAGEMENT
         }
 
 
-        /*public void GridViewStyle(GridView gridView)
-        {
-            gridView1.OptionsBehavior.Editable = false;
-            gridView1.OptionsView.ColumnAutoWidth = false;
-            gridView1.BestFitColumns();
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("TIMEKEY")))
-            {
-                gridView.Columns["TIMEKEY"].Caption = "月份";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("BMTIME")))
-            {
-                gridView.Columns["BMTIME"].Caption = "BM总时间";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("PMTIME")))
-            {
-                gridView.Columns["PMTIME"].Caption = "PM总时间";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("BMPRICE")))
-            {
-                gridView.Columns["BMPRICE"].Caption = "BM金额";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("PMPRICE")))
-            {
-                gridView.Columns["PMPRICE"].Caption = "PM金额";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("BMNUM")))
-            {
-                gridView.Columns["BMNUM"].Caption = "BM人次";
-            }
-            if (gridView.Columns.Contains(gridView.Columns.ColumnByFieldName("PMNUM")))
-            {
-                gridView.Columns["PMNUM"].Caption = "PM人次";
-            }
-
-        }*/
+        
 
         #endregion
 
@@ -577,7 +547,7 @@ namespace ISIA.UI.MANAGEMENT
 
         #endregion
 
-        private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+       /* private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
 
 
@@ -633,7 +603,53 @@ namespace ISIA.UI.MANAGEMENT
             //string a = "qq";
 
 
-        }
+        }*/
+
+
  
+
+        private void gridControl1_EmbeddedNavigator_ButtonClick(object sender, NavigatorButtonClickEventArgs e)
+        {
+
+            if (e.Button.ButtonType == NavigatorButtonType.Append)
+            {
+                //XtraMessageBox.Show("add succes");
+
+                //DevExpress.XtraGrid.Columns.GridColumn[] gridColumns = gridView1.Columns.ToArray();
+                List<DevExpress.XtraGrid.Columns.GridColumn> ts = gridView1.Columns.ToList();
+                ts.Remove(ts[0]);
+
+                FrmAdd frmAdd = new FrmAdd(ts);
+                frmAdd.StartPosition = FormStartPosition.CenterParent;
+                frmAdd.ShowDialog();
+
+                //List<DevExpress.XtraGrid.Columns.GridColumn> ts = gridView1.Columns.ToList();
+                //ts.Remove(ts[0]);
+                //DevExpress.XtraGrid.Columns.GridColumn[] gridColumns =  gridView1.Columns.ToArray();
+                tbnSeach_Click(null, null);
+
+            }
+            else if (e.Button.ButtonType == NavigatorButtonType.Remove) {
+
+                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+                args.ROWID = dataRow["ID"].ToString();
+                //gridView1.DeleteRow(gridView1.FocusedRowHandle);
+
+                int Res = bs.ExecuteModify("DelteTCODE", args.getPack());
+
+                if (Res == 1)
+                {
+                    XtraMessageBox.Show("Delete data succeeded ", " ");
+                }
+                else
+                {
+                    XtraMessageBox.Show("Delete data failed ", " ");
+                }
+
+            }
+
+
+
+        }
     }
 }

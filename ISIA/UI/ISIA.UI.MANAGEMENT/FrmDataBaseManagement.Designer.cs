@@ -148,6 +148,7 @@
             this.dpnlRight.Options.ShowMaximizeButton = false;
             this.dpnlRight.OriginalSize = new System.Drawing.Size(782, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
+            this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(952, 667);
             // 
             // dpnlRight_Container
@@ -155,7 +156,7 @@
             this.dpnlRight_Container.Controls.Add(this.panelControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(944, 632);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(944, 634);
             // 
             // dpnlLeft
             // 
@@ -169,6 +170,7 @@
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
             this.dpnlLeft.OriginalSize = new System.Drawing.Size(270, 153);
+            this.dpnlLeft.SavedSizeFactor = 1D;
             this.dpnlLeft.Size = new System.Drawing.Size(360, 667);
             // 
             // tPanelBottomBase
@@ -293,7 +295,6 @@
             // 
             // tabPane1
             // 
-            this.tabPane1.AllowCollapse = DevExpress.Utils.DefaultBoolean.Default;
             this.tabPane1.Appearance.BackColor = System.Drawing.Color.White;
             this.tabPane1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tabPane1.Appearance.Options.UseBackColor = true;
@@ -340,12 +341,12 @@
             this.tPanel7.Controls.Add(this.tbnSeach);
             this.tPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tPanel7.IsRequired = false;
-            this.tPanel7.Location = new System.Drawing.Point(0, 290);
+            this.tPanel7.Location = new System.Drawing.Point(0, 564);
             this.tPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tPanel7.Name = "tPanel7";
             this.tPanel7.NeedToTranslate = true;
             this.tPanel7.RepresentativeValue = "tPanel7 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel7.Size = new System.Drawing.Size(175, 10);
+            this.tPanel7.Size = new System.Drawing.Size(350, 36);
             this.tPanel7.TabIndex = 7;
             // 
             // tbnSeach
@@ -362,6 +363,7 @@
             this.tbnSeach.ControlID = "btnSave";
             this.tbnSeach.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbnSeach.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tbnSeach.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
             this.tbnSeach.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tbnSeach.ImageOptions.Image")));
             this.tbnSeach.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tbnSeach.IsRequired = false;
@@ -372,7 +374,7 @@
             this.tbnSeach.Name = "tbnSeach";
             this.tbnSeach.NeedToTranslate = true;
             this.tbnSeach.RepresentativeValue = "Search";
-            this.tbnSeach.Size = new System.Drawing.Size(47, 10);
+            this.tbnSeach.Size = new System.Drawing.Size(93, 35);
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
@@ -394,8 +396,8 @@
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 175;
-            this.navBarControl1.Size = new System.Drawing.Size(175, 300);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 350;
+            this.navBarControl1.Size = new System.Drawing.Size(350, 600);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -414,7 +416,7 @@
             this.navBarGroup6.Caption = "Basic";
             this.navBarGroup6.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarGroup6.Expanded = true;
-            this.navBarGroup6.GroupClientHeight = 497;
+            this.navBarGroup6.GroupClientHeight = 237;
             this.navBarGroup6.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup6.Name = "navBarGroup6";
             // 
@@ -427,7 +429,7 @@
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(348, 496);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(348, 236);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
@@ -449,7 +451,7 @@
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(348, 496);
+            this.layoutControl1.Size = new System.Drawing.Size(348, 236);
             this.layoutControl1.TabIndex = 97;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -662,13 +664,14 @@
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 8, 9, 19, 28, 376);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
             this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
             this.tDateTimePickerSE1.NeedToTranslate = true;
             this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
+            this.tDateTimePickerSE1.SetDateInterval = TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.DateInterval.Day;
             this.tDateTimePickerSE1.Size = new System.Drawing.Size(342, 35);
             this.tDateTimePickerSE1.StartDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.TabIndex = 0;
@@ -692,7 +695,7 @@
             this.layoutControlItem4});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(348, 496);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(348, 236);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -701,7 +704,7 @@
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 194);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(139, 31);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(346, 300);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(346, 40);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -849,17 +852,21 @@
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(944, 632);
+            this.panelControl1.Size = new System.Drawing.Size(944, 634);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.EmbeddedNavigator.Buttons.First.Visible = false;
+            this.gridControl1.EmbeddedNavigator.Buttons.Last.Visible = false;
+            this.gridControl1.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.gridControl1_EmbeddedNavigator_ButtonClick);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(944, 632);
+            this.gridControl1.Size = new System.Drawing.Size(944, 634);
             this.gridControl1.TabIndex = 0;
+            this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
@@ -867,9 +874,8 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             // 
             // FrmDataBaseManagement
             // 
