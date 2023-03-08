@@ -293,8 +293,8 @@
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 459;
-            this.navBarControl1.Size = new System.Drawing.Size(459, 798);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 367;
+            this.navBarControl1.Size = new System.Drawing.Size(367, 638);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
