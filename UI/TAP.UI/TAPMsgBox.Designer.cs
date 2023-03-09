@@ -30,22 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TAPMsgBox));
             this.tapPanel4 = new TAP.UIControls.BasicControls.TPanel();
-            this.richTextBoxDetail = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxDetail = new DevExpress.XtraRichEdit.RichEditControl();
             this.tapPanel3 = new TAP.UIControls.BasicControls.TPanel();
-            this.tapButtonDetail = new TAP.UIControls.BasicControls.TButton();
-            this.tapButtonYes = new TAP.UIControls.BasicControls.TButton();
-            this.tapButtonNo = new TAP.UIControls.BasicControls.TButton();
-            this.tapButtonCancel = new TAP.UIControls.BasicControls.TButton();
-            this.tapButtonOK = new TAP.UIControls.BasicControls.TButton();
+            this.tapButtonOK = new DevExpress.XtraEditors.SimpleButton();
+            this.tapButtonCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.tapButtonDetail = new DevExpress.XtraEditors.SimpleButton();
+            this.tapButtonNo = new DevExpress.XtraEditors.SimpleButton();
+            this.tapButtonYes = new DevExpress.XtraEditors.SimpleButton();
             this.tapPanel2 = new TAP.UIControls.BasicControls.TPanel();
-            this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxMessage = new DevExpress.XtraRichEdit.RichEditControl();
             this.tapPanel1 = new TAP.UIControls.BasicControls.TPanel();
-            this.tapPictureBox1 = new TAP.UIControls.BasicControls.TPictureBox();
+            this.tapPictureBox1 = new DevExpress.XtraEditors.PictureEdit();
             this.tapPanel4.SuspendLayout();
             this.tapPanel3.SuspendLayout();
             this.tapPanel2.SuspendLayout();
             this.tapPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tapPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tapPictureBox1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tapPanel4
@@ -65,24 +65,29 @@
             // 
             // richTextBoxDetail
             // 
-            this.richTextBoxDetail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.richTextBoxDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxDetail.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.richTextBoxDetail.Appearance.Text.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBoxDetail.Appearance.Text.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.richTextBoxDetail.Appearance.Text.Options.UseBackColor = true;
+            this.richTextBoxDetail.Appearance.Text.Options.UseFont = true;
             this.richTextBoxDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxDetail.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
             this.richTextBoxDetail.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxDetail.Name = "richTextBoxDetail";
+            this.richTextBoxDetail.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
             this.richTextBoxDetail.ReadOnly = true;
             this.richTextBoxDetail.Size = new System.Drawing.Size(492, 183);
-            this.richTextBoxDetail.TabIndex = 0;
-            this.richTextBoxDetail.Text = "";
+            this.richTextBoxDetail.TabIndex = 1;
+            this.richTextBoxDetail.Views.SimpleView.BackColor = System.Drawing.Color.WhiteSmoke;
             // 
             // tapPanel3
             // 
             this.tapPanel3.ControlID = "tapPanel3";
-            this.tapPanel3.Controls.Add(this.tapButtonDetail);
-            this.tapPanel3.Controls.Add(this.tapButtonYes);
-            this.tapPanel3.Controls.Add(this.tapButtonNo);
-            this.tapPanel3.Controls.Add(this.tapButtonCancel);
             this.tapPanel3.Controls.Add(this.tapButtonOK);
+            this.tapPanel3.Controls.Add(this.tapButtonCancel);
+            this.tapPanel3.Controls.Add(this.tapButtonDetail);
+            this.tapPanel3.Controls.Add(this.tapButtonNo);
+            this.tapPanel3.Controls.Add(this.tapButtonYes);
             this.tapPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tapPanel3.IsRequired = false;
             this.tapPanel3.Location = new System.Drawing.Point(0, 333);
@@ -93,110 +98,55 @@
             this.tapPanel3.Size = new System.Drawing.Size(492, 40);
             this.tapPanel3.TabIndex = 2;
             // 
-            // tapButtonDetail
+            // tapButtonOK
             // 
-            this.tapButtonDetail.BackColor = System.Drawing.Color.Transparent;
-            this.tapButtonDetail.CommandType = TAP.UIControls.BasicControls.EnumCommandType.VIEW;
-            this.tapButtonDetail.ControlID = "tapButton2";
-            this.tapButtonDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tapButtonDetail.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tapButtonDetail.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonDetail.Image")));
-            this.tapButtonDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonDetail.IsRequired = false;
-            this.tapButtonDetail.Location = new System.Drawing.Point(196, 0);
-            this.tapButtonDetail.Name = "tapButtonDetail";
-            this.tapButtonDetail.NeedToTranslate = true;
-            this.tapButtonDetail.RepresentativeValue = "      Detail";
-            this.tapButtonDetail.Size = new System.Drawing.Size(100, 25);
-            this.tapButtonDetail.TabIndex = 5;
-            this.tapButtonDetail.Text = "      Detail";
-            this.tapButtonDetail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonDetail.UseVisualStyleBackColor = false;
-            this.tapButtonDetail.Click += new System.EventHandler(this.tapButtonDetail_Click);
-            // 
-            // tapButtonYes
-            // 
-            this.tapButtonYes.BackColor = System.Drawing.Color.Transparent;
-            this.tapButtonYes.CommandType = TAP.UIControls.BasicControls.EnumCommandType.CONFIRM;
-            this.tapButtonYes.ControlID = "tapButton2";
-            this.tapButtonYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tapButtonYes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tapButtonYes.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonYes.Image")));
-            this.tapButtonYes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonYes.IsRequired = false;
-            this.tapButtonYes.Location = new System.Drawing.Point(3, 3);
-            this.tapButtonYes.Name = "tapButtonYes";
-            this.tapButtonYes.NeedToTranslate = true;
-            this.tapButtonYes.RepresentativeValue = "         Yes";
-            this.tapButtonYes.Size = new System.Drawing.Size(100, 25);
-            this.tapButtonYes.TabIndex = 4;
-            this.tapButtonYes.Text = "         Yes";
-            this.tapButtonYes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonYes.UseVisualStyleBackColor = false;
-            this.tapButtonYes.Click += new System.EventHandler(this.tapButtonYes_Click);
-            // 
-            // tapButtonNo
-            // 
-            this.tapButtonNo.BackColor = System.Drawing.Color.Transparent;
-            this.tapButtonNo.CommandType = TAP.UIControls.BasicControls.EnumCommandType.CANCEL;
-            this.tapButtonNo.ControlID = "tapButton2";
-            this.tapButtonNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tapButtonNo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tapButtonNo.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonNo.Image")));
-            this.tapButtonNo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonNo.IsRequired = false;
-            this.tapButtonNo.Location = new System.Drawing.Point(129, 0);
-            this.tapButtonNo.Name = "tapButtonNo";
-            this.tapButtonNo.NeedToTranslate = true;
-            this.tapButtonNo.RepresentativeValue = "          No";
-            this.tapButtonNo.Size = new System.Drawing.Size(100, 25);
-            this.tapButtonNo.TabIndex = 3;
-            this.tapButtonNo.Text = "          No";
-            this.tapButtonNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonNo.UseVisualStyleBackColor = false;
-            this.tapButtonNo.Click += new System.EventHandler(this.tapButtonNo_Click);
+            this.tapButtonOK.ImageOptions.Image = global::TAP.UI.Properties.Resources.apply_16x16;
+            this.tapButtonOK.Location = new System.Drawing.Point(428, 5);
+            this.tapButtonOK.Name = "tapButtonOK";
+            this.tapButtonOK.Size = new System.Drawing.Size(75, 23);
+            this.tapButtonOK.TabIndex = 9;
+            this.tapButtonOK.Text = "OK";
+            this.tapButtonOK.Click += new System.EventHandler(this.tapButtonOK_Click);
             // 
             // tapButtonCancel
             // 
-            this.tapButtonCancel.BackColor = System.Drawing.Color.Transparent;
-            this.tapButtonCancel.CommandType = TAP.UIControls.BasicControls.EnumCommandType.CANCEL;
-            this.tapButtonCancel.ControlID = "tapButtonCancel";
-            this.tapButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tapButtonCancel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tapButtonCancel.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonCancel.Image")));
-            this.tapButtonCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonCancel.IsRequired = false;
-            this.tapButtonCancel.Location = new System.Drawing.Point(274, 3);
+            this.tapButtonCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonCancel.ImageOptions.Image")));
+            this.tapButtonCancel.Location = new System.Drawing.Point(321, 5);
             this.tapButtonCancel.Name = "tapButtonCancel";
-            this.tapButtonCancel.NeedToTranslate = true;
-            this.tapButtonCancel.RepresentativeValue = "      Cancel";
             this.tapButtonCancel.Size = new System.Drawing.Size(100, 25);
-            this.tapButtonCancel.TabIndex = 1;
-            this.tapButtonCancel.Text = "      Cancel";
-            this.tapButtonCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonCancel.UseVisualStyleBackColor = false;
+            this.tapButtonCancel.TabIndex = 8;
+            this.tapButtonCancel.Text = "Cancel";
             this.tapButtonCancel.Click += new System.EventHandler(this.tapButtonCancel_Click);
             // 
-            // tapButtonOK
+            // tapButtonDetail
             // 
-            this.tapButtonOK.BackColor = System.Drawing.Color.Transparent;
-            this.tapButtonOK.CommandType = TAP.UIControls.BasicControls.EnumCommandType.CONFIRM;
-            this.tapButtonOK.ControlID = "tapButtonOK";
-            this.tapButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tapButtonOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tapButtonOK.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonOK.Image")));
-            this.tapButtonOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonOK.IsRequired = false;
-            this.tapButtonOK.Location = new System.Drawing.Point(380, 7);
-            this.tapButtonOK.Name = "tapButtonOK";
-            this.tapButtonOK.NeedToTranslate = true;
-            this.tapButtonOK.RepresentativeValue = "          OK";
-            this.tapButtonOK.Size = new System.Drawing.Size(100, 25);
-            this.tapButtonOK.TabIndex = 0;
-            this.tapButtonOK.Text = "          OK";
-            this.tapButtonOK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tapButtonOK.UseVisualStyleBackColor = false;
-            this.tapButtonOK.Click += new System.EventHandler(this.tapButtonOK_Click);
+            this.tapButtonDetail.ImageOptions.Image = global::TAP.UI.Properties.Resources.listbox_16x16;
+            this.tapButtonDetail.Location = new System.Drawing.Point(215, 4);
+            this.tapButtonDetail.Name = "tapButtonDetail";
+            this.tapButtonDetail.Size = new System.Drawing.Size(100, 25);
+            this.tapButtonDetail.TabIndex = 7;
+            this.tapButtonDetail.Text = "Detail";
+            this.tapButtonDetail.Click += new System.EventHandler(this.tapButtonDetail_Click);
+            // 
+            // tapButtonNo
+            // 
+            this.tapButtonNo.ImageOptions.Image = global::TAP.UI.Properties.Resources.cancel_16x162;
+            this.tapButtonNo.Location = new System.Drawing.Point(109, 6);
+            this.tapButtonNo.Name = "tapButtonNo";
+            this.tapButtonNo.Size = new System.Drawing.Size(100, 25);
+            this.tapButtonNo.TabIndex = 6;
+            this.tapButtonNo.Text = "No";
+            this.tapButtonNo.Click += new System.EventHandler(this.tapButtonNo_Click);
+            // 
+            // tapButtonYes
+            // 
+            this.tapButtonYes.ImageOptions.Image = global::TAP.UI.Properties.Resources.iconsetsymbols3_16x16;
+            this.tapButtonYes.Location = new System.Drawing.Point(3, 5);
+            this.tapButtonYes.Name = "tapButtonYes";
+            this.tapButtonYes.Size = new System.Drawing.Size(100, 25);
+            this.tapButtonYes.TabIndex = 5;
+            this.tapButtonYes.Text = "Yes";
+            this.tapButtonYes.Click += new System.EventHandler(this.tapButtonYes_Click);
             // 
             // tapPanel2
             // 
@@ -214,16 +164,20 @@
             // 
             // richTextBoxMessage
             // 
-            this.richTextBoxMessage.BackColor = System.Drawing.Color.White;
-            this.richTextBoxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMessage.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.richTextBoxMessage.Appearance.Text.Font = new System.Drawing.Font("Tahoma", 8.5F);
+            this.richTextBoxMessage.Appearance.Text.Options.UseFont = true;
+            this.richTextBoxMessage.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxMessage.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
             this.richTextBoxMessage.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
+            this.richTextBoxMessage.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
+            this.richTextBoxMessage.Options.VerticalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
             this.richTextBoxMessage.ReadOnly = true;
             this.richTextBoxMessage.Size = new System.Drawing.Size(492, 100);
-            this.richTextBoxMessage.TabIndex = 0;
-            this.richTextBoxMessage.Text = "";
+            this.richTextBoxMessage.TabIndex = 1;
+            this.richTextBoxMessage.Views.SimpleView.BackColor = System.Drawing.Color.White;
             // 
             // tapPanel1
             // 
@@ -241,17 +195,14 @@
             // 
             // tapPictureBox1
             // 
-            this.tapPictureBox1.ControlID = "tapPictureBox1";
             this.tapPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tapPictureBox1.IsRequired = false;
             this.tapPictureBox1.Location = new System.Drawing.Point(0, 0);
             this.tapPictureBox1.Name = "tapPictureBox1";
-            this.tapPictureBox1.NeedToTranslate = true;
-            this.tapPictureBox1.RepresentativeValue = null;
-            this.tapPictureBox1.RollOverImage = null;
+            this.tapPictureBox1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.tapPictureBox1.Properties.NullText = " ";
+            this.tapPictureBox1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.tapPictureBox1.Size = new System.Drawing.Size(492, 50);
-            this.tapPictureBox1.TabIndex = 0;
-            this.tapPictureBox1.TabStop = false;
+            this.tapPictureBox1.TabIndex = 1;
             // 
             // TAPMsgBox
             // 
@@ -264,8 +215,9 @@
             this.Controls.Add(this.tapPanel2);
             this.Controls.Add(this.tapPanel1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TAPMsgBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TAPMsgBox";
@@ -273,7 +225,7 @@
             this.tapPanel3.ResumeLayout(false);
             this.tapPanel2.ResumeLayout(false);
             this.tapPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tapPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tapPictureBox1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,14 +235,14 @@
         private TAP.UIControls.BasicControls.TPanel tapPanel1;
         private TAP.UIControls.BasicControls.TPanel tapPanel2;
         private TAP.UIControls.BasicControls.TPanel tapPanel3;
-        private TAP.UIControls.BasicControls.TPictureBox tapPictureBox1;
-        private System.Windows.Forms.RichTextBox richTextBoxMessage;
-        private TAP.UIControls.BasicControls.TButton tapButtonYes;
-        private TAP.UIControls.BasicControls.TButton tapButtonNo;
-        private TAP.UIControls.BasicControls.TButton tapButtonCancel;
-        private TAP.UIControls.BasicControls.TButton tapButtonOK;
         private TAP.UIControls.BasicControls.TPanel tapPanel4;
-        private System.Windows.Forms.RichTextBox richTextBoxDetail;
-        private TAP.UIControls.BasicControls.TButton tapButtonDetail;
+        private DevExpress.XtraRichEdit.RichEditControl richTextBoxMessage;
+        private DevExpress.XtraRichEdit.RichEditControl richTextBoxDetail;
+        private DevExpress.XtraEditors.PictureEdit tapPictureBox1;
+        private DevExpress.XtraEditors.SimpleButton tapButtonCancel;
+        private DevExpress.XtraEditors.SimpleButton tapButtonDetail;
+        private DevExpress.XtraEditors.SimpleButton tapButtonNo;
+        private DevExpress.XtraEditors.SimpleButton tapButtonYes;
+        private DevExpress.XtraEditors.SimpleButton tapButtonOK;
     }
 }
