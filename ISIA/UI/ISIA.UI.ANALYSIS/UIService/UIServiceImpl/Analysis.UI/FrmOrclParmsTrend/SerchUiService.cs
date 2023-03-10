@@ -20,6 +20,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
 
         private double[][] _ClusterInput = null;
 
+        public static int DEFAUlT_CLUSTERING_CNT = 4;
+
         private SortedDictionary<int, List<DataTable>> _ClusteringDt = new SortedDictionary<int, List<DataTable>>();
 
         public SerchUiService(FrmOrclParmsTrendChart frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
@@ -59,19 +61,21 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             EventArgPack.EndTime = endDateTime.ToString("yyyyMMdd");
             EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
+            //grouping unit handling
+            string groupingUnit = frm.comboBoxEditGroupUnit.Text;
+
             //xasix_interval check
-            if (frm.checkEditHour.Checked)
+            if (groupingUnit.Equals("HOUR"))
             {
-                EventArgPack.StartTime = EventArgPack.StartTime + "00";
-                EventArgPack.EndTime = EventArgPack.EndTime + "23";
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
             }
-            else if (frm.checkEditMin.Checked)
+            else if (groupingUnit.Equals("INTERVAL"))
             {
-                EventArgPack.StartTime = EventArgPack.StartTime + "000";
-                EventArgPack.EndTime = EventArgPack.EndTime + "235";
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
+       
+            //clustering cnt 
+            EventArgPack.ClustersNumber = DEFAUlT_CLUSTERING_CNT;
             string clusterNum = frm.comboBoxEditClusteringCnt.Text;
             EventArgPack.ClustersNumber = int.Parse(clusterNum);
             EventArgPack.ClustersNumber = EventArgPack.ClustersNumber < paramList.Count ? EventArgPack.ClustersNumber : paramList.Count;
@@ -114,6 +118,7 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
             //chart legend config 
             chart.Legend.Visible = true;
             chart.Legend.LegendStyle = LegendStyles.Series;
+            chart.Legend.CheckBoxes = true;
             //END
             DataTableCollection tables = (DataTableCollection)data;
             //axex show multi-line
@@ -163,7 +168,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
                 chartCluster.Axes.Bottom.Labels.MultiLine = true;
                 chartCluster.ContextMenuStrip = frm.contextMenuStrip1;
                 chartCluster.Legend.LegendStyle = LegendStyles.Series;
-                
+                chartCluster.Legend.CheckBoxes = true;
+
                 //show tooltip
                 MarksTip marksTipCluster = new MarksTip(chartCluster.Chart);
                 marksTipCluster.Active = true;
@@ -213,11 +219,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmOrclParmsTrend
 
         public override void RunAsync()
         {
-            
                 HandleArugument(FrmWork);
                 FrmWork.BeginAsyncCallByType("LoadData", "Display", EnumDataObject.DATASET, this.GetType(), this, null);
-            
-          
         }
 
         public override bool Equals(object obj)

@@ -45,12 +45,15 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
             EventArgPack.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
             EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
+            //grouping unit handling
+            string groupingUnit = frm.comboBoxEditGroupUnit.Text;
+
             //xasix_interval check
-            if (frm.checkEditHour.Checked)
+            if (groupingUnit.Equals("HOUR"))
             {
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
             }
-            else if (frm.checkEditMin.Checked)
+            else if (groupingUnit.Equals("INTERVAL"))
             {
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
@@ -108,6 +111,8 @@ namespace UIHelper.UIServiceImpl.Analysis.UI.FrmWorkload
             //Legend set
             chart.Legend.LegendStyle = LegendStyles.Series;
             chart.Legend.Visible = true;
+            chart.Legend.CheckBoxes = true;
+
             object[] res = (object[])data;
             DataTable[] tables = (DataTable[])res[0];
             //XAXIS MULTILINE CONTROL

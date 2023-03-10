@@ -48,7 +48,6 @@ namespace ISIA.UI.ANALYSIS
             {
                 TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
             }
-
         }
 
 
@@ -68,7 +67,5 @@ namespace ISIA.UI.ANALYSIS
         {
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
-
-      
     }
 }

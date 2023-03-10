@@ -47,7 +47,6 @@ namespace ISIA.UI.ANALYSIS
             {
                 SearchUiService searchUiService = new SearchUiService(this, e, new AwrArgsPack());
                 searchUiService.RunAsync();
-              
             }
             catch (Exception ex)
             {
