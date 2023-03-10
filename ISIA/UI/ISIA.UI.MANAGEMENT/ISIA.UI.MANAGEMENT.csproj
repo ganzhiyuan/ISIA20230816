@@ -153,6 +153,10 @@
       <Project>{78f57803-0868-4941-8954-833c045664b5}</Project>
       <Name>TAP.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">
+      <Project>{4017597e-0dc9-4441-8492-f1512f907ebf}</Project>
+      <Name>ISIA.COMMON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\INTERFACE\ISIA.INTERFACE.ARGUMENTSPACK\ISIA.INTERFACE.ARGUMENTSPACK.csproj">
       <Project>{3a02ff43-6d96-4400-9678-ab2bc1d73606}</Project>
       <Name>ISIA.INTERFACE.ARGUMENTSPACK</Name>

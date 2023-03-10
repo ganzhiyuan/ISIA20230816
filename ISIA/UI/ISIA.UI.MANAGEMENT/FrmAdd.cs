@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections;
@@ -12,15 +13,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ISIA.COMMON;
 using TAP.Data.Client;
 
 namespace ISIA.UI.MANAGEMENT
 {
+
+    public delegate void gridtable(DataTable dataTable);//定义委托
+
     public partial class FrmAdd : XtraForm
     {
+        public event gridtable gridtable;//定义委托事件
+        
+        
+        List<DevExpress.XtraGrid.Columns.GridColumn> gridColumns = new List<DevExpress.XtraGrid.Columns.GridColumn>();
 
-        DataBaseManagementArgsPack args = new DataBaseManagementArgsPack();
-        BizDataClient bs = null;
         public FrmAdd()
         {
             InitializeComponent();
@@ -30,7 +37,8 @@ namespace ISIA.UI.MANAGEMENT
         public FrmAdd(List<DevExpress.XtraGrid.Columns.GridColumn> gridColumn) 
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.DataBaseManagement");
+            
+            gridColumns = gridColumn;
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Name",typeof(System.String));
             dataTable.Columns.Add("Value", typeof(System.String));
@@ -43,11 +51,42 @@ namespace ISIA.UI.MANAGEMENT
             
             gridView.GridControl.DataSource = dataTable;
             gridView.Columns["Name"].OptionsColumn.AllowEdit = false;
+            gridView.Columns["Name"].OptionsColumn.ReadOnly = true;
             gridView.OptionsBehavior.Editable = true;
+            
+            //
+
+            gridView.CustomRowCellEdit += GridView_CustomRowCellEdit;
 
         }
 
+        private void GridView_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            
 
+            //判断原数据的ColumnEditName是否有值，有值则获取原字段绑定的RepositoryItems的控件类型
+            //传入helper类中处理返回一个控件
+            if (e.Column.FieldName == "Value" && !string.IsNullOrEmpty(gridColumns[e.RowHandle].ColumnEditName.ToString()))
+            {
+                
+                    string repo = gridColumns[e.RowHandle].ColumnEdit.GetType().Name.ToString();
+
+                    RepHelper model = new RepHelper();
+
+                    e.RepositoryItem = model.GetRepItem(repo, gridColumns[e.RowHandle].ColumnEditName.ToString());
+                
+
+            }
+
+
+            /*RepositoryItemComboBox edit = new RepositoryItemComboBox();
+
+            gridView.GridControl.RepositoryItems.Add(edit);
+            if (e.Column.FieldName == "Value" && e.RowHandle == 8)
+            {
+                e.RepositoryItem = edit;
+            }*/
+        }
 
         private void windowsUIButtonPanel_ButtonClick(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
         {
@@ -69,7 +108,9 @@ namespace ISIA.UI.MANAGEMENT
                 //
 
 
-                args.CATEGORY = dataTable1.Rows[0]["CATEGORY"].ToString();
+                gridtable(dataTable1);//调用委托
+
+                /*args.CATEGORY = dataTable1.Rows[0]["CATEGORY"].ToString();
                 args.SUBCATEGORY = dataTable1.Rows[0]["SUBCATEGORY"].ToString();
                 args.NAME = dataTable1.Rows[0]["NAME"].ToString();
                 args.USED = dataTable1.Rows[0]["USED"].ToString();
@@ -87,9 +128,8 @@ namespace ISIA.UI.MANAGEMENT
                 if (Res == 1)
                 {
                     XtraMessageBox.Show("Adding data succeeded ", " ");
-                }
-                /*string a = "aa";
-                XtraMessageBox.Show("add date ok");*/
+                }*/
+                
                 this.Dispose();
             }
             else if (e.Button.Properties.Caption.ToString() == "Cancel"){

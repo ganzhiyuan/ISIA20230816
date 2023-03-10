@@ -72,23 +72,23 @@ namespace ISIA.UI.MANAGEMENT
             this.labelControl.Appearance.Options.UseTextOptions = true;
             this.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.labelControl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
-            this.labelControl.Location = new System.Drawing.Point(53, 0);
+            this.labelControl.Location = new System.Drawing.Point(0, 0);
             this.labelControl.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl.Name = "labelControl";
             this.labelControl.Padding = new System.Windows.Forms.Padding(0, 4, 17, 8);
-            this.labelControl.Size = new System.Drawing.Size(939, 44);
+            this.labelControl.Size = new System.Drawing.Size(1045, 44);
             this.labelControl.StyleController = this.layoutControl;
             this.labelControl.TabIndex = 4;
-            this.labelControl.Text = "Add Date";
+            this.labelControl.Text = "Add Data";
             // 
             // gridControl
             // 
             this.gridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.gridControl.Location = new System.Drawing.Point(53, 44);
+            this.gridControl.Location = new System.Drawing.Point(0, 44);
             this.gridControl.MainView = this.gridView;
-            this.gridControl.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl.Margin = new System.Windows.Forms.Padding(0);
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(939, 650);
+            this.gridControl.Size = new System.Drawing.Size(1045, 650);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -115,7 +115,7 @@ namespace ISIA.UI.MANAGEMENT
             this.itemLabel,
             this.itemGrid});
             this.layoutControlGroup.Name = "layoutControlGroup";
-            this.layoutControlGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(53, 53, 0, 0);
+            this.layoutControlGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup.Size = new System.Drawing.Size(1045, 694);
             this.layoutControlGroup.TextVisible = false;
             // 
@@ -123,9 +123,11 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.itemLabel.Control = this.labelControl;
             this.itemLabel.Location = new System.Drawing.Point(0, 0);
+            this.itemLabel.MinSize = new System.Drawing.Size(22, 44);
             this.itemLabel.Name = "itemLabel";
             this.itemLabel.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.itemLabel.Size = new System.Drawing.Size(939, 44);
+            this.itemLabel.Size = new System.Drawing.Size(1045, 44);
+            this.itemLabel.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.itemLabel.TextSize = new System.Drawing.Size(0, 0);
             this.itemLabel.TextVisible = false;
             // 
@@ -133,9 +135,11 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.itemGrid.Control = this.gridControl;
             this.itemGrid.Location = new System.Drawing.Point(0, 44);
+            this.itemGrid.MinSize = new System.Drawing.Size(100, 20);
             this.itemGrid.Name = "itemGrid";
             this.itemGrid.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.itemGrid.Size = new System.Drawing.Size(939, 650);
+            this.itemGrid.Size = new System.Drawing.Size(1045, 650);
+            this.itemGrid.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.itemGrid.TextSize = new System.Drawing.Size(0, 0);
             this.itemGrid.TextVisible = false;
             // 
@@ -184,8 +188,12 @@ namespace ISIA.UI.MANAGEMENT
             this.ClientSize = new System.Drawing.Size(1045, 777);
             this.Controls.Add(this.layoutControl);
             this.Controls.Add(this.windowsUIButtonPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmAdd";
+            this.ShowInTaskbar = false;
             this.Text = " ";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
             this.layoutControl.ResumeLayout(false);
