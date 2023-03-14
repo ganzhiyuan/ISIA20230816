@@ -1,6 +1,6 @@
 ﻿namespace ISIA.UI.MANAGEMENT
 {
-    partial class FrmDataBaseManagement
+    partial class FrmSpcManagement
     {
         /// <summary>  
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataBaseManagement));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSpcManagement));
             this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -516,7 +516,7 @@
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 14, 10, 35, 23, 621);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 14, 13, 21, 47, 190);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -650,13 +650,13 @@
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // FrmDataBaseManagement
+            // FrmSpcManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 707);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmDataBaseManagement";
+            this.Name = "FrmSpcManagement";
             this.Text = "BMPMChartReport";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);

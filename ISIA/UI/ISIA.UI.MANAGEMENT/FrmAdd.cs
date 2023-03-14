@@ -64,11 +64,13 @@ namespace ISIA.UI.MANAGEMENT
         {
             
 
-            //判断原数据的ColumnEditName是否有值，有值则获取原字段绑定的RepositoryItems的控件类型
+            //判断原数据的ColumnEditName是否有值，有值则获取原字段绑定的RepositoryItems的控件类型名称
             //传入helper类中处理返回一个控件
             if (e.Column.FieldName == "Value" && !string.IsNullOrEmpty(gridColumns[e.RowHandle].ColumnEditName.ToString()))
             {
-                
+
+                    gridColumns[e.RowHandle].ColumnEdit.GetType();
+
                     string repo = gridColumns[e.RowHandle].ColumnEdit.GetType().Name.ToString();
 
                     RepHelper model = new RepHelper();

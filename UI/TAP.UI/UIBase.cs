@@ -5587,6 +5587,7 @@ namespace TAP.UI
         /// </summary>
         protected void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UIBase));
             this.tPanelMain = new TAP.UIControls.BasicControls.TPanel();
             this.tPanelTop = new TAP.UIControls.BasicControls.TPanel();
@@ -5606,7 +5607,7 @@ namespace TAP.UI
             this.tPanel1 = new TAP.UIControls.BasicControls.TPanel();
             this.progressBar1 = new TAP.UIControls.BasicControls.TSolidProgressBar();
             this.tLabel1 = new TAP.UIControls.BasicControls.TLabel();
-            this.timerCurrent = new System.Windows.Forms.Timer();
+            this.timerCurrent = new System.Windows.Forms.Timer(this.components);
             this.tPanelTop.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBookMark)).BeginInit();
@@ -5625,12 +5626,12 @@ namespace TAP.UI
             this.tPanelMain.ControlID = "tPanelMain";
             this.tPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tPanelMain.IsRequired = false;
-            this.tPanelMain.Location = new System.Drawing.Point(0, 20);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 5);
             this.tPanelMain.Name = "tPanelMain";
             this.tPanelMain.NeedToTranslate = true;
             this.tPanelMain.RepresentativeValue = "tPanelMain [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.For" +
     "ms.BorderStyle.None";
-            this.tPanelMain.Size = new System.Drawing.Size(1012, 687);
+            this.tPanelMain.Size = new System.Drawing.Size(1012, 717);
             this.tPanelMain.TabIndex = 3;
             // 
             // tPanelTop
@@ -5645,7 +5646,7 @@ namespace TAP.UI
             this.tPanelTop.NeedToTranslate = true;
             this.tPanelTop.RepresentativeValue = "tPanelTop [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Form" +
     "s.BorderStyle.None";
-            this.tPanelTop.Size = new System.Drawing.Size(1012, 20);
+            this.tPanelTop.Size = new System.Drawing.Size(1012, 5);
             this.tPanelTop.TabIndex = 2;
             // 
             // pnlButtons
@@ -5661,7 +5662,7 @@ namespace TAP.UI
             this.pnlButtons.NeedToTranslate = true;
             this.pnlButtons.RepresentativeValue = "pnlButtons [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.For" +
     "ms.BorderStyle.None";
-            this.pnlButtons.Size = new System.Drawing.Size(268, 20);
+            this.pnlButtons.Size = new System.Drawing.Size(268, 5);
             this.pnlButtons.TabIndex = 1;
             // 
             // picBookMark
@@ -5677,7 +5678,7 @@ namespace TAP.UI
             this.picBookMark.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.picBookMark.RepresentativeValue = global::TAP.UI.Properties.Resources.destar16;
             this.picBookMark.RollOverImage = null;
-            this.picBookMark.Size = new System.Drawing.Size(20, 20);
+            this.picBookMark.Size = new System.Drawing.Size(20, 5);
             this.picBookMark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picBookMark.TabIndex = 2;
             this.picBookMark.TabStop = false;
@@ -5694,7 +5695,7 @@ namespace TAP.UI
             this.pic.NeedToTranslate = true;
             this.pic.RepresentativeValue = global::TAP.UI.Properties.Resources.xls1;
             this.pic.RollOverImage = global::TAP.UI.Properties.Resources.xls_rollover;
-            this.pic.Size = new System.Drawing.Size(20, 20);
+            this.pic.Size = new System.Drawing.Size(20, 5);
             this.pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pic.TabIndex = 1;
             this.pic.TabStop = false;
@@ -5712,7 +5713,7 @@ namespace TAP.UI
             this.picClose.NeedToTranslate = true;
             this.picClose.RepresentativeValue = global::TAP.UI.Properties.Resources.close;
             this.picClose.RollOverImage = global::TAP.UI.Properties.Resources.closeUI_rollover;
-            this.picClose.Size = new System.Drawing.Size(20, 20);
+            this.picClose.Size = new System.Drawing.Size(20, 5);
             this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picClose.TabIndex = 0;
             this.picClose.TabStop = false;
@@ -5729,10 +5730,10 @@ namespace TAP.UI
             this.lblTitle.Margin = new System.Windows.Forms.Padding(1, 0, 3, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.NeedToTranslate = true;
-            this.lblTitle.RepresentativeValue = "";
-            this.lblTitle.Text = "Title";
-            this.lblTitle.Size = new System.Drawing.Size(0, 13);
+            this.lblTitle.RepresentativeValue = "Title";
+            this.lblTitle.Size = new System.Drawing.Size(32, 17);
             this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Title";
             // 
             // tPanelBottomBase
             // 
@@ -5746,12 +5747,12 @@ namespace TAP.UI
             this.tPanelBottomBase.Controls.Add(this.tLabel1);
             this.tPanelBottomBase.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tPanelBottomBase.IsRequired = false;
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 707);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 722);
             this.tPanelBottomBase.Name = "tPanelBottomBase";
             this.tPanelBottomBase.NeedToTranslate = true;
             this.tPanelBottomBase.RepresentativeValue = "tPanelBottomBase [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windo" +
     "ws.Forms.BorderStyle.None";
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1012, 20);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1012, 5);
             this.tPanelBottomBase.TabIndex = 0;
             // 
             // tPanel5
@@ -5765,7 +5766,7 @@ namespace TAP.UI
             this.tPanel5.NeedToTranslate = true;
             this.tPanel5.RepresentativeValue = "tPanel5 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
     "BorderStyle.None";
-            this.tPanel5.Size = new System.Drawing.Size(756, 20);
+            this.tPanel5.Size = new System.Drawing.Size(756, 5);
             this.tPanel5.TabIndex = 5;
             // 
             // tLabelStatus
@@ -5779,7 +5780,7 @@ namespace TAP.UI
             this.tLabelStatus.Name = "tLabelStatus";
             this.tLabelStatus.NeedToTranslate = true;
             this.tLabelStatus.RepresentativeValue = "Ready";
-            this.tLabelStatus.Size = new System.Drawing.Size(756, 20);
+            this.tLabelStatus.Size = new System.Drawing.Size(756, 5);
             this.tLabelStatus.TabIndex = 0;
             this.tLabelStatus.Text = "Ready";
             this.tLabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -5796,7 +5797,7 @@ namespace TAP.UI
             this.tPanel4.NeedToTranslate = true;
             this.tPanel4.RepresentativeValue = "tPanel4 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
     "BorderStyle.None";
-            this.tPanel4.Size = new System.Drawing.Size(126, 20);
+            this.tPanel4.Size = new System.Drawing.Size(126, 5);
             this.tPanel4.TabIndex = 4;
             // 
             // tLabelTime
@@ -5808,7 +5809,7 @@ namespace TAP.UI
             this.tLabelTime.Name = "tLabelTime";
             this.tLabelTime.NeedToTranslate = true;
             this.tLabelTime.RepresentativeValue = "00:00:00";
-            this.tLabelTime.Size = new System.Drawing.Size(126, 20);
+            this.tLabelTime.Size = new System.Drawing.Size(126, 5);
             this.tLabelTime.TabIndex = 0;
             this.tLabelTime.Text = "00:00:00";
             this.tLabelTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -5825,7 +5826,7 @@ namespace TAP.UI
             this.tPanel3.NeedToTranslate = true;
             this.tPanel3.RepresentativeValue = "tPanel3 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
     "BorderStyle.None";
-            this.tPanel3.Size = new System.Drawing.Size(20, 20);
+            this.tPanel3.Size = new System.Drawing.Size(20, 5);
             this.tPanel3.TabIndex = 3;
             // 
             // tPictureBox1
@@ -5839,7 +5840,7 @@ namespace TAP.UI
             this.tPictureBox1.NeedToTranslate = true;
             this.tPictureBox1.RepresentativeValue = global::TAP.UI.Properties.Resources.btnStop;
             this.tPictureBox1.RollOverImage = global::TAP.UI.Properties.Resources.btnStop_rollover;
-            this.tPictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.tPictureBox1.Size = new System.Drawing.Size(20, 5);
             this.tPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.tPictureBox1.TabIndex = 0;
             this.tPictureBox1.TabStop = false;
@@ -5856,7 +5857,7 @@ namespace TAP.UI
             this.tPanel2.NeedToTranslate = true;
             this.tPanel2.RepresentativeValue = "tPanel2 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
     "BorderStyle.None";
-            this.tPanel2.Size = new System.Drawing.Size(10, 20);
+            this.tPanel2.Size = new System.Drawing.Size(10, 5);
             this.tPanel2.TabIndex = 2;
             // 
             // tPanel1
@@ -5871,7 +5872,7 @@ namespace TAP.UI
             this.tPanel1.NeedToTranslate = true;
             this.tPanel1.RepresentativeValue = "tPanel1 [TAP.UIControls.BasicControls.TPanel], BorderStyle: System.Windows.Forms." +
     "BorderStyle.None";
-            this.tPanel1.Size = new System.Drawing.Size(100, 20);
+            this.tPanel1.Size = new System.Drawing.Size(100, 5);
             this.tPanel1.TabIndex = 1;
             // 
             // progressBar1
@@ -5884,7 +5885,7 @@ namespace TAP.UI
             this.progressBar1.Maximum = 100;
             this.progressBar1.Minimum = 0;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 20);
+            this.progressBar1.Size = new System.Drawing.Size(100, 5);
             this.progressBar1.Step = 10;
             this.progressBar1.TabIndex = 0;
             this.progressBar1.Value = 0;
@@ -5898,7 +5899,7 @@ namespace TAP.UI
             this.tLabel1.Name = "tLabel1";
             this.tLabel1.NeedToTranslate = true;
             this.tLabel1.RepresentativeValue = "tLabel1";
-            this.tLabel1.Size = new System.Drawing.Size(42, 13);
+            this.tLabel1.Size = new System.Drawing.Size(52, 17);
             this.tLabel1.TabIndex = 0;
             this.tLabel1.Text = "tLabel1";
             // 

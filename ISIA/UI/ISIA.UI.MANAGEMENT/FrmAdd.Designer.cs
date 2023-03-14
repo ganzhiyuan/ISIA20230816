@@ -40,6 +40,7 @@ namespace ISIA.UI.MANAGEMENT
             this.itemLabel = new DevExpress.XtraLayout.LayoutControlItem();
             this.itemGrid = new DevExpress.XtraLayout.LayoutControlItem();
             this.windowsUIButtonPanel = new DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).BeginInit();
             this.layoutControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
@@ -47,6 +48,7 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemLabel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl
@@ -88,6 +90,8 @@ namespace ISIA.UI.MANAGEMENT
             this.gridControl.MainView = this.gridView;
             this.gridControl.Margin = new System.Windows.Forms.Padding(0);
             this.gridControl.Name = "gridControl";
+            this.gridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBox1});
             this.gridControl.Size = new System.Drawing.Size(1045, 650);
             this.gridControl.TabIndex = 2;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -179,6 +183,13 @@ namespace ISIA.UI.MANAGEMENT
             this.windowsUIButtonPanel.UseButtonBackgroundImages = false;
             this.windowsUIButtonPanel.ButtonClick += new DevExpress.XtraBars.Docking2010.ButtonEventHandler(this.windowsUIButtonPanel_ButtonClick);
             // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
             // FrmAdd
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -202,6 +213,7 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemLabel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,5 +228,6 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraLayout.LayoutControlItem itemLabel;
         private DevExpress.XtraLayout.LayoutControlItem itemGrid;
         private DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel windowsUIButtonPanel;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
     }
 }

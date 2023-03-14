@@ -116,6 +116,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmSpcManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpcManagement.Designer.cs">
+      <DependentUpon>FrmSpcManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDataBaseManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,10 +140,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RepType.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmAdd.resx">
       <DependentUpon>FrmAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpcManagement.resx">
+      <DependentUpon>FrmSpcManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDataBaseManagement.resx">
       <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>

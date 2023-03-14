@@ -66,6 +66,7 @@
     <Compile Include="ClassicUIArgsPack.cs" />
     <Compile Include="CommonArgsPack.cs" />
     <Compile Include="CustomizedFieldArgsPack.cs" />
+    <Compile Include="SPCManagementArgsPack.cs" />
     <Compile Include="DefaultReworkFlowArgsPack.cs" />
     <Compile Include="AwrArgsPack.cs" />
     <Compile Include="MonitorArgsPack.cs" />
