@@ -17,6 +17,7 @@ namespace ISIA.UI.BASE
     {
         public DockUIBase1T1()
         {
+          
             InitializeComponent();
             InitializeDockpanle();
         }
