@@ -29,6 +29,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private int _ClustersNumber;
 
+        private string _DBName;
+
         private static List<string> _WorkloadParamNamesList =new List<string>();
 
         static AwrArgsPack()
@@ -158,6 +160,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _ClustersNumber = value;
+            }
+        }
+
+        public string DBName
+        {
+            get
+            {
+                return _DBName;
+            }
+
+            set
+            {
+                _DBName = value;
             }
         }
 
