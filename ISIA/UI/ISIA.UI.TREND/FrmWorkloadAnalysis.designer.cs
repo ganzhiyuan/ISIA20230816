@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkloadAnalysis));
-            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -1609,11 +1609,11 @@
             // 
             // 
             // 
-            margins1.Bottom = 100;
-            margins1.Left = 100;
-            margins1.Right = 100;
-            margins1.Top = 100;
-            this.tChart1.Printer.Margins = margins1;
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChart1.Printer.Margins = margins2;
             this.tChart1.Size = new System.Drawing.Size(712, 279);
             // 
             // 
@@ -1904,7 +1904,7 @@
             this.ClientSize = new System.Drawing.Size(1014, 570);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmWorkloadAnalysis";
-            this.Text = "EquipmentShiftProductionCapacity";
+            this.Text = "WorkLoadAnalysis";
             this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
             this.Controls.SetChildIndex(this.tPanelTop, 0);
             this.Controls.SetChildIndex(this.tPanelMain, 0);
