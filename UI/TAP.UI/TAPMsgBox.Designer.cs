@@ -130,7 +130,7 @@
             // 
             // tapButtonNo
             // 
-            this.tapButtonNo.ImageOptions.Image = global::TAP.UI.Properties.Resources.cancel_16x162;
+            this.tapButtonNo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tapButtonNo.ImageOptions.Image")));
             this.tapButtonNo.Location = new System.Drawing.Point(109, 6);
             this.tapButtonNo.Name = "tapButtonNo";
             this.tapButtonNo.Size = new System.Drawing.Size(100, 25);

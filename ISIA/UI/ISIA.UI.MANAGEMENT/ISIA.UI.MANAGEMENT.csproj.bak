@@ -153,10 +153,13 @@
       <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+<<<<<<< Updated upstream
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\UI\TAP.UI\TAP.UI.csproj">
