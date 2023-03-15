@@ -39,36 +39,7 @@ namespace ISIA.UI.ADMINISTRATOE
         #region Method
         private void InitializecboUserColumn()
         {
-            try
-            {
-                this.cboUserColumn.Properties.Items.Add("NAME");
-                this.cboUserColumn.Properties.Items.Add("REGION");
-                this.cboUserColumn.Properties.Items.Add("FACILITY");
-                this.cboUserColumn.Properties.Items.Add("DEPARTMENT");
-                this.cboUserColumn.Properties.Items.Add("POSITION");
-                this.cboUserColumn.Properties.Items.Add("USERNAME");
-                this.cboUserColumn.Properties.Items.Add("USERMIDDLENAME");
-                this.cboUserColumn.Properties.Items.Add("USERLASTNAME");
-                this.cboUserColumn.Properties.Items.Add("CONTACTNO");
-                this.cboUserColumn.Properties.Items.Add("MOBILENO");
-                this.cboUserColumn.Properties.Items.Add("MAILADDRESS");
-                this.cboUserColumn.Properties.Items.Add("PASSWORD");
-                this.cboUserColumn.Properties.Items.Add("USERGROUPNAME");
-                this.cboUserColumn.Properties.Items.Add("LANGUAGE");
-                this.cboUserColumn.Properties.Items.Add("CURRENTMODEL");
-                this.cboUserColumn.Properties.Items.Add("DESCRIPTION");
-                this.cboUserColumn.Properties.Items.Add("LASTEVENTCOMMENT");
-                this.cboUserColumn.Properties.Items.Add("LASTEVENT");
-                this.cboUserColumn.Properties.Items.Add("LASTEVENTFLAG");
-                this.cboUserColumn.Properties.Items.Add("LASTEVENTTIME");
-                this.cboUserColumn.Properties.Items.Add("LASTEVENTCODE");
-                this.cboUserColumn.Properties.Items.Add("ISALIVE");
-                cboUserColumn.SelectedIndex = 0;
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
+            
         }
 
         private void InitializeGroupList()
@@ -125,47 +96,6 @@ namespace ISIA.UI.ADMINISTRATOE
 
         }
 
-        private void RefreshFliterUsergrid(string item, string filter = "")
-        {
-            if (filter == "" || filter == null)
-            {
-                filter = "";
-            }
-            //  DataTable dt = userModel.LoadModelDataList(retVal);
-            DataTable dt = userDt;
-            if (dt == null || dt.Rows.Count <= 0) return;
-
-            if (valid == false)
-            {
-                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "You inputed char is invalid, Please confirm it.");
-                txtFilter.Focus();
-                return;
-            }
-
-            if (filter.Trim().Contains("'") || filter.Trim().Contains("\"") || filter.Trim().Contains("‘")
-                || filter.Trim().Contains("’") || filter.Trim().Contains("“") || filter.Trim().Contains("”"))
-            {
-                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "You inputed char is invalid, Please confirm it.");
-                txtFilter.Focus();
-                return;
-            }
-
-            DataRow[] drs = dt.Select(item + " LIKE " + "'%" + filter + "%'");
-            DataTable dtNew = dt.Clone();
-            foreach (DataRow dr in drs)
-            {
-                dtNew.ImportRow(dr);
-            }
-
-            gridControl2.DataBindings.Clear();
-            gridControl2.DataSource = dtNew;
-            this.gridView2.Columns["LASTEVENTCOMMENT"].Visible = false;
-            this.gridView2.Columns["LASTEVENT"].Visible = false;
-            this.gridView2.Columns["LASTEVENTFLAG"].Visible = false;
-            this.gridView2.Columns["LASTEVENTTIME"].Visible = false;
-            this.gridView2.Columns["LASTEVENTCODE"].Visible = false;
-            GridviewStyle();
-        }
 
         private void GetUsergridById(List<string> ids = null)
         {
@@ -291,42 +221,42 @@ namespace ISIA.UI.ADMINISTRATOE
             ShowDescription(item);
         }
 
-        private void chkFilter_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkFilter.Checked)
-            {
-                RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-            }
-            else
-            {
-                InitializeUsergrid();
-                return;
-            }
-        }
+        //private void chkFilter_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (chkFilter.Checked)
+        //    {
+        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
+        //    }
+        //    else
+        //    {
+        //        InitializeUsergrid();
+        //        return;
+        //    }
+        //}
 
-        private void txtFilter_EditValueChanged(object sender, EventArgs e)
-        {
-            if (chkFilter.Checked)
-            {
-                RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-            }
-            else
-            {
-                return;
-            }
-        }
+        //private void txtFilter_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    if (chkFilter.Checked)
+        //    {
+        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
+        //    }
+        //    else
+        //    {
+        //        return;
+        //    }
+        //}
 
-        private void cboUserColumn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (chkFilter.Checked)
-            {
-                RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-            }
-            else
-            {
-                return;
-            }
-        }
+        //private void cboUserColumn_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (chkFilter.Checked)
+        //    {
+        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
+        //    }
+        //    else
+        //    {
+        //        return;
+        //    }
+        //}
 
         private void navBarControl1_Resize(object sender, EventArgs e)
         {
@@ -535,6 +465,22 @@ namespace ISIA.UI.ADMINISTRATOE
 
         private void btnGroup_Click(object sender, EventArgs e)
         {
+            
+        }
+        #endregion
+
+        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            valid = true;
+            if (e.KeyChar.ToString().Trim().Contains("'") || e.KeyChar.ToString().Trim().Contains("\"") || e.KeyChar.ToString().Trim().Contains("‘")
+                || e.KeyChar.ToString().Trim().Contains("’") || e.KeyChar.ToString().Trim().Contains("“") || e.KeyChar.ToString().Trim().Contains("”"))
+            {
+                valid = false;
+            }
+        }
+
+        private void tButton2_Click(object sender, EventArgs e)
+        {
             if (addGroupname == "")
             {
                 TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Please choose Group List..");
@@ -675,16 +621,73 @@ namespace ISIA.UI.ADMINISTRATOE
                 TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
             }
         }
-        #endregion
 
-        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
+        private void tButton1_Click(object sender, EventArgs e)
         {
-            valid = true;
-            if (e.KeyChar.ToString().Trim().Contains("'") || e.KeyChar.ToString().Trim().Contains("\"") || e.KeyChar.ToString().Trim().Contains("‘")
-                || e.KeyChar.ToString().Trim().Contains("’") || e.KeyChar.ToString().Trim().Contains("“") || e.KeyChar.ToString().Trim().Contains("”"))
+            if (imageListBoxControl1.SelectedItem == null)
             {
-                valid = false;
+                return;
             }
+            string item = imageListBoxControl1.SelectedItem.ToString();
+
+            string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.DELETE, EnumGeneralTemplateType.CONFIRM, "");
+            DialogResult dialog = TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.CONFIRM, tmpMessage);
+            if (dialog.ToString() == "Yes")
+            {
+                List<int> selectRowNum = new List<int>();
+                try
+                {
+                    if (gridView1.SelectedRowsCount <= 0)
+                        return;
+                    foreach (int rowhandel in gridView1.GetSelectedRows())
+                    {
+                        selectRowNum.Add(rowhandel);
+                    }
+                    List<CommonArgsPack> argsPacks = new List<CommonArgsPack>();
+                    for (int i = 0; i < selectRowNum.Count; i++)
+                    {
+                        CommonArgsPack args = new CommonArgsPack();
+                        DataRow tmpRow = gridView1.GetDataRow(selectRowNum[i]);
+
+                        string USERGROUP = tmpRow["USERGROUP"].ToString();
+                        string NAME = tmpRow["NAME"].ToString();
+                        string REGION = tmpRow["REGION"].ToString();
+                        string FACILITY = tmpRow["FACILITY"].ToString();
+                        args.Name = NAME;
+                        args.GroupName = USERGROUP;
+                        args.Region = REGION;
+                        args.Facility = FACILITY;
+
+                        argsPacks.Add(args);
+                    }
+
+                    ArgumentPack tmpap = new ArgumentPack();
+                    tmpap.AddArgument("arguments", typeof(List<CommonArgsPack>), argsPacks);
+                    bs.ExecuteModify("DeleteGroupmember", tmpap);
+
+                    RefreshUsergroupgrid(item);
+                }
+                catch (System.Exception ex)
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
+                }
+            }
+        }
+
+        private void gridView2_DoubleClick(object sender, EventArgs e)
+        {
+            //string nodeName = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "nodeName").ToString();
+            DataRow tmpRow = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+            if (tmpRow==null)
+            {
+                return;
+            }
+
+            UserUpdate update = new UserUpdate();
+            update.Receipt(tmpRow);
+            update.ShowDialog();
+            InitializeUsergrid();
+            gridView2.RefreshData();
         }
     }
 }

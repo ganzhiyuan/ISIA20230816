@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ISIA.UI.ANALYSIS</RootNamespace>
     <AssemblyName>ISIA.UI.ANALYSIS</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -127,12 +127,6 @@
     <Compile Include="FrmCorrelationAnalysis.Designer.cs">
       <DependentUpon>FrmCorrelationAnalysis.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmOrclParmsTrendChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmOrclParmsTrendChart.designer.cs">
-      <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmResponseChartAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,44 +144,22 @@
     <Compile Include="HeatMapUtils\CorrelationExecuter.cs" />
     <Compile Include="HeatMapUtils\IExecuter.cs" />
     <Compile Include="HeatMapUtils\ParmPairs.cs" />
-    <Compile Include="FrmWorkloadAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmWorkloadAnalysis.designer.cs">
-      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UIService\CommonUIService.cs" />
-    <Compile Include="UIService\IInitService.cs" />
-    <Compile Include="UIService\IRun.cs" />
-    <Compile Include="UIService\IUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationComboxParmTypeUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\InitializationUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmOrclParmsTrend\SerchUiService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmWorkload\InitializationUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Analysis.UI\FrmWorkload\SearchUiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
       <DependentUpon>FrmCorrelationAnalysis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
-      <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmResponseChartAnalysis.resx">
       <DependentUpon>FrmResponseChartAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEquipmentAnalysis.resx">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
-      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
@@ -205,9 +177,7 @@
     <None Include="ISIA.UI.ANALYSIS.csproj.bak" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UIService\InitializationServicImpl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

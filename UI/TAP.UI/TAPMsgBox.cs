@@ -165,12 +165,50 @@ namespace TAP.UI
             #endregion
         }
 
+        private Icon GetIconByMessageType(EnumMsgType messageType)
+        {
+            Icon icon = ConvertBitmap2Ico(Properties.Resources.info_16x16);
+            //Bitmap bitmap = new Bitmap(@"C:\Users\HP\Desktop\BoxÃ· æÕº±Í\confirm.ico");
+            //Icon icon = ConvertBitmap2Ico(bitmap);
+
+            switch (messageType)
+            {
+                case EnumMsgType.INFORMATION:
+                    icon = ConvertBitmap2Ico(Properties.Resources.info_16x16);
+                    break;
+                case EnumMsgType.CONFIRM:
+                    icon = ConvertBitmap2Ico(Properties.Resources.iconsetsymbols3_16x16);
+                    break;
+                case EnumMsgType.WARNING:
+                    icon = ConvertBitmap2Ico(Properties.Resources.warning_16x16);
+                    break;
+                case EnumMsgType.ERROR:
+                    icon = ConvertBitmap2Ico(Properties.Resources.cancel_16x16);
+                    break;
+                default:
+                    icon = ConvertBitmap2Ico(Properties.Resources.info_16x16);
+                    break;
+            }
+            return icon;
+        }
+
+        private Icon ConvertBitmap2Ico(Bitmap bitmap)
+        {
+            Bitmap icoBitmap = new Bitmap(bitmap, new Size(16, 16));
+            IntPtr hIco = icoBitmap.GetHicon();
+            Icon icon = Icon.FromHandle(hIco);
+
+            return icon;
+        }
+
         private void Initialize(string title, EnumMsgType messageType, string message, string detail)
         {
             #region Initialize
 
             this.Text = title;
             this.richTextBoxMessage.Text = message;
+            this.Icon = GetIconByMessageType(messageType);
+            //this.Icon = Properties.Resources.Information;
             this.richTextBoxDetail.Text = detail;
 
             this.tapPanel4.Visible = false;
@@ -182,7 +220,7 @@ namespace TAP.UI
                 EnumLanguage tmpLang = (EnumLanguage)Enum.Parse(typeof(EnumLanguage), InfoBase._USER_INFO.Language);
                 this._converter = new NeutralConverter(tmpLang, EnumUseFor.TEXT, false, TapBase.Instance.FressagePath);
             }
-            
+
             this.tapButtonCancel.Text = this._converter.ConvertPhrase(this.tapButtonCancel.Text);
             this.tapButtonDetail.Text = this._converter.ConvertPhrase(this.tapButtonDetail.Text);
             this.tapButtonNo.Text = this._converter.ConvertPhrase(this.tapButtonNo.Text);

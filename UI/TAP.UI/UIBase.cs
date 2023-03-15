@@ -2539,7 +2539,6 @@ namespace TAP.UI
                         }
                     }
                 }
-
                 return;
             }
             catch (System.Exception ex)
