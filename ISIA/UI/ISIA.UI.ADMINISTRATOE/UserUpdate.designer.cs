@@ -104,13 +104,13 @@
             this.tRadISALIVEno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tRadISALIVEno.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tRadISALIVEno.IsRequired = false;
-            this.tRadISALIVEno.Location = new System.Drawing.Point(102, 8);
+            this.tRadISALIVEno.Location = new System.Drawing.Point(101, 8);
             this.tRadISALIVEno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tRadISALIVEno.Name = "tRadISALIVEno";
             this.tRadISALIVEno.NeedToTranslate = true;
             this.tRadISALIVEno.RepresentativeValue = "NO";
-            this.tRadISALIVEno.Size = new System.Drawing.Size(91, 24);
-            this.tRadISALIVEno.TabIndex = 166;
+            this.tRadISALIVEno.Size = new System.Drawing.Size(89, 24);
+            this.tRadISALIVEno.TabIndex = 13;
             this.tRadISALIVEno.Text = "NO";
             this.tRadISALIVEno.UseVisualStyleBackColor = true;
             // 
@@ -131,8 +131,8 @@
             this.tRadISALIVEyes.Name = "tRadISALIVEyes";
             this.tRadISALIVEyes.NeedToTranslate = true;
             this.tRadISALIVEyes.RepresentativeValue = "YES";
-            this.tRadISALIVEyes.Size = new System.Drawing.Size(90, 24);
-            this.tRadISALIVEyes.TabIndex = 165;
+            this.tRadISALIVEyes.Size = new System.Drawing.Size(89, 24);
+            this.tRadISALIVEyes.TabIndex = 12;
             this.tRadISALIVEyes.TabStop = true;
             this.tRadISALIVEyes.Text = "YES";
             this.tRadISALIVEyes.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@
             this.labelControl13.Location = new System.Drawing.Point(27, 451);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(95, 40);
+            this.labelControl13.Size = new System.Drawing.Size(93, 40);
             this.labelControl13.TabIndex = 164;
             this.labelControl13.Text = "ISALIVE";
             // 
@@ -199,7 +199,7 @@
             this.btnUpdate.MinimumSize = new System.Drawing.Size(69, 26);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(69, 26);
-            this.btnUpdate.TabIndex = 161;
+            this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Save";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -220,7 +220,7 @@
             this.btnCancel.MinimumSize = new System.Drawing.Size(69, 26);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 26);
-            this.btnCancel.TabIndex = 160;
+            this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -232,7 +232,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.Controls.Add(this.cboMOBILEROLE, 4, 13);
             this.tableLayoutPanel2.Controls.Add(this.labelControl13, 2, 29);
             this.tableLayoutPanel2.Controls.Add(this.labelControl1, 2, 1);
@@ -329,7 +329,7 @@
             this.cboMOBILEROLE.EditValue = "";
             this.cboMOBILEROLE.IsColorData = false;
             this.cboMOBILEROLE.IsRequired = true;
-            this.cboMOBILEROLE.Location = new System.Drawing.Point(130, 202);
+            this.cboMOBILEROLE.Location = new System.Drawing.Point(128, 202);
             this.cboMOBILEROLE.Margin = new System.Windows.Forms.Padding(2);
             this.cboMOBILEROLE.Name = "cboMOBILEROLE";
             this.cboMOBILEROLE.NeedToTranslate = false;
@@ -339,11 +339,11 @@
             this.cboMOBILEROLE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboMOBILEROLE.RepresentativeValue = null;
-            this.cboMOBILEROLE.Size = new System.Drawing.Size(198, 20);
+            this.cboMOBILEROLE.Size = new System.Drawing.Size(195, 20);
             this.cboMOBILEROLE.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetMobileRole";
             this.cboMOBILEROLE.SqlDataBase = "";
             this.cboMOBILEROLE.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cboMOBILEROLE.TabIndex = 163;
+            this.cboMOBILEROLE.TabIndex = 5;
             this.cboMOBILEROLE.ValueMember = null;
             // 
             // labelControl1
@@ -354,35 +354,36 @@
             this.labelControl1.Location = new System.Drawing.Point(27, 10);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(95, 20);
+            this.labelControl1.Size = new System.Drawing.Size(93, 20);
             this.labelControl1.TabIndex = 89;
             this.labelControl1.Text = "NAME";
             // 
             // txtCURRENTMODEL
             // 
             this.txtCURRENTMODEL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCURRENTMODEL.Location = new System.Drawing.Point(131, 370);
+            this.txtCURRENTMODEL.Location = new System.Drawing.Point(129, 370);
             this.txtCURRENTMODEL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCURRENTMODEL.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtCURRENTMODEL.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtCURRENTMODEL.Name = "txtCURRENTMODEL";
             this.txtCURRENTMODEL.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCURRENTMODEL.Properties.Appearance.Options.UseFont = true;
-            this.txtCURRENTMODEL.Size = new System.Drawing.Size(196, 24);
-            this.txtCURRENTMODEL.TabIndex = 122;
+            this.txtCURRENTMODEL.Size = new System.Drawing.Size(193, 24);
+            this.txtCURRENTMODEL.TabIndex = 10;
             // 
             // txtUSERGROUPNAME
             // 
             this.txtUSERGROUPNAME.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUSERGROUPNAME.Location = new System.Drawing.Point(131, 314);
+            this.txtUSERGROUPNAME.Location = new System.Drawing.Point(129, 314);
             this.txtUSERGROUPNAME.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUSERGROUPNAME.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtUSERGROUPNAME.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtUSERGROUPNAME.Name = "txtUSERGROUPNAME";
             this.txtUSERGROUPNAME.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUSERGROUPNAME.Properties.Appearance.Options.UseFont = true;
-            this.txtUSERGROUPNAME.Size = new System.Drawing.Size(196, 24);
+            this.txtUSERGROUPNAME.Size = new System.Drawing.Size(193, 24);
             this.txtUSERGROUPNAME.TabIndex = 124;
+            this.txtUSERGROUPNAME.Visible = false;
             // 
             // labelControl3
             // 
@@ -392,7 +393,7 @@
             this.labelControl3.Location = new System.Drawing.Point(27, 38);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(95, 20);
+            this.labelControl3.Size = new System.Drawing.Size(93, 20);
             this.labelControl3.TabIndex = 94;
             this.labelControl3.Text = "DEPARTMENT";
             // 
@@ -404,35 +405,35 @@
             this.labelControl6.Location = new System.Drawing.Point(27, 66);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(95, 20);
+            this.labelControl6.Size = new System.Drawing.Size(93, 20);
             this.labelControl6.TabIndex = 95;
             this.labelControl6.Text = "POSITION";
             // 
             // txtPASSWORD
             // 
             this.txtPASSWORD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPASSWORD.Location = new System.Drawing.Point(131, 286);
+            this.txtPASSWORD.Location = new System.Drawing.Point(129, 286);
             this.txtPASSWORD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPASSWORD.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtPASSWORD.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtPASSWORD.Name = "txtPASSWORD";
             this.txtPASSWORD.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPASSWORD.Properties.Appearance.Options.UseFont = true;
-            this.txtPASSWORD.Size = new System.Drawing.Size(196, 24);
-            this.txtPASSWORD.TabIndex = 108;
+            this.txtPASSWORD.Size = new System.Drawing.Size(193, 24);
+            this.txtPASSWORD.TabIndex = 8;
             // 
             // txtMAILADDRESS
             // 
             this.txtMAILADDRESS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMAILADDRESS.Location = new System.Drawing.Point(131, 258);
+            this.txtMAILADDRESS.Location = new System.Drawing.Point(129, 258);
             this.txtMAILADDRESS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMAILADDRESS.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtMAILADDRESS.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtMAILADDRESS.Name = "txtMAILADDRESS";
             this.txtMAILADDRESS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMAILADDRESS.Properties.Appearance.Options.UseFont = true;
-            this.txtMAILADDRESS.Size = new System.Drawing.Size(196, 24);
-            this.txtMAILADDRESS.TabIndex = 114;
+            this.txtMAILADDRESS.Size = new System.Drawing.Size(193, 24);
+            this.txtMAILADDRESS.TabIndex = 7;
             // 
             // labelControl19
             // 
@@ -442,22 +443,22 @@
             this.labelControl19.Location = new System.Drawing.Point(27, 398);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(95, 45);
+            this.labelControl19.Size = new System.Drawing.Size(93, 45);
             this.labelControl19.TabIndex = 121;
             this.labelControl19.Text = "DESCRIPTION";
             // 
             // txtMOBILENO
             // 
             this.txtMOBILENO.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMOBILENO.Location = new System.Drawing.Point(131, 230);
+            this.txtMOBILENO.Location = new System.Drawing.Point(129, 230);
             this.txtMOBILENO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMOBILENO.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtMOBILENO.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtMOBILENO.Name = "txtMOBILENO";
             this.txtMOBILENO.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMOBILENO.Properties.Appearance.Options.UseFont = true;
-            this.txtMOBILENO.Size = new System.Drawing.Size(196, 24);
-            this.txtMOBILENO.TabIndex = 110;
+            this.txtMOBILENO.Size = new System.Drawing.Size(193, 24);
+            this.txtMOBILENO.TabIndex = 6;
             // 
             // labelControl5
             // 
@@ -467,7 +468,7 @@
             this.labelControl5.Location = new System.Drawing.Point(27, 106);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(95, 20);
+            this.labelControl5.Size = new System.Drawing.Size(93, 20);
             this.labelControl5.TabIndex = 96;
             this.labelControl5.Text = "USER NAME";
             // 
@@ -479,7 +480,7 @@
             this.labelControl20.Location = new System.Drawing.Point(27, 370);
             this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(95, 20);
+            this.labelControl20.Size = new System.Drawing.Size(93, 20);
             this.labelControl20.TabIndex = 120;
             this.labelControl20.Text = "CURRENT MODEL";
             // 
@@ -491,22 +492,22 @@
             this.labelControl12.Location = new System.Drawing.Point(27, 134);
             this.labelControl12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(95, 20);
+            this.labelControl12.Size = new System.Drawing.Size(93, 20);
             this.labelControl12.TabIndex = 101;
             this.labelControl12.Text = "USER MIDDLE NAME";
             // 
             // txtUSERLASTNAME
             // 
             this.txtUSERLASTNAME.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUSERLASTNAME.Location = new System.Drawing.Point(131, 162);
+            this.txtUSERLASTNAME.Location = new System.Drawing.Point(129, 162);
             this.txtUSERLASTNAME.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUSERLASTNAME.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtUSERLASTNAME.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtUSERLASTNAME.Name = "txtUSERLASTNAME";
             this.txtUSERLASTNAME.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUSERLASTNAME.Properties.Appearance.Options.UseFont = true;
-            this.txtUSERLASTNAME.Size = new System.Drawing.Size(196, 24);
-            this.txtUSERLASTNAME.TabIndex = 107;
+            this.txtUSERLASTNAME.Size = new System.Drawing.Size(193, 24);
+            this.txtUSERLASTNAME.TabIndex = 4;
             // 
             // labelControl21
             // 
@@ -516,22 +517,22 @@
             this.labelControl21.Location = new System.Drawing.Point(27, 342);
             this.labelControl21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(95, 20);
+            this.labelControl21.Size = new System.Drawing.Size(93, 20);
             this.labelControl21.TabIndex = 119;
             this.labelControl21.Text = "LANGUAGE";
             // 
             // txtUSERMIDDLENAME
             // 
             this.txtUSERMIDDLENAME.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUSERMIDDLENAME.Location = new System.Drawing.Point(131, 134);
+            this.txtUSERMIDDLENAME.Location = new System.Drawing.Point(129, 134);
             this.txtUSERMIDDLENAME.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUSERMIDDLENAME.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtUSERMIDDLENAME.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtUSERMIDDLENAME.Name = "txtUSERMIDDLENAME";
             this.txtUSERMIDDLENAME.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUSERMIDDLENAME.Properties.Appearance.Options.UseFont = true;
-            this.txtUSERMIDDLENAME.Size = new System.Drawing.Size(196, 24);
-            this.txtUSERMIDDLENAME.TabIndex = 106;
+            this.txtUSERMIDDLENAME.Size = new System.Drawing.Size(193, 24);
+            this.txtUSERMIDDLENAME.TabIndex = 3;
             // 
             // labelControl11
             // 
@@ -541,48 +542,48 @@
             this.labelControl11.Location = new System.Drawing.Point(27, 162);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(95, 20);
+            this.labelControl11.Size = new System.Drawing.Size(93, 20);
             this.labelControl11.TabIndex = 102;
             this.labelControl11.Text = "USER LAST NAME";
             // 
             // txtUSERNAME
             // 
             this.txtUSERNAME.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUSERNAME.Location = new System.Drawing.Point(131, 106);
+            this.txtUSERNAME.Location = new System.Drawing.Point(129, 106);
             this.txtUSERNAME.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUSERNAME.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtUSERNAME.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtUSERNAME.Name = "txtUSERNAME";
             this.txtUSERNAME.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUSERNAME.Properties.Appearance.Options.UseFont = true;
-            this.txtUSERNAME.Size = new System.Drawing.Size(196, 24);
-            this.txtUSERNAME.TabIndex = 98;
+            this.txtUSERNAME.Size = new System.Drawing.Size(193, 24);
+            this.txtUSERNAME.TabIndex = 2;
             // 
             // txtDEPARTMENT
             // 
             this.txtDEPARTMENT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDEPARTMENT.Location = new System.Drawing.Point(131, 38);
+            this.txtDEPARTMENT.Location = new System.Drawing.Point(129, 38);
             this.txtDEPARTMENT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDEPARTMENT.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtDEPARTMENT.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtDEPARTMENT.Name = "txtDEPARTMENT";
             this.txtDEPARTMENT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDEPARTMENT.Properties.Appearance.Options.UseFont = true;
-            this.txtDEPARTMENT.Size = new System.Drawing.Size(196, 24);
-            this.txtDEPARTMENT.TabIndex = 100;
+            this.txtDEPARTMENT.Size = new System.Drawing.Size(193, 24);
+            this.txtDEPARTMENT.TabIndex = 0;
             // 
             // txtPOSITION
             // 
             this.txtPOSITION.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPOSITION.Location = new System.Drawing.Point(131, 66);
+            this.txtPOSITION.Location = new System.Drawing.Point(129, 66);
             this.txtPOSITION.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPOSITION.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtPOSITION.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtPOSITION.Name = "txtPOSITION";
             this.txtPOSITION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPOSITION.Properties.Appearance.Options.UseFont = true;
-            this.txtPOSITION.Size = new System.Drawing.Size(196, 24);
-            this.txtPOSITION.TabIndex = 97;
+            this.txtPOSITION.Size = new System.Drawing.Size(193, 24);
+            this.txtPOSITION.TabIndex = 1;
             // 
             // labelControl22
             // 
@@ -592,9 +593,10 @@
             this.labelControl22.Location = new System.Drawing.Point(27, 314);
             this.labelControl22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(95, 20);
+            this.labelControl22.Size = new System.Drawing.Size(93, 20);
             this.labelControl22.TabIndex = 118;
             this.labelControl22.Text = "USER GROUP NAME";
+            this.labelControl22.Visible = false;
             // 
             // labelControl10
             // 
@@ -604,7 +606,7 @@
             this.labelControl10.Location = new System.Drawing.Point(27, 202);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(95, 20);
+            this.labelControl10.Size = new System.Drawing.Size(93, 20);
             this.labelControl10.TabIndex = 103;
             this.labelControl10.Text = "MOBILEROLE";
             // 
@@ -616,7 +618,7 @@
             this.labelControl9.Location = new System.Drawing.Point(27, 230);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(95, 20);
+            this.labelControl9.Size = new System.Drawing.Size(93, 20);
             this.labelControl9.TabIndex = 104;
             this.labelControl9.Text = "MOBILENO";
             // 
@@ -628,7 +630,7 @@
             this.labelControl7.Location = new System.Drawing.Point(27, 258);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(95, 20);
+            this.labelControl7.Size = new System.Drawing.Size(93, 20);
             this.labelControl7.TabIndex = 113;
             this.labelControl7.Text = "MAIL ADDRESS";
             // 
@@ -641,14 +643,14 @@
             this.PASSWORD.Location = new System.Drawing.Point(27, 286);
             this.PASSWORD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PASSWORD.Name = "PASSWORD";
-            this.PASSWORD.Size = new System.Drawing.Size(95, 20);
+            this.PASSWORD.Size = new System.Drawing.Size(93, 20);
             this.PASSWORD.TabIndex = 105;
             this.PASSWORD.Text = "PASSWORD";
             // 
             // txtName
             // 
             this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Location = new System.Drawing.Point(131, 10);
+            this.txtName.Location = new System.Drawing.Point(129, 10);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtName.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtName.MinimumSize = new System.Drawing.Size(120, 24);
@@ -656,13 +658,13 @@
             this.txtName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Properties.Appearance.Options.UseFont = true;
             this.txtName.Properties.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(196, 24);
+            this.txtName.Size = new System.Drawing.Size(193, 24);
             this.txtName.TabIndex = 91;
             // 
             // cboLANGUAGE
             // 
             this.cboLANGUAGE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cboLANGUAGE.Location = new System.Drawing.Point(131, 342);
+            this.cboLANGUAGE.Location = new System.Drawing.Point(129, 342);
             this.cboLANGUAGE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboLANGUAGE.MaximumSize = new System.Drawing.Size(0, 24);
             this.cboLANGUAGE.MinimumSize = new System.Drawing.Size(120, 24);
@@ -673,19 +675,19 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboLANGUAGE.Properties.LookAndFeel.SkinName = "Office 2013";
             this.cboLANGUAGE.Properties.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.cboLANGUAGE.Size = new System.Drawing.Size(196, 24);
-            this.cboLANGUAGE.TabIndex = 125;
+            this.cboLANGUAGE.Size = new System.Drawing.Size(193, 24);
+            this.cboLANGUAGE.TabIndex = 9;
             // 
             // txtDESCRIPTION
             // 
             this.txtDESCRIPTION.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDESCRIPTION.Location = new System.Drawing.Point(131, 398);
+            this.txtDESCRIPTION.Location = new System.Drawing.Point(129, 398);
             this.txtDESCRIPTION.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDESCRIPTION.Name = "txtDESCRIPTION";
             this.txtDESCRIPTION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDESCRIPTION.Properties.Appearance.Options.UseFont = true;
-            this.txtDESCRIPTION.Size = new System.Drawing.Size(196, 45);
-            this.txtDESCRIPTION.TabIndex = 126;
+            this.txtDESCRIPTION.Size = new System.Drawing.Size(193, 45);
+            this.txtDESCRIPTION.TabIndex = 11;
             // 
             // tableLayoutPanel3
             // 
@@ -700,14 +702,14 @@
             this.tableLayoutPanel3.Controls.Add(this.tRadISALIVEno, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.tRadISALIVEyes, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(131, 451);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(129, 451);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(196, 40);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(193, 40);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // labelControl8

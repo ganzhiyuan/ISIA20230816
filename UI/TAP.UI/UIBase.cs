@@ -28,7 +28,6 @@ using TAP.UIControls;
 using TAP.UIControls.BasicControls;
 using DevExpress.XtraLayout;
 
-
 namespace TAP.UI
 {
     /// <summary>
@@ -207,7 +206,7 @@ namespace TAP.UI
 
         private Thread _workThread;
         private bool _assign = false;
-        
+
         #endregion
 
         #region Excel
@@ -240,6 +239,12 @@ namespace TAP.UI
         private TLabel tLabelTime;
         private IContainer components;
         private TPictureBox picBookMark;
+        private DevExpress.XtraBars.PopupMenu PopMenuBase;
+        private DevExpress.XtraBars.BarManager barManager;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
 
         /// <summary>
         /// Main panel
@@ -301,7 +306,7 @@ namespace TAP.UI
         /// <summary>
         /// UI Title
         /// </summary>
-        public string UITitle  {
+        public string UITitle {
             get { return this.lblTitle.Text; }
             set { this.lblTitle.Text = (string)value; }
         }
@@ -315,7 +320,7 @@ namespace TAP.UI
             set
             {
                 this._assign = value;
-                if(_assign)
+                if (_assign)
                     picBookMark.Image = Properties.Resources.star16;
                 else
                     picBookMark.Image = Properties.Resources.destar16;
@@ -472,7 +477,7 @@ namespace TAP.UI
         virtual protected void OpenContextMenu(ContextMenuStrip contextMenu)
         {
         }
-    
+
         #endregion
 
         #region Initialize
@@ -495,7 +500,7 @@ namespace TAP.UI
 
 
                 if (this.UIInformation != null)
-                {                    
+                {
                     if (this.BookMarkCheck())
                     {
                         BookMarkAssign = true;
@@ -512,9 +517,9 @@ namespace TAP.UI
                 }
                 //서버 관련
                 //ServiceAdapter.EndExecute += new ServiceAdapterEventHandler(ServiceAdapter_EndExecute);
-                
+
                 return;
-               
+
             }
             catch (System.Exception ex)
             {
@@ -566,7 +571,7 @@ namespace TAP.UI
                             this.SetText(tmpControl);
                             this.ConvertGroup(tmpControl);
                         }
-                        else if(tmpControl.GetType().Equals(typeof(TCollapsiblePanel)))
+                        else if (tmpControl.GetType().Equals(typeof(TCollapsiblePanel)))
                         {
                             this._converter.ConvertPhrase(((TCollapsiblePanel)tmpControl).HeaderText);
                             this.ConvertGroup(tmpControl);
@@ -609,7 +614,7 @@ namespace TAP.UI
             {
                 if (!object.Equals(this.UIInformation, null))
                 {
-                    EnumLanguage tmpLang = (EnumLanguage) Enum.Parse(typeof(EnumLanguage), InfoBase._USER_INFO.Language);
+                    EnumLanguage tmpLang = (EnumLanguage)Enum.Parse(typeof(EnumLanguage), InfoBase._USER_INFO.Language);
                     this._converter = new NeutralConverter(tmpLang, EnumUseFor.TEXT, false);
 
                     //Convert form title
@@ -676,7 +681,7 @@ namespace TAP.UI
         {
 
         }
-        
+
         /// <summary>
         /// This method sets fressage code
         /// </summary>
@@ -749,9 +754,9 @@ namespace TAP.UI
 
                     #region Find in User Group
 
-                    for(int i = 0; i < InfoBase._USER_GROUP.Count; i++)
+                    for (int i = 0; i < InfoBase._USER_GROUP.Count; i++)
                     {
-                        if(tmpAuthName == InfoBase._USER_GROUP[i].Name)
+                        if (tmpAuthName == InfoBase._USER_GROUP[i].Name)
                         {
                             tmpHasAuthority = true;
                             break;
@@ -765,7 +770,7 @@ namespace TAP.UI
 
                 return;
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -1123,7 +1128,7 @@ namespace TAP.UI
         {
             #region Convert ComboBox
 
-            try 
+            try
             {
                 if (((TAP.UIControls.BasicControls.TComboBox)comboBox).BuiltInDispay == EnumBuitInDispay.CODE &&
                     ((TAP.UIControls.BasicControls.TComboBox)comboBox).BuiltInCategory.Length > 0 &&
@@ -1180,9 +1185,9 @@ namespace TAP.UI
 
             try
             {
-                foreach(string tmpContainerName in this.UIInformation.Containers.Names)
+                foreach (string tmpContainerName in this.UIInformation.Containers.Names)
                 {
-                    foreach(string tmpFuncName in this.UIInformation.Containers[tmpContainerName].UIFunctions.Names)
+                    foreach (string tmpFuncName in this.UIInformation.Containers[tmpContainerName].UIFunctions.Names)
                     {
                         UIFunctionBasicModel tmpFuncModel = this.UIInformation.Containers[tmpContainerName].UIFunctions[tmpFuncName];
 
@@ -1191,13 +1196,13 @@ namespace TAP.UI
                             retVal = tmpFuncModel;
                             return retVal;
                         }
-                            
+
                     }
                 }
 
                 return retVal;
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -1319,14 +1324,14 @@ namespace TAP.UI
                 {
                     UIFunctionBasicModel tmpFunctionModel = models[tmpControls[i]];
 
-                    switch( tmpFunctionModel.ControlType)
+                    switch (tmpFunctionModel.ControlType)
                     {
                         case EnumUIControlType.COMBOBOX:
                         case EnumUIControlType.TEXTBOX:
                         case EnumUIControlType.NUMBERBOX:
                         case EnumUIControlType.DATETIME_PICKER:
                         case EnumUIControlType.DOUBLE_DATETIME_PICKER:
-                            
+
                             #region Combobox and Text Box
 
                             TPanel tmpControl = null;
@@ -1348,19 +1353,19 @@ namespace TAP.UI
                             tmpStartPoint += tmpControl.Width + _default_Blank_width;
                             break;
 
-                            #endregion
+                        #endregion
 
                         case EnumUIControlType.BUTTON:
 
                             #region Button
-                            
+
                             TButton tmpButton = this.AddButton(tmpFunctionModel, _default_Control_Width);
                             tmpButton.Dock = DockStyle.Right;
                             tmpButton.Location = new Point(tmpContainer.Width - tmpEndPoint, height);
                             tmpEndPoint += tmpButton.Width + _default_Control_Width;
                             tmpContainer.Controls.Add(tmpButton);
                             break;
-                            #endregion
+                        #endregion
 
                         case EnumUIControlType.SHEET:
                         case EnumUIControlType.SQUAREBOARD:
@@ -1372,7 +1377,7 @@ namespace TAP.UI
 
                             if (tmpFunctionModel.ControlType == EnumUIControlType.SQUAREMAP)
                                 tmpPanel = this.AddMap(tmpFunctionModel, _default_Control_Width);
-                            else if(tmpFunctionModel.ControlType == EnumUIControlType.SQUAREBOARD)
+                            else if (tmpFunctionModel.ControlType == EnumUIControlType.SQUAREBOARD)
                                 tmpPanel = this.AddBoard(tmpFunctionModel, _default_Control_Width);
                             //else if (tmpFunctionModel.ControlType == EnumUIControlType.SHEET)
                             //    tmpPanel = this.AddDefaultSheet(tmpFunctionModel, _default_Control_Width);
@@ -1425,9 +1430,9 @@ namespace TAP.UI
 
                             if (tmpFunctionModel.ControlType == EnumUIControlType.COMBOBOX)
                                 tmpControl = this.AddComboBox(tmpFunctionModel, _default_Control_Width);
-                            else if(tmpFunctionModel.ControlType == EnumUIControlType.DATETIME_PICKER)
+                            else if (tmpFunctionModel.ControlType == EnumUIControlType.DATETIME_PICKER)
                                 tmpControl = this.AddDateTimePicker(tmpFunctionModel, _default_Control_Width);
-                            else if(tmpFunctionModel.ControlType == EnumUIControlType.NUMBERBOX)
+                            else if (tmpFunctionModel.ControlType == EnumUIControlType.NUMBERBOX)
                                 tmpControl = this.AddNumberBox(tmpFunctionModel, _default_Control_Width);
                             else if (tmpFunctionModel.ControlType == EnumUIControlType.DOUBLE_DATETIME_PICKER)
                                 tmpControl = this.AddDoubleDateTimePicker(tmpFunctionModel, _default_Control_Width);
@@ -1440,7 +1445,7 @@ namespace TAP.UI
                             tmpStartPoint += _default_Panel_height;
                             break;
 
-                            #endregion
+                        #endregion
 
                         case EnumUIControlType.BUTTON:
 
@@ -1452,7 +1457,7 @@ namespace TAP.UI
                             tmpEndPoint += tmpButton.Width + _default_Control_Width;
                             tmpContainer.Controls.Add(tmpButton);
                             break;
-                            #endregion
+                        #endregion
 
                         case EnumUIControlType.SHEET:
                         case EnumUIControlType.SQUAREBOARD:
@@ -1490,7 +1495,7 @@ namespace TAP.UI
         private void BindComplexControls(UIFunctionBasicModelSet models, TPanel tmpContainer, int controlsOneRow)
         {
             #region Bind Complex Controls
-            
+
             int tmpStartPoint = 0;
             int tmpTotalControlCount = 0;
             int tmpCircle = 1;
@@ -1510,7 +1515,7 @@ namespace TAP.UI
                 if (controlsOneRow < 1)
                     controlsOneRow = 1;
 
-                while( tmpTotalControlCount < models.Count)
+                while (tmpTotalControlCount < models.Count)
                 {
                     if (!object.Equals(tmpFunctions, null))
                     {
@@ -1620,13 +1625,13 @@ namespace TAP.UI
         {
             #region Add Text box
 
-            TPanel retVal = null;   
+            TPanel retVal = null;
 
             try
             {
                 //Panel
                 retVal = new TPanel();
-                retVal.Size = new Size( width, _default_Panel_height);
+                retVal.Size = new Size(width, _default_Panel_height);
 
                 //Label
                 TAP.UIControls.BasicControls.TLabel tmpLabel = new TLabel();
@@ -1634,7 +1639,7 @@ namespace TAP.UI
                 tmpLabel.Dock = DockStyle.Left;
                 tmpLabel.AutoSize = true;
                 tmpLabel.Font = new Font("Tahoma", 8.0f, FontStyle.Regular);
-                retVal.Controls.Add( tmpLabel);
+                retVal.Controls.Add(tmpLabel);
 
                 //Text Box
                 TTextBox tmpTextBox = new TTextBox();
@@ -1829,7 +1834,7 @@ namespace TAP.UI
         //        //    tmpDefaultSheet.SetColumns(function.ColumnNameList);
 
         //        //this.ConvertDefaultSheetColumns(tmpDefaultSheet);
-                
+
         //        //tmpDefaultSheet.SetRowCount(0);
         //        //retVal.Controls.Add(tmpDefaultSheet);
 
@@ -2098,7 +2103,7 @@ namespace TAP.UI
 
                     for (int i = 0; i < tmpFunctionNames.Length; i++)
                     {
-                        UIFunctionBasicModel tmpFunction = tmpContainer.UIFunctions[ tmpFunctionNames[i] ];
+                        UIFunctionBasicModel tmpFunction = tmpContainer.UIFunctions[tmpFunctionNames[i]];
 
                         if (tmpFunction.Name.IndexOf("SPREATOR") < 0)
                         {
@@ -2114,10 +2119,10 @@ namespace TAP.UI
                             tmpMenu.Items.Add("-");
                     }
 
-                    tmpMenu.Opening +=new System.ComponentModel.CancelEventHandler(ContextMenu_Opening);
+                    tmpMenu.Opening += new System.ComponentModel.CancelEventHandler(ContextMenu_Opening);
                 }
 
-                return (System.Windows.Forms.ContextMenuStrip) tmpMenu;
+                return (System.Windows.Forms.ContextMenuStrip)tmpMenu;
             }
             catch (System.Exception ex)
             {
@@ -2142,12 +2147,12 @@ namespace TAP.UI
 
             try
             {
-                foreach( System.Windows.Forms.Control tmpPanel in this.Controls)
+                foreach (System.Windows.Forms.Control tmpPanel in this.Controls)
                 {
                     if (tmpPanel.Name.Equals(controlID))
                         return (TAP.UIControls.IUIControl)tmpPanel;
 
-                    if( tmpPanel.GetType().Equals( typeof( TPanel)))
+                    if (tmpPanel.GetType().Equals(typeof(TPanel)))
                     {
                         if (this._containers != null)
                         {
@@ -2239,7 +2244,7 @@ namespace TAP.UI
                 foreach (System.Windows.Forms.Control tmpControls in panel.Controls)
                 {
                     if (tmpControls.Name.Equals(controlID))
-                        return (TAP.UIControls.IUIControl) tmpControls;
+                        return (TAP.UIControls.IUIControl)tmpControls;
 
                     if (tmpControls.GetType().Equals(typeof(TPanel)))
                     {
@@ -2266,7 +2271,7 @@ namespace TAP.UI
                             {
                             }
 
-                        #endregion
+                            #endregion
                         }
                         else
                         {
@@ -2437,7 +2442,7 @@ namespace TAP.UI
             {
                 foreach (IUIControl tmpControl in panel.Controls)
                 {
-                    if( tmpControl.GetType().Equals( typeof( TGroupBox)))
+                    if (tmpControl.GetType().Equals(typeof(TGroupBox)))
                     {
                         foreach (IUIControl tmpSubControl in ((TGroupBox)tmpControl).Controls)
                         {
@@ -2533,8 +2538,8 @@ namespace TAP.UI
                                 //    ((DefaultSheet)tmpControl).SetRowCount(0); break;
                                 case EnumUIControlType.TEXTBOX:
                                     ((TTextBox)tmpControl).Text = string.Empty; break;
-                                //case EnumUIControlType.SQUAREBOARD:
-                                //    ((TAP.Controls.Board.SquareBoard)tmpControl).Clear(); break;
+                                    //case EnumUIControlType.SQUAREBOARD:
+                                    //    ((TAP.Controls.Board.SquareBoard)tmpControl).Clear(); break;
                             }
                         }
                     }
@@ -2633,10 +2638,10 @@ namespace TAP.UI
 
             try
             {
-                tmpControl = this.FindControl( controlName );
+                tmpControl = this.FindControl(controlName);
 
-                if( ! object.Equals( tmpControl, null))
-                    retVal = tmpControl.RepresentativeValue.ToString().Length.Equals(0) ? TAP.Models.Model._ARGUMENTVALUE_ALL:tmpControl.RepresentativeValue.ToString();
+                if (!object.Equals(tmpControl, null))
+                    retVal = tmpControl.RepresentativeValue.ToString().Length.Equals(0) ? TAP.Models.Model._ARGUMENTVALUE_ALL : tmpControl.RepresentativeValue.ToString();
 
                 return retVal;
             }
@@ -3042,7 +3047,7 @@ namespace TAP.UI
         private void picBookMark_Click(object sender, EventArgs e)
         {
             #region Code
-            
+
             try
             {
                 if (this._assign)
@@ -3052,7 +3057,7 @@ namespace TAP.UI
 
                 SetBookMarkHandler(this.BookMarkAssign, this.UIInformation);
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -3093,7 +3098,7 @@ namespace TAP.UI
         /// <param name="callBackMethod">Callback method</param>
         protected void BeginAsyncCall(string asyncMethod, string callBackMethod)
         {
-            BeginAsyncCall(asyncMethod, callBackMethod, EnumDataObject.MODELSET, null );
+            BeginAsyncCall(asyncMethod, callBackMethod, EnumDataObject.MODELSET, null);
         }
 
         /// <summary>
@@ -3104,7 +3109,7 @@ namespace TAP.UI
         /// <param name="dataObject">Object type</param>
         protected void BeginAsyncCall(string asyncMethod, string callBackMethod, EnumDataObject dataObject)
         {
-            BeginAsyncCall(asyncMethod, callBackMethod, dataObject, null );
+            BeginAsyncCall(asyncMethod, callBackMethod, dataObject, null);
         }
 
         /// <summary>
@@ -3253,7 +3258,7 @@ namespace TAP.UI
 
                 if (tmpMethod == null)
                 {
-                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "<"+ _asyncMethod + ">");
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "<" + _asyncMethod + ">");
                     throw new Exception(string.Format(tmpMsg, _asyncMethod));
                 }
 
@@ -3271,7 +3276,7 @@ namespace TAP.UI
                 this._asyncParameters = null;
 
                 this.SetUIData();
-               // _asyncEnd = true;
+                // _asyncEnd = true;
             }
             catch (ThreadAbortException te)
             {
@@ -3282,7 +3287,7 @@ namespace TAP.UI
                 this.EndProgressBar();
                 //this._asyncEnd = true;
 
-                string tmpErrorMsg = _translator.ConvertGeneralTemplate( EnumVerbs.EXECUTE, EnumGeneralTemplateType.FAIL, "Command");
+                string tmpErrorMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXECUTE, EnumGeneralTemplateType.FAIL, "Command");
 
                 this.SetWorkStatus(EnumMsgType.INFORMATION, tmpErrorMsg);
                 MessageBox.Show(ex.ToString());
@@ -3383,13 +3388,13 @@ namespace TAP.UI
                     {
                         case EnumDataObject.MODELSET:
                             tmpResultCount = _modelSet != null && _modelSet.Count > 0 ? string.Format(tmpResultCount, _modelSet.Count) : string.Empty;
-                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/" ;break;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
                         case EnumDataObject.MODELLIST:
                             tmpResultCount = _modelList != null && _modelList.Count > 0 ? string.Format(tmpResultCount, _modelList.Count) : string.Empty;
-                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount)+ "/" ;break;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
                         case EnumDataObject.DATASET:
-                            tmpResultCount = _dataSet != null && _dataSet.Tables[0].Rows.Count > 0 ? string.Format(tmpResultCount, _dataSet.Tables[0].Rows.Count) : string.Empty; 
-                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount)+ "/" ;break;
+                            tmpResultCount = _dataSet != null && _dataSet.Tables[0].Rows.Count > 0 ? string.Format(tmpResultCount, _dataSet.Tables[0].Rows.Count) : string.Empty;
+                            tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
                         case EnumDataObject.STRING:
                             tmpResultCount = _resultString != null && _resultString.Length > 0 ? string.Format(tmpResultCount, _resultString.Length) : string.Empty;
                             tmpResultText = _translator.ConvertGeneralTemplate(EnumVerbs.LOAD, EnumGeneralTemplateType.ED, tmpResultCount) + "/"; break;
@@ -3401,7 +3406,7 @@ namespace TAP.UI
                     tmpResultText = tmpResultCount;
                     tmpResultText += ", ";
                     tmpResultText += _converter.ConvertPhrase(tmpResultTime);
-                   
+
                     #endregion
 
                     //Call Displaying Method
@@ -3619,7 +3624,7 @@ namespace TAP.UI
                     SetWorkStatus(EnumMsgType.INFORMATION, tmpStsMsg);
 
                     // 커서 초기화 처리
-                    if( this.UIInformation != null)
+                    if (this.UIInformation != null)
                         ServiceAdapter_EndExecute(this.UIInformation.Name, "");
 
                     // Cancel 이벤트 호출
@@ -3728,7 +3733,7 @@ namespace TAP.UI
             {
                 //
             }
-                
+
             #endregion
         }
 
@@ -4244,7 +4249,7 @@ namespace TAP.UI
 
             try
             {
-                if ( ! ((System.Windows.Forms.Control)control).Enabled)
+                if (!((System.Windows.Forms.Control)control).Enabled)
                     return retVal;
 
                 if (control.IsRequired)
@@ -4254,13 +4259,13 @@ namespace TAP.UI
                         control.SetBackColor(Color.Orange);
                         retVal++;
                     }
-                    else if(control.RepresentativeValue.ToString().Length == 0)
+                    else if (control.RepresentativeValue.ToString().Length == 0)
                     {
                         control.SetBackColor(Color.Orange);
                         retVal++;
                     }
-                    else if (control.GetType() == typeof(TNumericBox) && 
-                        (decimal) control.RepresentativeValue == (decimal)0)
+                    else if (control.GetType() == typeof(TNumericBox) &&
+                        (decimal)control.RepresentativeValue == (decimal)0)
                     {
                         control.SetBackColor(Color.Orange);
                         retVal++;
@@ -4273,7 +4278,7 @@ namespace TAP.UI
                     //}
                     else
                         control.SetBackColor(Color.White);
-                        
+
                 }
 
                 return retVal;
@@ -4627,7 +4632,7 @@ namespace TAP.UI
             try
             {
                 tmpFacility = (TComboBox)this.FindControl(_COMBOBOX_FACILITY_NAME);
-                tmp = (TComboBox) this.FindControl(_COMBOBOX_TECH_NAME);
+                tmp = (TComboBox)this.FindControl(_COMBOBOX_TECH_NAME);
 
                 #region Validation
 
@@ -4649,7 +4654,7 @@ namespace TAP.UI
 
                 return;
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
@@ -4817,7 +4822,7 @@ namespace TAP.UI
         /// </summary>
         /// <param name="includeAll">If 'TRUE', combobox includes 'ALL' item</param>
         protected void BindMainOperationCombobox(bool includeAll)
-        { 
+        {
             #region Bind Tech Combobox
 
             string tmpFacilityValue = string.Empty;
@@ -4836,7 +4841,7 @@ namespace TAP.UI
                 tmpFacility = (TComboBox)this.FindControl(_COMBOBOX_FACILITY_NAME);
                 tmpTech = (TComboBox)this.FindControl(_COMBOBOX_TECH_NAME);
                 tmpLotCode = (TComboBox)this.FindControl(_COMBOBOX_LOTCODE_NAME);
-                tmpDevice = (TComboBox)this.FindControl(_COMBOBOX_DEVICE_NAME); 
+                tmpDevice = (TComboBox)this.FindControl(_COMBOBOX_DEVICE_NAME);
                 tmpCombo = (TComboBox)this.FindControl(_COMBOBOX_MAINOP_NAME);
 
                 #region Validation
@@ -5464,7 +5469,7 @@ namespace TAP.UI
 
             try
             {
-                if( modelGroup == typeof(TAP.Models.Factories.BasicInfo.BasicInfoModel))
+                if (modelGroup == typeof(TAP.Models.Factories.BasicInfo.BasicInfoModel))
                 {
                     #region Basic Info
 
@@ -5515,7 +5520,7 @@ namespace TAP.UI
 
                     #endregion
                 }
-                else if(modelGroup == typeof(TAP.Models.Factories.Facilities.FacilityModel))
+                else if (modelGroup == typeof(TAP.Models.Factories.Facilities.FacilityModel))
                 {
                     #region Basic Info
 
@@ -5571,13 +5576,142 @@ namespace TAP.UI
 
                 return;
             }
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 throw ex;
             }
 
             #endregion
         }
+
+        #endregion
+
+        #region PopupMenu
+
+        #region Methods
+        public void OpenUI(string menu)
+        {
+            MainMenuBasicModel tmpMainMenu = null;
+            UIBasicModel tmpUI = null;
+
+            try
+            {
+                string mdiName = this.UIInformation.MDI;
+                string mainMenu = this.UIInformation.MainMenu;
+
+                tmpMainMenu = InfoBase._MDI_INFO[this.UIInformation.MDI].MainMenus[this.UIInformation.MainMenu];
+
+                if (object.Equals(tmpMainMenu, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Main menu '{0}'>", mainMenu));
+                    throw new Exception(tmpMsg);
+                }
+
+                tmpUI = tmpMainMenu.UIs[menu];
+
+                if (object.Equals(tmpMainMenu, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("<User Interface model '{0}'>", menu));
+                    throw new Exception(tmpMsg);
+                }
+
+                Assembly a = null;
+                Type tmpType = null;
+                object tmpObject = null;
+                Form tmpNewForm = null;
+
+                a = Assembly.LoadFile(Path.Combine(TapBase.Instance.ApplicationPath, tmpUI.AssemblyFileName));
+
+                if (object.Equals(a, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Assembly file '{0}'>", tmpUI.AssemblyFileName));
+                    throw new Exception(tmpMsg);
+                }
+
+                tmpType = a.GetType(tmpUI.AssemblyName);
+
+                if (object.Equals(tmpType, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Assembly '{0}'>", tmpUI.AssemblyName));
+                    throw new Exception(tmpMsg);
+                }
+
+                //??
+                tmpObject = Activator.CreateInstance(tmpType);
+
+                //??
+                tmpNewForm = (Form)tmpObject;
+                tmpNewForm.MdiParent = this.ParentForm;
+                tmpNewForm.FormBorderStyle = FormBorderStyle.None;
+                tmpNewForm.Dock = DockStyle.Fill;
+
+                tmpNewForm.Name = "223";
+                ((TAP.UI.UIBase)tmpNewForm).UIInformation = tmpUI;
+                //((TAP.UI.UIBase)tmpNewForm).TabControl = form.tabMDIList;
+                //((TAP.UI.UIBase)tmpNewForm).UITitle = form.MakeUITitle(InfoBase._MDI_INFO[form._mdiName].MainMenus[mainMenu].DisplayName, tmpUI.DisplayName);
+                ((TAP.UI.UIBase)tmpNewForm).UITitle = "123";
+
+                tmpNewForm.Show();
+
+                //AgumentPack Data ??? ??
+                //ArgumentPack tmpPack = new ArgumentPack();
+                //tmpPack.AddArgument("TEST", typeof(string), "Hello");
+                //((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
+
+
+                return;
+            }
+            catch (System.Exception ex)
+            {
+                string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.OPEN, EnumGeneralTemplateType.FAIL, "menu");
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, tmpMessage, ex.ToString());
+            }
+        }
+        #region Fields
+
+        #endregion
+        protected virtual void SetPopupMenuItem(List<LinkInfo> listInfo)
+        {
+            foreach (var item in listInfo)
+            {
+                DevExpress.XtraBars.BarSubItem barSubItem = new DevExpress.XtraBars.BarSubItem();
+                barSubItem.Caption = item.GROUPNAME;
+                foreach (var info in item.list)
+                {
+                    DevExpress.XtraBars.BarButtonItem barButtonItem = new DevExpress.XtraBars.BarButtonItem();
+                    barButtonItem.Caption = info.TAGETUINAME;
+                    barButtonItem.Tag = info.UI;
+                    barSubItem.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(barButtonItem));
+                    barButtonItem.ItemClick += BarButtonItem_ItemClick;
+                }
+                barManager.Items.Add(barSubItem);
+                PopMenuBase.LinksPersistInfo.Add(
+                new DevExpress.XtraBars.LinkPersistInfo(barSubItem));
+            }
+        }
+
+        private void BarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenUI(e.Item.Tag.ToString());
+        }
+
+        #endregion
+
+        #region Event
+
+        //public delegate void PopupMenuClick(string frmUrl);
+
+        //public event PopupMenuClick popupMenuClick;
+
+        //protected virtual void popupMenuInit(string frmUrl)
+        //{
+        //    if (this.popupMenuClick!=null)
+        //    {
+        //        this.popupMenuClick(frmUrl);
+        //    }
+        //}
+
+        #endregion
 
         #endregion
 
@@ -5607,6 +5741,12 @@ namespace TAP.UI
             this.progressBar1 = new TAP.UIControls.BasicControls.TSolidProgressBar();
             this.tLabel1 = new TAP.UIControls.BasicControls.TLabel();
             this.timerCurrent = new System.Windows.Forms.Timer(this.components);
+            this.PopMenuBase = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.tPanelTop.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBookMark)).BeginInit();
@@ -5618,6 +5758,8 @@ namespace TAP.UI
             this.tPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tPictureBox1)).BeginInit();
             this.tPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.SuspendLayout();
             // 
             // tPanelMain
@@ -5730,7 +5872,7 @@ namespace TAP.UI
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.NeedToTranslate = true;
             this.lblTitle.RepresentativeValue = "Title";
-            this.lblTitle.Size = new System.Drawing.Size(32, 17);
+            this.lblTitle.Size = new System.Drawing.Size(27, 13);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Title";
             // 
@@ -5902,6 +6044,51 @@ namespace TAP.UI
             this.tLabel1.TabIndex = 0;
             this.tLabel1.Text = "tLabel1";
             // 
+            // PopMenuBase
+            // 
+            this.PopMenuBase.Manager = this.barManager;
+            this.PopMenuBase.Name = "PopMenuBase";
+            // 
+            // barManager
+            // 
+            this.barManager.DockControls.Add(this.barDockControlTop);
+            this.barManager.DockControls.Add(this.barDockControlBottom);
+            this.barManager.DockControls.Add(this.barDockControlLeft);
+            this.barManager.DockControls.Add(this.barDockControlRight);
+            this.barManager.Form = this;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(1012, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 727);
+            this.barDockControlBottom.Manager = this.barManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1012, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 727);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1012, 0);
+            this.barDockControlRight.Manager = this.barManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 727);
+            // 
             // UIBase
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -5909,6 +6096,10 @@ namespace TAP.UI
             this.Controls.Add(this.tPanelMain);
             this.Controls.Add(this.tPanelTop);
             this.Controls.Add(this.tPanelBottomBase);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UIBase";
@@ -5927,7 +6118,10 @@ namespace TAP.UI
             this.tPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tPictureBox1)).EndInit();
             this.tPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

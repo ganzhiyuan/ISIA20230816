@@ -404,6 +404,7 @@
             // cboFab
             // 
             this.cboFab.ControlID = "cboFab";
+            this.cboFab.DescriptionMember = null;
             this.cboFab.DisplayMember = null;
             this.cboFab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cboFab.DominantControl = "";
@@ -418,6 +419,7 @@
             this.cboFab.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboFab.RepresentativeValue = "";
+            this.cboFab.ShowDescription = false;
             this.cboFab.Size = new System.Drawing.Size(132, 20);
             this.cboFab.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetFab";
             this.cboFab.SqlDataBase = "";
@@ -428,6 +430,7 @@
             // cboDep
             // 
             this.cboDep.ControlID = "cboDep";
+            this.cboDep.DescriptionMember = null;
             this.cboDep.DisplayMember = null;
             this.cboDep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cboDep.DominantControl = "cboFab";
@@ -442,6 +445,7 @@
             this.cboDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboDep.RepresentativeValue = "";
+            this.cboDep.ShowDescription = false;
             this.cboDep.Size = new System.Drawing.Size(135, 20);
             this.cboDep.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDepartment";
             this.cboDep.SqlDataBase = "";
