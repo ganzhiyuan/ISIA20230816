@@ -65,41 +65,41 @@
             // txtLEVELS
             // 
             this.txtLEVELS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLEVELS.Location = new System.Drawing.Point(127, 94);
+            this.txtLEVELS.Location = new System.Drawing.Point(126, 94);
             this.txtLEVELS.Margin = new System.Windows.Forms.Padding(2);
             this.txtLEVELS.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtLEVELS.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtLEVELS.Name = "txtLEVELS";
             this.txtLEVELS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLEVELS.Properties.Appearance.Options.UseFont = true;
-            this.txtLEVELS.Size = new System.Drawing.Size(204, 24);
-            this.txtLEVELS.TabIndex = 100;
+            this.txtLEVELS.Size = new System.Drawing.Size(203, 24);
+            this.txtLEVELS.TabIndex = 3;
             // 
             // txtFACILITY
             // 
             this.txtFACILITY.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFACILITY.Location = new System.Drawing.Point(127, 66);
+            this.txtFACILITY.Location = new System.Drawing.Point(126, 66);
             this.txtFACILITY.Margin = new System.Windows.Forms.Padding(2);
             this.txtFACILITY.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtFACILITY.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtFACILITY.Name = "txtFACILITY";
             this.txtFACILITY.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFACILITY.Properties.Appearance.Options.UseFont = true;
-            this.txtFACILITY.Size = new System.Drawing.Size(204, 24);
-            this.txtFACILITY.TabIndex = 99;
+            this.txtFACILITY.Size = new System.Drawing.Size(203, 24);
+            this.txtFACILITY.TabIndex = 2;
             // 
             // txtCURRENTMODEL
             // 
             this.txtCURRENTMODEL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCURRENTMODEL.Location = new System.Drawing.Point(127, 122);
+            this.txtCURRENTMODEL.Location = new System.Drawing.Point(126, 122);
             this.txtCURRENTMODEL.Margin = new System.Windows.Forms.Padding(2);
             this.txtCURRENTMODEL.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtCURRENTMODEL.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtCURRENTMODEL.Name = "txtCURRENTMODEL";
             this.txtCURRENTMODEL.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCURRENTMODEL.Properties.Appearance.Options.UseFont = true;
-            this.txtCURRENTMODEL.Size = new System.Drawing.Size(204, 24);
-            this.txtCURRENTMODEL.TabIndex = 97;
+            this.txtCURRENTMODEL.Size = new System.Drawing.Size(203, 24);
+            this.txtCURRENTMODEL.TabIndex = 4;
             // 
             // labelControl5
             // 
@@ -109,7 +109,7 @@
             this.labelControl5.Location = new System.Drawing.Point(17, 150);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(102, 43);
+            this.labelControl5.Size = new System.Drawing.Size(101, 43);
             this.labelControl5.TabIndex = 96;
             this.labelControl5.Text = "DESCRIPTION";
             // 
@@ -121,7 +121,7 @@
             this.labelControl6.Location = new System.Drawing.Point(17, 122);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(102, 20);
+            this.labelControl6.Size = new System.Drawing.Size(101, 20);
             this.labelControl6.TabIndex = 95;
             this.labelControl6.Text = "CURRENT MODEL";
             // 
@@ -133,7 +133,7 @@
             this.labelControl3.Location = new System.Drawing.Point(17, 94);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(102, 20);
+            this.labelControl3.Size = new System.Drawing.Size(101, 20);
             this.labelControl3.TabIndex = 94;
             this.labelControl3.Text = "LEVELS";
             // 
@@ -145,27 +145,27 @@
             this.labelControl4.Location = new System.Drawing.Point(17, 66);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(102, 20);
+            this.labelControl4.Size = new System.Drawing.Size(101, 20);
             this.labelControl4.TabIndex = 93;
             this.labelControl4.Text = "FACILITY";
             // 
             // txtREGION
             // 
             this.txtREGION.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtREGION.Location = new System.Drawing.Point(127, 38);
+            this.txtREGION.Location = new System.Drawing.Point(126, 38);
             this.txtREGION.Margin = new System.Windows.Forms.Padding(2);
             this.txtREGION.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtREGION.MinimumSize = new System.Drawing.Size(120, 24);
             this.txtREGION.Name = "txtREGION";
             this.txtREGION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtREGION.Properties.Appearance.Options.UseFont = true;
-            this.txtREGION.Size = new System.Drawing.Size(204, 24);
-            this.txtREGION.TabIndex = 92;
+            this.txtREGION.Size = new System.Drawing.Size(203, 24);
+            this.txtREGION.TabIndex = 1;
             // 
             // txtGroupName
             // 
             this.txtGroupName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGroupName.Location = new System.Drawing.Point(127, 10);
+            this.txtGroupName.Location = new System.Drawing.Point(126, 10);
             this.txtGroupName.Margin = new System.Windows.Forms.Padding(2);
             this.txtGroupName.MaximumSize = new System.Drawing.Size(0, 24);
             this.txtGroupName.MinimumSize = new System.Drawing.Size(120, 24);
@@ -173,7 +173,7 @@
             this.txtGroupName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGroupName.Properties.Appearance.Options.UseFont = true;
             this.txtGroupName.Properties.ReadOnly = true;
-            this.txtGroupName.Size = new System.Drawing.Size(204, 24);
+            this.txtGroupName.Size = new System.Drawing.Size(203, 24);
             this.txtGroupName.TabIndex = 91;
             // 
             // labelControl2
@@ -184,7 +184,7 @@
             this.labelControl2.Location = new System.Drawing.Point(17, 38);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(102, 20);
+            this.labelControl2.Size = new System.Drawing.Size(101, 20);
             this.labelControl2.TabIndex = 90;
             this.labelControl2.Text = "REGION";
             // 
@@ -196,7 +196,7 @@
             this.labelControl1.Location = new System.Drawing.Point(17, 10);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(102, 20);
+            this.labelControl1.Size = new System.Drawing.Size(101, 20);
             this.labelControl1.TabIndex = 89;
             this.labelControl1.Text = "GROUP NAME";
             // 
@@ -217,7 +217,7 @@
             this.btnSave.MinimumSize = new System.Drawing.Size(70, 26);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(70, 26);
-            this.btnSave.TabIndex = 114;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -238,7 +238,7 @@
             this.btnCancel.MinimumSize = new System.Drawing.Size(70, 26);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 26);
-            this.btnCancel.TabIndex = 113;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -265,7 +265,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.71F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 4F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.29F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel2.Controls.Add(this.labelControl1, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtGroupName, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelControl2, 1, 3);
@@ -306,13 +306,13 @@
             // txtDESCRIPTION
             // 
             this.txtDESCRIPTION.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDESCRIPTION.Location = new System.Drawing.Point(127, 150);
+            this.txtDESCRIPTION.Location = new System.Drawing.Point(126, 150);
             this.txtDESCRIPTION.Margin = new System.Windows.Forms.Padding(2);
             this.txtDESCRIPTION.Name = "txtDESCRIPTION";
             this.txtDESCRIPTION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDESCRIPTION.Properties.Appearance.Options.UseFont = true;
-            this.txtDESCRIPTION.Size = new System.Drawing.Size(204, 43);
-            this.txtDESCRIPTION.TabIndex = 101;
+            this.txtDESCRIPTION.Size = new System.Drawing.Size(203, 43);
+            this.txtDESCRIPTION.TabIndex = 5;
             // 
             // labelControl13
             // 
@@ -322,7 +322,7 @@
             this.labelControl13.Location = new System.Drawing.Point(17, 201);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(102, 24);
+            this.labelControl13.Size = new System.Drawing.Size(101, 24);
             this.labelControl13.TabIndex = 115;
             this.labelControl13.Text = "ISALIVE";
             // 
@@ -335,12 +335,12 @@
             this.tableLayoutPanel3.Controls.Add(this.tRadISALIVEyes, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tRadISALIVEno, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(127, 201);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(126, 201);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(204, 24);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(203, 24);
             this.tableLayoutPanel3.TabIndex = 117;
             // 
             // tRadISALIVEyes
@@ -360,8 +360,8 @@
             this.tRadISALIVEyes.Name = "tRadISALIVEyes";
             this.tRadISALIVEyes.NeedToTranslate = true;
             this.tRadISALIVEyes.RepresentativeValue = "YES";
-            this.tRadISALIVEyes.Size = new System.Drawing.Size(96, 20);
-            this.tRadISALIVEyes.TabIndex = 116;
+            this.tRadISALIVEyes.Size = new System.Drawing.Size(95, 20);
+            this.tRadISALIVEyes.TabIndex = 6;
             this.tRadISALIVEyes.TabStop = true;
             this.tRadISALIVEyes.Text = "YES";
             this.tRadISALIVEyes.UseVisualStyleBackColor = true;
@@ -377,13 +377,13 @@
             this.tRadISALIVEno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tRadISALIVEno.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tRadISALIVEno.IsRequired = false;
-            this.tRadISALIVEno.Location = new System.Drawing.Point(106, 2);
+            this.tRadISALIVEno.Location = new System.Drawing.Point(105, 2);
             this.tRadISALIVEno.Margin = new System.Windows.Forms.Padding(2);
             this.tRadISALIVEno.Name = "tRadISALIVEno";
             this.tRadISALIVEno.NeedToTranslate = true;
             this.tRadISALIVEno.RepresentativeValue = "NO";
             this.tRadISALIVEno.Size = new System.Drawing.Size(96, 20);
-            this.tRadISALIVEno.TabIndex = 117;
+            this.tRadISALIVEno.TabIndex = 7;
             this.tRadISALIVEno.Text = "NO";
             this.tRadISALIVEno.UseVisualStyleBackColor = true;
             // 

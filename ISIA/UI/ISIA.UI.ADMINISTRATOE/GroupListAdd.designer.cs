@@ -91,8 +91,8 @@
             this.txtGroupName.Name = "txtGroupName";
             this.txtGroupName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGroupName.Properties.Appearance.Options.UseFont = true;
-            this.txtGroupName.Size = new System.Drawing.Size(203, 24);
-            this.txtGroupName.TabIndex = 62;
+            this.txtGroupName.Size = new System.Drawing.Size(202, 24);
+            this.txtGroupName.TabIndex = 1;
             // 
             // txtREGION
             // 
@@ -103,8 +103,8 @@
             this.txtREGION.Name = "txtREGION";
             this.txtREGION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtREGION.Properties.Appearance.Options.UseFont = true;
-            this.txtREGION.Size = new System.Drawing.Size(203, 24);
-            this.txtREGION.TabIndex = 63;
+            this.txtREGION.Size = new System.Drawing.Size(202, 24);
+            this.txtREGION.TabIndex = 2;
             // 
             // labelControl3
             // 
@@ -163,8 +163,8 @@
             this.txtCURRENTMODEL.Name = "txtCURRENTMODEL";
             this.txtCURRENTMODEL.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCURRENTMODEL.Properties.Appearance.Options.UseFont = true;
-            this.txtCURRENTMODEL.Size = new System.Drawing.Size(203, 24);
-            this.txtCURRENTMODEL.TabIndex = 68;
+            this.txtCURRENTMODEL.Size = new System.Drawing.Size(202, 24);
+            this.txtCURRENTMODEL.TabIndex = 5;
             // 
             // txtLEVELS
             // 
@@ -175,8 +175,8 @@
             this.txtLEVELS.Name = "txtLEVELS";
             this.txtLEVELS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLEVELS.Properties.Appearance.Options.UseFont = true;
-            this.txtLEVELS.Size = new System.Drawing.Size(203, 24);
-            this.txtLEVELS.TabIndex = 71;
+            this.txtLEVELS.Size = new System.Drawing.Size(202, 24);
+            this.txtLEVELS.TabIndex = 4;
             // 
             // txtFACILITY
             // 
@@ -188,8 +188,8 @@
             this.txtFACILITY.Name = "txtFACILITY";
             this.txtFACILITY.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFACILITY.Properties.Appearance.Options.UseFont = true;
-            this.txtFACILITY.Size = new System.Drawing.Size(203, 24);
-            this.txtFACILITY.TabIndex = 70;
+            this.txtFACILITY.Size = new System.Drawing.Size(202, 24);
+            this.txtFACILITY.TabIndex = 3;
             // 
             // btnSave
             // 
@@ -208,7 +208,7 @@
             this.btnSave.MinimumSize = new System.Drawing.Size(70, 26);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(70, 26);
-            this.btnSave.TabIndex = 86;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -229,7 +229,7 @@
             this.btnCancel.MinimumSize = new System.Drawing.Size(70, 26);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 26);
-            this.btnCancel.TabIndex = 84;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -240,7 +240,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.71F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 4F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.29F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.Controls.Add(this.labelControl1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtGroupName, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelControl2, 1, 3);
@@ -282,8 +282,8 @@
             this.txtDESCRIPTION.Name = "txtDESCRIPTION";
             this.txtDESCRIPTION.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDESCRIPTION.Properties.Appearance.Options.UseFont = true;
-            this.txtDESCRIPTION.Size = new System.Drawing.Size(203, 42);
-            this.txtDESCRIPTION.TabIndex = 72;
+            this.txtDESCRIPTION.Size = new System.Drawing.Size(202, 42);
+            this.txtDESCRIPTION.TabIndex = 6;
             // 
             // tableLayoutPanel2
             // 

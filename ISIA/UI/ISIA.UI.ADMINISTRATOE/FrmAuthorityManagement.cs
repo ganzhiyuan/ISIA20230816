@@ -64,6 +64,9 @@ namespace ISIA.UI.ADMINISTRATOE
         string region = TAP.Base.Configuration.ConfigurationManager.Instance.EnvironmentSection.Region;
 
         List<treeListInfo> listDataAll = new List<treeListInfo>();
+
+        List<string> listCID = new List<string>();
+        TreeListHitInfo downHitInfo = null;
         #endregion
 
         #region Method
@@ -377,38 +380,11 @@ namespace ISIA.UI.ADMINISTRATOE
             return ds;
         }
 
-        
-        #endregion
-
-
-
-
-
-        #region Event
-        private void GroupListtw_MouseDown(object sender, MouseEventArgs e)
-        {
-            if ((sender as TreeView) != null)
-            {
-                addmembertype = EnumAuthorityOwnerType.USERGROUP;
-                TreeView treeView = (TreeView)sender;
-                treeView.SelectedNode = treeView.GetNodeAt(e.X, e.Y);
-                if (treeView.SelectedNode == null)
-                {
-                    treeList2.DataSource = null;
-
-                    GetBindSourceAll(null, treeList1);
-                    return;
-                }
-
-                BindSourceChange(treeView);
-            }
-        }
-
         private void BindSourceChange(TreeView treeView)
         {
-            var list= GetBindSourceUser(treeView.SelectedNode.Text);
+            var list = GetBindSourceUser(treeView.SelectedNode.Text);
             treeList2.DataSource = list;
-            if (list!=null)
+            if (list != null)
             {
                 treeList2.Columns[0].Visible = false;
                 treeList2.Columns[2].Visible = false;
@@ -417,9 +393,10 @@ namespace ISIA.UI.ADMINISTRATOE
 
             }
             treeList2.ExpandAll();
-            GetBindSourceAll(list,treeList1);
+            GetBindSourceAll(list, treeList1);
 
         }
+
 
         //取消节点选中状态之后，取消所有父节点的选中状态
         private void setParentNodeCheckedState(TreeNode currNode, bool state)
@@ -447,10 +424,81 @@ namespace ISIA.UI.ADMINISTRATOE
         }
 
 
+        private void SetCheckedChildNodes(TreeListNode node, CheckState check)
+        {
+            for (int i = 0; i < node.Nodes.Count; i++)
+            {
+                node.Nodes[i].CheckState = check;
+                SetCheckedChildNodes(node.Nodes[i], check);
+            }
+        }
+        private void SetCheckedParentNodes(TreeListNode node, CheckState check)
+        {
+            if (node.ParentNode != null)
+            {
+                bool b = false;
+                CheckState state;
+                for (int i = 0; i < node.ParentNode.Nodes.Count; i++)
+                {
+                    state = (CheckState)node.ParentNode.Nodes[i].CheckState;
+                    if (!check.Equals(state))
+                    {
+                        b = !b;
+                        break;
+                    }
+                }
+                node.ParentNode.CheckState = b ? CheckState.Indeterminate : check;
+                SetCheckedParentNodes(node.ParentNode, check);
+            }
+        }
+
+        private void GetCheckNodeID(TreeListNode parentNode, TreeList treeList)
+        {
+            if (parentNode.Nodes.Count == 0)
+            {
+                return;
+            }
+            foreach (TreeListNode item in parentNode.Nodes)
+            {
+                if (item.CheckState == CheckState.Checked)
+                {
+                    var drRow = treeList.GetDataRecordByNode(item);
+                    if (drRow != null)
+                    {
+                        int selId = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).CID;
+                        listCID.Add(selId.ToString());
+                    }
+                }
+                GetCheckNodeID(item, treeList);
+            }
+        }
+
         #endregion
 
+        #region Event
+        private void GroupListtw_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((sender as TreeView) != null)
+            {
+                addmembertype = EnumAuthorityOwnerType.USERGROUP;
+                TreeView treeView = (TreeView)sender;
+                treeView.SelectedNode = treeView.GetNodeAt(e.X, e.Y);
+                if (treeView.SelectedNode == null)
+                {
+                    treeList2.DataSource = null;
+
+                    GetBindSourceAll(null, treeList1);
+                    return;
+                }
+
+                BindSourceChange(treeView);
+            }
+        }
+
+
+
+
         #region 拖拽-暂时不用
-        TreeListHitInfo downHitInfo = null;
         private void treeList1_MouseMove(object sender, MouseEventArgs e)
         {
             //TreeList treelist = sender as TreeList;
@@ -531,35 +579,6 @@ namespace ISIA.UI.ADMINISTRATOE
             e.State = (e.PrevState == CheckState.Checked ? CheckState.Unchecked : CheckState.Checked);
         }
 
-        private void SetCheckedChildNodes(TreeListNode node, CheckState check)
-        {
-            for (int i = 0; i < node.Nodes.Count; i++)
-            {
-                node.Nodes[i].CheckState = check;
-                SetCheckedChildNodes(node.Nodes[i], check);
-            }
-        }
-        private void SetCheckedParentNodes(TreeListNode node, CheckState check)
-        {
-            if (node.ParentNode != null)
-            {
-                bool b = false;
-                CheckState state;
-                for (int i = 0; i < node.ParentNode.Nodes.Count; i++)
-                {
-                    state = (CheckState)node.ParentNode.Nodes[i].CheckState;
-                    if (!check.Equals(state))
-                    {
-                        b = !b;
-                        break;
-                    }
-                }
-                node.ParentNode.CheckState = b ? CheckState.Indeterminate : check;
-                SetCheckedParentNodes(node.ParentNode, check);
-            }
-        }
-
-        List<string> listCID = new List<string>();
         private void tButton2_Click(object sender, EventArgs e)
         {
             if (GroupListtw.SelectedNode==null)
@@ -691,27 +710,6 @@ namespace ISIA.UI.ADMINISTRATOE
             }
             
         }
-        private void GetCheckNodeID(TreeListNode parentNode,TreeList treeList)
-        {
-            if (parentNode.Nodes.Count==0)
-            {
-                return;
-            }
-            foreach (TreeListNode item in parentNode.Nodes)
-            {
-                if (item.CheckState==CheckState.Checked)
-                {
-                    var drRow = treeList.GetDataRecordByNode(item);
-                    if (drRow != null)
-                    {
-                        int selId = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).CID;
-                        listCID.Add(selId.ToString());
-                    }
-                }
-                GetCheckNodeID(item,treeList);
-            }
-        }
-
         private void treeList2_AfterCheckNode(object sender, NodeEventArgs e)
         {
 
@@ -743,5 +741,9 @@ namespace ISIA.UI.ADMINISTRATOE
                 if (e.Node.Expanded)
                     e.SelectImageIndex = 3;
         }
+
+
+
+        #endregion
     }
 }
