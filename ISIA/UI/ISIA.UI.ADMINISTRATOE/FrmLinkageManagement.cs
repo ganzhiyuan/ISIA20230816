@@ -19,7 +19,7 @@ using TAP.UI;
 
 namespace ISIA.UI.ADMINISTRATOE
 {
-    public partial class FrmLinkageManagement : UIBase
+    public partial class FrmLinkageManagement : UIBase,PopMenuInterface
     {
 
         BizDataClient bs = null;
@@ -40,6 +40,7 @@ namespace ISIA.UI.ADMINISTRATOE
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.LinkageManagement");
             UIListData();
             InitializeUIGroup();
+            base.SetPopupMenuItem(GetLinkAge("UserMgr"));
         }
 
 
@@ -452,10 +453,11 @@ namespace ISIA.UI.ADMINISTRATOE
                     CommonArgsPack args = new CommonArgsPack();
                     args.UserID = dt.Rows[0][0].ToString();
                     args.Custom01 = retVal1.Rows[0]["GROUPID"].ToString();
-                    args.Custom02 = item.ASSEMBLYFILENAME;
+                    args.Custom02 = item.MAINMENU;
                     args.EqpGroup = (Convert.ToInt32(dt.Rows[0][0].ToString()) + 1).ToString();
                     args.GroupName = groupName;
                     args.IsAlive = "YES";
+                    args.LastEvent = item.SUBMENU;
                     args.MessageName = item.DISPLAYNAME;
                     args.PartName = "0";
 
@@ -589,6 +591,43 @@ namespace ISIA.UI.ADMINISTRATOE
                 int DeleteCount = bs.ExecuteModify("DeleteLinkAge", args.getPack());
             }
             UIListData();
+        }
+
+        private void FrmLinkageManagement_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        public List<LinkInfo> GetLinkAge(string groupName)
+        {
+            CommonArgsPack args = new CommonArgsPack();
+            args.GroupName = groupName;
+            DataClient tmpDataClient = new DataClient();
+            string tmpSql = string.Format("select *  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES'", 
+            args.GroupName);
+            DataSet ds = tmpDataClient.SelectData(tmpSql, "tapctlinkage");
+            if (ds==null||ds.Tables==null||ds.Tables[0].Rows==null)
+            {
+                return null;
+            }
+            List<LinkInfo> list = GetList<LinkInfo>(ds.Tables[0]);
+            List<LinkInfo> linkList = list.Where(x => x.TAGETUI == "0").ToList();
+            foreach (var item in linkList)
+            {
+                item.list = list.Where(x => x.TAGETUI != "0").ToList();
+            }
+
+            
+            return linkList;
+        }
+
+        private void GroupListtw_MouseUp(object sender, MouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    Point p = new Point(Cursor.Position.X, Cursor.Position.Y);
+            //    PopMenuBase.ShowPopup(p);
+            //}
         }
     }
     public class treeListInfo

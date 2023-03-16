@@ -64,7 +64,7 @@ namespace ISIA.BIZ.ADMINISTRATOE
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("select *  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' and TAGETUI='0'", argument.GroupName);
+                tmpSql.AppendFormat("select *  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES'", argument.GroupName);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                    tmpSql.ToString(), false);
@@ -167,7 +167,7 @@ namespace ISIA.BIZ.ADMINISTRATOE
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append("insert into tapctlinkage (");
-                tmpSql.Append(" GROUPID,GROUPNAME,UI,TAGETUI,TAGETUINAME,PARAMETERLIST,ISALIVE,DESCRIPTION");
+                tmpSql.Append(" GROUPID,GROUPNAME,UI,TAGETUI,TAGETUINAME,PARAMETERLIST,ISALIVE,DESCRIPTION,LASTEVENT");
                 tmpSql.Append(" ,INSERTTIME,UPDATETIME,INSERTUSER,UPDATEUSER");
                 tmpSql.Append(" )VALUES (");
                 tmpSql.AppendFormat("'{0}',", arguments.EqpGroup);
@@ -178,6 +178,7 @@ namespace ISIA.BIZ.ADMINISTRATOE
                 tmpSql.AppendFormat("'{0}',", string.IsNullOrEmpty(arguments.PartName)?"0": arguments.PartName);
                 tmpSql.AppendFormat("'{0}',", arguments.IsAlive);
                 tmpSql.AppendFormat("'{0}',", arguments.Description);
+                tmpSql.AppendFormat("'{0}',", arguments.LastEvent);
                 tmpSql.AppendFormat("'{0}',", arguments.InsertTime);
                 tmpSql.AppendFormat("'{0}',", arguments.UpdateTime);
                 tmpSql.AppendFormat("'{0}',", arguments.InsertUser);

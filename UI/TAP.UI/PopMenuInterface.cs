@@ -16,7 +16,7 @@ namespace TAP.UI
         /// </summary>
         /// <param name="groupId"></param>
         /// <returns>groupDisplayName对应子类菜单包含link</returns>
-       List<LinkInfo> GetLinkAge(string groupId);
+       List<LinkInfo> GetLinkAge(string groupName);
     }
 
     public class LinkInfo

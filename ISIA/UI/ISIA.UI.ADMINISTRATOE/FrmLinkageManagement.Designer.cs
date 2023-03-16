@@ -44,6 +44,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.GroupListtw = new System.Windows.Forms.TreeView();
             this.tPanel8 = new TAP.UIControls.BasicControls.TPanel();
+            this.btnUIGroupDel = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnUpdate = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnAdd = new TAP.UIControls.BasicControlsDEV.TButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -51,7 +52,6 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnUIGroupDel = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tPanelBottomBase.SuspendLayout();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -88,6 +88,7 @@ namespace ISIA.UI.ADMINISTRATOE
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.layoutControl1);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 20);
             this.tPanelMain.Size = new System.Drawing.Size(1145, 728);
             // 
             // layoutControl1
@@ -283,6 +284,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.GroupListtw.Size = new System.Drawing.Size(234, 659);
             this.GroupListtw.TabIndex = 74;
             this.GroupListtw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.UiList_MouseDown);
+            this.GroupListtw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GroupListtw_MouseUp);
             // 
             // tPanel8
             // 
@@ -301,6 +303,39 @@ namespace ISIA.UI.ADMINISTRATOE
     "BorderStyle.None";
             this.tPanel8.Size = new System.Drawing.Size(234, 40);
             this.tPanel8.TabIndex = 6;
+            // 
+            // btnUIGroupDel
+            // 
+            this.btnUIGroupDel.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnUIGroupDel.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btnUIGroupDel.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUIGroupDel.Appearance.Options.UseBackColor = true;
+            this.btnUIGroupDel.Appearance.Options.UseBorderColor = true;
+            this.btnUIGroupDel.Appearance.Options.UseFont = true;
+            this.btnUIGroupDel.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnUIGroupDel.AppearanceHovered.Options.UseBackColor = true;
+            this.btnUIGroupDel.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnUIGroupDel.AppearancePressed.Options.UseBackColor = true;
+            this.btnUIGroupDel.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.DELETE;
+            this.btnUIGroupDel.ControlID = "btnSave";
+            this.btnUIGroupDel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnUIGroupDel.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnUIGroupDel.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btnUIGroupDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUIGroupDel.ImageOptions.Image")));
+            this.btnUIGroupDel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnUIGroupDel.IsRequired = false;
+            this.btnUIGroupDel.Location = new System.Drawing.Point(19, 5);
+            this.btnUIGroupDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnUIGroupDel.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.btnUIGroupDel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUIGroupDel.Name = "btnUIGroupDel";
+            this.btnUIGroupDel.NeedToTranslate = true;
+            this.btnUIGroupDel.RepresentativeValue = "Delete";
+            this.btnUIGroupDel.Size = new System.Drawing.Size(70, 30);
+            this.btnUIGroupDel.TabIndex = 133;
+            this.btnUIGroupDel.Text = "Delete";
+            this.btnUIGroupDel.UseVisualStyleBackColor = true;
+            this.btnUIGroupDel.Click += new System.EventHandler(this.btnUIGroupDel_Click);
             // 
             // btnUpdate
             // 
@@ -423,39 +458,6 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // btnUIGroupDel
-            // 
-            this.btnUIGroupDel.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnUIGroupDel.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.btnUIGroupDel.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUIGroupDel.Appearance.Options.UseBackColor = true;
-            this.btnUIGroupDel.Appearance.Options.UseBorderColor = true;
-            this.btnUIGroupDel.Appearance.Options.UseFont = true;
-            this.btnUIGroupDel.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnUIGroupDel.AppearanceHovered.Options.UseBackColor = true;
-            this.btnUIGroupDel.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnUIGroupDel.AppearancePressed.Options.UseBackColor = true;
-            this.btnUIGroupDel.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.DELETE;
-            this.btnUIGroupDel.ControlID = "btnSave";
-            this.btnUIGroupDel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnUIGroupDel.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnUIGroupDel.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.btnUIGroupDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUserDelete.ImageOptions.Image")));
-            this.btnUIGroupDel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnUIGroupDel.IsRequired = false;
-            this.btnUIGroupDel.Location = new System.Drawing.Point(19, 5);
-            this.btnUIGroupDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnUIGroupDel.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnUIGroupDel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUIGroupDel.Name = "btnUIGroupDel";
-            this.btnUIGroupDel.NeedToTranslate = true;
-            this.btnUIGroupDel.RepresentativeValue = "Delete";
-            this.btnUIGroupDel.Size = new System.Drawing.Size(70, 30);
-            this.btnUIGroupDel.TabIndex = 133;
-            this.btnUIGroupDel.Text = "Delete";
-            this.btnUIGroupDel.UseVisualStyleBackColor = true;
-            this.btnUIGroupDel.Click += new System.EventHandler(this.btnUIGroupDel_Click);
-            // 
             // FrmLinkageManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -463,6 +465,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.ClientSize = new System.Drawing.Size(1145, 768);
             this.Name = "FrmLinkageManagement";
             this.Text = "FrmLinkageManagement";
+            this.Load += new System.EventHandler(this.FrmLinkageManagement_Load);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
             this.tPanelMain.ResumeLayout(false);

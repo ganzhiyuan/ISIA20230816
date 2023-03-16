@@ -239,7 +239,7 @@ namespace TAP.UI
         private TLabel tLabelTime;
         private IContainer components;
         private TPictureBox picBookMark;
-        private DevExpress.XtraBars.PopupMenu PopMenuBase;
+        protected DevExpress.XtraBars.PopupMenu PopMenuBase;
         private DevExpress.XtraBars.BarManager barManager;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
@@ -5589,7 +5589,7 @@ namespace TAP.UI
         #region PopupMenu
 
         #region Methods
-        public void OpenUI(string menu)
+        public void OpenUI(string menu,string mainMenu,string displayName)
         {
             MainMenuBasicModel tmpMainMenu = null;
             UIBasicModel tmpUI = null;
@@ -5597,9 +5597,8 @@ namespace TAP.UI
             try
             {
                 string mdiName = this.UIInformation.MDI;
-                string mainMenu = this.UIInformation.MainMenu;
 
-                tmpMainMenu = InfoBase._MDI_INFO[this.UIInformation.MDI].MainMenus[this.UIInformation.MainMenu];
+                tmpMainMenu = InfoBase._MDI_INFO[this.UIInformation.MDI].MainMenus[mainMenu];
 
                 if (object.Equals(tmpMainMenu, null))
                 {
@@ -5645,11 +5644,12 @@ namespace TAP.UI
                 tmpNewForm.FormBorderStyle = FormBorderStyle.None;
                 tmpNewForm.Dock = DockStyle.Fill;
 
-                tmpNewForm.Name = "223";
+                tmpNewForm.Name = menu;
                 ((TAP.UI.UIBase)tmpNewForm).UIInformation = tmpUI;
                 //((TAP.UI.UIBase)tmpNewForm).TabControl = form.tabMDIList;
                 //((TAP.UI.UIBase)tmpNewForm).UITitle = form.MakeUITitle(InfoBase._MDI_INFO[form._mdiName].MainMenus[mainMenu].DisplayName, tmpUI.DisplayName);
-                ((TAP.UI.UIBase)tmpNewForm).UITitle = "123";
+                ((TAP.UI.UIBase)tmpNewForm).UITitle = "<"+mainMenu+">_<"+ displayName + ">";
+                tmpNewForm.Text = displayName;
 
                 tmpNewForm.Show();
 
@@ -5681,6 +5681,8 @@ namespace TAP.UI
                     DevExpress.XtraBars.BarButtonItem barButtonItem = new DevExpress.XtraBars.BarButtonItem();
                     barButtonItem.Caption = info.TAGETUINAME;
                     barButtonItem.Tag = info.UI;
+                    barButtonItem.SearchTags = info.LASTEVENT;
+
                     barSubItem.LinksPersistInfo.Add(new DevExpress.XtraBars.LinkPersistInfo(barButtonItem));
                     barButtonItem.ItemClick += BarButtonItem_ItemClick;
                 }
@@ -5692,7 +5694,7 @@ namespace TAP.UI
 
         private void BarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenUI(e.Item.Tag.ToString());
+            OpenUI(e.Item.Tag.ToString(), e.Item.SearchTags.ToString(), e.Item.Caption); ;
         }
 
         #endregion
@@ -6040,7 +6042,7 @@ namespace TAP.UI
             this.tLabel1.Name = "tLabel1";
             this.tLabel1.NeedToTranslate = true;
             this.tLabel1.RepresentativeValue = "tLabel1";
-            this.tLabel1.Size = new System.Drawing.Size(52, 17);
+            this.tLabel1.Size = new System.Drawing.Size(42, 13);
             this.tLabel1.TabIndex = 0;
             this.tLabel1.Text = "tLabel1";
             // 
