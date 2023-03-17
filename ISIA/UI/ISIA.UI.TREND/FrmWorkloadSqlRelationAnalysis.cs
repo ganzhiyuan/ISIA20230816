@@ -190,7 +190,7 @@ namespace ISIA.UI.TREND
 
         public void DisplayChart(DataSet ds)
         {
-            splitContainerControl1.Panel1.Controls.Clear();
+            dpnlRight_Container.Controls.Clear();
             TChart chart = new TChart();
             chart.Series.Clear();
             chart.ContextMenuStrip = contextMenuStrip1;
@@ -229,7 +229,7 @@ namespace ISIA.UI.TREND
                 chart.Axes.Bottom.Ticks.Width = 0;
                 index++;
             }
-            splitContainerControl1.Panel1.Controls.Add(chart);
+            dpnlRight_Container.Controls.Add(chart);
         }
         private class Color
         {
