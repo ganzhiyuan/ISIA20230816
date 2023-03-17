@@ -3281,11 +3281,14 @@ namespace TAP.UI
             catch (ThreadAbortException te)
             {
                 string tmpTe = te.ToString();
+                this._isBusy = false;
+
             }
             catch (System.Exception ex)
             {
                 this.EndProgressBar();
                 //this._asyncEnd = true;
+                this._isBusy = false;
 
                 string tmpErrorMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXECUTE, EnumGeneralTemplateType.FAIL, "Command");
 
@@ -3458,6 +3461,8 @@ namespace TAP.UI
                 catch (System.Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
+                    this._isBusy = false;
+
                 }
                 finally
                 {
