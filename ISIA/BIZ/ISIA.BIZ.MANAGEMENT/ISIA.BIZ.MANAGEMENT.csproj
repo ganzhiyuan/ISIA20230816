@@ -62,7 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpcManagement.cs" />
+    <Compile Include="ParameterSpecManagement.cs" />
+    <Compile Include="SpecManagement.cs" />
     <Compile Include="DataBaseManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
