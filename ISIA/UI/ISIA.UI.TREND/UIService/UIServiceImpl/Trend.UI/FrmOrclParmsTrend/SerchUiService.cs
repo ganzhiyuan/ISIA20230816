@@ -54,11 +54,11 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmOrclParmsTrend
 
             if (startDateTime > endDateTime)
             {
-                EventArgPack.StartTime = endDateTime.ToString("yyyyMMdd");
-                EventArgPack.EndTime = startDateTime.ToString("yyyyMMdd");
+                EventArgPack.StartTime = endDateTime.ToString("yyyyMMddHHmmss");
+                EventArgPack.EndTime = startDateTime.ToString("yyyyMMddHHmmss");
             }
-            EventArgPack.StartTime = startDateTime.ToString("yyyyMMdd");
-            EventArgPack.EndTime = endDateTime.ToString("yyyyMMdd");
+            EventArgPack.StartTime = startDateTime.ToString("yyyyMMddHHmmss");
+            EventArgPack.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
             EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
             //grouping unit handling

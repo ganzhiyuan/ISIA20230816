@@ -31,10 +31,26 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _DBName;
 
-        private static List<string> _WorkloadParamNamesList =new List<string>();
+        private List<object> _SqlIdList;
+
+        private string _WorkloadSqlParm;
+
+        private static List<string> _WorkloadParamNamesList = new List<string>();
+
+        private static Dictionary<string, string> _WorkloadSqlRelationMapping = new Dictionary<string, string>();
+
+        private static Dictionary<string, string> _WorkloadBelonging = new Dictionary<string, string>();
+
+        public const string METRIC= "METRIC";
+
+        public const string SYSSTAT = "SYSSTAT";
+
+
+        public const string GET_ALL = "ALL";
 
         static AwrArgsPack()
         {
+            //_WorkloadParamNamesList
             WorkloadParamNamesList.Add("CPU_Util_pct");
             WorkloadParamNamesList.Add("CPU_Util_pct_max");
             WorkloadParamNamesList.Add("LOGICAL_READS_PSEC");
@@ -55,6 +71,21 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadParamNamesList.Add("NET_MB_From_Client_psec");
             WorkloadParamNamesList.Add("NET_MB_From_DBLink_psec");
             WorkloadParamNamesList.Add("NET_MB_To_DBLink_psec");
+            //_WorkloadSqlRelationMapping
+            WorkloadSqlRelationMapping.Add("CPU Usage Per Sec", "CPU_TIME_total");
+            WorkloadSqlRelationMapping.Add("DB time", "ELAPSED_TIME_total");
+            WorkloadSqlRelationMapping.Add("physical reads", "PHYSICAL_READ_BYTES_delta");
+            WorkloadSqlRelationMapping.Add("parse count (total)", "PARSE_CALLS_delta");
+            WorkloadSqlRelationMapping.Add("redo size", "ROWS_PROCESSED_delta");
+            WorkloadSqlRelationMapping.Add("db block changes", "ROWS_PROCESSED_delta");
+            //_WorkloadBelonging
+            WorkloadBelonging.Add("CPU Usage Per Sec", METRIC);
+            WorkloadBelonging.Add("DB time", SYSSTAT);
+            WorkloadBelonging.Add("physical reads", SYSSTAT);
+            WorkloadBelonging.Add("parse count (total)", SYSSTAT);
+            WorkloadBelonging.Add("redo size", SYSSTAT);
+            WorkloadBelonging.Add("db block changes", SYSSTAT);
+
         }
 
         public string ParamType
@@ -173,6 +204,60 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _DBName = value;
+            }
+        }
+
+        public static Dictionary<string, string> WorkloadSqlRelationMapping
+        {
+            get
+            {
+                return _WorkloadSqlRelationMapping;
+            }
+
+            set
+            {
+                _WorkloadSqlRelationMapping = value;
+            }
+        }
+
+
+
+        public string WorkloadSqlParm
+        {
+            get
+            {
+                return _WorkloadSqlParm;
+            }
+
+            set
+            {
+                _WorkloadSqlParm = value;
+            }
+        }
+
+        public List<object> SqlIdList
+        {
+            get
+            {
+                return _SqlIdList;
+            }
+
+            set
+            {
+                _SqlIdList = value;
+            }
+        }
+
+        public static Dictionary<string, string> WorkloadBelonging
+        {
+            get
+            {
+                return _WorkloadBelonging;
+            }
+
+            set
+            {
+                _WorkloadBelonging = value;
             }
         }
 

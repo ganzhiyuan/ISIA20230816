@@ -24,7 +24,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("select Name id, CUSTOM01 DbName  from ISIA.TAPCTCODES");
+                tmpSql.Append("select DBID,  DBNAME  from ISIA.TAPCTDATABASE");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -46,7 +46,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-
+                //TODO row 60 may have trouble.
                 tmpSql.AppendFormat("" +
                     "WITH\r\n" +
                     "t1_sysmetric_summary\r\n" +
