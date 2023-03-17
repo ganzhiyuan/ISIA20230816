@@ -91,6 +91,7 @@
     <Compile Include="ClassicUI.cs" />
     <Compile Include="CodeManagement.cs" />
     <Compile Include="GroupUserManagement.cs" />
+    <Compile Include="LinkageManagement.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MessageGroupManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

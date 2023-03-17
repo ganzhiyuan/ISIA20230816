@@ -193,6 +193,7 @@
     <Compile Include="FormProcessing.Designer.cs">
       <DependentUpon>FormProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="PopMenuInterface.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

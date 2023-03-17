@@ -37,8 +37,6 @@
             this.grideview1delete = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Delete1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tPanel7 = new TAP.UIControls.BasicControls.TPanel();
             this.btnUserDelete = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnUserAdd = new TAP.UIControls.BasicControlsDEV.TButton();
@@ -49,17 +47,19 @@
             this.btnAdd = new TAP.UIControls.BasicControlsDEV.TButton();
             this.txtDescription = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.tButton1 = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.tButton2 = new TAP.UIControls.BasicControlsDEV.TButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tButton2 = new TAP.UIControls.BasicControlsDEV.TButton();
-            this.tButton1 = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tPanelBottomBase.SuspendLayout();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
@@ -67,25 +67,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             this.grideview1delete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.tPanel7.SuspendLayout();
             this.tPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,12 +131,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Delete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(114, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
             // Delete
             // 
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(113, 22);
+            this.Delete.Size = new System.Drawing.Size(180, 22);
             this.Delete.Text = "Delete";
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -189,35 +189,6 @@
             this.gridView1.OptionsClipboard.PasteMode = DevExpress.Export.PasteMode.None;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridControl2
-            // 
-            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
-            this.gridControl2.Location = new System.Drawing.Point(2, 23);
-            this.gridControl2.LookAndFeel.SkinName = "Office 2013";
-            this.gridControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(2);
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(443, 646);
-            this.gridControl2.TabIndex = 2;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
-            this.gridView2.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView2.Appearance.Row.Options.UseFont = true;
-            this.gridView2.DetailHeight = 268;
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsFind.AlwaysVisible = true;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
             // tPanel7
             // 
@@ -481,77 +452,6 @@
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // groupControl3
-            // 
-            this.groupControl3.Controls.Add(this.gridControl2);
-            this.groupControl3.Controls.Add(this.tPanel7);
-            this.groupControl3.Location = new System.Drawing.Point(709, 2);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(447, 711);
-            this.groupControl3.TabIndex = 80;
-            this.groupControl3.Text = "User List";
-            // 
-            // groupControl2
-            // 
-            this.groupControl2.Controls.Add(this.imageListBoxControl1);
-            this.groupControl2.Controls.Add(this.txtDescription);
-            this.groupControl2.Controls.Add(this.tPanel8);
-            this.groupControl2.Location = new System.Drawing.Point(2, 2);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(241, 711);
-            this.groupControl2.TabIndex = 79;
-            this.groupControl2.Text = "Group List";
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.gridControl1);
-            this.groupControl1.Location = new System.Drawing.Point(247, 2);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(398, 711);
-            this.groupControl1.TabIndex = 78;
-            this.groupControl1.Text = "Group Users";
-            // 
-            // Root
-            // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem4,
-            this.layoutControlItem3,
-            this.layoutControlItem1,
-            this.layoutControlItem2});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(1158, 715);
-            this.Root.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.groupControl3;
-            this.layoutControlItem1.Location = new System.Drawing.Point(707, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(451, 715);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.groupControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(245, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(402, 715);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.groupControl2;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(245, 715);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.tButton1);
@@ -560,50 +460,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(56, 711);
             this.panelControl1.TabIndex = 81;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.panelControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(647, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(60, 0);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(60, 5);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(60, 715);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // tButton2
-            // 
-            this.tButton2.Appearance.BackColor = System.Drawing.Color.White;
-            this.tButton2.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.tButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tButton2.Appearance.Options.UseBackColor = true;
-            this.tButton2.Appearance.Options.UseBorderColor = true;
-            this.tButton2.Appearance.Options.UseFont = true;
-            this.tButton2.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.tButton2.AppearanceHovered.Options.UseBackColor = true;
-            this.tButton2.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.tButton2.AppearancePressed.Options.UseBackColor = true;
-            this.tButton2.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.EDIT;
-            this.tButton2.ControlID = "btnSave";
-            this.tButton2.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.tButton2.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
-            this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.tButton2.IsRequired = false;
-            this.tButton2.Location = new System.Drawing.Point(4, 325);
-            this.tButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.tButton2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.tButton2.Name = "tButton2";
-            this.tButton2.NeedToTranslate = true;
-            this.tButton2.RepresentativeValue = "    ";
-            this.tButton2.Size = new System.Drawing.Size(46, 41);
-            this.tButton2.TabIndex = 131;
-            this.tButton2.Text = "    ";
-            this.tButton2.UseVisualStyleBackColor = true;
-            this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
             // 
             // tButton1
             // 
@@ -637,6 +493,150 @@
             this.tButton1.UseVisualStyleBackColor = true;
             this.tButton1.Click += new System.EventHandler(this.tButton1_Click);
             // 
+            // tButton2
+            // 
+            this.tButton2.Appearance.BackColor = System.Drawing.Color.White;
+            this.tButton2.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tButton2.Appearance.Options.UseBackColor = true;
+            this.tButton2.Appearance.Options.UseBorderColor = true;
+            this.tButton2.Appearance.Options.UseFont = true;
+            this.tButton2.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton2.AppearanceHovered.Options.UseBackColor = true;
+            this.tButton2.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton2.AppearancePressed.Options.UseBackColor = true;
+            this.tButton2.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.EDIT;
+            this.tButton2.ControlID = "btnSave";
+            this.tButton2.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tButton2.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
+            this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.tButton2.IsRequired = false;
+            this.tButton2.Location = new System.Drawing.Point(4, 325);
+            this.tButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tButton2.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.tButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.tButton2.Name = "tButton2";
+            this.tButton2.NeedToTranslate = true;
+            this.tButton2.RepresentativeValue = "    ";
+            this.tButton2.Size = new System.Drawing.Size(46, 41);
+            this.tButton2.TabIndex = 131;
+            this.tButton2.Text = "    ";
+            this.tButton2.UseVisualStyleBackColor = true;
+            this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.gridControl2);
+            this.groupControl3.Controls.Add(this.tPanel7);
+            this.groupControl3.Location = new System.Drawing.Point(709, 2);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(447, 711);
+            this.groupControl3.TabIndex = 80;
+            this.groupControl3.Text = "User List";
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gridControl2.Location = new System.Drawing.Point(2, 23);
+            this.gridControl2.LookAndFeel.SkinName = "Office 2013";
+            this.gridControl2.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Margin = new System.Windows.Forms.Padding(2);
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(443, 646);
+            this.gridControl2.TabIndex = 2;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
+            this.gridView2.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.Row.Options.UseFont = true;
+            this.gridView2.DetailHeight = 268;
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsFind.AlwaysVisible = true;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.gridControl1);
+            this.groupControl1.Location = new System.Drawing.Point(247, 2);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(398, 711);
+            this.groupControl1.TabIndex = 78;
+            this.groupControl1.Text = "Group Users";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.imageListBoxControl1);
+            this.groupControl2.Controls.Add(this.txtDescription);
+            this.groupControl2.Controls.Add(this.tPanel8);
+            this.groupControl2.Location = new System.Drawing.Point(2, 2);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(241, 711);
+            this.groupControl2.TabIndex = 79;
+            this.groupControl2.Text = "Group List";
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4,
+            this.layoutControlItem3,
+            this.layoutControlItem1,
+            this.layoutControlItem2});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.Root.Size = new System.Drawing.Size(1158, 715);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.groupControl1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(245, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(402, 715);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.groupControl2;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(245, 715);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.groupControl3;
+            this.layoutControlItem1.Location = new System.Drawing.Point(707, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(451, 715);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.panelControl1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(647, 0);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(60, 0);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(60, 5);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(60, 715);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
             // FrmGroupUserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,27 +657,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             this.grideview1delete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.tPanel7.ResumeLayout(false);
             this.tPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -692,8 +693,6 @@
         private TAP.UIControls.BasicControls.TPanel tPanel7;
         private TAP.UIControls.BasicControls.TPanel tPanel8;
         private DevExpress.XtraEditors.MemoEdit txtDescription;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private TAP.UIControls.BasicControlsDEV.TButton btnUpdate;
         private TAP.UIControls.BasicControlsDEV.TButton btnAdd;
         private TAP.UIControls.BasicControlsDEV.TButton btnGroup;
@@ -712,5 +711,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private TAP.UIControls.BasicControlsDEV.TButton tButton2;
         private TAP.UIControls.BasicControlsDEV.TButton tButton1;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }
