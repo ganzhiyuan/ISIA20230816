@@ -221,43 +221,6 @@ namespace ISIA.UI.ADMINISTRATOE
             ShowDescription(item);
         }
 
-        //private void chkFilter_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (chkFilter.Checked)
-        //    {
-        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-        //    }
-        //    else
-        //    {
-        //        InitializeUsergrid();
-        //        return;
-        //    }
-        //}
-
-        //private void txtFilter_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    if (chkFilter.Checked)
-        //    {
-        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-        //}
-
-        //private void cboUserColumn_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (chkFilter.Checked)
-        //    {
-        //        RefreshFliterUsergrid(cboUserColumn.Text, txtFilter.Text);
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-        //}
-
         private void navBarControl1_Resize(object sender, EventArgs e)
         {
             // navBarGroupControlContainer2.Height = splitContainerControl1.Panel1.Height - navBarGroupControlContainer1.Height;
@@ -467,7 +430,6 @@ namespace ISIA.UI.ADMINISTRATOE
         {
             
         }
-        #endregion
 
         private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -689,5 +651,7 @@ namespace ISIA.UI.ADMINISTRATOE
             InitializeUsergrid();
             gridView2.RefreshData();
         }
+
+        #endregion
     }
 }
