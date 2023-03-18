@@ -1,0 +1,12 @@
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.csproj.AssemblyReference.cache
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.ChartTest.resources
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.Properties.Resources.resources
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.csproj.GenerateResource.cache
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.csproj.CoreCompileInputs.cache
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.dll.licenses
+D:\_bin\FX\ISIA.UI.CHARTTEST.dll.config
+D:\_bin\FX\ISIA.UI.CHARTTEST.dll
+D:\_bin\FX\ISIA.UI.CHARTTEST.pdb
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.csproj.CopyComplete
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.dll
+D:\Git_Project\ISIA\ISIA.UI.CHARTTEST\obj\Debug\ISIA.UI.CHARTTEST.pdb

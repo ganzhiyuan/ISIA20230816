@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{456EFAB7-C315-4F33-863D-6AF3658E3EEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ISIA.CHART.SERVICE</RootNamespace>
+    <AssemblyName>ISIA.CHART.SERVICE</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\_bin\ChartService\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ISIA.COMMON">
+      <HintPath>..\..\..\_bin\FX\ISIA.COMMON.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TAP.App.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.App.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.Base.Communication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Base.Communication.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.Base.Configuration, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Base.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.Data.DataBase, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Data.DataBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TAP.WinService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\ChartService\TAP.WinService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TeeChart, Version=4.2023.3.13, Culture=neutral, PublicKeyToken=9c8126276c77bdb7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.13\lib\net40\TeeChart.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ChartService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

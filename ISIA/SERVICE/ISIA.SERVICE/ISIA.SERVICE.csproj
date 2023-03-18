@@ -107,19 +107,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="TAP.App.Base">
       <HintPath>..\..\..\_bin\Service\TAP.App.Base.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.Base">
       <HintPath>..\..\..\_bin\Service\TAP.Base.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.Base.Communication">
       <HintPath>..\..\..\_bin\Service\TAP.Base.Communication.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.Base.Configuration">
       <HintPath>..\..\..\_bin\Service\TAP.Base.Configuration.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.Data.DataBase, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,12 +127,12 @@
     </Reference>
     <Reference Include="TAP.Models">
       <HintPath>..\..\..\_bin\Service\TAP.Models.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.Models.Factories, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\Service\TAP.Models.Factories.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="TAP.WinService">
       <HintPath>..\..\..\_bin\Service\TAP.WinService.dll</HintPath>
