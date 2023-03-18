@@ -13,7 +13,7 @@ using TAP.Remoting;
 
 namespace ISIA.BIZ.TREND
 {
-    class OrclParmsTrendChart : TAP.Remoting.Server.Biz.BizComponentBase
+    class WorkloadSqlRelationAnalysis : TAP.Remoting.Server.Biz.BizComponentBase
     {
 
 
@@ -40,14 +40,16 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        public void GetParmType(AwrArgsPack arguments)
+        public void GetSqlId(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("select distinct(parametertype) from TAPCTPARAMETERDEF");
+                tmpSql.AppendFormat("select distinct(SQL_ID) " +
+                    "from ISIA.RAW_DBA_HIST_SQLSTAT_ISFA stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA snap on stat.snap_id = snap.snap_id " +
+                    "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'", arguments.StartTime, arguments.EndTime);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -61,21 +63,79 @@ namespace ISIA.BIZ.TREND
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
+
         }
-        public void GetParmNameByType(AwrArgsPack arguments)
+
+        public void GetWorkloadSqlRelationData(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
+                StringBuilder getSqlIdDataSql = new StringBuilder();
+                StringBuilder getWorkloadDtaSql = new StringBuilder();
 
-                tmpSql.AppendFormat("select parametername from TAPCTPARAMETERDEF where parametertype in ({0})", Utils.MakeSqlQueryIn2(arguments.ParamType));
+                DataSet resultSet = new DataSet();
 
+                //get Sql parm data 
+                getSqlIdDataSql.AppendFormat(
+                    "select stat.snap_id, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, " +
+                    "sum({0}) \"{0}\" " +
+                    "from " +
+                    "ISIA.RAW_DBA_HIST_SQLSTAT_{3} stat left join " +
+                    "ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on stat.snap_id = snap.snap_id " +
+                    "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}' "
+                   , AwrArgsPack.WorkloadSqlRelationMapping[arguments.WorkloadSqlParm], arguments.StartTime, arguments.EndTime, arguments.DBName);
+                if (arguments.SqlIdList.Count != 0)
+                {
+                    getSqlIdDataSql.AppendFormat("and sql_id in({0}) ", Utils.MakeSqlQueryIn2(arguments.SqlIdList));
+                }
+                getSqlIdDataSql.Append(" group by stat.snap_id ORDER BY SNAP_ID");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                       tmpSql.ToString(), false);
+                       getSqlIdDataSql.ToString(), false);
+                DataTable dtSql = db.Select(getSqlIdDataSql.ToString()).Tables[0];
+                dtSql.TableName = AwrArgsPack.WorkloadSqlRelationMapping[arguments.WorkloadSqlParm];
+                resultSet.Tables.Add(dtSql.Copy());
 
-                this.ExecutingValue = db.Select(tmpSql.ToString());
+                //get workload parm data 
+                string parmColumnName = "STAT_NAME";
+                string parmTableSuffix = "ISIA.RAW_DBA_HIST_SYSSTAT";
+                string valueName = "value";
+                if (AwrArgsPack.WorkloadBelonging[arguments.WorkloadSqlParm].Equals(AwrArgsPack.METRIC))
+                {
+                    parmColumnName = "metric_name";
+                    parmTableSuffix = "ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY";
+                    valueName = "average";
+                }
+
+                getWorkloadDtaSql.AppendFormat(
+                    "select\r\n" +
+                    "/*+MATERIALIZE */\r\n" +
+                    "MIN(begin_interval_time) \"begin_interval_time\", \r\n" +
+                    "MAX(end_interval_time) \"end_interval_time\", \r\n" +
+                    "dbid,\r\n" +
+                    "(select dbname from TAPCTDATABASE  where dbid=s.dbid) \r\n" +
+                    "dbname,\r\n" +
+                    "snap_id,\r\n" +
+                    "s.instance_number as inst_id,\r\n" +
+                    "SUM(DECODE({4},'{0}',{6} ,0)) \r\n" +
+                    "\"{0}\"\r\n" +
+                    "FROM\r\n" +
+                    "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ \r\n" +
+                    "ss.*,sn.begin_interval_time, sn.end_interval_time from {5}_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn  \r\n" +
+                    "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and {4}='{0}' --configurable\r\n" +
+                    "and sn.INSTANCE_NUMBER IN (1) \r\n" +
+                    "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s \r\n" +
+                    " where 1=1\r\n" +
+                    "group by dbid,s.instance_number ,snap_id\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
+                    arguments.DBName, parmColumnName, parmTableSuffix, valueName);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      getWorkloadDtaSql.ToString(), false);
+                DataTable dtWorkload = db.Select(getWorkloadDtaSql.ToString()).Tables[0];
+                dtWorkload.TableName = arguments.WorkloadSqlParm;
+                resultSet.Tables.Add(dtWorkload.Copy());
+
+                this.ExecutingValue = resultSet;
             }
             catch (Exception ex)
             {
@@ -157,7 +217,7 @@ namespace ISIA.BIZ.TREND
 
                 }
                 DataSet resultSet = new DataSet();
-                foreach(DataTable dt in tableSplitTotal)
+                foreach (DataTable dt in tableSplitTotal)
                 {
                     resultSet.Tables.Add(dt);
                 }
@@ -193,7 +253,7 @@ namespace ISIA.BIZ.TREND
 
         private void AppendSumWithDeode(StringBuilder main, string colunm, string decodeMode, string paramType)
         {
-            main.AppendFormat("SUM(DECODE({2},'{0}',{1} ,0)) \"{3}\"", HandleSpecialCharacter(colunm), decodeMode, paramType,colunm);
+            main.AppendFormat("SUM(DECODE({2},'{0}',{1} ,0)) \"{3}\"", HandleSpecialCharacter(colunm), decodeMode, paramType, colunm);
         }
 
         private void AppendMin(StringBuilder main, string colunm, string alias)
@@ -289,7 +349,7 @@ namespace ISIA.BIZ.TREND
             tmpSql.AppendFormat("(SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */ " +
                 " sm.*,sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{3} sm,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn " +
                  "WHERE  1=1 AND SM.dbid=sn.dbid AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER IN ({0})      " +
-                 "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' AND '{2}') s ", 1,arguments.StartTime, arguments.EndTime, arguments.DBName);
+                 "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' AND '{2}') s ", 1, arguments.StartTime, arguments.EndTime, arguments.DBName);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
             AppendWithCRLF(tmpSql, ")");
@@ -304,7 +364,7 @@ namespace ISIA.BIZ.TREND
             AppendWithComma(tmpSql, "dbid");
             AppendWithComma(tmpSql, "inst_id");
             AppendMin(tmpSql, "snap_id", "SNAP_ID_MIN");
-            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,",arguments.GroupingDateFormat);
+            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,", arguments.GroupingDateFormat);
             AppendMin(tmpSql, "BEGIN_TIME", "BEGIN_TIME");
             AppendMax(tmpSql, "END_TIME", "END_TIME");
             foreach (string param in metricParamNames)
@@ -340,7 +400,7 @@ namespace ISIA.BIZ.TREND
             tmpSql.AppendFormat("(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ " +
                 "ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn " +
                 " where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and sn.INSTANCE_NUMBER IN ({0}) " +
-                " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s ", 1, arguments.StartTime, arguments.EndTime,arguments.DBName);
+                " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s ", 1, arguments.StartTime, arguments.EndTime, arguments.DBName);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
             AppendWithCRLF(tmpSql, ")");
@@ -353,7 +413,7 @@ namespace ISIA.BIZ.TREND
             AppendWithComma(tmpSql, "dbid");
             AppendWithComma(tmpSql, "inst_id");
             AppendMin(tmpSql, "snap_id", "SNAP_ID_MIN");
-            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,",arguments.GroupingDateFormat);
+            tmpSql.AppendFormat("TO_CHAR(BEGIN_TIME,'{0}') workdate,", arguments.GroupingDateFormat);
             AppendMin(tmpSql, "BEGIN_TIME", "BEGIN_TIME");
             AppendMax(tmpSql, "END_TIME", "END_TIME");
             foreach (string param in statisticParamNames)
@@ -362,7 +422,7 @@ namespace ISIA.BIZ.TREND
                 AppendWithComma(tmpSql, "");
             }
             tmpSql.Remove(tmpSql.Length - 1, 1);
-            tmpSql.AppendFormat("FROM t1_sysstat s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'{0}')",arguments.GroupingDateFormat);
+            tmpSql.AppendFormat("FROM t1_sysstat s where 1=1 group by dbid, inst_id, TO_CHAR(BEGIN_TIME,'{0}')", arguments.GroupingDateFormat);
             AppendWithCRLF(tmpSql, ")");
             AppendWithCRLF(tmpSql, "");
             //stat end

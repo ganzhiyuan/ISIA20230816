@@ -1,6 +1,6 @@
 ﻿namespace ISIA.UI.MANAGEMENT
 {
-    partial class FrmSpcManagement
+    partial class FrmParameterSpecManagement
     {
         /// <summary>  
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSpcManagement));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmParameterSpecManagement));
             this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -350,10 +350,11 @@
             this.tbnSeach.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tbnSeach.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tbnSeach.MaximumSize = new System.Drawing.Size(93, 35);
+            this.tbnSeach.MinimumSize = new System.Drawing.Size(93, 35);
             this.tbnSeach.Name = "tbnSeach";
             this.tbnSeach.NeedToTranslate = true;
             this.tbnSeach.RepresentativeValue = "Search";
-            this.tbnSeach.Size = new System.Drawing.Size(47, 35);
+            this.tbnSeach.Size = new System.Drawing.Size(93, 35);
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
@@ -506,17 +507,17 @@
             this.lbLfacylity.Location = new System.Drawing.Point(3, 3);
             this.lbLfacylity.Name = "lbLfacylity";
             this.lbLfacylity.NeedToTranslate = true;
-            this.lbLfacylity.RepresentativeValue = "CATEGORY";
+            this.lbLfacylity.RepresentativeValue = "DB Name";
             this.lbLfacylity.Size = new System.Drawing.Size(116, 27);
             this.lbLfacylity.StyleController = this.layoutControl1;
             this.lbLfacylity.TabIndex = 1;
-            this.lbLfacylity.Text = "CATEGORY";
+            this.lbLfacylity.Text = "DB Name";
             // 
             // tDateTimePickerSE1
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 14, 13, 21, 47, 190);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 17, 14, 15, 59, 453);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -650,14 +651,14 @@
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // FrmSpcManagement
+            // FrmParameterSpecManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 707);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmSpcManagement";
-            this.Text = "BMPMChartReport";
+            this.Name = "FrmParameterSpecManagement";
+            this.Text = "ParameterSpecManagement";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
