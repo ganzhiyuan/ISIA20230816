@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTableExtend.cs" />
     <Compile Include="RepHelper.cs" />
     <Compile Include="PushMessage.cs" />
     <Compile Include="RawPrinterHelper.cs" />

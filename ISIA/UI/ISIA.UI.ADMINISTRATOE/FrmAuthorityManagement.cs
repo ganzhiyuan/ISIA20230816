@@ -19,6 +19,7 @@ using ISIA.UI.BASE;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraRichEdit.Model;
+using ISIA.COMMON;
 
 namespace ISIA.UI.ADMINISTRATOE
 {
@@ -156,7 +157,7 @@ namespace ISIA.UI.ADMINISTRATOE
             DataClient tmpDataClient = new DataClient();
             string UserUISql = string.Format("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", groupID);
             DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "TAPSTBUIAUTHORITY").Tables[0];//用户对应所有权限
-            List<treeListInfo> UserAllUI = GetList<treeListInfo>(UserUIList);
+            List<treeListInfo> UserAllUI = DataTableExtend.GetList<treeListInfo>(UserUIList);
             if (UserAllUI==null)
             {
                 return null;
@@ -250,7 +251,7 @@ namespace ISIA.UI.ADMINISTRATOE
             DataClient tmpDataClient = new DataClient();
             string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
             DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
-            List<treeListInfo> listMENU = GetList<treeListInfo>(retVal1);
+            List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retVal1);
             //取出一级名称
             List<string> listStr = listMENU.Select(x => x.MAINMENU).Distinct().ToList();
             foreach (var item in listStr)
@@ -262,7 +263,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 listData.Add(info);
             }
             //根据一级取出二级名称加入list
-            List<treeListInfo> listName = GetList<treeListInfo>(retVal1);
+            List<treeListInfo> listName = DataTableExtend.GetList<treeListInfo>(retVal1);
             foreach (var item in listName)
             {
                 treeListInfo info = new treeListInfo();
@@ -277,7 +278,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 listData.Add(info);
             }
             //取出三级名称加入list
-            List<treeListInfo> listChild = GetList<treeListInfo>(dt);
+            List<treeListInfo> listChild = DataTableExtend.GetList<treeListInfo>(dt);
             foreach (var item in listChild)
             {
                 treeListInfo info = new treeListInfo();
@@ -308,77 +309,6 @@ namespace ISIA.UI.ADMINISTRATOE
 
         }
 
-        public List<T> GetList<T>(DataTable table)
-        {
-            List<T> list = new List<T>();
-            T t = default(T);
-            PropertyInfo[] propertypes = null;
-            string tempName = string.Empty;
-            foreach (DataRow row in table.Rows)
-            {
-                t = Activator.CreateInstance<T>();
-                propertypes = t.GetType().GetProperties();
-                foreach (PropertyInfo pro in propertypes)
-                {
-                    tempName = pro.Name;
-                    if (table.Columns.Contains(tempName))
-                    {
-                        object value = row[tempName];
-                        if (!value.ToString().Equals(""))
-                        {
-                            pro.SetValue(t, value, null);
-                        }
-                    }
-                }
-                list.Add(t);
-            }
-            return list.Count ==0  ? null : list;
-        }
-        public DataSet ConvertToDataSet<T>(IList<T> list)
-        {
-            if (list == null || list.Count <= 0)
-            {
-                return null;
-            }
-
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable(typeof(T).Name);
-            DataColumn column;
-            DataRow row;
-
-            System.Reflection.PropertyInfo[] myPropertyInfo = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-
-            foreach (T t in list)
-            {
-                if (t == null)
-                {
-                    continue;
-                }
-
-                row = dt.NewRow();
-
-                for (int i = 0, j = myPropertyInfo.Length; i < j; i++)
-                {
-                    System.Reflection.PropertyInfo pi = myPropertyInfo[i];
-
-                    string name = pi.Name;
-
-                    if (dt.Columns[name] == null)
-                    {
-                        column = new DataColumn(name, pi.PropertyType);
-                        dt.Columns.Add(column);
-                    }
-
-                    row[name] = pi.GetValue(t, null);
-                }
-
-                dt.Rows.Add(row);
-            }
-
-            ds.Tables.Add(dt);
-
-            return ds;
-        }
 
         private void BindSourceChange(TreeView treeView)
         {
