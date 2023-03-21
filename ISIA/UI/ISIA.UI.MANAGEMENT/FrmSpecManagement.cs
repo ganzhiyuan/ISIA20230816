@@ -36,7 +36,7 @@ namespace ISIA.UI.MANAGEMENT
 
         DataSet ds = new DataSet();
 
-        DataTable TCODEtable = new DataTable();
+        DataTable DATABASETable = new DataTable();
         
         #endregion
 
@@ -69,7 +69,7 @@ namespace ISIA.UI.MANAGEMENT
 
             ds = bs.ExecuteDataSet("GetDB");
 
-            TCODEtable = bs.ExecuteDataTable("GetTCODE");//查询TAPCTCODES表
+            DATABASETable = bs.ExecuteDataTable("GetTCODE");//查询TAPCTCODES表
 
             ds.Tables[0].Columns.Add(new DataColumn("DBNAME", typeof(System.String)));
 
@@ -77,21 +77,31 @@ namespace ISIA.UI.MANAGEMENT
 
             foreach (DataRow rows in ds.Tables[0].Rows)
             {
-                string dbname =  TCODEtable.Select( String.Format("DBID = '{0}'", rows["DBID"].ToString()))[0]["DBNAME"].ToString();
+                string dbname = DATABASETable.Select( String.Format("DBID = '{0}'", rows["DBID"].ToString()))[0]["DBNAME"].ToString();
                 
                 rows["DBNAME"] = dbname;
 
-                if (string.IsNullOrEmpty(rows["M_VALUE"].ToString()))
+                if (rows["M_VALUE"].ToString().Contains("If"))
+                {
+                    if (string.IsNullOrEmpty(rows["M_VALUE"].ToString()))
+                    {
+
+                        rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString());
+
+                    }
+                    else
+                    {
+
+                        rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString(), rows["M_VALUE"].ToString());
+
+                    }
+                }
+                else
                 {
 
-                    rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString());
-
                 }
-                else {
 
-                    rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString(), rows["M_VALUE"].ToString());
-
-                }
+                
             }
 
             ds.Tables[0].Columns["RULENAME"].ColumnName = "Rule Space Name";
@@ -112,6 +122,10 @@ namespace ISIA.UI.MANAGEMENT
 
         public void GridViewDataBinding()
         {
+           
+
+            gridView1.GridControl.RepositoryItems.Clear();
+
             gridControl1.DataSource = null;
 
             gridView1.Columns.Clear();
@@ -155,7 +169,9 @@ namespace ISIA.UI.MANAGEMENT
 
             gridView1.Columns["RID"].Visible = false;
 
-            gridView1.Columns["RULETEXT"].OptionsColumn.AllowEdit = false;//设置列禁止编辑
+            //gridView1.Columns["RULETEXT"].OptionsColumn.AllowEdit = false;//设置列禁止编辑
+
+            gridView1.Columns["RULETEXT"].OptionsColumn.AllowEdit = true;
 
             gridView1.Columns["ID"].OptionsColumn.AllowEdit = false;//设置列禁止编辑
 
@@ -165,7 +181,7 @@ namespace ISIA.UI.MANAGEMENT
             //DBNAME创建combobox
             RepositoryItemComboBox DBNAME = new RepositoryItemComboBox();
             DBNAME.Name = "DBNAME";
-            List<string> lstDB = (from d in TCODEtable.AsEnumerable() select d.Field<string>("DBNAME")).ToList();
+            List<string> lstDB = (from d in DATABASETable.AsEnumerable() select d.Field<string>("DBNAME")).ToList();
             DBNAME.Items.AddRange(lstDB);
             //DBNAME.TextEditStyle = TextEditStyles.DisableTextEditor;
             DBNAME.TextEditStyle = TextEditStyles.Standard;
@@ -191,21 +207,30 @@ namespace ISIA.UI.MANAGEMENT
             //创建数字输入控件
             RepositoryItemSpinEdit Rulenno = new RepositoryItemSpinEdit();
             Rulenno.Name = "Ruleno";
-            Rulenno.EditMask = "n";
+            Rulenno.EditMask = "d";
+            Rulenno.MinValue = 1;
+            Rulenno.MaxValue = 9999999999;
+            Rulenno.MaxLength = 1;
             gridView.GridControl.RepositoryItems.Add(Rulenno);
             gridView.Columns["RULENO"].ColumnEdit = Rulenno;
             gridView.Columns["RULENO"].ColumnEditName = Rulenno.ToString();
 
             RepositoryItemSpinEdit Nvalue = new RepositoryItemSpinEdit();
             Nvalue.Name = "Nvalue";
-            Nvalue.EditMask = "n";
+            Nvalue.EditMask = "d";
+            Nvalue.MinValue = 1;
+            Nvalue.MaxValue = 9999999999;
+            Nvalue.MaxLength = 1;
             gridView.GridControl.RepositoryItems.Add(Nvalue);
             gridView.Columns["N_VALUE"].ColumnEdit = Nvalue;
             gridView.Columns["N_VALUE"].ColumnEditName = Nvalue.ToString();
 
             RepositoryItemSpinEdit Mvalue = new RepositoryItemSpinEdit();
             Mvalue.Name = "Mvalue";
-            Mvalue.EditMask = "n";
+            Mvalue.EditMask = "d";
+            Mvalue.MinValue = 1;
+            Mvalue.MaxValue = 9999999999;
+            Mvalue.MaxLength = 1;
             gridView.GridControl.RepositoryItems.Add(Mvalue);
             gridView.Columns["M_VALUE"].ColumnEdit = Mvalue;
             gridView.Columns["M_VALUE"].ColumnEditName = Mvalue.ToString();
@@ -213,6 +238,7 @@ namespace ISIA.UI.MANAGEMENT
 
             //ISLIVE创建checkbox控件
             RepositoryItemCheckEdit Islive = new RepositoryItemCheckEdit();
+            Islive.Name = "Islive";
             Islive.ValueChecked = "YES";
             Islive.ValueUnchecked = "NO";
             gridView.GridControl.RepositoryItems.Add(Islive);
@@ -298,7 +324,8 @@ namespace ISIA.UI.MANAGEMENT
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
 
-
+            string aa = "aaa";
+            return;
             
             DataRowView dataRowView = (DataRowView)e.Row;
             //dataRowView.Row.ItemArray;
@@ -354,13 +381,13 @@ namespace ISIA.UI.MANAGEMENT
 
             if (e.Button.ButtonType == NavigatorButtonType.Append)
             {
+                //string aa = "aa";
+                
+               /* //DevExpress.XtraGrid.Columns.GridColumn[] gridColumns = gridView1.Columns.ToArray();
 
+                *//*List<RepositoryItemCollection> itemCollections = new List<RepositoryItemCollection>();//RepositoryItems添加集合
 
-                //DevExpress.XtraGrid.Columns.GridColumn[] gridColumns = gridView1.Columns.ToArray();
-
-                /*List<RepositoryItemCollection> itemCollections = new List<RepositoryItemCollection>();//RepositoryItems添加集合
-
-                itemCollections.Add(gridControl1.RepositoryItems);*/
+                itemCollections.Add(gridControl1.RepositoryItems);*//*
 
                 //ts[9].ColumnEdit.GetType().Name.ToString();//获取repository类型
 
@@ -390,7 +417,7 @@ namespace ISIA.UI.MANAGEMENT
                 }
                 else {
                     return;
-                }
+                }*/
 
             }
             else if (e.Button.ButtonType == NavigatorButtonType.Remove) {
@@ -413,9 +440,13 @@ namespace ISIA.UI.MANAGEMENT
             }
             else if (e.Button.ButtonType == NavigatorButtonType.EndEdit)
             {
-                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
 
-                args.DBID = TCODEtable.Select(String.Format("DBID = '{0}'", dataRow["DBNAME"].ToString()))[0]["DBID"].ToString();
+
+                //DataRowView dataRow1 = (DataRowView)gridView1.GetFocusedRow(); 
+                DataRow dataRow = gridView1.GetFocusedDataRow();
+                //DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+                args.DBID = DATABASETable.Select(String.Format("DBNAME = '{0}'", dataRow["DBNAME"].ToString()))[0]["DBID"].ToString();
                 args.RULENAME = dataRow["Rule Space Name"].ToString();
                 args.RULENO = dataRow["RULENO"].ToString();
                 args.N_VALUE = dataRow["N_VALUE"].ToString();
@@ -423,12 +454,34 @@ namespace ISIA.UI.MANAGEMENT
                 args.ISALIVE = dataRow["ISALIVE"].ToString();
                 args.ROWID = dataRow["RID"].ToString();
 
-                int Res = bs.ExecuteModify("UpdateSpec", args.getPack());
-
-                if (Res == 1)
+                if (string.IsNullOrEmpty(dataRow["RID"].ToString()))
                 {
-                    XtraMessageBox.Show("Update data succeeded ", " ");
+                    
+                    int Res = bs.ExecuteModify("NewSPEC", args.getPack());
+
+                    if (Res == 1)
+                    {
+                        XtraMessageBox.Show("Add Data Succeeded ", " ");
+                    }
+
+                    tbnSeach_Click(null, null);
                 }
+                else
+                {
+                    int Res = bs.ExecuteModify("UpdateSpec", args.getPack());
+
+                    if (Res == 1)
+                    {
+                        XtraMessageBox.Show("Update Data Succeeded ", " ");
+                    }
+
+                    tbnSeach_Click(null, null);
+
+                }
+
+                
+
+                
             }
 
         }

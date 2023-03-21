@@ -32,12 +32,14 @@ namespace ISIA.UI.MANAGEMENT
         #region Feild
         BizDataClient bs = null;
         //ComboBoxControl ComboBoxControl = new ComboBoxControl();
-        SpecManagementArgsPack args = new SpecManagementArgsPack();
+        ParameterSpecManagementArgsPack args = new ParameterSpecManagementArgsPack();
 
         DataSet ds = new DataSet();
 
-        DataTable TCODEtable = new DataTable();
-        
+        DataTable DATABASETable = new DataTable();
+
+        DataTable ParameterTable = new DataTable();
+
         #endregion
 
 
@@ -45,9 +47,6 @@ namespace ISIA.UI.MANAGEMENT
         {
             InitializeComponent();
             InitializeComboBox();
-            /*tDateTimePickerSE1.StartDate = DateTime.ParseExact(DateTime.Now.AddYears(-1).ToString("yyyy"), "yyyy", System.Globalization.CultureInfo.CurrentCulture);
-            tDateTimePickerSE1.EndDate = DateTime.ParseExact(DateTime.Now.ToString("yyyy"), "yyyy", System.Globalization.CultureInfo.CurrentCulture);
-            */
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.ParameterSpecManagement");
         }
 
@@ -63,13 +62,13 @@ namespace ISIA.UI.MANAGEMENT
         public DataSet LoadData()
         {
             
-            /* ds = bs.ExecuteDataSet("GetBMPMINFO", args.getPack());
-             ds_NUM = bs.ExecuteDataSet("GetBMPMNUM", args.getPack());
-             ds_OUTPUT = bs.ExecuteDataSet("GetOUTPUT", args.getPack());*/
+            
 
             ds = bs.ExecuteDataSet("GetDB");
 
-            TCODEtable = bs.ExecuteDataTable("GetTCODE");//查询TAPCTCODES表
+            DATABASETable = bs.ExecuteDataTable("GetTCODE");//查询TAPCTCODES表
+
+            ParameterTable = bs.ExecuteDataTable("GetParameterdef");//查询PARAMETER表
 
             ds.Tables[0].Columns.Add(new DataColumn("DBNAME", typeof(System.String)));
 
@@ -77,24 +76,14 @@ namespace ISIA.UI.MANAGEMENT
 
             foreach (DataRow rows in ds.Tables[0].Rows)
             {
-                string dbname =  TCODEtable.Select( String.Format("DBID = '{0}'", rows["DBID"].ToString()))[0]["DBNAME"].ToString();
+                string dbname = DATABASETable.Select( String.Format("DBID = '{0}'", rows["DBID"].ToString()))[0]["DBNAME"].ToString();
                 
                 rows["DBNAME"] = dbname;
 
-               /* if (string.IsNullOrEmpty(rows["M_VALUE"].ToString()))
-                {
-
-                    rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString());
-
-                }
-                else {
-
-                    rows["RULETEXT"] = String.Format(rows["RULETEXT"].ToString(), rows["N_VALUE"].ToString(), rows["M_VALUE"].ToString());
-
-                }*/
+               
             }
 
-            //ds.Tables[0].Columns["RULENAME"].ColumnName = "Rule Space Name";
+            ds.Tables[0].Columns["RULENAME"].ColumnName = "Rule Space Name";
 
 
             return ds;
@@ -112,6 +101,8 @@ namespace ISIA.UI.MANAGEMENT
 
         public void GridViewDataBinding()
         {
+            gridView1.GridControl.RepositoryItems.Clear();
+
             gridControl1.DataSource = null;
 
             gridView1.Columns.Clear();
@@ -155,6 +146,8 @@ namespace ISIA.UI.MANAGEMENT
 
             gridView1.Columns["RID"].Visible = false;
 
+            gridView1.Columns["PARAMETERID"].Visible = false;
+
             //gridView1.Columns["RULETEXT"].OptionsColumn.AllowEdit = false;//设置列禁止编辑
 
             gridView1.Columns["ID"].OptionsColumn.AllowEdit = false;//设置列禁止编辑
@@ -165,7 +158,7 @@ namespace ISIA.UI.MANAGEMENT
              //DBNAME创建combobox
              RepositoryItemComboBox DBNAME = new RepositoryItemComboBox();
              DBNAME.Name = "DBNAME";
-             List<string> lstDB = (from d in TCODEtable.AsEnumerable() select d.Field<string>("DBNAME")).ToList();
+             List<string> lstDB = (from d in DATABASETable.AsEnumerable() select d.Field<string>("DBNAME")).ToList();
              DBNAME.Items.AddRange(lstDB);
              //DBNAME.TextEditStyle = TextEditStyles.DisableTextEditor;
              DBNAME.TextEditStyle = TextEditStyles.Standard;
@@ -174,7 +167,19 @@ namespace ISIA.UI.MANAGEMENT
              gridView.Columns["DBNAME"].ColumnEdit = DBNAME;
              gridView.Columns["DBNAME"].ColumnEditName = DBNAME.ToString();
 
-            /* //RULENAME创建combobox
+             //ParameterName创建combobox
+             RepositoryItemComboBox PARAMETERNAME = new RepositoryItemComboBox();
+             PARAMETERNAME.Name = "PARAMETERNAME";
+             PARAMETERNAME.AutoComplete = true;
+             List<string> lstPara = (from d in ParameterTable.AsEnumerable() select d.Field<string>("PARAMETERNAME")).Distinct<string>().ToList();
+             PARAMETERNAME.Items.AddRange(lstPara);
+            //RULENAME.TextEditStyle = TextEditStyles.DisableTextEditor;
+             PARAMETERNAME.TextEditStyle = TextEditStyles.Standard;
+             gridView.GridControl.RepositoryItems.Add(PARAMETERNAME);
+             gridView.Columns["PARAMETERNAME"].ColumnEdit = PARAMETERNAME;
+             gridView.Columns["PARAMETERNAME"].ColumnEditName = PARAMETERNAME.ToString();
+
+             //RULENAME创建combobox
              RepositoryItemComboBox RULENAME = new RepositoryItemComboBox();
              RULENAME.Name = "RULENAME";
              RULENAME.AutoComplete = true;
@@ -187,15 +192,72 @@ namespace ISIA.UI.MANAGEMENT
              gridView.Columns["Rule Space Name"].ColumnEditName = RULENAME.ToString();
 
 
+            
+              //创建数字输入控件
+              RepositoryItemSpinEdit Rulenno = new RepositoryItemSpinEdit();
+              Rulenno.Name = "Ruleno";
+              Rulenno.EditMask = "d";
+              Rulenno.MinValue = 1;
+              Rulenno.MaxValue = 9999999999999999;
+              Rulenno.MaxLength = 1;
+              gridView.GridControl.RepositoryItems.Add(Rulenno);
+              gridView.Columns["RULENO"].ColumnEdit = Rulenno;
+              gridView.Columns["RULENO"].ColumnEditName = Rulenno.ToString();
 
-             //创建数字输入控件
-             RepositoryItemSpinEdit Rulenno = new RepositoryItemSpinEdit();
-             Rulenno.Name = "Ruleno";
-             Rulenno.EditMask = "n";
-             gridView.GridControl.RepositoryItems.Add(Rulenno);
-             gridView.Columns["RULENO"].ColumnEdit = Rulenno;
-             gridView.Columns["RULENO"].ColumnEditName = Rulenno.ToString();
 
+              RepositoryItemSpinEdit Day = new RepositoryItemSpinEdit();
+              Day.Name = "Day";
+              Rulenno.EditMask = "d";
+              Rulenno.MinValue = 1;
+              Rulenno.MaxValue = 9999999999999999;
+              Rulenno.MaxLength = 1;
+              gridView.GridControl.RepositoryItems.Add(Day);
+              gridView.Columns["DAYS"].ColumnEdit = Day;
+              gridView.Columns["DAYS"].ColumnEditName = Day.ToString();
+
+
+
+            RepositoryItemSpinEdit SPECUPPERLIMIT = new RepositoryItemSpinEdit();
+            SPECUPPERLIMIT.Name = "SPECUPPERLIMIT";
+            SPECUPPERLIMIT.EditMask = "d";
+            SPECUPPERLIMIT.MinValue = 1;
+            SPECUPPERLIMIT.MaxValue = 9999999999999999;
+            SPECUPPERLIMIT.MaxLength = 1;
+            gridView.GridControl.RepositoryItems.Add(SPECUPPERLIMIT);
+            gridView.Columns["SPECUPPERLIMIT"].ColumnEdit = SPECUPPERLIMIT;
+            gridView.Columns["SPECUPPERLIMIT"].ColumnEditName = SPECUPPERLIMIT.ToString();
+
+            RepositoryItemSpinEdit SPECLOWERLIMIT = new RepositoryItemSpinEdit();
+            SPECLOWERLIMIT.Name = "SPECLOWERLIMIT";
+            SPECLOWERLIMIT.EditMask = "d";
+            SPECLOWERLIMIT.MinValue = 1;
+            SPECLOWERLIMIT.MaxValue = 9999999999999999;
+            SPECLOWERLIMIT.MaxLength = 1;
+            gridView.GridControl.RepositoryItems.Add(SPECLOWERLIMIT);
+            gridView.Columns["SPECLOWERLIMIT"].ColumnEdit = SPECLOWERLIMIT;
+            gridView.Columns["SPECLOWERLIMIT"].ColumnEditName = SPECLOWERLIMIT.ToString();
+
+            RepositoryItemSpinEdit CONTROLUPPERLIMIT = new RepositoryItemSpinEdit();
+            CONTROLUPPERLIMIT.Name = "CONTROLUPPERLIMIT";
+            CONTROLUPPERLIMIT.EditMask = "d";
+            CONTROLUPPERLIMIT.MinValue = 1;
+            CONTROLUPPERLIMIT.MaxValue = 9999999999999999;
+            CONTROLUPPERLIMIT.MaxLength = 1;
+            gridView.GridControl.RepositoryItems.Add(CONTROLUPPERLIMIT);
+            gridView.Columns["CONTROLUPPERLIMIT"].ColumnEdit = CONTROLUPPERLIMIT;
+            gridView.Columns["CONTROLUPPERLIMIT"].ColumnEditName = CONTROLUPPERLIMIT.ToString();
+
+            RepositoryItemSpinEdit CONTROLLOWERLIMIT = new RepositoryItemSpinEdit();
+            CONTROLLOWERLIMIT.Name = "CONTROLLOWERLIMIT";
+            CONTROLLOWERLIMIT.EditMask = "d";
+            CONTROLLOWERLIMIT.MinValue = 1;
+            CONTROLLOWERLIMIT.MaxValue = 9999999999999999;
+            CONTROLLOWERLIMIT.MaxLength = 1;
+            gridView.GridControl.RepositoryItems.Add(CONTROLLOWERLIMIT);
+            gridView.Columns["CONTROLLOWERLIMIT"].ColumnEdit = CONTROLLOWERLIMIT;
+            gridView.Columns["CONTROLLOWERLIMIT"].ColumnEditName = CONTROLLOWERLIMIT.ToString();
+
+            /*
              RepositoryItemSpinEdit Nvalue = new RepositoryItemSpinEdit();
              Nvalue.Name = "Nvalue";
              Nvalue.EditMask = "n";
@@ -211,8 +273,43 @@ namespace ISIA.UI.MANAGEMENT
              gridView.Columns["M_VALUE"].ColumnEditName = Mvalue.ToString();
             */
 
+
+            RepositoryItemCheckEdit CHARTUSED = new RepositoryItemCheckEdit();
+            CHARTUSED.Name = "CHARTUSED";
+            CHARTUSED.ValueChecked = "YES";
+            CHARTUSED.ValueUnchecked = "NO";
+            gridView.GridControl.RepositoryItems.Add(CHARTUSED);
+            gridView.Columns["CHARTUSED"].ColumnEdit = CHARTUSED;
+            gridView.Columns["CHARTUSED"].ColumnEditName = CHARTUSED.ToString();
+
+            RepositoryItemCheckEdit MAILUSED = new RepositoryItemCheckEdit();
+            MAILUSED.Name = "MAILUSED";
+            MAILUSED.ValueChecked = "YES";
+            MAILUSED.ValueUnchecked = "NO";
+            gridView.GridControl.RepositoryItems.Add(MAILUSED);
+            gridView.Columns["MAILUSED"].ColumnEdit = MAILUSED;
+            gridView.Columns["MAILUSED"].ColumnEditName = MAILUSED.ToString();
+
+            RepositoryItemCheckEdit MMSUSED = new RepositoryItemCheckEdit();
+            MMSUSED.Name = "MMSUSED";
+            MMSUSED.ValueChecked = "YES";
+            MMSUSED.ValueUnchecked = "NO";
+            gridView.GridControl.RepositoryItems.Add(MMSUSED);
+            gridView.Columns["MMSUSED"].ColumnEdit = MMSUSED;
+            gridView.Columns["MMSUSED"].ColumnEditName = MMSUSED.ToString();
+
+            RepositoryItemCheckEdit SPECLIMITUSED = new RepositoryItemCheckEdit();
+            SPECLIMITUSED.Name = "SPECLIMITUSED";
+            SPECLIMITUSED.ValueChecked = "YES";
+            SPECLIMITUSED.ValueUnchecked = "NO";
+            gridView.GridControl.RepositoryItems.Add(SPECLIMITUSED);
+            gridView.Columns["SPECLIMITUSED"].ColumnEdit = SPECLIMITUSED;
+            gridView.Columns["SPECLIMITUSED"].ColumnEditName = SPECLIMITUSED.ToString();
+
+
             //ISLIVE创建checkbox控件
             RepositoryItemCheckEdit Islive = new RepositoryItemCheckEdit();
+            Islive.Name = "Islive";
             Islive.ValueChecked = "YES";
             Islive.ValueUnchecked = "NO";
             gridView.GridControl.RepositoryItems.Add(Islive);
@@ -288,18 +385,11 @@ namespace ISIA.UI.MANAGEMENT
 
 
 
-
-
-
-
-
         #endregion
 
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
 
-
-            
             DataRowView dataRowView = (DataRowView)e.Row;
             //dataRowView.Row.ItemArray;
             /*args.CATEGORY = dataRowView.Row["CATEGORY"].ToString();
@@ -336,8 +426,6 @@ namespace ISIA.UI.MANAGEMENT
                 return;
 
             }*/
-
-            
                 args.ROWID = dataRowView.Row["ID"].ToString();
                 int Res = bs.ExecuteModify("UpdateTCODE", args.getPack());
 
@@ -364,7 +452,7 @@ namespace ISIA.UI.MANAGEMENT
 
                 //ts[9].ColumnEdit.GetType().Name.ToString();//获取repository类型
 
-                List<DevExpress.XtraGrid.Columns.GridColumn> ts = gridView1.Columns.ToList();
+                /*List<DevExpress.XtraGrid.Columns.GridColumn> ts = gridView1.Columns.ToList();
                 //ts[9].ColumnEditName.ToString();
 
                 ts.Remove(ts[0]);
@@ -390,7 +478,7 @@ namespace ISIA.UI.MANAGEMENT
                 }
                 else {
                     return;
-                }
+                }*/
 
             }
             else if (e.Button.ButtonType == NavigatorButtonType.Remove) {
@@ -399,7 +487,7 @@ namespace ISIA.UI.MANAGEMENT
                 args.ROWID = dataRow["RID"].ToString();
                 //gridView1.DeleteRow(gridView1.FocusedRowHandle);
 
-                int Res = bs.ExecuteModify("DelteSpec", args.getPack());
+                int Res = bs.ExecuteModify("DelteParameterSpec", args.getPack());
 
                 if (Res == 1)
                 {
@@ -413,22 +501,62 @@ namespace ISIA.UI.MANAGEMENT
             }
             else if (e.Button.ButtonType == NavigatorButtonType.EndEdit)
             {
-                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+                //DataRowView dataRow1 = (DataRowView)gridView1.GetFocusedRow(); 
+                DataRow dataRow = gridView1.GetFocusedDataRow();
+                //DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
 
-                args.DBID = TCODEtable.Select(String.Format("DBID = '{0}'", dataRow["DBNAME"].ToString()))[0]["DBID"].ToString();
+                args.DBID = DATABASETable.Select(String.Format("DBNAME = '{0}'", dataRow["DBNAME"].ToString()))[0]["DBID"].ToString();
+                args.PARAMETERID = ParameterTable.Select(String.Format("PARAMETERNAME = '{0}'", dataRow["PARAMETERNAME"].ToString()))[0]["PARAMETERID"].ToString();
+                args.PARAMETERNAME = dataRow["PARAMETERNAME"].ToString();
                 args.RULENAME = dataRow["Rule Space Name"].ToString();
                 args.RULENO = dataRow["RULENO"].ToString();
-                args.N_VALUE = dataRow["N_VALUE"].ToString();
-                args.M_VALUE = dataRow["M_VALUE"].ToString();
+                args.DAYS = dataRow["DAYS"].ToString();
+                args.SPECUPPERLIMIT = dataRow["SPECUPPERLIMIT"].ToString();
+                args.SPECLOWERLIMIT = dataRow["SPECLOWERLIMIT"].ToString();
+                args.CONTROLUPPERLIMIT = dataRow["CONTROLUPPERLIMIT"].ToString();
+                args.CONTROLLOWERLIMIT = dataRow["CONTROLLOWERLIMIT"].ToString();
+                args.CHARTUSED = dataRow["CHARTUSED"].ToString();
+                args.MAILUSED = dataRow["MAILUSED"].ToString();
+                args.MMSUSED = dataRow["MMSUSED"].ToString();
+                args.SPECLIMITUSED = dataRow["SPECLIMITUSED"].ToString();
                 args.ISALIVE = dataRow["ISALIVE"].ToString();
                 args.ROWID = dataRow["RID"].ToString();
 
-                int Res = bs.ExecuteModify("UpdateSpec", args.getPack());
-
-                if (Res == 1)
+                if (string.IsNullOrEmpty(dataRow["RID"].ToString()))
                 {
-                    XtraMessageBox.Show("Update data succeeded ", " ");
+
+                    int Res = bs.ExecuteModify("NewParameterSpec", args.getPack());
+
+                    if (Res == 1)
+                    {
+                        XtraMessageBox.Show("Add Data Succeeded ", " ");
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    tbnSeach_Click(null, null);
+
                 }
+                else
+                {
+                    int Res = bs.ExecuteModify("UpdateParameterSpec", args.getPack());
+
+                    if (Res == 1)
+                    {
+                        XtraMessageBox.Show("Update Data Succeeded ", " ");
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    tbnSeach_Click(null, null);
+
+                }
+
+
             }
 
         }

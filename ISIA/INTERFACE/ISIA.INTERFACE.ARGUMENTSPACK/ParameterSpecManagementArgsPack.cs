@@ -9,16 +9,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
     public class ParameterSpecManagementArgsPack
     {
         private string _DBID  = null;
+        private string _PARAMETERID = null;
+        private string _PARAMETERNAME = null;
+        private string _DAYS = null;
         private string _RULENAME = null;
         private string _RULENO = null;
-        private string _RULETEXT = null;
-        private string _N_VALUE = null;
-        private string _M_VALUE = null;
-        private string _UPDATETIME = null;
-        private string _UPDATEUSER = null;
-        private string _INSERTTIME = null;
-        private string _INSERTUSER = null;
-        private string _SEQUENCES = null;
+        private string _SPECUPPERLIMIT = null;
+        private string _SPECLOWERLIMIT = null;
+        private string _CONTROLUPPERLIMIT = null;
+        private string _CONTROLLOWERLIMIT = null;
+        private string _CHARTUSED = null;
+        private string _MAILUSED = null;
+        private string _MMSUSED = null;
+        private string _SPECLIMITUSED = null;
         private string _ISALIVE = null;
         private string _RowId = null;
         
@@ -28,16 +31,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private ArgumentPack argsPack = new ArgumentPack();
 
         public string DBID { get { return _DBID; } set { _DBID = value; } }
+        public string PARAMETERID { get { return _PARAMETERID; } set { _PARAMETERID = value; } }
+        public string PARAMETERNAME { get { return _PARAMETERNAME; } set { _PARAMETERNAME = value; } }
+        public string DAYS { get { return _DAYS; } set { _DAYS = value; } }
         public string RULENAME { get { return _RULENAME; } set { _RULENAME = value; } }
         public string RULENO { get { return _RULENO; } set { _RULENO = value; } }
-        public string RULETEXT { get { return _RULETEXT; } set { _RULETEXT = value; } }
-        public string N_VALUE { get { return _N_VALUE; } set { _N_VALUE = value; } }
-        public string M_VALUE { get { return _M_VALUE; } set { _M_VALUE = value; } }
-        public string UPDATETIME { get { return _UPDATETIME; } set { _UPDATETIME = value; } }
-        public string UPDATEUSER { get { return _UPDATEUSER; } set { _UPDATEUSER = value; } }
-        public string CUSTOM05 { get { return _INSERTTIME; } set { _INSERTTIME = value; } }
-        public string INSERTUSER { get { return _INSERTUSER; } set { _INSERTUSER = value; } }
-        public string SEQUENCES { get { return _SEQUENCES; } set { _SEQUENCES = value; } }
+        public string SPECUPPERLIMIT { get { return _SPECUPPERLIMIT; } set { _SPECUPPERLIMIT = value; } }
+        public string SPECLOWERLIMIT { get { return _SPECLOWERLIMIT; } set { _SPECLOWERLIMIT = value; } }
+        public string CONTROLUPPERLIMIT { get { return _CONTROLUPPERLIMIT; } set { _CONTROLUPPERLIMIT = value; } }
+        public string CONTROLLOWERLIMIT { get { return _CONTROLLOWERLIMIT; } set { _CONTROLLOWERLIMIT = value; } }
+        public string CHARTUSED { get { return _CHARTUSED; } set { _CHARTUSED = value; } }
+        public string MAILUSED { get { return _MAILUSED; } set { _MAILUSED = value; } }
+        public string MMSUSED { get { return _MMSUSED; } set { _MMSUSED = value; } }
+        public string SPECLIMITUSED { get { return _SPECLIMITUSED; } set { _SPECLIMITUSED = value; } }
         public string ISALIVE { get { return _ISALIVE; } set { _ISALIVE = value; } }
         public string ROWID { get { return _RowId; } set { _RowId = value; } }
        

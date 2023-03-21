@@ -24,7 +24,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("  SELECT ROWID RID, ROWNUM ID, DBID, PARAMETERNAME, RULENAME, RULENO, DAYS, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
+                tmpSql.Append("  SELECT ROWID RID, ROWNUM ID, DBID, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
                 tmpSql.Append("  CONTROLLOWERLIMIT , CHARTUSED , MAILUSED ,MMSUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
 
 
@@ -66,19 +66,50 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
-
-
-
-        public void UpdateSpec(SpecManagementArgsPack arguments)
+        public void GetParameterdef()
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("UPDATE TAPCTSPCRULESPEC SET ");
+
+                tmpSql.Append("  SELECT * FROM  TAPCTPARAMETERDEF");
+                tmpSql.Append("  WHERE 1=1   ORDER BY PARAMETERNAME ");
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+
+
+        public void UpdateParameterSpec(ParameterSpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("UPDATE TAPCTPARAMETERRULESPEC SET ");
                 if (!string.IsNullOrEmpty(arguments.DBID))
                 {
                     tmpSql.AppendFormat("  DBID = '{0}' ,", arguments.DBID);
+                }
+                if (!string.IsNullOrEmpty(arguments.PARAMETERID))
+                {
+                    tmpSql.AppendFormat("  PARAMETERID = '{0}' ,", arguments.PARAMETERID);
+                }
+                if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
+                {
+                    tmpSql.AppendFormat("  PARAMETERNAME = '{0}' ,", arguments.PARAMETERNAME);
                 }
                 if (!string.IsNullOrEmpty(arguments.RULENAME))
                 {
@@ -88,17 +119,41 @@ namespace ISIA.BIZ.MANAGEMENT
                 {
                     tmpSql.AppendFormat("  RULENO = '{0}' ,", arguments.RULENO);
                 }
-                if (!string.IsNullOrEmpty(arguments.RULETEXT))
+                if (!string.IsNullOrEmpty(arguments.DAYS))
                 {
-                    tmpSql.AppendFormat("  RULETEXT = '{0}' ,", arguments.RULETEXT);
+                    tmpSql.AppendFormat("  DAYS = '{0}' ,", arguments.DAYS);
                 }
-                if (!string.IsNullOrEmpty(arguments.N_VALUE))
+                if (!string.IsNullOrEmpty(arguments.SPECUPPERLIMIT))
                 {
-                    tmpSql.AppendFormat("  N_VALUE = '{0}' ,", arguments.N_VALUE);
+                    tmpSql.AppendFormat("  SPECUPPERLIMIT = '{0}' ,", arguments.SPECUPPERLIMIT);
                 }
-                if (!string.IsNullOrEmpty(arguments.M_VALUE))
+                if (!string.IsNullOrEmpty(arguments.SPECLOWERLIMIT))
                 {
-                    tmpSql.AppendFormat("  M_VALUE = '{0}' ,", arguments.M_VALUE);
+                    tmpSql.AppendFormat("  SPECLOWERLIMIT = '{0}' ,", arguments.SPECLOWERLIMIT);
+                }
+                if (!string.IsNullOrEmpty(arguments.CONTROLUPPERLIMIT))
+                {
+                    tmpSql.AppendFormat("  CONTROLUPPERLIMIT = '{0}' ,", arguments.CONTROLUPPERLIMIT);
+                }
+                if (!string.IsNullOrEmpty(arguments.CONTROLLOWERLIMIT))
+                {
+                    tmpSql.AppendFormat("  CONTROLLOWERLIMIT = '{0}' ,", arguments.CONTROLLOWERLIMIT);
+                }
+                if (!string.IsNullOrEmpty(arguments.CHARTUSED))
+                {
+                    tmpSql.AppendFormat("  CHARTUSED = '{0}' ,", arguments.CHARTUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.MAILUSED))
+                {
+                    tmpSql.AppendFormat("  MAILUSED = '{0}' ,", arguments.MAILUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.MMSUSED))
+                {
+                    tmpSql.AppendFormat("  MMSUSED = '{0}' ,", arguments.MMSUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.SPECLIMITUSED))
+                {
+                    tmpSql.AppendFormat("  SPECLIMITUSED = '{0}' ,", arguments.SPECLIMITUSED);
                 }
                 if (!string.IsNullOrEmpty(arguments.ISALIVE))
                 {
@@ -120,62 +175,76 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
-        public void NewTCODE(DataBaseManagementArgsPack arguments)
+        public void NewParameterSpec(ParameterSpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO TAPCTCODES (  ");
+                tmpSql.Append("Insert INTO TAPCTPARAMETERRULESPEC (  ");
 
-
-
-                if (!string.IsNullOrEmpty(arguments.CATEGORY))
+                if (!string.IsNullOrEmpty(arguments.DBID))
                 {
-                    tmpSql.AppendFormat("  CATEGORY ,");
+                    tmpSql.AppendFormat("  DBID ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.SUBCATEGORY))
+                if (!string.IsNullOrEmpty(arguments.PARAMETERID))
                 {
-                    tmpSql.AppendFormat("  SUBCATEGORY ,");
+                    tmpSql.AppendFormat("  PARAMETERID ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.NAME))
+                if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
                 {
-                    tmpSql.AppendFormat("  NAME ,");
+                    tmpSql.AppendFormat("  PARAMETERNAME ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.USED))
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
                 {
-                    tmpSql.AppendFormat("  USED ,");
+                    tmpSql.AppendFormat("  RULENAME ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM01))
+                if (!string.IsNullOrEmpty(arguments.RULENO))
                 {
-                    tmpSql.AppendFormat("  CUSTOM01 ,");
+                    tmpSql.AppendFormat("  RULENO ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM02))
+                if (!string.IsNullOrEmpty(arguments.DAYS))
                 {
-                    tmpSql.AppendFormat("  CUSTOM02 ,");
+                    tmpSql.AppendFormat("  DAYS ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM03))
+                if (!string.IsNullOrEmpty(arguments.SPECUPPERLIMIT))
                 {
-                    tmpSql.AppendFormat("  CUSTOM03 ,");
+                    tmpSql.AppendFormat("  SPECUPPERLIMIT ,");
                 }
 
-                if (!string.IsNullOrEmpty(arguments.CUSTOM04))
+                if (!string.IsNullOrEmpty(arguments.SPECLOWERLIMIT))
                 {
-                    tmpSql.Append("  CUSTOM04 ,");
+                    tmpSql.Append("  SPECLOWERLIMIT ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM05))
+                if (!string.IsNullOrEmpty(arguments.CONTROLUPPERLIMIT))
                 {
-                    tmpSql.Append("  CUSTOM05 ,");
+                    tmpSql.Append("  CONTROLUPPERLIMIT ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM06))
+                if (!string.IsNullOrEmpty(arguments.CONTROLLOWERLIMIT))
                 {
-                    tmpSql.Append("  CUSTOM06 ,");
+                    tmpSql.Append("  CONTROLLOWERLIMIT ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM07))
+                if (!string.IsNullOrEmpty(arguments.CHARTUSED))
                 {
-                    tmpSql.Append("  CUSTOM07 ,");
+                    tmpSql.Append("  CHARTUSED ,");
                 }
-               
+                if (!string.IsNullOrEmpty(arguments.MAILUSED))
+                {
+                    tmpSql.Append("  MAILUSED ,");
+                }
+                if (!string.IsNullOrEmpty(arguments.MMSUSED))
+                {
+                    tmpSql.Append("  MMSUSED ,");
+                }
+                if (!string.IsNullOrEmpty(arguments.SPECLIMITUSED))
+                {
+                    tmpSql.Append("  SPECLIMITUSED ,");
+                }
+                if (!string.IsNullOrEmpty(arguments.ISALIVE))
+                {
+                    tmpSql.Append("  ISALIVE ,");
+                }
+
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
                 {
                     tmpSql = new StringBuilder(tmpSql.ToString().Substring(0, tmpSql.Length - 1));
@@ -183,51 +252,68 @@ namespace ISIA.BIZ.MANAGEMENT
 
                 tmpSql.Append(") values (");
 
-                if (!string.IsNullOrEmpty(arguments.CATEGORY))
+                if (!string.IsNullOrEmpty(arguments.DBID))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CATEGORY);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.DBID);
                 }
-                if (!string.IsNullOrEmpty(arguments.SUBCATEGORY))
+                if (!string.IsNullOrEmpty(arguments.PARAMETERID))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.SUBCATEGORY);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.PARAMETERID);
                 }
-                if (!string.IsNullOrEmpty(arguments.NAME))
+                if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.NAME);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.PARAMETERNAME);
                 }
-                if (!string.IsNullOrEmpty(arguments.USED))
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.USED);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.RULENAME);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM01))
+                if (!string.IsNullOrEmpty(arguments.RULENO))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM01);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.RULENO);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM02))
+                if (!string.IsNullOrEmpty(arguments.DAYS))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM02);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.DAYS);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM03))
+                if (!string.IsNullOrEmpty(arguments.SPECUPPERLIMIT))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM03);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.SPECUPPERLIMIT);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM04))
+                if (!string.IsNullOrEmpty(arguments.SPECLOWERLIMIT))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM04);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.SPECLOWERLIMIT);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM05))
+                if (!string.IsNullOrEmpty(arguments.CONTROLUPPERLIMIT))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM05);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CONTROLUPPERLIMIT);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM06))
+                if (!string.IsNullOrEmpty(arguments.CONTROLLOWERLIMIT))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM06);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CONTROLLOWERLIMIT);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM07))
+                if (!string.IsNullOrEmpty(arguments.CHARTUSED))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM07);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CHARTUSED);
                 }
-                
+                if (!string.IsNullOrEmpty(arguments.MAILUSED))
+                {
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.MAILUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.MMSUSED))
+                {
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.MMSUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.SPECLIMITUSED))
+                {
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.SPECLIMITUSED);
+                }
+                if (!string.IsNullOrEmpty(arguments.ISALIVE))
+                {
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.ISALIVE);
+                }
+
+
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
                 {
                     tmpSql = new StringBuilder(tmpSql.ToString().Substring(0, tmpSql.Length - 1));
@@ -251,14 +337,14 @@ namespace ISIA.BIZ.MANAGEMENT
 
 
 
-        public void DelteSpec(DataBaseManagementArgsPack arguments)
+        public void DelteParameterSpec(ParameterSpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("DELETE FROM TAPCTDATABASE WHERE ");
+                tmpSql.Append("DELETE FROM TAPCTPARAMETERRULESPEC WHERE ");
 
                 if (!string.IsNullOrEmpty(arguments.ROWID))
                 {

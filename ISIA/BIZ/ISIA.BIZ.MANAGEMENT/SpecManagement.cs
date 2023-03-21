@@ -119,61 +119,46 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
-        public void NewTCODE(DataBaseManagementArgsPack arguments)
+        public void NewSPEC(SpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO TAPCTCODES (  ");
+                tmpSql.Append("Insert INTO TAPCTSPCRULESPEC (  ");
 
 
 
-                if (!string.IsNullOrEmpty(arguments.CATEGORY))
+                if (!string.IsNullOrEmpty(arguments.DBID))
                 {
-                    tmpSql.AppendFormat("  CATEGORY ,");
+                    tmpSql.AppendFormat("  DBID ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.SUBCATEGORY))
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
                 {
-                    tmpSql.AppendFormat("  SUBCATEGORY ,");
+                    tmpSql.AppendFormat("  RULENAME ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.NAME))
+                if (!string.IsNullOrEmpty(arguments.RULENO))
                 {
-                    tmpSql.AppendFormat("  NAME ,");
+                    tmpSql.AppendFormat("  RULENO ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.USED))
+                if (!string.IsNullOrEmpty(arguments.RULETEXT))
                 {
-                    tmpSql.AppendFormat("  USED ,");
+                    tmpSql.AppendFormat("  RULETEXT ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM01))
+                if (!string.IsNullOrEmpty(arguments.N_VALUE))
                 {
-                    tmpSql.AppendFormat("  CUSTOM01 ,");
+                    tmpSql.AppendFormat("  N_VALUE ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM02))
+                if (!string.IsNullOrEmpty(arguments.M_VALUE))
                 {
-                    tmpSql.AppendFormat("  CUSTOM02 ,");
+                    tmpSql.AppendFormat("  M_VALUE ,");
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM03))
+                if (!string.IsNullOrEmpty(arguments.ISALIVE))
                 {
                     tmpSql.AppendFormat("  CUSTOM03 ,");
                 }
 
-                if (!string.IsNullOrEmpty(arguments.CUSTOM04))
-                {
-                    tmpSql.Append("  CUSTOM04 ,");
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM05))
-                {
-                    tmpSql.Append("  CUSTOM05 ,");
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM06))
-                {
-                    tmpSql.Append("  CUSTOM06 ,");
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM07))
-                {
-                    tmpSql.Append("  CUSTOM07 ,");
-                }
+                
                
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
                 {
@@ -182,49 +167,33 @@ namespace ISIA.BIZ.MANAGEMENT
 
                 tmpSql.Append(") values (");
 
-                if (!string.IsNullOrEmpty(arguments.CATEGORY))
+                if (!string.IsNullOrEmpty(arguments.DBID))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CATEGORY);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.DBID);
                 }
-                if (!string.IsNullOrEmpty(arguments.SUBCATEGORY))
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.SUBCATEGORY);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.RULENAME);
                 }
-                if (!string.IsNullOrEmpty(arguments.NAME))
+                if (!string.IsNullOrEmpty(arguments.RULENO))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.NAME);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.RULENO);
                 }
-                if (!string.IsNullOrEmpty(arguments.USED))
+                if (!string.IsNullOrEmpty(arguments.RULETEXT))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.USED);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.RULETEXT);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM01))
+                if (!string.IsNullOrEmpty(arguments.N_VALUE))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM01);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.N_VALUE);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM02))
+                if (!string.IsNullOrEmpty(arguments.M_VALUE))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM02);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.M_VALUE);
                 }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM03))
+                if (!string.IsNullOrEmpty(arguments.ISALIVE))
                 {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM03);
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM04))
-                {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM04);
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM05))
-                {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM05);
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM06))
-                {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM06);
-                }
-                if (!string.IsNullOrEmpty(arguments.CUSTOM07))
-                {
-                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.CUSTOM07);
+                    tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.ISALIVE);
                 }
                 
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
