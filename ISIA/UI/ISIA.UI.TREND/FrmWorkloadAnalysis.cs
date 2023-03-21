@@ -73,6 +73,6 @@ namespace ISIA.UI.TREND
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
 
-
+        
     }
 }
