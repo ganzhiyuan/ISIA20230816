@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TAP.Data.Client;
 
-namespace ISIA.UI.ANALYSIS
+namespace ISIA.UI.TREND
 {
     public partial class FrmSQLFullTextQueryAnalysis : DockUIBase1T1
     {

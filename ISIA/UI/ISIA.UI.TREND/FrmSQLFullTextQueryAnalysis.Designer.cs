@@ -1,5 +1,5 @@
 ﻿
-namespace ISIA.UI.ANALYSIS
+namespace ISIA.UI.TREND
 {
     partial class FrmSQLFullTextQueryAnalysis
     {

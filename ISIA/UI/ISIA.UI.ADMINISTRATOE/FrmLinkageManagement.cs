@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
+using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace ISIA.UI.ADMINISTRATOE
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.LinkageManagement");
             UIListData();
             InitializeUIGroup();
-            base.SetPopupMenuItem(GetLinkAge("UserMgr"));
+            base.SetPopupMenuItem(GetLinkAge("123"));
         }
 
 
@@ -81,32 +82,6 @@ namespace ISIA.UI.ADMINISTRATOE
             GroupListtw.Nodes.AddRange(treeNodess);
         }
 
-        public List<T> GetList<T>(DataTable table)
-        {
-            List<T> list = new List<T>();
-            T t = default(T);
-            PropertyInfo[] propertypes = null;
-            string tempName = string.Empty;
-            foreach (DataRow row in table.Rows)
-            {
-                t = Activator.CreateInstance<T>();
-                propertypes = t.GetType().GetProperties();
-                foreach (PropertyInfo pro in propertypes)
-                {
-                    tempName = pro.Name;
-                    if (table.Columns.Contains(tempName))
-                    {
-                        object value = row[tempName];
-                        if (!value.ToString().Equals(""))
-                        {
-                            pro.SetValue(t, value, null);
-                        }
-                    }
-                }
-                list.Add(t);
-            }
-            return list.Count == 0 ? null : list;
-        }
 
         private List<treeListInfo> GetBindSource(DataTable dt)
         {
@@ -118,7 +93,7 @@ namespace ISIA.UI.ADMINISTRATOE
             DataClient tmpDataClient = new DataClient();
             string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
             DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
-            List<treeListInfo> listMENU = GetList<treeListInfo>(retVal1);
+            List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retVal1);
             //取出一级名称
             List<string> listStr = listMENU.Select(x => x.MAINMENU).Distinct().ToList();
             foreach (var item in listStr)
@@ -130,7 +105,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 listData.Add(info);
             }
             //根据一级取出二级名称加入list
-            List<treeListInfo> listName = GetList<treeListInfo>(retVal1);
+            List<treeListInfo> listName = DataTableExtend.GetList<treeListInfo>(retVal1);
             foreach (var item in listName)
             {
                 treeListInfo info = new treeListInfo();
@@ -147,7 +122,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 listData.Add(info);
             }
             //取出三级名称加入list
-            List<treeListInfo> listChild = GetList<treeListInfo>(dt);
+            List<treeListInfo> listChild = DataTableExtend.GetList<treeListInfo>(dt);
             foreach (var item in listChild)
             {
                 treeListInfo info = new treeListInfo();
@@ -245,7 +220,7 @@ namespace ISIA.UI.ADMINISTRATOE
             DataClient tmpDataClient = new DataClient();
             string UserUISql = string.Format("select GROUPNAME,UI,TAGETUI,TAGETUINAME,PARAMETERLIST,GROUPID  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' and TAGETUI!='0'", groupName);
             DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "tapctlinkage").Tables[0];
-            List<LinkInfo> linkList = GetList<LinkInfo>(UserUIList);
+            List<LinkInfo> linkList = DataTableExtend.GetList<LinkInfo>(UserUIList);
             if (linkList == null)
             {
                 return null;
@@ -610,7 +585,7 @@ namespace ISIA.UI.ADMINISTRATOE
             {
                 return null;
             }
-            List<LinkInfo> list = GetList<LinkInfo>(ds.Tables[0]);
+            List<LinkInfo> list = DataTableExtend.GetList<LinkInfo>(ds.Tables[0]);
             List<LinkInfo> linkList = list.Where(x => x.TAGETUI == "0").ToList();
             foreach (var item in linkList)
             {
@@ -623,11 +598,11 @@ namespace ISIA.UI.ADMINISTRATOE
 
         private void GroupListtw_MouseUp(object sender, MouseEventArgs e)
         {
-            //if (e.Button == MouseButtons.Right)
-            //{
-            //    Point p = new Point(Cursor.Position.X, Cursor.Position.Y);
-            //    PopMenuBase.ShowPopup(p);
-            //}
+            if (e.Button == MouseButtons.Right)
+            {
+                Point p = new Point(Cursor.Position.X, Cursor.Position.Y);
+                PopMenuBase.ShowPopup(p);
+            }
         }
     }
     public class treeListInfo
