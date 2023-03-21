@@ -94,6 +94,7 @@ namespace ISIA.UI.TREND
             this.dpnlRight_Container.SuspendLayout();
             this.dpnlLeft.SuspendLayout();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
@@ -183,7 +184,7 @@ namespace ISIA.UI.TREND
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(707, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(745, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(943, 670);
@@ -1480,7 +1481,7 @@ namespace ISIA.UI.TREND
             this.chartLayout1.Location = new System.Drawing.Point(0, 0);
             this.chartLayout1.Margin = new System.Windows.Forms.Padding(5);
             this.chartLayout1.Name = "chartLayout1";
-            this.chartLayout1.Size = new System.Drawing.Size(933, 308);
+            this.chartLayout1.Size = new System.Drawing.Size(1166, 385);
             this.chartLayout1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -1603,8 +1604,8 @@ namespace ISIA.UI.TREND
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 375;
-            this.navBarControl1.Size = new System.Drawing.Size(375, 603);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 469;
+            this.navBarControl1.Size = new System.Drawing.Size(469, 603);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -2146,7 +2147,7 @@ namespace ISIA.UI.TREND
             this.ClientSize = new System.Drawing.Size(1352, 728);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmOrclParmsTrendChart";
-            this.Text = "EquipmentShiftProductionCapacity";
+            this.Text = "AwrParmTrend";
             this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
             this.Controls.SetChildIndex(this.tPanelTop, 0);
             this.Controls.SetChildIndex(this.tPanelMain, 0);
@@ -2157,6 +2158,7 @@ namespace ISIA.UI.TREND
             this.dpnlLeft.ResumeLayout(false);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
             this.splitContainerControl1.Panel1.ResumeLayout(false);
@@ -2212,6 +2214,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
