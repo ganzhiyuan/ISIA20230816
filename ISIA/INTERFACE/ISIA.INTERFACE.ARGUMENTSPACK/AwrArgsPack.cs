@@ -41,10 +41,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private static Dictionary<string, string> _WorkloadBelonging = new Dictionary<string, string>();
 
-        public const string METRIC= "METRIC";
+        public const string METRIC = "METRIC";
 
         public const string SYSSTAT = "SYSSTAT";
-
 
         public const string GET_ALL = "ALL";
 
@@ -72,8 +71,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadParamNamesList.Add("NET_MB_From_DBLink_psec");
             WorkloadParamNamesList.Add("NET_MB_To_DBLink_psec");
             //_WorkloadSqlRelationMapping
-            WorkloadSqlRelationMapping.Add("CPU Usage Per Sec", "CPU_TIME_total");
-            WorkloadSqlRelationMapping.Add("DB time", "ELAPSED_TIME_total");
+            WorkloadSqlRelationMapping.Add("CPU Usage Per Sec", "CPU_TIME_delta");
+            WorkloadSqlRelationMapping.Add("DB time", "ELAPSED_TIME_delta");
             WorkloadSqlRelationMapping.Add("physical reads", "PHYSICAL_READ_BYTES_delta");
             WorkloadSqlRelationMapping.Add("parse count (total)", "PARSE_CALLS_delta");
             WorkloadSqlRelationMapping.Add("redo size", "ROWS_PROCESSED_delta");

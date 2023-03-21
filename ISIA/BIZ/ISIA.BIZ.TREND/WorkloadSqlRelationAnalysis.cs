@@ -103,32 +103,70 @@ namespace ISIA.BIZ.TREND
                 string valueName = "value";
                 if (AwrArgsPack.WorkloadBelonging[arguments.WorkloadSqlParm].Equals(AwrArgsPack.METRIC))
                 {
-                    parmColumnName = "metric_name";
-                    parmTableSuffix = "ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY";
-                    valueName = "average";
+                    getWorkloadDtaSql.AppendFormat(
+                   "select\r\n" +
+                   "/*+MATERIALIZE */\r\n" +
+                   "MIN(begin_interval_time) \"begin_interval_time\", \r\n" +
+                   "MAX(end_interval_time) \"end_interval_time\", \r\n" +
+                   "dbid,\r\n" +
+                   "(select dbname from TAPCTDATABASE  where dbid=s.dbid) \r\n" +
+                   "dbname,\r\n" +
+                   "snap_id,\r\n" +
+                   "s.instance_number as inst_id,\r\n" +
+                   "SUM(DECODE(metric_name,'{0}',average ,0)) \r\n" +
+                   "\"{0}\"\r\n" +
+                   "FROM\r\n" +
+                   "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ \r\n" +
+                   "ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn  \r\n" +
+                   "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and metric_name='{0}' --configurable\r\n" +
+                   "and sn.INSTANCE_NUMBER IN (1) \r\n" +
+                   "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s \r\n" +
+                   " where 1=1\r\n" +
+                   "group by dbid,s.instance_number ,snap_id\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
+                   arguments.DBName);
+                }
+                else
+                {
+                    getWorkloadDtaSql.AppendFormat("SELECT /*+ MATERIALIZE */\r\n" +
+"                dbid,\r\n" +
+"                INSTANCE_NUMBER,\r\n" +
+"                   \r\n" +
+"                snap_id,\r\n" +
+"                \"begin_interval_time\",\r\n" +
+"                \"end_interval_time\",\r\n" +
+"                ROUND (\r\n" +
+"                    (  \"DB time\"\r\n" +
+"                     - LAG (\"{0}\", 1)\r\n" +
+"                           OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
+"                                 ORDER BY snap_id)))\r\n" +
+"                    \"{0}\"\r\n" +
+"from\r\n" +
+"(select\r\n" +
+"/*+MATERIALIZE */\r\n" +
+"MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
+"MAX(end_interval_time) \"end_interval_time\",\r\n" +
+"dbid,\r\n" +
+"snap_id,\r\n" +
+"instance_number ,\r\n" +
+"SUM(DECODE(STAT_NAME,'{0}',value ,0))\r\n" +
+"\"{0}\"\r\n" +
+"FROM\r\n" +
+"(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
+"ss.dbid,\r\n" +
+"ss.instance_number,\r\n" +
+"ss.snap_id,\r\n" +
+"ss.VALUE,\r\n" +
+"ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn  \r\n" +
+"where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{0}' --configurable\r\n" +
+"and sn.INSTANCE_NUMBER IN (1)\r\n" +
+"and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') t\r\n" +
+" where 1=1\r\n" +
+"group by dbid, instance_number ,snap_id) s\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
+                   arguments.DBName);
+
                 }
 
-                getWorkloadDtaSql.AppendFormat(
-                    "select\r\n" +
-                    "/*+MATERIALIZE */\r\n" +
-                    "MIN(begin_interval_time) \"begin_interval_time\", \r\n" +
-                    "MAX(end_interval_time) \"end_interval_time\", \r\n" +
-                    "dbid,\r\n" +
-                    "(select dbname from TAPCTDATABASE  where dbid=s.dbid) \r\n" +
-                    "dbname,\r\n" +
-                    "snap_id,\r\n" +
-                    "s.instance_number as inst_id,\r\n" +
-                    "SUM(DECODE({4},'{0}',{6} ,0)) \r\n" +
-                    "\"{0}\"\r\n" +
-                    "FROM\r\n" +
-                    "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ \r\n" +
-                    "ss.*,sn.begin_interval_time, sn.end_interval_time from {5}_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn  \r\n" +
-                    "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and {4}='{0}' --configurable\r\n" +
-                    "and sn.INSTANCE_NUMBER IN (1) \r\n" +
-                    "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s \r\n" +
-                    " where 1=1\r\n" +
-                    "group by dbid,s.instance_number ,snap_id\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
-                    arguments.DBName, parmColumnName, parmTableSuffix, valueName);
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                       getWorkloadDtaSql.ToString(), false);
                 DataTable dtWorkload = db.Select(getWorkloadDtaSql.ToString()).Tables[0];
