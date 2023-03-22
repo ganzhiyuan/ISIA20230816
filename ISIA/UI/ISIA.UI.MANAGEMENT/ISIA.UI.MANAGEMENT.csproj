@@ -162,6 +162,7 @@
       <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\UI\TAP.UI\TAP.UI.csproj">

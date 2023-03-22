@@ -19,13 +19,11 @@ using TAP.Data.Client;
 using TAP.UI;
 using ISIA.UI.BASE;
 using DevExpress.XtraEditors.Controls;
-using TAP.UIControls.BasicControlsDEV;
+
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using Series1 = DevExpress.XtraCharts.Series;
 using Series = Steema.TeeChart.Styles.Series;
-using EnumDataObject = TAP.UI.EnumDataObject;
-using EnumMsgType = TAP.UI.EnumMsgType;
 using Steema.TeeChart.Tools;
 
 namespace ISIA.UI.ANALYSIS
@@ -79,7 +77,7 @@ namespace ISIA.UI.ANALYSIS
             tDateTimePickerSE1.EndDate = dt;
 
             toolTipController.Appearance.Font = new Font("Courier New", 9);
-            
+
             this.cbopara.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;//checkcombobox为可输入
             radioGroup1.SelectedIndex = 0;
         }
@@ -114,7 +112,7 @@ namespace ISIA.UI.ANALYSIS
                 {
                     dataSet = bs.ExecuteDataSet("GetPara", args.getPack());
                 }
-                
+
                 //
                 return dataSet;
             }
@@ -144,10 +142,11 @@ namespace ISIA.UI.ANALYSIS
             this.splitContainerControl1.Panel1.Controls.Clear();
             chart.Series.Clear();
             series.Clear();
-            var cuTool = new CursorTool(chart.Chart) {
+            var cuTool = new CursorTool(chart.Chart)
+            {
                 Style = CursorToolStyles.Both,
                 FollowMouse = true,
-                
+
             };
             var markstip = new MarksTip(chart.Chart);
             cuTool.Pen.Color = Color.Red;
@@ -161,7 +160,7 @@ namespace ISIA.UI.ANALYSIS
             {
                 cuTool.Pen.Visible = false;
             }
-            
+
             //chart.Chart.Series.Chart.GetASeries().Legend.Text.ToString();
             chart.ContextMenuStrip = contextMenuStrip1;
             chart.Dock = DockStyle.Fill;
@@ -181,9 +180,11 @@ namespace ISIA.UI.ANALYSIS
                     }
                 }
             }
-            if (dataSet.Tables.Count > 1) {
+            if (dataSet.Tables.Count > 1)
+            {
 
-                foreach (DataTable dt in dataSet.Tables) {
+                foreach (DataTable dt in dataSet.Tables)
+                {
                     if (dt.TableName != "TABLE")
                     {
                         Line line = CreateLine(dt);
@@ -214,9 +215,10 @@ namespace ISIA.UI.ANALYSIS
             return;
         }
 
-        
 
-        private Line CreateLine(DataTable dstable) {
+
+        private Line CreateLine(DataTable dstable)
+        {
             Line line = new Line();
             /*var nearpoint = new NearestPoint(chart.Chart) {
                 Series = line,
@@ -246,9 +248,9 @@ namespace ISIA.UI.ANALYSIS
             return line;
         }
 
-        
 
-        private void  CreateBar()
+
+        private void CreateBar()
         {
 
             tChart1.Series.Clear();
@@ -266,8 +268,8 @@ namespace ISIA.UI.ANALYSIS
                 {
                     if (dt.TableName != "TABLE")
                     {
-                        int num = Convert.ToInt32(dt.Compute("avg(VALUE)",""));
-                        dt1.Rows.Add(dt.TableName,num);
+                        int num = Convert.ToInt32(dt.Compute("avg(VALUE)", ""));
+                        dt1.Rows.Add(dt.TableName, num);
                     }
                 }
             }
@@ -275,9 +277,12 @@ namespace ISIA.UI.ANALYSIS
             dt1.DefaultView.Sort = "NUM DESC";
             dt1 = dt1.DefaultView.ToTable();
 
-            if (dt1.Rows.Count>10) {
-                for (int i = 0; i < dt1.Rows.Count; i++) {
-                    if (i > 9) {
+            if (dt1.Rows.Count > 10)
+            {
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    if (i > 9)
+                    {
                         dt1.Rows.Remove(dt1.Rows[i]);
                     }
                 }
@@ -285,12 +290,12 @@ namespace ISIA.UI.ANALYSIS
             void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
             {
                 //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
-                e.MarkText = "NAME :"+$"{dt1.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt1.Rows[e.ValueIndex]["NUM"]}";
+                e.MarkText = "NAME :" + $"{dt1.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt1.Rows[e.ValueIndex]["NUM"]}";
             }
             bar.ColorEach = true;
             bar.DataSource = dt1;
             bar.YValues.DataMember = "NUM";
-            
+
             bar.LabelMember = "Name";
             bar.Marks.Visible = false;
             bar.GetSeriesMark += Bar_GetSeriesMark;
@@ -302,10 +307,10 @@ namespace ISIA.UI.ANALYSIS
         {
             gridControl1.DataSource = null;
             //gridView1.Columns.Clear();
-            
+
             gridControl1.DataSource = dataSet.Tables[0];
 
-            
+
         }
 
 
@@ -444,76 +449,76 @@ namespace ISIA.UI.ANALYSIS
 
         private DataTable FilterDNTable(DataTable table)
         {
-           /* int startDay = dateStart.DateTime.Day;
-            int startHour = dateStart.DateTime.Hour;
-            int startMinute = dateStart.DateTime.Minute;
-            int endDay = dateEnd.DateTime.Day;
-            int endHour = dateEnd.DateTime.Hour;
-            int endMinute = dateEnd.DateTime.Minute;
+            /* int startDay = dateStart.DateTime.Day;
+             int startHour = dateStart.DateTime.Hour;
+             int startMinute = dateStart.DateTime.Minute;
+             int endDay = dateEnd.DateTime.Day;
+             int endHour = dateEnd.DateTime.Hour;
+             int endMinute = dateEnd.DateTime.Minute;
 
-            DataRow[] rows = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'N'");
-            foreach (DataRow item in rows)
-            {
-                table.Rows.Remove(item);
-                item.Delete();
-            }
-            if (new TimeSpan(startDay, startHour, startMinute, 0) < new TimeSpan(startDay, 7, 30, 0))
-            {
-                DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
-                foreach (DataRow item in drs)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-            }
-            else if (new TimeSpan(startDay, 7, 30, 0) <= new TimeSpan(startDay, startHour, startMinute, 0) && new TimeSpan(startDay, startHour, startMinute, 0) < new TimeSpan(startDay, 19, 30, 0))
-            {
-                DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%'");
-                foreach (DataRow item in drs)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-            }
-            else if (new TimeSpan(startDay, 19, 30, 0) <= new TimeSpan(startDay, startHour, startMinute, 0))
-            {
-                DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
-                DataRow[] drs1 = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%'");
-                foreach (DataRow item in drs)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-                foreach (DataRow item in drs1)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-            }
-            if (new TimeSpan(endDay, 19, 30, 0) > new TimeSpan(endDay, endHour, endMinute, 0) && new TimeSpan(endDay, 7, 30, 0) <= new TimeSpan(endDay, endHour, endMinute, 0))
-            {
-                DataRow[] drs = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
-                foreach (DataRow item in drs)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-            }
-            else if (new TimeSpan(endDay, 7, 30, 0) > new TimeSpan(endDay, endHour, endMinute, 0))
-            {
-                DataRow[] drs = table.Select("DATE LIKE '" + dateEnd.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%' AND SHIFT= 'N'");
-                DataRow[] drs1 = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
-                foreach (DataRow item in drs)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-                foreach (DataRow item in drs1)
-                {
-                    table.Rows.Remove(item);
-                    item.Delete();
-                }
-            }*/
+             DataRow[] rows = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'N'");
+             foreach (DataRow item in rows)
+             {
+                 table.Rows.Remove(item);
+                 item.Delete();
+             }
+             if (new TimeSpan(startDay, startHour, startMinute, 0) < new TimeSpan(startDay, 7, 30, 0))
+             {
+                 DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
+                 foreach (DataRow item in drs)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+             }
+             else if (new TimeSpan(startDay, 7, 30, 0) <= new TimeSpan(startDay, startHour, startMinute, 0) && new TimeSpan(startDay, startHour, startMinute, 0) < new TimeSpan(startDay, 19, 30, 0))
+             {
+                 DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%'");
+                 foreach (DataRow item in drs)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+             }
+             else if (new TimeSpan(startDay, 19, 30, 0) <= new TimeSpan(startDay, startHour, startMinute, 0))
+             {
+                 DataRow[] drs = table.Select("DATE LIKE '" + dateStart.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
+                 DataRow[] drs1 = table.Select("DATE LIKE '" + dateStart.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%'");
+                 foreach (DataRow item in drs)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+                 foreach (DataRow item in drs1)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+             }
+             if (new TimeSpan(endDay, 19, 30, 0) > new TimeSpan(endDay, endHour, endMinute, 0) && new TimeSpan(endDay, 7, 30, 0) <= new TimeSpan(endDay, endHour, endMinute, 0))
+             {
+                 DataRow[] drs = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
+                 foreach (DataRow item in drs)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+             }
+             else if (new TimeSpan(endDay, 7, 30, 0) > new TimeSpan(endDay, endHour, endMinute, 0))
+             {
+                 DataRow[] drs = table.Select("DATE LIKE '" + dateEnd.DateTime.AddDays(-1).ToString("yyyyMMdd") + "%' AND SHIFT= 'N'");
+                 DataRow[] drs1 = table.Select("DATE LIKE '" + dateEnd.DateTime.ToString("yyyyMMdd") + "%' AND SHIFT= 'D'");
+                 foreach (DataRow item in drs)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+                 foreach (DataRow item in drs1)
+                 {
+                     table.Rows.Remove(item);
+                     item.Delete();
+                 }
+             }*/
 
             shift = table.DefaultView.ToTable(true, new string[] { "SHIFT", "DATE" }).Rows.Count;
             return table;
@@ -807,115 +812,115 @@ namespace ISIA.UI.ANALYSIS
             return table;
 
         }
-       /* private void CreateChart(DataTable dsTable)
-        {
-            dsTable.DefaultView.Sort = "EQPLAN  ASC";
-            DataTable ascdt = dsTable.DefaultView.ToTable();
-            mindata = ascdt.AsEnumerable().Take(2).CopyToDataTable();
-            dsTable.DefaultView.Sort = "";
+        /* private void CreateChart(DataTable dsTable)
+         {
+             dsTable.DefaultView.Sort = "EQPLAN  ASC";
+             DataTable ascdt = dsTable.DefaultView.ToTable();
+             mindata = ascdt.AsEnumerable().Take(2).CopyToDataTable();
+             dsTable.DefaultView.Sort = "";
 
-            xtraTabPage1.Controls.Clear();
+             xtraTabPage1.Controls.Clear();
 
-            chartControl1.Series.Clear();
-            chartControl1.Dock = DockStyle.Fill;
-            chartControl1.RuntimeHitTesting = true;
-            xtraTabPage1.Controls.Add(chartControl1);
-            //添加 图表标题
-            chartControl1.Titles.Clear();
-            chartControl1.Titles.Add(new ChartTitle());
-            chartControl1.Titles[0].Text = "";
+             chartControl1.Series.Clear();
+             chartControl1.Dock = DockStyle.Fill;
+             chartControl1.RuntimeHitTesting = true;
+             xtraTabPage1.Controls.Add(chartControl1);
+             //添加 图表标题
+             chartControl1.Titles.Clear();
+             chartControl1.Titles.Add(new ChartTitle());
+             chartControl1.Titles[0].Text = "";
 
-            DataTable dataBar = new DataTable();
+             DataTable dataBar = new DataTable();
 
-            dataBar.Columns.Add("RUNTIME", typeof(string));
-            dataBar.Columns.Add("PROCESS", typeof(string));
-            dataBar.Columns.Add("VALUE", typeof(int));
+             dataBar.Columns.Add("RUNTIME", typeof(string));
+             dataBar.Columns.Add("PROCESS", typeof(string));
+             dataBar.Columns.Add("VALUE", typeof(int));
 
-            DataTable dataLine = new DataTable();
+             DataTable dataLine = new DataTable();
 
-            dataLine.Columns.Add("RUNTIME", typeof(string));
-            dataLine.Columns.Add("PROCESS", typeof(string));
-            dataLine.Columns.Add("VALUE", typeof(double));
+             dataLine.Columns.Add("RUNTIME", typeof(string));
+             dataLine.Columns.Add("PROCESS", typeof(string));
+             dataLine.Columns.Add("VALUE", typeof(double));
 
-            DataTable dataLinePlan = new DataTable();
+             DataTable dataLinePlan = new DataTable();
 
-            dataLinePlan.Columns.Add("RUNTIME", typeof(string));
-            dataLinePlan.Columns.Add("PROCESS", typeof(string));
-            dataLinePlan.Columns.Add("VALUE", typeof(int));
-            DataTable filterDT_DN = FilterDNTable(dtLinePlan);
-            int capacity = filterDT_DN.AsEnumerable().Select(d => Convert.ToInt32(string.IsNullOrEmpty(d.Field<string>("CAPACITY")) ? "0" : d.Field<string>("CAPACITY"))).Sum();
+             dataLinePlan.Columns.Add("RUNTIME", typeof(string));
+             dataLinePlan.Columns.Add("PROCESS", typeof(string));
+             dataLinePlan.Columns.Add("VALUE", typeof(int));
+             DataTable filterDT_DN = FilterDNTable(dtLinePlan);
+             int capacity = filterDT_DN.AsEnumerable().Select(d => Convert.ToInt32(string.IsNullOrEmpty(d.Field<string>("CAPACITY")) ? "0" : d.Field<string>("CAPACITY"))).Sum();
 
-            for (int i = 0; i < dsTable.Rows.Count; i++)
-            {
-                dataLine.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], dsTable.Rows[i]["RUNTIME"] });
-            }
-            for (int i = 0; i < dsTable.Rows.Count; i++)
-            {
-                dataBar.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], dsTable.Rows[i]["QUANTITY"] });
-                dataLinePlan.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], capacity });
-            }
-            Series1 seriesBar = new Series1("OutPut", ViewType.Bar);
-            Series1 seriesPoint = new Series1("RunTime", ViewType.Point);
-            Series1 seriesLinePlan = new Series1("Target", ViewType.Line);
-            seriesBar.DataSource = dataBar;
-            seriesPoint.DataSource = dataLine;
-            seriesLinePlan.DataSource = dataLinePlan;
+             for (int i = 0; i < dsTable.Rows.Count; i++)
+             {
+                 dataLine.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], dsTable.Rows[i]["RUNTIME"] });
+             }
+             for (int i = 0; i < dsTable.Rows.Count; i++)
+             {
+                 dataBar.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], dsTable.Rows[i]["QUANTITY"] });
+                 dataLinePlan.Rows.Add(new object[] { "RunTime", dsTable.Rows[i]["AREA"], capacity });
+             }
+             Series1 seriesBar = new Series1("OutPut", ViewType.Bar);
+             Series1 seriesPoint = new Series1("RunTime", ViewType.Point);
+             Series1 seriesLinePlan = new Series1("Target", ViewType.Line);
+             seriesBar.DataSource = dataBar;
+             seriesPoint.DataSource = dataLine;
+             seriesLinePlan.DataSource = dataLinePlan;
 
-            seriesBar.ArgumentDataMember = "PROCESS";
-            seriesBar.ValueDataMembers.AddRange(new string[] { "Value" });
-            seriesBar.ValueScaleType = ScaleType.Numerical;
-            seriesBar.View.Color = Color.Green;
-            seriesBar.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+             seriesBar.ArgumentDataMember = "PROCESS";
+             seriesBar.ValueDataMembers.AddRange(new string[] { "Value" });
+             seriesBar.ValueScaleType = ScaleType.Numerical;
+             seriesBar.View.Color = Color.Green;
+             seriesBar.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
 
-            seriesPoint.ArgumentDataMember = "PROCESS";
-            seriesPoint.ValueDataMembers.AddRange(new string[] { "Value" });
-            seriesPoint.ValueScaleType = ScaleType.Numerical;
-            seriesPoint.View.Color = Color.Red;
-            seriesPoint.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            seriesPoint.PointOptions.ValueNumericOptions.Format = NumericFormat.Percent;//用百分比表示
-            seriesPoint.PointOptions.ValueNumericOptions.Precision = 2;
+             seriesPoint.ArgumentDataMember = "PROCESS";
+             seriesPoint.ValueDataMembers.AddRange(new string[] { "Value" });
+             seriesPoint.ValueScaleType = ScaleType.Numerical;
+             seriesPoint.View.Color = Color.Red;
+             seriesPoint.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+             seriesPoint.PointOptions.ValueNumericOptions.Format = NumericFormat.Percent;//用百分比表示
+             seriesPoint.PointOptions.ValueNumericOptions.Precision = 2;
 
-            seriesLinePlan.ArgumentDataMember = "PROCESS";
-            seriesLinePlan.ValueDataMembers.AddRange(new string[] { "Value" });
-            seriesLinePlan.ValueScaleType = ScaleType.Numerical;
-            seriesLinePlan.View.Color = Color.Black;
-            seriesLinePlan.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            ((LineSeriesView)seriesLinePlan.View).LineStyle.DashStyle = DashStyle.Dash;
-            seriesLinePlan.Label.Font = new Font("宋体", 7f);
+             seriesLinePlan.ArgumentDataMember = "PROCESS";
+             seriesLinePlan.ValueDataMembers.AddRange(new string[] { "Value" });
+             seriesLinePlan.ValueScaleType = ScaleType.Numerical;
+             seriesLinePlan.View.Color = Color.Black;
+             seriesLinePlan.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+             ((LineSeriesView)seriesLinePlan.View).LineStyle.DashStyle = DashStyle.Dash;
+             seriesLinePlan.Label.Font = new Font("宋体", 7f);
 
-            chartControl1.Series.Add(seriesBar);
-            chartControl1.Series.Add(seriesPoint);
-            chartControl1.Series.Add(seriesLinePlan);
+             chartControl1.Series.Add(seriesBar);
+             chartControl1.Series.Add(seriesPoint);
+             chartControl1.Series.Add(seriesLinePlan);
 
-            SecondaryAxisY myAxis = new SecondaryAxisY(seriesPoint.Name);
-            ((XYDiagram)chartControl1.Diagram).SecondaryAxesY.Clear();
-            ((XYDiagram)chartControl1.Diagram).SecondaryAxesY.Add(myAxis);
-            ((PointSeriesView)seriesPoint.View).AxisY = myAxis;
-            myAxis.Title.Font = new Font("宋体", 9.0f);
-            myAxis.Label.TextPattern = "{V:0.00%}";
+             SecondaryAxisY myAxis = new SecondaryAxisY(seriesPoint.Name);
+             ((XYDiagram)chartControl1.Diagram).SecondaryAxesY.Clear();
+             ((XYDiagram)chartControl1.Diagram).SecondaryAxesY.Add(myAxis);
+             ((PointSeriesView)seriesPoint.View).AxisY = myAxis;
+             myAxis.Title.Font = new Font("宋体", 9.0f);
+             myAxis.Label.TextPattern = "{V:0.00%}";
 
-            Color color = seriesPoint.View.Color;//设置坐标的颜色和图表线条颜色一致
-            myAxis.Title.TextColor = color;
-            myAxis.Label.TextColor = color;
-            myAxis.Color = color;
+             Color color = seriesPoint.View.Color;//设置坐标的颜色和图表线条颜色一致
+             myAxis.Title.TextColor = color;
+             myAxis.Label.TextColor = color;
+             myAxis.Color = color;
 
-            XYDiagram diagram = (XYDiagram)chartControl1.Diagram;
-            //显示X轴的全部标签
-            diagram.AxisX.QualitativeScaleOptions.AutoGrid = false;
-            diagram.AxisX.Label.ResolveOverlappingOptions.AllowHide = false;
-            diagram.AxisX.Label.ResolveOverlappingOptions.AllowRotate = true;
-            diagram.AxisX.Label.ResolveOverlappingOptions.AllowStagger = true;
+             XYDiagram diagram = (XYDiagram)chartControl1.Diagram;
+             //显示X轴的全部标签
+             diagram.AxisX.QualitativeScaleOptions.AutoGrid = false;
+             diagram.AxisX.Label.ResolveOverlappingOptions.AllowHide = false;
+             diagram.AxisX.Label.ResolveOverlappingOptions.AllowRotate = true;
+             diagram.AxisX.Label.ResolveOverlappingOptions.AllowStagger = true;
 
-            SideBySideBarSeriesLabel label = chartControl1.Series[0].Label as SideBySideBarSeriesLabel;
-            if (label != null)
-            {
-                label.Position = BarSeriesLabelPosition.BottomInside;
-            }
+             SideBySideBarSeriesLabel label = chartControl1.Series[0].Label as SideBySideBarSeriesLabel;
+             if (label != null)
+             {
+                 label.Position = BarSeriesLabelPosition.BottomInside;
+             }
 
-            xtraTabPage1.Controls.Add(chartControl1);
-            this.chartControl1.BoundDataChanged += new DevExpress.XtraCharts.BoundDataChangedEventHandler(this.chartControl1_BoundDataChanged);
+             xtraTabPage1.Controls.Add(chartControl1);
+             this.chartControl1.BoundDataChanged += new DevExpress.XtraCharts.BoundDataChangedEventHandler(this.chartControl1_BoundDataChanged);
 
-        }*/
+         }*/
         private void CreateProcessChart(DataTable dsTable)
         {
             /*xtraTabPage2.Controls.Clear();
@@ -1090,7 +1095,7 @@ namespace ISIA.UI.ANALYSIS
             //gridView1.OptionsSelection.MultiSelect = true;
             //gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             //gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            
+
             gridView1.OptionsBehavior.Editable = true;
             gridView1.OptionsView.ColumnAutoWidth = false;
             gridView1.BestFitColumns();
@@ -1118,151 +1123,151 @@ namespace ISIA.UI.ANALYSIS
         }
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
-           /* DataTable dt = gridControl1.DataSource as DataTable;
-            DataTable dataTable = dt.Clone();
-            var dataRowViews1 = GetGridViewFilteredAndSortedData(gridView1);
-            foreach (DataRowView item in dataRowViews1)
-            {
-                dataTable.Rows.Add(item.Row.ItemArray);
-            }
+            /* DataTable dt = gridControl1.DataSource as DataTable;
+             DataTable dataTable = dt.Clone();
+             var dataRowViews1 = GetGridViewFilteredAndSortedData(gridView1);
+             foreach (DataRowView item in dataRowViews1)
+             {
+                 dataTable.Rows.Add(item.Row.ItemArray);
+             }
 
-            DataRow currentDr = this.gridView1.GetDataRow(this.gridView1.FocusedRowHandle);
+             DataRow currentDr = this.gridView1.GetDataRow(this.gridView1.FocusedRowHandle);
 
-            if (currentDr == null)
-            {
-                return;
-            }
+             if (currentDr == null)
+             {
+                 return;
+             }
 
-            ProcessChartTable(currentDr);*/
+             ProcessChartTable(currentDr);*/
         }
 
         #endregion
         ToolTipController toolTipController = new ToolTipController();
 
-/*        private void chartControl1_MouseMove(object sender, MouseEventArgs e)
-        {
-            ChartHitInfo hitInfo = chartControl1.CalcHitInfo(e.Location);
-            if (hitInfo.InSeries)
-            {
-                if (((Series1)hitInfo.Series).Name.ToString() == "OutPut")
+        /*        private void chartControl1_MouseMove(object sender, MouseEventArgs e)
                 {
-                    StringBuilder builder = new StringBuilder();
-                    if (hitInfo.InSeriesPoint)
+                    ChartHitInfo hitInfo = chartControl1.CalcHitInfo(e.Location);
+                    if (hitInfo.InSeries)
                     {
-                        string mouseX = hitInfo.SeriesPoint.Argument;
-                        string[] mouseXs = mouseX.Split('-');
-                        if (mouseXs.Length == 2)
+                        if (((Series1)hitInfo.Series).Name.ToString() == "OutPut")
                         {
-                            string eqArea = mouseXs[0];
-                            string eqType = mouseXs[1];
-                            string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
-                            DataTable dtResult = BMTable(dtBMinfo);
-                            dtResult.DefaultView.RowFilter = filterStr;
-                            dtResult.DefaultView.Sort = "LOSS DESC";
-                            DataTable dtResultFilter = dtResult.DefaultView.ToTable();
-                            dtResultFilter = DtSelectTop(5, dtResultFilter);
-                            builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
-                            for (int i = 0; i < dtResultFilter.Rows.Count; i++)
+                            StringBuilder builder = new StringBuilder();
+                            if (hitInfo.InSeriesPoint)
                             {
-                                builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
+                                string mouseX = hitInfo.SeriesPoint.Argument;
+                                string[] mouseXs = mouseX.Split('-');
+                                if (mouseXs.Length == 2)
+                                {
+                                    string eqArea = mouseXs[0];
+                                    string eqType = mouseXs[1];
+                                    string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
+                                    DataTable dtResult = BMTable(dtBMinfo);
+                                    dtResult.DefaultView.RowFilter = filterStr;
+                                    dtResult.DefaultView.Sort = "LOSS DESC";
+                                    DataTable dtResultFilter = dtResult.DefaultView.ToTable();
+                                    dtResultFilter = DtSelectTop(5, dtResultFilter);
+                                    builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
+                                    for (int i = 0; i < dtResultFilter.Rows.Count; i++)
+                                    {
+                                        builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
+                                    }
+                                }
+                                else if (mouseXs.Length == 1)
+                                {
+                                    string eqArea = mouseXs[0];
+                                    string eqType = "";
+                                    if (mouseX == "WI" || mouseX == "TS")
+                                    {
+                                        eqType = "Q";
+                                    }
+                                    else if (mouseX == "LD" || mouseX == "LD" || mouseX == "SP")
+                                    {
+                                        eqType = "M";
+                                    }
+                                    else
+                                    {
+                                        eqType = "A";
+                                    }
+
+                                    string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
+                                    DataTable dtResult = BMTable(dtBMinfo);
+                                    dtResult.DefaultView.RowFilter = filterStr;
+                                    dtResult.DefaultView.Sort = "LOSS DESC";
+                                    DataTable dtResultFilter = dtResult.DefaultView.ToTable();
+                                    dtResultFilter = DtSelectTop(5, dtResultFilter);
+                                    builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
+                                    for (int i = 0; i < dtResultFilter.Rows.Count; i++)
+                                    {
+                                        builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
+                                    }
+
+                                }
+                                else if (mouseXs.Length == 3)
+                                {
+                                    string eqArea = mouseXs[0];
+                                    string eqType = mouseXs[1];
+                                    string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
+                                    DataTable dtResult = BMTable(dtBMinfo);
+                                    dtResult.DefaultView.RowFilter = filterStr;
+
+                                    DataTable dtResultFilter = dtResult.DefaultView.ToTable();
+                                    dtResultFilter.Columns.Add("NUMBER", typeof(int));
+                                    for (int i = 0; i < dtResultFilter.Rows.Count; i++)
+                                    {
+                                        string equipment = dtResultFilter.Rows[i]["EQUIPMENT"].ToString();
+                                        dtResultFilter.Rows[i]["NUMBER"] = equipment.Substring(equipment.Length - 2, 2);
+                                    }
+                                    dtResultFilter.DefaultView.RowFilter = mouseX == "TX-A-上" ? "NUMBER%2<>0" : "NUMBER%2=0";
+                                    dtResultFilter.DefaultView.Sort = "LOSS DESC";
+                                    dtResultFilter = dtResultFilter.DefaultView.ToTable();
+
+                                    dtResultFilter = DtSelectTop(5, dtResultFilter);
+                                    builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
+                                    for (int i = 0; i < dtResultFilter.Rows.Count; i++)
+                                    {
+                                        builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
+                                    }
+                                }
+
+                                toolTipController.ShowHint(mouseX + ":\n" + builder.ToString(), chartControl1.PointToScreen(e.Location));
                             }
                         }
-                        else if (mouseXs.Length == 1)
+                        else
                         {
-                            string eqArea = mouseXs[0];
-                            string eqType = "";
-                            if (mouseX == "WI" || mouseX == "TS")
-                            {
-                                eqType = "Q";
-                            }
-                            else if (mouseX == "LD" || mouseX == "LD" || mouseX == "SP")
-                            {
-                                eqType = "M";
-                            }
-                            else
-                            {
-                                eqType = "A";
-                            }
-
-                            string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
-                            DataTable dtResult = BMTable(dtBMinfo);
-                            dtResult.DefaultView.RowFilter = filterStr;
-                            dtResult.DefaultView.Sort = "LOSS DESC";
-                            DataTable dtResultFilter = dtResult.DefaultView.ToTable();
-                            dtResultFilter = DtSelectTop(5, dtResultFilter);
-                            builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
-                            for (int i = 0; i < dtResultFilter.Rows.Count; i++)
-                            {
-                                builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
-                            }
-
-                        }
-                        else if (mouseXs.Length == 3)
-                        {
-                            string eqArea = mouseXs[0];
-                            string eqType = mouseXs[1];
-                            string filterStr = string.Format("PROCESS = '{0}' AND [EQUIPMENTTYPE] = '{1}' AND  [BMTIMECOUNT(min)] >=60", eqArea, eqType);
-                            DataTable dtResult = BMTable(dtBMinfo);
-                            dtResult.DefaultView.RowFilter = filterStr;
-
-                            DataTable dtResultFilter = dtResult.DefaultView.ToTable();
-                            dtResultFilter.Columns.Add("NUMBER", typeof(int));
-                            for (int i = 0; i < dtResultFilter.Rows.Count; i++)
-                            {
-                                string equipment = dtResultFilter.Rows[i]["EQUIPMENT"].ToString();
-                                dtResultFilter.Rows[i]["NUMBER"] = equipment.Substring(equipment.Length - 2, 2);
-                            }
-                            dtResultFilter.DefaultView.RowFilter = mouseX == "TX-A-上" ? "NUMBER%2<>0" : "NUMBER%2=0";
-                            dtResultFilter.DefaultView.Sort = "LOSS DESC";
-                            dtResultFilter = dtResultFilter.DefaultView.ToTable();
-
-                            dtResultFilter = DtSelectTop(5, dtResultFilter);
-                            builder.AppendLine(dtResultFilter.Columns["EQUIPMENT"].ColumnName.ToString().PadRight(15, ' ') + dtResultFilter.Columns["BMTIMECOUNT(min)"].ColumnName.PadRight(20, ' ') + dtResultFilter.Columns["LOSSTIME(min)"].ColumnName.ToString().PadRight(20, ' ') + dtResultFilter.Columns["LOSS"].ColumnName.ToString().PadRight(10, ' ') + dtResultFilter.Columns["BMCODE"].ColumnName.ToString().PadRight(45, ' '));//
-                            for (int i = 0; i < dtResultFilter.Rows.Count; i++)
-                            {
-                                builder.AppendLine(dtResultFilter.Rows[i]["EQUIPMENT"].ToString().PadRight(15, ' ') + dtResultFilter.Rows[i]["BMTIMECOUNT(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSSTIME(min)"].ToString().PadRight(20, ' ') + dtResultFilter.Rows[i]["LOSS"].ToString().PadRight(10, ' ') + dtResultFilter.Rows[i]["BMCODE"].ToString().PadRight(45, ' '));
-                            }
+                            toolTipController.HideHint();
                         }
 
-                        toolTipController.ShowHint(mouseX + ":\n" + builder.ToString(), chartControl1.PointToScreen(e.Location));
                     }
+                    else
+                    {
+                        toolTipController.HideHint();
+                    }
+
+
                 }
-                else
+                private void chartControl1_MouseLeave(object sender, EventArgs e)
                 {
                     toolTipController.HideHint();
                 }
 
-            }
-            else
-            {
-                toolTipController.HideHint();
-            }
-
-
-        }
-        private void chartControl1_MouseLeave(object sender, EventArgs e)
-        {
-            toolTipController.HideHint();
-        }
-
-        private void chartControl1_BoundDataChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < chartControl1.Series["OutPut"].Points.Count; i++)
-            {
-                string Points = chartControl1.Series["OutPut"].Points[i].Argument;
-                if (Points.Contains(mindata.Rows[0]["AREA"].ToString()) || Points.Contains(mindata.Rows[1]["AREA"].ToString()))
+                private void chartControl1_BoundDataChanged(object sender, EventArgs e)
                 {
-                    chartControl1.Series["OutPut"].Points[i].Color = Color.Orange;
+                    for (int i = 0; i < chartControl1.Series["OutPut"].Points.Count; i++)
+                    {
+                        string Points = chartControl1.Series["OutPut"].Points[i].Argument;
+                        if (Points.Contains(mindata.Rows[0]["AREA"].ToString()) || Points.Contains(mindata.Rows[1]["AREA"].ToString()))
+                        {
+                            chartControl1.Series["OutPut"].Points[i].Color = Color.Orange;
 
+                        }
+                    }
                 }
-            }
-        }
 
-*/
+        */
 
 
-//-----------------------------------------------------------------------------------------------------------------
-        
+        //-----------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -1274,7 +1279,7 @@ namespace ISIA.UI.ANALYSIS
             {
                 if (tsAll.Count != 0)
                 {
-                    foreach (string item  in tsAll)
+                    foreach (string item in tsAll)
                     {
                         cbopara.Properties.Items.Add(item);
                     }
@@ -1303,7 +1308,7 @@ namespace ISIA.UI.ANALYSIS
             }
             cbopara.Sql = null;
             cbopara.Properties.Items.Clear();
-            
+
 
             foreach (string tsa in ts)
             {
