@@ -93,6 +93,7 @@ namespace ISIA.UI.TREND
 
         private void SerachDataPoint(PointF pStart, PointF pEnd)
         {
+            snaplist = new List<SnapshotDto>();
             float minX;
             float minY;
             float maxX;
@@ -133,6 +134,10 @@ namespace ISIA.UI.TREND
                         snaplist.Add(dto);
                     }
                 }
+            }
+            if (!snaplist.Any())
+            {
+                return;
             }
             this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
             base.OpenUI("SQLFULLTEXTQUERYANALYSIS", "TREND", "DATABASE MANAGEMENT", _DataTable);
