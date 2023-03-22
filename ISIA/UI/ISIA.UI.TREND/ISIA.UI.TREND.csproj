@@ -104,6 +104,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Data.Client.dll</HintPath>
     </Reference>
+    <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Remoting.dll</HintPath>
+    </Reference>
     <Reference Include="TAP.UI, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.UI.dll</HintPath>
@@ -129,11 +133,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\SnapshotDto.cs" />
+    <Compile Include="Dto\SqlstatDto.cs" />
     <Compile Include="FrmOrclParmsTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmOrclParmsTrendChart.Designer.cs">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSnapTrendChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSnapTrendChart.Designer.cs">
+      <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSQLFullTextQueryAnalysis.cs">
       <SubType>Form</SubType>
@@ -166,6 +178,9 @@
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSnapTrendChart.resx">
+      <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis.resx">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>
@@ -201,6 +216,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">
+      <Project>{4017597e-0dc9-4441-8492-f1512f907ebf}</Project>
+      <Name>ISIA.COMMON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\INTERFACE\ISIA.INTERFACE.ARGUMENTSPACK\ISIA.INTERFACE.ARGUMENTSPACK.csproj">
       <Project>{3a02ff43-6d96-4400-9678-ab2bc1d73606}</Project>
       <Name>ISIA.INTERFACE.ARGUMENTSPACK</Name>

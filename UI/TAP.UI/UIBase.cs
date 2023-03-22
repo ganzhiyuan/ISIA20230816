@@ -5594,7 +5594,7 @@ namespace TAP.UI
         #region PopupMenu
 
         #region Methods
-        public void OpenUI(string menu,string mainMenu,string displayName)
+        public void OpenUI(string menu,string mainMenu,string displayName,DataTable _dataTable=null)
         {
             MainMenuBasicModel tmpMainMenu = null;
             UIBasicModel tmpUI = null;
@@ -5658,6 +5658,11 @@ namespace TAP.UI
 
                 tmpNewForm.Show();
 
+
+                ArgumentPack tmpPack = new ArgumentPack();
+                tmpPack.AddArgument("_dataTable", typeof(DataTable), _dataTable==null?this._DataTable: _dataTable);
+                ((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
+
                 //AgumentPack Data ??? ??
                 //ArgumentPack tmpPack = new ArgumentPack();
                 //tmpPack.AddArgument("TEST", typeof(string), "Hello");
@@ -5674,6 +5679,7 @@ namespace TAP.UI
         }
         #region Fields
 
+        protected DataTable _DataTable;
         #endregion
         protected virtual void SetPopupMenuItem(List<LinkInfo> listInfo)
         {

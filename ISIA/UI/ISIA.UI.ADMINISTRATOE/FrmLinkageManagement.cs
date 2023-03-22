@@ -33,6 +33,7 @@ namespace ISIA.UI.ADMINISTRATOE
 
         List<string> listCID = new List<string>();
         string _groupSelected = string.Empty;
+        protected DataTable _DataTable;
 
 
         public FrmLinkageManagement()
@@ -549,9 +550,22 @@ namespace ISIA.UI.ADMINISTRATOE
                 SetEdit(frm);
             }
         }
+        //public override void ExecuteCommand(ArgumentPack arguments)
+        //{
+        //    foreach (string tmpstr in arguments.ArgumentNames)
+        //    {
+        //        if (tmpstr == "_dataTable")
+        //        {
+        //            DataTable tmpdt = (DataTable)arguments["_dataTable"].ArgumentValue;
 
+        //        }
+        //    }
+        //}
         private void btnUIGroupDel_Click(object sender, EventArgs e)
         {
+            //this._DataTable = DataTableExtend.ConvertToDataSet<treeListInfo>( treeList1.DataSource as List<treeListInfo>).Tables[0];
+            //base.OpenUI("DATABASEMANAGEMENT", "MANAGEMENT", "DATABASE MANAGEMENT", _DataTable);
+
             if (GroupListtw.SelectedNode == null)
             {
                 TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "Please choose userGroup.");
