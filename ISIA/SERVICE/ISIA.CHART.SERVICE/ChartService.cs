@@ -13,7 +13,6 @@ using Steema.TeeChart.Styles;
 using Steema.TeeChart;
 using System.Drawing;
 using System.IO;
-using TAP.WinService;
 
 namespace ISIA.CHART.SERVICE
 {
@@ -307,6 +306,7 @@ namespace ISIA.CHART.SERVICE
 
                     SaveChartImageData(parameterInfo, _imageFileName);
 
+                    //Chart 초기화 하기. TEST 우선 제외.
 
                 }
 
@@ -314,7 +314,6 @@ namespace ISIA.CHART.SERVICE
             catch (System.Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                this.SaveLog(ServiceBase.ERROR_LOG, ServiceName, ex.ToString());
             }
 
         }

@@ -1,14 +1,17 @@
-﻿using ISIA.COMMON;
-using Steema.TeeChart;
+﻿using Steema.TeeChart;
+using Steema.TeeChart.Export;
 using Steema.TeeChart.Styles;
+using Steema.TeeChart.Tools;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
 using TAP.Data.Client;
 using TAP.UI;
+using ISIA.COMMON;
 
 namespace ISIA.UI.CHARTTEST
 {
@@ -52,12 +55,12 @@ namespace ISIA.UI.CHARTTEST
 
         public ChartTest()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         #endregion
 
-
+        
 
         #region DataLoad Methods
 
@@ -288,7 +291,7 @@ namespace ISIA.UI.CHARTTEST
                     #region Create Limit Line
                     if (parameterInfo.SPECLIMITUSED.Contains("YES"))
                     {
-                        if (parameterInfo.SPECUPPERLIMIT != null)
+                        if (parameterInfo.SPECUPPERLIMIT!= null)
                         {
                             chartHelper.ChartYLimitLine(tChart1, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
                         }
@@ -313,7 +316,7 @@ namespace ISIA.UI.CHARTTEST
                     //IMAGE NAME 정의 해야 함. 저장.
                     _imageFileName = MakeFilePath(DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png");
 
-                    chartHelper.SaveChartImage(tChart1, _imageFileName, 1920, 1080);
+                    chartHelper.SaveChartImage(tChart1, _imageFileName);
 
                     SaveChartImageData(parameterInfo, _imageFileName);
 
@@ -338,9 +341,9 @@ namespace ISIA.UI.CHARTTEST
             {
                 this.ChartServiceRun();
             }
-            catch (System.Exception ex)
+            catch(System.Exception ex)
             {
-                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, "RunError", ex.ToString());
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR,"RunError", ex.ToString());
             }
         }
         #endregion
@@ -396,12 +399,12 @@ namespace ISIA.UI.CHARTTEST
 
         public ParameterInfo()
         {
-            DBNAME = string.Empty;
+            DBNAME = string.Empty;            
         }
 
         public ParameterInfo(DataRow dataRow)
         {
-            foreach (DataColumn dc in dataRow.Table.Columns)
+            foreach(DataColumn dc in dataRow.Table.Columns)
             {
                 switch (dc.ColumnName)
                 {
