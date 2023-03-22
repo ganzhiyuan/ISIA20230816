@@ -3617,5 +3617,26 @@ namespace ISIA.BIZ.COMMON
             }
         }
 
+        public void GetSqlstatParaName()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@" select COLUMN_NAME from(
+                        select  COLUMN_NAME  from user_tab_columns  where Table_Name = 'RAW_DBA_HIST_SQLSTAT_ISFA') t where t.column_name like '%TOTAL' ");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
     }
 }
