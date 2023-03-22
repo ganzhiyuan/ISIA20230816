@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Steema.TeeChart;
+using Steema.TeeChart.Export;
+using Steema.TeeChart.Tools;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Steema.TeeChart;
-using Steema.TeeChart.Export;
-using Steema.TeeChart.Styles;
-using Steema.TeeChart.Tools;
 
 namespace ISIA.COMMON
 {
@@ -38,7 +32,7 @@ namespace ISIA.COMMON
 
             //Chart SIZE
             chart.Chart.Width = 1920;
-            chart.Chart.Height = 1080; 
+            chart.Chart.Height = 1080;
 
             //chart.
 
@@ -67,7 +61,7 @@ namespace ISIA.COMMON
             try
             {
 
-                Steema.TeeChart.Export.ImageExport export = new ImageExport(chart.Chart);                
+                Steema.TeeChart.Export.ImageExport export = new ImageExport(chart.Chart);
                 PNGFormat png = export.PNG;
                 png.Height = height;
                 png.Width = width;
