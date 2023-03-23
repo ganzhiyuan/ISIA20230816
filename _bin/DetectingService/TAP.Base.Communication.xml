@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TAP.Base.Communication</name>
+    </assembly>
+    <members>
+        <member name="T:TAP.Base.Communication.Mail">
+            <summary>
+            This class provides method of sending mail
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.#ctor(System.String)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="smtpKey"></param>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.#ctor">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.SendMail(System.String,System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method sends a mail.
+            </summary>
+            <param name="subject">Mail subject</param>
+            <param name="sender">Mail sender</param>
+            <param name="mailMessage">Mail message</param>
+            <param name="receiverList">Receiver list</param>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.SendMailWithAttachment(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            This method sends a mail with a attachment.
+            </summary>
+            <param name="subject">Mail subject</param>
+            <param name="sender">Mail sender</param>
+            <param name="mailMessage">Mail message</param>
+            <param name="receiverList">Receiver list</param>
+            <param name="attachment">Attachment</param>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.SendMail(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.Text.Encoding,System.Boolean,System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            This method sends a mail.
+            </summary>
+            <param name="subject">Mail subject</param>
+            <param name="sender">Mail sender</param>
+            <param name="mailMessage">Mail message</param>
+            <param name="receiverList">Receiver list</param>
+            <param name="bodyEncoding">Body encoding</param>
+            <param name="isHtmlMessage">If 'YES', mail body uses HTML</param>
+             <param name="fileNames">Attachment file</param>
+             <param name="IsShowImage">If "TRUE", mail displays the image automatically</param>
+        </member>
+        <member name="M:TAP.Base.Communication.Mail.SendMail(System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.Text.Encoding,System.Boolean,System.Collections.Generic.List{System.String},System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            This method sends mail
+            </summary>
+            <param name="subject">Mail subject</param>
+            <param name="sender">Mail sender</param>
+            <param name="mailMessage">Mail message</param>
+            <param name="receiverList">Receiver list</param>
+            <param name="bodyEncoding">Body encoding</param>
+            <param name="isHtmlMessage">If 'YES', mail body uses HTML</param>
+             <param name="fileNames">Attachment file</param>
+             <param name="IsShowImage">Show Image</param>
+             <param name="CCList">CC List</param>
+        </member>
+        <member name="T:TAP.Base.Communication.MailingLog">
+            <summary>
+            This class provides the CSV type logs for mail class.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.MailingLog.MakeFilePath(System.String,System.String)">
+            <summary>
+            This method makes the log file path.
+            </summary>
+            <param name="objectName">Object name</param>
+            <param name="logType">Log type</param>
+            <returns>If 'TURE', making log file path succeed.</returns>
+        </member>
+        <member name="T:TAP.Base.Communication.SMS">
+            <summary>
+            This class provides the SMS message.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.SMS.#ctor">
+            <summary>
+            This creates instance of this class.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.SMS.SendSMS(System.String)">
+            <summary>
+            This method makes SMS file and copy to SMS directory.
+            </summary>
+            <param name="message">Text message</param>
+        </member>
+        <member name="M:TAP.Base.Communication.SMS.SendSMS(System.String,System.String,System.String)">
+            <summary>
+            This method makes SMS file and copy to SMS directory
+            </summary>
+            <param name="smsDirectory">SMS directory path</param>
+            <param name="smsFileName">SMS file name</param>
+            <param name="message">Text message</param>
+        </member>
+        <member name="T:TAP.Base.Communication.SMSLog">
+            <summary>
+            This class provides  CSV type log for SMS class.
+            </summary>
+        </member>
+        <member name="M:TAP.Base.Communication.SMSLog.MakeFilePath(System.String,System.String)">
+            <summary>
+            This method makes log file path.
+            </summary>
+            <param name="objectName">Object name</param>
+            <param name="logType">Log type</param>
+            <returns>If 'TURE', making log file path succeed.</returns>
+        </member>
+    </members>
+</doc>
