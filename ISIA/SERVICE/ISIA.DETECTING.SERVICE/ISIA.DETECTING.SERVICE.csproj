@@ -77,7 +77,7 @@
     </Reference>
     <Reference Include="TAP.WinService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_bin\Service\TAP.WinService.dll</HintPath>
+      <HintPath>..\..\..\_bin\DetectingService\TAP.WinService.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
