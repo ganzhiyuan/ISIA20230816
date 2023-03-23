@@ -62,6 +62,23 @@ namespace ISIA.UI.TREND
                 args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cboParaName.Text;
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+
+                /*foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (string.IsNullOrEmpty(row[cboParaName.Text].ToString()) || row[cboParaName.Text].ToString() == "0") {
+                        row[cboParaName.Text] = -1;
+                    }
+                }
+
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (row[cboParaName.Text].ToString() == "-1")
+                    {
+                        row.Delete();
+                    }
+                    
+                }
+                dataSet.AcceptChanges();*/
                 return dataSet;
             }
             catch (Exception)
@@ -126,11 +143,14 @@ namespace ISIA.UI.TREND
                     if (line.CalcXPos(i)>=minX&&line.CalcXPos(i)<maxX&&line.CalcYPos(i)>=minY&&line.CalcYPos(i)<=maxY)
                     {
                         SnapshotDto dto = new SnapshotDto();
-                        dto.SNAP_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
-                        double value = line[i].Y;//VALUE
+                        dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                        //double value = line[i].Y;//VALUE
+                        dto.Value = line[i].Y.ToString();//value
                         int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+
+                        
                         DataTable dt1 = line.DataSource as DataTable;
-                        dto.SQL_ID = dt1.Rows[xValue]["SQL_ID"].ToString();//SQL_ID
+                        dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
                         snaplist.Add(dto);
                     }
                 }
@@ -139,8 +159,16 @@ namespace ISIA.UI.TREND
             {
                 return;
             }
+
+
             this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
-            base.OpenUI("SQLFULLTEXTQUERYANALYSIS", "TREND", "DATABASE MANAGEMENT", _DataTable);
+
+            PopupGrid popupGrid = new PopupGrid(this._DataTable);
+            popupGrid.StartPosition = FormStartPosition.CenterScreen;
+            popupGrid.ShowDialog();
+            DataTable dt =  popupGrid._DataTable;
+
+            base.OpenUI("SQLFULLTEXTQUERYANALYSIS", "TREND", "DATABASE MANAGEMENT", dt);
         }
 
         //TChart chart = new TChart();
@@ -163,14 +191,14 @@ namespace ISIA.UI.TREND
 
         private void CreateTeeChart(DataTable dsTable)
         {
-            var cuTool = new CursorTool(tChart1.Chart)
+            /*var cuTool = new CursorTool(tChart1.Chart)
             {
                 Style = CursorToolStyles.Both,
                 FollowMouse = true,
 
-            };
+            };*/
             var markstip = new MarksTip(tChart1.Chart);
-            cuTool.Pen.Color = Color.Red;
+           /* cuTool.Pen.Color = Color.Red;
             tChart1.MouseEnter += Chart_MouseEnter;
             tChart1.MouseLeave += Chart_MouseLeave;
             void Chart_MouseEnter(object sender, EventArgs e)
@@ -180,7 +208,7 @@ namespace ISIA.UI.TREND
             void Chart_MouseLeave(object sender, EventArgs e)
             {
                 cuTool.Pen.Visible = false;
-            }
+            }*/
 
             //chart.Chart.Series.Chart.GetASeries().Legend.Text.ToString();
             //chart.ContextMenuStrip = contextMenuStrip1;
@@ -188,7 +216,7 @@ namespace ISIA.UI.TREND
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
             tChart1.Header.Text = "TEECHART";//teechart标题 
             tChart1.Legend.Visible = true;
-            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SNAP_ID"].ToString());
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -229,9 +257,9 @@ namespace ISIA.UI.TREND
             }*/
             //tChart1.Axes.Bottom.Labels.Angle = 1;
 
-            //tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
-            //tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
-            //line.Legend.Visible = true;
+            tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+            tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+            /*line.Legend.Visible = true;*/
             return;
         }
 
@@ -248,8 +276,8 @@ namespace ISIA.UI.TREND
             };
             nearpoint.Pen.Color = Color.Red;*/
             //nearpoint.Pen.Visible = false;
-            line.Pointer.Style = PointerStyles.Circle;
-            line.Pointer.Visible = true;
+            /*line.Pointer.Style = PointerStyles.Circle;
+            line.Pointer.Visible = true;*/
             //line.Pointer.HorizSize = 120;
 
             //line.ClickPointer += Line_ClickPointer;
@@ -260,11 +288,13 @@ namespace ISIA.UI.TREND
             //}
             line.DataSource = dstable;
             line.YValues.DataMember = cboParaName.Text;
-            //line.XValues.DataMember = "ROWNUM";
+            line.XValues.DataMember = "END_INTERVAL_TIME";
             line.ShowInLegend = true;
+            line.ColorEach = true;
+            line.ColorEachLine = true;
             line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
-            //line.XValues.DateTime = true;
+            line.XValues.DateTime = true;
 
             return line;
         }
