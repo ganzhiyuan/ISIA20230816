@@ -104,6 +104,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Data.Client.dll</HintPath>
     </Reference>
+    <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
     <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Remoting.dll</HintPath>
@@ -135,6 +136,12 @@
   <ItemGroup>
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="PopupGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupGrid.Designer.cs">
+      <DependentUpon>PopupGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOrclParmsTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlRelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupGrid.resx">
+      <DependentUpon>PopupGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

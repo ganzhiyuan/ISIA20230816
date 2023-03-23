@@ -20,9 +20,9 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"SELECT  ROWNUM,t.snap_id,t.dbid,t.sql_id,{0}
-                                          FROM raw_dba_hist_sqlstat_isfa T
-                                         where t.snap_id in
+                tmpSql.AppendFormat(@" SELECT a.end_interval_time, t.snap_id,t.dbid,t.sql_id, T.{0}
+                                                FROM raw_dba_hist_sqlstat_isfa T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id 
+                                                where t.snap_id in
                                                (SELECT T.Snap_Id
                                                   FROM raw_dba_hist_snapshot_isfa T
                                                  WHERE T.END_INTERVAL_TIME >=

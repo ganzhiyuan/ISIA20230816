@@ -13,5 +13,6 @@ namespace ISIA.UI.TREND.Dto
         public string END_INTERVAL_TIME { get; set; }
 
         public string SQL_ID { get; set; }
+        public string Value { get; set; }
     }
 }
