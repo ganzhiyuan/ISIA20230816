@@ -148,6 +148,12 @@
     <Compile Include="FrmOrclParmsTrendChart.Designer.cs">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmParaTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParaTrend.Designer.cs">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSnapTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParaTrend.resx">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapTrendChart.resx">
       <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
