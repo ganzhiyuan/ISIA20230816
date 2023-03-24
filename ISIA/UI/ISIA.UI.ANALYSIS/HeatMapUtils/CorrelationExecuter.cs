@@ -118,7 +118,7 @@ namespace Analysis.Correlation
                 return null;
             }
         }
-        private Double Calculate(Double[] x, Double[] y)
+        public static Double Calculate(Double[] x, Double[] y)
         {
             try
             {
