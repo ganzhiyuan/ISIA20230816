@@ -104,6 +104,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Data.Client.dll</HintPath>
     </Reference>
+    <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
     <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Remoting.dll</HintPath>
@@ -135,11 +136,29 @@
   <ItemGroup>
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="Frm1NewSqlStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm1NewSqlStat.Designer.cs">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopupGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupGrid.Designer.cs">
+      <DependentUpon>PopupGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOrclParmsTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmOrclParmsTrendChart.Designer.cs">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParaTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParaTrend.Designer.cs">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSnapTrendChart.cs">
       <SubType>Form</SubType>
@@ -176,8 +195,14 @@
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\InitializationUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
+    <EmbeddedResource Include="Frm1NewSqlStat.resx">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParaTrend.resx">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapTrendChart.resx">
       <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
@@ -190,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlRelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupGrid.resx">
+      <DependentUpon>PopupGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -4,6 +4,7 @@ using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TAP;
 using TAP.Data.Client;
+using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
@@ -29,12 +32,43 @@ namespace ISIA.UI.TREND
             bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SQLFullTextQueryAnalysis");
         }
 
-        private void FrmSQLFullTextQueryAnalysis_Load(object sender, EventArgs e)
+        public DataSet LoadData()
         {
-            BindData();
+
+            DataClient tmpDataClient = new DataClient();
+            string tmpMainMenuSql = "SELECT rownum, t.DBID,t.SQL_ID,t.CPU_TIME_DELTA FROM raw_dba_hist_sqlstat_isfa T";
+            dataSet = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqlstat_isfa");
+            dataSet.Tables[0].TableName = "TABLE";
+
+
+            IEnumerable<IGrouping<string, DataRow>> result = dataSet.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
+            if (result != null && result.Count() > 0)
+            {
+                foreach (IGrouping<string, DataRow> rows in result)
+                {
+                    DataTable dataTable = rows.ToArray().CopyToDataTable();
+                    dataTable.TableName = rows.Key;
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        dataSet.Tables.Add(dataTable);
+                    }
+                }
+            }
+
+
+            
+            
+            return dataSet;
         }
 
-        private void BindData()
+
+        public void DisplayData(DataSet dataSet)
+        {
+            CreateBar();
+
+        }
+
+        /*private void BindData()
         {
             //chartControl1.Series.Clear();
             DataClient tmpDataClient = new DataClient();
@@ -59,7 +93,7 @@ namespace ISIA.UI.TREND
         
 
             CreateBar();
-            /*foreach (DataRow row in tableMain.Rows)
+            *//*foreach (DataRow row in tableMain.Rows)
             {
                 //Series series1 = new Series("日志统计", ViewType.RadarArea);
                 Series series1 = new Series(row["SQL_ID"].ToString(), ViewType.Bar);
@@ -73,8 +107,8 @@ namespace ISIA.UI.TREND
                     point.Values = vals;
                     series1.Points.Add(point);
                 }
-            }*/
-        }
+            }*//*
+        }*/
 
 
         private void CreateBar()
@@ -129,7 +163,7 @@ namespace ISIA.UI.TREND
             void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
             {
                 //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
-                e.MarkText = "NAME :" + $"{dt2.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt2.Rows[e.ValueIndex]["NUM"]}";
+                e.MarkText = "SQL_ID :" + $"{dt2.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt2.Rows[e.ValueIndex]["NUM"]}";
             }
 
             void TChart1_ClickSeries(object sender, Series s, int valueIndex, MouseEventArgs e)
@@ -148,54 +182,214 @@ namespace ISIA.UI.TREND
 
             bar.LabelMember = "Name";
             bar.Marks.Visible = false;
-            bar.GetSeriesMark += Bar_GetSeriesMark;
-            tChart1.ClickSeries += TChart1_ClickSeries;
+            bar.GetSeriesMark += Bar_GetSeriesMark;//提示信息事件
+            tChart1.ClickSeries += TChart1_ClickSeries;//点击chart事件
             return;
         }
 
-        
 
-        private void chartControl1_MouseDown(object sender, MouseEventArgs e)
+        public override void ExecuteCommand(ArgumentPack arguments)
         {
-            //ChartHitInfo hi = chartControl1.CalcHitInfo(e.Location);
+            DataTable tmpdt;
 
-            /*// Obtain the series point under the test point.
-            SeriesPoint point = hi.SeriesPoint;
-
-            // Check whether the series point was clicked or not.
-            if (point != null)
+            foreach (string tmpstr in arguments.ArgumentNames)
             {
-                string s = hi.HitObject.ToString();
-                var sql_id = tableMain.AsEnumerable().Where(x => x.Field<string>("SQL_ID") == s).ToList();
+                if (tmpstr == "hashtable")
+                {
+                    //Hashtable hashtable;
+                    //hashtable = (Hashtable)arguments["hashtable"].ArgumentValue;
+                    /*if (hashtable["FACILITY"] != null)
+                    {
+                        CBC.SelectedComboBox(cboFab, hashtable["FACILITY"].ToString());
+                    }
+                    if (hashtable["TECH"] != null)
+                    {
+                        CBC.SelectedComboBox(cboTech, hashtable["TECH"].ToString());
+                    }
+                    if (hashtable["LOTCODE"] != null)
+                    {
+                        CBC.SelectedComboBox(cboLotcode, hashtable["LOTCODE"].ToString());
+                    }
+                    if (hashtable["OPERATION"] != null)
+                    {
+                        cboOper.Text = hashtable["OPERATION"].ToString();
+                    }
+                    if (hashtable["PRODUCT"] != null)
+                    {
+                        CBC.SelectedComboBox(cboProd, hashtable["PRODUCT"].ToString());
+                    }
+                    if (hashtable["PRMT"] != null)
+                    {
+                        CBC.SelectedComboBox(cboPrmt, hashtable["PRMT"].ToString());
+                    }
+                    if (hashtable["CBO"] != null)
+                    {
+                        CBC.SelectedComboBox(cboLegend, hashtable["CBO"].ToString());
+                    }
 
-                DataClient tmpDataClient = new DataClient();
-                string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_isfa T where t.sql_id='{0}' ", sql_id[0]["SQL_ID"].ToString());
-                DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
-                tableMain1.TableName = "sql";
+                    string STARTTIME = "";
+                    string ENDTIME = "";
+                    if (hashtable["STARTTIME"] != null)
+                    {
+                        STARTTIME = hashtable["STARTTIME"].ToString();
+                    }
+                    if (hashtable["ENDTIME"] != null)
+                    {
+                        ENDTIME = hashtable["ENDTIME"].ToString();
+                    }
+                    //date
+                    if (STARTTIME != null && STARTTIME != "" && ENDTIME != null && ENDTIME != "")
+                    {
+                        tDateTimePickerDEV1.UseDatePickValue = true;
 
-                memoEdit1.Text = tableMain1.Rows[0][0].ToString();
+                        DateTime STARTTIMETEXT = DateTime.ParseExact(STARTTIME, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        DateTime ENDTIMETEXT = DateTime.ParseExact(ENDTIME, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        tDateTimePickerDEV1.RepresentativeValue = STARTTIMETEXT.ToString();
+                        tDateTimePickerDEV1.EndRepresentativeValue = ENDTIMETEXT.ToString();
+                    }*/
 
-                // Obtain the series point argument.
-                //string argument = "Argument: " + point.Argument.ToString();
 
-                //// Obtain series point values.
-                //string values = "Value(s): " + point.Values[0].ToString();
-                //if (point.Values.Length > 1)
-                //{
-                //    for (int i = 1; i < point.Values.Length; i++)
-                //    {
-                //        values = values + ", " + point.Values.ToString();
-                //    }
-                //}
+                }
+                if (tmpstr == "LinkTable")
+                {
+                    //DataTable dt = (DataTable)arguments["LinkTable"].ArgumentValue;
+                    //CBC.AfterComboBoxLinkValue(dt, this.tabPane2);
+                }
+                if (tmpstr == "_dataTable")
+                {
+                    //tRadWafer.Checked = true;
 
-                //// Show the tooltip.
-                //toolTipController1.ShowHint(argument + "\n" + values, "SeriesPoint Data");
+                   // tmpdt = (DataTable)arguments["_dataTable"].ArgumentValue;
+
+
+
+                    //if (tmpdt.Rows.Count > 0)
+                    //{
+                        /*if (tmpdt.Columns.Contains("FAB"))
+                        {
+                            CBC.SelectedComboBox(cboFab, tmpdt.Rows[0]["FAB"].ToString());
+                        }
+                        else if (tmpdt.Columns.Contains("FACILITY"))
+                        {
+                            CBC.SelectedComboBox(cboFab, tmpdt.Rows[0]["FACILITY"].ToString());
+                        }
+                        if (tmpdt.Columns.Contains("TECH"))
+                        {
+                            CBC.SelectedComboBox(cboTech, tmpdt.Rows[0]["TECH"].ToString());
+                        }
+                        if (tmpdt.Columns.Contains("LOT_CD"))
+                        {
+                            CBC.SelectedComboBox(cboLotcode, tmpdt.Rows[0]["LOT_CD"].ToString());
+                        }
+                        else if (tmpdt.Columns.Contains("LOTCODE"))
+                        {
+                            CBC.SelectedComboBox(cboLotcode, tmpdt.Rows[0]["LOTCODE"].ToString());
+                        }
+                        if (tmpdt.Columns.Contains("OPERATION"))
+                        {
+                            //cboOper.Text = Utils.DataTableDistincByColumns(tmpdt, "OPERATION");
+                            CBC.SelectedComboBox(cboOper, Utils.DataTableDistincByColumns(tmpdt, "OPERATION"));
+                        }
+                        if (tmpdt.Columns.Contains("WF_ID"))
+                        {
+                            CBC.SelectedComboBox(cboWafer, Utils.DataTableDistincByColumns(tmpdt, "WF_ID"));
+
+                        }
+                        if (tmpdt.Columns.Contains("STRATTime"))
+                        {
+                            string STARTTIME = "";
+                            string ENDTIME = "";
+                            STARTTIME = tmpdt.Rows[0]["STRATTime"].ToString();
+                            ENDTIME = tmpdt.Rows[0]["ENDTime"].ToString();
+                            tDateTimePickerDEV1.UseDatePickValue = true;
+
+                            DateTime STARTTIMETEXT = DateTime.ParseExact(STARTTIME, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                            DateTime ENDTIMETEXT = DateTime.ParseExact(ENDTIME, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                            tDateTimePickerDEV1.RepresentativeValue = STARTTIMETEXT.ToString();
+                            tDateTimePickerDEV1.EndRepresentativeValue = ENDTIMETEXT.ToString();
+
+                        }
+                        CBC.SelectedComboBox(cboPrmt, "Yield");
+                        CBC.SelectedComboBox(cboLegend, "LOT");*/
+
+                        /*DataTable  dataTable =  tmpdt.DefaultView.ToTable(true,"WF_ID");
+                        
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i<dataTable.Rows.Count; i++) {
+                            
+                           stringBuilder.Append(dataTable.Rows[i]["WF_ID"].ToString());
+                            if (i < dataTable.Rows.Count -1) {
+                                stringBuilder.Append(",");
+                            }
+                        }
+                        CBC.SelectedComboBox(cboWafer, stringBuilder.ToString());*/
+
+
+
+                        /*if (tmpdt.Columns.Contains("PARAMETERNAME"))
+                        {
+                            strPara = Utils.DataTableDistincByColumns(tmpdt, "PARAMETERNAME");
+                        }
+                        if (tmpdt.Columns.Contains("EDATE"))
+                        {
+                            Date = tmpdt.Rows[0]["EDATE"].ToString();
+                        }
+                        if (tmpdt.Columns.Contains("OPER"))
+                        {
+                            strOper = Utils.DataTableDistincByColumns(tmpdt, "OPER");
+                        }
+                        if (tmpdt.Columns.Contains("_legend"))
+                        {
+                            strCat = Utils.DataTableDistincByColumns(tmpdt, "_legend");
+                        }
+                        if (tmpdt.Columns.Contains("OPERATION"))
+                        {
+                            strOperation = Utils.DataTableDistincByColumns(tmpdt, "OPERATION");
+                        }
+                        if (tmpdt.Columns.Contains("DEFECT_CLASS"))
+                        {
+                            strDefectClass = Utils.DataTableDistincByColumns(tmpdt, "DEFECT_CLASS");
+                        }
+                        if (tmpdt.Columns.Contains("LOT"))
+                        {
+                            strLotID = Utils.DataTableDistincByColumns(tmpdt, "LOT");
+                        }
+                        else if (tmpdt.Columns.Contains("LOT_ID"))
+                        {
+                            strLotID = Utils.DataTableDistincByColumns(tmpdt, "LOT_ID");
+                        }
+*/
+                        //Set ComboBoxText
+                        /*cboLotid.Text = strLotID;
+                        cboDefectClass.Text = strDefectClass;
+                        cboOper.Text = strOperation;
+                        cboCategory.Text = strCat;
+                        cboPrmt.Text = strPara;
+                        dateStart.Text = Date;*/
+                        //prm = 1;
+
+                    //}
+                }
+
             }
-            else
+            tbnSeach_Click(null, null);
+
+
+        }
+
+        private void tbnSeach_Click(object sender, EventArgs e)
+        {
+
+            try
             {
-                // Hide the tooltip.
-                toolTipController1.HideHint();
-            }*/
+                //ComboBoxControl.SetCrossLang(this._translator);
+                //if (!base.ValidateUserInput(this.layoutControl1)) return;
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
