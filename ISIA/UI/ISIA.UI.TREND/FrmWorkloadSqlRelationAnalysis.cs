@@ -11,6 +11,7 @@ using Steema.TeeChart;
 using System.Xml;
 using Steema.TeeChart.Tools;
 using Steema.TeeChart.Styles;
+using DevExpress.XtraEditors.Controls;
 
 namespace ISIA.UI.TREND
 {
@@ -55,6 +56,13 @@ namespace ISIA.UI.TREND
         private void dateEnd_EditValueChanged(object sender, EventArgs e)
         {
             InitializeSqlId();
+        }
+
+        private void textEditSqlId_EditValueChanged(object sender, EventArgs e)
+        {
+
+            FilteringCheckedListBoxSqlIds();
+            
         }
         #endregion
 
@@ -106,11 +114,16 @@ namespace ISIA.UI.TREND
             args.StartTime = ((DateTime)dateStart.EditValue).ToString("yyyyMMddHHmmss");
             args.EndTime = ((DateTime)dateEnd.EditValue).ToString("yyyyMMddHHmmss");
             DataSet ds = Bs.ExecuteDataSet("GetSqlId", args.getPack());
-            tCheckComboBoxSqlId.Properties.Items.Clear();
+            this.clbSqlIds.Items.Clear();
             DataTable dt = ds.Tables[0];
             foreach (DataRow dr in dt.Rows)
             {
-                this.tCheckComboBoxSqlId.Properties.Items.Add(dr["SQL_ID"]);
+                this.clbSqlIds.Items.Add(dr["SQL_ID"]);
+            }
+            //sqlcollection update.
+            foreach(CheckedListBoxItem item in this.clbSqlIds.Items)
+            {
+                sqlCollection.Add((string)item.Value);
             }
 
         }
@@ -169,7 +182,7 @@ namespace ISIA.UI.TREND
 
             //SQLID handling 
 
-            argument.SqlIdList = tCheckComboBoxSqlId.Properties.Items.GetCheckedValues();
+            argument.SqlIdList = clbSqlIds.Items.GetCheckedValues();
 
 
             //combobox edit workload parm
@@ -296,6 +309,35 @@ namespace ISIA.UI.TREND
         }
 
         #endregion
+
+        #region textEditSqlId_EditValueChanged
+
+        private List<string> sqlCollection = new List<string>();
+
+        private void FilteringCheckedListBoxSqlIds()
+        {
+            if (string.IsNullOrEmpty(textEditSqlId.Text) == false)
+            {
+                clbSqlIds.Items.Clear();
+                foreach (string str in sqlCollection)
+                {
+                    if (str.Contains(textEditSqlId.Text))
+                    {
+                        clbSqlIds.Items.Add(str);
+                    }
+                }
+            }
+            else if (textEditSqlId.Text == "")
+            {
+                clbSqlIds.Items.Clear();
+                foreach (string str in sqlCollection)
+                {
+                    clbSqlIds.Items.Add(str);
+
+                }
+            }
+        }
+        #endregion
         private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             currentChart.ShowEditor();
@@ -306,6 +348,6 @@ namespace ISIA.UI.TREND
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
 
-
+        
     }
 }

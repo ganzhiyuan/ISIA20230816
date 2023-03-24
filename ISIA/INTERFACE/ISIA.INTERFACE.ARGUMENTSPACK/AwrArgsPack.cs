@@ -41,6 +41,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private static Dictionary<string, string> _WorkloadBelonging = new Dictionary<string, string>();
 
+        private static List<string> _SqlParmsList = new List<string>();
+
         public const string METRIC = "METRIC";
 
         public const string SYSSTAT = "SYSSTAT";
@@ -84,6 +86,65 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadBelonging.Add("parse count (total)", SYSSTAT);
             WorkloadBelonging.Add("redo size", SYSSTAT);
             WorkloadBelonging.Add("db block changes", SYSSTAT);
+            //SqlParmList
+            SqlParmsList.Add("FETCHES_TOTAL");
+            SqlParmsList.Add("FETCHES_DELTA");
+            SqlParmsList.Add("END_OF_FETCH_COUNT_TOTAL");
+            SqlParmsList.Add("END_OF_FETCH_COUNT_DELTA");
+            SqlParmsList.Add("SORTS_TOTAL");
+            SqlParmsList.Add("SORTS_DELTA");
+            SqlParmsList.Add("EXECUTIONS_TOTAL");
+            SqlParmsList.Add("EXECUTIONS_DELTA");
+            SqlParmsList.Add("PX_SERVERS_EXECS_TOTAL");
+            SqlParmsList.Add("PX_SERVERS_EXECS_DELTA");
+            SqlParmsList.Add("LOADS_TOTAL");
+            SqlParmsList.Add("LOADS_DELTA");
+            SqlParmsList.Add("INVALIDATIONS_TOTAL");
+            SqlParmsList.Add("INVALIDATIONS_DELTA");
+            SqlParmsList.Add("PARSE_CALLS_TOTAL");
+            SqlParmsList.Add("PARSE_CALLS_DELTA");
+            SqlParmsList.Add("DISK_READS_TOTAL");
+            SqlParmsList.Add("DISK_READS_DELTA");
+            SqlParmsList.Add("BUFFER_GETS_TOTAL");
+            SqlParmsList.Add("BUFFER_GETS_DELTA");
+            SqlParmsList.Add("ROWS_PROCESSED_TOTAL");
+            SqlParmsList.Add("ROWS_PROCESSED_DELTA");
+            SqlParmsList.Add("CPU_TIME_TOTAL");
+            SqlParmsList.Add("CPU_TIME_DELTA");
+            SqlParmsList.Add("ELAPSED_TIME_TOTAL");
+            SqlParmsList.Add("ELAPSED_TIME_DELTA");
+            SqlParmsList.Add("IOWAIT_TOTAL");
+            SqlParmsList.Add("IOWAIT_DELTA");
+            SqlParmsList.Add("CLWAIT_TOTAL");
+            SqlParmsList.Add("CLWAIT_DELTA");
+            SqlParmsList.Add("APWAIT_TOTAL");
+            SqlParmsList.Add("APWAIT_DELTA");
+            SqlParmsList.Add("CCWAIT_TOTAL");
+            SqlParmsList.Add("CCWAIT_DELTA");
+            SqlParmsList.Add("DIRECT_WRITES_TOTAL");
+            SqlParmsList.Add("DIRECT_WRITES_DELTA");
+            SqlParmsList.Add("PLSEXEC_TIME_TOTAL");
+            SqlParmsList.Add("PLSEXEC_TIME_DELTA");
+            SqlParmsList.Add("JAVEXEC_TIME_TOTAL");
+            SqlParmsList.Add("JAVEXEC_TIME_DELTA");
+            SqlParmsList.Add("IO_OFFLOAD_ELIG_BYTES_TOTAL");
+            SqlParmsList.Add("IO_OFFLOAD_ELIG_BYTES_DELTA");
+            SqlParmsList.Add("IO_INTERCONNECT_BYTES_TOTAL");
+            SqlParmsList.Add("IO_INTERCONNECT_BYTES_DELTA");
+            SqlParmsList.Add("PHYSICAL_READ_REQUESTS_TOTAL");
+            SqlParmsList.Add("PHYSICAL_READ_REQUESTS_DELTA");
+            SqlParmsList.Add("PHYSICAL_READ_BYTES_TOTAL");
+            SqlParmsList.Add("PHYSICAL_READ_BYTES_DELTA");
+            SqlParmsList.Add("PHYSICAL_WRITE_REQUESTS_TOTAL");
+            SqlParmsList.Add("PHYSICAL_WRITE_REQUESTS_DELTA");
+            SqlParmsList.Add("PHYSICAL_WRITE_BYTES_TOTAL");
+            SqlParmsList.Add("PHYSICAL_WRITE_BYTES_DELTA");
+            SqlParmsList.Add("OPTIMIZED_PHYSICAL_READS_TOTAL");
+            SqlParmsList.Add("OPTIMIZED_PHYSICAL_READS_DELTA");
+            SqlParmsList.Add("CELL_UNCOMPRESSED_BYTES_TOTAL");
+            SqlParmsList.Add("CELL_UNCOMPRESSED_BYTES_DELTA");
+            SqlParmsList.Add("IO_OFFLOAD_RETURN_BYTES_TOTAL");
+            SqlParmsList.Add("IO_OFFLOAD_RETURN_BYTES_DELTA");
 
         }
 
@@ -257,6 +318,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _WorkloadBelonging = value;
+            }
+        }
+
+        public static List<string> SqlParmsList
+        {
+            get
+            {
+                return _SqlParmsList;
+            }
+
+            set
+            {
+                _SqlParmsList = value;
             }
         }
 

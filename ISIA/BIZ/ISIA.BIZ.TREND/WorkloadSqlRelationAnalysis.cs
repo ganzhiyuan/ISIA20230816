@@ -135,7 +135,7 @@ namespace ISIA.BIZ.TREND
 "                \"begin_interval_time\",\r\n" +
 "                \"end_interval_time\",\r\n" +
 "                ROUND (\r\n" +
-"                    (  \"DB time\"\r\n" +
+"                    (  \"{0}\"\r\n" +
 "                     - LAG (\"{0}\", 1)\r\n" +
 "                           OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
 "                                 ORDER BY snap_id)))\r\n" +

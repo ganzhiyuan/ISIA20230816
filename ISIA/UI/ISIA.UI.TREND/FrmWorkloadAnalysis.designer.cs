@@ -160,7 +160,7 @@
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(709, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(748, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(947, 665);
@@ -1909,6 +1909,7 @@
             this.gridView1.DetailHeight = 437;
             this.gridView1.GridControl = this.gridControlWorkloadData;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // contextMenuStrip1
             // 
