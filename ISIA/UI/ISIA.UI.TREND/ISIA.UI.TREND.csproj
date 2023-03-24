@@ -136,6 +136,12 @@
   <ItemGroup>
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="Frm1NewSqlStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm1NewSqlStat.Designer.cs">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </Compile>
     <Compile Include="PopupGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,12 @@
     </Compile>
     <Compile Include="FrmOrclParmsTrendChart.Designer.cs">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParaTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParaTrend.Designer.cs">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSnapTrendChart.cs">
       <SubType>Form</SubType>
@@ -183,8 +195,14 @@
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\InitializationUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
+    <EmbeddedResource Include="Frm1NewSqlStat.resx">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParaTrend.resx">
+      <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapTrendChart.resx">
       <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
