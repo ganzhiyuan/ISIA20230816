@@ -11,7 +11,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,26 +19,25 @@ using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
-    public partial class FrmSnapTrendChart : DockUIBase1T1
+    public partial class FrmSnapTrendChart1 : DockUIBase1T1
     {
 
         protected PointF _pStart;
         protected PointF _pEnd;
-        List<SqlStatRowDto> returnList = null;
+
         private bool _dragPoint = false;
         private bool _PointMap = false;
         private bool bfirst = false;
         EquipmentArgsPack args = new EquipmentArgsPack();
         BizDataClient bs;
         DataSet dataSet;
-        DataSet dataSet1 = new DataSet();
         List<Series> series = new List<Series>();
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
-        public FrmSnapTrendChart()
+        public FrmSnapTrendChart1()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart1");
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -63,15 +61,24 @@ namespace ISIA.UI.TREND
                 args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cboParaName.Text;
-                dataSet = bs.ExecuteDataSet("GetSnap");
+                dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
 
+                /*foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (string.IsNullOrEmpty(row[cboParaName.Text].ToString()) || row[cboParaName.Text].ToString() == "0") {
+                        row[cboParaName.Text] = -1;
+                    }
+                }
 
-
-                DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
-                dataSet1.Tables.Add(dt.Copy());
-                dataSet1.Tables[0].TableName = "TABLE";
-
-
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (row[cboParaName.Text].ToString() == "-1")
+                    {
+                        row.Delete();
+                    }
+                    
+                }
+                dataSet.AcceptChanges();*/
                 return dataSet;
             }
             catch (Exception)
@@ -79,56 +86,13 @@ namespace ISIA.UI.TREND
                 throw;
             }
         }
-
-        private DataTable ConvertDTToListRef(DataTable dt)
-        {
-            List<SqlstatDto> list = DataTableExtend.GetList<SqlstatDto>(dt);
-            SqlstatDto dto = new SqlstatDto();
-            PropertyInfo[] fields = dto.GetType().GetProperties();
-            List<string> listTotal = new List<string>();
-            for (int i = 0; i < fields.Length; i++)
-            {
-                string ss = fields[i].Name;
-                if (ss.Contains("TOTAL"))
-                {
-                    listTotal.Add(ss);
-                }
-            }
-            returnList = new List<SqlStatRowDto>();
-
-            foreach (SqlstatDto item in list)
-            {
-                PropertyInfo[] proInfo = item.GetType().GetProperties();
-                foreach (var s in listTotal)
-                {
-                    SqlStatRowDto rowDto = new SqlStatRowDto();
-                    rowDto.DBID = item.DBID;
-                    rowDto.SQL_ID = item.SQL_ID;
-                    rowDto.PARAMENT_NAME = s;
-                    rowDto.END_INTERVAL_TIME = item.END_INTERVAL_TIME;
-                    foreach (PropertyInfo para in proInfo)
-                    {
-                        if (s == para.Name)
-                        {
-                            rowDto.PARAMENT_VALUE = Convert.ToDecimal(para.GetValue(item, null).ToString());
-                        }
-                    }
-                    returnList.Add(rowDto);
-                }
-
-            }
-            DataTable dt1 = DataTableExtend.ConvertToDataSet<SqlStatRowDto>(returnList).Tables[0];
-            return dt1;
-        }
-
-
         public void DisplayData(DataSet dataSet)
         {
             if (dataSet == null)
             {
                 return;
             }
-            CreateTeeChart(dataSet1.Tables[0]);
+            CreateTeeChart(dataSet.Tables[0]);
         }
         private void tChart1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -252,7 +216,7 @@ namespace ISIA.UI.TREND
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
             tChart1.Header.Text = "TEECHART";//teechart标题 
             tChart1.Legend.Visible = true;
-            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -261,14 +225,14 @@ namespace ISIA.UI.TREND
                     dataTable.TableName = rows.Key;
                     if (dataTable.Rows.Count > 0)
                     {
-                        dataSet1.Tables.Add(dataTable);
+                        dataSet.Tables.Add(dataTable);
                     }
                 }
             }
-            if (dataSet1.Tables.Count > 1)
+            if (dataSet.Tables.Count > 1)
             {
 
-                foreach (DataTable dt in dataSet1.Tables)
+                foreach (DataTable dt in dataSet.Tables)
                 {
                     if (dt.TableName != "TABLE")
                     {
@@ -292,7 +256,7 @@ namespace ISIA.UI.TREND
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
             }*/
             //tChart1.Axes.Bottom.Labels.Angle = 1;
-            
+
             tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             /*line.Legend.Visible = true;*/
@@ -323,7 +287,7 @@ namespace ISIA.UI.TREND
             //    e.MarkText = "PARAMETER :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["BEGIN_INTERVAL_TIME"]}";
             //}
             line.DataSource = dstable;
-            line.YValues.DataMember = "PARAMENT_VALUE";
+            line.YValues.DataMember = cboParaName.Text;
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.ShowInLegend = true;
             line.ColorEach = true;

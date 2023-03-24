@@ -11,7 +11,7 @@ using TAP.Remoting;
 
 namespace ISIA.BIZ.TREND
 {
-    public class SqlstatServices : TAP.Remoting.Server.Biz.BizComponentBase
+    public class SnapTrendChart1 : TAP.Remoting.Server.Biz.BizComponentBase
     {
         public void GetSnap(EquipmentArgsPack arguments)
         {

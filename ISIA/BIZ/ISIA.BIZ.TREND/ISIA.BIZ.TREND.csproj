@@ -56,7 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlstatServices.cs" />
+    <Compile Include="SnapTrendChart.cs" />
+    <Compile Include="SnapTrendChart1.cs" />
     <Compile Include="WorkloadSqlRelationAnalysis.cs" />
     <Compile Include="OrclParmsTrendChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

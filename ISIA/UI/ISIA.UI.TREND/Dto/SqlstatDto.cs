@@ -22,9 +22,12 @@ namespace ISIA.UI.TREND.Dto
         public decimal PARSING_USER_ID { get; set; }
         public string PARAMENT_NAME { get; set; }
         public decimal PARAMENT_VALUE { get; set; }
+        public DateTime END_INTERVAL_TIME { get; set; }
     }
     public class SqlstatDto
     {
+        public DateTime END_INTERVAL_TIME { get; set; }
+
         public decimal SNAP_ID { get; set; }
         public decimal DBID { get; set; }
         public decimal INSTANCE_NUMBER { get; set; }
