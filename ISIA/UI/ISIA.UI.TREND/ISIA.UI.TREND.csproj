@@ -135,6 +135,12 @@
   <ItemGroup>
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="Frm1NewSqlStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm1NewSqlStat.Designer.cs">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOrclParmsTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\InitializationUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
+    <EmbeddedResource Include="Frm1NewSqlStat.resx">
+      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,6 +6,32 @@ using System.Threading.Tasks;
 
 namespace ISIA.UI.TREND.Dto
 {
+    public class SqlStatNew
+    {
+        public DateTime END_INTERVAL_TIME { get; set; }
+        public string SNAP_ID { get; set; }
+        public string SQL_ID { get; set; }
+        public decimal typNum { get; set; }
+        public decimal SQL_Count { get; set; }
+    }
+    public class SqlShow
+    {
+        public string SQL_ID { get; set; }
+        public string PARAMENT_NAME { get; set; }
+        public decimal PARAMENT_VALUE { get; set; }
+
+    }
+    public class SqlShowCl
+    {
+        public string SQL_ID { get; set; }
+        public decimal week1 { get; set; }
+        public decimal week2 { get; set; }
+        public decimal week3 { get; set; }
+        public decimal week4 { get; set; }
+        public decimal AVG { get; set; }
+
+    }
+
     public class SqlStatRowDto
     {
         public decimal SNAP_ID { get; set; }
