@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TAP.Data.Client;
-using TAP.Data.DataBase.Communicators;
 using TAP.UI;
 
 namespace ISIA.UI.CHARTTEST
@@ -19,7 +18,6 @@ namespace ISIA.UI.CHARTTEST
 
         private const string _DBA_HIST_SYSMETRIC_SUMMARY = "DBA_HIST_SYSMETRIC_SUMMARY";
         private const string _DBA_HIST_SYSSTAT = "DBA_HIST_SYSSTAT";
-        private const string _DBA_HIST_SNAPSHOT = "DBA_HIST_SNAPSHOT";
         private const string _STATISTIC = "STATISTIC";
         private const string _METRIC = "METRIC";
         private const string _RAW = "RAW_";
@@ -97,8 +95,10 @@ namespace ISIA.UI.CHARTTEST
         private DataTable GetRawData(ParameterInfo parameterInfo)
         {
             DataTable returnDt = new DataTable();
-            DBCommunicator db = new DBCommunicator();
+            //DBCommunicator db = new DBCommunicator();
             StringBuilder selectSQL = new StringBuilder();
+
+            TAP.Data.Client.DataClient dataClient = new DataClient();
 
             try
             {
@@ -110,7 +110,6 @@ namespace ISIA.UI.CHARTTEST
                 string days = parameterInfo.DAYS;
 
                 string tableName = MakeRawDataTableName(parameterInfo.PARAMETERTYPE, parameterInfo.DBNAME);
-                string snapTableName = MakeRawSnapTableName(parameterInfo.DBNAME);
                 string startDate = DateTime.Now.AddDays(0 - int.Parse(days)).ToString("yyyyMMdd");
                 string endDate = DateTime.Now.ToString("yyyyMMdd");
 
@@ -124,20 +123,12 @@ namespace ISIA.UI.CHARTTEST
                 //추후 변경시 수정 해야 함. 2023-03-16 kimseoil
                 if (parameterType.Contains(_STATISTIC))
                 {
-                    selectSQL.Append("SELECT SNAP_ID, DBID, INSTANCE_NUMBER, STAT_ID AS PARAMETERID, STAT_NAME AS PARAMETERNAME, (VALUE - PREV_VAL) AS MEASURE_VALUE, BEGIN_INTERVAL_TIME, END_INTERVAL_TIME ");
-                    selectSQL.Append("FROM ");
-                    selectSQL.Append("( ");
-                    selectSQL.Append(" SELECT LAG (VALUE) OVER (PARTITION BY T.DBID, T.INSTANCE_NUMBER, D.STAT_ID, T.STARTUP_TIME ORDER BY BEGIN_INTERVAL_TIME) PREV_VAL, ");
-                    selectSQL.Append("        D.*, T.BEGIN_INTERVAL_TIME, T.END_INTERVAL_TIME ");
-                    selectSQL.AppendFormat(" FROM {0} D, {1} T ", tableName, snapTableName);
-                    selectSQL.Append("WHERE D.SNAP_ID = T.SNAP_ID AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
-
+                    selectSQL.AppendFormat("SELECT D.SNAP_ID, D.DBID, D.INSTANCE_NUMBER, D.STAT_ID AS PARAMETERID, D.STAT_NAME AS PARAMETERNAME, VALUE, BEGIN_INTERVAL_TIME, END_INTERVAL_TIME FROM {0} D, RAW_DBA_HIST_SNAPSHOT_ISFA T WHERE D.SNAP_ID = T.SNAP_ID ", tableName);
+                    selectSQL.Append("AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
                     //아래부터 조건들
-                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", dbID, instance_number, _startTimeKey, _endTimeKey);
+                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= '{2}' AND T.END_INTERVAL_TIME < '{3}' ", dbID, instance_number, _startTimeKey, _endTimeKey);
                     selectSQL.AppendFormat("AND D.STAT_ID = {0} ", parameterId);
-                    selectSQL.Append(") ");
-                    selectSQL.Append(" WHERE PREV_VAL IS NOT NULL ");
-                    selectSQL.Append(" ORDER BY SNAP_ID ");
+                    selectSQL.Append("ORDER BY D.SNAP_ID ");
                 }
                 else if (parameterType.Contains(_METRIC))
                 {
@@ -149,7 +140,7 @@ namespace ISIA.UI.CHARTTEST
                     selectSQL.Append("ORDER BY D.SNAP_ID ");
                 }
 
-                returnDt = db.Select(selectSQL.ToString()).Tables[0];
+                returnDt = dataClient.SelectData(selectSQL.ToString(), "PARAMETERDATA").Tables[0];
 
                 //returnDt = db.Select(selectSQL.ToString()).Tables[0];
 
@@ -157,29 +148,15 @@ namespace ISIA.UI.CHARTTEST
             }
             catch (System.Exception ex)
             {
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
                 throw ex;
             }
         }
+
         #endregion
 
         #region Nomal Methods
 
-
-        private string MakeRawSnapTableName(string dbName)
-        {
-            string returnStr = string.Empty;
-
-            try
-            {
-                returnStr = _RAW + _DBA_HIST_SNAPSHOT + "_" + dbName;
-
-                return returnStr;
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
-        }
         private void SaveChartImageData(ParameterInfo parameterInfo, string path)
         {
             //DBCommunicator db = new DBCommunicator();            
