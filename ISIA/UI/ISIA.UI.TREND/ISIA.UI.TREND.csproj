@@ -136,6 +136,18 @@
   <ItemGroup>
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="FrmSnapTrendChart1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSnapTrendChart1.Designer.cs">
+      <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSQLFullTextQueryAnalysis1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLFullTextQueryAnalysis1.Designer.cs">
+      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm1NewSqlStat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,8 +222,14 @@
     <EmbeddedResource Include="FrmParaTrend.resx">
       <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSnapTrendChart1.resx">
+      <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapTrendChart.resx">
       <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis1.resx">
+      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis.resx">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>

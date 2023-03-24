@@ -19,14 +19,14 @@ using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
-    public partial class FrmSQLFullTextQueryAnalysis : DockUIBase1T1
+    public partial class FrmSQLFullTextQueryAnalysis1 : DockUIBase1T1
     {
 
         #region Feild
         BizDataClient bs = null;
         DataSet dataSet = null;
         #endregion
-        public FrmSQLFullTextQueryAnalysis()
+        public FrmSQLFullTextQueryAnalysis1()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SQLFullTextQueryAnalysis");
