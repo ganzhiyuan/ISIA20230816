@@ -1,9 +1,0 @@
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
-D:\projectfile\ISIA-dev22.2\ISIA\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb

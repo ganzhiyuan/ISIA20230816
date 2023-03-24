@@ -16,7 +16,7 @@
 
 
 
-/_bin/FX_Server/log/Remoting/remote
-/ISIA/UI/ISIA.UI.ANALYSIS/ISIA.UI.ANALYSIS.csproj.user
+/_bin/FX_Server/log
 /_bin/FX/Config/Backup/YEAR_2023
-/_bin/DetectingService
+/TEST.UI/obj
+/TEST.UI/Properties
