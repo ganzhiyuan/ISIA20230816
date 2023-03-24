@@ -145,6 +145,12 @@
     <Compile Include="FrmSQLFullTextQueryAnalysis.Designer.cs">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmWorkloadSqlCorrelationAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkloadSqlCorrelationAnalysis.designer.cs">
+      <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeatMapUtils\Config.cs" />
     <Compile Include="HeatMapUtils\CorrelationAnalysisExecuterFactory.cs" />
     <Compile Include="HeatMapUtils\CorrelationExecuter.cs" />
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis.resx">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkloadSqlCorrelationAnalysis.resx">
+      <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

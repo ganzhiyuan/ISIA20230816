@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+wI/PP9jixYUYLSeGBJ0xb91yUWRzGC3XbcSnrDmw8k=</dsig:DigestValue>
+        <dsig:DigestValue>Yg+1vzgUuBZVxglCFRq3V4BkPIDuWD9eT+RP90o1spA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -451,14 +451,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UI.dll" size="645120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UI.dll" size="239616">
       <assemblyIdentity name="TAP.UI" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ft/SPKGKGlXV1/owHSDvRgrd27qwNLGlLUiqxiTdnXk=</dsig:DigestValue>
+        <dsig:DigestValue>7CoCR7UKnHq3DSHYR0No/Kw85NeCj8lBsRhI/QMXaxI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

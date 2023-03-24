@@ -141,6 +141,12 @@
     <Compile Include="FrmWorkloadAnalysis.designer.cs">
       <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmWorkloadDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkloadDataGridView.Designer.cs">
+      <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadSqlRelationAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
