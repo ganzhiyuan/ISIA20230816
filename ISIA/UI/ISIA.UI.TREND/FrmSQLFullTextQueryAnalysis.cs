@@ -1,5 +1,7 @@
 ﻿
+using ISIA.COMMON;
 using ISIA.UI.BASE;
+using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
@@ -10,6 +12,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +28,12 @@ namespace ISIA.UI.TREND
         #region Feild
         BizDataClient bs = null;
         DataSet dataSet = null;
+        List<SqlStatRowDto> returnList = null;
+        DataSet dataSet1 = new DataSet();
+        protected PointF _pStart;
+        protected PointF _pEnd;
+        private bool bfirst = false;
+        List<SnapshotDto> snaplist = new List<SnapshotDto>();
         #endregion
         public FrmSQLFullTextQueryAnalysis()
         {
@@ -34,50 +43,25 @@ namespace ISIA.UI.TREND
 
         public DataSet LoadData()
         {
-
-            DataClient tmpDataClient = new DataClient();
-            string tmpMainMenuSql = "SELECT rownum, t.DBID,t.SQL_ID,t.CPU_TIME_DELTA FROM raw_dba_hist_sqlstat_isfa T";
-            dataSet = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqlstat_isfa");
-            dataSet.Tables[0].TableName = "TABLE";
-
-
-            IEnumerable<IGrouping<string, DataRow>> result = dataSet.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
-            if (result != null && result.Count() > 0)
-            {
-                foreach (IGrouping<string, DataRow> rows in result)
-                {
-                    DataTable dataTable = rows.ToArray().CopyToDataTable();
-                    dataTable.TableName = rows.Key;
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        dataSet.Tables.Add(dataTable);
-                    }
-                }
-            }
-
-
-            
-            
+            dataSet = bs.ExecuteDataSet("GetSnap");
+            DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
+            dataSet1.Tables.Add(dt.Copy());
+            dataSet1.Tables[0].TableName = "TABLE";
             return dataSet;
         }
 
 
         public void DisplayData(DataSet dataSet)
         {
-            CreateBar();
 
+            CreateTeeChart(dataSet1.Tables[0]);
+           
         }
 
-        /*private void BindData()
+        private void CreateTeeChart(DataTable dsTable)
         {
-            //chartControl1.Series.Clear();
-            DataClient tmpDataClient = new DataClient();
-            string tmpMainMenuSql = "SELECT rownum, t.DBID,t.SQL_ID,t.CPU_TIME_DELTA FROM raw_dba_hist_sqlstat_isfa T";
-            dataSet = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqlstat_isfa");
-            dataSet.Tables[0].TableName = "TABLE";
-
-
-            IEnumerable<IGrouping<string, DataRow>> result = dataSet.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
+            
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -86,107 +70,196 @@ namespace ISIA.UI.TREND
                     dataTable.TableName = rows.Key;
                     if (dataTable.Rows.Count > 0)
                     {
-                        dataSet.Tables.Add(dataTable);
+                        dataSet1.Tables.Add(dataTable);
                     }
                 }
             }
-        
-
-            CreateBar();
-            *//*foreach (DataRow row in tableMain.Rows)
+            if (dataSet1.Tables.Count > 1)
             {
-                //Series series1 = new Series("日志统计", ViewType.RadarArea);
-                Series series1 = new Series(row["SQL_ID"].ToString(), ViewType.Bar);
 
-                chartControl1.Series.Add(series1);
-                SeriesPoint point = null;
-                if (row["DBID"] != null)
-                {
-                    point = new SeriesPoint(row["DBID"].ToString());
-                    double[] vals = { Convert.ToDouble(row["CPU_TIME_DELTA"]) };
-                    point.Values = vals;
-                    series1.Points.Add(point);
-                }
-            }*//*
-        }*/
-
-
-        private void CreateBar()
-        {
-
-            tChart1.Series.Clear();
-            tChart1.Legend.LegendStyle = LegendStyles.Values;
-            var markstip = new MarksTip(tChart1.Chart);
-
-            Bar bar = new Bar(tChart1.Chart);
-            DataTable dt1 = new DataTable();
-            dt1.Columns.AddRange(new DataColumn[2] {
-            new DataColumn("Name", typeof(string)),
-            new DataColumn("NUM", typeof(int)) });
-            if (dataSet.Tables.Count > 1)
-            {
-                foreach (DataTable dt in dataSet.Tables)
+                foreach (DataTable dt in dataSet1.Tables)
                 {
                     if (dt.TableName != "TABLE")
                     {
-                        int num = Convert.ToInt32(dt.Compute("avg(CPU_TIME_DELTA)", ""));
-                        dt1.Rows.Add(dt.TableName, num);
+                        Line line = CreateLine(dt);
+                        chartLayout1.Add(dt.TableName).Series.Add(line);
+                        
                     }
                 }
             }
 
-            dt1.DefaultView.Sort = "NUM DESC";
-            dt1 = dt1.DefaultView.ToTable();
-
-            DataTable dt2 = new DataTable();
-            dt2.Columns.AddRange(new DataColumn[2] {
-            new DataColumn("Name", typeof(string)),
-            new DataColumn("NUM", typeof(int)) });
-
-            for (int i = 0; i < 10; i++)
+            foreach (TChart chart in chartLayout1.Charts)
             {
-                DataRow drow = dt1.Rows[i];
-                
-                dt2.Rows.Add(drow["Name"].ToString(), drow["NUM"].ToString());
+                chart.Legend.Visible = true;
+                //chart.Legend.LegendStyle = LegendStyles.Series;
+                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+                chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+                chart.MouseDown += tChart1_MouseDown;
+                chart.MouseUp += tChart1_MouseUp;
+;
             }
 
-            /*if (dt1.Rows.Count > 10)
-            {
-                for (int i = 0; i < dt1.Rows.Count; i++)
-                {
-                    if (i > 9)
-                    {
-                        dt1.Rows.Remove(dt1.Rows[i]);
-                    }
-                }
-            }*/
-            void Bar_GetSeriesMark(Series Series, GetSeriesMarkEventArgs e)
-            {
-                //e.MarkText = $"{dt1.Rows[e.ValueIndex]["Name"]} is {dt1.Rows[e.ValueIndex]["NUM"]}";
-                e.MarkText = "SQL_ID :" + $"{dt2.Rows[e.ValueIndex]["Name"]}" + "\r\n" + "VALUE :" + $"{ dt2.Rows[e.ValueIndex]["NUM"]}";
-            }
-
-            void TChart1_ClickSeries(object sender, Series s, int valueIndex, MouseEventArgs e)
-            {
-                DataRow dataRow =  dt2.Rows[valueIndex];
-                DataClient tmpDataClient = new DataClient();
-                string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_isfa T where t.sql_id='{0}' ", dataRow["NAME"].ToString());
-                DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
-                tableMain1.TableName = "sql";
-
-                memoEdit1.Text = tableMain1.Rows[0][0].ToString();
-            }
-            bar.ColorEach = true;
-            bar.DataSource = dt2;
-            bar.YValues.DataMember = "NUM";
-
-            bar.LabelMember = "Name";
-            bar.Marks.Visible = false;
-            bar.GetSeriesMark += Bar_GetSeriesMark;//提示信息事件
-            tChart1.ClickSeries += TChart1_ClickSeries;//点击chart事件
+            
             return;
         }
 
+
+
+        private Line CreateLine(DataTable dstable)
+        {
+            Line line = new Line();
+           
+            line.DataSource = dstable;
+            line.YValues.DataMember = "PARAMENT_VALUE";
+            line.XValues.DataMember = "END_INTERVAL_TIME";
+            line.ShowInLegend = true;
+            line.ColorEach = true;
+            line.ColorEachLine = true;
+            line.Legend.Text = dstable.TableName;
+            line.Legend.BorderRound = 10;
+            line.XValues.DateTime = true;
+            return line;
+        }
+        /*private void BindData()
+        {
+           
+        }*/
+
+
+        
+
+
+        private DataTable ConvertDTToListRef(DataTable dt)
+        {
+            List<SqlstatDto> list = DataTableExtend.GetList<SqlstatDto>(dt);
+            SqlstatDto dto = new SqlstatDto();
+            PropertyInfo[] fields = dto.GetType().GetProperties();
+            List<string> listTotal = new List<string>();
+            for (int i = 0; i < fields.Length; i++)
+            {
+                string ss = fields[i].Name;
+                if (ss.Contains("TOTAL"))
+                {
+                    listTotal.Add(ss);
+                }
+            }
+            returnList = new List<SqlStatRowDto>();
+
+            foreach (SqlstatDto item in list)
+            {
+                PropertyInfo[] proInfo = item.GetType().GetProperties();
+                foreach (var s in listTotal)
+                {
+                    SqlStatRowDto rowDto = new SqlStatRowDto();
+                    rowDto.DBID = item.DBID;
+                    rowDto.SQL_ID = item.SQL_ID;
+                    rowDto.PARAMENT_NAME = s;
+                    rowDto.END_INTERVAL_TIME = item.END_INTERVAL_TIME;
+                    foreach (PropertyInfo para in proInfo)
+                    {
+                        if (s == para.Name)
+                        {
+                            rowDto.PARAMENT_VALUE = Convert.ToDecimal(para.GetValue(item, null).ToString());
+                        }
+                    }
+                    returnList.Add(rowDto);
+                }
+
+            }
+            DataTable dt1 = DataTableExtend.ConvertToDataSet<SqlStatRowDto>(returnList).Tables[0];
+            return dt1;
+        }
+
+
+        private void tChart1_MouseUp(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Left && bfirst)
+            {
+                _pEnd.X = (float)e.X;
+                _pEnd.Y = (float)e.Y;
+                bfirst = false;
+                if (_pStart != _pEnd)
+                {
+                    SerachDataPoint(_pStart, _pEnd , sender as TChart);
+                }
+            }
+        }
+
+        private void tChart1_MouseDown(object sender, MouseEventArgs e )
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _pStart.X = (float)e.X;
+                _pStart.Y = (float)e.Y;
+
+                bfirst = true;
+            }
+
+        }
+
+        private void SerachDataPoint(PointF pStart, PointF pEnd , TChart chart)
+        {
+            snaplist = new List<SnapshotDto>();
+            float minX;
+            float minY;
+            float maxX;
+            float maxY;
+            if (pStart.X < pEnd.X)
+            {
+                minX = pStart.X;
+                maxX = pEnd.X;
+            }
+            else
+            {
+                minX = pEnd.X;
+                maxX = pStart.X;
+            }
+            if (pStart.Y < pEnd.Y)
+            {
+                minY = pStart.Y;
+                maxY = pEnd.Y;
+            }
+            else
+            {
+                minY = pEnd.Y;
+                maxY = pStart.Y;
+            }
+
+            foreach (Line line in chart.Chart.Series)
+            {
+                for (int i = 0; i < line.Count; i++)
+                {
+                    if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
+                    {
+                        SnapshotDto dto = new SnapshotDto();
+                        dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                        //double value = line[i].Y;//VALUE
+                        dto.Value = line[i].Y.ToString();//value
+                        int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+
+
+                        DataTable dt1 = line.DataSource as DataTable;
+                        dto.SNAP_ID = dt1.Rows[i + 1]["SNAP_ID"].ToString();//SQL_ID
+                        snaplist.Add(dto);
+                    }
+                }
+            }
+            if (!snaplist.Any())
+            {
+                return;
+            }
+
+
+            this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
+
+            PopupGrid popupGrid = new PopupGrid(this._DataTable);
+            popupGrid.StartPosition = FormStartPosition.CenterScreen;
+            popupGrid.ShowDialog();
+            DataTable dt = popupGrid._DataTable;
+
+            base.OpenUI("SQLFULLTEXTQUERYANALYSIS", "TREND", "DATABASE MANAGEMENT", dt);
+        }
 
         public override void ExecuteCommand(ArgumentPack arguments)
         {
