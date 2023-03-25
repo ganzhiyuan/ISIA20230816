@@ -48,8 +48,9 @@ namespace ISIA.BIZ.TREND
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.AppendFormat("select distinct(SQL_ID) " +
-                    "from ISIA.RAW_DBA_HIST_SQLSTAT_ISFA stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA snap on stat.snap_id = snap.snap_id " +
-                    "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'", arguments.StartTime, arguments.EndTime);
+                    "from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on stat.snap_id = snap.snap_id " +
+                    "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'", arguments.StartTime, arguments.EndTime
+                    ,arguments.DBName);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

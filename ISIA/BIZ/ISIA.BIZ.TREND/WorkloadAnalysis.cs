@@ -134,6 +134,7 @@ namespace ISIA.BIZ.TREND
                     "s\r\n" +
                     "WHERE 1 = 1\r\n" +
                     "GROUP BY dbid, s.instance_number, snap_id),\r\n" +
+
                     "t1_sysstat\r\n" +
                     "AS\r\n" +
                     "(SELECT /*+ MATERIALIZE */\r\n" +
@@ -219,6 +220,7 @@ namespace ISIA.BIZ.TREND
                     "ORDER BY snap_id)),\r\n" +
                     "2)\r\n" +
                     "gcs_msg_send\r\n" +
+
                     "FROM ( SELECT dbid,\r\n" +
                     "snap_id,\r\n" +
                     "INSTANCE_NUMBER,\r\n" +
@@ -345,6 +347,7 @@ namespace ISIA.BIZ.TREND
                     "FROM t1_sysmetric_summary s\r\n" +
                     "WHERE 1 = 1\r\n" +
                     "GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}')),\r\n" +
+
                     "t2_sysstat\r\n" +
                     "AS\r\n" +
                     "( SELECT dbid,\r\n" +
@@ -376,6 +379,7 @@ namespace ISIA.BIZ.TREND
                     "FROM t1_sysstat s\r\n" +
                     "WHERE 1 = 1\r\n" +
                     "GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}'))\r\n" +
+
                     "SELECT sm.dbid,\r\n" +
                     "sm.inst_id,\r\n" +
                     "sm.snap_id_min,\r\n" +
