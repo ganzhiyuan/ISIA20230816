@@ -1,4 +1,5 @@
-﻿using ISIA.INTERFACE.ARGUMENTSPACK;
+﻿using ISIA.COMMON;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,43 @@ namespace ISIA.BIZ.TREND
                                TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')
                            and t.end_interval_time <=
                                TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", Convert.ToDecimal(arguments.EqpType), arguments.StartTime, arguments.EndTime);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSqlstatModels(EquipmentArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@"SELECT b.end_interval_time, a.command_type,T.* FROM raw_dba_hist_sqlstat_isfa T 
+                    left join raw_dba_hist_sqltext_isfa a 
+                    on t.sql_id=a.sql_id and t.dbid=a.dbid 
+                    left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
+                        where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
+                        and    b.end_interval_time<=to_date('{1}','yyyy-MM-dd HH24:mi:ss')
+                        ",arguments.StartTime,arguments.EndTime);
+                if (!string.IsNullOrEmpty(arguments.CommuntionStatus))
+                {
+                    tmpSql.AppendFormat(@" and a.command_type in ({0})", Utils.MakeSqlQueryIn(arguments.CommuntionStatus,','));
+                }
+                if (!string.IsNullOrEmpty(arguments.ModelLevels))
+                {
+                    tmpSql.AppendFormat(@" and t.module in ({0}) ", Utils.MakeSqlQueryIn(arguments.ModelLevels,','));
+                }
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
