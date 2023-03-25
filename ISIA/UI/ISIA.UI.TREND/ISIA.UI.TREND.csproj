@@ -165,6 +165,12 @@
     <Compile Include="FrmSQLFullTextQueryAnalysis.Designer.cs">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSqlStatModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSqlStatModels.Designer.cs">
+      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis.resx">
       <DependentUpon>FrmSQLFullTextQueryAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSqlStatModels.resx">
+      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
       <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>

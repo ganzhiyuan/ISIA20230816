@@ -52,7 +52,10 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -74,6 +77,7 @@ namespace ISIA.UI.ADMINISTRATOE
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
@@ -107,8 +111,8 @@ namespace ISIA.UI.ADMINISTRATOE
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.tButton1);
-            this.panelControl1.Controls.Add(this.tButton2);
+            this.panelControl1.Controls.Add(this.flowLayoutPanel1);
+            this.panelControl1.Controls.Add(this.flowLayoutPanel2);
             this.panelControl1.Location = new System.Drawing.Point(642, 2);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(56, 724);
@@ -133,7 +137,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
             this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(4, 400);
+            this.tButton1.Location = new System.Drawing.Point(2, 47);
             this.tButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton1.Margin = new System.Windows.Forms.Padding(2);
@@ -165,7 +169,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
             this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton2.IsRequired = false;
-            this.tButton2.Location = new System.Drawing.Point(4, 325);
+            this.tButton2.Location = new System.Drawing.Point(2, 2);
             this.tButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton2.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton2.Margin = new System.Windows.Forms.Padding(2);
@@ -458,6 +462,26 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.tButton2);
+            this.flowLayoutPanel1.Controls.Add(this.tButton1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 324);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(52, 330);
+            this.flowLayoutPanel1.TabIndex = 133;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(52, 322);
+            this.flowLayoutPanel2.TabIndex = 134;
+            // 
             // FrmLinkageManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,6 +492,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.Load += new System.EventHandler(this.FrmLinkageManagement_Load);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -489,6 +514,7 @@ namespace ISIA.UI.ADMINISTRATOE
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,5 +543,7 @@ namespace ISIA.UI.ADMINISTRATOE
         private System.Windows.Forms.TreeView GroupListtw;
         private DevExpress.Utils.ImageCollection imageCollection2;
         private TAP.UIControls.BasicControlsDEV.TButton btnUIGroupDel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
