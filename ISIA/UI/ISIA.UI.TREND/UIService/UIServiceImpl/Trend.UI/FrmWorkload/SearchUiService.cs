@@ -103,34 +103,33 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             result[1] = originTable;
             return result;
         }
-        private TChart chartWorkload = null;
         public override void DisplayData(FrmWorkloadAnalysis frm, object data)
         {
-            //Tchart display
+            //Tfrm.tChart1 display
             frm.splitContainerControl1.Panel1.Controls.Clear();
-            TChart chart = new TChart();
-            chart.Series.Clear();
-            chart.ContextMenuStrip = frm.contextMenuStrip1;
-            chart.Dock = DockStyle.Fill;
+            frm.tChart1.Zoom.Direction = ZoomDirections.None;
+
+            frm.tChart1.Series.Clear();
+            frm.tChart1.ContextMenuStrip = frm.contextMenuStrip1;
+            frm.tChart1.Dock = DockStyle.Fill;
             //Header set
-            chart.Header.Text = "WORKLOAD";
+            frm.tChart1.Header.Text = "WORKLOAD";
             //Legend set
-            chart.Legend.LegendStyle = LegendStyles.Series;
-            chart.Legend.Visible = true;
-            chart.Legend.CheckBoxes = true;
+            frm.tChart1.Legend.LegendStyle = LegendStyles.Series;
+            frm.tChart1.Legend.Visible = true;
+            frm.tChart1.Legend.CheckBoxes = true;
 
             object[] res = (object[])data;
             DataTable[] tables = (DataTable[])res[0];
             //XAXIS MULTILINE CONTROL
-            chart.Axes.Bottom.Labels.MultiLine = true;
-            ChartWorkload = chart;
+            frm.tChart1.Axes.Bottom.Labels.MultiLine = true;
             //tool tip
-            MarksTip marksTip = new MarksTip(chart.Chart);
+            MarksTip marksTip = new MarksTip(frm.tChart1.Chart);
             marksTip.Active = true;
             marksTip.MouseDelay = 100;
             marksTip.MouseAction = MarksTipMouseAction.Move;
             marksTip.Style = MarksStyles.XY;
-            chart.MouseMove += new MouseEventHandler(tChart_MouseMove);
+            frm.tChart1.MouseMove += new MouseEventHandler(tChart_MouseMove);
             marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);
             Color color = new Color();
 
@@ -138,12 +137,12 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             {
                 color.getRandomColor();
                 Line line = CreateLine(dt, color);
-                chart.Series.Add(line);
-                chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
-                chart.Axes.Bottom.Labels.ExactDateTime = true;
-                chart.Axes.Bottom.Ticks.Width = 0;
+                frm.tChart1.Series.Add(line);
+                frm.tChart1.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
+                frm.tChart1.Axes.Bottom.Labels.ExactDateTime = true;
+                frm.tChart1.Axes.Bottom.Ticks.Width = 0;
             }
-            frm.splitContainerControl1.Panel1.Controls.Add(chart);
+            frm.splitContainerControl1.Panel1.Controls.Add(frm.tChart1);
             //grid display
             frm.gridControlWorkloadData.DataSource = null;
             frm.gridView1.Columns.Clear();
@@ -157,7 +156,6 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             frm.gridView1.BestFitColumns();
         }
 
-        public TChart ChartWorkload { get => chartWorkload; set => chartWorkload = value; }
 
 
 

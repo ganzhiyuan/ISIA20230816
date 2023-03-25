@@ -47,61 +47,105 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(
-                    "with sql\r\n" +
-                   "as\r\n" +
-                   "(select stat.snap_id, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n");
-                foreach (string sqlParm in AwrArgsPack.SqlParmsList)
+                if (AwrArgsPack.WorkloadBelonging[arguments.WorkloadSqlParm] == AwrArgsPack.SYSSTAT)
                 {
-                    tmpSql.AppendFormat("sum({0}) \"{0}\",", sqlParm);
+                    tmpSql.AppendFormat(
+                        "with sql\r\n" +
+                       "as\r\n" +
+                       "(select stat.snap_id, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n");
+                    foreach (string sqlParm in AwrArgsPack.SqlParmsList)
+                    {
+                        tmpSql.AppendFormat("sum({0}) \"{0}\",", sqlParm);
+                    }
+                    tmpSql.Remove(tmpSql.Length - 1, 1);
+                    tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
+                       "stat.snap_id=snap.snap_id \r\n" +
+                       "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       "group by stat.snap_id\r\n" +
+                       "order by snap_id),\r\n" +
+                       "workload as\r\n" +
+                       "(SELECT /*+ MATERIALIZE */\r\n" +
+                       "                dbid,\r\n" +
+                       "                INSTANCE_NUMBER,\r\n" +
+                       "                   \r\n" +
+                       "                snap_id,\r\n" +
+                       "                \"begin_interval_time\",\r\n" +
+                       "                \"end_interval_time\",\r\n" +
+                       "                NVL(ROUND (\r\n" +
+                       "                    (  \"{3}\"\r\n" +
+                       "                     - LAG (\"{3}\", 1)\r\n" +
+                       "                           OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
+                       "                                 ORDER BY snap_id))),0)\r\n" +
+                       "                    \"{3}\"\r\n" +
+                       "from\r\n" +
+                       "(select\r\n" +
+                       "/*+MATERIALIZE */\r\n" +
+                       "MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
+                       "MAX(end_interval_time) \"end_interval_time\",\r\n" +
+                       "dbid,\r\n" +
+                       "snap_id,\r\n" +
+                       "instance_number ,\r\n" +
+                       "SUM(DECODE(STAT_NAME,'{3}',value ,0))\r\n" +
+                       "\"{3}\"\r\n" +
+                       "FROM\r\n" +
+                       "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
+                       "ss.dbid,\r\n" +
+                       "ss.instance_number,\r\n" +
+                       "ss.snap_id,\r\n" +
+                       "ss.VALUE,\r\n" +
+                       "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
+                       "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
+                       "and sn.INSTANCE_NUMBER IN (1)\r\n" +
+                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}') t\r\n" +
+                       " where 1=1\r\n" +
+                       "group by dbid, instance_number ,snap_id) s)\r\n" +
+                       "\r\n" +
+                       "select sql.* ,workload.\"{3}\"\r\n" +
+                       "from sql left join workload on sql.SNAP_ID=workload.snap_id\r\n", arguments.StartTime, arguments.EndTime,
+                        arguments.DBName, arguments.WorkloadSqlParm);
+                }else if(AwrArgsPack.WorkloadBelonging[arguments.WorkloadSqlParm] == AwrArgsPack.METRIC)
+                {
+                    tmpSql.AppendFormat(
+                        "with sql\r\n" +
+                       "as\r\n" +
+                       "(select stat.snap_id, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n");
+                    foreach (string sqlParm in AwrArgsPack.SqlParmsList)
+                    {
+                        tmpSql.AppendFormat("sum({0}) \"{0}\",", sqlParm);
+                    }
+                    tmpSql.Remove(tmpSql.Length - 1, 1);
+                    tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
+                       "stat.snap_id=snap.snap_id \r\n" +
+                       "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       "group by stat.snap_id\r\n" +
+                       "order by snap_id),\r\n" +
+                       "workload as\r\n" +
+                       "(select\r\n" +
+                       "/*+MATERIALIZE */\r\n" +
+                       "MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
+                       "MAX(end_interval_time) \"end_interval_time\",\r\n" +
+                       "dbid,\r\n" +
+                       "snap_id,\r\n" +
+                       "instance_number ,\r\n" +
+                       "SUM(DECODE(METRIC_NAME,'{3}',average ,0))\r\n" +
+                       "\"{3}\"\r\n" +
+                       "FROM\r\n" +
+                       "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
+                       "ss.dbid,\r\n" +
+                       "ss.instance_number,\r\n" +
+                       "ss.snap_id,\r\n" +
+                       "ss.average,\r\n" +
+                       "ss.METRIC_NAME,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
+                       "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and METRIC_NAME='{3}' --configurable\r\n" +
+                       "and sn.INSTANCE_NUMBER IN (1)\r\n" +
+                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}') t\r\n" +
+                       " where 1=1\r\n" +
+                       "group by dbid, instance_number ,snap_id)\r\n" +
+                       "\r\n" +
+                       "select sql.* ,workload.\"{3}\"\r\n" +
+                       "from sql left join workload on sql.SNAP_ID=workload.snap_id\r\n", arguments.StartTime, arguments.EndTime,
+                        arguments.DBName, arguments.WorkloadSqlParm);
                 }
-                tmpSql.Remove(tmpSql.Length - 1, 1);
-                tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
-                   "stat.snap_id=snap.snap_id \r\n" +
-                   "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
-                   "group by stat.snap_id\r\n" +
-                   "order by snap_id),\r\n" +
-                   "workload as\r\n" +
-                   "(SELECT /*+ MATERIALIZE */\r\n" +
-                   "                dbid,\r\n" +
-                   "                INSTANCE_NUMBER,\r\n" +
-                   "                   \r\n" +
-                   "                snap_id,\r\n" +
-                   "                \"begin_interval_time\",\r\n" +
-                   "                \"end_interval_time\",\r\n" +
-                   "                NVL(ROUND (\r\n" +
-                   "                    (  \"{4}\"\r\n" +
-                   "                     - LAG (\"{4}\", 1)\r\n" +
-                   "                           OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                   "                                 ORDER BY snap_id))),0)\r\n" +
-                   "                    \"{4}\"\r\n" +
-                   "from\r\n" +
-                   "(select\r\n" +
-                   "/*+MATERIALIZE */\r\n" +
-                   "MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
-                   "MAX(end_interval_time) \"end_interval_time\",\r\n" +
-                   "dbid,\r\n" +
-                   "snap_id,\r\n" +
-                   "instance_number ,\r\n" +
-                   "SUM(DECODE(STAT_NAME,'{4}',value ,0))\r\n" +
-                   "\"{4}\"\r\n" +
-                   "FROM\r\n" +
-                   "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
-                   "ss.dbid,\r\n" +
-                   "ss.instance_number,\r\n" +
-                   "ss.snap_id,\r\n" +
-                   "ss.VALUE,\r\n" +
-                   "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
-                   "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{4}' --configurable\r\n" +
-                   "and sn.INSTANCE_NUMBER IN (1)\r\n" +
-                   "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}') t\r\n" +
-                   " where 1=1\r\n" +
-                   "group by dbid, instance_number ,snap_id) s)\r\n" +
-                   "\r\n" +
-                   "select sql.* ,workload.\"{4}\"\r\n" +
-                   "from sql left join workload on sql.SNAP_ID=workload.snap_id\r\n", arguments.StartTime, arguments.EndTime,
-                    arguments.DBName, AwrArgsPack.WorkloadSqlRelationMapping[arguments.WorkloadSqlParm], arguments.WorkloadSqlParm);
-
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 DataSet resultDs = db.Select(tmpSql.ToString());

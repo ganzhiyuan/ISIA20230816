@@ -16,6 +16,8 @@ using System.Linq;
 using Analysis.Correlation;
 using DevExpress.XtraGrid.Views.Printing;
 using System.Drawing;
+using TAP;
+using System.Collections;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -23,6 +25,7 @@ namespace ISIA.UI.ANALYSIS
     {
         //define bs
         BizDataClient bs = null;
+
 
         #region getset
         public BizDataClient Bs { get => bs; set => bs = value; }
@@ -49,6 +52,22 @@ namespace ISIA.UI.ANALYSIS
             }
         }
 
+        public override void ExecuteCommand(ArgumentPack arguments)
+        {
+            foreach (string tmpstr in arguments.ArgumentNames)
+            {
+                if (tmpstr == "_hashTable")
+                {
+                    Hashtable hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
+                    DataTable tmpdt = (DataTable)hashtable["dt"];
+                    awrArgsPack = new AwrArgsPack();
+                    awrArgsPack.WorkloadSqlParm = (string)hashtable["workloadParm"];
+                    awrArgsPack.StartTime =(string) hashtable["startTime"];
+                    awrArgsPack.EndTime = (string)hashtable["endTime"];
+                    DisplayChart(tmpdt.DataSet);
+                }
+            }
+        }
 
 
 
@@ -151,7 +170,7 @@ namespace ISIA.UI.ANALYSIS
 
             //combobox edit workload parm
             string workloadSql = comboBoxEditWorkloadSql.Text;
-            if (string.IsNullOrEmpty(dbName))
+            if (string.IsNullOrEmpty(workloadSql))
             {
                 string errMessage = "Please select Workload parm";
                 throw new Exception(errMessage);

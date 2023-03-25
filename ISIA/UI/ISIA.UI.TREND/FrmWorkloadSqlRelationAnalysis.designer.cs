@@ -66,6 +66,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
             this.textEditSqlId = new DevExpress.XtraEditors.TextEdit();
@@ -79,7 +80,6 @@ namespace ISIA.UI.TREND
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -119,6 +119,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.navBarGroupControlContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
             this.layoutControl4.SuspendLayout();
@@ -130,7 +131,6 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -363,8 +363,8 @@ namespace ISIA.UI.TREND
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 375;
-            this.navBarControl1.Size = new System.Drawing.Size(375, 520);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 469;
+            this.navBarControl1.Size = new System.Drawing.Size(469, 650);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -618,6 +618,7 @@ namespace ISIA.UI.TREND
             this.comboBoxDBName.Size = new System.Drawing.Size(190, 24);
             this.comboBoxDBName.StyleController = this.layoutControl3;
             this.comboBoxDBName.TabIndex = 4;
+            this.comboBoxDBName.SelectedIndexChanged += new System.EventHandler(this.comboBoxDBName_SelectedIndexChanged);
             // 
             // layoutControlGroup2
             // 
@@ -672,6 +673,14 @@ namespace ISIA.UI.TREND
             this.layoutControlItem14.Size = new System.Drawing.Size(194, 28);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 56);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(353, 16);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navBarGroupControlContainer3
             // 
@@ -800,14 +809,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 56);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(353, 16);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // FrmWorkloadSqlRelationAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -859,6 +860,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.navBarGroupControlContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
             this.layoutControl4.ResumeLayout(false);
@@ -870,7 +872,6 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
