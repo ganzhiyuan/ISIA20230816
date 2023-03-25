@@ -34,6 +34,7 @@ namespace ISIA.UI.TREND
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.chartLayout1 = new Steema.TeeChart.Components.ChartLayout();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
@@ -55,7 +56,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chartLayout1 = new Steema.TeeChart.Components.ChartLayout();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -196,6 +196,15 @@ namespace ISIA.UI.TREND
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1208, 735);
             this.panelControl2.TabIndex = 1;
+            // 
+            // chartLayout1
+            // 
+            this.chartLayout1.AutoScroll = true;
+            this.chartLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartLayout1.Location = new System.Drawing.Point(2, 2);
+            this.chartLayout1.Name = "chartLayout1";
+            this.chartLayout1.Size = new System.Drawing.Size(1204, 731);
+            this.chartLayout1.TabIndex = 0;
             // 
             // tabPane1
             // 
@@ -442,7 +451,7 @@ namespace ISIA.UI.TREND
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 24, 15, 27, 12, 52);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 25, 9, 6, 30, 921);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -538,15 +547,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
-            // 
-            // chartLayout1
-            // 
-            this.chartLayout1.AutoScroll = true;
-            this.chartLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartLayout1.Location = new System.Drawing.Point(2, 2);
-            this.chartLayout1.Name = "chartLayout1";
-            this.chartLayout1.Size = new System.Drawing.Size(1204, 731);
-            this.chartLayout1.TabIndex = 0;
             // 
             // FrmSQLFullTextQueryAnalysis
             // 
