@@ -136,7 +136,7 @@ namespace ISIA.UI.TREND
             chartImage.Properties.ContextMenuStrip = this.MenuStrip1;
             return chartImage;
         }
-        */
+        
         private string GetChartTag(string chartName)
         {
             DevExpress.XtraEditors.PictureEdit chart = (DevExpress.XtraEditors.PictureEdit)this.panel4.Controls[chartName];
@@ -149,7 +149,7 @@ namespace ISIA.UI.TREND
             DevExpress.XtraEditors.PictureEdit chart = (DevExpress.XtraEditors.PictureEdit)this.panel4.Controls[chartName];
             return chart;
         }
-
+        */
         private void _frmProgress_Cancel(object sender, ISIA.UI.COMMON.FrmProgress.CancelEventArgs e)
         {
             _reserveData = e.ReserveResult;

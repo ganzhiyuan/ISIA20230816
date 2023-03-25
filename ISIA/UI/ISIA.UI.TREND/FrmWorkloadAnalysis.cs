@@ -41,7 +41,7 @@ namespace ISIA.UI.TREND
 
        
         private bool bfirst = false;
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
         DataSet dataSet;
         List<Series> series = new List<Series>();

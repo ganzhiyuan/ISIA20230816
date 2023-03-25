@@ -32,14 +32,14 @@ namespace ISIA.UI.TREND
             try
             {
                 DateTime dtNow = dateEdit1.DateTime;
-                EquipmentArgsPack args = new EquipmentArgsPack();
-                args.EqpType = "WEEK";
+                AwrCommonArgsPack args = new AwrCommonArgsPack();
+                args.Days = "WEEK";
                 List<SqlShow> listReturn = new List<SqlShow>();
                 for (int i = 1; i <= 4; i++)//查询4周
                 {
-                    args.StartTime = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
-                    args.EndTime = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
-                    args.EqpType = i.ToString();
+                    args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
+                    args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
+                    args.Days = i.ToString();
                     DataSet dataSet = bs.ExecuteDataSet("GetSqlstatByUnit", args.getPack());
                     if (dataSet == null||dataSet.Tables[0]==null||dataSet.Tables[0].Rows.Count<1)
                     {
