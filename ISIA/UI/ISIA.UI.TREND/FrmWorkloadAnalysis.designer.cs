@@ -66,12 +66,12 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.tChart1 = new Steema.TeeChart.TChart();
             this.gridControlWorkloadData = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleSeparator3 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.tChart1 = new Steema.TeeChart.TChart();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -725,6 +725,49 @@
             this.splitContainerControl1.SplitterPosition = 292;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // gridControlWorkloadData
+            // 
+            this.gridControlWorkloadData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlWorkloadData.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControlWorkloadData.Location = new System.Drawing.Point(0, 0);
+            this.gridControlWorkloadData.MainView = this.gridView1;
+            this.gridControlWorkloadData.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControlWorkloadData.Name = "gridControlWorkloadData";
+            this.gridControlWorkloadData.Size = new System.Drawing.Size(939, 325);
+            this.gridControlWorkloadData.TabIndex = 0;
+            this.gridControlWorkloadData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.DetailHeight = 437;
+            this.gridView1.GridControl = this.gridControlWorkloadData;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editChartToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 28);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // editChartToolStripMenuItem
+            // 
+            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
+            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.editChartToolStripMenuItem.Text = "EditChart";
+            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click_1);
+            // 
+            // simpleSeparator3
+            // 
+            this.simpleSeparator3.AllowHotTrack = false;
+            this.simpleSeparator3.Location = new System.Drawing.Point(207, 28);
+            this.simpleSeparator3.Name = "simpleSeparator3";
+            this.simpleSeparator3.Size = new System.Drawing.Size(194, 1);
             // 
             // tChart1
             // 
@@ -1607,7 +1650,7 @@
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
             this.tChart1.Location = new System.Drawing.Point(0, 0);
-            this.tChart1.Margin = new System.Windows.Forms.Padding(4);
+            this.tChart1.Margin = new System.Windows.Forms.Padding(5);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1753,7 +1796,7 @@
             this.tChart1.SubHeader.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.tChart1.SubHeader.Shadow.Brush.Solid = true;
             this.tChart1.SubHeader.Shadow.Brush.Visible = true;
-            this.tChart1.TabIndex = 0;
+            this.tChart1.TabIndex = 2;
             // 
             // 
             // 
@@ -1890,49 +1933,8 @@
             this.tChart1.Zoom.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.tChart1.Zoom.Brush.Solid = true;
             this.tChart1.Zoom.Brush.Visible = false;
-            // 
-            // gridControlWorkloadData
-            // 
-            this.gridControlWorkloadData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlWorkloadData.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlWorkloadData.Location = new System.Drawing.Point(0, 0);
-            this.gridControlWorkloadData.MainView = this.gridView1;
-            this.gridControlWorkloadData.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlWorkloadData.Name = "gridControlWorkloadData";
-            this.gridControlWorkloadData.Size = new System.Drawing.Size(939, 325);
-            this.gridControlWorkloadData.TabIndex = 0;
-            this.gridControlWorkloadData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.DetailHeight = 437;
-            this.gridView1.GridControl = this.gridControlWorkloadData;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editChartToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 28);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // editChartToolStripMenuItem
-            // 
-            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
-            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
-            this.editChartToolStripMenuItem.Text = "EditChart";
-            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click_1);
-            // 
-            // simpleSeparator3
-            // 
-            this.simpleSeparator3.AllowHotTrack = false;
-            this.simpleSeparator3.Location = new System.Drawing.Point(207, 28);
-            this.simpleSeparator3.Name = "simpleSeparator3";
-            this.simpleSeparator3.Size = new System.Drawing.Size(194, 1);
+            this.tChart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tChart1_MouseDown);
+            this.tChart1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tChart1_MouseUp);
             // 
             // FrmWorkloadAnalysis
             // 
@@ -2028,7 +2030,6 @@
         public DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         public DevExpress.XtraNavBar.NavBarItem navBarItem1;
         public DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        public Steema.TeeChart.TChart tChart1;
         public DevExpress.XtraGrid.GridControl gridControlWorkloadData;
         public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -2046,5 +2047,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private TAP.UIControls.BasicControlsDEV.TLabel tLabel2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        public Steema.TeeChart.TChart tChart1;
     }
 }

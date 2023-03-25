@@ -134,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\WorkloadDto.cs" />
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
     <Compile Include="Frm1NewSqlStat.cs">
@@ -218,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
       <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkloadDataGridView.resx">
+      <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlRelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
