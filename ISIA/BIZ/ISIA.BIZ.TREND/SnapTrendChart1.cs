@@ -99,7 +99,7 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        public void GetSqlstatModels(EquipmentArgsPack arguments)
+        public void GetSqlstatModels(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -112,14 +112,14 @@ namespace ISIA.BIZ.TREND
                     left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
                         where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and    b.end_interval_time<=to_date('{1}','yyyy-MM-dd HH24:mi:ss')
-                        ",arguments.StartTime,arguments.EndTime);
-                if (!string.IsNullOrEmpty(arguments.CommuntionStatus))
+                        ",arguments.StartTimeKey,arguments.EndTimeKey);
+                if (!string.IsNullOrEmpty(arguments.CommandType))
                 {
-                    tmpSql.AppendFormat(@" and a.command_type in ({0})", Utils.MakeSqlQueryIn(arguments.CommuntionStatus,','));
+                    tmpSql.AppendFormat(@" and a.command_type in ({0})", Utils.MakeSqlQueryIn(arguments.CommandType,','));
                 }
-                if (!string.IsNullOrEmpty(arguments.ModelLevels))
+                if (!string.IsNullOrEmpty(arguments.CommandName))
                 {
-                    tmpSql.AppendFormat(@" and t.module in ({0}) ", Utils.MakeSqlQueryIn(arguments.ModelLevels,','));
+                    tmpSql.AppendFormat(@" and t.module in ({0}) ", Utils.MakeSqlQueryIn(arguments.CommandName, ','));
                 }
 
 

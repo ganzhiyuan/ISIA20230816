@@ -24,7 +24,7 @@ namespace ISIA.UI.TREND
     {
 
         DataSet dataSet;
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
         List<Series> series = new List<Series>();
 
@@ -44,7 +44,7 @@ namespace ISIA.UI.TREND
             {
                 
                 args.ParameterName = "10402";
-                args.MainEqp = "18c2yb5aj919t";
+                args.SqlId = "18c2yb5aj919t";
                 dataSet = bs.ExecuteDataSet("GetSqlstatPara", args.getPack());
                 return dataSet;
             }

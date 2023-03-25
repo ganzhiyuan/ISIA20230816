@@ -17,7 +17,7 @@ namespace ISIA.UI.TREND
     public partial class FrmSqlStatModels : DockUIBase1T1
     {
 
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
 
         public FrmSqlStatModels()
@@ -45,10 +45,10 @@ namespace ISIA.UI.TREND
         {
             try
             {
-                args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.ModelLevels = cboModules.Text;
-                args.CommuntionStatus = cboParaName.Text;
+                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.CommandName = cboModules.Text;
+                args.CommandType = cboParaName.Text;
                 DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
                 return dataSet;
             }

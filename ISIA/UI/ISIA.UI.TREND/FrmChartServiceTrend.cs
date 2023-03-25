@@ -73,7 +73,7 @@ namespace ISIA.UI.TREND
             catch (Exception ex)
             {
                 TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, "InitializeBizDataClient()", ex.ToString());
-            }           
+            }
         }
 
         private void InitializeDate()
@@ -81,8 +81,8 @@ namespace ISIA.UI.TREND
             try
             {
                 this.dtpStartTime.DateTime = DateTime.Now;
-            } 
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, "InitializeDate()", ex.ToString());
             }
@@ -159,26 +159,26 @@ namespace ISIA.UI.TREND
 
         public DataSet LoadData()
         {
-           
-                ChartServiceArgsPack chartServiceArgs = new ChartServiceArgsPack();
 
-                chartServiceArgs.ReportDate = dtpStartTime.Text;
-                chartServiceArgs.DbId = cmbDbName.Text;
-                chartServiceArgs.Instance_Number = cmbInstance.Text;
-                chartServiceArgs.RuleName = cmbRuleName.Text;
-                chartServiceArgs.RuleNo = cmbRuleNo.Text;
-                chartServiceArgs.ParameterName = cmbParameterName.Text;
+            ChartServiceArgsPack chartServiceArgs = new ChartServiceArgsPack();
 
-                //ResargsPack.FabId = cboFab.Text;
-                //ResargsPack.TechId = cboTech.Text;
-                //ResargsPack.LotCd = cboLotcode.Text;
+            chartServiceArgs.ReportDate = dtpStartTime.Text;
+            chartServiceArgs.DbId = cmbDbName.Text;
+            chartServiceArgs.Instance_Number = cmbInstance.Text;
+            chartServiceArgs.RuleName = cmbRuleName.Text;
+            chartServiceArgs.RuleNo = cmbRuleNo.Text;
+            chartServiceArgs.ParameterName = cmbParameterName.Text;
+
+            //ResargsPack.FabId = cboFab.Text;
+            //ResargsPack.TechId = cboTech.Text;
+            //ResargsPack.LotCd = cboLotcode.Text;
 
 
-                //DataSet ds = bs.ExecuteDataSet("GetImageData", args.getPack());
-                return new DataSet();
-           
+            //DataSet ds = bs.ExecuteDataSet("GetImageData", args.getPack());
+            return new DataSet();
+
             //DB에서 파일 List를 가져온다.
-            
+
             //FTP로 해당 파일을 읽는다.
 
 
@@ -238,8 +238,8 @@ namespace ISIA.UI.TREND
             try
             {
                 BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
-            } 
-            catch(System.Exception ex)
+            }
+            catch (System.Exception ex)
             {
                 TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, "Search()", ex.ToString());
             }
@@ -247,3 +247,4 @@ namespace ISIA.UI.TREND
             #endregion
         }
     }
+}
