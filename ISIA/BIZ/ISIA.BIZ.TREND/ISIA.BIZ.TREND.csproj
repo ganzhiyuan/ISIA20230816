@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartServiceTrend.cs" />
     <Compile Include="SnapTrendChart.cs" />
     <Compile Include="SnapTrendChart1.cs" />
     <Compile Include="WorkloadSqlRelationAnalysis.cs" />

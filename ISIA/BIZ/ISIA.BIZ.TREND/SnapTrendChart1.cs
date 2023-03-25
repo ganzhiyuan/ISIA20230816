@@ -13,7 +13,7 @@ namespace ISIA.BIZ.TREND
 {
     public class SnapTrendChart1 : TAP.Remoting.Server.Biz.BizComponentBase
     {
-        public void GetSnap(EquipmentArgsPack arguments)
+        public void GetSnap(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -28,7 +28,7 @@ namespace ISIA.BIZ.TREND
                                                  WHERE T.END_INTERVAL_TIME >=
                                                        TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')
                                                    and t.end_interval_time <=
-                                                       TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.ParameterName,arguments.StartTime,arguments.EndTime);
+                                                       TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.ParameterName,arguments.StartTimeKey,arguments.EndTimeKey);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -44,14 +44,14 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        public void GetSqlstatPara(EquipmentArgsPack arguments)
+        public void GetSqlstatPara(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"SELECT T.* FROM raw_dba_hist_sqlstat_isfa T where t.snap_id='{0}' and t.sql_id='{1}'",  arguments.ParameterName, arguments.MainEqp);
+                tmpSql.AppendFormat(@"SELECT T.* FROM raw_dba_hist_sqlstat_isfa T where t.snap_id='{0}' and t.sql_id='{1}'",  arguments.ParameterName, arguments.SqlId);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -67,7 +67,7 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        public void GetSqlstatByUnit(EquipmentArgsPack arguments)
+        public void GetSqlstatByUnit(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -82,8 +82,8 @@ namespace ISIA.BIZ.TREND
                          WHERE T.END_INTERVAL_TIME >
                                TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')
                            and t.end_interval_time <=
-                               TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", Convert.ToDecimal(arguments.EqpType), arguments.StartTime, arguments.EndTime);
-
+                               TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", Convert.ToDecimal(arguments.ParameterType), arguments.StartTimeKey, arguments.EndTimeKey);
+                //arguments.ParameterType 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
