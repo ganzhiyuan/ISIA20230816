@@ -89,7 +89,6 @@
   <ItemGroup>
     <Compile Include="AuthorityManagement.cs" />
     <Compile Include="ClassicUI.cs" />
-    <Compile Include="CodeManagement.cs" />
     <Compile Include="GroupUserManagement.cs" />
     <Compile Include="LinkageManagement.cs" />
     <Compile Include="MainMenu.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="ShiftManagement.cs" />
     <Compile Include="SubMenu.cs" />
     <Compile Include="UserMailManagement.cs" />
-    <Compile Include="UserWorkFlow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

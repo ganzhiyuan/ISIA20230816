@@ -32,7 +32,6 @@ namespace ISIA.UI.ADMINISTRATOE
 
         ArgumentPack retVal = new ArgumentPack();
         CodeModelUnit codeModelUnit = new CodeModelUnit();
-        PMArgsPack args = new PMArgsPack();
         BizDataClient bs = null;
         #endregion
 
@@ -55,10 +54,8 @@ namespace ISIA.UI.ADMINISTRATOE
             DataTable dt = new DataTable();
             string caterory = cboCategory.Text;
             string subCaterory = cboSubcategory.Text;
-            args = new PMArgsPack();
-            args.PMCategory = caterory;
-            args.PMItem = subCaterory;
-            DataSet ds = bs.ExecuteDataSet("GetSpec", args.getPack());
+            
+            DataSet ds = new DataSet();
             //gridControl1.DataSource = ds.Tables[0]; 
             dt = ds.Tables[0];
 

@@ -65,6 +65,7 @@
     <Compile Include="CustomizedFieldArgsPack.cs" />
     <Compile Include="ChartServiceArgsPack.cs" />
     <Compile Include="AwrCommonArgsPack.cs" />
+    <Compile Include="ParameterSpecManagementArgsPack.cs" />
     <Compile Include="SpecManagementArgsPack.cs" />
     <Compile Include="AwrArgsPack.cs" />
     <Compile Include="MonitorArgsPack.cs" />
