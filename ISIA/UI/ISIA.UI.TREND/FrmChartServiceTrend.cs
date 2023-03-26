@@ -12,7 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TAP.Base.Configuration;
 using TAP.Data.Client;
+using TAP.Fressage;
+using TAP.FTP;
 using TAP.UI;
 using static DevExpress.XtraBars.Docking2010.Views.BaseRegistrator;
 
@@ -25,7 +28,19 @@ namespace ISIA.UI.TREND
 
         #region Field
 
-        List<Image> _imageList;
+        private string _ftpHost;
+        private string _ftpRoot;
+        private string _userName;
+        private string _password;
+
+        private string _localDir;
+        private string _appName;
+        private string _appDirectory;
+
+        private FTPclient _ftpClient;
+
+
+        List<Image> _imageList = new List<Image>();
         public delegate void DownLoadFileHandler(string[] fileNames);
 
         public event DownLoadFileHandler DownloadCompleted;
@@ -36,6 +51,9 @@ namespace ISIA.UI.TREND
         private bool _reserveData = false;
         private int _cancelIndex = 0;
         BizDataClient _bs = null;
+        private int showCol = 5;
+        List<DevExpress.XtraEditors.PictureEdit> allChartList = new List<DevExpress.XtraEditors.PictureEdit>();
+        DevExpress.XtraEditors.PictureEdit currentChart;
 
         #endregion
 
@@ -46,6 +64,7 @@ namespace ISIA.UI.TREND
         public FrmChartServiceTrend()
         {
             InitializeComponent();
+            InitializeFTP();
             InitializeBizDataClient();
             InitializeControl();
         }
@@ -64,11 +83,37 @@ namespace ISIA.UI.TREND
             this.bgDownload.ProgressChanged += new ProgressChangedEventHandler(this.bgDownload_ProressChanged);
         }
 
+        private void InitializeFTP()
+        {
+            #region Code
+
+            try
+            {
+
+                //_localDir = Directory.GetParent(FormRibbon_ISEM._ExecutableDirectory.Trim('\\')).FullName;
+                _localDir = Directory.GetCurrentDirectory();
+                _ftpHost = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["HostName"];
+                _ftpRoot = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["RootDirectory"];
+                _userName = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["UserName"];
+                _password = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["Password"]; 
+                
+                _ftpClient = new FTPclient(_ftpHost, _userName, _password);
+                
+                return;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
+            #endregion
+        }
+
         private void InitializeBizDataClient()
         {
             try
             {
-                _bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISFA.BIZ.TREND.ChartServiceTrend");
+                _bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.ChartServiceTrend");
             }
             catch (Exception ex)
             {
@@ -155,49 +200,269 @@ namespace ISIA.UI.TREND
             _reserveData = e.ReserveResult;
             bgDownload.CancelAsync();
         }
+        private List<Image> GetImages(DataTable imageData)
+        {
+            List<Image> images = new List<Image>();
 
+            foreach (DataRow row in imageData.Rows)
+            {
+                try
+                {
+                    string imageFileName = row["IMAGEPATH"].ToString();
+
+                    string path = _ftpRoot + '/' + imageFileName;
+
+                    images.Add(_ftpClient.GetImage(path));
+                }
+                catch (System.Exception ex)
+                {
+                    if (TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["IgnoreExcetion"] == "false")
+                        throw ex;
+                    else
+                        continue;
+                }
+            }
+            
+            return images;
+        }
+        private void ShowNoData()
+        {
+            this.Invoke(new EventHandler(delegate
+            {
+                Label Maglabel = new Label();
+                Maglabel.Text = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "image");
+                int with = (this.pnlImage.Width - Maglabel.Width) / 2;
+                int height = (this.pnlImage.Height - Maglabel.Height) / 2;
+                Maglabel.Location = new System.Drawing.Point(with, height);
+                Maglabel.AutoSize = true;
+                this.pnlImage.Controls.Add(Maglabel);
+            }));
+        }
 
         public DataSet LoadData()
         {
-
             ChartServiceArgsPack chartServiceArgs = new ChartServiceArgsPack();
-
-            chartServiceArgs.ReportDate = dtpStartTime.Text;
-            chartServiceArgs.DbId = cmbDbName.Text;
+                        
+            chartServiceArgs.ReportDate = dtpStartTime.DateTime.ToString("yyyyMMdd");
+            chartServiceArgs.DbId = cmbDbName.EditValue.ToString();
             chartServiceArgs.Instance_Number = cmbInstance.Text;
             chartServiceArgs.RuleName = cmbRuleName.Text;
             chartServiceArgs.RuleNo = cmbRuleNo.Text;
             chartServiceArgs.ParameterName = cmbParameterName.Text;
-
-            //ResargsPack.FabId = cboFab.Text;
-            //ResargsPack.TechId = cboTech.Text;
-            //ResargsPack.LotCd = cboLotcode.Text;
+            
+            DataSet ds = _bs.ExecuteDataSet("GetImageData", chartServiceArgs.getPack());
 
 
-            //DataSet ds = bs.ExecuteDataSet("GetImageData", args.getPack());
-            return new DataSet();
+            _imageList.Clear();
 
-            //DB에서 파일 List를 가져온다.
+            _imageList = GetImages(ds.Tables[0]);
 
-            //FTP로 해당 파일을 읽는다.
-
-
-
-
+            return ds;
 
         }
 
         public void DisplayData(DataSet dataSet)
         {
-            if (dataSet == null || dataSet.Tables[0].Rows.Count == 0)
+            if (_imageList.Count < 1)
             {
-                //ShowNoData();
+                ShowNoData();
                 return;
             }
-            //CheckLayout();
-            //CreateChart();
+            CheckLayout();
+            CreateChart(dataSet);
         }
 
+        private void CheckLayout()
+        {
+            try
+            {                
+                if (int.Parse(txtShowCol.Text) <= 0)
+                {
+                    showCol = 1;
+                    txtShowCol.Text = "1";
+                }
+                else if (int.Parse(txtShowCol.Text) > 4)
+                {
+                    showCol = 4;
+                    txtShowCol.Text = "4";
+                }
+                else
+                {
+                    showCol = int.Parse(txtShowCol.Text);
+                }                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void CreateChart(DataSet dataSet)
+        {
+            //Chart이미지를 불러와 바인딩하는 부분 수정하기.
+
+            ClearChart();
+            CheckLayout();
+            int chartCount = _imageList.Count;
+
+            int panelwidth = pnlImage.Width - 20;
+            int Pointwidth = 0;
+            int Pointheight = 0;
+
+            int widthsize = (panelwidth - (4 + 1) * Convert.ToInt32(5.3)) / 4;
+            int sizeheight = widthsize - 40;
+            int rowCount = _imageList.Count;
+            int tmpMin = Math.Min(rowCount, showCol);
+            if (tmpMin < rowCount)
+            {
+                tmpMin = rowCount;
+            }
+            if (showCol == 1)
+            {
+                widthsize = (panelwidth - (showCol + 1) * 8) / showCol;
+                sizeheight = widthsize - 40;
+                widthsize = widthsize * 11 / 20;
+                sizeheight = sizeheight * 1 / 2;
+                for (int i = 0; i < tmpMin; i++)
+                {
+                    if (i != 0)
+                    {
+                        if (allChartList[i - 1] == null)
+                        {
+                            //Chart Name 부분 정의해서 수정하기.
+                            allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+                            continue;
+                        }
+                        if ((panelwidth - (allChartList[i - 1].Location.X) - 8 * (i + 1)) > widthsize * 3 * 2)
+                        {
+                            Pointwidth = Pointwidth + (panelwidth - widthsize) / 2 + widthsize;
+                        }
+                        else
+                        {
+                            Pointheight = 10 + sizeheight + widthsize * 1 / 10 + allChartList[i - 1].Location.Y;
+                            Pointwidth = (panelwidth - widthsize) / 2;
+                        }
+                    }
+                    else
+                    {
+                        Pointheight = 0;
+                        Pointwidth = (panelwidth - widthsize) / 2;
+                    }
+
+                    allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+
+                }
+            }
+            else if (showCol == 2)
+            {
+                widthsize = widthsize * 3 / 2;
+                sizeheight = sizeheight * 3 / 2;
+                int newspace = (panelwidth - widthsize * showCol) / (showCol + 1);
+
+                for (int i = 0; i < tmpMin; i++)
+                {
+                    if (i != 0)
+                    {
+                        if (allChartList[i - 1] == null)
+                        {
+                            allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+                            continue;
+                        }
+                        if ((panelwidth - (allChartList[i - 1].Location.X) - newspace * (showCol + 1)) > widthsize)
+                        {
+                            Pointwidth = Pointwidth + newspace + widthsize;
+                        }
+                        else
+                        {
+                            Pointheight = 15 + sizeheight + widthsize * 1 / 10 + allChartList[i - 1].Location.Y;
+                            Pointwidth = newspace;
+                        }
+                    }
+                    else
+                    {
+                        Pointheight = 0;
+                        Pointwidth = newspace;
+                    }
+
+                    allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+                }
+            }
+            else
+            {
+                int newspace = (panelwidth - widthsize * showCol) / (showCol + 1);
+
+                for (int i = 0; i < tmpMin; i++)
+                {
+                    if (i != 0)
+                    {
+                        if (allChartList[i - 1] == null)
+                        {
+                            allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+                            continue;
+                        }
+                        if ((panelwidth - (allChartList[i - 1].Location.X) - newspace * (showCol + 1)) > widthsize)
+                        {
+                            Pointwidth = Pointwidth + newspace + widthsize;
+                        }
+                        else
+                        {
+                            Pointheight = 10 + sizeheight + 8 + allChartList[i - 1].Location.Y;
+                            Pointwidth = newspace;
+                        }
+                    }
+                    else
+                    {
+                        Pointheight = 0;
+                        Pointwidth = newspace;
+                    }
+                    allChartList.Add(LoadChartImage(i, Pointwidth, Pointheight, widthsize, sizeheight, dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString(), dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString(), _imageList[i]));
+
+                }
+            }
+
+            for (int i = 0; i < allChartList.Count; i++)
+            {
+                AddChartToPanel(i);
+            }
+        }
+
+        private void AddChartToPanel(int i)
+        {
+            this.Invoke(new EventHandler(delegate
+            {
+                this.pnlImage.Controls.Add(allChartList[i]);
+
+            }));
+        }
+
+        private void ClearChart()
+        {
+            this.pnlImage.Controls.Clear();
+            allChartList.Clear();
+        }
+
+        private DevExpress.XtraEditors.PictureEdit LoadChartImage(int i, int pointWidth, int pointHeight, int widthSize, int heightSize, string chartName, string Isexc, Image image)
+        {            
+            DevExpress.XtraEditors.PictureEdit chartImage = new DevExpress.XtraEditors.PictureEdit();
+
+            chartImage.Location = new System.Drawing.Point(pointWidth, pointHeight);
+            chartImage.Name = chartName;
+            chartImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            chartImage.Size = new System.Drawing.Size(widthSize, heightSize);
+            chartImage.TabIndex = i;
+            chartImage.Image = image;
+            chartImage.Tag = i.ToString();
+
+            if (Isexc.Equals("YES"))
+            {
+                chartImage.Properties.Appearance.BorderColor = Color.Blue;
+                chartImage.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+
+            }
+            chartImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+           // chartImage.Properties.ContextMenuStrip = this.MenuStrip1;
+            return chartImage;
+        }
 
         #endregion
 
@@ -237,6 +502,8 @@ namespace ISIA.UI.TREND
         {
             try
             {
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
+
                 BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (System.Exception ex)
