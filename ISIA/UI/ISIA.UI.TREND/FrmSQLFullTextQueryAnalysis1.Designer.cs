@@ -31,7 +31,7 @@ namespace ISIA.UI.TREND
         {
             this.components = new System.ComponentModel.Container();
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis1));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -1607,7 +1607,7 @@ namespace ISIA.UI.TREND
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 23, 15, 57, 38, 390);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 25, 16, 21, 55, 237);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -1704,15 +1704,14 @@ namespace ISIA.UI.TREND
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // FrmSQLFullTextQueryAnalysis
+            // FrmSQLFullTextQueryAnalysis1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1548, 939);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmSQLFullTextQueryAnalysis";
+            this.Name = "FrmSQLFullTextQueryAnalysis1";
             this.Text = "FrmSQLFullTextQueryAnalysis";
-            
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);

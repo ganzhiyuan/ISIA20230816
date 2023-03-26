@@ -139,6 +139,12 @@
     <Compile Include="FrmEquipmentAnalysis.Designer.cs">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSqlInfluenceAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSqlInfluenceAnalysis.designer.cs">
+      <DependentUpon>FrmSqlInfluenceAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadSqlCorrelationAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEquipmentAnalysis.resx">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSqlInfluenceAnalysis.resx">
+      <DependentUpon>FrmSqlInfluenceAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlCorrelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>

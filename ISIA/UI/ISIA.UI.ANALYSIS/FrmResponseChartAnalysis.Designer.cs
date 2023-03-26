@@ -380,7 +380,7 @@
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
-            this.tbnSeach.Click += new System.EventHandler(this.tbnSeach_Click);
+            //this.tbnSeach.Click += new System.EventHandler(this.tbnSeach_Click);
             // 
             // navBarControl1
             // 

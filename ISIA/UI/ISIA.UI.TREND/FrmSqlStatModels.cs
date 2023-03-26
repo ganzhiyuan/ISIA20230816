@@ -17,54 +17,54 @@ namespace ISIA.UI.TREND
     public partial class FrmSqlStatModels : DockUIBase1T1
     {
 
-        EquipmentArgsPack args = new EquipmentArgsPack();
-        BizDataClient bs;
+        //EquipmentArgsPack args = new EquipmentArgsPack();
+        //BizDataClient bs;
 
-        public FrmSqlStatModels()
-        {
-            InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
-            dateStart.DateTime = DateTime.Now.AddDays(-1);
-            dateEnd.DateTime = DateTime.Now;
-        }
+        //public FrmSqlStatModels()
+        //{
+        //    InitializeComponent();
+        //    bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
+        //    dateStart.DateTime = DateTime.Now.AddDays(-1);
+        //    dateEnd.DateTime = DateTime.Now;
+        //}
 
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //private void btnSelect_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
 
-        public DataSet LoadData()
-        {
-            try
-            {
-                args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.ModelLevels = cboModules.Text;
-                args.CommuntionStatus = cboParaName.Text;
-                DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
-                return dataSet;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        public void DisplayData(DataSet dataSet)
-        {
-            if (dataSet == null)
-            {
-                return;
-            }
-            gridControl1.DataSource = dataSet.Tables[0];
-            gridView1.BestFitColumns();
-        }
+        //public DataSet LoadData()
+        //{
+        //    try
+        //    {
+        //        args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        //        args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        //        args.ModelLevels = cboModules.Text;
+        //        args.CommuntionStatus = cboParaName.Text;
+        //        DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
+        //        return dataSet;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+        //public void DisplayData(DataSet dataSet)
+        //{
+        //    if (dataSet == null)
+        //    {
+        //        return;
+        //    }
+        //    gridControl1.DataSource = dataSet.Tables[0];
+        //    gridView1.BestFitColumns();
+        //}
     }
 }
