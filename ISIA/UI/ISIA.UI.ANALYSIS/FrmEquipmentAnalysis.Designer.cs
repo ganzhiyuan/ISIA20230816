@@ -487,7 +487,7 @@
             this.cbopara.StyleController = this.layoutControl2;
             this.cbopara.TabIndex = 118;
             this.cbopara.ValueMember = null;
-            this.cbopara.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbopara_KeyUp);
+            //this.cbopara.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbopara_KeyUp);
             // 
             // tLabel9
             // 
@@ -721,7 +721,7 @@
             this.btnSelect.TabIndex = 110;
             this.btnSelect.Text = "Search";
             this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            //this.btnSelect.Click += new System.EventHandler(this.btnSelect_Clickk);
             // 
             // splitContainerControl1
             // 
@@ -3572,7 +3572,7 @@
             this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
             this.editChartToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.editChartToolStripMenuItem.Text = "Edit Chart";
-            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
+            //this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
             // 
             // FrmEquipmentAnalysis
             // 

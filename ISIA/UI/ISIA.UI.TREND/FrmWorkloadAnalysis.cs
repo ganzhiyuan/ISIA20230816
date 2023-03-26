@@ -41,7 +41,7 @@ namespace ISIA.UI.TREND
 
        
         private bool bfirst = false;
-        AwrCommonArgsPack args = new AwrCommonArgsPack();
+        AwrArgsPack args = new AwrArgsPack();
         BizDataClient bs;
         DataSet dataSet;
         List<Series> series = new List<Series>();
@@ -160,12 +160,17 @@ namespace ISIA.UI.TREND
             FrmWorkloadDataGridView frm = new FrmWorkloadDataGridView(_DataTable);
             frm.ShowDialog();
             DataTable dtForNext = frm.ResultForNextPageDt;
-            ht.Add("dt", dtForNext);
+            if (frm.args == null)
+            {
+                return;
+            }
+            ht.Add("DS", dtForNext.DataSet);
             ht.Add("startTime", frm.args.StartTime);
             ht.Add("endTime", frm.args.EndTime);
             ht.Add("workloadParm", frm.args.WorkloadSqlParm);
-
-            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "ANALYSIS", "Sql Parm Correlation Analysis", null, ht);
+            ht.Add("DbName", frm.args.DBName);
+            ht.Add("SQL_PARM", frm.args.WorkloadSqlParm);
+            base.OpenUI(frm.NextMenuName, frm.NextMainMenuName, frm.NextMenuDisplayName, null, ht);
 
 
 

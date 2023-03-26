@@ -25,10 +25,17 @@ namespace ISIA.UI.ANALYSIS
     {
         //define bs
         BizDataClient bs = null;
+        //used when linkage to sql influence frm
+        private DataRow _FocusedRowDr;
+
+        BizDataClient BsForGettingSqlInfluence = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SqlInfluenceAnalysis");
+
+        AwrArgsPack argument = null;
 
 
         #region getset
         public BizDataClient Bs { get => bs; set => bs = value; }
+        public DataRow FocusedRowDr { get => _FocusedRowDr; set => _FocusedRowDr = value; }
         #endregion
 
         public FrmWorkloadSqlCorrelationAnalysis()
@@ -59,20 +66,52 @@ namespace ISIA.UI.ANALYSIS
                 if (tmpstr == "_hashTable")
                 {
                     Hashtable hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
-                    DataTable tmpdt = (DataTable)hashtable["dt"];
-                    awrArgsPack = new AwrArgsPack();
-                    awrArgsPack.WorkloadSqlParm = (string)hashtable["workloadParm"];
-                    awrArgsPack.StartTime =(string) hashtable["startTime"];
-                    awrArgsPack.EndTime = (string)hashtable["endTime"];
-                    DisplayChart(tmpdt.DataSet);
+                    DataSet ds = (DataSet)hashtable["DS"];
+                    argument = new AwrArgsPack();
+                    argument.WorkloadSqlParm = (string)hashtable["workloadParm"];
+                    argument.StartTime = (string)hashtable["startTime"];
+                    argument.EndTime = (string)hashtable["endTime"];
+                    argument.DBName = (string)hashtable["DbName"];
+                    DisplayChart(ds);
                 }
+            }
+        }
+        private void gridView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = this.gridView1.CalcHitInfo(e.Location);
+            if (hi.InRow && e.Button == MouseButtons.Right)
+            {
+                this.popupMenu1.ShowPopup(Control.MousePosition);
             }
         }
 
 
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            FocusedRowDr = this.gridView1.GetDataRow(e.FocusedRowHandle) as DataRow;
+        }
 
+        /*
+         *  use when jump to sql influence frm.
+         */
+        private void barButtonItem1SqlInfluence_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                argument.WorkloadSqlParm = (string)FocusedRowDr["SQL_PARM"];
+                DataSet resultDs = BsForGettingSqlInfluence.ExecuteDataSet("GetSqlInfluenceData", argument.getPack());
 
+                Hashtable ht = new Hashtable();
+                ht.Add("DS", resultDs);
+                ht.Add("SQL_PARM", argument.WorkloadSqlParm);
+                base.OpenUI("SQLINFLUENCEANALYSIS", "ANALYSIS", "Sql Influence Analysis", null, ht);
+            }
+            catch (Exception ex)
+            {
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+            }
 
+        }
 
         #endregion
 
@@ -126,11 +165,10 @@ namespace ISIA.UI.ANALYSIS
 
         #region btnSelect_Click Event
 
-        AwrArgsPack awrArgsPack = null;
         private void AsyncGetWorkloadAndSqlComparisonData()
         {
             //handle argument
-            awrArgsPack = HandleArgument();
+            argument = HandleArgument();
             //async load data 
             this.BeginAsyncCall("LoadWorkloadSqlData", "DisplayChart", EnumDataObject.DATASET, null);
         }
@@ -181,7 +219,7 @@ namespace ISIA.UI.ANALYSIS
         }
         public DataSet LoadWorkloadSqlData()
         {
-            return Bs.ExecuteDataSet("GetWorkloadSqlCorrelationData", awrArgsPack.getPack());
+            return Bs.ExecuteDataSet("GetWorkloadSqlCorrelationData", argument.getPack());
         }
 
         public void DisplayChart(DataSet ds)
@@ -250,7 +288,7 @@ namespace ISIA.UI.ANALYSIS
             //result = result.OrderByDescending(a => a.CorrelationValue).ToList();
             #endregion
             List<int> invalidIndexWorkload = new List<int>();
-            List<object> workloadParm = (from r in dt.AsEnumerable() select r[awrArgsPack.WorkloadSqlParm]).ToList();
+            List<object> workloadParm = (from r in dt.AsEnumerable() select r[argument.WorkloadSqlParm]).ToList();
             List<double> workloadParmDouble = new List<double>();
             List<SqlCorrelationValue> result = new List<SqlCorrelationValue>();
 
@@ -291,7 +329,7 @@ namespace ISIA.UI.ANALYSIS
                     workloadParmDouble.Remove(index);
                 }
                 double correlationResult = CorrelationExecuter.Calculate(workloadParmDouble.ToArray(), sqlParmDouble.ToArray());
-                result.Add(new SqlCorrelationValue(awrArgsPack.WorkloadSqlParm, System.Math.Abs(correlationResult), sqlParm, correlationResult));
+                result.Add(new SqlCorrelationValue(argument.WorkloadSqlParm, System.Math.Abs(correlationResult), sqlParm, correlationResult));
             }
             result = result.OrderByDescending(a => a.CorrelationValueAbs).ToList();
             int rank = 1;
@@ -415,7 +453,6 @@ namespace ISIA.UI.ANALYSIS
 
             #endregion
         }
-
 
 
     }
