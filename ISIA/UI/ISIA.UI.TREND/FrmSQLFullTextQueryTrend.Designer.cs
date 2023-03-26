@@ -1,7 +1,7 @@
 ﻿
 namespace ISIA.UI.TREND
 {
-    partial class FrmSQLFullTextQueryAnalysis
+    partial class FrmSQLFullTextQueryTrend
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryTrend));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();

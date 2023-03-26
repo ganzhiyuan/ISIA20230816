@@ -51,7 +51,7 @@ namespace ISIA.BIZ.TREND
                                       TO_DATE('2023-03-09 00:00:00', 'yyyy-MM-dd HH24:mi:ss')
                                       and t.end_interval_time <=
                                       TO_DATE('2023-03-10 00:00:00', 'yyyy-MM-dd HH24:mi:ss'))               
-                                 group by t.snap_id ,a.end_interval_time");
+                                 group by t.snap_id ,a.end_interval_time order by a.end_interval_time ");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
