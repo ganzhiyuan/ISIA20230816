@@ -3514,7 +3514,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT INSTANCE_NUMBER FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+                tmpSql.Append("SELECT INSTANTCNT as INSTANCE_NUMBER FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
                 if (!string.IsNullOrEmpty((string)arguments["DBID"].ArgumentValue))
                 {
                     tmpSql.AppendFormat(" AND DBID IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["DBID"].ArgumentValue));
