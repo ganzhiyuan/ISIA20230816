@@ -340,7 +340,7 @@
             this.tDateTimePickerSE1.Appearance.Options.UseFont = true;
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy-MM-dd HH:mm";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 2, 7, 10, 14, 54, 723);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 25, 15, 56, 27, 255);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2000,7 +2000,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.tChart2);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(961, 273);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1052, 279);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // tChart2
@@ -2926,7 +2926,7 @@
             this.tChart2.Printer.Margins = margins2;
             this.tChart2.Series.Add(this.line1);
             this.tChart2.Series.Add(this.line2);
-            this.tChart2.Size = new System.Drawing.Size(961, 273);
+            this.tChart2.Size = new System.Drawing.Size(1052, 279);
             // 
             // 
             // 
@@ -3565,12 +3565,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editChartToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
             // 
             // editChartToolStripMenuItem
             // 
             this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
-            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editChartToolStripMenuItem.Text = "Edit Chart";
             this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click);
             // 

@@ -31,7 +31,7 @@ namespace ISIA.UI.TREND
         {
             this.components = new System.ComponentModel.Container();
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis1));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
