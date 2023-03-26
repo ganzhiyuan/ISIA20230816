@@ -387,23 +387,11 @@
     <Compile Include="FrmMessageGroupManagement.designer.cs">
       <DependentUpon>FrmMessageGroupManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmShiftManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmShiftManagement.designer.cs">
-      <DependentUpon>FrmShiftManagement.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUserMailManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmUserMailManagement.designer.cs">
       <DependentUpon>FrmUserMailManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmUserWorkFlow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmUserWorkFlow.designer.cs">
-      <DependentUpon>FrmUserWorkFlow.cs</DependentUpon>
     </Compile>
     <Compile Include="GroupListAdd.cs">
       <SubType>Form</SubType>
@@ -434,24 +422,6 @@
     </Compile>
     <Compile Include="UserUpdate.designer.cs">
       <DependentUpon>UserUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserWorkFlowModify.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserWorkFlowModify.designer.cs">
-      <DependentUpon>UserWorkFlowModify.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WorkGroupAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WorkGroupAdd.designer.cs">
-      <DependentUpon>WorkGroupAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WorkUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WorkUser.designer.cs">
-      <DependentUpon>WorkUser.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -494,14 +464,8 @@
     <EmbeddedResource Include="FrmMessageGroupManagement.resx">
       <DependentUpon>FrmMessageGroupManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmShiftManagement.resx">
-      <DependentUpon>FrmShiftManagement.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmUserMailManagement.resx">
       <DependentUpon>FrmUserMailManagement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserWorkFlow.resx">
-      <DependentUpon>FrmUserWorkFlow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GroupListAdd.resx">
       <DependentUpon>GroupListAdd.cs</DependentUpon>
@@ -519,15 +483,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserUpdate.resx">
       <DependentUpon>UserUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserWorkFlowModify.resx">
-      <DependentUpon>UserWorkFlowModify.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkGroupAdd.resx">
-      <DependentUpon>WorkGroupAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkUser.resx">
-      <DependentUpon>WorkUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public ArgumentPack getPack()
         {
             argsPack.ClearArguments();
-            argsPack.AddArgument("arguments", typeof(SvcDataSummaryArgsPack), this);
+            argsPack.AddArgument("arguments", typeof(SqlstatArgsPack), this);
             return argsPack;
         }
         private ArgumentPack argsPack = new ArgumentPack();

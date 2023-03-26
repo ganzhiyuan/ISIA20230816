@@ -99,7 +99,8 @@ namespace ISIA.BIZ.TREND
                     if (i == paramNames.Count / interval)
                     {
                         temp = paramNames.GetRange(i * interval, paramNames.Count % interval);
-                        paramNamesList.Add(temp);
+                        paramNamesList.Add
+                            (temp);
                         break;
                     }
                     temp = paramNames.GetRange(i * interval, interval);

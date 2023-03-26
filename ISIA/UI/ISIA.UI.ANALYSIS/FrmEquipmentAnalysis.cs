@@ -52,7 +52,7 @@ namespace ISIA.UI.ANALYSIS
         DataTable dtMetric;
         List<string> tsAll = new List<string>();
         List<string> ts = new List<string>();
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         List<Series> series = new List<Series>();
         TChart chart = new TChart();
         //
@@ -94,9 +94,9 @@ namespace ISIA.UI.ANALYSIS
                 /*dataSet = bs.ExecuteDataSet("GetEquipmentProduction", args.getPack());
                 dtLineSum = bs.ExecuteDataSet("GetLineCapacitySum", args.getPack()).Tables[0];*/
                 //
-                args.StartTime = STARTTIME;
-                args.EndTime = ENDTIME;
-                args.DataBase = DATABASE;
+                args.StartTimeKey = STARTTIME;
+                args.EndTimeKey = ENDTIME;
+                args.DbName = DATABASE;
                 args.ParameterName = PARAMETERNAME;
 
                 string daytime = radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();

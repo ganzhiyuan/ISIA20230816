@@ -30,9 +30,9 @@ namespace ISIA.UI.TREND
         private bool _dragPoint = false;
         private bool _PointMap = false;
         private bool bfirst = false;
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
-        DataSet dataSet;
+        DataSet dataSet = null;
         DataSet dataSet1 = new DataSet();
         List<Series> series = new List<Series>();
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
@@ -63,8 +63,9 @@ namespace ISIA.UI.TREND
             {
                 dataSet1.Tables.Clear();
                 
-                args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                
+                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cboParaName.Text;
                 dataSet = bs.ExecuteDataSet("GetSnap");
 
@@ -233,7 +234,7 @@ namespace ISIA.UI.TREND
 
         private void CreateTeeChart(DataTable dsTable)
         {
-
+            tChart1.Refresh();
             tChart1.Series.Clear();
             
             /*var cuTool = new CursorTool(tChart1.Chart)

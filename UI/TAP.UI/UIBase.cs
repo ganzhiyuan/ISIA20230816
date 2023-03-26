@@ -5594,7 +5594,7 @@ namespace TAP.UI
         #region PopupMenu
 
         #region Methods
-        public void OpenUI(string menu,string mainMenu,string displayName,DataTable _dataTable=null)
+        public void OpenUI(string menu, string mainMenu, string displayName, DataTable _dataTable = null, Hashtable _hashTable = null)
         {
             MainMenuBasicModel tmpMainMenu = null;
             UIBasicModel tmpUI = null;
@@ -5661,6 +5661,7 @@ namespace TAP.UI
 
                 ArgumentPack tmpPack = new ArgumentPack();
                 tmpPack.AddArgument("_dataTable", typeof(DataTable), _dataTable==null?this._DataTable: _dataTable);
+                tmpPack.AddArgument("_hashTable", typeof(Hashtable), _hashTable);
                 ((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
 
                 //AgumentPack Data ??? ??

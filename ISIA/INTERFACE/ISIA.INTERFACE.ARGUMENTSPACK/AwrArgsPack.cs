@@ -39,6 +39,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private static Dictionary<string, string> _WorkloadSqlRelationMapping = new Dictionary<string, string>();
 
+        private static Dictionary<string, string> _WorkloadRealParmMapping = new Dictionary<string, string>();
+
+
         private static Dictionary<string, string> _WorkloadBelonging = new Dictionary<string, string>();
 
         private static List<string> _SqlParmsList = new List<string>();
@@ -60,13 +63,12 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadParamNamesList.Add("Execs_psec_avg");
             WorkloadParamNamesList.Add("Execs_psec_max");
             WorkloadParamNamesList.Add("USER_CALLS_PSEC");
-            WorkloadParamNamesList.Add("Execs_psec_max");
-            WorkloadParamNamesList.Add("USER_CALLS_PSEC");
             WorkloadParamNamesList.Add("Hard_Parse_Cnt_psec");
             WorkloadParamNamesList.Add("DB_BLOCK_CHANGES_PSEC");
             WorkloadParamNamesList.Add("SQL_Service_Response_Time");
             WorkloadParamNamesList.Add("Commit_psec_avg");
             WorkloadParamNamesList.Add("Redo_mb_psec_avg");
+
             WorkloadParamNamesList.Add("DLM_MB_psec");
             WorkloadParamNamesList.Add("NET_MB_To_Client_psec");
             WorkloadParamNamesList.Add("NET_MB_From_Client_psec");
@@ -86,6 +88,53 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadBelonging.Add("parse count (total)", SYSSTAT);
             WorkloadBelonging.Add("redo size", SYSSTAT);
             WorkloadBelonging.Add("db block changes", SYSSTAT);
+
+            WorkloadBelonging.Add("Host CPU Utilization (%)", METRIC);
+            WorkloadBelonging.Add("Logical Reads Per Sec", METRIC);
+            WorkloadBelonging.Add("Physical Reads Per Sec", METRIC);
+            WorkloadBelonging.Add("Physical Writes Per Sec", METRIC);
+            WorkloadBelonging.Add("Executions Per Sec", METRIC);
+            WorkloadBelonging.Add("Execs_psec_max", METRIC);
+            WorkloadBelonging.Add("User Calls Per Sec", METRIC);
+            WorkloadBelonging.Add("DB Block Changes Per Sec", METRIC);
+            WorkloadBelonging.Add("SQL Service Response Time", METRIC);
+            WorkloadBelonging.Add("Hard Parse Count Per Sec", METRIC);
+            WorkloadBelonging.Add("User Commits Per Sec", METRIC);
+            WorkloadBelonging.Add("Redo Generated Per Sec", METRIC);
+            //WorkloadBelonging.Add("NET_Cnt_DBLink", SYSSTAT);
+            //WorkloadBelonging.Add("NET_Cnt_Client", SYSSTAT);
+            //WorkloadBelonging.Add("NET_B_To_Client", SYSSTAT);
+            //WorkloadBelonging.Add("NET_B_From_Client", SYSSTAT);
+            //WorkloadBelonging.Add("NET_B_From_DBLink", SYSSTAT);
+            //WorkloadBelonging.Add("NET_B_To_DBLink", SYSSTAT);
+            //WorkloadBelonging.Add("gc_recv", SYSSTAT);
+            //WorkloadBelonging.Add("gc_send", SYSSTAT);
+            //WorkloadBelonging.Add("gcs_msg_send", SYSSTAT);
+
+            //WorkloadRealParmMapping
+            WorkloadRealParmMapping.Add("CPU_Util_pct", "Host CPU Utilization (%)");
+            WorkloadRealParmMapping.Add("CPU_Util_pct_max", "Host CPU Utilization (%)");
+            WorkloadRealParmMapping.Add("LOGICAL_READS_PSEC", "Logical Reads Per Sec");
+            WorkloadRealParmMapping.Add("Physical_Reads_psec", "Physical Reads Per Sec");
+            WorkloadRealParmMapping.Add("Physical_Writes_psec", "Physical Writes Per Sec");
+            WorkloadRealParmMapping.Add("Execs_psec_avg", "Executions Per Sec");
+            WorkloadRealParmMapping.Add("Execs_psec_max", "Executions Per Sec");
+            WorkloadRealParmMapping.Add("User_Calls_psec", "User Calls Per Sec");
+            WorkloadRealParmMapping.Add("DB_Block_Changes_psec", "DB Block Changes Per Sec");
+            WorkloadRealParmMapping.Add("SQL_Service_Response_Time", "SQL Service Response Time");
+            WorkloadRealParmMapping.Add("User_Commits_psec", "User Commits Per Sec");
+            WorkloadRealParmMapping.Add("Redo_Generated_psec", "Redo Generated Per Sec");
+            WorkloadRealParmMapping.Add("Hard_Parse_Cnt_psec", "Hard Parse Count Per Sec");
+            //WorkloadRealParmMapping.Add("NET_Cnt_Client", "NET_Cnt_Client");
+            //WorkloadRealParmMapping.Add("DLM_MB_psec", "");
+            //WorkloadRealParmMapping.Add("NET_MB_To_Client_psec", "");
+            //WorkloadRealParmMapping.Add("NET_MB_From_Client_psec", "");
+            //WorkloadRealParmMapping.Add("NET_MB_From_DBLink_psec", "");
+            //WorkloadRealParmMapping.Add("NET_MB_To_DBLink_psec", "");
+
+
+
+
             //SqlParmList
             SqlParmsList.Add("FETCHES_TOTAL");
             SqlParmsList.Add("FETCHES_DELTA");
@@ -331,6 +380,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _SqlParmsList = value;
+            }
+        }
+
+        public static Dictionary<string, string> WorkloadRealParmMapping
+        {
+            get
+            {
+                return _WorkloadRealParmMapping;
+            }
+
+            set
+            {
+                _WorkloadRealParmMapping = value;
             }
         }
 

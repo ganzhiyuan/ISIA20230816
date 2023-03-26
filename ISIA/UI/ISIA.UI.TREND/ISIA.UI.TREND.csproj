@@ -37,13 +37,18 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v22.2.Core, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,6 +80,8 @@
     <Reference Include="DevExpress.XtraPrinting.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v22.2, Version=22.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -82,28 +89,49 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\ISIA.UI.BASE.dll</HintPath>
     </Reference>
+    <Reference Include="ISIA.UI.COMMON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\ISIA.UI.COMMON.dll</HintPath>
+    </Reference>
     <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="TAP.Base, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
+    <Reference Include="TAP.Base.Configuration, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
     <Reference Include="TAP.Data.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.Data.Client.dll</HintPath>
     </Reference>
+    <Reference Include="TAP.Fressage, Version=1.2.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_bin\FX\TAP.Fressage.dll</HintPath>
+    </Reference>
+    <Reference Include="TAP.Mini, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
     <Reference Include="TAP.Models, Version=1.1.6.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5" />
     <Reference Include="TAP.Remoting, Version=1.0.5.0, Culture=neutral, PublicKeyToken=df4842639ad2a0f5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,19 +151,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_bin\FX\TAP.UIControls.Map.dll</HintPath>
     </Reference>
-    <Reference Include="TeeChart, Version=4.2022.11.24, Culture=neutral, PublicKeyToken=9c8126276c77bdb7, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2022.11.24\lib\net40\TeeChart.dll</HintPath>
+    <Reference Include="TeeChart, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=9c8126276c77bdb7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.dll</HintPath>
     </Reference>
-    <Reference Include="TeeChart.WPF, Version=4.2022.11.24, Culture=neutral, PublicKeyToken=98e8c3f289a4e286, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2022.11.24\lib\net40\TeeChart.WPF.dll</HintPath>
+    <Reference Include="TeeChart.WPF, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=98e8c3f289a4e286, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="TeeChart.Xaml.WPF, Version=4.2022.11.24, Culture=neutral, PublicKeyToken=9406d226170aa089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2022.11.24\lib\net40\TeeChart.Xaml.WPF.dll</HintPath>
+    <Reference Include="TeeChart.Xaml.WPF, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=9406d226170aa089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.Xaml.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\WorkloadDto.cs" />
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="FrmChartServiceTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChartServiceTrend.Designer.cs">
+      <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSnapTrendChart1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +228,12 @@
     <Compile Include="FrmSQLFullTextQueryTrend.Designer.cs">
       <DependentUpon>FrmSQLFullTextQueryTrend.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSqlStatModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSqlStatModels.Designer.cs">
+      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +266,9 @@
     <EmbeddedResource Include="Frm1NewSqlStat.resx">
       <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmChartServiceTrend.resx">
+      <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
       <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,8 +290,14 @@
     <EmbeddedResource Include="FrmSQLFullTextQueryTrend.resx">
       <DependentUpon>FrmSQLFullTextQueryTrend.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSqlStatModels.resx">
+      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
       <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkloadDataGridView.resx">
+      <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlRelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
@@ -263,6 +316,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

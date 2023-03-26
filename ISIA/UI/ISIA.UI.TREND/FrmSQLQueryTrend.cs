@@ -35,6 +35,9 @@ namespace ISIA.UI.TREND
         private bool bfirst = false;
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
+        string PARAMENT_NAME = null;
+        DateTime stime ;
+        DateTime etime ;
         #endregion
         public FrmSQLQueryTrend()
         {
@@ -82,20 +85,41 @@ namespace ISIA.UI.TREND
                 DataRow row1 = dataSet.Tables[0].Rows[0];
                 DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
 
+                PARAMENT_NAME =   row1["PARAMENT_NAME"].ToString();
+                stime  =  (DateTime)row1["END_INTERVAL_TIME"];
+                etime = (DateTime)row2["END_INTERVAL_TIME"];
 
-                dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+
+                DataClient tmpDataClient = new DataClient();
+                
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id FROM raw_dba_hist_sqlstat_isfa T
+                    left join raw_dba_hist_sqltext_isfa a
+                    on t.sql_id=a.sql_id and t.dbid=a.dbid
+                    left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
+                        where 1=1 and b.end_interval_time>to_date('{1}','yyyy-MM-dd HH24:mi:ss')
+                        and    b.end_interval_time<=to_date('{2}','yyyy-MM-dd HH24:mi:ss' )  order by b.end_interval_time
+                        ", PARAMENT_NAME, stime, etime);
+
+                dataSet1 = tmpDataClient.SelectData(tmpSql.ToString(), "raw_dba_hist_sqlstat_isfa");
+
                 dataSet1.Tables[0].TableName = "TABLE";
+
+
+                /*dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+                dataSet1.Tables[0].TableName = "TABLE";*/
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
-                    if (string.IsNullOrEmpty(row["CPU_TIME_TOTAL"].ToString()) || row["CPU_TIME_TOTAL"].ToString() == "0")
+                    if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
                     {
-                        row["CPU_TIME_TOTAL"] = -1;
+                        row[PARAMENT_NAME] = -1;
                     }
                 }
 
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
-                    if (row["CPU_TIME_TOTAL"].ToString() == "-1")
+                    if (row[PARAMENT_NAME].ToString() == "-1")
                     {
                         row.Delete();
                     }
@@ -166,12 +190,13 @@ namespace ISIA.UI.TREND
 
             foreach (TChart chart in chartLayout1.Charts)
             {
-                chart.Legend.Visible = true;
+                chart.Legend.Visible = false;
                 chart.Legend.LegendStyle = LegendStyles.Series;
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
+                chart.
 ;
             }
 
@@ -184,14 +209,16 @@ namespace ISIA.UI.TREND
         private Line CreateLine(DataTable dstable)
         {
             Line line = new Line();
-
+            
             line.DataSource = dstable;
-            line.YValues.DataMember = "CPU_TIME_TOTAL";
+            //line.YValues.DataMember = "CPU_TIME_TOTAL";
+            line.YValues.DataMember = PARAMENT_NAME;
             line.XValues.DataMember = "END_INTERVAL_TIME";
-            line.Legend.Visible = true;
+            
+            line.Legend.Visible = false;
             line.Color = Color.Red;
 
-            line.Legend.Text = dstable.TableName;
+            //line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
             line.XValues.DateTime = true;
             //line.GetSeriesMark += Line_GetSeriesMark;

@@ -60,50 +60,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BMArgsPack.cs" />
-    <Compile Include="BmCodeArgsPack.cs" />
-    <Compile Include="BMPMPriceArgsPack.cs" />
     <Compile Include="ClassicUIArgsPack.cs" />
     <Compile Include="CommonArgsPack.cs" />
     <Compile Include="CustomizedFieldArgsPack.cs" />
+    <Compile Include="ChartServiceArgsPack.cs" />
+    <Compile Include="AwrCommonArgsPack.cs" />
     <Compile Include="ParameterSpecManagementArgsPack.cs" />
     <Compile Include="SpecManagementArgsPack.cs" />
-    <Compile Include="DefaultReworkFlowArgsPack.cs" />
     <Compile Include="AwrArgsPack.cs" />
     <Compile Include="MonitorArgsPack.cs" />
     <Compile Include="DataBaseManagementArgsPack.cs" />
     <Compile Include="SqlstatArgsPack.cs" />
-    <Compile Include="WareHouseShelfArgsPack.cs" />
-    <Compile Include="DeviceSetupArgsPack.cs" />
-    <Compile Include="ELArgsPack.cs" />
-    <Compile Include="ElectricalPropertiesMonitorArgsPack.cs" />
-    <Compile Include="EQPartArgsPack.cs" />
-    <Compile Include="EquipmentArgsPack.cs" />
-    <Compile Include="FactorySetupArgsPack.cs" />
-    <Compile Include="FlowArgsPack.cs" />
-    <Compile Include="FmbArgsPack.cs" />
     <Compile Include="MainMenuArgsPack.cs" />
     <Compile Include="MessageArgsPack.cs" />
     <Compile Include="MessageParaPack.cs" />
-    <Compile Include="MROArgsPack.cs" />
-    <Compile Include="OperationArgsPack.cs" />
-    <Compile Include="PartArgsPack.cs" />
-    <Compile Include="PartsRepairHistoryArgsPack.cs" />
-    <Compile Include="PMArgsPack.cs" />
-    <Compile Include="ProcessDailyInputArgsPack.cs" />
-    <Compile Include="ProductionPlannArgsPack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReworkAlterFlowArgsPack.cs" />
     <Compile Include="ShiftArgsPack.cs" />
-    <Compile Include="EqpDataSumArgsPack.cs" />
-    <Compile Include="SPProcessEqpArgsPack.cs" />
-    <Compile Include="SvcDataSummaryArgsPack.cs" />
-    <Compile Include="UPTArgsPack.cs" />
-    <Compile Include="UPTDataArgsPack.cs" />
-    <Compile Include="WorkFlowArgsPack.cs" />
     <Compile Include="WorkGroupArgsPack.cs" />
-    <Compile Include="WaferArgsPack.cs" />
-    <Compile Include="WorkOrderArgsPack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

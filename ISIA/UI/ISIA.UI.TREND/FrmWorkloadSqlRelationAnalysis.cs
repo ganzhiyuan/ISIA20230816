@@ -49,13 +49,40 @@ namespace ISIA.UI.TREND
 
         private void dateStart_EditValueChanged(object sender, EventArgs e)
         {
-            InitializeSqlId();
+            try
+            {
+                InitializeSqlId();
+            }
+            catch (Exception ex)
+            {
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+
+            }
+        }
+        private void comboBoxDBName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                InitializeSqlId();
+            }catch(Exception ex)
+            {
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+
+            }
         }
 
 
         private void dateEnd_EditValueChanged(object sender, EventArgs e)
         {
-            InitializeSqlId();
+            try
+            {
+                InitializeSqlId();
+            }
+            catch (Exception ex)
+            {
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+
+            }
         }
 
         private void textEditSqlId_EditValueChanged(object sender, EventArgs e)
@@ -77,8 +104,7 @@ namespace ISIA.UI.TREND
             InitializeDatePeriod();
             //init dbname
             InitializeDbName();
-            //init sql_id 
-            InitializeSqlId();
+           
             //init workload
             InitializeWorkloadParm();
         }
@@ -113,6 +139,12 @@ namespace ISIA.UI.TREND
             AwrArgsPack args = new AwrArgsPack();
             args.StartTime = ((DateTime)dateStart.EditValue).ToString("yyyyMMddHHmmss");
             args.EndTime = ((DateTime)dateEnd.EditValue).ToString("yyyyMMddHHmmss");
+            if (string.IsNullOrEmpty(comboBoxDBName.Text))
+            {
+                throw new Exception(" Please select db name first");
+            }
+            args.DBName = comboBoxDBName.Text;
+
             DataSet ds = Bs.ExecuteDataSet("GetSqlId", args.getPack());
             this.clbSqlIds.Items.Clear();
             DataTable dt = ds.Tables[0];
@@ -348,6 +380,6 @@ namespace ISIA.UI.TREND
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
 
-        
+      
     }
 }

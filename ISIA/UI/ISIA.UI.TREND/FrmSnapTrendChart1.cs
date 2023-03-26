@@ -28,7 +28,7 @@ namespace ISIA.UI.TREND
         private bool _dragPoint = false;
         private bool _PointMap = false;
         private bool bfirst = false;
-        EquipmentArgsPack args = new EquipmentArgsPack();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
         DataSet dataSet;
         List<Series> series = new List<Series>();
@@ -58,8 +58,8 @@ namespace ISIA.UI.TREND
         {
             try
             {
-                args.StartTime = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTime = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cboParaName.Text;
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
 

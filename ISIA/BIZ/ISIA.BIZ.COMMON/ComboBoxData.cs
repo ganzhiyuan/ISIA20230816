@@ -3465,13 +3465,13 @@ namespace ISIA.BIZ.COMMON
         //ISIA.BIZ
         //--------------------------------------------------------------------------------------------------
 
-        public void getDataBase()
+        public void GetDatabase()
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT NAME ,CUSTOM01 FROM TAPCTCODES WHERE 1=1 GROUP BY CUSTOM01，NAME");
+                tmpSql.Append("SELECT DBID ,DBNAME FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -3485,6 +3485,224 @@ namespace ISIA.BIZ.COMMON
                 throw ex;
             }
         }
+
+        public void GetInstanceNumber()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                //Return to default value of 1 if no selection is made
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT 1 as INSTANCE_NUMBER FROM DUAL");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetInstanceNumber(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT INSTANTCNT as INSTANCE_NUMBER FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+                if (!string.IsNullOrEmpty((string)arguments["DBID"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND DBID IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["DBID"].ArgumentValue));
+                }
+                else
+                {
+                    tmpSql = new StringBuilder();
+                    tmpSql.Append("SELECT 1 as INSTANCE_NUMBER FROM DUAL");
+                }
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                DataSet ds = db.Select(tmpSql.ToString());
+
+                DataSet returnDs = new DataSet();
+
+                if (ds != null)
+                {
+                    string index = ds.Tables[0].Rows[0][0].ToString();
+                    returnDs = ds.Clone();
+                    for(int i = 0; i < int.Parse(index); i++)
+                    {
+                        DataRow dr = returnDs.Tables[0].NewRow();
+
+                        dr[0] = (i + 1).ToString();
+
+                        returnDs.Tables[0].Rows.Add(dr);
+                    }
+                }
+
+                this.ExecutingValue = returnDs;
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetRuleName()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT RULENAME FROM TAPCTSPCRULESPEC WHERE 1 = 1");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetRuleName(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT RULENAME FROM TAPCTSPCRULESPEC WHERE 1 = 1");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetRuleNo()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                //Return to default value of 1 if no selection is made
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT RULENO FROM TAPCTSPCRULESPEC WHERE 1 = 1");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetRuleNo(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT RULENO FROM TAPCTSPCRULESPEC WHERE 1 = 1 AND ISALIVE = 'YES'");
+                if (!string.IsNullOrEmpty((string)arguments["RULENAME"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND RULENAME IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["RULENAME"].ArgumentValue));
+                }
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetParameterNameForChartService()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1 GROUP BY PARAMETERNAME");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetParameterNameForChartService(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERRULESPEC WHERE 1 = 1  ");
+                if (!string.IsNullOrEmpty((string)arguments["DBID"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND DBID IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["DBID"].ArgumentValue));
+                }
+                if (!string.IsNullOrEmpty((string)arguments["INSTANCE_NUMBER"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND INSTANCE_NUMBER IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["INSTANCE_NUMBER"].ArgumentValue));
+                }
+                if (!string.IsNullOrEmpty((string)arguments["RULENAME"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND RULENAME IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["RULENAME"].ArgumentValue));
+                }
+                if (!string.IsNullOrEmpty((string)arguments["RULENO"].ArgumentValue))
+                {
+                    tmpSql.AppendFormat(" AND RULENO IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["RULENO"].ArgumentValue));
+                }
+                
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+
 
         public void GetParaType()
         {
@@ -3625,6 +3843,46 @@ namespace ISIA.BIZ.COMMON
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append(@" select COLUMN_NAME from(
                         select  COLUMN_NAME  from user_tab_columns  where Table_Name = 'RAW_DBA_HIST_SQLSTAT_ISFA') t where t.column_name like '%TOTAL' ");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSqlStatModels()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@" SELECT distinct t.module FROM raw_dba_hist_sqlstat_isfa T");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSqlStatCommTyp()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@" SELECT distinct t.command_type FROM raw_dba_hist_sqltext_isfa T");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 

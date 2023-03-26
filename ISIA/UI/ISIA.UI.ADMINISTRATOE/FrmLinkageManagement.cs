@@ -22,7 +22,7 @@ namespace ISIA.UI.ADMINISTRATOE
 {
     public partial class FrmLinkageManagement : UIBase,PopMenuInterface
     {
-
+        #region Feild 
         BizDataClient bs = null;
         UIBasicModel uiBasicModel = new UIBasicModel();
 
@@ -34,7 +34,7 @@ namespace ISIA.UI.ADMINISTRATOE
         List<string> listCID = new List<string>();
         string _groupSelected = string.Empty;
         protected DataTable _DataTable;
-
+        #endregion
 
         public FrmLinkageManagement()
         {
@@ -43,9 +43,11 @@ namespace ISIA.UI.ADMINISTRATOE
             UIListData();
             InitializeUIGroup();
             base.SetPopupMenuItem(GetLinkAge("123"));
+            int temp = Convert.ToInt32(panelControl1.Height * 0.48);
+            flowLayoutPanel2.Height = temp;
         }
 
-
+        #region Method
         private void UIListData()
         {
             GroupListtw.Nodes.Clear();
@@ -287,6 +289,32 @@ namespace ISIA.UI.ADMINISTRATOE
 
         }
 
+        private int SetEdit(FrmLinkageEdit frm)
+        {
+            int count;
+            if (frm.isUpdate == 0)
+            {
+                count = bs.ExecuteModify("UpdateUser", frm.args.getPack());
+            }
+            else
+            {
+
+                count = bs.ExecuteModify("SaveUIGroup", frm.args.getPack());
+            }
+            if (count == 0)
+            {
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Group failure..");
+            }
+            else
+            {
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Group complete..");
+            }
+            UIListData();
+            return count;
+        }
+        #endregion
+
+        #region Event
         private void treeList1_CustomDrawNodeImages(object sender, DevExpress.XtraTreeList.CustomDrawNodeImagesEventArgs e)
         {
             if (e.Node.GetValue("typ") != null)
@@ -372,30 +400,6 @@ namespace ISIA.UI.ADMINISTRATOE
             FrmLinkageEdit frm = new FrmLinkageEdit(_groupSelected);
             frm.ShowDialog();
             count = SetEdit(frm);
-        }
-
-        private int SetEdit(FrmLinkageEdit frm)
-        {
-            int count;
-            if (frm.isUpdate == 0)
-            {
-                count = bs.ExecuteModify("UpdateUser", frm.args.getPack());
-            }
-            else
-            {
-
-                count = bs.ExecuteModify("SaveUIGroup", frm.args.getPack());
-            }
-            if (count == 0)
-            {
-                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Group failure..");
-            }
-            else
-            {
-                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Group complete..");
-            }
-            UIListData();
-            return count;
         }
 
         private void tButton2_Click(object sender, EventArgs e)
@@ -618,7 +622,9 @@ namespace ISIA.UI.ADMINISTRATOE
                 PopMenuBase.ShowPopup(p);
             }
         }
+        #endregion
     }
+    #region Dto
     public class treeListInfo
     {
         public string typ { get; set; }
@@ -641,5 +647,5 @@ namespace ISIA.UI.ADMINISTRATOE
         public string GROUPID { get; set; }
 
     }
-
+    #endregion
 }
