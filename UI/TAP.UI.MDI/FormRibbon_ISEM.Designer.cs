@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRibbon_ISEM));
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
-            this.imageListMainMenu = new System.Windows.Forms.ImageList();
+            this.imageListMainMenu = new System.Windows.Forms.ImageList(this.components);
             this.tPanel2 = new TAP.UIControls.BasicControls.TPanel();
             this.tPanel1 = new TAP.UIControls.BasicControls.TPanel();
             this.btnLoginInfo = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuUser = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenuUser = new DevExpress.XtraBars.PopupMenu(this.components);
             this.btnPassword = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnLanguage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonLogout = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonClose = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnBookMark = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenuBookMark = new DevExpress.XtraBars.PopupMenu();
+            this.popupMenuBookMark = new DevExpress.XtraBars.PopupMenu(this.components);
             this.btnBookMarkDelete = new DevExpress.XtraBars.BarButtonItem();
             this.btnUIAdd = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
@@ -53,9 +54,9 @@
             this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.tContextMenu1 = new TAP.UIControls.BasicControlsDEV.TContextMenu();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -212,10 +213,12 @@
             this.barBtnCloseCurrentUI,
             this.barBtnCloseAllUI,
             this.barButtonItem1,
-            this.barBtnLanguage});
+            this.barBtnLanguage,
+            this.ribbonControl1.SearchEditItem});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 42;
+            this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.OptionsPageCategories.ShowCaptions = false;
             this.ribbonControl1.PageHeaderItemLinks.Add(this.btnLoginInfo);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.btnBookMark);
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -225,7 +228,6 @@
             this.repositoryItemToggleSwitch1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl1.ShowCategoryInCaption = false;
             this.ribbonControl1.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowQatLocationSelector = false;
@@ -283,7 +285,7 @@
             // btnUIAdd
             // 
             this.btnUIAdd.Caption = "Current UI Add";
-            this.btnUIAdd.CloseSubMenuOnClick = false;
+            this.btnUIAdd.CloseSubMenuOnClickMode = DevExpress.Utils.DefaultBoolean.False;
             this.btnUIAdd.DropDownEnabled = false;
             this.btnUIAdd.Enabled = false;
             this.btnUIAdd.Id = 44;
@@ -350,7 +352,7 @@
             // 
             // defaultLookAndFeel1
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2013 Light Gray";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2013";
             // 
             // xtraTabbedMdiManager1
             // 
@@ -392,7 +394,7 @@
             this.Controls.Add(this.tPanel1);
             this.Controls.Add(this.ribbonControl1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FormRibbon_ISEM.IconOptions.Icon")));
             this.IsMdiContainer = true;
             this.Name = "FormRibbon_ISEM";
             this.Ribbon = this.ribbonControl1;
