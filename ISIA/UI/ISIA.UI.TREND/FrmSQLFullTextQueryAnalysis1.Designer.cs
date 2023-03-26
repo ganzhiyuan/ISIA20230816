@@ -1556,15 +1556,15 @@ namespace ISIA.UI.TREND
             // cbofacility
             // 
             this.cbofacility.ControlID = "cbofacility";
-            this.cbofacility.DescriptionMember = null;
-            this.cbofacility.DisplayMember = null;
+            this.cbofacility.DescriptionMember = "DBID";
+            this.cbofacility.DisplayMember = "DBNAME";
             this.cbofacility.DominantControl = "";
             this.cbofacility.EditValue = "";
             this.cbofacility.IsRequired = false;
             this.cbofacility.Location = new System.Drawing.Point(93, 3);
             this.cbofacility.Name = "cbofacility";
             this.cbofacility.NeedToTranslate = false;
-            this.cbofacility.ParameterID = "DBNAME";
+            this.cbofacility.ParameterID = "DBID";
             this.cbofacility.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.cbofacility.Properties.Appearance.Options.UseFont = true;
             this.cbofacility.Properties.AutoHeight = false;
@@ -1578,7 +1578,7 @@ namespace ISIA.UI.TREND
             this.cbofacility.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cbofacility.StyleController = this.layoutControl1;
             this.cbofacility.TabIndex = 2;
-            this.cbofacility.ValueMember = null;
+            this.cbofacility.ValueMember = "DBID";
             // 
             // lbLfacylity
             // 
@@ -1598,7 +1598,7 @@ namespace ISIA.UI.TREND
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 26, 14, 38, 45, 662);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 26, 15, 51, 38, 726);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(2, 2);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);

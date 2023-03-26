@@ -349,15 +349,15 @@ namespace ISIA.UI.TREND
             // cmbDbName
             // 
             this.cmbDbName.ControlID = "cmbDbName";
-            this.cmbDbName.DescriptionMember = "";
-            this.cmbDbName.DisplayMember = "";
+            this.cmbDbName.DescriptionMember = "DBID";
+            this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
             this.cmbDbName.IsRequired = false;
             this.cmbDbName.Location = new System.Drawing.Point(78, 27);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
-            this.cmbDbName.ParameterID = "DBNAME";
+            this.cmbDbName.ParameterID = "DBID";
             this.cmbDbName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -370,7 +370,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cmbDbName.StyleController = this.layoutControl2;
             this.cmbDbName.TabIndex = 19;
-            this.cmbDbName.ValueMember = "";
+            this.cmbDbName.ValueMember = "DBID";
             // 
             // tLabel2
             // 

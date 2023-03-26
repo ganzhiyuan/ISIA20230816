@@ -49,7 +49,7 @@ namespace ISIA.UI.TREND
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.CommandName = cboModules.Text;
                 args.CommandType = cboParaName.Text;
-                args.DbName = cmbDbName.Text;
+                args.DbName = string.IsNullOrEmpty(cmbDbName.Text)?"": cmbDbName.Text.Split('(')[0];
                 DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
                 return dataSet;
             }

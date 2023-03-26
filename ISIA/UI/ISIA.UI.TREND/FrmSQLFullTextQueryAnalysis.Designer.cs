@@ -365,15 +365,15 @@ namespace ISIA.UI.TREND
             // cmbDbName
             // 
             this.cmbDbName.ControlID = "cmbDbName";
-            this.cmbDbName.DescriptionMember = "";
-            this.cmbDbName.DisplayMember = "";
+            this.cmbDbName.DescriptionMember = "DBID";
+            this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
             this.cmbDbName.IsRequired = false;
             this.cmbDbName.Location = new System.Drawing.Point(93, 3);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
-            this.cmbDbName.ParameterID = "DBNAME";
+            this.cmbDbName.ParameterID = "DBID";
             this.cmbDbName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -386,7 +386,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cmbDbName.StyleController = this.layoutControl1;
             this.cmbDbName.TabIndex = 20;
-            this.cmbDbName.ValueMember = "";
+            this.cmbDbName.ValueMember = "DBID";
             // 
             // cboworkshop
             // 
@@ -447,7 +447,7 @@ namespace ISIA.UI.TREND
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 26, 14, 39, 44, 321);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 26, 15, 51, 11, 841);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(2, 2);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);

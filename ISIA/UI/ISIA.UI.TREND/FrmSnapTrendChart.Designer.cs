@@ -30,7 +30,7 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSnapTrendChart));
-            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -486,15 +486,15 @@ namespace ISIA.UI.TREND
             // cmbDbName
             // 
             this.cmbDbName.ControlID = "cmbDbName";
-            this.cmbDbName.DescriptionMember = "";
-            this.cmbDbName.DisplayMember = "";
+            this.cmbDbName.DescriptionMember = "DBID";
+            this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
             this.cmbDbName.IsRequired = false;
             this.cmbDbName.Location = new System.Drawing.Point(90, 4);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
-            this.cmbDbName.ParameterID = "DBNAME";
+            this.cmbDbName.ParameterID = "DBID";
             this.cmbDbName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -507,7 +507,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cmbDbName.StyleController = this.layoutControl3;
             this.cmbDbName.TabIndex = 22;
-            this.cmbDbName.ValueMember = "";
+            this.cmbDbName.ValueMember = "DBID";
             // 
             // cboParaName
             // 
@@ -1597,11 +1597,11 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins1.Bottom = 100;
-            margins1.Left = 100;
-            margins1.Right = 100;
-            margins1.Top = 100;
-            this.tChart1.Printer.Margins = margins1;
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChart1.Printer.Margins = margins2;
             this.tChart1.Size = new System.Drawing.Size(939, 618);
             // 
             // 
