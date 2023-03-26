@@ -28,7 +28,7 @@ namespace ISIA.UI.TREND
 
         BizDataClient BsForGettingSqlPaemCorrelation = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.WorkloadSqlCorrelationAnalysis");
 
-        BizDataClient BsForGettingSqlInfluence = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.WorkloadSqlCorrelationAnalysis");
+        BizDataClient BsForGettingSqlInfluence = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SqlInfluenceAnalysis");
 
 
         public FrmWorkloadDataGridView(DataTable dt)
@@ -81,8 +81,25 @@ namespace ISIA.UI.TREND
 
         private void barButtonItemSqlTopTen_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Console.WriteLine();
-
+            try
+            {
+                //GET data 
+                args = new AwrArgsPack();
+                args.DBName = FocusedRowDr.Field<string>("DbName");
+                args.WorkloadSqlParm = AwrArgsPack.WorkloadSqlRelationMapping[
+                    AwrArgsPack.WorkloadRealParmMapping[FocusedRowDr.Field<string>("WorkloadParm")]];
+                List<DateTime> dateTimes = IncomingDt.AsEnumerable().Select(x => x.Field<DateTime>("Time")).ToList();
+                dateTimes.Sort();
+                args.StartTime = dateTimes[0].ToString("yyyyMMdd") + "000000";
+                args.EndTime = dateTimes[dateTimes.Count - 1].ToString("yyyyMMdd") + "235959";
+                DataSet ds = BsForGettingSqlInfluence.ExecuteDataSet("GetSqlInfluenceData", args.getPack());
+                ResultForNextPageDt = ds.Tables[0];
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+            }
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

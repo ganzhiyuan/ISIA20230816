@@ -33,13 +33,13 @@ namespace ISIA.UI.TREND
             this.gridControlWorkloadData = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barButtonItemCorrelation = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemSqlTopTen = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItemCorrelation = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemSqlTopTen = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWorkloadData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -72,6 +72,20 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemSqlTopTen)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
+            // 
+            // barButtonItemCorrelation
+            // 
+            this.barButtonItemCorrelation.Caption = "Analysis Sql Parm Relation";
+            this.barButtonItemCorrelation.Id = 0;
+            this.barButtonItemCorrelation.Name = "barButtonItemCorrelation";
+            this.barButtonItemCorrelation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemCorrelation_ItemClick);
+            // 
+            // barButtonItemSqlTopTen
+            // 
+            this.barButtonItemSqlTopTen.Caption = "Analysis Sql Influence ";
+            this.barButtonItemSqlTopTen.Id = 1;
+            this.barButtonItemSqlTopTen.Name = "barButtonItemSqlTopTen";
+            this.barButtonItemSqlTopTen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSqlTopTen_ItemClick);
             // 
             // barManager1
             // 
@@ -116,20 +130,6 @@ namespace ISIA.UI.TREND
             this.barDockControlRight.Location = new System.Drawing.Point(886, 0);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 679);
-            // 
-            // barButtonItemCorrelation
-            // 
-            this.barButtonItemCorrelation.Caption = "Analysis Sql Parm Relation";
-            this.barButtonItemCorrelation.Id = 0;
-            this.barButtonItemCorrelation.Name = "barButtonItemCorrelation";
-            this.barButtonItemCorrelation.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemCorrelation_ItemClick);
-            // 
-            // barButtonItemSqlTopTen
-            // 
-            this.barButtonItemSqlTopTen.Caption = "Analysis Sql_Id Influence ";
-            this.barButtonItemSqlTopTen.Id = 1;
-            this.barButtonItemSqlTopTen.Name = "barButtonItemSqlTopTen";
-            this.barButtonItemSqlTopTen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSqlTopTen_ItemClick);
             // 
             // FrmWorkloadDataGridView
             // 
