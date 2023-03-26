@@ -288,6 +288,24 @@ namespace ISIA.UI.CHARTTEST
                 return string.Empty;
             }
         }
+
+        private string MakeDataBaseInsetFileName(string filename)
+        {
+            string path = string.Empty;
+            try
+            {
+                path = string.Format(@"{0}/{1}/", DateTime.Now.ToString("yyyyMM"), DateTime.Now.ToString("dd"));
+
+
+                return path + filename;
+            }
+            catch (System.Exception ex)
+            {
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, "MakeFilePath", ex.ToString());
+                return string.Empty;
+            }
+        }
+
         private void ChartServiceRun()
         {
             //테스트 완료 후 비동기 방식으로 변경.
@@ -336,12 +354,14 @@ namespace ISIA.UI.CHARTTEST
                     }
                     #endregion
 
+                    string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
+
                     //IMAGE NAME 정의 해야 함. 저장.
-                    _imageFileName = MakeFilePath(DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png");
+                    _imageFileName = MakeFilePath(fileName);
 
                     chartHelper.SaveChartImage(tChart1, _imageFileName, 1920, 1080);
 
-                    SaveChartImageData(parameterInfo, _imageFileName);
+                    SaveChartImageData(parameterInfo, MakeDataBaseInsetFileName(fileName));
 
                     //Chart 초기화 하기. TEST 우선 제외.
 

@@ -191,6 +191,21 @@ namespace ISIA.CHART.SERVICE
                 throw ex;
             }
         }
+        private string MakeDataBaseInsetFileName(string filename)
+        {
+            string path = string.Empty;
+            try
+            {
+                path = string.Format(@"{0}/{1}/", DateTime.Now.ToString("yyyyMM"), DateTime.Now.ToString("dd"));
+
+                return path + filename;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private string MakeRawDataTableName(string type, string dbName)
         {
             string returnStr = string.Empty;
@@ -328,15 +343,17 @@ namespace ISIA.CHART.SERVICE
                     }
                     #endregion
 
+
+                    string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
+
                     //IMAGE NAME 정의 해야 함. 저장.
-                    _imageFileName = MakeFilePath(DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png");
+                    _imageFileName = MakeFilePath(fileName);
 
                     chartHelper.SaveChartImage(chart, _imageFileName, imageWidth, imageHeight);
 
                     //ImageFile 경로 수정 필요함. FTP 경로.
 
-                    SaveChartImageData(parameterInfo, _imageFileName);
-
+                    SaveChartImageData(parameterInfo, MakeDataBaseInsetFileName(fileName));
                 }
 
             }
