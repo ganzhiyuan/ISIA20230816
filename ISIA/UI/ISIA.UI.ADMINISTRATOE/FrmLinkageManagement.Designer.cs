@@ -33,8 +33,10 @@ namespace ISIA.UI.ADMINISTRATOE
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLinkageManagement));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.tButton1 = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tButton2 = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.tButton1 = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
@@ -52,8 +54,6 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -61,6 +61,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -77,7 +78,6 @@ namespace ISIA.UI.ADMINISTRATOE
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
@@ -118,37 +118,17 @@ namespace ISIA.UI.ADMINISTRATOE
             this.panelControl1.Size = new System.Drawing.Size(56, 724);
             this.panelControl1.TabIndex = 81;
             // 
-            // tButton1
+            // flowLayoutPanel1
             // 
-            this.tButton1.Appearance.BackColor = System.Drawing.Color.White;
-            this.tButton1.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.tButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tButton1.Appearance.Options.UseBackColor = true;
-            this.tButton1.Appearance.Options.UseBorderColor = true;
-            this.tButton1.Appearance.Options.UseFont = true;
-            this.tButton1.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.tButton1.AppearanceHovered.Options.UseBackColor = true;
-            this.tButton1.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.tButton1.AppearancePressed.Options.UseBackColor = true;
-            this.tButton1.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.EDIT;
-            this.tButton1.ControlID = "btnSave";
-            this.tButton1.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.tButton1.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
-            this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(2, 47);
-            this.tButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.tButton1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.tButton1.Name = "tButton1";
-            this.tButton1.NeedToTranslate = true;
-            this.tButton1.RepresentativeValue = "    ";
-            this.tButton1.Size = new System.Drawing.Size(46, 41);
-            this.tButton1.TabIndex = 132;
-            this.tButton1.Text = "    ";
-            this.tButton1.UseVisualStyleBackColor = true;
-            this.tButton1.Click += new System.EventHandler(this.tButton1_Click);
+            this.flowLayoutPanel1.Controls.Add(this.tButton2);
+            this.flowLayoutPanel1.Controls.Add(this.tButton1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 324);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(52, 398);
+            this.flowLayoutPanel1.TabIndex = 133;
             // 
             // tButton2
             // 
@@ -181,6 +161,46 @@ namespace ISIA.UI.ADMINISTRATOE
             this.tButton2.Text = "    ";
             this.tButton2.UseVisualStyleBackColor = true;
             this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
+            // 
+            // tButton1
+            // 
+            this.tButton1.Appearance.BackColor = System.Drawing.Color.White;
+            this.tButton1.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tButton1.Appearance.Options.UseBackColor = true;
+            this.tButton1.Appearance.Options.UseBorderColor = true;
+            this.tButton1.Appearance.Options.UseFont = true;
+            this.tButton1.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton1.AppearanceHovered.Options.UseBackColor = true;
+            this.tButton1.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton1.AppearancePressed.Options.UseBackColor = true;
+            this.tButton1.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.EDIT;
+            this.tButton1.ControlID = "btnSave";
+            this.tButton1.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tButton1.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
+            this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.tButton1.IsRequired = false;
+            this.tButton1.Location = new System.Drawing.Point(2, 47);
+            this.tButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tButton1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.tButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.tButton1.Name = "tButton1";
+            this.tButton1.NeedToTranslate = true;
+            this.tButton1.RepresentativeValue = "    ";
+            this.tButton1.Size = new System.Drawing.Size(46, 41);
+            this.tButton1.TabIndex = 132;
+            this.tButton1.Text = "    ";
+            this.tButton1.UseVisualStyleBackColor = true;
+            this.tButton1.Click += new System.EventHandler(this.tButton1_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(52, 322);
+            this.flowLayoutPanel2.TabIndex = 134;
             // 
             // groupControl3
             // 
@@ -462,26 +482,6 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.tButton2);
-            this.flowLayoutPanel1.Controls.Add(this.tButton1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 324);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(52, 330);
-            this.flowLayoutPanel1.TabIndex = 133;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(52, 322);
-            this.flowLayoutPanel2.TabIndex = 134;
-            // 
             // FrmLinkageManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,6 +498,7 @@ namespace ISIA.UI.ADMINISTRATOE
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
@@ -514,7 +515,6 @@ namespace ISIA.UI.ADMINISTRATOE
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

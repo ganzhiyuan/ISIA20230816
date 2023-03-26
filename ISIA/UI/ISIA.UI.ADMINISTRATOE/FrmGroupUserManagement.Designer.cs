@@ -60,7 +60,10 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -87,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
@@ -131,12 +135,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Delete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(114, 26);
             // 
             // Delete
             // 
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(180, 22);
+            this.Delete.Size = new System.Drawing.Size(113, 22);
             this.Delete.Text = "Delete";
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -454,8 +458,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.tButton1);
-            this.panelControl1.Controls.Add(this.tButton2);
+            this.panelControl1.Controls.Add(this.flowLayoutPanel1);
+            this.panelControl1.Controls.Add(this.flowLayoutPanel2);
             this.panelControl1.Location = new System.Drawing.Point(649, 2);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(56, 711);
@@ -480,7 +484,7 @@
             this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
             this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(4, 400);
+            this.tButton1.Location = new System.Drawing.Point(2, 47);
             this.tButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton1.Margin = new System.Windows.Forms.Padding(2);
@@ -512,7 +516,7 @@
             this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
             this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton2.IsRequired = false;
-            this.tButton2.Location = new System.Drawing.Point(4, 325);
+            this.tButton2.Location = new System.Drawing.Point(2, 2);
             this.tButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton2.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton2.Margin = new System.Windows.Forms.Padding(2);
@@ -637,6 +641,24 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(52, 322);
+            this.flowLayoutPanel2.TabIndex = 135;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.tButton2);
+            this.flowLayoutPanel1.Controls.Add(this.tButton1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 324);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(52, 385);
+            this.flowLayoutPanel1.TabIndex = 136;
+            // 
             // FrmGroupUserManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,6 +673,7 @@
             this.Controls.SetChildIndex(this.tPanelMain, 0);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -677,6 +700,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,5 +737,7 @@
         private TAP.UIControls.BasicControlsDEV.TButton tButton1;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

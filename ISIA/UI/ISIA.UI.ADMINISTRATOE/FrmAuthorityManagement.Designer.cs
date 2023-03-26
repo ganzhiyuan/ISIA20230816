@@ -47,7 +47,10 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
@@ -67,13 +70,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 600);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 716);
             this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(2);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1052, 18);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1155, 18);
             // 
             // tLabel1
             // 
@@ -83,14 +87,14 @@
             // tPanelTop
             // 
             this.tPanelTop.Margin = new System.Windows.Forms.Padding(2);
-            this.tPanelTop.Size = new System.Drawing.Size(1052, 18);
+            this.tPanelTop.Size = new System.Drawing.Size(1155, 18);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.layoutControl1);
             this.tPanelMain.Location = new System.Drawing.Point(0, 18);
             this.tPanelMain.Margin = new System.Windows.Forms.Padding(2);
-            this.tPanelMain.Size = new System.Drawing.Size(1052, 582);
+            this.tPanelMain.Size = new System.Drawing.Size(1155, 698);
             // 
             // GroupListtw
             // 
@@ -103,7 +107,7 @@
             this.GroupListtw.Margin = new System.Windows.Forms.Padding(2);
             this.GroupListtw.Name = "GroupListtw";
             this.GroupListtw.SelectedImageIndex = 0;
-            this.GroupListtw.Size = new System.Drawing.Size(317, 533);
+            this.GroupListtw.Size = new System.Drawing.Size(354, 665);
             this.GroupListtw.TabIndex = 3;
             this.GroupListtw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GroupListtw_MouseDown);
             // 
@@ -140,7 +144,7 @@
             this.treeList1.OptionsView.ShowIndicator = false;
             this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.SelectImageList = this.imageCollection1;
-            this.treeList1.Size = new System.Drawing.Size(315, 533);
+            this.treeList1.Size = new System.Drawing.Size(359, 665);
             this.treeList1.TabIndex = 2;
             this.treeList1.BeforeCheckNode += new DevExpress.XtraTreeList.CheckNodeEventHandler(this.treeList1_BeforeCheckNode);
             this.treeList1.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList1_AfterCheckNode);
@@ -161,19 +165,19 @@
             // groupControl3
             // 
             this.groupControl3.Controls.Add(this.treeList1);
-            this.groupControl3.Location = new System.Drawing.Point(721, 12);
+            this.groupControl3.Location = new System.Drawing.Point(788, 4);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(319, 558);
+            this.groupControl3.Size = new System.Drawing.Size(363, 690);
             this.groupControl3.TabIndex = 9;
             this.groupControl3.Text = "UI List";
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.tButton2);
-            this.panelControl2.Controls.Add(this.tButton1);
-            this.panelControl2.Location = new System.Drawing.Point(661, 12);
+            this.panelControl2.Controls.Add(this.flowLayoutPanel1);
+            this.panelControl2.Controls.Add(this.flowLayoutPanel2);
+            this.panelControl2.Location = new System.Drawing.Point(728, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(56, 558);
+            this.panelControl2.Size = new System.Drawing.Size(56, 690);
             this.panelControl2.TabIndex = 12;
             // 
             // tButton2
@@ -195,7 +199,7 @@
             this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
             this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton2.IsRequired = false;
-            this.tButton2.Location = new System.Drawing.Point(5, 295);
+            this.tButton2.Location = new System.Drawing.Point(2, 2);
             this.tButton2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton2.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton2.Margin = new System.Windows.Forms.Padding(2);
@@ -227,7 +231,7 @@
             this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
             this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(5, 370);
+            this.tButton1.Location = new System.Drawing.Point(2, 47);
             this.tButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tButton1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.tButton1.Margin = new System.Windows.Forms.Padding(2);
@@ -243,9 +247,9 @@
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.treeList2);
-            this.groupControl2.Location = new System.Drawing.Point(337, 12);
+            this.groupControl2.Location = new System.Drawing.Point(366, 4);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(320, 558);
+            this.groupControl2.Size = new System.Drawing.Size(358, 690);
             this.groupControl2.TabIndex = 7;
             this.groupControl2.Text = "User UI";
             // 
@@ -268,7 +272,7 @@
             this.treeList2.OptionsView.ShowIndicator = false;
             this.treeList2.OptionsView.ShowVertLines = false;
             this.treeList2.SelectImageList = this.imageCollection1;
-            this.treeList2.Size = new System.Drawing.Size(316, 533);
+            this.treeList2.Size = new System.Drawing.Size(354, 665);
             this.treeList2.TabIndex = 4;
             this.treeList2.BeforeCheckNode += new DevExpress.XtraTreeList.CheckNodeEventHandler(this.treeList2_BeforeCheckNode);
             this.treeList2.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList2_AfterCheckNode);
@@ -280,9 +284,9 @@
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.GroupListtw);
-            this.groupControl1.Location = new System.Drawing.Point(12, 12);
+            this.groupControl1.Location = new System.Drawing.Point(4, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(321, 558);
+            this.groupControl1.Size = new System.Drawing.Size(358, 690);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "UserGroup";
             // 
@@ -296,7 +300,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1052, 582);
+            this.layoutControl1.Size = new System.Drawing.Size(1155, 698);
             this.layoutControl1.TabIndex = 3;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -310,7 +314,8 @@
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1052, 582);
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
+            this.Root.Size = new System.Drawing.Size(1155, 698);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -318,50 +323,69 @@
             this.layoutControlItem1.Control = this.groupControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(325, 562);
+            this.layoutControlItem1.Size = new System.Drawing.Size(362, 694);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.groupControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(325, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(362, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(324, 562);
+            this.layoutControlItem2.Size = new System.Drawing.Size(362, 694);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.groupControl3;
-            this.layoutControlItem3.Location = new System.Drawing.Point(709, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(784, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(323, 562);
+            this.layoutControlItem3.Size = new System.Drawing.Size(367, 694);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.panelControl2;
-            this.layoutControlItem4.Location = new System.Drawing.Point(649, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(724, 0);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(60, 0);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(60, 5);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(60, 562);
+            this.layoutControlItem4.Size = new System.Drawing.Size(60, 694);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(52, 322);
+            this.flowLayoutPanel2.TabIndex = 136;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.tButton2);
+            this.flowLayoutPanel1.Controls.Add(this.tButton1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 324);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(52, 364);
+            this.flowLayoutPanel1.TabIndex = 137;
             // 
             // FrmAuthorityManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 618);
+            this.ClientSize = new System.Drawing.Size(1155, 734);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmAuthorityManagement";
             this.Text = "FrmAuthorityManagement";
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
@@ -381,7 +405,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -403,5 +429,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.Utils.ImageCollection imageCollection1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

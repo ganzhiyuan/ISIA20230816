@@ -25,6 +25,9 @@ namespace ISIA.UI.ADMINISTRATOE
             InitializecboUserColumn();
             InitializeUsergrid();
             GridviewStyle();
+
+            int temp = Convert.ToInt32(panelControl1.Height * 0.48);
+            flowLayoutPanel2.Height = temp;
         }
 
         #region Feild            

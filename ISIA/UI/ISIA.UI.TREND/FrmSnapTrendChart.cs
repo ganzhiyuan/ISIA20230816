@@ -40,6 +40,8 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart");
+            dateStart.DateTime = DateTime.Now.AddDays(-1);
+            dateEnd.DateTime = DateTime.Now;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace ISIA.UI.TREND
         public FrmSqlStatModels()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart1");
             dateStart.DateTime = DateTime.Now.AddDays(-1);
             dateEnd.DateTime = DateTime.Now;
         }
@@ -49,6 +49,7 @@ namespace ISIA.UI.TREND
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.CommandName = cboModules.Text;
                 args.CommandType = cboParaName.Text;
+                args.DbName = cmbDbName.Text;
                 DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
                 return dataSet;
             }

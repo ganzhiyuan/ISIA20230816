@@ -28,9 +28,11 @@ namespace ISIA.UI.ADMINISTRATOE
         public FrmAuthorityManagement()
         {
             InitializeComponent();
+            bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.AuthorityManagement");
             InitializeGroupList();
             InitializeUIGroup();
-            bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.AuthorityManagement");
+            int temp = Convert.ToInt32(panelControl2.Height * 0.48);
+            flowLayoutPanel2.Height = temp;
         }
 
         #region Feild     
@@ -154,10 +156,13 @@ namespace ISIA.UI.ADMINISTRATOE
 
         private List<treeListInfo> GetBindSourceUser(string groupID="ADMIN")
         {
-            DataClient tmpDataClient = new DataClient();
-            string UserUISql = string.Format("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", groupID);
-            DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "TAPSTBUIAUTHORITY").Tables[0];//用户对应所有权限
-            List<treeListInfo> UserAllUI = DataTableExtend.GetList<treeListInfo>(UserUIList);
+            CommonArgsPack arguments = new CommonArgsPack();
+            arguments.GroupName = groupID;
+            DataSet UserUIList= bs.ExecuteDataSet("GetAuthority", arguments.getPack());
+            //DataClient tmpDataClient = new DataClient();
+            //string UserUISql = string.Format("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", groupID);
+            //DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "TAPSTBUIAUTHORITY").Tables[0];//用户对应所有权限
+            List<treeListInfo> UserAllUI = DataTableExtend.GetList<treeListInfo>(UserUIList.Tables[0]);
             if (UserAllUI==null)
             {
                 return null;
@@ -222,10 +227,10 @@ namespace ISIA.UI.ADMINISTRATOE
 
             var parentIDList = listP.Where(x => x.PID == 0).Select(x=>x.CID).ToList();
             var temp = listP.Where(x => !parentIDList.Contains(x.PID)&&x.UI=="0").ToList();//取出没有子集的一级二级菜单
-            foreach (var item in temp)
-            {
-                //listP.Remove(item);
-            }
+            //foreach (var item in temp)
+            //{
+            //    //listP.Remove(item);
+            //}
             //foreach (var item in parentIDList)
             //{
             //    var parent2IDList = listP.Where(x => x.PID == item && x.UI != "0").Select(x => x.CID).ToList();//二级的CID
@@ -248,9 +253,11 @@ namespace ISIA.UI.ADMINISTRATOE
             int count = 1;
 
             //取出来一二级，一级MAINMENU 二级 NAME  三级（UI表  父级-SUBMENU 对应二级NAME字段）
-            DataClient tmpDataClient = new DataClient();
-            string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
-            DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
+            //DataClient tmpDataClient = new DataClient();
+            //string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
+            //DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
+
+            DataTable retVal1 = bs.ExecuteDataSet("GetSubMenu").Tables[0];
             List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retVal1);
             //取出一级名称
             List<string> listStr = listMENU.Select(x => x.MAINMENU).Distinct().ToList();

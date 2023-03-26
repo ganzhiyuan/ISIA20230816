@@ -18,20 +18,23 @@ namespace ISIA.UI.TREND
 {
     public partial class Frm1NewSqlStat : DockUIBase1T1
     {
-
+        #region Feild 
         BizDataClient bs;
+        #endregion
+
         public Frm1NewSqlStat()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
-            dateEdit1.DateTime = DateTime.Now;
+            dateStart.DateTime = DateTime.Now;
         }
 
+        #region Method
         public DataSet LoadData()
         {
             try
             {
-                DateTime dtNow = dateEdit1.DateTime;
+                DateTime dtNow = dateStart.DateTime;
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 args.Days = "WEEK";
                 List<SqlShow> listReturn = new List<SqlShow>();
@@ -40,6 +43,7 @@ namespace ISIA.UI.TREND
                     args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
                     args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
                     args.Days = i.ToString();
+                    args.DbName = cmbDbName.Text;
                     DataSet dataSet = bs.ExecuteDataSet("GetSqlstatByUnit", args.getPack());
                     if (dataSet == null||dataSet.Tables[0]==null||dataSet.Tables[0].Rows.Count<1)
                     {
@@ -135,9 +139,9 @@ namespace ISIA.UI.TREND
             gridControl1.DataSource = dataSet.Tables[0];
             gridView1.BestFitColumns();
         }
+        #endregion
 
-
-
+        #region Event
         private void btnSelect_Click(object sender, EventArgs e)
         {
             try
@@ -157,5 +161,6 @@ namespace ISIA.UI.TREND
         {
            
         }
+        #endregion
     }
 }
