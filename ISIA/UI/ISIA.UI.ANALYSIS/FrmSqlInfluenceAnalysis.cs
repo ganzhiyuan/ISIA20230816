@@ -66,7 +66,6 @@ namespace ISIA.UI.ANALYSIS
                     Hashtable hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
                     DataSet ds = (DataSet)hashtable["DS"];
                     argument.WorkloadSqlParm  = (string)hashtable["SQL_PARM"];
-                    awrArgsPack = new AwrArgsPack();
                     DisplayChart(ds);
                 }
             }

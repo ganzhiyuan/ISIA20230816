@@ -164,12 +164,13 @@ namespace ISIA.UI.TREND
             {
                 return;
             }
-            ht.Add("dt", dtForNext);
+            ht.Add("DS", dtForNext.DataSet);
             ht.Add("startTime", frm.args.StartTime);
             ht.Add("endTime", frm.args.EndTime);
             ht.Add("workloadParm", frm.args.WorkloadSqlParm);
             ht.Add("DbName", frm.args.DBName);
-            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "ANALYSIS", "Sql Parm Correlation Analysis", null, ht);
+            ht.Add("SQL_PARM", frm.args.WorkloadSqlParm);
+            base.OpenUI(frm.NextMenuName, frm.NextMainMenuName, frm.NextMenuDisplayName, null, ht);
 
 
 
