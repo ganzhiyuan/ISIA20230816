@@ -1,5 +1,7 @@
 ﻿using DevExpress.Charts.Native;
+using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
@@ -71,7 +73,7 @@ namespace ISIA.UI.TREND
         #endregion
 
         #region Initialize
-        private void InitializeControl() { InitializeDate(); }
+        private void InitializeControl() { InitializeDate(); this.cmbDbName.Properties.SelectAllItemVisible = false; }
 
         private void InitializeBackgroundWorker()
         {
@@ -512,6 +514,62 @@ namespace ISIA.UI.TREND
             }
 
             #endregion
+        }
+
+        private void cmbDbName_EditValueChanged(object sender, EventArgs e)
+        {
+            ChangingEventArgs eventArgs = (ChangingEventArgs)e;
+
+            string text = eventArgs.NewValue.ToString();
+
+
+
+            foreach(CheckedListBoxItem temp in cmbDbName.Properties.Items)
+            {
+                if(temp.Value.ToString() == text)
+                {
+                    temp.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    temp.CheckState = CheckState.Unchecked;
+                }
+
+
+
+            }
+
+
+
+        }
+
+        private void cmbDbName_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
+        {
+            Form popup = (sender as IPopupControl).PopupWindow as Form;
+            PopupContainerControl container = popup.Controls.OfType<PopupContainerControl>().FirstOrDefault();
+            CheckedListBoxControl listBox = container.Controls.OfType<CheckedListBoxControl>().FirstOrDefault();
+
+            for (int i = 0; i < listBox.Items.Count; i++)
+            {
+                if (i != e.Index)
+                {
+                    listBox.Items[i].CheckState = CheckState.Unchecked;
+                }
+                
+            }
+        }
+
+        private void cmbDbName_Properties_Popup(object sender, EventArgs e)
+        {
+            string test = "test";
+        }
+
+        private void cmbDbName_ItemChecking(object sender, ItemCheckingEventArgs e)
+        {
+            string test = "test";
+            
+
+
         }
     }
 }

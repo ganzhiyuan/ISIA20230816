@@ -75,12 +75,12 @@ namespace ISIA.UI.TREND
             this.tableRight = new DevExpress.Utils.Layout.TablePanel();
             this.pnlImage = new TAP.UIControls.BasicControlsDEV.TPanel();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.tblColCnt = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.txtShowCol = new TAP.UIControls.BasicControlsDEV.TTextBox();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.tblColCnt = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
@@ -134,11 +134,11 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.pnlImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
             this.layoutControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShowCol.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -380,6 +380,7 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 3, 25, 13, 53, 4, 51);
             this.dtpStartTime.Size = new System.Drawing.Size(105, 20);
@@ -473,6 +474,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbDbName.Properties.SelectAllItemVisible = false;
             this.cmbDbName.RepresentativeValue = "";
             this.cmbDbName.ShowDescription = true;
             this.cmbDbName.Size = new System.Drawing.Size(133, 20);
@@ -482,6 +484,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.StyleController = this.lcSerachOptions;
             this.cmbDbName.TabIndex = 18;
             this.cmbDbName.ValueMember = "DBID";
+            this.cmbDbName.ItemCheck += new System.EventHandler<DevExpress.XtraEditors.Controls.ItemCheckEventArgs>(this.cmbDbName_ItemCheck);
             // 
             // cmbParameterName
             // 
@@ -892,19 +895,20 @@ namespace ISIA.UI.TREND
             this.layoutControl4.TabIndex = 0;
             this.layoutControl4.Text = "layoutControl4";
             // 
-            // layoutControlGroup3
+            // tblColCnt
             // 
-            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup3.GroupBordersVisible = false;
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem15,
-            this.layoutControlItem1,
-            this.emptySpaceItem4,
-            this.emptySpaceItem5});
-            this.layoutControlGroup3.Name = "Root";
-            this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(518, 31);
-            this.layoutControlGroup3.TextVisible = false;
+            this.tblColCnt.ControlID = "tblColCnt";
+            this.tblColCnt.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.tblColCnt.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tblColCnt.ImageOptions.Image")));
+            this.tblColCnt.IsRequired = false;
+            this.tblColCnt.Location = new System.Drawing.Point(2, 2);
+            this.tblColCnt.Name = "tblColCnt";
+            this.tblColCnt.NeedToTranslate = true;
+            this.tblColCnt.RepresentativeValue = "Column Count";
+            this.tblColCnt.Size = new System.Drawing.Size(102, 17);
+            this.tblColCnt.StyleController = this.layoutControl4;
+            this.tblColCnt.TabIndex = 5;
+            this.tblColCnt.Text = "Column Count";
             // 
             // txtShowCol
             // 
@@ -924,6 +928,32 @@ namespace ISIA.UI.TREND
             this.txtShowCol.Size = new System.Drawing.Size(50, 20);
             this.txtShowCol.StyleController = this.layoutControl4;
             this.txtShowCol.TabIndex = 4;
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup3.GroupBordersVisible = false;
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem15,
+            this.layoutControlItem1,
+            this.emptySpaceItem4,
+            this.emptySpaceItem5});
+            this.layoutControlGroup3.Name = "Root";
+            this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(518, 31);
+            this.layoutControlGroup3.TextVisible = false;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.tblColCnt;
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem15.MaxSize = new System.Drawing.Size(106, 21);
+            this.layoutControlItem15.MinSize = new System.Drawing.Size(106, 21);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(106, 21);
+            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
             // 
             // layoutControlItem1
             // 
@@ -947,33 +977,6 @@ namespace ISIA.UI.TREND
             this.emptySpaceItem4.Size = new System.Drawing.Size(362, 31);
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // tblColCnt
-            // 
-            this.tblColCnt.ControlID = "tblColCnt";
-            this.tblColCnt.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.tblColCnt.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tblColCnt.ImageOptions.Image")));
-            this.tblColCnt.IsRequired = false;
-            this.tblColCnt.Location = new System.Drawing.Point(2, 2);
-            this.tblColCnt.Name = "tblColCnt";
-            this.tblColCnt.NeedToTranslate = true;
-            this.tblColCnt.RepresentativeValue = "Column Count";
-            this.tblColCnt.Size = new System.Drawing.Size(102, 17);
-            this.tblColCnt.StyleController = this.layoutControl4;
-            this.tblColCnt.TabIndex = 5;
-            this.tblColCnt.Text = "Column Count";
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.tblColCnt;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem15.MaxSize = new System.Drawing.Size(106, 21);
-            this.layoutControlItem15.MinSize = new System.Drawing.Size(106, 21);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(106, 21);
-            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
             // 
             // emptySpaceItem5
             // 
@@ -1044,11 +1047,11 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.pnlImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
             this.layoutControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShowCol.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -24,14 +24,14 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
-            dateEdit1.DateTime = DateTime.Now;
+            dateStart.DateTime = DateTime.Now;
         }
 
         public DataSet LoadData()
         {
             try
             {
-                DateTime dtNow = dateEdit1.DateTime;
+                DateTime dtNow = dateStart.DateTime;
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 args.Days = "WEEK";
                 List<SqlShow> listReturn = new List<SqlShow>();
