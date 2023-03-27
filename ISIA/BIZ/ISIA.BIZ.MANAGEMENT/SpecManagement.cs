@@ -25,8 +25,8 @@ namespace ISIA.BIZ.MANAGEMENT
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.Append(" SELECT T.*,T.ROWID FROM TAPCTSPCRULESPEC T  where 1=1  ");
-                tmpSql.AppendFormat(" and INSERTTIME >'{0}'  ", arguments.INSERTTIME);
-                tmpSql.AppendFormat(" and INSERTTIME<= '{0}'   ", arguments.UPDATETIME);
+                //tmpSql.AppendFormat(" and INSERTTIME >'{0}'  ", arguments.INSERTTIME);
+                //tmpSql.AppendFormat(" and INSERTTIME<= '{0}'   ", arguments.UPDATETIME);
                 if (!string.IsNullOrEmpty(arguments.RULENO))
                 {
                     tmpSql.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
