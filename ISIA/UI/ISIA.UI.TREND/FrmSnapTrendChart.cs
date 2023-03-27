@@ -211,7 +211,11 @@ namespace ISIA.UI.TREND
             popupGrid.ShowDialog();
             DataTable dt =  popupGrid._DataTable;
 
-            base.OpenUI("SQLFULLTEXTQUERYTREND", "TREND", "SQLFullTextQueryTrend", dt);
+            if (popupGrid.linkage == true)
+            {
+                base.OpenUI("SQLFULLTEXTQUERYTREND", "TREND", "SQLFullTextQueryTrend", dt);
+            }
+            
         }
 
         //TChart chart = new TChart();
@@ -257,7 +261,7 @@ namespace ISIA.UI.TREND
              }*/
 
             //chart.Chart.Series.Chart.GetASeries().Legend.Text.ToString();
-            tChart1.ContextMenuStrip = contextMenuStrip1;
+            //tChart1.ContextMenuStrip = contextMenuStrip1;
             
             tChart1.Dock = DockStyle.Fill;
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示

@@ -212,7 +212,7 @@ namespace ISIA.UI.TREND
 
                     string path = _ftpRoot + '/' + imageFileName;
 
-                    images.Add(_ftpClient.GetImage(path));
+                    //images.Add(_ftpClient.GetImage(path));
                 }
                 catch (System.Exception ex)
                 {

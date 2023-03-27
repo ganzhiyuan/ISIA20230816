@@ -1,5 +1,6 @@
 ﻿
 using ISIA.COMMON;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
@@ -35,6 +36,8 @@ namespace ISIA.UI.TREND
         private bool bfirst = false;
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
+
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         string PARAMENT_NAME = null;
         DateTime stime ;
         DateTime etime ;
@@ -51,21 +54,26 @@ namespace ISIA.UI.TREND
             {
                 
                 dataSet1.Tables.Clear();
-                dataSet = bs.ExecuteDataSet("GetSnap");
+                PARAMENT_NAME = cboParaName.Text;
+                //args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+                args.ParameterName = cboParaName.Text;
+
+
+                dataSet = bs.ExecuteDataSet("GetSnap",args.getPack());
                 //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
                 dataSet1.Tables.Add(dataSet.Tables[0].Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
-                    if (string.IsNullOrEmpty(row["CPU_TIME_TOTAL"].ToString()) || row["CPU_TIME_TOTAL"].ToString() == "0")
+                    if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
                     {
-                        row["CPU_TIME_TOTAL"] = -1;
+                        row[PARAMENT_NAME] = -1;
                     }
                 }
 
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
-                    if (row["CPU_TIME_TOTAL"].ToString() == "-1")
+                    if (row[PARAMENT_NAME].ToString() == "-1")
                     {
                         row.Delete();
                     }
@@ -196,14 +204,21 @@ namespace ISIA.UI.TREND
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
-                chart.
-;
+                chart.Click += Chart_Click;
+;               void Chart_Click(object sender, EventArgs e)
+                {
+                    DataClient tmpDataClient = new DataClient();
+                    string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_isfa T where t.sql_id='{0}' ", chart.Name.ToString());
+                    DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
+                    tableMain1.TableName = "sql";
+
+                    memoEdit1.Text = tableMain1.Rows[0][0].ToString();
+                }
             }
 
             
             return;
         }
-
 
 
         private Line CreateLine(DataTable dstable)

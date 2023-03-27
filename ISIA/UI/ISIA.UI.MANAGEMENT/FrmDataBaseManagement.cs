@@ -23,25 +23,12 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Base;
+using System.Collections;
 
 namespace ISIA.UI.MANAGEMENT
 {
     public partial class FrmDataBaseManagement : DockUIBase1T1
     {
-
-        #region Feild
-        BizDataClient bs = null;
-        ComboBoxControl ComboBoxControl = new ComboBoxControl();
-        DataBaseManagementArgsPack args = new DataBaseManagementArgsPack();
-
-        DataSet ds = new DataSet();
-
-        
-        //private DataSet ds_NUM;
-        //private DataSet ds_OUTPUT;
-        #endregion
-
-
         public FrmDataBaseManagement()
         {
             InitializeComponent();
@@ -50,353 +37,542 @@ namespace ISIA.UI.MANAGEMENT
             tDateTimePickerSE1.EndDate = DateTime.ParseExact(DateTime.Now.ToString("yyyy"), "yyyy", System.Globalization.CultureInfo.CurrentCulture);
             */
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.DataBaseManagement");
+
         }
 
 
-        #region mothod
+        #region Field
 
-        private void InitializeComboBox()
+
+        //修改数据的行数索引保存
+  
+        BizDataClient bs = null;
+        #endregion
+
+        #region Event
+
+        //Filter删选条件
+        private void chkFilter_CheckedChanged(object sender, EventArgs e)
         {
+            txtFilter_Data();
+        }
+        private void txtFilter_Data()
+        {
+            if (chkFilter.Checked)
+            {
+                string filertxt = txtFilter.Text;
+                this.cboPrmt.SetFilter(TAP.UIControls.EnumFilterType.Include, filertxt.Split(','));
+                this.cbooperdesc.SetFilter(TAP.UIControls.EnumFilterType.Include, filertxt.Split(','));
+            }
+            else
+            {
+                this.cboPrmt.SetFilter(TAP.UIControls.EnumFilterType.Include, null);
+                this.cbooperdesc.SetFilter(TAP.UIControls.EnumFilterType.Include, null);
+            }
+        }
+        private void txtFilter_EditValueChanged(object sender, EventArgs e)
+        {
+            if (chkFilter.Checked)
+            {
+                string filertxt = txtFilter.Text;
+                this.cboPrmt.SetFilter(TAP.UIControls.EnumFilterType.Include, filertxt.Split(','));
+                this.cbooperdesc.SetFilter(TAP.UIControls.EnumFilterType.Include, filertxt.Split(','));
+            }
+        }
+
+        //焦点变色
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            //focusedRowHandles.Add(this.gridView1.FocusedRowHandle);
+
+            this.gridView1.RowCellStyle += gridView1_RowCellStyle;
+        }
+
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            base.CancelAsync();
+        }
+
+        #endregion
+
+        #region Method
+
+        public override void ExecuteCommand(ArgumentPack arguments)
+        {
+            Hashtable hashtable;
+            foreach (string tmpstr in arguments.ArgumentNames)
+            {
+                if (tmpstr == "hashtable")
+                {
+                    hashtable = (Hashtable)arguments["hashtable"].ArgumentValue;
+                    /*if (hashtable["FACILITY"] != null)
+                    {
+                        ComboBoxControl.SelectedComboBox(cboFab, hashtable["FACILITY"].ToString());
+                    }
+                    if (hashtable["TECH"] != null)
+                    {
+                        ComboBoxControl.SelectedComboBox(cboTech, hashtable["TECH"].ToString());
+                    }
+                    if (hashtable["LOTCODE"] != null)
+                    {
+                        ComboBoxControl.SelectedComboBox(cboLotcode, hashtable["LOTCODE"].ToString());
+                    }
+                    if (hashtable["OPERATION"] != null)
+                    {
+                        ComboBoxControl.SelectedComboBox(cboOper, hashtable["OPERATION"].ToString());
+                    }
+                    if (hashtable["PRODUCT"] != null)
+                    {
+                        ComboBoxControl.SelectedComboBox(cboProd, hashtable["PRODUCT"].ToString());
+                    }*/
+
+                }
+                if (tmpstr == "LinkTable")
+                {
+                    DataTable dt = (DataTable)arguments["LinkTable"].ArgumentValue;
+                    //ComboBoxControl.AfterComboBoxLinkValue(dt, this.tabPane1);
+                }
+
+            }
+            btnSelect_Click(null, null);
+        }
+
+        //添加 Add
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            /*ComboBoxControl.SetCrossLang(this._translator);
+            if (!ComboBoxControl.CheckComboBoxValue(this.Text, this.AddOptionControls)) return;
+            IxMessageBox im = new IxMessageBox(this._translator);
+            DialogResult dialog = im.IsInsert(this.Text);
+            if (dialog.ToString() == "Yes")
+            {
+                try
+                {
+                    string fab = cboFab2.Text;
+                    string tech = cboTech2.Text;
+                    string lotch = cboLot2.Text;
+                    string prod = cboProd2.Text;
+
+                    var operArray = cboOper2.Text.Split(',').AsEnumerable().Select(x => x.Split('-')).Select(x => x.FirstOrDefault().Trim());
+                    string oper = string.Join(",", operArray);
+
+                    string area = cboArea2.Text;
+                    string prmt = cboPrmt2.Text;
+                    string operdesc = txtOperDesc2.Text;
+                    string specUpper = txtSpecUpper2.Text;
+                    string specLpw = txtSpecLower2.Text;
+                    string ctrlUpper = txtCtrlUpper2.Text;
+                    string ctrlLower = txtCtrlLower2.Text;
+                    string chartyn = cbochartyn2.Text;
+                    args.FabId = fab;
+                    args.TechId = tech;
+                    args.LotCd = lotch;
+                    args.ProdId = prod;
+                    args.OperId = oper;
+                    args.AreaCd = area;
+                    args.PrmtNm = prmt;
+                    args.OperDesc = operdesc;
+                    args.SpecUpperLimit = specUpper;
+                    args.SpecLowerLimit = specLpw;
+                    args.CtrlUpperLimit = ctrlUpper;
+                    args.CtrlLowerLimit = ctrlLower;
+                    args.ChartYN = chartyn;
+
+                    int ds = bs.ExecuteModify("SaveSpec", args.getPack());
+                    base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                }
+                catch (System.Exception ex)
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
+                }
+            }
+            else
+            {
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                return;
+            }*/
+        }
+
+        //Select 查询
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            //ComboBoxControl.SetCrossLang(this._translator);
+            // if (!ComboBoxControl.ComboBoxCheckValue(this.Text, this.OptionControls)) return;
+            base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
         }
 
-
-
-
+        //LoadData 查询数据返回dataset
         public DataSet LoadData()
         {
-            
-            /*string startTime = tDateTimePickerSE1.StartDateString.Substring(0, 14);
-            string endTime = tDateTimePickerSE1.EndDateString.Substring(0, 14);
-            string start = tDateTimePickerSE1.StartDateString.Substring(0, 8);
-            string end = tDateTimePickerSE1.StartDateString.Substring(0, 8);
-            args.Workshop = cboworkshop.Text;
-            args.FACILITY = cbofacility.Text;
-            args.Process_Type = cboprocess.Text;
-            args.Report_SatrtDate = startTime;
-            args.Report_EndDate = endTime;
-            args.Report_Satrt = start;
-            args.Report_End = end;*/
+            string fab = cboFab.Text;
+            string tech = cboTech.Text;
+            string lotch = cboLotcode.Text;
+            string prod = cboProd.Text;
 
-            /* ds = bs.ExecuteDataSet("GetBMPMINFO", args.getPack());
-             ds_NUM = bs.ExecuteDataSet("GetBMPMNUM", args.getPack());
-             ds_OUTPUT = bs.ExecuteDataSet("GetOUTPUT", args.getPack());*/
+            var operArray = cboOper.Text.Split(',').AsEnumerable().Select(x => x.Split('-')).Select(x => x.FirstOrDefault().Trim());
+            string oper = string.Join(",", operArray);
 
-            ds = bs.ExecuteDataSet("GetDB");
-            
+
+            //string oper = cboOper.Text;
+            string operdesc = cbooperdesc.Text;
+            string prmt = cboPrmt.Text;
+
+
+            /*args.FabId = fab;
+            args.TechId = tech;
+            args.LotCd = lotch;
+            args.ProdId = prod;
+            args.OperId = oper;
+            args.OperDesc = operdesc;
+            args.PrmtNm = prmt;*/
+            DataSet ds = bs.ExecuteDataSet("GetSpec");
+
             return ds;
         }
 
-        public void DisplayData(DataSet ds)
+        //DisplayData  gridview显示数据
+        public void DisplayData(DataSet dataSet)
         {
-            if (ds == null)
+            if (dataSet == null)
             {
                 return;
             }
-            GridViewDataBinding();
-            GridViewStyle(gridView1);
-        }
-
-        public void GridViewDataBinding()
-        {
-            gridControl1.DataSource = null;
-
-            gridView1.Columns.Clear();
-
-            gridControl1.DataSource = ds.Tables[0];
-
-
-            //gridview 内增加按钮
-            
-            /*DevExpress.XtraGrid.Columns.GridColumn gridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-
-            gridView1.Columns.Add(gridColumn);
-            gridColumn.Visible = true;
-            gridColumn.Caption = "DELETE";
-            gridColumn.FieldName = "OPERATION";
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-
-            edit.ButtonClick += Edit_ButtonClick;
-
-            edit.Buttons[0].Kind = ButtonPredefines.Delete;
-            edit.Tag = "DELETE";
-            edit.Buttons[0].Caption = "DELETE";
-            edit.TextEditStyle = TextEditStyles.HideTextEditor;
-            gridControl1.RepositoryItems.Add(edit);
-            gridColumn.ColumnEdit = edit;
-
-            gridColumn.ShowButtonMode = (DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum)ShowButtonModeEnum.ShowAlways;*/
-
-
-            
+            gridControl1.DataSource = dataSet.Tables[0];
+            gridViewStyle(gridView1);
 
         }
 
-        
-
-        public void GridViewStyle(GridView gridView)
+        //Style样式
+        public void gridViewStyle(DevExpress.XtraGrid.Views.Grid.GridView gridView)
         {
-            gridView1.OptionsBehavior.Editable = true; 
+            //显示复选框        
+            gridView.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            gridView.OptionsSelection.MultiSelect = true;
+            gridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            gridView.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            //设置单元格可以编辑
+            gridView.OptionsBehavior.Editable = true;
+            //显示滚动条
+            gridView.OptionsView.ColumnAutoWidth = false;
+            //列表宽度自适应内容
+            gridView.BestFitColumns();
+            //让各列头禁止移动
+            gridView.OptionsCustomization.AllowColumnMoving = false;
+            //让各列头禁止排序
+            gridView.OptionsCustomization.AllowSort = false;
+            //禁止各列头改变列宽
+            gridView.OptionsCustomization.AllowColumnResizing = false;
 
-            gridView1.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplace;
-
-            
-
-            gridView1.Columns["ID"].Visible = false;
-
-
-            RepositoryItemComboBox edit = new RepositoryItemComboBox();
-            edit.Name = "CUSTOM05";
-            edit.Items.Add("aaa1");
-            edit.Items.Add("bbbb");
-            gridView.GridControl.RepositoryItems.Add(edit);
-
-            gridView.Columns["CUSTOM05"].ColumnEdit = edit;
-            gridView.Columns["CUSTOM05"].ColumnEditName = edit.ToString();
-
-            RepositoryItemComboBox edit1 = new RepositoryItemComboBox();
-            edit1.Name = "CUSTOM06";
-            edit1.Items.Add("aaa2");
-            edit1.Items.Add("bbbb");
-            gridView.GridControl.RepositoryItems.Add(edit1);
-            
-            gridView.Columns["CUSTOM06"].ColumnEdit = edit1;
-            gridView.Columns["CUSTOM06"].ColumnEditName = edit1.ToString();
         }
 
-        private void Edit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        //Delete 删除
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (e.Button.Kind == ButtonPredefines.Delete)
+            /*if (gridView1.SelectedRowsCount <= 0)
             {
-                if (XtraMessageBox.Show("Do you wish to remove this row?", "Warring", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.WARNING, "Please choose one line");
+                return;
+            }
+            IxMessageBox im = new IxMessageBox(this._translator);
+            DialogResult dialog = im.IsDelete(this.Text);
+            if (dialog.ToString() == "Yes")
+            {
+                int DeleteCount = 0;
+                List<int> selectRowNum = new List<int>();
+                try
                 {
-                    gridView1.DeleteRow(gridView1.FocusedRowHandle);
-                    DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-                    args.ROWID = dataRow["ID"].ToString();
-
-                    int Res = bs.ExecuteModify("DelteTCODE", args.getPack());
-
-                    if (Res == 1)
+                    foreach (int rowhandel in gridView1.GetSelectedRows())
                     {
-                        XtraMessageBox.Show("Delete data succeeded ", " ");
+                        selectRowNum.Add(rowhandel);
                     }
-                    else {
-                        XtraMessageBox.Show("Delete data failed ", " ");
+
+                    for (int i = 0; i < selectRowNum.Count; i++)
+                    {
+                        DataRow tmpRow = gridView1.GetDataRow(selectRowNum[i]); ;
+                        string tmpFab = tmpRow["FAB"].ToString();
+                        string tmpTech = tmpRow["TECH"].ToString();
+                        string tmpLot = tmpRow["LOT_CD"].ToString();
+                        string tmpProd = tmpRow["PROD"].ToString();
+                        string tmpOper = tmpRow["OPER"].ToString();
+                        string tmpPRMT = tmpRow["PRMT_ID"].ToString();
+                        string tmpArea = tmpRow["AREA_CD"].ToString();
+                        args.FabId = tmpFab;
+                        args.TechId = tmpTech;
+                        args.LotCd = tmpLot;
+                        args.ProdId = tmpProd;
+                        args.OperId = tmpOper;
+                        args.PrmtNm = tmpPRMT;
+                        args.AreaCd = tmpArea;
+                        DeleteCount = bs.ExecuteModify("DeleteSpec", args.getPack());
                     }
-                    
+                    base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                }
+                catch (System.Exception ex)
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
+                }
+
+            }
+            else
+            {
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                return;
+            }*/
+        }
+
+        //Update 修改
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            /*IxMessageBox im = new IxMessageBox(this._translator);
+            DialogResult dialog = im.IsUpdate(this.Text);
+            if (dialog.ToString() == "Yes")
+            {
+                int UpdateCount = 0;
+                try
+                {
+                    if (focusedRowHandles.Count <= 0)
+                        return;
+                    for (int i = 0; i < focusedRowHandles.Count; i++)
+                    {
+                        DataRow tmpRow = gridView1.GetDataRow(focusedRowHandles[i]);
+
+                        string tmpFab = tmpRow["FAB"].ToString();
+                        string tmpTech = tmpRow["TECH"].ToString();
+                        string tmpLot = tmpRow["LOT_CD"].ToString();
+                        string tmpProd = tmpRow["PROD"].ToString();
+                        string tmpOper = tmpRow["OPER"].ToString();
+                        string tmpPRMT = tmpRow["PRMT_ID"].ToString();
+                        string tmpArea = tmpRow["AREA_CD"].ToString();
+                        string tmpOperdesc = tmpRow["OPER_DESC"].ToString();
+                        string tmpSpecUpper = tmpRow["SPEC_UPPER_LIMIT"].ToString();
+                        string tmpSpecLpw = tmpRow["SPEC_LOWER_LIMIT"].ToString();
+                        string tmpCtrlUpper = tmpRow["CTRL_UPPER_LIMIT"].ToString();
+                        string tmpCtrlLower = tmpRow["CTRL_LOWER_LIMIT"].ToString();
+                        string tmpUpdateDT = tmpRow["UPDATE_DT_TM"].ToString();
+                        string tmpUpdateUserID = tmpRow["UPDATE_USER_ID"].ToString();
+                        string tmpChartyn = tmpRow["CHART_YN"].ToString();
+                        args.FabId = tmpFab;
+                        args.TechId = tmpTech;
+                        args.LotCd = tmpLot;
+                        args.ProdId = tmpProd;
+                        args.OperId = tmpOper;
+                        args.AreaCd = tmpArea;
+                        args.PrmtNm = tmpPRMT; ;
+                        args.OperDesc = tmpOperdesc;
+                        args.SpecUpperLimit = tmpSpecUpper;
+                        args.SpecLowerLimit = tmpSpecLpw;
+                        args.CtrlUpperLimit = tmpCtrlUpper;
+                        args.CtrlLowerLimit = tmpCtrlLower;
+                        args.UpdateDt = tmpUpdateDT;
+                        args.UpdateUserId = tmpUpdateUserID;
+                        args.ChartYN = tmpChartyn;
+                        UpdateCount = bs.ExecuteModify("UpdateSpec", args.getPack());
+                    }
+
+                    focusedRowHandles.Clear();
+                    base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+
+                }
+                catch (System.Exception ex)
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
                 }
             }
+            else
+            {
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                return;
+            }*/
         }
-    
-
-        /*         private RepositoryItemButtonEdit CreateRepositoryItemButtonEdit(Dictionary<object, string> dicButtons)
-                  {
-                      RepositoryItemButtonEdit repositoryBtn = new RepositoryItemButtonEdit();
-                      repositoryBtn.AppearanceDisabled.Options.UseTextOptions = true;
-                      repositoryBtn.AppearanceDisabled.TextOptions.HAlignment = HorzAlignment.Near;
-                      repositoryBtn.AutoHeight = false;
-                      repositoryBtn.TextEditStyle = TextEditStyles.HideTextEditor;
-                      repositoryBtn.ButtonsStyle = BorderStyles.UltraFlat;
-                      repositoryBtn.Buttons.Clear();
-                     EditorButton btn = null;
-                     foreach (KeyValuePair<object, string> item in dicButtons)
-                     {
-                         btn = new EditorButton();
-                         btn.Kind = ButtonPredefines.Glyph;
-                         btn.Caption = item.Value;
-                         btn.Tag = item.Key;
-                         repositoryBtn.Buttons.Add(btn);
-                     }
-                     return repositoryBtn;
-                 }*/
-
-        
-
-        
 
         #endregion
 
-        #region event
-        private void tbnSeach_Click(object sender, EventArgs e)
+
+        #region InitializeComboBox
+        private void InitializeComboBox()
         {
             try
             {
-                //ComboBoxControl.SetCrossLang(this._translator);
-                if (!base.ValidateUserInput(this.layoutControl1)) return;
-                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+
+                InitializeComboBoxChartYN2();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                throw ex;
             }
         }
 
+        private void InitializeComboBoxChartYN2()
+        {
+/*
+            DataTable dataTable = new DataTable();
+            DataColumn dc = dataTable.Columns.Add("cbochartyn2", Type.GetType("System.String"));
+            List<string> Colummns = new List<string>();
+            Colummns.Add("");
+            Colummns.Add("Y");
+            Colummns.Add("N");
 
+            for (int i = 0; i < Colummns.Count; i++)
+            {
+                DataRow dr = dataTable.NewRow();
+                dr["cbochartyn2"] = Colummns[i].ToString();
+                dataTable.Rows.Add(dr);
+            }
+            cbochartyn2.BindData(dataTable, false);*/
 
-
-
-
-
+        }
 
         #endregion
 
-        private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
-
-
             
-            DataRowView dataRowView = (DataRowView)e.Row;
-            //dataRowView.Row.ItemArray;
-            args.CATEGORY = dataRowView.Row["CATEGORY"].ToString();
-            args.SUBCATEGORY = dataRowView.Row["SUBCATEGORY"].ToString();
-            args.NAME = dataRowView.Row["NAME"].ToString();
-            args.USED = dataRowView.Row["USED"].ToString();
-            args.CUSTOM01 = dataRowView.Row["CUSTOM01"].ToString();
-            args.CUSTOM02 = dataRowView.Row["CUSTOM02"].ToString();
-            args.CUSTOM03 = dataRowView.Row["CUSTOM03"].ToString();
-            args.CUSTOM04 = dataRowView.Row["CUSTOM04"].ToString();
-            args.CUSTOM05 = dataRowView.Row["CUSTOM05"].ToString();
-            args.CUSTOM06 = dataRowView.Row["CUSTOM06"].ToString();
-            args.CUSTOM07 = dataRowView.Row["CUSTOM07"].ToString();
-
-
-
-
-/*            if (string.IsNullOrEmpty(dataRowView.Row["ID"].ToString()))
+            /*OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Title = "Excel";
+            fileDialog.Filter = "Excel(*.xls)|*.xls|Excel2017(*.xlsx)|*.xlsx";
+            DialogResult dialogResult = fileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
             {
-
-                for (int i = 0; i < dataRowView.Row.ItemArray.Length; i++)
+                try
                 {
-                    if (string.IsNullOrEmpty(dataRowView.Row.ItemArray[i].ToString()) && i != 0)
-                    {
-                        XtraMessageBox.Show("Please enter all values", "Warring", MessageBoxButtons.YesNo);
-                        dataRowView.Row.Delete();
-                        return;
+                    string fileName = fileDialog.FileName;
+                    DataTable dtSpec = ExcelToDataTable(fileName);
 
+                    int saveCount = 0;
+                    FDCArgsPack specArgs = new FDCArgsPack();
+                    List<FDCArgsPack> specArgsPacks = new List<FDCArgsPack>();
+                    foreach (DataRow tmpRow in dtSpec.Rows)
+                    {
+                        FDCArgsPack specArg = new FDCArgsPack();
+
+                        string tmpFab = tmpRow["FAB"].ToString();
+                        string tmpTech = tmpRow["TECH"].ToString();
+                        string tmpLot = tmpRow["LOT_CD"].ToString();
+                        string tmpProd = tmpRow["PROD"].ToString();
+                        string tmpOper = tmpRow["OPER"].ToString();
+                        string tmpPRMT = tmpRow["PRMT_ID"].ToString();
+                        string tmpArea = tmpRow["AREA_CD"].ToString();
+                        string tmpOperdesc = tmpRow["OPER_DESC"].ToString();
+                        string tmpSpecUpper = tmpRow["SPEC_UPPER_LIMIT"].ToString();
+                        string tmpSpecLpw = tmpRow["SPEC_LOWER_LIMIT"].ToString();
+                        string tmpCtrlUpper = tmpRow["CTRL_UPPER_LIMIT"].ToString();
+                        string tmpCtrlLower = tmpRow["CTRL_LOWER_LIMIT"].ToString();
+                        string tmpUpdateDT = tmpRow["UPDATE_DT_TM"].ToString();
+                        string tmpUpdateUserID = tmpRow["UPDATE_USER_ID"].ToString();
+                        string tmpChartyn = tmpRow["CHART_YN"].ToString();
+                        specArg.FabId = tmpFab;
+                        specArg.TechId = tmpTech;
+                        specArg.LotCd = tmpLot;
+                        specArg.ProdId = tmpProd;
+                        specArg.OperId = tmpOper;
+                        specArg.AreaCd = tmpArea;
+                        specArg.PrmtNm = tmpPRMT; ;
+                        specArg.OperDesc = tmpOperdesc;
+                        specArg.SpecUpperLimit = tmpSpecUpper;
+                        specArg.SpecLowerLimit = tmpSpecLpw;
+                        specArg.CtrlUpperLimit = tmpCtrlUpper;
+                        specArg.CtrlLowerLimit = tmpCtrlLower;
+                        specArg.UpdateDt = tmpUpdateDT;
+                        specArg.UpdateUserId = tmpUpdateUserID;
+                        specArg.ChartYN = tmpChartyn;
+
+                        specArgsPacks.Add(specArg);
+                    }
+
+                    specArgs.SPECArgsPacks = specArgsPacks;
+
+                    saveCount = bs.ExecuteModify("SaveSpecBatch", specArgs.getPack());
+                    if (saveCount > 0)
+                    {
+                        TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.INFORMATION, "Total " + saveCount.ToString() + " Imported");
                     }
 
                 }
-
-                int Res = bs.ExecuteModify("NewTCODE", args.getPack());
-
-                if (Res == 1)
+                catch (System.Exception ex)
                 {
-                    XtraMessageBox.Show("Adding data succeeded ", " ");
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, ex.ToString());
                 }
-                return;
-
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }*/
+        }
 
-            
-                args.ROWID = dataRowView.Row["ID"].ToString();
-                int Res = bs.ExecuteModify("UpdateTCODE", args.getPack());
-
-                if (Res == 1)
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable tmpDataTable = (DataTable)this.gridControl1.DataSource;
+            if (tmpDataTable != null && tmpDataTable.Rows.Count > 0)
+            {
+                SaveFileDialog fileDialog = new SaveFileDialog();
+                fileDialog.Title = "Excel";
+                fileDialog.Filter = "Excel(*.xls)|*.xls|Excel2017(*.xlsx)|*.xlsx";
+                DialogResult dialogResult = fileDialog.ShowDialog();
+                if (dialogResult == DialogResult.OK)
                 {
-                    XtraMessageBox.Show("Update data succeeded ", " ");
+                    if (fileDialog.FilterIndex.Equals("1"))
+                    {
+                        gridControl1.ExportToXls(fileDialog.FileName);
+                    }
+                    else
+                    {
+                        gridControl1.ExportToXlsx(fileDialog.FileName);
+                    }
                 }
-
+            }
+            else
+            {
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "No Data!");
+            }
         }
 
 
-
-
-        private void gridControl1_EmbeddedNavigator_ButtonClick(object sender, NavigatorButtonClickEventArgs e)
+       /* public DataTable ExcelToDataTable(string fileName)
         {
-
-            if (e.Button.ButtonType == NavigatorButtonType.Append)
+           *//* DataTable dt = new DataTable();
+            Excel.Application xlap = new Microsoft.Office.Interop.Excel.Application();
+            Excel.Workbook wb = null;
+            xlap.Visible = false;
+            try
             {
-
-
-                //DevExpress.XtraGrid.Columns.GridColumn[] gridColumns = gridView1.Columns.ToArray();
-
-                /*List<RepositoryItemCollection> itemCollections = new List<RepositoryItemCollection>();//RepositoryItems添加集合
-
-                itemCollections.Add(gridControl1.RepositoryItems);*/
-
-                //ts[9].ColumnEdit.GetType().Name.ToString();//获取repository类型
-
-                
-
-                List<DevExpress.XtraGrid.Columns.GridColumn> ts = gridView1.Columns.ToList();
-                //ts[9].ColumnEditName.ToString();
-
-                ts.Remove(ts[0]);
-
-                FrmAdd frmAdd = new FrmAdd(ts);
-                frmAdd.StartPosition = FormStartPosition.CenterParent;
-                frmAdd.gridtable += new gridtable(FrmAdd_gridtable);
-                frmAdd.ShowDialog();
-
-                if (frmAdd.IsDisposed)
+                wb = xlap.Workbooks.Open(fileName);
+                Excel.Worksheet ws = (Excel.Worksheet)wb.Worksheets[1];
+                int rowCount = ws.UsedRange.Cells.Rows.Count;
+                int colCount = ws.UsedRange.Cells.Columns.Count;
+                Range excelCell = ws.UsedRange;
+                Object[,] values = (Object[,])excelCell.Value2;
+                int intRows = values.GetLength(0);
+                if (intRows != 0)
                 {
-
-                    if (!string.IsNullOrEmpty(args.CATEGORY))
+                    int intCols = values.GetLength(1);
+                    for (int i = 1; i <= intCols; i++)
                     {
-                        int Res = bs.ExecuteModify("NewTCODE", args.getPack());
-
-                        if (Res == 1)
+                        dt.Columns.Add(new DataColumn((string)values[1, i]));
+                    }
+                    for (int i = 2; i <= intRows; i++)
+                    {
+                        DataRow dr = dt.NewRow();
+                        for (int j = 1; j < colCount; j++)
                         {
-                            XtraMessageBox.Show("Adding data succeeded ", " ");
+                            dr[(String)values[1, j]] = values[i, j];
                         }
+                        dt.Rows.Add(dr);
                     }
-                    tbnSeach_Click(null, null);
-                }
-                else {
-                    return;
                 }
 
-                
-
+                return dt;
             }
-            else if (e.Button.ButtonType == NavigatorButtonType.Remove) {
-
-                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-                args.ROWID = dataRow["ID"].ToString();
-                //gridView1.DeleteRow(gridView1.FocusedRowHandle);
-
-                int Res = bs.ExecuteModify("DelteTCODE", args.getPack());
-
-                if (Res == 1)
-                {
-                    XtraMessageBox.Show("Delete data succeeded ", " ");
-                }
-                else
-                {
-                    XtraMessageBox.Show("Delete data failed ", " ");
-                }
-
-            }
-
-
-
-        }
-
-        private void FrmAdd_gridtable(DataTable dataTable)
-        {
-            args.CATEGORY = dataTable.Rows[0]["CATEGORY"].ToString();
-            args.SUBCATEGORY = dataTable.Rows[0]["SUBCATEGORY"].ToString();
-            args.NAME = dataTable.Rows[0]["NAME"].ToString();
-            args.USED = dataTable.Rows[0]["USED"].ToString();
-            args.CUSTOM01 = dataTable.Rows[0]["CUSTOM01"].ToString();
-            args.CUSTOM02 = dataTable.Rows[0]["CUSTOM02"].ToString();
-            args.CUSTOM03 = dataTable.Rows[0]["CUSTOM03"].ToString();
-            args.CUSTOM04 = dataTable.Rows[0]["CUSTOM04"].ToString();
-            args.CUSTOM05 = dataTable.Rows[0]["CUSTOM05"].ToString();
-            args.CUSTOM06 = dataTable.Rows[0]["CUSTOM06"].ToString();
-            args.CUSTOM07 = dataTable.Rows[0]["CUSTOM07"].ToString();
-
-
-            /*int Res = bs.ExecuteModify("NewTCODE", args.getPack());
-
-            if (Res == 1)
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("Adding data succeeded ", " ");
-            }*/
-
-            
-        }
-
-
+                return null;
+            }
+            finally
+            {
+                wb.Close();
+                Utils.Kill(xlap);
+            }*//*
+        }*/
     }
 }

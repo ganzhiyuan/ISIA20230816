@@ -278,7 +278,11 @@ namespace ISIA.UI.TREND
             popupGrid.ShowDialog();
             DataTable dt = popupGrid._DataTable;
 
-            base.OpenUI("SQLQUERYTREND", "TREND", "SQLQUERYTREND", dt);
+            if (popupGrid.linkage == true)
+            {
+                base.OpenUI("SQLQUERYTREND", "TREND", "SQLQUERYTREND", dt);
+            }
+            
         }
 
         public override void ExecuteCommand(ArgumentPack arguments)

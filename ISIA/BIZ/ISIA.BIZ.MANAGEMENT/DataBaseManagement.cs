@@ -24,7 +24,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("SELECT ROWID ID , CATEGORY , SUBCATEGORY ,NAME , USED , CUSTOM01 ,CUSTOM02,CUSTOM03,CUSTOM04,CUSTOM05,CUSTOM06,CUSTOM07   FROM TAPCTCODES  ");
+                tmpSql.Append("SELECT *   FROM TAPCTDATABASE  ");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

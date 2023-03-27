@@ -359,7 +359,6 @@
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
-            this.tbnSeach.Click += new System.EventHandler(this.tbnSeach_Click);
             // 
             // navBarControl1
             // 
@@ -518,7 +517,7 @@
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 21, 9, 10, 31, 64);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 27, 8, 22, 17, 101);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -635,7 +634,6 @@
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Buttons.First.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Last.Visible = false;
-            this.gridControl1.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.gridControl1_EmbeddedNavigator_ButtonClick);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
