@@ -380,7 +380,6 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 3, 25, 13, 53, 4, 51);
             this.dtpStartTime.Size = new System.Drawing.Size(105, 20);
@@ -466,7 +465,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
-            this.cmbDbName.IsRequired = false;
+            this.cmbDbName.IsRequired = true;
             this.cmbDbName.Location = new System.Drawing.Point(99, 3);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
