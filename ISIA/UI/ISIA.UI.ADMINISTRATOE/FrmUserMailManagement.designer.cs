@@ -92,6 +92,7 @@
             this.dpnlRight_Container.SuspendLayout();
             this.dpnlLeft.SuspendLayout();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
             this.tabPane1.SuspendLayout();
@@ -175,13 +176,14 @@
             this.dpnlRight.Options.ShowMaximizeButton = false;
             this.dpnlRight.OriginalSize = new System.Drawing.Size(764, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(780, 554);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.tableLayoutPanel1);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(774, 525);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(774, 526);
             // 
             // dpnlLeft
             // 
@@ -195,6 +197,7 @@
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
             this.dpnlLeft.OriginalSize = new System.Drawing.Size(288, 153);
+            this.dpnlLeft.SavedSizeFactor = 1D;
             this.dpnlLeft.Size = new System.Drawing.Size(288, 554);
             // 
             // tPanelBottomBase
@@ -215,7 +218,6 @@
             // 
             // tabPane1
             // 
-            this.tabPane1.AllowCollapse = DevExpress.Utils.DefaultBoolean.Default;
             this.tabPane1.Appearance.BackColor = System.Drawing.Color.White;
             this.tabPane1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tabPane1.Appearance.Options.UseBackColor = true;
@@ -806,7 +808,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(774, 525);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(774, 526);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -826,7 +828,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(362, 519);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(362, 520);
             this.tableLayoutPanel2.TabIndex = 8;
             // 
             // tLabel6
@@ -856,7 +858,7 @@
             this.tableLayoutPanel7.Controls.Add(this.btnOk, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(2, 486);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(2, 487);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel7.MaximumSize = new System.Drawing.Size(0, 35);
             this.tableLayoutPanel7.MinimumSize = new System.Drawing.Size(0, 35);
@@ -921,7 +923,9 @@
             // 
             // cboDep
             // 
+            this.cboDep.CheckItemSelectMode = false;
             this.cboDep.ControlID = "cboPos";
+            this.cboDep.DescriptionMember = null;
             this.cboDep.DisplayMember = null;
             this.cboDep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cboDep.DominantControl = "";
@@ -934,6 +938,7 @@
             this.cboDep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboDep.RepresentativeValue = "";
+            this.cboDep.ShowDescription = false;
             this.cboDep.Size = new System.Drawing.Size(71, 20);
             this.cboDep.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDepartment";
             this.cboDep.SqlDataBase = "";
@@ -971,7 +976,9 @@
             // 
             // cboPos
             // 
+            this.cboPos.CheckItemSelectMode = false;
             this.cboPos.ControlID = "cboDep";
+            this.cboPos.DescriptionMember = null;
             this.cboPos.DisplayMember = null;
             this.cboPos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cboPos.DominantControl = "cboDep";
@@ -984,6 +991,7 @@
             this.cboPos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboPos.RepresentativeValue = "";
+            this.cboPos.ShowDescription = false;
             this.cboPos.Size = new System.Drawing.Size(72, 20);
             this.cboPos.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetPosition";
             this.cboPos.SqlDataBase = "";
@@ -1004,7 +1012,7 @@
             this.RightList.NeedToTranslate = true;
             this.RightList.RepresentativeValue = "";
             this.RightList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.RightList.Size = new System.Drawing.Size(356, 428);
+            this.RightList.Size = new System.Drawing.Size(356, 429);
             this.RightList.TabIndex = 7;
             // 
             // tableLayoutPanel6
@@ -1016,7 +1024,7 @@
             this.tableLayoutPanel6.Controls.Add(this.txtFilter, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.chkFilter, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 457);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 458);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1078,7 +1086,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(38, 519);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(38, 520);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // btnColumnLeft
@@ -1099,13 +1107,13 @@
             this.btnColumnLeft.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnColumnLeft.ImageOptions.Image")));
             this.btnColumnLeft.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnColumnLeft.IsRequired = false;
-            this.btnColumnLeft.Location = new System.Drawing.Point(6, 261);
+            this.btnColumnLeft.Location = new System.Drawing.Point(6, 263);
             this.btnColumnLeft.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnColumnLeft.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnColumnLeft.Name = "btnColumnLeft";
             this.btnColumnLeft.NeedToTranslate = true;
             this.btnColumnLeft.RepresentativeValue = "              ";
-            this.btnColumnLeft.Size = new System.Drawing.Size(24, 19);
+            this.btnColumnLeft.Size = new System.Drawing.Size(24, 20);
             this.btnColumnLeft.TabIndex = 7;
             this.btnColumnLeft.Text = "              ";
             this.btnColumnLeft.UseVisualStyleBackColor = true;
@@ -1129,13 +1137,13 @@
             this.btnColumnRight.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnColumnRight.ImageOptions.Image")));
             this.btnColumnRight.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnColumnRight.IsRequired = false;
-            this.btnColumnRight.Location = new System.Drawing.Point(6, 236);
+            this.btnColumnRight.Location = new System.Drawing.Point(6, 237);
             this.btnColumnRight.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnColumnRight.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnColumnRight.Name = "btnColumnRight";
             this.btnColumnRight.NeedToTranslate = true;
             this.btnColumnRight.RepresentativeValue = "              ";
-            this.btnColumnRight.Size = new System.Drawing.Size(24, 19);
+            this.btnColumnRight.Size = new System.Drawing.Size(24, 20);
             this.btnColumnRight.TabIndex = 8;
             this.btnColumnRight.Text = "              ";
             this.btnColumnRight.UseVisualStyleBackColor = true;
@@ -1153,7 +1161,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(356, 517);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(356, 518);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
             // tLabel5
@@ -1188,7 +1196,7 @@
             this.LeftList.NeedToTranslate = true;
             this.LeftList.RepresentativeValue = "";
             this.LeftList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LeftList.Size = new System.Drawing.Size(350, 491);
+            this.LeftList.Size = new System.Drawing.Size(350, 492);
             this.LeftList.TabIndex = 5;
             // 
             // navBarGroup2
@@ -1224,6 +1232,7 @@
             this.dpnlLeft.ResumeLayout(false);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
             this.tabPane1.ResumeLayout(false);
@@ -1275,6 +1284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LeftList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

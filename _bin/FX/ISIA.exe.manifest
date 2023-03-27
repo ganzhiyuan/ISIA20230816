@@ -271,26 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3089920">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3092992">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-        <dsig:DigestValue>OzQnl0mh9gEJH1Ec4iRkX+RRhZ26S68YVE293Zc6Mb0=</dsig:DigestValue>
-=======
-<<<<<<< Updated upstream
-        <dsig:DigestValue>e7p0LhmrlPmdas3HWvLWy/6Y0dDUeaZh0J1CB5/3DkI=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>FHkTySaCN40sloc+41SqGVTBgwWjDZIwCJaa0iKxrE8=</dsig:DigestValue>
->>>>>>> Stashed changes
->>>>>>> master
-=======
-        <dsig:DigestValue>OzQnl0mh9gEJH1Ec4iRkX+RRhZ26S68YVE293Zc6Mb0=</dsig:DigestValue>
->>>>>>> Stashed changes
+        <dsig:DigestValue>pjXzKnOQsKKMebGQ50l4CYl5yXfyWraY9Yiu81WlB7M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -410,7 +398,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8XtZ+TFCVK88i4FzzjbE3i5RBtC/S7gXN1SWKr9sjJE=</dsig:DigestValue>
+        <dsig:DigestValue>Q4Ujm2qLHjdrPDlcV6LCzCvnXoY5KllBrlh9OZ/W7dk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -463,14 +451,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UI.dll" size="645120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UI.dll" size="240128">
       <assemblyIdentity name="TAP.UI" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fPKfUS3AZm2+vuIsUPwuWqCPRYu8gMaFAfX9nk/BHy8=</dsig:DigestValue>
+        <dsig:DigestValue>hQUkpYdd0Mrjf7yM26Fj/678P+ApDsWSiakPY2/4WkI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -499,14 +487,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="606208">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="607232">
       <assemblyIdentity name="TAP.UIControls.BasicControlsDEV" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VlQt2Xwfj3boMalDrq2a346E1ioU4Qe6HsROex5qtTU=</dsig:DigestValue>
+        <dsig:DigestValue>szY667Suzc5VJ0h4AJcZiWeBflcCVugpAjiUwcaHezc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
