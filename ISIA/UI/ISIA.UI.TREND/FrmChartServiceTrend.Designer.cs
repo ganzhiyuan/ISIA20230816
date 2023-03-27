@@ -251,7 +251,7 @@ namespace ISIA.UI.TREND
             this.btnSelect.TabIndex = 111;
             this.btnSelect.Text = "Search";
             this.btnSelect.UseVisualStyleBackColor = true;
-            //this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // tabPane1
             // 
@@ -460,6 +460,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
+            this.cmbDbName.CheckItemSelectMode = true;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -484,10 +485,10 @@ namespace ISIA.UI.TREND
             this.cmbDbName.StyleController = this.lcSerachOptions;
             this.cmbDbName.TabIndex = 18;
             this.cmbDbName.ValueMember = "DBID";
-            this.cmbDbName.ItemCheck += new System.EventHandler<DevExpress.XtraEditors.Controls.ItemCheckEventArgs>(this.cmbDbName_ItemCheck);
             // 
             // cmbParameterName
             // 
+            this.cmbParameterName.CheckItemSelectMode = false;
             this.cmbParameterName.ControlID = "cmbParameterName";
             this.cmbParameterName.DescriptionMember = null;
             this.cmbParameterName.DisplayMember = "PARAMETERNAME";
@@ -514,6 +515,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbRuleNo
             // 
+            this.cmbRuleNo.CheckItemSelectMode = false;
             this.cmbRuleNo.ControlID = "cmbRuleNo";
             this.cmbRuleNo.DescriptionMember = null;
             this.cmbRuleNo.DisplayMember = "RULENO";
@@ -540,6 +542,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbRuleName
             // 
+            this.cmbRuleName.CheckItemSelectMode = false;
             this.cmbRuleName.ControlID = "cmbRuleName";
             this.cmbRuleName.DescriptionMember = null;
             this.cmbRuleName.DisplayMember = "RULENAME";
@@ -610,6 +613,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbInstance
             // 
+            this.cmbInstance.CheckItemSelectMode = false;
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
