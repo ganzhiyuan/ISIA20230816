@@ -1,6 +1,6 @@
 ﻿namespace ISIA.UI.MANAGEMENT
 {
-    partial class FrmDataBaseManagementCopy
+    partial class FrmSpecManagementCopy
     {
         /// <summary>  
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataBaseManagementCopy));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSpecManagement));
             this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -59,6 +59,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -90,6 +91,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -102,21 +104,22 @@
             this.xtraUserControl1.Appearance.Options.UseForeColor = true;
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(3);
-            this.xtraUserControl1.Size = new System.Drawing.Size(984, 511);
+            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.xtraUserControl1.Size = new System.Drawing.Size(1312, 667);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.tabPane1);
-            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(3);
-            this.dpnlLeft_Container.Size = new System.Drawing.Size(234, 483);
+            this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
+            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
+            this.dpnlLeft_Container.Size = new System.Drawing.Size(311, 634);
             // 
             // dpnlRight
             // 
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
-            this.dpnlRight.Location = new System.Drawing.Point(241, 0);
-            this.dpnlRight.Margin = new System.Windows.Forms.Padding(3);
+            this.dpnlRight.Location = new System.Drawing.Point(321, 0);
+            this.dpnlRight.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -126,15 +129,16 @@
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
             this.dpnlRight.OriginalSize = new System.Drawing.Size(811, 673);
-            this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
-            this.dpnlRight.Size = new System.Drawing.Size(743, 511);
+            this.dpnlRight.Size = new System.Drawing.Size(991, 667);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.panelControl1);
-            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(737, 483);
+            this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
+            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(983, 634);
             // 
             // dpnlLeft
             // 
@@ -144,28 +148,28 @@
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
-            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(3);
+            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
             this.dpnlLeft.OriginalSize = new System.Drawing.Size(241, 153);
             this.dpnlLeft.SavedSizeFactor = 1D;
-            this.dpnlLeft.Size = new System.Drawing.Size(241, 511);
+            this.dpnlLeft.Size = new System.Drawing.Size(321, 667);
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 526);
-            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(984, 15);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 687);
+            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1312, 20);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelTop.Size = new System.Drawing.Size(984, 15);
+            this.tPanelTop.Margin = new System.Windows.Forms.Padding(4);
+            this.tPanelTop.Size = new System.Drawing.Size(1312, 20);
             // 
             // tPanelMain
             // 
-            this.tPanelMain.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelMain.Size = new System.Drawing.Size(984, 511);
+            this.tPanelMain.Margin = new System.Windows.Forms.Padding(4);
+            this.tPanelMain.Size = new System.Drawing.Size(1312, 667);
             // 
             // navBarGroup13
             // 
@@ -290,12 +294,13 @@
             this.tabPane1.LookAndFeel.SkinName = "Office 2013";
             this.tabPane1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tabPane1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.tabPane1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(234, 483);
+            this.tabPane1.RegularSize = new System.Drawing.Size(311, 634);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(234, 483);
+            this.tabPane1.Size = new System.Drawing.Size(311, 634);
             this.tabPane1.TabIndex = 2;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -308,9 +313,8 @@
             this.tabNavigationPage1.Caption = "Condition";
             this.tabNavigationPage1.Controls.Add(this.tPanel7);
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
-            this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(234, 456);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(311, 600);
             // 
             // tPanel7
             // 
@@ -319,11 +323,12 @@
             this.tPanel7.Controls.Add(this.tbnSeach);
             this.tPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tPanel7.IsRequired = false;
-            this.tPanel7.Location = new System.Drawing.Point(0, 428);
+            this.tPanel7.Location = new System.Drawing.Point(0, 564);
+            this.tPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tPanel7.Name = "tPanel7";
             this.tPanel7.NeedToTranslate = true;
             this.tPanel7.RepresentativeValue = "tPanel7 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel7.Size = new System.Drawing.Size(234, 28);
+            this.tPanel7.Size = new System.Drawing.Size(311, 36);
             this.tPanel7.TabIndex = 7;
             // 
             // tbnSeach
@@ -347,13 +352,12 @@
             this.tbnSeach.Location = new System.Drawing.Point(0, 0);
             this.tbnSeach.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tbnSeach.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tbnSeach.Margin = new System.Windows.Forms.Padding(2);
-            this.tbnSeach.MaximumSize = new System.Drawing.Size(70, 27);
-            this.tbnSeach.MinimumSize = new System.Drawing.Size(70, 27);
+            this.tbnSeach.MaximumSize = new System.Drawing.Size(93, 35);
+            this.tbnSeach.MinimumSize = new System.Drawing.Size(93, 35);
             this.tbnSeach.Name = "tbnSeach";
             this.tbnSeach.NeedToTranslate = true;
             this.tbnSeach.RepresentativeValue = "Search";
-            this.tbnSeach.Size = new System.Drawing.Size(70, 27);
+            this.tbnSeach.Size = new System.Drawing.Size(93, 35);
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
@@ -373,11 +377,10 @@
             this.navBarControl1.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl1.Margin = new System.Windows.Forms.Padding(2);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 234;
-            this.navBarControl1.Size = new System.Drawing.Size(234, 456);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 311;
+            this.navBarControl1.Size = new System.Drawing.Size(311, 600);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -396,7 +399,7 @@
             this.navBarGroup6.Caption = "Basic";
             this.navBarGroup6.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarGroup6.Expanded = true;
-            this.navBarGroup6.GroupClientHeight = 181;
+            this.navBarGroup6.GroupClientHeight = 237;
             this.navBarGroup6.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup6.Name = "navBarGroup6";
             // 
@@ -408,9 +411,8 @@
             this.navBarGroupControlContainer1.LookAndFeel.SkinName = "Office 2013";
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarGroupControlContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(232, 180);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(309, 236);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
@@ -425,9 +427,10 @@
             this.layoutControlItem13});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(232, 180);
+            this.layoutControl1.Size = new System.Drawing.Size(309, 236);
             this.layoutControl1.TabIndex = 97;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -439,7 +442,8 @@
             this.cboworkshop.DominantControl = "cbofacility";
             this.cboworkshop.EditValue = "";
             this.cboworkshop.IsRequired = false;
-            this.cboworkshop.Location = new System.Drawing.Point(93, 27);
+            this.cboworkshop.Location = new System.Drawing.Point(123, 34);
+            this.cboworkshop.Margin = new System.Windows.Forms.Padding(4);
             this.cboworkshop.Name = "cboworkshop";
             this.cboworkshop.NeedToTranslate = false;
             this.cboworkshop.ParameterID = "LINE";
@@ -450,7 +454,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboworkshop.RepresentativeValue = "";
             this.cboworkshop.ShowDescription = false;
-            this.cboworkshop.Size = new System.Drawing.Size(136, 20);
+            this.cboworkshop.Size = new System.Drawing.Size(183, 27);
             this.cboworkshop.Sql = "";
             this.cboworkshop.SqlDataBase = "";
             this.cboworkshop.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -462,15 +466,14 @@
             // 
             this.lblfacility.ControlID = "tLabel2";
             this.lblfacility.IsRequired = false;
-            this.lblfacility.Location = new System.Drawing.Point(3, 27);
-            this.lblfacility.Margin = new System.Windows.Forms.Padding(2);
+            this.lblfacility.Location = new System.Drawing.Point(3, 34);
             this.lblfacility.Name = "lblfacility";
             this.lblfacility.NeedToTranslate = true;
-            this.lblfacility.RepresentativeValue = "SUBCATEGORY";
-            this.lblfacility.Size = new System.Drawing.Size(86, 20);
+            this.lblfacility.RepresentativeValue = "Rule Space Name";
+            this.lblfacility.Size = new System.Drawing.Size(116, 27);
             this.lblfacility.StyleController = this.layoutControl1;
             this.lblfacility.TabIndex = 1;
-            this.lblfacility.Text = "SUBCATEGORY";
+            this.lblfacility.Text = "Rule Space Name";
             // 
             // cbofacility
             // 
@@ -480,7 +483,8 @@
             this.cbofacility.DominantControl = "";
             this.cbofacility.EditValue = "";
             this.cbofacility.IsRequired = false;
-            this.cbofacility.Location = new System.Drawing.Point(93, 3);
+            this.cbofacility.Location = new System.Drawing.Point(123, 3);
+            this.cbofacility.Margin = new System.Windows.Forms.Padding(4);
             this.cbofacility.Name = "cbofacility";
             this.cbofacility.NeedToTranslate = false;
             this.cbofacility.ParameterID = "FACILITY";
@@ -491,7 +495,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbofacility.RepresentativeValue = "";
             this.cbofacility.ShowDescription = false;
-            this.cbofacility.Size = new System.Drawing.Size(136, 20);
+            this.cbofacility.Size = new System.Drawing.Size(183, 27);
             this.cbofacility.Sql = "";
             this.cbofacility.SqlDataBase = "";
             this.cbofacility.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -504,28 +508,27 @@
             this.lbLfacylity.ControlID = "tLabel2";
             this.lbLfacylity.IsRequired = false;
             this.lbLfacylity.Location = new System.Drawing.Point(3, 3);
-            this.lbLfacylity.Margin = new System.Windows.Forms.Padding(2);
             this.lbLfacylity.Name = "lbLfacylity";
             this.lbLfacylity.NeedToTranslate = true;
-            this.lbLfacylity.RepresentativeValue = "CATEGORY";
-            this.lbLfacylity.Size = new System.Drawing.Size(86, 20);
+            this.lbLfacylity.RepresentativeValue = "DBNAME";
+            this.lbLfacylity.Size = new System.Drawing.Size(116, 27);
             this.lbLfacylity.StyleController = this.layoutControl1;
             this.lbLfacylity.TabIndex = 1;
-            this.lbLfacylity.Text = "CATEGORY";
+            this.lbLfacylity.Text = "DBNAME";
             // 
             // tDateTimePickerSE1
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 27, 13, 12, 5, 616);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 20, 11, 26, 36, 352);
             this.tDateTimePickerSE1.IsRequired = false;
-            this.tDateTimePickerSE1.Location = new System.Drawing.Point(2, 2);
+            this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
             this.tDateTimePickerSE1.Name = "tDateTimePickerSE1";
             this.tDateTimePickerSE1.NeedToTranslate = true;
             this.tDateTimePickerSE1.RepresentativeValue = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.SetDateInterval = TAP.UIControls.BasicControlsDEV.TDateTimePickerSE.DateInterval.Day;
-            this.tDateTimePickerSE1.Size = new System.Drawing.Size(308, 27);
+            this.tDateTimePickerSE1.Size = new System.Drawing.Size(410, 35);
             this.tDateTimePickerSE1.StartDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
             this.tDateTimePickerSE1.TabIndex = 0;
             // 
@@ -533,8 +536,8 @@
             // 
             this.layoutControlItem13.Control = this.tDateTimePickerSE1;
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem13.MaxSize = new System.Drawing.Size(0, 30);
-            this.layoutControlItem13.MinSize = new System.Drawing.Size(5, 30);
+            this.layoutControlItem13.MaxSize = new System.Drawing.Size(0, 39);
+            this.layoutControlItem13.MinSize = new System.Drawing.Size(7, 39);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(414, 39);
             this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -553,16 +556,16 @@
             this.layoutControlItem8});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(232, 180);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(309, 236);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 48);
-            this.emptySpaceItem1.MinSize = new System.Drawing.Size(104, 24);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 62);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(139, 31);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(230, 130);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(307, 172);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -570,10 +573,10 @@
             // 
             this.layoutControlItem5.Control = this.lbLfacylity;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(90, 24);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(90, 24);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(120, 31);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(120, 31);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(90, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(120, 31);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -581,11 +584,11 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.cbofacility;
-            this.layoutControlItem6.Location = new System.Drawing.Point(90, 0);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(49, 24);
+            this.layoutControlItem6.Location = new System.Drawing.Point(120, 0);
+            this.layoutControlItem6.MaxSize = new System.Drawing.Size(0, 31);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(66, 31);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(140, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(187, 31);
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
@@ -593,11 +596,11 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.lblfacility;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem7.MaxSize = new System.Drawing.Size(90, 24);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(90, 24);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 31);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(120, 31);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(120, 31);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(90, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(120, 31);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
@@ -605,11 +608,11 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.cboworkshop;
-            this.layoutControlItem8.Location = new System.Drawing.Point(90, 24);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(49, 24);
+            this.layoutControlItem8.Location = new System.Drawing.Point(120, 31);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(0, 31);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(66, 31);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(140, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(187, 31);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -624,8 +627,9 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(737, 483);
+            this.panelControl1.Size = new System.Drawing.Size(983, 634);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl1
@@ -633,13 +637,13 @@
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.EmbeddedNavigator.Buttons.First.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Last.Visible = false;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.gridControl1.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.gridControl1_EmbeddedNavigator_ButtonClick);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(2);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(737, 483);
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemSpinEdit1});
+            this.gridControl1.Size = new System.Drawing.Size(983, 634);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -647,19 +651,25 @@
             // 
             // gridView1
             // 
-            this.gridView1.DetailHeight = 268;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // FrmDataBaseManagementCopy
+            // repositoryItemSpinEdit1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.repositoryItemSpinEdit1.AutoHeight = false;
+            this.repositoryItemSpinEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
+            // 
+            // FrmSpecManagement
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 541);
-            this.Margin = new System.Windows.Forms.Padding(3);
-            this.Name = "FrmDataBaseManagementCopy";
+            this.ClientSize = new System.Drawing.Size(1312, 707);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FrmSpecManagement";
             this.Text = "BMPMChartReport";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
@@ -693,6 +703,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -730,5 +741,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
     }
 }

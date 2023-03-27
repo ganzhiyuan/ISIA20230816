@@ -1,6 +1,6 @@
 ﻿namespace ISIA.UI.MANAGEMENT
 {
-    partial class FrmDataBaseManagementCopy
+    partial class FrmParameterSpecManagementCopy
     {
         /// <summary>  
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataBaseManagementCopy));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmParameterSpecManagementCopy));
             this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -357,7 +357,6 @@
             this.tbnSeach.TabIndex = 123;
             this.tbnSeach.Text = "Search";
             this.tbnSeach.UseVisualStyleBackColor = true;
-            this.tbnSeach.Click += new System.EventHandler(this.tbnSeach_Click);
             // 
             // navBarControl1
             // 
@@ -507,17 +506,17 @@
             this.lbLfacylity.Margin = new System.Windows.Forms.Padding(2);
             this.lbLfacylity.Name = "lbLfacylity";
             this.lbLfacylity.NeedToTranslate = true;
-            this.lbLfacylity.RepresentativeValue = "CATEGORY";
+            this.lbLfacylity.RepresentativeValue = "DB Name";
             this.lbLfacylity.Size = new System.Drawing.Size(86, 20);
             this.lbLfacylity.StyleController = this.layoutControl1;
             this.lbLfacylity.TabIndex = 1;
-            this.lbLfacylity.Text = "CATEGORY";
+            this.lbLfacylity.Text = "DB Name";
             // 
             // tDateTimePickerSE1
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 27, 13, 12, 5, 616);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 27, 15, 17, 16, 874);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(2, 2);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -634,7 +633,6 @@
             this.gridControl1.EmbeddedNavigator.Buttons.First.Visible = false;
             this.gridControl1.EmbeddedNavigator.Buttons.Last.Visible = false;
             this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
-            this.gridControl1.EmbeddedNavigator.ButtonClick += new DevExpress.XtraEditors.NavigatorButtonClickEventHandler(this.gridControl1_EmbeddedNavigator_ButtonClick);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -653,14 +651,14 @@
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // FrmDataBaseManagementCopy
+            // FrmParameterSpecManagementCopy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 541);
             this.Margin = new System.Windows.Forms.Padding(3);
-            this.Name = "FrmDataBaseManagementCopy";
-            this.Text = "BMPMChartReport";
+            this.Name = "FrmParameterSpecManagementCopy";
+            this.Text = "ParameterSpecManagement";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
