@@ -918,7 +918,7 @@ namespace ISIA.UI.TREND
             this.txtShowCol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtShowCol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.txtShowCol.ControlID = "txtShowCol";
-            this.txtShowCol.EditValue = "5";
+            this.txtShowCol.EditValue = "4";
             this.txtShowCol.IsRequired = false;
             this.txtShowCol.Location = new System.Drawing.Point(106, 0);
             this.txtShowCol.Name = "txtShowCol";
@@ -927,7 +927,7 @@ namespace ISIA.UI.TREND
             this.txtShowCol.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtShowCol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtShowCol.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtShowCol.RepresentativeValue = "5";
+            this.txtShowCol.RepresentativeValue = "4";
             this.txtShowCol.Size = new System.Drawing.Size(50, 20);
             this.txtShowCol.StyleController = this.layoutControl4;
             this.txtShowCol.TabIndex = 4;
