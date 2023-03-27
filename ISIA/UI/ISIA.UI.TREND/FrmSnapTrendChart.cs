@@ -257,7 +257,7 @@ namespace ISIA.UI.TREND
              }*/
 
             //chart.Chart.Series.Chart.GetASeries().Legend.Text.ToString();
-            tChart1.ContextMenuStrip = contextMenuStrip1;
+           // tChart1.ContextMenuStrip = contextMenuStrip1;
             
             tChart1.Dock = DockStyle.Fill;
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示

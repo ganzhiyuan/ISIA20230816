@@ -196,7 +196,7 @@ namespace ISIA.UI.TREND
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
-                chart.
+                
 ;
             }
 
