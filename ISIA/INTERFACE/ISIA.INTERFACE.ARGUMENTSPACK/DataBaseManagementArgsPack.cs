@@ -24,6 +24,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
 
 
+
+
         private ArgumentPack argsPack = new ArgumentPack();
 
         public string CATEGORY { get { return _Category; } set { _Category = value; } }
@@ -39,7 +41,11 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string CUSTOM06 { get { return _Custom06; } set { _Custom06 = value; } }
         public string CUSTOM07 { get { return _Custom07; } set { _Custom07 = value; } }
         public string ROWID { get { return _RowId; } set { _RowId = value; } }
-       
+
+        public string SEQUENCES { get; set; }
+        public string ISALIVE { get; set; }
+        public string DESCRIPTION { get; set; }
+
 
 
         public ArgumentPack getPack()

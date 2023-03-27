@@ -17,17 +17,27 @@ namespace ISIA.BIZ.MANAGEMENT
     {
 
 
-        public void GetDB()
+        public void GetDB(ParameterSpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("  SELECT ROWID RID, ROWNUM ID, DBID, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
+                tmpSql.Append("  SELECT ROWID, ROWNUM ID, DBID, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
                 tmpSql.Append("  CONTROLLOWERLIMIT , CHARTUSED , MAILUSED ,MMSUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
-
-
+                if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
+                {
+                    tmpSql.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
+                }
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
+                {
+                    tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                }
+                if (!string.IsNullOrEmpty(arguments.DBID))
+                {
+                    tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);
+                }
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
@@ -41,6 +51,108 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+        public void CheckTcode(ParameterSpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                StringBuilder sbSel = new StringBuilder();
+                sbSel.Append("select * from TAPCTPARAMETERRULESPEC");
+                sbSel.Append(" where 1=1 ");
+                sbSel.AppendFormat(" and DBID='{0}' ", arguments.DBID);
+                sbSel.AppendFormat(" and PARAMETERID='{0}' ", arguments.PARAMETERID);
+                sbSel.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
+                sbSel.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      sbSel.ToString(), false);
+
+                this.ExecutingValue = db.Select(sbSel.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void UpdateTcode(ParameterSpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("UPDATE TAPCTPARAMETERRULESPEC SET ");
+                tmpSql.AppendFormat("  DBID = '{0}' ,", arguments.DBID);
+                tmpSql.AppendFormat("  PARAMETERID = '{0}' ,", arguments.PARAMETERID);
+                tmpSql.AppendFormat("  PARAMETERNAME = '{0}' ,", arguments.PARAMETERNAME);
+                tmpSql.AppendFormat("  RULENAME = '{0}' ,", arguments.RULENAME);
+                tmpSql.AppendFormat("  RULENO = '{0}' ,", arguments.RULENO);
+                tmpSql.AppendFormat("  DAYS = '{0}' ,", arguments.DAYS);
+                tmpSql.AppendFormat("  SPECUPPERLIMIT = '{0}'  ,", arguments.SPECUPPERLIMIT);
+                tmpSql.AppendFormat("  SPECLOWERLIMIT = '{0}' , ", arguments.SPECLOWERLIMIT);
+                tmpSql.AppendFormat("  CONTROLUPPERLIMIT = '{0}'  ,", arguments.CONTROLUPPERLIMIT);
+                tmpSql.AppendFormat("  CONTROLLOWERLIMIT = '{0}'  ,", arguments.CONTROLLOWERLIMIT);
+                tmpSql.AppendFormat("  CHARTUSED = '{0}'  ,", arguments.CHARTUSED);
+                tmpSql.AppendFormat("  MAILUSED = '{0}'  ,", arguments.MAILUSED);
+                tmpSql.AppendFormat("  MMSUSED = '{0}'  ,", arguments.MMSUSED);
+                tmpSql.AppendFormat("  SPECLIMITUSED = '{0}'  ,", arguments.SPECLIMITUSED);
+                tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
+                tmpSql.Append(" where 1=1 ");
+                tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);
+                tmpSql.AppendFormat(" and PARAMETERID='{0}' ", arguments.PARAMETERID);
+                tmpSql.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
+                tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void SaveTCode(ParameterSpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("Insert INTO TAPCTPARAMETERRULESPEC (DBID,INSTANCE_NUMBER,PARAMETERID,PARAMETERNAME,RULENAME,RULENO,DAYS,SPECUPPERLIMIT,SPECLOWERLIMIT,");
+                tmpSql.Append("CONTROLUPPERLIMIT,CONTROLLOWERLIMIT,CHARTUSED,MAILUSED,MMSUSED,SPECLIMITUSED,ISALIVE) values (  ");
+                tmpSql.AppendFormat(" '{0}',", arguments.DBID);
+                tmpSql.AppendFormat(" '{0}',", "1");
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAMETERID);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAMETERNAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.RULENAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.RULENO);
+                tmpSql.AppendFormat(" '{0}',", arguments.DAYS);
+                tmpSql.AppendFormat(" '{0}',", arguments.SPECUPPERLIMIT);
+                tmpSql.AppendFormat(" '{0}',", arguments.SPECLOWERLIMIT);
+                tmpSql.AppendFormat(" '{0}',", arguments.CONTROLUPPERLIMIT);
+                tmpSql.AppendFormat(" '{0}',", arguments.CONTROLLOWERLIMIT);
+                tmpSql.AppendFormat(" '{0}',", arguments.CHARTUSED);
+                tmpSql.AppendFormat(" '{0}',", arguments.MAILUSED);
+                tmpSql.AppendFormat(" '{0}',", arguments.MMSUSED);
+                tmpSql.AppendFormat(" '{0}',", arguments.SPECLIMITUSED);
+                tmpSql.AppendFormat(" '{0}' )", arguments.ISALIVE);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
 
 
         public void GetTCODE()
