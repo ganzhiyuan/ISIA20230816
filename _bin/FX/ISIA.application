@@ -21,7 +21,11 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
         <dsig:DigestValue>vcaveGEswQ8Txe1s1tWgRjavXdDNLoULuj4NUDvL/mo=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>Ib6frBOSnCBo1eHo4voUgjOzXV07JONVeVbFMM3Tk7s=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>
