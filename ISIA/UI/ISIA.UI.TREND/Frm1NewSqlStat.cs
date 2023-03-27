@@ -24,7 +24,7 @@ namespace ISIA.UI.TREND
         public Frm1NewSqlStat()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SqlstatServices");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart1");
             dateStart.DateTime = DateTime.Now;
         }
 
