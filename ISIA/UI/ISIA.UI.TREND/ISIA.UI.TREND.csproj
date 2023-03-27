@@ -188,11 +188,11 @@
     <Compile Include="FrmSnapTrendChart1.Designer.cs">
       <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSQLQueryTrend.cs">
+    <Compile Include="FrmSQLAnalysisBySQL_ID.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSQLQueryTrend.Designer.cs">
-      <DependentUpon>FrmSQLQueryTrend.cs</DependentUpon>
+    <Compile Include="FrmSQLAnalysisBySQL_ID.Designer.cs">
+      <DependentUpon>FrmSQLAnalysisBySQL_ID.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSQLFullTextQueryAnalysis1.cs">
       <SubType>Form</SubType>
@@ -224,17 +224,17 @@
     <Compile Include="FrmParaTrend.Designer.cs">
       <DependentUpon>FrmParaTrend.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSnapTrendChart.cs">
+    <Compile Include="FrmSQLTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSnapTrendChart.Designer.cs">
-      <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
+    <Compile Include="FrmSQLTrendChart.Designer.cs">
+      <DependentUpon>FrmSQLTrendChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSQLFullTextQueryTrend.cs">
+    <Compile Include="FrmSQLAnalysisChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSQLFullTextQueryTrend.Designer.cs">
-      <DependentUpon>FrmSQLFullTextQueryTrend.cs</DependentUpon>
+    <Compile Include="FrmSQLAnalysisChart.Designer.cs">
+      <DependentUpon>FrmSQLAnalysisChart.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSqlStatModels.cs">
       <SubType>Form</SubType>
@@ -286,17 +286,17 @@
     <EmbeddedResource Include="FrmSnapTrendChart1.resx">
       <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSnapTrendChart.resx">
-      <DependentUpon>FrmSnapTrendChart.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSQLTrendChart.resx">
+      <DependentUpon>FrmSQLTrendChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSQLQueryTrend.resx">
-      <DependentUpon>FrmSQLQueryTrend.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSQLAnalysisBySQL_ID.resx">
+      <DependentUpon>FrmSQLAnalysisBySQL_ID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis1.resx">
       <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSQLFullTextQueryTrend.resx">
-      <DependentUpon>FrmSQLFullTextQueryTrend.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSQLAnalysisChart.resx">
+      <DependentUpon>FrmSQLAnalysisChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSqlStatModels.resx">
       <DependentUpon>FrmSqlStatModels.cs</DependentUpon>

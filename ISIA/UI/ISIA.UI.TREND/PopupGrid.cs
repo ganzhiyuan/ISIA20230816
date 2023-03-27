@@ -96,7 +96,7 @@ namespace ISIA.UI.TREND
 
             //OpenUI("");
 
-            
+            linkage = true;
             this.Close();
             
         }

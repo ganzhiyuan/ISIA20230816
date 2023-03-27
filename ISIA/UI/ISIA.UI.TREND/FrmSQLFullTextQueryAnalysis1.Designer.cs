@@ -29,14 +29,13 @@ namespace ISIA.UI.TREND
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLFullTextQueryAnalysis1));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.tChart1 = new Steema.TeeChart.TChart();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tPanel7 = new TAP.UIControls.BasicControlsDEV.TPanel();
@@ -101,14 +100,14 @@ namespace ISIA.UI.TREND
             this.xtraUserControl1.Appearance.Options.UseForeColor = true;
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraUserControl1.Size = new System.Drawing.Size(1548, 899);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.tabPane1);
             this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
-            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft_Container.Size = new System.Drawing.Size(322, 866);
             // 
             // dpnlRight
@@ -116,7 +115,7 @@ namespace ISIA.UI.TREND
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
             this.dpnlRight.Location = new System.Drawing.Point(332, 0);
-            this.dpnlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlRight.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -125,7 +124,7 @@ namespace ISIA.UI.TREND
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(865, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(803, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(1216, 899);
@@ -135,7 +134,7 @@ namespace ISIA.UI.TREND
             this.dpnlRight_Container.Controls.Add(this.panelControl2);
             this.dpnlRight_Container.Controls.Add(this.panelControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
-            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight_Container.Size = new System.Drawing.Size(1208, 866);
             // 
             // dpnlLeft
@@ -146,27 +145,27 @@ namespace ISIA.UI.TREND
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
-            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(187, 153);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(249, 153);
             this.dpnlLeft.SavedSizeFactor = 1D;
             this.dpnlLeft.Size = new System.Drawing.Size(332, 899);
             // 
             // tPanelBottomBase
             // 
             this.tPanelBottomBase.Location = new System.Drawing.Point(0, 919);
-            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelBottomBase.Size = new System.Drawing.Size(1548, 20);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelTop.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelTop.Size = new System.Drawing.Size(1548, 20);
             // 
             // tPanelMain
             // 
-            this.tPanelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanelMain.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelMain.Size = new System.Drawing.Size(1548, 899);
             // 
             // panelControl1
@@ -174,7 +173,7 @@ namespace ISIA.UI.TREND
             this.panelControl1.Controls.Add(this.memoEdit1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 735);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1208, 131);
             this.panelControl1.TabIndex = 0;
@@ -183,7 +182,7 @@ namespace ISIA.UI.TREND
             // 
             this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoEdit1.Location = new System.Drawing.Point(2, 2);
-            this.memoEdit1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.memoEdit1.Margin = new System.Windows.Forms.Padding(4);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(1204, 127);
             this.memoEdit1.TabIndex = 0;
@@ -193,7 +192,7 @@ namespace ISIA.UI.TREND
             this.panelControl2.Controls.Add(this.tChart1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1208, 735);
             this.panelControl2.TabIndex = 1;
@@ -1375,7 +1374,7 @@ namespace ISIA.UI.TREND
             this.tabPane1.LookAndFeel.SkinName = "Office 2013";
             this.tabPane1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tabPane1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tabPane1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPane1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
@@ -1405,7 +1404,7 @@ namespace ISIA.UI.TREND
             this.tPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tPanel7.IsRequired = false;
             this.tPanel7.Location = new System.Drawing.Point(0, 795);
-            this.tPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tPanel7.Name = "tPanel7";
             this.tPanel7.NeedToTranslate = true;
             this.tPanel7.RepresentativeValue = "tPanel7 [TAP.UIControls.BasicControlsDEV.TPanel]";
@@ -1508,7 +1507,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem13});
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(320, 235);
@@ -1523,8 +1522,8 @@ namespace ISIA.UI.TREND
             this.cboworkshop.DominantControl = "cbofacility";
             this.cboworkshop.EditValue = "";
             this.cboworkshop.IsRequired = false;
-            this.cboworkshop.Location = new System.Drawing.Point(124, 35);
-            this.cboworkshop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboworkshop.Location = new System.Drawing.Point(123, 34);
+            this.cboworkshop.Margin = new System.Windows.Forms.Padding(4);
             this.cboworkshop.Name = "cboworkshop";
             this.cboworkshop.NeedToTranslate = false;
             this.cboworkshop.ParameterID = "LINE";
@@ -1535,7 +1534,7 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboworkshop.RepresentativeValue = "";
             this.cboworkshop.ShowDescription = false;
-            this.cboworkshop.Size = new System.Drawing.Size(192, 25);
+            this.cboworkshop.Size = new System.Drawing.Size(194, 27);
             this.cboworkshop.Sql = "";
             this.cboworkshop.SqlDataBase = "";
             this.cboworkshop.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -1547,11 +1546,11 @@ namespace ISIA.UI.TREND
             // 
             this.lblfacility.ControlID = "tLabel2";
             this.lblfacility.IsRequired = false;
-            this.lblfacility.Location = new System.Drawing.Point(4, 35);
+            this.lblfacility.Location = new System.Drawing.Point(3, 34);
             this.lblfacility.Name = "lblfacility";
             this.lblfacility.NeedToTranslate = true;
             this.lblfacility.RepresentativeValue = "Rule Space Name";
-            this.lblfacility.Size = new System.Drawing.Size(114, 25);
+            this.lblfacility.Size = new System.Drawing.Size(116, 27);
             this.lblfacility.StyleController = this.layoutControl1;
             this.lblfacility.TabIndex = 1;
             this.lblfacility.Text = "Rule Space Name";
@@ -1564,8 +1563,8 @@ namespace ISIA.UI.TREND
             this.cbofacility.DominantControl = "";
             this.cbofacility.EditValue = "";
             this.cbofacility.IsRequired = false;
-            this.cbofacility.Location = new System.Drawing.Point(124, 4);
-            this.cbofacility.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbofacility.Location = new System.Drawing.Point(123, 3);
+            this.cbofacility.Margin = new System.Windows.Forms.Padding(4);
             this.cbofacility.Name = "cbofacility";
             this.cbofacility.NeedToTranslate = false;
             this.cbofacility.ParameterID = "DBID";
@@ -1576,7 +1575,7 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbofacility.RepresentativeValue = "";
             this.cbofacility.ShowDescription = false;
-            this.cbofacility.Size = new System.Drawing.Size(192, 25);
+            this.cbofacility.Size = new System.Drawing.Size(194, 27);
             this.cbofacility.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
             this.cbofacility.SqlDataBase = "";
             this.cbofacility.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -1588,11 +1587,11 @@ namespace ISIA.UI.TREND
             // 
             this.lbLfacylity.ControlID = "tLabel2";
             this.lbLfacylity.IsRequired = false;
-            this.lbLfacylity.Location = new System.Drawing.Point(4, 4);
+            this.lbLfacylity.Location = new System.Drawing.Point(3, 3);
             this.lbLfacylity.Name = "lbLfacylity";
             this.lbLfacylity.NeedToTranslate = true;
             this.lbLfacylity.RepresentativeValue = "DBNAME";
-            this.lbLfacylity.Size = new System.Drawing.Size(114, 25);
+            this.lbLfacylity.Size = new System.Drawing.Size(116, 27);
             this.lbLfacylity.StyleController = this.layoutControl1;
             this.lbLfacylity.TabIndex = 1;
             this.lbLfacylity.Text = "DBNAME";
@@ -1601,7 +1600,7 @@ namespace ISIA.UI.TREND
             // 
             this.tDateTimePickerSE1.ControlID = "TDateTimePickerSE";
             this.tDateTimePickerSE1.CustomFormat = "yyyy";
-            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 26, 17, 12, 17, 108);
+            this.tDateTimePickerSE1.EndDate = new System.DateTime(2023, 3, 27, 17, 13, 39, 145);
             this.tDateTimePickerSE1.IsRequired = false;
             this.tDateTimePickerSE1.Location = new System.Drawing.Point(3, 3);
             this.tDateTimePickerSE1.Margin = new System.Windows.Forms.Padding(0);
@@ -1703,7 +1702,7 @@ namespace ISIA.UI.TREND
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1548, 939);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSQLFullTextQueryAnalysis1";
             this.Text = "FrmSQLFullTextQueryAnalysis";
             this.xtraUserControl1.ResumeLayout(false);

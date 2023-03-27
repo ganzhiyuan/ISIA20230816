@@ -21,7 +21,7 @@ using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
-    public partial class FrmSnapTrendChart : DockUIBase1T1
+    public partial class FrmSQLTrendChart : DockUIBase1T1
     {
 
         protected PointF _pStart;
@@ -37,19 +37,40 @@ namespace ISIA.UI.TREND
         List<Series> series = new List<Series>();
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
-        public FrmSnapTrendChart()
+        public FrmSQLTrendChart()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLTrendChart");
+
+            /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+            this.dateEnd.DateTime = DateTime.Now;*/
+            tcmbday.Text = "D";
+            tcmbday.Items.Add("D");
+            tcmbday.Items.Add("W");
+            tcmbday.Items.Add("M");
+            tChart1.Header.Text = " ";//清楚chart标题
+
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!base.ValidateUserInput(this.layoutControl1)) return;
-
-
+                if (dataSet == null)
+                {
+                    if (string.IsNullOrEmpty(cboParaName.Text))
+                    {
+                        cboParaName.BackColor = Color.Orange;
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(cmbDbName.Text))
+                    {
+                        cmbDbName.BackColor = Color.Orange;
+                        return;
+                    }
+                }
+                if (!base.ValidateUserInput(this.layoutControl3)) return;
+                
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception)
@@ -62,16 +83,24 @@ namespace ISIA.UI.TREND
             try
             {
                 dataSet1.Tables.Clear();
-                
-                
+
+                args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
+                args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.ParameterName = cboParaName.Text;
-                dataSet = bs.ExecuteDataSet("GetSnap");
+                
+                List<string > itemList = cboParaName.Text.Split(',').ToArray().ToList();
+                dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                DataTable dataTable =  ConvertDTToListRef(dataSet.Tables[0]);
+                //dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
+                //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
+                List<SqlShow>  list1  = (from d in list where cboParaName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
 
 
+                DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
 
-                DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
+                //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
                 dataSet1.Tables.Add(dt.Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
 
@@ -192,7 +221,7 @@ namespace ISIA.UI.TREND
 
                         
                         DataTable dt1 = line.DataSource as DataTable;
-                        dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
+                        //dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
                         dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i + 1]["END_INTERVAL_TIME"];
                         snaplist.Add(dto);
                     }
@@ -213,7 +242,7 @@ namespace ISIA.UI.TREND
 
             if (popupGrid.linkage == true)
             {
-                base.OpenUI("SQLFULLTEXTQUERYTREND", "TREND", "SQLFullTextQueryTrend", dt);
+                base.OpenUI("SQLANALYSISCHART", "TREND", "SQLANALYSISCHART", dt);
             }
             
         }
@@ -265,7 +294,7 @@ namespace ISIA.UI.TREND
             
             tChart1.Dock = DockStyle.Fill;
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
-            tChart1.Header.Text = "TEECHART";//teechart标题 
+            tChart1.Header.Text = " ";//teechart标题 
             tChart1.Legend.Visible = true;
             IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
             if (result != null && result.Count() > 0)
@@ -401,6 +430,27 @@ namespace ISIA.UI.TREND
         private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             tChart1.ShowEditor();
+        }
+
+        private void tcmbday_EditValueChanged(object sender, EventArgs e)
+        {
+            if (tcmbday.Text == "D")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "W")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "M")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+
+
         }
     }
 }
