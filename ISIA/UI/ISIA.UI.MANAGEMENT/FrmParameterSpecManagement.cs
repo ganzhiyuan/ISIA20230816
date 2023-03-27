@@ -30,8 +30,8 @@ namespace ISIA.UI.MANAGEMENT
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.ParameterSpecManagement");
-            dateStart.DateTime = DateTime.Now.AddDays(-1);
-            dateEnd.DateTime = DateTime.Now;
+            //dateStart.DateTime = DateTime.Now.AddDays(-1);
+            //dateEnd.DateTime = DateTime.Now;
         }
 
         public DataSet LoadData()

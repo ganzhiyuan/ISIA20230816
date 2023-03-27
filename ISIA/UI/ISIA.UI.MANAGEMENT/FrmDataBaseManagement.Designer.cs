@@ -36,40 +36,32 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.tLabel6 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.dateEnd = new DevExpress.XtraEditors.DateEdit();
-            this.dateStart = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtMainCustom = new DevExpress.XtraEditors.TextEdit();
+            this.txtMainName = new DevExpress.XtraEditors.TextEdit();
+            this.tLabel12 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.txtMainSub = new DevExpress.XtraEditors.TextEdit();
+            this.tLabel11 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.txtMainCategory = new DevExpress.XtraEditors.TextEdit();
+            this.tLabel10 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            this.tLabel3 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.dtEnd = new DevExpress.XtraEditors.DateEdit();
-            this.dtStart = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.navBarGroupControlContainer4 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
             this.rdoIsalive = new DevExpress.XtraEditors.RadioGroup();
@@ -126,20 +118,6 @@ namespace ISIA.UI.MANAGEMENT
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tLabel10 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMainCategory = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tLabel11 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMainSub = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tLabel12 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMainName = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMainCustom = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -156,40 +134,27 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
-            this.navBarGroupControlContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
-            this.layoutControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.navBarGroupControlContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainCustom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainSub.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.tabNavigationPage2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
             this.navBarControl2.SuspendLayout();
-            this.navBarGroupControlContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
-            this.layoutControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEnd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEnd.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStart.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStart.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.navBarGroupControlContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).BeginInit();
             this.layoutControl5.SuspendLayout();
@@ -224,17 +189,6 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainSub.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainCustom.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -399,15 +353,13 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup2;
+            this.navBarControl1.ActiveGroup = this.navBarGroup3;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
-            this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer2);
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup2,
             this.navBarGroup3});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem2});
@@ -422,159 +374,6 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.Size = new System.Drawing.Size(235, 461);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
-            // 
-            // navBarGroup2
-            // 
-            this.navBarGroup2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
-            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup2.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.navBarGroup2.Appearance.Options.UseBackColor = true;
-            this.navBarGroup2.Appearance.Options.UseFont = true;
-            this.navBarGroup2.Appearance.Options.UseForeColor = true;
-            this.navBarGroup2.AppearanceBackground.BackColor = System.Drawing.Color.White;
-            this.navBarGroup2.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
-            this.navBarGroup2.AppearanceBackground.Options.UseBackColor = true;
-            this.navBarGroup2.AppearanceBackground.Options.UseForeColor = true;
-            this.navBarGroup2.Caption = "Date Period";
-            this.navBarGroup2.ControlContainer = this.navBarGroupControlContainer1;
-            this.navBarGroup2.Expanded = true;
-            this.navBarGroup2.GroupClientHeight = 71;
-            this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup2.Name = "navBarGroup2";
-            // 
-            // navBarGroupControlContainer1
-            // 
-            this.navBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer1.Controls.Add(this.layoutControl2);
-            this.navBarGroupControlContainer1.LookAndFeel.SkinName = "Office 2013";
-            this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarGroupControlContainer1.Margin = new System.Windows.Forms.Padding(4);
-            this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(233, 70);
-            this.navBarGroupControlContainer1.TabIndex = 0;
-            // 
-            // layoutControl2
-            // 
-            this.layoutControl2.Controls.Add(this.tLabel6);
-            this.layoutControl2.Controls.Add(this.dateEnd);
-            this.layoutControl2.Controls.Add(this.dateStart);
-            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.layoutControl2.Name = "layoutControl2";
-            this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1236, -1122, 812, 500);
-            this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(233, 70);
-            this.layoutControl2.TabIndex = 83;
-            this.layoutControl2.Text = "layoutControl2";
-            // 
-            // tLabel6
-            // 
-            this.tLabel6.ControlID = "tLabel4";
-            this.tLabel6.IsRequired = false;
-            this.tLabel6.Location = new System.Drawing.Point(109, 3);
-            this.tLabel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tLabel6.Name = "tLabel6";
-            this.tLabel6.NeedToTranslate = true;
-            this.tLabel6.RepresentativeValue = "~";
-            this.tLabel6.Size = new System.Drawing.Size(9, 14);
-            this.tLabel6.StyleController = this.layoutControl2;
-            this.tLabel6.TabIndex = 15;
-            this.tLabel6.Text = "~";
-            // 
-            // dateEnd
-            // 
-            this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(122, 3);
-            this.dateEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateEnd.Name = "dateEnd";
-            this.dateEnd.Properties.BeepOnError = true;
-            this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
-            this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateEnd.Properties.MaskSettings.Set("mask", "d");
-            this.dateEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateEnd.Size = new System.Drawing.Size(108, 20);
-            this.dateEnd.StyleController = this.layoutControl2;
-            this.dateEnd.TabIndex = 14;
-            // 
-            // dateStart
-            // 
-            this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(1, 1);
-            this.dateStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateStart.Name = "dateStart";
-            this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
-            this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateStart.Properties.MaskSettings.Set("mask", "d");
-            this.dateStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateStart.Size = new System.Drawing.Size(106, 20);
-            this.dateStart.StyleController = this.layoutControl2;
-            this.dateStart.TabIndex = 13;
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.layoutControlItem15,
-            this.emptySpaceItem2});
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(233, 70);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.dateStart;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(46, 18);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem5.Size = new System.Drawing.Size(106, 21);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.dateEnd;
-            this.layoutControlItem6.Location = new System.Drawing.Point(119, 0);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(49, 21);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(112, 21);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.tLabel6;
-            this.layoutControlItem15.Location = new System.Drawing.Point(106, 0);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(13, 21);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 21);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(231, 47);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navBarGroupControlContainer2
             // 
@@ -606,6 +405,80 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl3.Size = new System.Drawing.Size(233, 167);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl2";
+            // 
+            // txtMainCustom
+            // 
+            this.txtMainCustom.Location = new System.Drawing.Point(100, 76);
+            this.txtMainCustom.Name = "txtMainCustom";
+            this.txtMainCustom.Size = new System.Drawing.Size(129, 20);
+            this.txtMainCustom.StyleController = this.layoutControl3;
+            this.txtMainCustom.TabIndex = 28;
+            // 
+            // txtMainName
+            // 
+            this.txtMainName.Location = new System.Drawing.Point(100, 52);
+            this.txtMainName.Name = "txtMainName";
+            this.txtMainName.Size = new System.Drawing.Size(129, 20);
+            this.txtMainName.StyleController = this.layoutControl3;
+            this.txtMainName.TabIndex = 27;
+            // 
+            // tLabel12
+            // 
+            this.tLabel12.ControlID = "tLabelParmNames";
+            this.tLabel12.IsRequired = false;
+            this.tLabel12.Location = new System.Drawing.Point(4, 52);
+            this.tLabel12.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel12.Name = "tLabel12";
+            this.tLabel12.NeedToTranslate = true;
+            this.tLabel12.RepresentativeValue = "*NAME";
+            this.tLabel12.Size = new System.Drawing.Size(92, 20);
+            this.tLabel12.StyleController = this.layoutControl3;
+            this.tLabel12.TabIndex = 26;
+            this.tLabel12.Text = "*NAME";
+            // 
+            // txtMainSub
+            // 
+            this.txtMainSub.Location = new System.Drawing.Point(100, 28);
+            this.txtMainSub.Name = "txtMainSub";
+            this.txtMainSub.Size = new System.Drawing.Size(129, 20);
+            this.txtMainSub.StyleController = this.layoutControl3;
+            this.txtMainSub.TabIndex = 25;
+            // 
+            // tLabel11
+            // 
+            this.tLabel11.ControlID = "tLabelParmNames";
+            this.tLabel11.IsRequired = false;
+            this.tLabel11.Location = new System.Drawing.Point(4, 28);
+            this.tLabel11.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel11.Name = "tLabel11";
+            this.tLabel11.NeedToTranslate = true;
+            this.tLabel11.RepresentativeValue = "*SUBCATEGORY";
+            this.tLabel11.Size = new System.Drawing.Size(92, 20);
+            this.tLabel11.StyleController = this.layoutControl3;
+            this.tLabel11.TabIndex = 24;
+            this.tLabel11.Text = "*SUBCATEGORY";
+            // 
+            // txtMainCategory
+            // 
+            this.txtMainCategory.Location = new System.Drawing.Point(100, 4);
+            this.txtMainCategory.Name = "txtMainCategory";
+            this.txtMainCategory.Size = new System.Drawing.Size(129, 20);
+            this.txtMainCategory.StyleController = this.layoutControl3;
+            this.txtMainCategory.TabIndex = 23;
+            // 
+            // tLabel10
+            // 
+            this.tLabel10.ControlID = "tLabelParmNames";
+            this.tLabel10.IsRequired = false;
+            this.tLabel10.Location = new System.Drawing.Point(4, 4);
+            this.tLabel10.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel10.Name = "tLabel10";
+            this.tLabel10.NeedToTranslate = true;
+            this.tLabel10.RepresentativeValue = "*CATEGORY";
+            this.tLabel10.Size = new System.Drawing.Size(92, 20);
+            this.tLabel10.StyleController = this.layoutControl3;
+            this.tLabel10.TabIndex = 22;
+            this.tLabel10.Text = "*CATEGORY";
             // 
             // tLabel2
             // 
@@ -662,6 +535,78 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.tLabel10;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(96, 24);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
+            // 
+            // layoutControlItem31
+            // 
+            this.layoutControlItem31.Control = this.txtMainCategory;
+            this.layoutControlItem31.Location = new System.Drawing.Point(96, 0);
+            this.layoutControlItem31.Name = "layoutControlItem31";
+            this.layoutControlItem31.Size = new System.Drawing.Size(133, 24);
+            this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem31.TextVisible = false;
+            // 
+            // layoutControlItem32
+            // 
+            this.layoutControlItem32.Control = this.tLabel11;
+            this.layoutControlItem32.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem32.MaxSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem32.MinSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem32.Name = "layoutControlItem32";
+            this.layoutControlItem32.Size = new System.Drawing.Size(96, 24);
+            this.layoutControlItem32.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem32.TextVisible = false;
+            // 
+            // layoutControlItem33
+            // 
+            this.layoutControlItem33.Control = this.txtMainSub;
+            this.layoutControlItem33.Location = new System.Drawing.Point(96, 24);
+            this.layoutControlItem33.Name = "layoutControlItem33";
+            this.layoutControlItem33.Size = new System.Drawing.Size(133, 24);
+            this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem33.TextVisible = false;
+            // 
+            // layoutControlItem34
+            // 
+            this.layoutControlItem34.Control = this.tLabel12;
+            this.layoutControlItem34.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem34.MaxSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem34.MinSize = new System.Drawing.Size(96, 24);
+            this.layoutControlItem34.Name = "layoutControlItem34";
+            this.layoutControlItem34.Size = new System.Drawing.Size(96, 24);
+            this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem34.TextVisible = false;
+            // 
+            // layoutControlItem35
+            // 
+            this.layoutControlItem35.Control = this.txtMainName;
+            this.layoutControlItem35.Location = new System.Drawing.Point(96, 48);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(133, 24);
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem35.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.txtMainCustom;
+            this.layoutControlItem1.Location = new System.Drawing.Point(96, 72);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(133, 24);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // navBarGroup3
             // 
             this.navBarGroup3.Appearance.BackColor = System.Drawing.Color.MistyRose;
@@ -712,7 +657,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSave.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnSave.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("txtSave.ImageOptions.Image")));
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSave.IsRequired = false;
             this.btnSave.Location = new System.Drawing.Point(2, 2);
@@ -732,15 +677,13 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup7;
+            this.navBarControl2.ActiveGroup = this.navBarGroup8;
             this.navBarControl2.BackColor = System.Drawing.Color.White;
-            this.navBarControl2.Controls.Add(this.navBarGroupControlContainer3);
             this.navBarControl2.Controls.Add(this.navBarGroupControlContainer4);
             this.navBarControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl2.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl2.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl2.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup7,
             this.navBarGroup8});
             this.navBarControl2.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1});
@@ -755,161 +698,6 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.Size = new System.Drawing.Size(235, 578);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
-            // 
-            // navBarGroup7
-            // 
-            this.navBarGroup7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
-            this.navBarGroup7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup7.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.navBarGroup7.Appearance.Options.UseBackColor = true;
-            this.navBarGroup7.Appearance.Options.UseFont = true;
-            this.navBarGroup7.Appearance.Options.UseForeColor = true;
-            this.navBarGroup7.AppearanceBackground.BackColor = System.Drawing.Color.White;
-            this.navBarGroup7.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
-            this.navBarGroup7.AppearanceBackground.Options.UseBackColor = true;
-            this.navBarGroup7.AppearanceBackground.Options.UseForeColor = true;
-            this.navBarGroup7.Caption = "Date Period";
-            this.navBarGroup7.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup7.Expanded = true;
-            this.navBarGroup7.GroupClientHeight = 71;
-            this.navBarGroup7.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup7.Name = "navBarGroup7";
-            // 
-            // navBarGroupControlContainer3
-            // 
-            this.navBarGroupControlContainer3.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer3.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer3.Controls.Add(this.layoutControl4);
-            this.navBarGroupControlContainer3.LookAndFeel.SkinName = "Office 2013";
-            this.navBarGroupControlContainer3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.navBarGroupControlContainer3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarGroupControlContainer3.Margin = new System.Windows.Forms.Padding(4);
-            this.navBarGroupControlContainer3.Name = "navBarGroupControlContainer3";
-            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(233, 70);
-            this.navBarGroupControlContainer3.TabIndex = 0;
-            // 
-            // layoutControl4
-            // 
-            this.layoutControl4.Controls.Add(this.tLabel3);
-            this.layoutControl4.Controls.Add(this.dtEnd);
-            this.layoutControl4.Controls.Add(this.dtStart);
-            this.layoutControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl4.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl4.Margin = new System.Windows.Forms.Padding(4);
-            this.layoutControl4.Name = "layoutControl4";
-            this.layoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1236, -1122, 812, 500);
-            this.layoutControl4.Root = this.layoutControlGroup3;
-            this.layoutControl4.Size = new System.Drawing.Size(233, 70);
-            this.layoutControl4.TabIndex = 83;
-            this.layoutControl4.Text = "layoutControl4";
-            // 
-            // tLabel3
-            // 
-            this.tLabel3.ControlID = "tLabel4";
-            this.tLabel3.IsRequired = false;
-            this.tLabel3.Location = new System.Drawing.Point(109, 3);
-            this.tLabel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tLabel3.Name = "tLabel3";
-            this.tLabel3.NeedToTranslate = true;
-            this.tLabel3.RepresentativeValue = "~";
-            this.tLabel3.Size = new System.Drawing.Size(9, 14);
-            this.tLabel3.StyleController = this.layoutControl4;
-            this.tLabel3.TabIndex = 15;
-            this.tLabel3.Text = "~";
-            // 
-            // dtEnd
-            // 
-            this.dtEnd.EditValue = null;
-            this.dtEnd.Location = new System.Drawing.Point(122, 3);
-            this.dtEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtEnd.Name = "dtEnd";
-            this.dtEnd.Properties.BeepOnError = true;
-            this.dtEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
-            this.dtEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dtEnd.Properties.DisplayFormat.FormatString = "G";
-            this.dtEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtEnd.Properties.MaskSettings.Set("mask", "G");
-            this.dtEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dtEnd.Size = new System.Drawing.Size(108, 20);
-            this.dtEnd.StyleController = this.layoutControl4;
-            this.dtEnd.TabIndex = 14;
-            // 
-            // dtStart
-            // 
-            this.dtStart.EditValue = null;
-            this.dtStart.Location = new System.Drawing.Point(1, 1);
-            this.dtStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtStart.Name = "dtStart";
-            this.dtStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
-            this.dtStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dtStart.Properties.MaskSettings.Set("mask", "d");
-            this.dtStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dtStart.Size = new System.Drawing.Size(106, 20);
-            this.dtStart.StyleController = this.layoutControl4;
-            this.dtStart.TabIndex = 13;
-            // 
-            // layoutControlGroup3
-            // 
-            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup3.GroupBordersVisible = false;
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem8,
-            this.layoutControlItem9,
-            this.layoutControlItem13,
-            this.emptySpaceItem3});
-            this.layoutControlGroup3.Name = "Root";
-            this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(233, 70);
-            this.layoutControlGroup3.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.dtStart;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(46, 18);
-            this.layoutControlItem8.Name = "layoutControlItem5";
-            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem8.Size = new System.Drawing.Size(106, 21);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.dtEnd;
-            this.layoutControlItem9.Location = new System.Drawing.Point(119, 0);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(49, 21);
-            this.layoutControlItem9.Name = "layoutControlItem6";
-            this.layoutControlItem9.Size = new System.Drawing.Size(112, 21);
-            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.tLabel3;
-            this.layoutControlItem13.Location = new System.Drawing.Point(106, 0);
-            this.layoutControlItem13.Name = "layoutControlItem15";
-            this.layoutControlItem13.Size = new System.Drawing.Size(13, 21);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 21);
-            this.emptySpaceItem3.Name = "emptySpaceItem2";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(231, 47);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // navBarGroupControlContainer4
             // 
@@ -1632,152 +1420,6 @@ namespace ISIA.UI.MANAGEMENT
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
             // 
-            // tLabel10
-            // 
-            this.tLabel10.ControlID = "tLabelParmNames";
-            this.tLabel10.IsRequired = false;
-            this.tLabel10.Location = new System.Drawing.Point(4, 4);
-            this.tLabel10.Margin = new System.Windows.Forms.Padding(4);
-            this.tLabel10.Name = "tLabel10";
-            this.tLabel10.NeedToTranslate = true;
-            this.tLabel10.RepresentativeValue = "*CATEGORY";
-            this.tLabel10.Size = new System.Drawing.Size(92, 20);
-            this.tLabel10.StyleController = this.layoutControl3;
-            this.tLabel10.TabIndex = 22;
-            this.tLabel10.Text = "*CATEGORY";
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.tLabel10;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem12.MaxSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem12.MinSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(96, 24);
-            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
-            // txtMainCategory
-            // 
-            this.txtMainCategory.Location = new System.Drawing.Point(100, 4);
-            this.txtMainCategory.Name = "txtMainCategory";
-            this.txtMainCategory.Size = new System.Drawing.Size(129, 20);
-            this.txtMainCategory.StyleController = this.layoutControl3;
-            this.txtMainCategory.TabIndex = 23;
-            // 
-            // layoutControlItem31
-            // 
-            this.layoutControlItem31.Control = this.txtMainCategory;
-            this.layoutControlItem31.Location = new System.Drawing.Point(96, 0);
-            this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(133, 24);
-            this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem31.TextVisible = false;
-            // 
-            // tLabel11
-            // 
-            this.tLabel11.ControlID = "tLabelParmNames";
-            this.tLabel11.IsRequired = false;
-            this.tLabel11.Location = new System.Drawing.Point(4, 28);
-            this.tLabel11.Margin = new System.Windows.Forms.Padding(4);
-            this.tLabel11.Name = "tLabel11";
-            this.tLabel11.NeedToTranslate = true;
-            this.tLabel11.RepresentativeValue = "*SUBCATEGORY";
-            this.tLabel11.Size = new System.Drawing.Size(92, 20);
-            this.tLabel11.StyleController = this.layoutControl3;
-            this.tLabel11.TabIndex = 24;
-            this.tLabel11.Text = "*SUBCATEGORY";
-            // 
-            // layoutControlItem32
-            // 
-            this.layoutControlItem32.Control = this.tLabel11;
-            this.layoutControlItem32.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem32.MaxSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem32.MinSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem32.Name = "layoutControlItem32";
-            this.layoutControlItem32.Size = new System.Drawing.Size(96, 24);
-            this.layoutControlItem32.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem32.TextVisible = false;
-            // 
-            // txtMainSub
-            // 
-            this.txtMainSub.Location = new System.Drawing.Point(100, 28);
-            this.txtMainSub.Name = "txtMainSub";
-            this.txtMainSub.Size = new System.Drawing.Size(129, 20);
-            this.txtMainSub.StyleController = this.layoutControl3;
-            this.txtMainSub.TabIndex = 25;
-            // 
-            // layoutControlItem33
-            // 
-            this.layoutControlItem33.Control = this.txtMainSub;
-            this.layoutControlItem33.Location = new System.Drawing.Point(96, 24);
-            this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(133, 24);
-            this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem33.TextVisible = false;
-            // 
-            // tLabel12
-            // 
-            this.tLabel12.ControlID = "tLabelParmNames";
-            this.tLabel12.IsRequired = false;
-            this.tLabel12.Location = new System.Drawing.Point(4, 52);
-            this.tLabel12.Margin = new System.Windows.Forms.Padding(4);
-            this.tLabel12.Name = "tLabel12";
-            this.tLabel12.NeedToTranslate = true;
-            this.tLabel12.RepresentativeValue = "*NAME";
-            this.tLabel12.Size = new System.Drawing.Size(92, 20);
-            this.tLabel12.StyleController = this.layoutControl3;
-            this.tLabel12.TabIndex = 26;
-            this.tLabel12.Text = "*NAME";
-            // 
-            // layoutControlItem34
-            // 
-            this.layoutControlItem34.Control = this.tLabel12;
-            this.layoutControlItem34.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem34.MaxSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem34.MinSize = new System.Drawing.Size(96, 24);
-            this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(96, 24);
-            this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem34.TextVisible = false;
-            // 
-            // txtMainName
-            // 
-            this.txtMainName.Location = new System.Drawing.Point(100, 52);
-            this.txtMainName.Name = "txtMainName";
-            this.txtMainName.Size = new System.Drawing.Size(129, 20);
-            this.txtMainName.StyleController = this.layoutControl3;
-            this.txtMainName.TabIndex = 27;
-            // 
-            // layoutControlItem35
-            // 
-            this.layoutControlItem35.Control = this.txtMainName;
-            this.layoutControlItem35.Location = new System.Drawing.Point(96, 48);
-            this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(133, 24);
-            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem35.TextVisible = false;
-            // 
-            // txtMainCustom
-            // 
-            this.txtMainCustom.Location = new System.Drawing.Point(100, 76);
-            this.txtMainCustom.Name = "txtMainCustom";
-            this.txtMainCustom.Size = new System.Drawing.Size(129, 20);
-            this.txtMainCustom.StyleController = this.layoutControl3;
-            this.txtMainCustom.TabIndex = 28;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.txtMainCustom;
-            this.layoutControlItem1.Location = new System.Drawing.Point(96, 72);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(133, 24);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
             // FrmDataBaseManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1802,40 +1444,27 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
-            this.navBarGroupControlContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
-            this.layoutControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateStart.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.navBarGroupControlContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainCustom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainSub.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMainCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.tabNavigationPage2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
             this.navBarControl2.ResumeLayout(false);
-            this.navBarGroupControlContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
-            this.layoutControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtEnd.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtEnd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStart.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStart.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.navBarGroupControlContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).EndInit();
             this.layoutControl5.ResumeLayout(false);
@@ -1870,17 +1499,6 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainSub.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMainCustom.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1893,17 +1511,6 @@ namespace ISIA.UI.MANAGEMENT
         public DevExpress.XtraBars.Navigation.TabPane tabPane1;
         public DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
         public DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
-        public DevExpress.XtraLayout.LayoutControl layoutControl2;
-        public TAP.UIControls.BasicControlsDEV.TLabel tLabel6;
-        public DevExpress.XtraEditors.DateEdit dateEnd;
-        public DevExpress.XtraEditors.DateEdit dateStart;
-        public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer2;
         public DevExpress.XtraLayout.LayoutControl layoutControl3;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel2;
@@ -1916,17 +1523,6 @@ namespace ISIA.UI.MANAGEMENT
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage2;
         public DevExpress.XtraNavBar.NavBarControl navBarControl2;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
-        public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
-        public DevExpress.XtraLayout.LayoutControl layoutControl4;
-        public TAP.UIControls.BasicControlsDEV.TLabel tLabel3;
-        public DevExpress.XtraEditors.DateEdit dtEnd;
-        public DevExpress.XtraEditors.DateEdit dtStart;
-        public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        public DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer4;
         public DevExpress.XtraLayout.LayoutControl layoutControl5;
         private DevExpress.XtraEditors.TextEdit txtDESCRIPTION;

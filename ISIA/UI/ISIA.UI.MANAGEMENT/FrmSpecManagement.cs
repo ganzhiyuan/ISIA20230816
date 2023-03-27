@@ -29,8 +29,7 @@ namespace ISIA.UI.MANAGEMENT
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.SpecManagement");
-            dateStart.DateTime = DateTime.Now.AddDays(-1);
-            dateEnd.DateTime = DateTime.Now;
+            
         }
 
         public DataSet LoadData()
@@ -40,8 +39,8 @@ namespace ISIA.UI.MANAGEMENT
             args.RULENAME = txtMainRULENAME.Text;
             args.RULETEXT = txtMainRULETEXT.Text;
             args.RULENO = txtMainRULENO.Text;
-            args.INSERTTIME = dateStart.DateTime.AddDays(-1).ToString("yyyyMMddHHmmss");
-            args.UPDATETIME = dateEnd.DateTime.AddHours(1).ToString("yyyyMMddHHmmss");
+            args.INSERTTIME = DateTime.Now.AddDays(-1).ToString("yyyyMMddHHmmss");
+            args.UPDATETIME = DateTime.Now.AddHours(1).ToString("yyyyMMddHHmmss");
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
 
             return ds;
