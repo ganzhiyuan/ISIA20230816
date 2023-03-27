@@ -17,16 +17,28 @@ namespace ISIA.BIZ.MANAGEMENT
     {
 
 
-        public void GetDB()
+        public void GetDB(SpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append(" SELECT ROWID RID , ROWNUM ID , DBID, RULENAME, RULENO, RULETEXT, N_VALUE , M_VALUE , ISALIVE  FROM  TAPCTSPCRULESPEC    ");
-
-
+                tmpSql.Append(" SELECT T.*,T.ROWID FROM TAPCTSPCRULESPEC T  where 1=1  ");
+                tmpSql.AppendFormat(" and INSERTTIME >'{0}'  ", arguments.INSERTTIME);
+                tmpSql.AppendFormat(" and INSERTTIME<= '{0}'   ", arguments.UPDATETIME);
+                if (!string.IsNullOrEmpty(arguments.RULENO))
+                {
+                    tmpSql.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
+                }
+                if (!string.IsNullOrEmpty(arguments.RULENAME))
+                {
+                    tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                }
+                if (!string.IsNullOrEmpty(arguments.RULETEXT))
+                {
+                    tmpSql.AppendFormat(" and RULETEXT like'%{0}%' ", arguments.RULETEXT);
+                }
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
@@ -39,8 +51,124 @@ namespace ISIA.BIZ.MANAGEMENT
                 throw ex;
             }
         }
+        public void CheckTcode(SpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                StringBuilder sbSel = new StringBuilder();
+                sbSel.Append("select * from TAPCTSPCRULESPEC");
+                sbSel.Append(" where 1=1 ");
+                sbSel.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
+                sbSel.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      sbSel.ToString(), false);
+
+                this.ExecutingValue = db.Select(sbSel.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void UpdateTcode(SpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("UPDATE TAPCTSPCRULESPEC SET ");
+                tmpSql.AppendFormat("  RULENO = '{0}' ,", arguments.RULENO);
+                tmpSql.AppendFormat("  RULENAME = '{0}' ,", arguments.RULENAME);
+                tmpSql.AppendFormat("  RULETEXT = '{0}' ,", arguments.RULETEXT);
+                tmpSql.AppendFormat("  SEQUENCES = '{0}' ,", arguments.SEQUENCES);
+                tmpSql.AppendFormat("  UPDATEUSER = '{0}' ,", arguments.UPDATEUSER);
+                tmpSql.AppendFormat("  UPDATETIME = '{0}' ,", arguments.UPDATETIME);
+                tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
 
 
+                tmpSql.Append(" where 1=1 ");
+                tmpSql.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
+                tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void SaveTCode(SpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("Insert INTO TAPCTSPCRULESPEC (RULENO,RULENAME,RULETEXT,SEQUENCES,ISALIVE,INSERTTIME,INSERTUSER) values (  ");
+                tmpSql.AppendFormat(" '{0}',", arguments.RULENO);
+                tmpSql.AppendFormat(" '{0}',", arguments.RULENAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.RULETEXT);
+                tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
+                tmpSql.AppendFormat(" '{0}',", arguments.ISALIVE);
+                tmpSql.AppendFormat(" '{0}',", arguments.INSERTTIME);
+                tmpSql.AppendFormat(" '{0}')", arguments.INSERTUSER);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void DelteTCODE(SpecManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append("DELETE FROM TAPCTSPCRULESPEC WHERE ");
+
+                if (!string.IsNullOrEmpty(arguments.ROWID))
+                {
+                    tmpSql.AppendFormat("ROWID =  '{0}'", arguments.ROWID);
+                }
+                else
+                {
+                    return;
+                }
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
 
         public void GetTCODE()
         {

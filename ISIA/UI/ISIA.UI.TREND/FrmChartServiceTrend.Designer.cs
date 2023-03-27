@@ -251,7 +251,7 @@ namespace ISIA.UI.TREND
             this.btnSelect.TabIndex = 111;
             this.btnSelect.Text = "Search";
             this.btnSelect.UseVisualStyleBackColor = true;
-            //this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // tabPane1
             // 
@@ -380,7 +380,6 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 3, 25, 13, 53, 4, 51);
             this.dtpStartTime.Size = new System.Drawing.Size(105, 20);
@@ -460,12 +459,13 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
+            this.cmbDbName.CheckItemSelectMode = true;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
-            this.cmbDbName.IsRequired = false;
+            this.cmbDbName.IsRequired = true;
             this.cmbDbName.Location = new System.Drawing.Point(99, 3);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
@@ -484,10 +484,10 @@ namespace ISIA.UI.TREND
             this.cmbDbName.StyleController = this.lcSerachOptions;
             this.cmbDbName.TabIndex = 18;
             this.cmbDbName.ValueMember = "DBID";
-            this.cmbDbName.ItemCheck += new System.EventHandler<DevExpress.XtraEditors.Controls.ItemCheckEventArgs>(this.cmbDbName_ItemCheck);
             // 
             // cmbParameterName
             // 
+            this.cmbParameterName.CheckItemSelectMode = false;
             this.cmbParameterName.ControlID = "cmbParameterName";
             this.cmbParameterName.DescriptionMember = null;
             this.cmbParameterName.DisplayMember = "PARAMETERNAME";
@@ -514,6 +514,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbRuleNo
             // 
+            this.cmbRuleNo.CheckItemSelectMode = false;
             this.cmbRuleNo.ControlID = "cmbRuleNo";
             this.cmbRuleNo.DescriptionMember = null;
             this.cmbRuleNo.DisplayMember = "RULENO";
@@ -540,6 +541,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbRuleName
             // 
+            this.cmbRuleName.CheckItemSelectMode = false;
             this.cmbRuleName.ControlID = "cmbRuleName";
             this.cmbRuleName.DescriptionMember = null;
             this.cmbRuleName.DisplayMember = "RULENAME";
@@ -610,6 +612,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbInstance
             // 
+            this.cmbInstance.CheckItemSelectMode = false;
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
@@ -915,7 +918,7 @@ namespace ISIA.UI.TREND
             this.txtShowCol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtShowCol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.txtShowCol.ControlID = "txtShowCol";
-            this.txtShowCol.EditValue = "5";
+            this.txtShowCol.EditValue = "4";
             this.txtShowCol.IsRequired = false;
             this.txtShowCol.Location = new System.Drawing.Point(106, 0);
             this.txtShowCol.Name = "txtShowCol";
@@ -924,7 +927,7 @@ namespace ISIA.UI.TREND
             this.txtShowCol.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.txtShowCol.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtShowCol.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtShowCol.RepresentativeValue = "5";
+            this.txtShowCol.RepresentativeValue = "4";
             this.txtShowCol.Size = new System.Drawing.Size(50, 20);
             this.txtShowCol.StyleController = this.layoutControl4;
             this.txtShowCol.TabIndex = 4;

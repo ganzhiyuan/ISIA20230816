@@ -35,7 +35,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string M_VALUE { get { return _M_VALUE; } set { _M_VALUE = value; } }
         public string UPDATETIME { get { return _UPDATETIME; } set { _UPDATETIME = value; } }
         public string UPDATEUSER { get { return _UPDATEUSER; } set { _UPDATEUSER = value; } }
-        public string CUSTOM05 { get { return _INSERTTIME; } set { _INSERTTIME = value; } }
+        public string INSERTTIME { get { return _INSERTTIME; } set { _INSERTTIME = value; } }
         public string INSERTUSER { get { return _INSERTUSER; } set { _INSERTUSER = value; } }
         public string SEQUENCES { get { return _SEQUENCES; } set { _SEQUENCES = value; } }
         public string ISALIVE { get { return _ISALIVE; } set { _ISALIVE = value; } }
