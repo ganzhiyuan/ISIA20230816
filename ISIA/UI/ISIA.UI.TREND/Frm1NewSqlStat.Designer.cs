@@ -348,7 +348,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
-            this.cmbDbName.CheckItemSelectMode = false;
+            //this.cmbDbName.CheckItemSelectMode = false;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
