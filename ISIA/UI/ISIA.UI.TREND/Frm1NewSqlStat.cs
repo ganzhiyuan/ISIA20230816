@@ -20,6 +20,7 @@ namespace ISIA.UI.TREND
     {
 
         BizDataClient bs;
+
         public Frm1NewSqlStat()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace ISIA.UI.TREND
                 List<SqlShow> listReturn = new List<SqlShow>();
                 for (int i = 1; i <= 4; i++)//查询4周
                 {
+                    
                     args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
                     args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
                     args.Days = i.ToString();

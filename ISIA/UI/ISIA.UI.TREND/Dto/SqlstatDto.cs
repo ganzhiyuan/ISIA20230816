@@ -20,6 +20,8 @@ namespace ISIA.UI.TREND.Dto
         public string PARAMENT_NAME { get; set; }
         public decimal PARAMENT_VALUE { get; set; }
 
+        public DateTime END_INTERVAL_TIME { get; set; }
+
     }
     public class SqlShowCl
     {

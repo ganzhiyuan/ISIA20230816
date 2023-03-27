@@ -1,5 +1,9 @@
 ﻿
+using DevExpress.Utils.Win;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using ISIA.COMMON;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
@@ -22,7 +26,7 @@ using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
-    public partial class FrmSQLFullTextQueryTrend : DockUIBase1T1
+    public partial class FrmSQLAnalysisBySQL_ID : DockUIBase1T1
     {
 
         #region Feild
@@ -34,23 +38,61 @@ namespace ISIA.UI.TREND
         protected PointF _pEnd;
         private bool bfirst = false;
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
+
+
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
+        string PARAMENT_NAME = null;
+        DateTime stime ;
+        DateTime etime ;
         #endregion
-        public FrmSQLFullTextQueryTrend()
+        public FrmSQLAnalysisBySQL_ID()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SQLFullTextQueryAnalysis");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLAnalysisBySQL_ID");
+
+            tcmbday.Text = "D";
+            tcmbday.Items.Add("D");
+            tcmbday.Items.Add("W");
+            tcmbday.Items.Add("M");
+            /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+            this.dateEnd.DateTime = DateTime.Now;*/
         }
 
         public DataSet LoadData()
         {
-            
             if (dataSet.Tables.Count == 0)
             {
+                
                 dataSet1.Tables.Clear();
-                dataSet = bs.ExecuteDataSet("GetSnap");
-                DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
-                dataSet1.Tables.Add(dt.Copy());
+                PARAMENT_NAME = cboParaName.Text;
+                args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
+                args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.ParameterName = cboParaName.Text;
+
+                dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                
+
+                dataSet1.Tables.Add(dataSet.Tables[0].Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
+                foreach (DataRow row in dataSet1.Tables[0].Rows)
+                {
+                    if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
+                    {
+                        row[PARAMENT_NAME] = -1;
+                    }
+                }
+
+                foreach (DataRow row in dataSet1.Tables[0].Rows)
+                {
+                    if (row[PARAMENT_NAME].ToString() == "-1")
+                    {
+                        row.Delete();
+                    }
+
+                }
+                dataSet1.AcceptChanges();
                 return dataSet;
             }
             else
@@ -59,26 +101,78 @@ namespace ISIA.UI.TREND
                 //dataSet = bs.ExecuteDataSet("GetSnap");
                 //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
                 //dataSet1.Tables.Add(dt.Copy());
-                dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+
+
+                DataRow row1 = dataSet.Tables[0].Rows[0];
+                DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
+
+                PARAMENT_NAME =   row1["PARAMENT_NAME"].ToString();
+                stime  =  (DateTime)row1["END_INTERVAL_TIME"];
+                etime = (DateTime)row2["END_INTERVAL_TIME"];
+
+
+                DataClient tmpDataClient = new DataClient();
+                
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id FROM raw_dba_hist_sqlstat_isfa T
+                    left join raw_dba_hist_sqltext_isfa a
+                    on t.sql_id=a.sql_id and t.dbid=a.dbid
+                    left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
+                        where 1=1 and b.end_interval_time>to_date('{1}','yyyy-MM-dd HH24:mi:ss')
+                        and    b.end_interval_time<=to_date('{2}','yyyy-MM-dd HH24:mi:ss' )  order by b.end_interval_time
+                        ", PARAMENT_NAME, stime, etime);
+
+                dataSet1 = tmpDataClient.SelectData(tmpSql.ToString(), "raw_dba_hist_sqlstat_isfa");
+
                 dataSet1.Tables[0].TableName = "TABLE";
+
+
+                /*dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+                dataSet1.Tables[0].TableName = "TABLE";*/
+                foreach (DataRow row in dataSet1.Tables[0].Rows)
+                {
+                    if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
+                    {
+                        row[PARAMENT_NAME] = -1;
+                    }
+                }
+
+                foreach (DataRow row in dataSet1.Tables[0].Rows)
+                {
+                    if (row[PARAMENT_NAME].ToString() == "-1")
+                    {
+                        row.Delete();
+                    }
+
+                }
+                dataSet1.AcceptChanges();
+
+
                 return dataSet;
             }
             
         }
 
 
-        public void DisplayData(DataSet ds)
+        public void DisplayData(DataSet dataSet)
         {
 
             CreateTeeChart(dataSet1.Tables[0]);
             dataSet.Tables.Clear();
-           
         }
 
         private void CreateTeeChart(DataTable dsTable)
         {
+            chartLayout1.Charts.Clear();
+            chartLayout1.Refresh();
             
-            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
+            
+            DataTable data = new DataTable();
+            data.Columns.Add("PARA_NAME",typeof(String));
+            data.Columns.Add("PARA_VALUE", typeof(Int64));
+            
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["SQL_ID"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -91,29 +185,60 @@ namespace ISIA.UI.TREND
                     }
                 }
             }
+            foreach (DataTable dt in dataSet1.Tables)
+            {
+                if (dt.TableName != "TABLE")
+                {
+                    //data.Rows.Add(dt.TableName.ToString(), dt.Rows.Count);
+                    data.Rows.Add(dt.TableName.ToString(),Convert.ToInt64(dt.Compute("SUM("+ PARAMENT_NAME+")", "")));
+
+                }
+            }
+            
+            data.DefaultView.Sort = "PARA_VALUE DESC";//按Id倒序
+            data = data.DefaultView.ToTable();//返回一个新的DataTable
+
+
+            
+            
             if (dataSet1.Tables.Count > 1)
             {
-
-                foreach (DataTable dt in dataSet1.Tables)
+                for (int i = 0; i < 20; i++)
                 {
-                    if (dt.TableName != "TABLE")
-                    {
-                        Line line = CreateLine(dt);
-                        chartLayout1.Add(dt.TableName).Series.Add(line);
-                        
+                    foreach (DataTable dt in dataSet1.Tables)
+                    { 
+                        if (dt.TableName != "TABLE" && dt.TableName == data.Rows[i]["PARA_NAME"].ToString())
+                        {
+                            Line line = CreateLine(dt);
+                            chartLayout1.Add(dt.TableName).Series.Add(line);
+
+                         }
                     }
+                    
                 }
             }
 
             foreach (TChart chart in chartLayout1.Charts)
             {
-                //chart.Legend.Visible = true;
-                //chart.Legend.LegendStyle = LegendStyles.Series;
+                
+                
+                var markstip = new MarksTip(chart.Chart);
+                chart.Legend.Visible = false;
+                chart.Legend.LegendStyle = LegendStyles.Series;
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
-;
+                chart.Click += Chart_Click;
+;               void Chart_Click(object sender, EventArgs e)
+                {
+                    DataClient tmpDataClient = new DataClient();
+                    string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_isfa T where t.sql_id='{0}' ", chart.Text); 
+                    DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
+                    tableMain1.TableName = "sql";
+
+                    memoEdit1.Text = tableMain1.Rows[0][0].ToString();
+                }
             }
 
             
@@ -121,20 +246,38 @@ namespace ISIA.UI.TREND
         }
 
 
-
         private Line CreateLine(DataTable dstable)
         {
             Line line = new Line();
-           
+
+            if (dstable.Rows.Count < 10)
+            {
+                line.Pointer.Style = PointerStyles.Circle;
+                line.Pointer.Visible = true;
+
+            }
+            else
+            {
+                line.Pointer.Visible = false;
+            }
+
+
             line.DataSource = dstable;
-            line.YValues.DataMember = "PARAMENT_VALUE";
+            //line.YValues.DataMember = "CPU_TIME_TOTAL";
+            line.YValues.DataMember = PARAMENT_NAME;
             line.XValues.DataMember = "END_INTERVAL_TIME";
+            
             line.Legend.Visible = false;
             line.Color = Color.Red;
-            //line.ColorEachLine = true;
+
             //line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
             line.XValues.DateTime = true;
+            line.GetSeriesMark += Line_GetSeriesMark;
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText =  "VALUE :" + $"{dstable.Rows[e.ValueIndex][PARAMENT_NAME]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+            }
             return line;
         }
         /*private void BindData()
@@ -278,7 +421,7 @@ namespace ISIA.UI.TREND
             popupGrid.ShowDialog();
             DataTable dt = popupGrid._DataTable;
 
-            base.OpenUI("SQLQUERYTREND", "TREND", "SQLQUERYTREND", dt);
+            base.OpenUI("SQLANALYSISBYSQL_ID", "TREND", " SQLANALYSISBYSQL_ID", dt);
         }
 
         public override void ExecuteCommand(ArgumentPack arguments)
@@ -475,13 +618,46 @@ namespace ISIA.UI.TREND
 
             try
             {
+
+                if (dataSet.Tables.Count == 0)
+                {
+                    if (string.IsNullOrEmpty(cboParaName.Text))
+                    {
+                        cboParaName.BackColor = Color.Orange;
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(cmbDbName.Text))
+                    {
+                        cmbDbName.BackColor = Color.Orange;
+                        return;
+                    }
+                }
                 //ComboBoxControl.SetCrossLang(this._translator);
-                //if (!base.ValidateUserInput(this.layoutControl1)) return;
+                if (!base.ValidateUserInput(this.layoutControl1)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void tcmbday_EditValueChanged(object sender, EventArgs e)
+        {
+            if (tcmbday.Text == "D")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "W")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "M")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
+                this.dateEnd.DateTime = DateTime.Now;
             }
         }
     }

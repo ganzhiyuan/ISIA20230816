@@ -663,6 +663,16 @@ namespace TAP.UI.MDI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ISIA1 {
+            get {
+                object obj = ResourceManager.GetObject("ISIA1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap light_a_off {
             get {
                 object obj = ResourceManager.GetObject("light_a_off", resourceCulture);

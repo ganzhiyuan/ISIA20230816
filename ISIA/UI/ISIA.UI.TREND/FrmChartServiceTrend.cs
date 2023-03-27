@@ -1,7 +1,5 @@
 ﻿using DevExpress.Charts.Native;
-using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
@@ -73,7 +71,7 @@ namespace ISIA.UI.TREND
         #endregion
 
         #region Initialize
-        private void InitializeControl() { InitializeDate(); this.cmbDbName.Properties.SelectAllItemVisible = false; }
+        private void InitializeControl() { InitializeDate(); }
 
         private void InitializeBackgroundWorker()
         {
@@ -214,7 +212,7 @@ namespace ISIA.UI.TREND
 
                     string path = _ftpRoot + '/' + imageFileName;
 
-                    images.Add(_ftpClient.GetImage(path));
+                    //images.Add(_ftpClient.GetImage(path));
                 }
                 catch (System.Exception ex)
                 {
@@ -515,22 +513,5 @@ namespace ISIA.UI.TREND
 
             #endregion
         }
-
-        private void cmbDbName_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
-        {
-            Form popup = (sender as IPopupControl).PopupWindow as Form;
-            PopupContainerControl container = popup.Controls.OfType<PopupContainerControl>().FirstOrDefault();
-            CheckedListBoxControl listBox = container.Controls.OfType<CheckedListBoxControl>().FirstOrDefault();
-
-            for (int i = 0; i < listBox.Items.Count; i++)
-            {
-                if (i != e.Index)
-                {
-                    listBox.Items[i].CheckState = CheckState.Unchecked;
-                }
-                
-            }
-        }
-
     }
 }

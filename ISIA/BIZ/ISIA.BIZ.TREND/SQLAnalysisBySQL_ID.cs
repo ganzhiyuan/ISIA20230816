@@ -9,27 +9,29 @@ using TAP;
 using TAP.Data.DataBase.Communicators;
 using TAP.Remoting;
 
-namespace ISIA.BIZ.ANALYSIS
+namespace ISIA.BIZ.TREND
 {
-    public class SQLQueryAnalysis : TAP.Remoting.Server.Biz.BizComponentBase
+    public class SQLAnalysisBySQL_ID : TAP.Remoting.Server.Biz.BizComponentBase
     {
 
 
 
-        public void GetSnap()
+        public void GetSnap(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.CPU_TIME_TOTAL,T.sql_id FROM raw_dba_hist_sqlstat_isfa T
+                tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id FROM raw_dba_hist_sqlstat_isfa T
                     left join raw_dba_hist_sqltext_isfa a
                     on t.sql_id=a.sql_id and t.dbid=a.dbid
                     left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
-                        where 1=1 and b.end_interval_time>to_date('2023-03-20 09:55:16','yyyy-MM-dd HH24:mi:ss')
-                        and    b.end_interval_time<=to_date('2023-03-24 09:55:16','yyyy-MM-dd HH24:mi:ss' )  order by b.end_interval_time
-                        ");
+                        where 1=1 and b.end_interval_time>to_date('{1}','yyyy-MM-dd HH24:mi:ss')
+                        and    b.end_interval_time<=to_date('{2}','yyyy-MM-dd HH24:mi:ss' ) 
+                        and T.dbid in ('{3}')   
+                        order by b.end_interval_time
+                        ", arguments.ParameterName , arguments.StartTimeKey, arguments.EndTimeKey, arguments.DbId);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -44,7 +46,6 @@ namespace ISIA.BIZ.ANALYSIS
                 throw ex;
             }
         }
-
 
 
         public void GetSqlstat_isfa()

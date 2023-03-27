@@ -66,13 +66,13 @@ namespace ISIA.UI.ANALYSIS
                 if (tmpstr == "_hashTable")
                 {
                     Hashtable hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
-                    DataSet ds = (DataSet)hashtable["DS"];
+                    DataTable tmpdt = (DataTable)hashtable["dt"];
                     argument = new AwrArgsPack();
                     argument.WorkloadSqlParm = (string)hashtable["workloadParm"];
                     argument.StartTime = (string)hashtable["startTime"];
                     argument.EndTime = (string)hashtable["endTime"];
                     argument.DBName = (string)hashtable["DbName"];
-                    DisplayChart(ds);
+                    DisplayChart(tmpdt.DataSet);
                 }
             }
         }

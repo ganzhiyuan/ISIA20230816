@@ -21,6 +21,8 @@ namespace ISIA.UI.TREND
         public DataTable _DataTable { get; set; }
         string _SeleSeriesName;
         string _ValueName;
+        public bool linkage  { get; set; }
+
         public PopupGrid()
         {
             InitializeComponent();
@@ -93,6 +95,8 @@ namespace ISIA.UI.TREND
             //defectmapanalysis ??..
 
             //OpenUI("");
+
+            linkage = true;
             this.Close();
             
         }

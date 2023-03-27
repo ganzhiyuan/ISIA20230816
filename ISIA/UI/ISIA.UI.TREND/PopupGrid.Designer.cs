@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.boxPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defectMapAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.defectMapAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -51,7 +52,7 @@
             this.panelControl1.LookAndFeel.SkinName = "Office 2013";
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(353, 226);
+            this.panelControl1.Size = new System.Drawing.Size(337, 219);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl1
@@ -63,7 +64,7 @@
             this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(349, 222);
+            this.gridControl1.Size = new System.Drawing.Size(333, 215);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -71,31 +72,39 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.boxPlotToolStripMenuItem,
             this.excelExportToolStripMenuItem,
             this.defectMapAnalysisToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 120);
             // 
             // boxPlotToolStripMenuItem
             // 
             this.boxPlotToolStripMenuItem.Name = "boxPlotToolStripMenuItem";
-            this.boxPlotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.boxPlotToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.boxPlotToolStripMenuItem.Text = "BoxPlot";
             this.boxPlotToolStripMenuItem.Click += new System.EventHandler(this.boxPlotToolStripMenuItem_Click);
             // 
             // excelExportToolStripMenuItem
             // 
             this.excelExportToolStripMenuItem.Name = "excelExportToolStripMenuItem";
-            this.excelExportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excelExportToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.excelExportToolStripMenuItem.Text = "Excel Export";
+            // 
+            // defectMapAnalysisToolStripMenuItem
+            // 
+            this.defectMapAnalysisToolStripMenuItem.Name = "defectMapAnalysisToolStripMenuItem";
+            this.defectMapAnalysisToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.defectMapAnalysisToolStripMenuItem.Text = "LinkAge";
+            this.defectMapAnalysisToolStripMenuItem.Click += new System.EventHandler(this.defectMapAnalysisToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // gridView1
@@ -111,26 +120,19 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // defectMapAnalysisToolStripMenuItem
-            // 
-            this.defectMapAnalysisToolStripMenuItem.Name = "defectMapAnalysisToolStripMenuItem";
-            this.defectMapAnalysisToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.defectMapAnalysisToolStripMenuItem.Text = "Defect Map Analysis";
-            this.defectMapAnalysisToolStripMenuItem.Click += new System.EventHandler(this.defectMapAnalysisToolStripMenuItem_Click);
-            // 
             // PopupGrid
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 226);
+            this.ClientSize = new System.Drawing.Size(337, 219);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IconOptions.ShowIcon = false;
             this.LookAndFeel.SkinName = "Office 2013";
             this.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Name = "PopupGrid";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "PointData";
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
