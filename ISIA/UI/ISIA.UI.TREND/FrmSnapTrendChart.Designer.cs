@@ -67,8 +67,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tChart1 = new Steema.TeeChart.TChart();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -112,7 +111,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -1850,21 +1849,7 @@ namespace ISIA.UI.TREND
             this.tChart1.Zoom.Brush.Visible = false;
             //this.tChart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tChart1_MouseDown);
             //this.tChart1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tChart1_MouseUp);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editChartToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 28);
-            // 
-            // editChartToolStripMenuItem
-            // 
-            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
-            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
-            this.editChartToolStripMenuItem.Text = "edit chart";
-            this.editChartToolStripMenuItem.Click += new System.EventHandler(this.editChartToolStripMenuItem_Click_1);
+            
             // 
             // FrmSnapTrendChart
             // 
@@ -1921,7 +1906,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 
