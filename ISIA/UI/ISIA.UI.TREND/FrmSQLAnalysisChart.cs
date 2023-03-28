@@ -136,7 +136,9 @@ namespace ISIA.UI.TREND
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
-;
+                //chart.Panning.Allow = ScrollModes.None;
+                //chart.Zoom.Direction = ZoomDirections.None;
+                chart.Panning.Allow = ScrollModes.None;
             }
 
             
@@ -195,6 +197,7 @@ namespace ISIA.UI.TREND
                     rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     rowDto.END_INTERVAL_TIME = item.END_INTERVAL_TIME;
+                    //rowDto.SNAP_ID = item.SNAP_ID;
                     foreach (PropertyInfo para in proInfo)
                     {
                         if (s == para.Name)
@@ -240,71 +243,80 @@ namespace ISIA.UI.TREND
 
         private void SerachDataPoint(PointF pStart, PointF pEnd , TChart chart)
         {
-            snaplist = new List<SnapshotDto>();
-            float minX;
-            float minY;
-            float maxX;
-            float maxY;
-            if (pStart.X < pEnd.X)
-            {
-                minX = pStart.X;
-                maxX = pEnd.X;
-            }
-            else
-            {
-                minX = pEnd.X;
-                maxX = pStart.X;
-            }
-            if (pStart.Y < pEnd.Y)
-            {
-                minY = pStart.Y;
-                maxY = pEnd.Y;
-            }
-            else
-            {
-                minY = pEnd.Y;
-                maxY = pStart.Y;
-            }
 
-            foreach (Line line in chart.Chart.Series)
+            try
             {
-                for (int i = 0; i < line.Count; i++)
+                snaplist = new List<SnapshotDto>();
+                float minX;
+                float minY;
+                float maxX;
+                float maxY;
+                if (pStart.X < pEnd.X)
                 {
-                    if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
+                    minX = pStart.X;
+                    maxX = pEnd.X;
+                }
+                else
+                {
+                    minX = pEnd.X;
+                    maxX = pStart.X;
+                }
+                if (pStart.Y < pEnd.Y)
+                {
+                    minY = pStart.Y;
+                    maxY = pEnd.Y;
+                }
+                else
+                {
+                    minY = pEnd.Y;
+                    maxY = pStart.Y;
+                }
+
+                foreach (Line line in chart.Chart.Series)
+                {
+                    for (int i = 0; i < line.Count; i++)
                     {
-                        SnapshotDto dto = new SnapshotDto();
-                        //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
-                        dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
-                        //double value = line[i].Y;//VALUE
-                        //dto.Value = line[i].Y.ToString();//value
-                        dto.PARAMENT_VALUE = line[i].Y.ToString();//value
-                        //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+                        if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
+                        {
+                            SnapshotDto dto = new SnapshotDto();
+                            //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                            dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
+                            //double value = line[i].Y;//VALUE
+                            //dto.Value = line[i].Y.ToString();//value
+                            dto.PARAMENT_VALUE = line[i].Y.ToString();//value
+                                                                      //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
 
-                        DataTable dt1 = line.DataSource as DataTable;
-                        //dto.SNAP_ID = dt1.Rows[i + 1]["SNAP_ID"].ToString();//SQL_ID
-                        dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i + 1]["END_INTERVAL_TIME"];
-                        snaplist.Add(dto);
+                            DataTable dt1 = line.DataSource as DataTable;
+                            //dto.SNAP_ID = dt1.Rows[i + 1]["SNAP_ID"].ToString();//SQL_ID
+                            dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i + 1]["END_INTERVAL_TIME"];
+                            snaplist.Add(dto);
+                        }
                     }
                 }
+                if (!snaplist.Any())
+                {
+                    return;
+                }
+
+
+                this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
+
+                PopupGrid popupGrid = new PopupGrid(this._DataTable);
+                popupGrid.StartPosition = FormStartPosition.CenterScreen;
+                popupGrid.ShowDialog();
+                DataTable dt = popupGrid._DataTable;
+
+                if (popupGrid.linkage == true)
+                {
+                    base.OpenUI("SQLANALYSISBYSQL_ID", "TREND", "SQLANALYSISBYSQL_ID", dt);
+                }
             }
-            if (!snaplist.Any())
+            catch 
             {
-                return;
+                
             }
-
-
-            this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
-
-            PopupGrid popupGrid = new PopupGrid(this._DataTable);
-            popupGrid.StartPosition = FormStartPosition.CenterScreen;
-            popupGrid.ShowDialog();
-            DataTable dt = popupGrid._DataTable;
-
-            if (popupGrid.linkage == true)
-            {
-                base.OpenUI("SQLANALYSISBYSQL_ID", "TREND", "SQLANALYSISBYSQL_ID", dt);
-            }
+            
             
         }
 

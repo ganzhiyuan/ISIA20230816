@@ -143,14 +143,14 @@ namespace ISIA.UI.TREND
                     if (line.CalcXPos(i)>=minX&&line.CalcXPos(i)<maxX&&line.CalcYPos(i)>=minY&&line.CalcYPos(i)<=maxY)
                     {
                         SnapshotDto dto = new SnapshotDto();
-                        dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                        //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
                         //double value = line[i].Y;//VALUE
-                        dto.Value = line[i].Y.ToString();//value
+                        dto.PARAMENT_VALUE = line[i].Y.ToString();//value
                         int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
                         
                         DataTable dt1 = line.DataSource as DataTable;
-                        dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
+                        //dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
                         snaplist.Add(dto);
                     }
                 }

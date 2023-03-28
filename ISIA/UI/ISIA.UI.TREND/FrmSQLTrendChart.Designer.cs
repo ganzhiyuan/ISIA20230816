@@ -30,7 +30,7 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLTrendChart));
-            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
+            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -531,6 +531,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
+            this.cmbDbName.CheckItemSelectMode = false;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -558,6 +559,7 @@ namespace ISIA.UI.TREND
             // 
             // cboParaName
             // 
+            this.cboParaName.CheckItemSelectMode = false;
             this.cboParaName.ControlID = "tCheckComboBoxParmNames";
             this.cboParaName.DescriptionMember = null;
             this.cboParaName.DisplayMember = null;
@@ -1387,6 +1389,7 @@ namespace ISIA.UI.TREND
             this.tChart1.Axes.Top.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Axes.Top.Title.Shadow.Brush.Solid = true;
             this.tChart1.Axes.Top.Title.Shadow.Brush.Visible = true;
+            this.tChart1.Cursor = System.Windows.Forms.Cursors.Default;
             this.tChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // 
@@ -1645,11 +1648,11 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins2.Bottom = 100;
-            margins2.Left = 100;
-            margins2.Right = 100;
-            margins2.Top = 100;
-            this.tChart1.Printer.Margins = margins2;
+            margins1.Bottom = 100;
+            margins1.Left = 100;
+            margins1.Right = 100;
+            margins1.Top = 100;
+            this.tChart1.Printer.Margins = margins1;
             this.tChart1.Size = new System.Drawing.Size(1253, 812);
             // 
             // 
