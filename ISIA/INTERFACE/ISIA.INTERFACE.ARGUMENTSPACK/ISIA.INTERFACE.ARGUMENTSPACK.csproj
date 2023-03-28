@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassicUIArgsPack.cs" />
+    <Compile Include="CodeManagementArgsPack.cs" />
     <Compile Include="CommonArgsPack.cs" />
     <Compile Include="CustomizedFieldArgsPack.cs" />
     <Compile Include="ChartServiceArgsPack.cs" />

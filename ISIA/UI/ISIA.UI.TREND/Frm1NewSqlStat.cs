@@ -117,6 +117,18 @@ namespace ISIA.UI.TREND
                 foreach (var item in listCL)
                 {
                     item.AVG=Math.Round((item.week1+item.week2+item.week3+item.week4)/4,1);
+                    if (item.AVG<1)
+                    {
+                        item.SqlType = "NEW SQL";
+                    }
+                    else if (Convert.ToDecimal((int)(item.AVG))==item.AVG)
+                    {
+                        item.SqlType = "USUAL";
+                    }
+                    else
+                    {
+                        item.SqlType = "UNUSUAL";
+                    }
                 }
 
                 DataSet dt = DataTableExtend.ConvertToDataSet<SqlShowCl>(listCL);

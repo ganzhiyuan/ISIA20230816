@@ -159,6 +159,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmDataBaseManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDataBaseManagement.Designer.cs">
+      <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSpecManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,11 +177,11 @@
     <Compile Include="FrmParameterSpecManagement.Designer.cs">
       <DependentUpon>FrmParameterSpecManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDataBaseManagement.cs">
+    <Compile Include="FrmCodeManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDataBaseManagement.Designer.cs">
-      <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
+    <Compile Include="FrmCodeManagement.Designer.cs">
+      <DependentUpon>FrmCodeManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmDataBaseManagementCopy.cs">
       <SubType>Form</SubType>
@@ -213,14 +219,17 @@
     <EmbeddedResource Include="FrmAdd.resx">
       <DependentUpon>FrmAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmDataBaseManagement.resx">
+      <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSpecManagement.resx">
       <DependentUpon>FrmSpecManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmParameterSpecManagement.resx">
       <DependentUpon>FrmParameterSpecManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDataBaseManagement.resx">
-      <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCodeManagement.resx">
+      <DependentUpon>FrmCodeManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDataBaseManagementCopy.resx">
       <DependentUpon>FrmDataBaseManagementCopy.cs</DependentUpon>

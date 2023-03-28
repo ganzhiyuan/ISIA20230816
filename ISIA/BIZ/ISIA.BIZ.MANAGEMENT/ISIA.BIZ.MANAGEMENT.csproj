@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeManagement.cs" />
     <Compile Include="ParameterSpecManagement.cs" />
     <Compile Include="SpecManagement.cs" />
     <Compile Include="DataBaseManagement.cs" />

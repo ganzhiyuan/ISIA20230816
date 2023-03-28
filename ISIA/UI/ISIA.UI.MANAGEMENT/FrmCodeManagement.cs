@@ -16,19 +16,19 @@ using TAP.UI;
 
 namespace ISIA.UI.MANAGEMENT
 {
-    public partial class FrmDataBaseManagement : DockUIBase1T1
+    public partial class FrmCodeManagement : DockUIBase1T1
     {
         #region Feild
         BizDataClient bs = null;
-        CodeManagementArgsPack args =null;
+        DataBaseManagementArgsPack args =null;
 
         DataSet ds = new DataSet();
 
         #endregion
-        public FrmDataBaseManagement()
+        public FrmCodeManagement()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.CodeManagement");
+            bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.DataBaseManagement");
             //dateStart.DateTime = DateTime.Now.AddDays(-1);
             //dateEnd.DateTime = DateTime.Now;
             //dtStart.DateTime = DateTime.Now.AddDays(-1);
@@ -38,11 +38,11 @@ namespace ISIA.UI.MANAGEMENT
         public DataSet LoadData()
         {
 
-            args = new CodeManagementArgsPack();
-            args.DBID = txtMainDBID.Text;
-            args.DBNAME = txtMainDBNAME.Text;
-            args.DBLINKNAME = txtMainDBLINKNAME.Text;
-            args.SERVICENAME = txtMainSERVICENAME.Text;
+            args = new DataBaseManagementArgsPack();
+            args.CATEGORY = txtMainCategory.Text;
+            args.CUSTOM01 = txtMainCustom.Text;
+            args.NAME = txtMainName.Text;
+            args.SUBCATEGORY = txtMainSub.Text;
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
 
             return ds;
@@ -113,53 +113,42 @@ namespace ISIA.UI.MANAGEMENT
 
         private void txtSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtDBID.Text)|| txtDBID.Text=="0")
+            if (string.IsNullOrEmpty(txtCATEGORY.Text))
             {
-                txtDBID.BackColor = Color.Orange;
+                txtCATEGORY.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtDBNAME.Text))
+            if (string.IsNullOrEmpty(txtSUBCATEGORY.Text))
             {
-                txtDBNAME.BackColor = Color.Orange;
+                txtSUBCATEGORY.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtDBLINKNAME.Text))
+            if (string.IsNullOrEmpty(txtName.Text))
             {
-                txtDBLINKNAME.BackColor = Color.Orange;
+                txtName.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtSERVICENAME.Text))
+            if (string.IsNullOrEmpty(txtCustome.Text))
             {
-                txtSERVICENAME.BackColor = Color.Orange;
+                txtCustome.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtIPADDRESS.Text))
-            {
-                txtIPADDRESS.BackColor = Color.Orange;
-                return;
-            }
-            args = new CodeManagementArgsPack();
-            args.DBID = txtDBID.Text;
-            args.SERVICENAME = txtSERVICENAME.Text;
+            args = new DataBaseManagementArgsPack();
+            args.CATEGORY = txtCATEGORY.Text;
+            args.CUSTOM01 = txtCustome.Text;
             args.DESCRIPTION = txtDESCRIPTION.Text;
-            args.DBLINKNAME = txtDBLINKNAME.Text;
-            args.IPADDRESS = txtIPADDRESS.Text;
-            args.DBNAME = txtDBNAME.Text;
-            args.SERVICENAME = txtSERVICENAME.Text;
-            args.INSTANTCNT = Convert.ToDecimal(txtINSTANTCNT.EditValue);
-            args.SEQUENCES = Convert.ToDecimal(txtSEQUENCES.Text);
+            args.NAME = txtName.Text;
+            args.SEQUENCES = txtSEQUENCES.Text;
+            args.SUBCATEGORY = txtSUBCATEGORY.Text;
+            args.USED= rdoUsed.Properties.Items[rdoUsed.SelectedIndex].Value.ToString(); 
             args.ISALIVE= rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
             if (dst==null||dst.Tables==null||dst.Tables[0].Rows.Count==0)
             {
-                args.INSERTTIME = DateTime.Now.ToString("yyyyMMddHHmmss");
-                args.INSERTUSER= TAP.UI.InfoBase._USER_INFO.Name; 
                 int i = bs.ExecuteModify("SaveTCode", args.getPack());
             }
             else
             {
-                args.UPDATETIME = DateTime.Now.ToString("yyyyMMddHHmmss");
-                args.UPDATEUSER= TAP.UI.InfoBase._USER_INFO.Name; 
                 int i = bs.ExecuteModify("UpdateTcode", args.getPack());
             }
 
@@ -172,28 +161,21 @@ namespace ISIA.UI.MANAGEMENT
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) as DataRow;
             if (dr!=null)
             {
-                args.DBID = txtDBID.Text;
-                args.SERVICENAME = txtSERVICENAME.Text;
-                args.DESCRIPTION = txtDESCRIPTION.Text;
-                args.DBLINKNAME = txtDBLINKNAME.Text;
-                args.IPADDRESS = txtIPADDRESS.Text;
-                args.DBNAME = txtDBNAME.Text;
-                args.SERVICENAME = txtSERVICENAME.Text;
-                args.INSTANTCNT = Convert.ToDecimal(txtINSTANTCNT.EditValue);
-                args.SEQUENCES = Convert.ToDecimal(txtSEQUENCES.Text);
-                args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
-
                 tabPane1.SelectedPage = tabNavigationPage2;
-                txtDBID.Text = dr["DBID"].ToString();
-                txtSERVICENAME.Text = dr["SERVICENAME"].ToString();
+                txtCATEGORY.Text = dr["CATEGORY"].ToString();
+                txtCustome.Text = dr["CUSTOM01"].ToString();
                 txtDESCRIPTION.Text= dr["DESCRIPTION"].ToString();
-                txtDBLINKNAME.Text= dr["DBLINKNAME"].ToString();
-                txtIPADDRESS.Text = dr["IPADDRESS"].ToString();
-                txtDBNAME.Text = dr["DBNAME"].ToString();
-                txtSERVICENAME.Text = dr["SERVICENAME"].ToString();
-                txtINSTANTCNT.Text = dr["INSTANTCNT"].ToString();
+                txtName.Text= dr["NAME"].ToString();
                 txtSEQUENCES.Text = dr["SEQUENCES"].ToString();
-
+                txtSUBCATEGORY.Text = dr["SUBCATEGORY"].ToString();
+                if (dr["USED"].ToString()=="YES")
+                {
+                    rdoUsed.SelectedIndex = 0;
+                }
+                else
+                {
+                    rdoUsed.SelectedIndex = 1;
+                }
                 if (dr["ISALIVE"].ToString() == "YES")
                 {
                     rdoIsalive.SelectedIndex = 0;
@@ -222,7 +204,7 @@ namespace ISIA.UI.MANAGEMENT
                     DataRow dr = gridView1.GetDataRow(i[0]) as DataRow;
                     if (dr != null)
                     {
-                        args = new CodeManagementArgsPack();
+                        args = new DataBaseManagementArgsPack();
                         args.ROWID = dr["ROWID"].ToString();
                         bs.ExecuteModify("DelteTCODE", args.getPack());
                     }

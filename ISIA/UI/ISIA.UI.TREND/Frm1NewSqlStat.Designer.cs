@@ -32,10 +32,6 @@ namespace ISIA.UI.TREND
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm1NewSqlStat));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.colAvg = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
@@ -67,6 +63,7 @@ namespace ISIA.UI.TREND
             this.colWeek2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWeek3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWeek4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSqlType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -537,37 +534,18 @@ namespace ISIA.UI.TREND
             this.colWeek2,
             this.colWeek3,
             this.colWeek4,
-            this.colAvg});
+            this.colAvg,
+            this.colSqlType});
             gridFormatRule1.Column = this.colAvg;
             gridFormatRule1.ColumnApplyTo = this.colAvg;
-            gridFormatRule1.Name = "Format0";
-            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.YellowGreen;
+            gridFormatRule1.Name = "Format2";
+            formatConditionRuleValue1.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
             formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Greater;
-            formatConditionRuleValue1.Value1 = 5;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue1.Value1 = 1;
             gridFormatRule1.Rule = formatConditionRuleValue1;
-            gridFormatRule2.Column = this.colAvg;
-            gridFormatRule2.ColumnApplyTo = this.colAvg;
-            gridFormatRule2.Name = "Format1";
-            formatConditionRuleValue2.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
-            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.DeepSkyBlue;
-            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Between;
-            formatConditionRuleValue2.Value1 = 2;
-            formatConditionRuleValue2.Value2 = 5;
-            gridFormatRule2.Rule = formatConditionRuleValue2;
-            gridFormatRule3.Column = this.colAvg;
-            gridFormatRule3.ColumnApplyTo = this.colAvg;
-            gridFormatRule3.Name = "Format2";
-            formatConditionRuleValue3.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
-            formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.Red;
-            formatConditionRuleValue3.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Less;
-            formatConditionRuleValue3.Value1 = 2;
-            gridFormatRule3.Rule = formatConditionRuleValue3;
             this.gridView1.FormatRules.Add(gridFormatRule1);
-            this.gridView1.FormatRules.Add(gridFormatRule2);
-            this.gridView1.FormatRules.Add(gridFormatRule3);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -614,6 +592,14 @@ namespace ISIA.UI.TREND
             this.colWeek4.Name = "colWeek4";
             this.colWeek4.Visible = true;
             this.colWeek4.VisibleIndex = 4;
+            // 
+            // colSqlType
+            // 
+            this.colSqlType.Caption = "SqlType";
+            this.colSqlType.FieldName = "SqlType";
+            this.colSqlType.Name = "colSqlType";
+            this.colSqlType.Visible = true;
+            this.colSqlType.VisibleIndex = 6;
             // 
             // Frm1NewSqlStat
             // 
@@ -695,5 +681,6 @@ namespace ISIA.UI.TREND
         private TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraGrid.Columns.GridColumn colSqlType;
     }
 }

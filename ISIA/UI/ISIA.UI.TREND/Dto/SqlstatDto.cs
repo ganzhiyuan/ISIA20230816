@@ -31,6 +31,7 @@ namespace ISIA.UI.TREND.Dto
         public decimal week3 { get; set; }
         public decimal week4 { get; set; }
         public decimal AVG { get; set; }
+        public string SqlType { get; set; }
 
     }
 
