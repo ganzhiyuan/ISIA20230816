@@ -20,6 +20,8 @@ namespace ISIA.UI.ADMINISTRATOE
         public FrmGroupUserManagement()
         {
             InitializeComponent();
+            int temp = Convert.ToInt32(panelControl1.Height * 0.48);
+            flowLayoutPanel2.Height = temp;
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.GroupUserManagement");
             InitializeGroupList();
             InitializecboUserColumn();
