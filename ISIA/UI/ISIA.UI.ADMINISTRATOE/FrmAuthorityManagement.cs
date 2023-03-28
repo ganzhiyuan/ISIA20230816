@@ -31,6 +31,9 @@ namespace ISIA.UI.ADMINISTRATOE
             InitializeGroupList();
             InitializeUIGroup();
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.AuthorityManagement");
+
+            int temp = Convert.ToInt32(panelControl2.Height * 0.48);
+            flowLayoutPanel2.Height = temp;
         }
 
         #region Feild     
@@ -128,10 +131,11 @@ namespace ISIA.UI.ADMINISTRATOE
             treeList1.KeyFieldName = "CID";
             treeList1.ParentFieldName = "PID";
             treeList1.DataSource = listDataAll;
+            var a =DataTableExtend.ConvertToDataSet<treeListInfo>(listDataAll);
             if (listDataAll!=null)
             {
                 treeList1.Columns[0].Visible = false;
-                treeList1.Columns[2].Visible = false;
+                treeList1.Columns[1].Visible = false;
                 treeList1.Columns[3].Visible = false;
                 treeList1.Columns[4].Visible = false;
             }
@@ -145,7 +149,7 @@ namespace ISIA.UI.ADMINISTRATOE
             if (listTe!=null)
             {
                 treeList2.Columns[0].Visible = false;
-                treeList2.Columns[2].Visible = false;
+                treeList2.Columns[1].Visible = false;
                 treeList2.Columns[3].Visible = false;
                 treeList2.Columns[4].Visible = false;
             }
@@ -163,7 +167,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 return null;
             }
             List<string> listTm = UserAllUI.Select(x => x.UI).ToList();
-            List<treeListInfo> listP = listDataAll.Where(x => listTm.Contains(x.MAINMENU)||x.UI!="0").ToList();
+            List<treeListInfo> listP = listDataAll.Where(x => listTm.Contains(x.NAME)||x.UI!="0").ToList();
 
             var parentIDList = listP.Where(x => x.PID == 0).Select(x => x.CID).ToList();//一级的CID
            
@@ -193,7 +197,7 @@ namespace ISIA.UI.ADMINISTRATOE
                
                 return null;
             }
-            List<string> listTm = list.Where(x => x.UI == "0").Select(x => x.MAINMENU).ToList();
+            List<string> listTm = list.Where(x => x.UI == "0").Select(x => x.NAME).ToList();
             foreach (TreeListNode node in treeList.Nodes)
             {
                 foreach (TreeListNode item in node.Nodes)
@@ -203,7 +207,7 @@ namespace ISIA.UI.ADMINISTRATOE
                         var drRow = treeList.GetDataRecordByNode(child);
                         if (drRow != null)
                         {
-                            string menuName = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).MAINMENU;
+                            string menuName = ((ISIA.UI.ADMINISTRATOE.FrmAuthorityManagement.treeListInfo)drRow).NAME;
                             if (listTm.Contains(menuName))
                             {
                                 child.CheckState = CheckState.Checked;
@@ -249,16 +253,22 @@ namespace ISIA.UI.ADMINISTRATOE
 
             //取出来一二级，一级MAINMENU 二级 NAME  三级（UI表  父级-SUBMENU 对应二级NAME字段）
             DataClient tmpDataClient = new DataClient();
-            string tmpMainMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
-            DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
-            List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retVal1);
+            string tmpMainMenuSql = "SELECT * FROM tapstbmainmenu WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
+            DataTable retValMain = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
+
+            string tmpSubMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
+            DataTable retVal1 = tmpDataClient.SelectData(tmpSubMenuSql, "SUBMENU").Tables[0];
+
+
+            List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retValMain);
             //取出一级名称
-            List<string> listStr = listMENU.Select(x => x.MAINMENU).Distinct().ToList();
+            List<string> listStr = listMENU.Select(x => x.NAME).Distinct().ToList();
             foreach (var item in listStr)
             {
                 treeListInfo info = new treeListInfo();
                 info.CID = count++;
                 info.MAINMENU = item;
+                info.NAME = item;
                 info.typ = "0";
                 listData.Add(info);
             }
@@ -268,9 +278,10 @@ namespace ISIA.UI.ADMINISTRATOE
             {
                 treeListInfo info = new treeListInfo();
                 info.CID = count++;
-                info.MAINMENU = item.NAME;
+                info.MAINMENU = item.MAINMENU;
+                info.NAME = item.NAME;
                 info.typ = "1";
-                var pItem = listData.FirstOrDefault(x => x.MAINMENU == item.MAINMENU);
+                var pItem = listData.FirstOrDefault(x => x.NAME == item.MAINMENU);
                 if (pItem!=null)
                 {
                     info.PID = pItem.CID;
@@ -283,11 +294,12 @@ namespace ISIA.UI.ADMINISTRATOE
             {
                 treeListInfo info = new treeListInfo();
                 info.CID = count++;
-                info.MAINMENU = item.NAME;
+                info.MAINMENU = item.MAINMENU;
                 info.SUBMENU = item.SUBMENU;
+                info.NAME = item.NAME;
                 info.UI = "0";
                 info.typ = "2";
-                var pItem = listData.FirstOrDefault(x => x.MAINMENU == item.SUBMENU&&x.PID!=0);
+                var pItem = listData.FirstOrDefault(x => x.NAME == item.SUBMENU&&x.PID!=0);
                 if (pItem != null)
                     info.PID = pItem.CID;
                 listData.Add(info);
@@ -317,7 +329,7 @@ namespace ISIA.UI.ADMINISTRATOE
             if (list != null)
             {
                 treeList2.Columns[0].Visible = false;
-                treeList2.Columns[2].Visible = false;
+                treeList2.Columns[1].Visible = false;
                 treeList2.Columns[3].Visible = false;
                 treeList2.Columns[4].Visible = false;
 
@@ -534,10 +546,11 @@ namespace ISIA.UI.ADMINISTRATOE
 
                 DataTable dtUI = new DataTable();
                 dtUI.Columns.Add("MAINMENU", typeof(string));
+                dtUI.Columns.Add("NAME", typeof(string));
                 dtUI.Columns.Add("UI", typeof(string));
                 foreach (var item in list)
                 {
-                    dtUI.Rows.Add(item.SUBMENU, item.MAINMENU);
+                    dtUI.Rows.Add(item.MAINMENU, item.SUBMENU, item.NAME);
                 }
                 string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.UPDATE, EnumGeneralTemplateType.CONFIRM, "");
                 DialogResult dialog = TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.CONFIRM, tmpMessage);
@@ -573,7 +586,7 @@ namespace ISIA.UI.ADMINISTRATOE
                     if (listTe != null)
                     {
                         treeList2.Columns[0].Visible = false;
-                        treeList2.Columns[2].Visible = false;
+                        treeList2.Columns[1].Visible = false;
                         treeList2.Columns[3].Visible = false;
                         treeList2.Columns[4].Visible = false;
                     }
@@ -615,7 +628,7 @@ namespace ISIA.UI.ADMINISTRATOE
                         args.Name = addname;
                         args.MemberType = addmembertype;
                         args.MDI = MDI;
-                        args.Custom01 = item.MAINMENU;
+                        args.Custom01 = item.NAME;
                         int DeleteCount = bs.ExecuteModify("DeleteAuthority", args.getPack());
                     }
                     
@@ -630,7 +643,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 if (list2 != null)
                 {
                     treeList2.Columns[0].Visible = false;
-                    treeList2.Columns[2].Visible = false;
+                    treeList2.Columns[1].Visible = false;
                     treeList2.Columns[3].Visible = false;
                     treeList2.Columns[4].Visible = false;
 
