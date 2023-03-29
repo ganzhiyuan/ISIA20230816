@@ -1,4 +1,5 @@
 ﻿
+using DevExpress.XtraEditors.Controls;
 using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
@@ -20,6 +21,8 @@ using System.Windows.Forms;
 using TAP;
 using TAP.Data.Client;
 using TAP.UI;
+using TAP.UIControls.BasicControlsDEV;
+using EnumDataObject = TAP.UI.EnumDataObject;
 
 namespace ISIA.UI.TREND
 {
@@ -37,6 +40,8 @@ namespace ISIA.UI.TREND
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
         AwrCommonArgsPack args = new AwrCommonArgsPack();
+
+        ComboBoxControl CBC = new ComboBoxControl();
         #endregion
         public FrmSQLAnalysisChart()
         {
@@ -54,8 +59,8 @@ namespace ISIA.UI.TREND
         public DataSet LoadData()
         {
             
-            if (dataSet.Tables.Count == 0)
-            {
+            /*if (dataSet.Tables.Count == 0)
+            {*/
                 dataSet1.Tables.Clear();
                 args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
                 args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
@@ -65,6 +70,11 @@ namespace ISIA.UI.TREND
 
                 List<string> itemList = cboParaName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return dataSet = null;
+                }
+
                 DataTable dataTable = ConvertDTToListRef(dataSet.Tables[0]);
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
@@ -74,7 +84,7 @@ namespace ISIA.UI.TREND
                 dataSet1.Tables.Add(dt.Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
                 return dataSet;
-            }
+            /*}
             else
             {
                 dataSet1.Tables.Clear();
@@ -84,7 +94,7 @@ namespace ISIA.UI.TREND
                 dataSet1.Tables.Add(dataSet.Tables[0].Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
                 return dataSet;
-            }
+            }*/
             
         }
 
@@ -194,10 +204,10 @@ namespace ISIA.UI.TREND
                 {
                     SqlStatRowDto rowDto = new SqlStatRowDto();
                     rowDto.DBID = item.DBID;
-                    rowDto.SQL_ID = item.SQL_ID;
+                    //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     rowDto.END_INTERVAL_TIME = item.END_INTERVAL_TIME;
-                    //rowDto.SNAP_ID = item.SNAP_ID;
+                    rowDto.SNAP_ID = item.SNAP_ID;
                     foreach (PropertyInfo para in proInfo)
                     {
                         if (s == para.Name)
@@ -283,13 +293,14 @@ namespace ISIA.UI.TREND
                             dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
                             //double value = line[i].Y;//VALUE
                             //dto.Value = line[i].Y.ToString();//value
-                            dto.PARAMENT_VALUE = line[i].Y.ToString();//value
-                                                                      //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+                            dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
+                            //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
 
                             DataTable dt1 = line.DataSource as DataTable;
-                            //dto.SNAP_ID = dt1.Rows[i + 1]["SNAP_ID"].ToString();//SQL_ID
-                            dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i + 1]["END_INTERVAL_TIME"];
+                            dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
+                            dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
+                            dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
                             snaplist.Add(dto);
                         }
                     }
@@ -309,7 +320,7 @@ namespace ISIA.UI.TREND
 
                 if (popupGrid.linkage == true)
                 {
-                    base.OpenUI("SQLANALYSISBYSQL_ID", "TREND", "SQLANALYSISBYSQL_ID", dt);
+                    base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", "SQLANALYSISBYSQL_ID", dt);
                 }
             }
             catch 
@@ -392,7 +403,30 @@ namespace ISIA.UI.TREND
                     //tRadWafer.Checked = true;
 
                     tmpdt = (DataTable)arguments["_dataTable"].ArgumentValue;
+
                     dataSet.Tables.Add(tmpdt.Copy());
+
+                    List<SqlShow> list = DataTableExtend.GetList<SqlShow>(tmpdt);
+                    List<string> a = list.Select(x => x.PARAMENT_NAME).Distinct().ToList();
+                    string[] b = a.ToArray();
+                    string para = string.Join(",",b);
+
+                    DataRow row1 = dataSet.Tables[0].Rows[0];
+                    DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
+
+                    
+
+                    SelectedComboBox(cboParaName, para);
+                    SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
+                    dateStart.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
+                    dateEnd.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
+
+                    /*cmbDbName.SelectedText = row1["PARAMENT_NAME"].ToString();
+                    dateStart.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
+                    dateEnd.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
+                    cmbDbName.EditValue = row1["DBID"];*/
+                    //args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
+                    //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
 
 
                     //if (tmpdt.Rows.Count > 0)
@@ -511,6 +545,9 @@ namespace ISIA.UI.TREND
 
         private void tbnSeach_Click(object sender, EventArgs e)
         {
+            
+            
+
 
             try
             {
@@ -556,5 +593,54 @@ namespace ISIA.UI.TREND
                 this.dateEnd.DateTime = DateTime.Now;
             }
         }
+
+
+        
+
+        public void SelectedDBComboBox(TCheckComboBox ComboBox, string str)
+        {
+            ComboBox.Setting();
+            if (str == "")
+            {
+                ComboBox.CheckAll();
+                return;
+            }
+
+            DataTable data = (DataTable)ComboBox.Properties.DataSource;
+
+            foreach (DataRow item in data.Rows)
+            {
+                ComboBox.Properties.Items.Add(item[2].ToString());
+            }
+
+
+            foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
+            {
+
+                if (item.Value.ToString().Contains(str))
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+            }
+        }
+
+        public void SelectedComboBox(TCheckComboBox ComboBox, string str)
+        {
+            ComboBox.Setting();
+            if (str == "")
+            {
+                ComboBox.CheckAll();
+                return;
+            }
+            foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
+            {
+                if (str.Contains(item.Value.ToString()))
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+            }
+        }
+
+        
     }
 }

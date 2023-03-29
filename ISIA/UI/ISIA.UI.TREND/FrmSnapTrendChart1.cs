@@ -145,7 +145,7 @@ namespace ISIA.UI.TREND
                         SnapshotDto dto = new SnapshotDto();
                         //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
                         //double value = line[i].Y;//VALUE
-                        dto.PARAMENT_VALUE = line[i].Y.ToString();//value
+                        dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
                         int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
                         
