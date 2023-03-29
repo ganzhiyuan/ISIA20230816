@@ -3862,7 +3862,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@" SELECT distinct t.module FROM raw_dba_hist_sqlstat_isfa T");
+                tmpSql.Append(@" SELECT distinct NVL(t.module,'空') FROM raw_dba_hist_sqlstat_isfa T");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
