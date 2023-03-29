@@ -1,4 +1,5 @@
-﻿using ISIA.INTERFACE.ARGUMENTSPACK;
+﻿using DevExpress.XtraGrid.Columns;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace ISIA.UI.TREND
 
         AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
+        string[] columStr = new string[] {"MODULE", "SQL_ID" };
 
         public FrmSqlStatModels()
         {
@@ -48,9 +50,18 @@ namespace ISIA.UI.TREND
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.CommandName = cboModules.Text;
-                args.CommandType = cboParaName.Text;
+                if (args.CommandName.Contains("空"))
+                {
+                    args.CommandName=args.CommandName.Count()>1? args.CommandName.Remove(0,2).Trim(): args.CommandName.Remove(0, 1).Trim();
+                    args.ChartUsed = "1";
+                }
+                else
+                {
+                    args.ChartUsed = string.Empty;
+                }
+                //args.CommandType = cboParaName.Text;
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text)?"": cmbDbName.Text.Split('(')[0];
-                DataSet dataSet = bs.ExecuteDataSet("GetSqlstatModels", args.getPack());
+                DataSet dataSet = bs.ExecuteDataSet("GetSqlStatModuleAll", args.getPack());
                 return dataSet;
             }
             catch (Exception)
@@ -64,8 +75,40 @@ namespace ISIA.UI.TREND
             {
                 return;
             }
+            gridView1.Columns.Clear();
+            gridControl1.DataSource = null;
             gridControl1.DataSource = dataSet.Tables[0];
             gridView1.BestFitColumns();
+            SetGridViewStyle();
+
+        }
+
+        private void SetGridViewStyle()
+        {
+            string[] s = cboParaName.Text.Replace(", ", ",").Split(',');
+            if (string.IsNullOrEmpty(s[0]))
+            {
+                foreach (GridColumn item in gridView1.Columns)
+                {
+                    gridView1.Columns.ColumnByFieldName(item.FieldName).Visible = true;
+                }
+                return;
+            }
+            foreach (GridColumn item in gridView1.Columns)
+            {
+                if (!s.Contains(item.FieldName) && !columStr.Contains(item.FieldName))
+                {
+                    gridView1.Columns.ColumnByFieldName(item.FieldName).Visible = false;
+                }
+            }
+        }
+
+        private void gridView1_CellMerge(object sender, DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs e)
+        {
+            if (e.Column.FieldName == "MODULE")
+            {
+                e.Merge = true;
+            }
         }
     }
 }

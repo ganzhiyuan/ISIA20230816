@@ -366,9 +366,7 @@ namespace ISIA.UI.TREND
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateEnd.Properties.DisplayFormat.FormatString = "G";
-            this.dateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEnd.Properties.MaskSettings.Set("mask", "G");
+            this.dateEnd.Properties.MaskSettings.Set("mask", "d");
             this.dateEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEnd.Size = new System.Drawing.Size(108, 20);
             this.dateEnd.StyleController = this.layoutControl2;
@@ -386,11 +384,7 @@ namespace ISIA.UI.TREND
             this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateStart.Properties.DisplayFormat.FormatString = "G";
-            this.dateStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateStart.Properties.EditFormat.FormatString = "G";
-            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateStart.Properties.MaskSettings.Set("mask", "G");
+            this.dateStart.Properties.MaskSettings.Set("mask", "d");
             this.dateStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateStart.Size = new System.Drawing.Size(106, 20);
             this.dateStart.StyleController = this.layoutControl2;
@@ -481,6 +475,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
+            this.cmbDbName.CheckItemSelectMode = true;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -521,6 +516,7 @@ namespace ISIA.UI.TREND
             // 
             // cboModules
             // 
+            this.cboModules.CheckItemSelectMode = false;
             this.cboModules.ControlID = "tCheckComboBoxParmNames";
             this.cboModules.DescriptionMember = null;
             this.cboModules.DisplayMember = null;
@@ -547,6 +543,7 @@ namespace ISIA.UI.TREND
             // 
             // cboParaName
             // 
+            this.cboParaName.CheckItemSelectMode = false;
             this.cboParaName.ControlID = "tCheckComboBoxParmNames";
             this.cboParaName.DescriptionMember = null;
             this.cboParaName.DisplayMember = null;
@@ -564,7 +561,7 @@ namespace ISIA.UI.TREND
             this.cboParaName.RepresentativeValue = "";
             this.cboParaName.ShowDescription = false;
             this.cboParaName.Size = new System.Drawing.Size(129, 20);
-            this.cboParaName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlStatCommTyp";
+            this.cboParaName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlstatParaName";
             this.cboParaName.SqlDataBase = "";
             this.cboParaName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cboParaName.StyleController = this.layoutControl3;
@@ -579,11 +576,11 @@ namespace ISIA.UI.TREND
             this.tLabelParmNames.Margin = new System.Windows.Forms.Padding(4);
             this.tLabelParmNames.Name = "tLabelParmNames";
             this.tLabelParmNames.NeedToTranslate = true;
-            this.tLabelParmNames.RepresentativeValue = "CommandType";
+            this.tLabelParmNames.RepresentativeValue = "ParaName";
             this.tLabelParmNames.Size = new System.Drawing.Size(92, 17);
             this.tLabelParmNames.StyleController = this.layoutControl3;
             this.tLabelParmNames.TabIndex = 9;
-            this.tLabelParmNames.Text = "CommandType";
+            this.tLabelParmNames.Text = "ParaName";
             // 
             // tLabelDB
             // 
@@ -754,8 +751,10 @@ namespace ISIA.UI.TREND
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsCustomization.AllowGroup = false;
+            this.gridView1.OptionsView.AllowCellMerge = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             // 
             // FrmSqlStatModels
             // 
