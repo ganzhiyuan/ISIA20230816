@@ -158,10 +158,10 @@ namespace ISIA.UI.ADMINISTRATOE
 
         private List<treeListInfo> GetBindSourceUser(string groupID="ADMIN")
         {
-            DataClient tmpDataClient = new DataClient();
-            string UserUISql = string.Format("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", groupID);
-            DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "TAPSTBUIAUTHORITY").Tables[0];//用户对应所有权限
-            List<treeListInfo> UserAllUI = DataTableExtend.GetList<treeListInfo>(UserUIList);
+            CommonArgsPack arguments = new CommonArgsPack();
+            arguments.GroupName = groupID;
+            DataSet UserUIList = bs.ExecuteDataSet("GetAuthority", arguments.getPack());
+            List<treeListInfo> UserAllUI = DataTableExtend.GetList<treeListInfo>(UserUIList.Tables[0]);
             if (UserAllUI==null)
             {
                 return null;
@@ -226,10 +226,10 @@ namespace ISIA.UI.ADMINISTRATOE
 
             var parentIDList = listP.Where(x => x.PID == 0).Select(x=>x.CID).ToList();
             var temp = listP.Where(x => !parentIDList.Contains(x.PID)&&x.UI=="0").ToList();//取出没有子集的一级二级菜单
-            foreach (var item in temp)
-            {
-                //listP.Remove(item);
-            }
+            //foreach (var item in temp)
+            //{
+            //    //listP.Remove(item);
+            //}
             //foreach (var item in parentIDList)
             //{
             //    var parent2IDList = listP.Where(x => x.PID == item && x.UI != "0").Select(x => x.CID).ToList();//二级的CID
@@ -256,10 +256,10 @@ namespace ISIA.UI.ADMINISTRATOE
             string tmpMainMenuSql = "SELECT * FROM tapstbmainmenu WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
             DataTable retValMain = tmpDataClient.SelectData(tmpMainMenuSql, "SUBMENU").Tables[0];
 
-            string tmpSubMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
-            DataTable retVal1 = tmpDataClient.SelectData(tmpSubMenuSql, "SUBMENU").Tables[0];
+            //string tmpSubMenuSql = "SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES";
+            //DataTable retVal1 = tmpDataClient.SelectData(tmpSubMenuSql, "SUBMENU").Tables[0];
 
-
+            DataTable retVal1 = bs.ExecuteDataSet("GetSubMenu").Tables[0];
             List<treeListInfo> listMENU = DataTableExtend.GetList<treeListInfo>(retValMain);
             //取出一级名称
             List<string> listStr = listMENU.Select(x => x.NAME).Distinct().ToList();
