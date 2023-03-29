@@ -32,6 +32,8 @@ namespace ISIA.CHART.SERVICE
         private const string _CONTROLUPPER = "CONTROL UPPER LIMIT";
         private const string _CONTROLLOWER = "CONTROL LOWER LIMIT";
         private const string _CHART_SERVICE = "CHART SERVICE";
+        private const string _YES = "YES";
+        private const string _NO = "NO";
 
         #endregion
 
@@ -54,6 +56,10 @@ namespace ISIA.CHART.SERVICE
 
         private TChart chart = new TChart();
 
+        private string _detection;
+
+        private int _detectCount;
+
         #endregion
 
         protected override void StartMainProcess(SystemBasicDefaultInfo defaultInfo)
@@ -66,7 +72,7 @@ namespace ISIA.CHART.SERVICE
         private DataTable GetParameterInfo()
         {
 
-            DBCommunicator db = new DBCommunicator();            
+            DBCommunicator db = new DBCommunicator();
             DataTable returnDt = new DataTable();
             StringBuilder selectSQL = new StringBuilder();
 
@@ -159,17 +165,39 @@ namespace ISIA.CHART.SERVICE
 
         #region Nomal Methods
 
-        private void SaveChartImageData(ParameterInfo parameterInfo, string path)
+        private void SaveChartImageData(ParameterInfo parameterInfo, string path, string detectionFlag)
         {
-            DBCommunicator db = new DBCommunicator();            
+            DBCommunicator db = new DBCommunicator();
             DataTable returnDt = new DataTable();
             StringBuilder selectSQL = new StringBuilder();
 
-            //DETECTIONFLAG 는 성원경부장님이 작업 한거에 따라 DB를 참고하여 처리.
-            string defectionflag = "NO";
-
             try
             {
+
+                //Find OverLimit 
+                if (parameterInfo.SPECLIMITUSED.Contains(_YES))
+                {
+                    if (parameterInfo.SPECUPPERLIMIT != null)
+                    {
+                        chartHelper.ChartYLimitLine(chart, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
+                    }
+                    if (parameterInfo.SPECLOWERLIMIT != null)
+                    {
+                        chartHelper.ChartYLimitLine(chart, _SPECLOWER, Color.Red, double.Parse(parameterInfo.SPECLOWERLIMIT), 2);
+                    }
+                }
+                else
+                {
+                    if (parameterInfo.CONTROLUPPERLIMIT != null)
+                    {
+                        chartHelper.ChartYLimitLine(chart, _CONTROLUPPER, Color.Red, double.Parse(parameterInfo.CONTROLUPPERLIMIT), 2);
+                    }
+                    if (parameterInfo.CONTROLLOWERLIMIT != null)
+                    {
+                        chartHelper.ChartYLimitLine(chart, _CONTROLLOWER, Color.Red, double.Parse(parameterInfo.CONTROLLOWERLIMIT), 2);
+                    }
+                }
+
                 selectSQL.Append("INSERT INTO ISIA.TAPAWRCHARTSERVICE(");
                 selectSQL.Append("DBID, INSTANCE_NUMBER, REPORTDATE, ");
                 selectSQL.Append("PARAMETERID, PARAMETERNAME, RULENAME, ");
@@ -180,9 +208,9 @@ namespace ISIA.CHART.SERVICE
                 selectSQL.AppendFormat("VALUES( {0}, {1}, '{2}',", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, DateTime.Now.ToString("yyyyMMdd"));
                 selectSQL.AppendFormat(" {0}, '{1}', '{2}',", parameterInfo.PARAMETERID, parameterInfo.PARAMETERNAME, parameterInfo.RULENAME);
                 selectSQL.AppendFormat(" {0}, '{1}', '{2}',", parameterInfo.RULENO, _startTimeKey, _endTimeKey);
-                selectSQL.AppendFormat(" '{0}', '{1}', '{2}',", path, defectionflag, DateTime.Now.ToString("yyyyMMddHHmmss"));
+                selectSQL.AppendFormat(" '{0}', '{1}', '{2}',", path, detectionFlag, DateTime.Now.ToString("yyyyMMddHHmmss"));
                 selectSQL.AppendFormat(" '{0}', '{1}', '{2}',", _CHART_SERVICE, DateTime.Now.ToString("yyyyMMddHHmmss"), _CHART_SERVICE);
-                selectSQL.AppendFormat(" {0}, '{1}') ", "0", "YES");
+                selectSQL.AppendFormat(" {0}, '{1}') ", "0", _YES);
 
                 int resultCount = db.Save(new string[] { selectSQL.ToString() });
             }
@@ -294,18 +322,22 @@ namespace ISIA.CHART.SERVICE
             //테스트 완료 후 비동기 방식으로 변경.
 
             DataTable parameterSpec = new DataTable();
-            
+
             try
             {
 
                 int imageWidth = int.Parse(TAP.App.Base.AppConfig.ConfigManager.HostCollection["IMAGESIZE"]["Width"].ToString());
                 int imageHeight = int.Parse(TAP.App.Base.AppConfig.ConfigManager.HostCollection["IMAGESIZE"]["Height"].ToString());
 
+                //DB에서 벗어난 갯수를 포함할때는 해당 부분의 값을 사용.
+                _detectCount = 0;
+
 
                 parameterSpec = GetParameterInfo();
 
                 foreach (DataRow dataRow in parameterSpec.Rows)
                 {
+                    _detection = _NO;
                     ParameterInfo parameterInfo = new ParameterInfo(dataRow);
 
                     DataTable rawDatatable = GetRawData(parameterInfo);
@@ -318,28 +350,56 @@ namespace ISIA.CHART.SERVICE
 
                     MakeChart(chart, rawDatatable);
 
-                    #region Create Limit Line
-                    if (parameterInfo.SPECLIMITUSED.Contains("YES"))
+                    #region Create Limit Line & Detect
+                    if (parameterInfo.SPECLIMITUSED.Contains(_YES))
                     {
+                        int detectCount = 0;
+
                         if (parameterInfo.SPECUPPERLIMIT != null)
                         {
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") > double.Parse(parameterInfo.SPECUPPERLIMIT)).Count();
+
+                            detectCount = detectCount + temp;
+
                             chartHelper.ChartYLimitLine(chart, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
                         }
                         if (parameterInfo.SPECLOWERLIMIT != null)
                         {
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") < double.Parse(parameterInfo.SPECLOWERLIMIT)).Count();
+
+                            detectCount = detectCount + temp;
+
                             chartHelper.ChartYLimitLine(chart, _SPECLOWER, Color.Red, double.Parse(parameterInfo.SPECLOWERLIMIT), 2);
                         }
+
+                        if (detectCount > _detectCount)
+                            _detection = _YES;
+
                     }
                     else
                     {
+                        int detectCount = 0;
+
                         if (parameterInfo.CONTROLUPPERLIMIT != null)
                         {
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") > double.Parse(parameterInfo.CONTROLUPPERLIMIT)).Count();
+
+                            detectCount = detectCount + temp;
+
                             chartHelper.ChartYLimitLine(chart, _CONTROLUPPER, Color.Red, double.Parse(parameterInfo.CONTROLUPPERLIMIT), 2);
                         }
                         if (parameterInfo.CONTROLLOWERLIMIT != null)
                         {
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") < double.Parse(parameterInfo.CONTROLLOWERLIMIT)).Count();
+
+                            detectCount = detectCount + temp;
+
                             chartHelper.ChartYLimitLine(chart, _CONTROLLOWER, Color.Red, double.Parse(parameterInfo.CONTROLLOWERLIMIT), 2);
                         }
+
+                        if (detectCount > _detectCount)
+                            _detection = _YES;
+
                     }
                     #endregion
 
@@ -351,9 +411,7 @@ namespace ISIA.CHART.SERVICE
 
                     chartHelper.SaveChartImage(chart, _imageFileName, imageWidth, imageHeight);
 
-                    //ImageFile 경로 수정 필요함. FTP 경로.
-
-                    SaveChartImageData(parameterInfo, MakeDataBaseInsetFileName(fileName));
+                    SaveChartImageData(parameterInfo, MakeDataBaseInsetFileName(fileName), _detection);
                 }
 
             }
