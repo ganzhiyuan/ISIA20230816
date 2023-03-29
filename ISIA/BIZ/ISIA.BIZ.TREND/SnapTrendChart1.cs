@@ -21,15 +21,16 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@" SELECT a.end_interval_time, t.snap_id,t.dbid,t.sql_id, T.{0}
-                                                FROM raw_dba_hist_sqlstat_isfa T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id 
-                                                where t.snap_id in
-                                               (SELECT T.Snap_Id
-                                                  FROM raw_dba_hist_snapshot_isfa T
-                                                 WHERE T.END_INTERVAL_TIME >=
-                                                       TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')
-                                                   and t.end_interval_time <=
-                                                       TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.ParameterName,arguments.StartTimeKey,arguments.EndTimeKey);
+                tmpSql.AppendFormat(" SELECT a.end_interval_time, t.snap_id,t.dbid,t.sql_id, T.{0}", arguments.ParameterName);
+                tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id ", arguments.DbName);
+                tmpSql.Append(" where t.snap_id in");
+                tmpSql.Append(" (SELECT T.Snap_Id");
+                tmpSql.Append(" FROM raw_dba_hist_snapshot_isfa T");
+                tmpSql.Append(" WHERE T.END_INTERVAL_TIME >=");
+                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
+                tmpSql.Append(" and t.end_interval_time <=");
+                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -52,7 +53,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"SELECT T.* FROM raw_dba_hist_sqlstat_isfa T where t.snap_id='{0}' and t.sql_id='{1}'",  arguments.ParameterName, arguments.SqlId);
+                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqlstat_isfa T where t.snap_id='{0}' and t.sql_id='{1}'", arguments.ParameterName, arguments.SqlId);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -75,15 +76,15 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"SELECT a.end_interval_time,t.sql_id,{0} as typNum
-                  FROM raw_dba_hist_sqlstat_isfa T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id 
-                 where t.snap_id in
-                       (SELECT T.Snap_Id
-                          FROM raw_dba_hist_snapshot_isfa T
-                         WHERE T.END_INTERVAL_TIME >
-                               TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')
-                           and t.end_interval_time <=
-                               TO_DATE('{2}', 'yyyy-MM-dd HH24:mi:ss'))", Convert.ToDecimal(arguments.ParameterType), arguments.StartTimeKey, arguments.EndTimeKey);
+                tmpSql.AppendFormat("SELECT a.end_interval_time,t.sql_id,{0} as typNum ", Convert.ToDecimal(arguments.ParameterType));
+                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id  ", arguments.DbName);
+                tmpSql.Append(" where t.snap_id in ");
+                tmpSql.Append(" (SELECT T.Snap_Id ");
+                tmpSql.Append(" FROM raw_dba_hist_snapshot_isfa T ");
+                tmpSql.Append(" WHERE T.END_INTERVAL_TIME > ");
+                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey);
+                tmpSql.Append(" and t.end_interval_time <= ");
+                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
                 //arguments.ParameterType 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -106,13 +107,12 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"SELECT b.end_interval_time, a.command_type,T.* FROM raw_dba_hist_sqlstat_isfa T 
-                    left join raw_dba_hist_sqltext_isfa a 
-                    on t.sql_id=a.sql_id and t.dbid=a.dbid 
-                    left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
-                        where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
-                        and    b.end_interval_time<=to_date('{1}','yyyy-MM-dd HH24:mi:ss')
-                        ",arguments.StartTimeKey,arguments.EndTimeKey);
+                tmpSql.Append("SELECT b.end_interval_time, a.command_type,T.* FROM raw_dba_hist_sqlstat_isfa T ");
+                tmpSql.AppendFormat(" left join raw_dba_hist_sqltext_{0} a  ", arguments.DbName);
+                tmpSql.Append(" on t.sql_id=a.sql_id and t.dbid=a.dbid  ");
+                tmpSql.AppendFormat(" left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id ");
+                tmpSql.AppendFormat(" where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey);
+                tmpSql.AppendFormat(" and    b.end_interval_time<=to_date('{0}','yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
                 if (!string.IsNullOrEmpty(arguments.CommandType))
                 {
                     tmpSql.AppendFormat(@" and a.command_type in ({0})", Utils.MakeSqlQueryIn(arguments.CommandType,','));

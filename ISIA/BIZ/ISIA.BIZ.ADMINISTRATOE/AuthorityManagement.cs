@@ -36,7 +36,45 @@ namespace ISIA.BIZ.ADMINISTRATOE
                 throw ex;
             }
         }
+        public void GetAuthority(CommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat("SELECT * FROM TAPSTBUIAUTHORITY WHERE ISALIVE = 'YES' AND NAME='{0}'  ORDER BY SEQUENCES", arguments.GroupName);
 
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSubMenu()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat("SELECT * FROM TAPSTBSUBMENU WHERE ISALIVE = 'YES'  ORDER BY SEQUENCES");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
         public void UpdateAuthority(CommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
