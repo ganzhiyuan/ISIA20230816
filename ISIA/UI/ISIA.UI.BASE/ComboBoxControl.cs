@@ -265,17 +265,17 @@ namespace ISIA.UI.BASE
             {
                 if (control.Controls != null)
                 {
-                    AfterComboBoxLinkValue(dt,control);
+                    AfterComboBoxLinkValue(dt, control);
                 }
 
                 if (control is DevExpress.XtraEditors.ComboBoxEdit || control is DevExpress.XtraEditors.DateEdit || control is DevExpress.XtraEditors.CheckedComboBoxEdit || control is System.Windows.Forms.CheckBox)
                 {
-                    
+
                     if (dt.Rows.Count == 0)
                     {
                         return;
                     }
-                    for (int i = 0;i<dt.Rows.Count;i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         if (control.Name.Equals(dt.Rows[i]["ComboName"]))
                         {
@@ -295,9 +295,9 @@ namespace ISIA.UI.BASE
 
                                         }
                                     }
-                                    
+
                                     control.Text = dt.Rows[i]["ComboText"].ToString();
-                                }       
+                                }
                             }
                             else if (control is System.Windows.Forms.CheckBox)
                             {
@@ -415,7 +415,7 @@ namespace ISIA.UI.BASE
 
         public void SelectedComboBox(CheckedComboBoxEdit ComboBox, string str)
         {
-            if (str == "" )
+            if (str == "")
             {
                 ComboBox.CheckAll();
                 return;
@@ -428,5 +428,39 @@ namespace ISIA.UI.BASE
                 }
             }
         }
+
+        public void SelectedTComboBox(TCheckComboBox ComboBox, string str)
+        {
+            ComboBox.Setting();
+            if (str == "")
+            {
+                ComboBox.CheckAll();
+                return;
+            }
+            foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
+            {
+                
+                if (str.Contains(item.Value.ToString()))
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+            }
+        }
+
+        public void SelectedTComboBox(TComboBox ComboBox, string str)
+        {
+            ComboBox.Setting();
+            for (int i = 0; i < ComboBox.Properties.Items.Count; i++)
+            {
+                if (ComboBox.Properties.Items[i].ToString() == str)
+                {
+                    ComboBox.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+
+
     }
 }

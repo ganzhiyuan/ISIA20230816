@@ -48,7 +48,7 @@ namespace ISIA.UI.TREND
             tcmbday.Items.Add("D");
             tcmbday.Items.Add("W");
             tcmbday.Items.Add("M");
-            tChart1.Header.Text = " ";//清楚chart标题
+            
 
         }
 
@@ -91,7 +91,15 @@ namespace ISIA.UI.TREND
                 
                 List<string > itemList = cboParaName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return dataSet = null;
+                }
+
                 DataTable dataTable =  ConvertDTToListRef(dataSet.Tables[0]);
+
+                
+
                 //dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
@@ -136,9 +144,10 @@ namespace ISIA.UI.TREND
                 {
                     SqlStatRowDto rowDto = new SqlStatRowDto();
                     rowDto.DBID = item.DBID;
-                    rowDto.SQL_ID = item.SQL_ID;
+                    //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     rowDto.END_INTERVAL_TIME = item.END_INTERVAL_TIME;
+                    rowDto.SNAP_ID = item.SNAP_ID;
                     foreach (PropertyInfo para in proInfo)
                     {
                         if (s == para.Name)
@@ -164,7 +173,8 @@ namespace ISIA.UI.TREND
             CreateTeeChart(dataSet1.Tables[0]);
         }
         private void tChart1_MouseUp(object sender, MouseEventArgs e)
-        {
+        { 
+            
             if (e.Button == MouseButtons.Left && bfirst)
             {
                 _pEnd.X = (float)e.X;
@@ -172,12 +182,12 @@ namespace ISIA.UI.TREND
                 bfirst = false;
                 if (_pStart != _pEnd)
                 {
-                    SerachDataPoint(_pStart, _pEnd);
+                    SerachDataPoint(_pStart, _pEnd , sender as TChart);
                 }
             }
         }
 
-        private void SerachDataPoint(PointF pStart, PointF pEnd)
+        private void SerachDataPoint(PointF pStart, PointF pEnd ,TChart chart )
         {
             snaplist = new List<SnapshotDto>();
             float minX;
@@ -205,7 +215,7 @@ namespace ISIA.UI.TREND
                 maxY = pStart.Y;
             }
 
-            foreach (Line line in tChart1.Chart.Series)
+            foreach (Line line in chart.Chart.Series)
             {
                 for (int i = 0; i < line.Count; i++)
                 {
@@ -213,16 +223,17 @@ namespace ISIA.UI.TREND
                     {
                         SnapshotDto dto = new SnapshotDto();
                         //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
-                        dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                        dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName; //PARAMENT_NAME
                         //double value = line[i].Y;//VALUE
                         //dto.Value = line[i].Y.ToString();//value
-                        dto.PARAMENT_VALUE = line[i].Y.ToString();//value
-                        int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+                        dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
+                        //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
                         
                         DataTable dt1 = line.DataSource as DataTable;
-                        //dto.SNAP_ID = dt1.Rows[i+1]["SNAP_ID"].ToString();//SQL_ID
-                        dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i + 1]["END_INTERVAL_TIME"];
+                        dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SNAP_ID
+                        dto.DBID = (decimal)dt1.Rows[i]["DBID"];//DBID
+                        dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
                         snaplist.Add(dto);
                     }
                 }
@@ -242,7 +253,7 @@ namespace ISIA.UI.TREND
 
             if (popupGrid.linkage == true)
             {
-                base.OpenUI("SQLANALYSISCHART", "TREND", "SQLANALYSISCHART", dt);
+                base.OpenUI("SQLANALYSISCHART", "AWR", "SQLANALYSISCHART", dt);
             }
             
         }
@@ -267,9 +278,20 @@ namespace ISIA.UI.TREND
 
         private void CreateTeeChart(DataTable dsTable)
         {
-            tChart1.Refresh();
+            panelControl1.Controls.Clear();
+
+            TChart tChart1 = new TChart();
+
+
+            tChart1.Header.Text = " ";//清除chart标题
+
             tChart1.Series.Clear();
-            
+
+            tChart1.Series.RemoveAllSeries();
+
+
+            panelControl1.Controls.Add(tChart1);
+
             /*var cuTool = new CursorTool(tChart1.Chart)
             {
                 Style = CursorToolStyles.Both,
@@ -341,7 +363,11 @@ namespace ISIA.UI.TREND
             
             tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+            tChart1.MouseDown += tChart1_MouseDown;
+            tChart1.MouseUp += tChart1_MouseUp;
             /*line.Legend.Visible = true;*/
+
+            tChart1.Refresh();
             return;
         }
 
@@ -427,10 +453,7 @@ namespace ISIA.UI.TREND
         }
 
 
-        private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            tChart1.ShowEditor();
-        }
+
 
         private void tcmbday_EditValueChanged(object sender, EventArgs e)
         {

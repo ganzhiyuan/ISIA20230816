@@ -23,7 +23,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@" SELECT t.snap_id,a.end_interval_time,
+                tmpSql.AppendFormat(@" SELECT t.snap_id,a.end_interval_time,T.DBID,
                                 sum(t.FETCHES_TOTAL) FETCHES_TOTAL , sum(t.END_OF_FETCH_COUNT_TOTAL) END_OF_FETCH_COUNT_TOTAL,sum(t.SORTS_TOTAL) SORTS_TOTAL,
                                 sum(t.EXECUTIONS_TOTAL) EXECUTIONS_TOTAL,sum(t.PX_SERVERS_EXECS_TOTAL) PX_SERVERS_EXECS_TOTAL,sum(t.LOADS_TOTAL) LOADS_TOTAL,
                                 sum(t.INVALIDATIONS_TOTAL) INVALIDATIONS_TOTAL,sum(t.PARSE_CALLS_TOTAL) PARSE_CALLS_TOTAL,sum(t.DISK_READS_TOTAL) DISK_READS_TOTAL,
@@ -49,15 +49,21 @@ namespace ISIA.BIZ.TREND
                                 left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id
                                 where t.snap_id in
                                 (SELECT T.Snap_Id
-                                      FROM raw_dba_hist_snapshot_isfa T
-                                      WHERE T.END_INTERVAL_TIME >=
-                                      TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                                      and t.end_interval_time <=
-                                      TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
-                                      and T.dbid in ('{2}')              
-                                 group by t.snap_id ,a.end_interval_time order by a.end_interval_time ", arguments.StartTimeKey, arguments.EndTimeKey, arguments.DbId);
+                                      FROM raw_dba_hist_snapshot_isfa T");
+                                /*WHERE T.END_INTERVAL_TIME >=
+                                TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
+                                and t.end_interval_time <=
+                                TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
+                                and T.dbid in ('{2}')              
+                                group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
 
+                tmpSql.AppendFormat(" WHERE T.END_INTERVAL_TIME >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
 
+                tmpSql.AppendFormat(" and t.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+
+                tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
+
+                tmpSql.Append(" group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
