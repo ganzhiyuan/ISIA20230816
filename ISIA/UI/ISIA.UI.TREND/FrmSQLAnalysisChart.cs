@@ -5,6 +5,7 @@ using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
+using Steema.TeeChart.Components;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
 using System;
@@ -64,6 +65,7 @@ namespace ISIA.UI.TREND
                 dataSet1.Tables.Clear();
                 args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
                 args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -101,6 +103,10 @@ namespace ISIA.UI.TREND
 
         public void DisplayData(DataSet ds)
         {
+            if (dataSet == null)
+            {
+                return;
+            }
 
             CreateTeeChart(dataSet1.Tables[0]);
             dataSet.Tables.Clear();
@@ -109,6 +115,15 @@ namespace ISIA.UI.TREND
 
         private void CreateTeeChart(DataTable dsTable)
         {
+            panelControl2.Controls.Clear();
+
+            ChartLayout chartLayout1 = new ChartLayout();
+
+
+            panelControl2.Controls.Add(chartLayout1);
+
+            chartLayout1.Dock = DockStyle.Fill;
+
             chartLayout1.Charts.Clear();
             chartLayout1.Refresh();
             IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
@@ -404,15 +419,15 @@ namespace ISIA.UI.TREND
 
                     tmpdt = (DataTable)arguments["_dataTable"].ArgumentValue;
 
-                    dataSet.Tables.Add(tmpdt.Copy());
+                    //dataSet.Tables.Add(tmpdt.Copy());
 
                     List<SqlShow> list = DataTableExtend.GetList<SqlShow>(tmpdt);
                     List<string> a = list.Select(x => x.PARAMENT_NAME).Distinct().ToList();
                     string[] b = a.ToArray();
                     string para = string.Join(",",b);
 
-                    DataRow row1 = dataSet.Tables[0].Rows[0];
-                    DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
+                    DataRow row1 = tmpdt.Rows[0];
+                    DataRow row2 = tmpdt.Rows[tmpdt.Rows.Count - 1];
 
                     
 
@@ -551,22 +566,10 @@ namespace ISIA.UI.TREND
 
             try
             {
-                if (dataSet.Tables.Count == 0)
-                {
-                    if (string.IsNullOrEmpty(cboParaName.Text))
-                    {
-                        cboParaName.BackColor = Color.Orange;
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(cmbDbName.Text))
-                    {
-                        cmbDbName.BackColor = Color.Orange;
-                        return;
-                    }
-                }
+                
                 
                 //ComboBoxControl.SetCrossLang(this._translator);
-                //if (!base.ValidateUserInput(this.layoutControl1)) return;
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception ex)

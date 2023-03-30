@@ -44,18 +44,24 @@ namespace ISIA.BIZ.TREND
                                 sum(t.PHYSICAL_WRITE_BYTES_TOTAL) PHYSICAL_WRITE_BYTES_TOTAL,
                                 sum(t.OPTIMIZED_PHYSICAL_READS_TOTAL) OPTIMIZED_PHYSICAL_READS_TOTAL,
                                 sum(t.CELL_UNCOMPRESSED_BYTES_TOTAL) CELL_UNCOMPRESSED_BYTES_TOTAL,
-                                sum(t.IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL
-                                FROM raw_dba_hist_sqlstat_isfa T  
+                                sum(t.IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL");
+                                /*FROM raw_dba_hist_sqlstat_isfa T  
                                 left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id
                                 where t.snap_id in
                                 (SELECT T.Snap_Id
                                       FROM raw_dba_hist_snapshot_isfa T");
-                                /*WHERE T.END_INTERVAL_TIME >=
-                                TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                                and t.end_interval_time <=
-                                TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
-                                and T.dbid in ('{2}')              
-                                group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
+                                      WHERE T.END_INTERVAL_TIME >=
+                                      TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
+                                      and t.end_interval_time <=
+                                      TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
+                                      and T.dbid in ('{2}')              
+                                 group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
+
+                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T  
+                                left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id
+                                where t.snap_id in
+                                (SELECT T.Snap_Id
+                                      FROM raw_dba_hist_snapshot_{0} T", arguments.DbName);
 
                 tmpSql.AppendFormat(" WHERE T.END_INTERVAL_TIME >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
 
