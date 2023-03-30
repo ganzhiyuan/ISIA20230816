@@ -56,20 +56,8 @@ namespace ISIA.UI.TREND
         {
             try
             {
-                if (dataSet == null)
-                {
-                    if (string.IsNullOrEmpty(cboParaName.Text))
-                    {
-                        cboParaName.BackColor = Color.Orange;
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(cmbDbName.Text))
-                    {
-                        cmbDbName.BackColor = Color.Orange;
-                        return;
-                    }
-                }
-                if (!base.ValidateUserInput(this.layoutControl3)) return;
+                
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
@@ -86,6 +74,8 @@ namespace ISIA.UI.TREND
 
                 args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
                 args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 

@@ -7,6 +7,7 @@ using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
+using Steema.TeeChart.Components;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
 using System;
@@ -69,14 +70,20 @@ namespace ISIA.UI.TREND
                 PARAMENT_NAME = cboParaName.Text;
                 args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
                 args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cboParaName.Text;
 
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
-                
+                if (dataSet.Tables[0].Rows.Count == 0)
+                {
+                    return dataSet = null;
+                }
 
-                dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+
+
+            dataSet1.Tables.Add(dataSet.Tables[0].Copy());
                 dataSet1.Tables[0].TableName = "TABLE";
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
@@ -157,15 +164,28 @@ namespace ISIA.UI.TREND
             }
 
 
-            public void DisplayData(DataSet dataSet)
+        public void DisplayData(DataSet dataSet)
         {
-
+            if (dataSet == null)
+            {
+                return;
+            }
             CreateTeeChart(dataSet1.Tables[0]);
             dataSet.Tables.Clear();
         }
 
         private void CreateTeeChart(DataTable dsTable)
         {
+            panelControl2.Controls.Clear();
+
+
+            ChartLayout chartLayout1 = new ChartLayout();
+
+
+            panelControl2.Controls.Add(chartLayout1);
+
+            chartLayout1.Dock = DockStyle.Fill;
+
             chartLayout1.Charts.Clear();
             chartLayout1.Refresh();
             
@@ -498,7 +518,7 @@ namespace ISIA.UI.TREND
                     //tRadWafer.Checked = true;
 
                     tmpdt = (DataTable)arguments["_dataTable"].ArgumentValue;
-                    dataSet.Tables.Add(tmpdt.Copy());
+                    //dataSet.Tables.Add(tmpdt.Copy());
 
 
                     /*List<SqlShow> list = DataTableExtend.GetList<SqlShow>(tmpdt);
@@ -506,8 +526,8 @@ namespace ISIA.UI.TREND
                     string[] b = a.ToArray();
                     string para = string.Join(",", b);*/
 
-                    DataRow row1 = dataSet.Tables[0].Rows[0];
-                    DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
+                    DataRow row1 = tmpdt.Rows[0];
+                    DataRow row2 = tmpdt.Rows[tmpdt.Rows.Count - 1];
 
 
                     cboParaName.Text = row1["PARAMENT_NAME"].ToString();
@@ -636,21 +656,16 @@ namespace ISIA.UI.TREND
             try
             {
 
-                if (dataSet.Tables.Count == 0)
-                {
+                
                     if (string.IsNullOrEmpty(cboParaName.Text))
                     {
                         cboParaName.BackColor = Color.Orange;
                         return;
                     }
-                    if (string.IsNullOrEmpty(cmbDbName.Text))
-                    {
-                        cmbDbName.BackColor = Color.Orange;
-                        return;
-                    }
-                }
+                    
+                
                 //ComboBoxControl.SetCrossLang(this._translator);
-                if (!base.ValidateUserInput(this.layoutControl1)) return;
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception ex)

@@ -34,8 +34,6 @@ namespace ISIA.UI.TREND
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.chartLayout1 = new Steema.TeeChart.Components.ChartLayout();
-            this.tUserControl1 = new TAP.UIControls.BasicControlsDEV.TUserControl();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -57,7 +55,7 @@ namespace ISIA.UI.TREND
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.lcSerachOptions = new DevExpress.XtraLayout.LayoutControl();
             this.cboParaName = new TAP.UIControls.BasicControlsDEV.TComboBox();
             this.cmbDbName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabelParmNames = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -85,8 +83,6 @@ namespace ISIA.UI.TREND
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            this.chartLayout1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
@@ -109,8 +105,8 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.navBarGroupControlContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
-            this.layoutControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).BeginInit();
+            this.lcSerachOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboParaName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -223,30 +219,12 @@ namespace ISIA.UI.TREND
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.chartLayout1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1208, 735);
             this.panelControl2.TabIndex = 1;
-            // 
-            // chartLayout1
-            // 
-            this.chartLayout1.AutoScroll = true;
-            this.chartLayout1.Controls.Add(this.tUserControl1);
-            this.chartLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartLayout1.Location = new System.Drawing.Point(2, 2);
-            this.chartLayout1.Name = "chartLayout1";
-            this.chartLayout1.Size = new System.Drawing.Size(1204, 731);
-            this.chartLayout1.TabIndex = 0;
-            // 
-            // tUserControl1
-            // 
-            this.tUserControl1.Location = new System.Drawing.Point(729, 553);
-            this.tUserControl1.Name = "tUserControl1";
-            this.tUserControl1.Size = new System.Drawing.Size(150, 150);
-            this.tUserControl1.TabIndex = 0;
             // 
             // navBarGroup6
             // 
@@ -481,8 +459,10 @@ namespace ISIA.UI.TREND
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateEnd.Properties.DisplayFormat.FormatString = "G";
-            this.dateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEnd.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateEnd.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEnd.Properties.MaskSettings.Set("mask", "G");
             this.dateEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateEnd.Size = new System.Drawing.Size(111, 24);
@@ -501,10 +481,10 @@ namespace ISIA.UI.TREND
             this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateStart.Properties.DisplayFormat.FormatString = "G";
-            this.dateStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateStart.Properties.EditFormat.FormatString = "G";
-            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateStart.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dateStart.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.dateStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateStart.Properties.MaskSettings.Set("mask", "G");
             this.dateStart.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dateStart.Size = new System.Drawing.Size(112, 24);
@@ -582,27 +562,27 @@ namespace ISIA.UI.TREND
             // 
             this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer2.Controls.Add(this.layoutControl3);
+            this.navBarGroupControlContainer2.Controls.Add(this.lcSerachOptions);
             this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(5);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
             this.navBarGroupControlContainer2.Size = new System.Drawing.Size(310, 218);
             this.navBarGroupControlContainer2.TabIndex = 1;
             // 
-            // layoutControl3
+            // lcSerachOptions
             // 
-            this.layoutControl3.Controls.Add(this.cboParaName);
-            this.layoutControl3.Controls.Add(this.cmbDbName);
-            this.layoutControl3.Controls.Add(this.tLabelParmNames);
-            this.layoutControl3.Controls.Add(this.tLabelDB);
-            this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl3.Name = "layoutControl3";
-            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
-            this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(310, 218);
-            this.layoutControl3.TabIndex = 0;
-            this.layoutControl3.Text = "layoutControl2";
+            this.lcSerachOptions.Controls.Add(this.cboParaName);
+            this.lcSerachOptions.Controls.Add(this.cmbDbName);
+            this.lcSerachOptions.Controls.Add(this.tLabelParmNames);
+            this.lcSerachOptions.Controls.Add(this.tLabelDB);
+            this.lcSerachOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcSerachOptions.Location = new System.Drawing.Point(0, 0);
+            this.lcSerachOptions.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.lcSerachOptions.Name = "lcSerachOptions";
+            this.lcSerachOptions.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
+            this.lcSerachOptions.Root = this.layoutControlGroup2;
+            this.lcSerachOptions.Size = new System.Drawing.Size(310, 218);
+            this.lcSerachOptions.TabIndex = 0;
+            this.lcSerachOptions.Text = "layoutControl2";
             // 
             // cboParaName
             // 
@@ -631,12 +611,13 @@ namespace ISIA.UI.TREND
             this.cboParaName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlstatParaName";
             this.cboParaName.SqlDataBase = "";
             this.cboParaName.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cboParaName.StyleController = this.layoutControl3;
+            this.cboParaName.StyleController = this.lcSerachOptions;
             this.cboParaName.TabIndex = 23;
             this.cboParaName.ValueMember = null;
             // 
             // cmbDbName
             // 
+            this.cmbDbName.CheckItemSelectMode = false;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -658,7 +639,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
             this.cmbDbName.SqlDataBase = "";
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cmbDbName.StyleController = this.layoutControl3;
+            this.cmbDbName.StyleController = this.lcSerachOptions;
             this.cmbDbName.TabIndex = 22;
             this.cmbDbName.ValueMember = "DBID";
             // 
@@ -672,7 +653,7 @@ namespace ISIA.UI.TREND
             this.tLabelParmNames.NeedToTranslate = true;
             this.tLabelParmNames.RepresentativeValue = "Parm Names";
             this.tLabelParmNames.Size = new System.Drawing.Size(111, 23);
-            this.tLabelParmNames.StyleController = this.layoutControl3;
+            this.tLabelParmNames.StyleController = this.lcSerachOptions;
             this.tLabelParmNames.TabIndex = 9;
             this.tLabelParmNames.Text = "Parm Names";
             // 
@@ -686,7 +667,7 @@ namespace ISIA.UI.TREND
             this.tLabelDB.NeedToTranslate = true;
             this.tLabelDB.RepresentativeValue = "DB Name";
             this.tLabelDB.Size = new System.Drawing.Size(111, 24);
-            this.tLabelDB.StyleController = this.layoutControl3;
+            this.tLabelDB.StyleController = this.lcSerachOptions;
             this.tLabelDB.TabIndex = 5;
             this.tLabelDB.Text = "DB Name";
             // 
@@ -825,8 +806,6 @@ namespace ISIA.UI.TREND
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.chartLayout1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
@@ -849,8 +828,8 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.navBarGroupControlContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
-            this.layoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).EndInit();
+            this.lcSerachOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboParaName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -874,7 +853,6 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup6;
-        private Steema.TeeChart.Components.ChartLayout chartLayout1;
         public DevExpress.XtraLayout.LayoutControl layoutControl1;
         public TAP.UIControls.BasicControlsDEV.TButton btnSelect;
         public DevExpress.XtraBars.Navigation.TabPane tabPane1;
@@ -892,7 +870,7 @@ namespace ISIA.UI.TREND
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer2;
-        public DevExpress.XtraLayout.LayoutControl layoutControl3;
+        public DevExpress.XtraLayout.LayoutControl lcSerachOptions;
         private TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabelParmNames;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabelDB;
@@ -906,7 +884,6 @@ namespace ISIA.UI.TREND
         public DevExpress.XtraLayout.LayoutControlGroup Root;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private TAP.UIControls.BasicControlsDEV.TUserControl tUserControl1;
         private TAP.UIControls.BasicControlsDEV.TComboBox cboParaName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private TAP.UIControls.BasicControlsDEV.TComboBox tcmbday;
