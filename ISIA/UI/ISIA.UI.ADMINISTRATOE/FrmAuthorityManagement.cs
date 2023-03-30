@@ -28,9 +28,10 @@ namespace ISIA.UI.ADMINISTRATOE
         public FrmAuthorityManagement()
         {
             InitializeComponent();
+            bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.AuthorityManagement");
+
             InitializeGroupList();
             InitializeUIGroup();
-            bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.AuthorityManagement");
 
             int temp = Convert.ToInt32(panelControl2.Height * 0.48);
             flowLayoutPanel2.Height = temp;
