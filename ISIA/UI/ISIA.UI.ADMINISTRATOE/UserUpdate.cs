@@ -42,7 +42,7 @@ namespace ISIA.UI.ADMINISTRATOE
             labels.Add(labelControl5);
             labels.Add(labelControl12);
             labels.Add(labelControl11);
-            labels.Add(labelControl10);
+            //labels.Add(labelControl10);
             labels.Add(labelControl9);
             labels.Add(labelControl7);
             labels.Add(PASSWORD);
@@ -80,7 +80,7 @@ namespace ISIA.UI.ADMINISTRATOE
             txtUSERNAME.Text = dr["USERNAME"].ToString();
             txtUSERMIDDLENAME.Text = dr["USERMIDDLENAME"].ToString();
             txtUSERLASTNAME.Text = dr["USERLASTNAME"].ToString();
-            cboMOBILEROLE.Text = dr["CONTACTNO"].ToString();
+            //cboMOBILEROLE.Text = dr["CONTACTNO"].ToString();
             txtMOBILENO.Text = dr["MOBILENO"].ToString();
             txtMAILADDRESS.Text = dr["MAILADDRESS"].ToString();
 
@@ -114,7 +114,7 @@ namespace ISIA.UI.ADMINISTRATOE
             string addUSERNAME = txtUSERNAME.Text;
             string addUSERMIDDLENAME = txtUSERMIDDLENAME.Text;
             string addUSERLASTNAME = txtUSERLASTNAME.Text;
-            string addCONTACTNO = cboMOBILEROLE.Text;
+            //string addCONTACTNO = cboMOBILEROLE.Text;
             string addMOBILENO = txtMOBILENO.Text;
             string addMAILADDRESS = txtMAILADDRESS.Text;
             string addPASSWORD = txtPASSWORD.Text;
@@ -161,7 +161,7 @@ namespace ISIA.UI.ADMINISTRATOE
                     args.UserName = addUSERNAME;
                     args.UserMiddleName = addUSERMIDDLENAME;
                     args.UserLastName = addUSERLASTNAME;
-                    args.Contactno = addCONTACTNO;
+                    //args.Contactno = addCONTACTNO;
                     args.Mobileno = addMOBILENO;
                     args.MailAddress = addMAILADDRESS;
 

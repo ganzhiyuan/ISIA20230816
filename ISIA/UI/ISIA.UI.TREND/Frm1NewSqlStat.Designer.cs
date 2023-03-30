@@ -345,7 +345,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
-            //this.cmbDbName.CheckItemSelectMode = false;
+            this.cmbDbName.CheckItemSelectMode = true;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -360,6 +360,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbDbName.Properties.SelectAllItemVisible = false;
             this.cmbDbName.RepresentativeValue = "";
             this.cmbDbName.ShowDescription = true;
             this.cmbDbName.Size = new System.Drawing.Size(152, 20);

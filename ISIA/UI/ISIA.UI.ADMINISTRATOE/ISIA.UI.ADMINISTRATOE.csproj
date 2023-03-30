@@ -351,6 +351,18 @@
     <Compile Include="FrmCodeManagement.Designer.cs">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMailGroupEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMailGroupEdit.Designer.cs">
+      <DependentUpon>FrmMailGroupEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMailGroupManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMailGroupManagement.Designer.cs">
+      <DependentUpon>FrmMailGroupManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGroupUserManagementCopy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +457,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCodeManagement.resx">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMailGroupEdit.resx">
+      <DependentUpon>FrmMailGroupEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMailGroupManagement.resx">
+      <DependentUpon>FrmMailGroupManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGroupUserManagementCopy.resx">
       <DependentUpon>FrmGroupUserManagementCopy.cs</DependentUpon>
