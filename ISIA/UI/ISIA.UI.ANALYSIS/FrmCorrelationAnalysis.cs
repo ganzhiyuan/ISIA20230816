@@ -38,7 +38,7 @@ namespace ISIA.UI.ANALYSIS
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.CorrelationAnalysis");
-            bs1 = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.OrclParmsTrendChart");
+            bs1 = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.OrclParmsTrendChart");
             InitControls();
             this.dockManager1.AutoHideSpeed = 10000;
             this.dockManager1.AutoHiddenPanelShowMode = DevExpress.XtraBars.Docking.AutoHiddenPanelShowMode.MouseHover;
@@ -70,8 +70,8 @@ namespace ISIA.UI.ANALYSIS
             try
             {
 
-                var listDB = this.cboDB.Properties.Items.GetCheckedValues();
-                var DATABASE = string.Join(",", listDB);
+                /*var listDB = this.cboDB.Properties.Items.GetCheckedValues();
+                var DATABASE = string.Join(",", listDB);*/
 
                 var listPrmt = this.cboPrmt.Properties.Items.GetCheckedValues();
                 var Params = string.Join(",", listPrmt);
@@ -304,12 +304,12 @@ namespace ISIA.UI.ANALYSIS
         private void InitControls()
         {
             AwrArgsPack awrArg = new AwrArgsPack();
-            this.cboDB.Properties.Items.Clear();
+            /*this.cboDB.Properties.Items.Clear();
             DataSet dsDB = bs1.ExecuteDataSet("GetDBName", awrArg.getPack());
             foreach (DataRow dr in dsDB.Tables[0].Rows)
             {
                 this.cboDB.Properties.Items.Add(dr["name"]);
-            }
+            }*/
 
 
             this.cboPrmtType.Properties.Items.Clear();
