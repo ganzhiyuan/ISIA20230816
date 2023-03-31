@@ -246,14 +246,12 @@ namespace ISIA.UI.TREND
                         
             chartServiceArgs.ReportDate = dtpStartTime.DateTime.ToString("yyyyMMdd");
             chartServiceArgs.DbId = comboBoxUtil.SelectedTCheckComboBoxValue(cmbDbName);
-            string teset = comboBoxUtil.SelectedTCheckComboBoxDisplayData(cmbDbName);
             chartServiceArgs.Instance_Number = cmbInstance.Text;
             chartServiceArgs.RuleName = cmbRuleName.Text;
             chartServiceArgs.RuleNo = cmbRuleNo.Text;
             chartServiceArgs.ParameterName = cmbParameterName.Text;
             
             DataSet ds = _bs.ExecuteDataSet("GetImageData", chartServiceArgs.getPack());
-
 
             _imageList.Clear();
 

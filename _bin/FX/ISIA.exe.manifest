@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SRlGMl7pYsRhDKUltiRI0vcPKkkfF40Sze4mbputQrE=</dsig:DigestValue>
+        <dsig:DigestValue>/1a9bXCAaEcIZqffnsIyQVtcJSoBq7Xi3G3FKXny8RY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -379,14 +379,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Fressage.dll" size="238080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Fressage.dll" size="239104">
       <assemblyIdentity name="TAP.Fressage" version="1.2.0.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MEWoiHYzu/9un0mqfvQrTkenOHwH5Qj9+4oTGqkREVY=</dsig:DigestValue>
+        <dsig:DigestValue>5CnGSmrasLtNyYW/0dTANU6e7ebYVqe1e9trCgKpS/g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
