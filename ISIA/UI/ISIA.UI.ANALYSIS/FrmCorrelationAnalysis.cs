@@ -119,6 +119,7 @@ namespace ISIA.UI.ANALYSIS
                     EventArgPack.EndTime = EventArgPack.EndTime + "235";
                     EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
                 }
+                EventArgPack.DBName = cmbDbName.Text.Split('(')[0];
 
                 dsTrend = bs.ExecuteDataSet("GetParmDailyTrendData", EventArgPack.getPack());
 

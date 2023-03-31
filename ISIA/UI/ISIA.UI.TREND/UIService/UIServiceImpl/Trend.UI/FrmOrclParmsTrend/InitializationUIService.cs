@@ -29,10 +29,10 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmOrclParmsTrend
         {
             DataSet ds = (DataSet)data;
             DataTable dt=ds.Tables[0];
-            foreach( DataRow dr in dt.Rows)
-            {
-                frm.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
-            }
+            //foreach( DataRow dr in dt.Rows)
+            //{
+            //    frm.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
+            //}
             for (int i = 1; i <= ClusteringMaxNum; i++)
             {
                 frm.comboBoxEditClusteringCnt.Properties.Items.Add(i);

@@ -126,12 +126,12 @@ namespace ISIA.UI.TREND
         private void InitializeDbName()
         {
             AwrArgsPack args = new AwrArgsPack();
-            DataSet ds = Bs.ExecuteDataSet("GetDBName", args.getPack());
-            DataTable dt = ds.Tables[0];
-            foreach (DataRow dr in dt.Rows)
-            {
-                this.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
-            }
+            //DataSet ds = Bs.ExecuteDataSet("GetDBName", args.getPack());
+            //DataTable dt = ds.Tables[0];
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    this.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
+            //}
         }
 
         private void InitializeSqlId()
@@ -143,7 +143,7 @@ namespace ISIA.UI.TREND
             {
                 throw new Exception(" Please select db name first");
             }
-            args.DBName = comboBoxDBName.Text;
+            args.DBName = comboBoxDBName.Text.Split('(')[0];
 
             DataSet ds = Bs.ExecuteDataSet("GetSqlId", args.getPack());
             this.clbSqlIds.Items.Clear();
@@ -204,7 +204,7 @@ namespace ISIA.UI.TREND
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = comboBoxDBName.Text;
+            string dbName = comboBoxDBName.Text.Split('(')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";

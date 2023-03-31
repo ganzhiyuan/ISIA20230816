@@ -85,9 +85,9 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                string DBID = cbodata.Text;
-                DataTable dtdb = bs.ExecuteDataSet("GetDBID", args.getPack()).Tables[0];
-                string DATABASE = dtdb.Rows[0]["NAME"].ToString();
+                string DBID = cbodata.EditValue.ToString();
+                //DataTable dtdb = bs.ExecuteDataSet("GetDBID", args.getPack()).Tables[0];
+                string DATABASE = cbodata.Text.Split('(')[0];
                 string PARAMETERNAME = cbopara.Text;
                 string STARTTIME = tDateTimePickerSE1.StartDate.ToString();
                 string ENDTIME = tDateTimePickerSE1.EndDate.ToString();

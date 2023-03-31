@@ -57,7 +57,7 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
             //combobox edit db name 
-            string dbName = frm.comboBoxDBName.Text;
+            string dbName = frm.comboBoxDBName.Text.Split(',')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";

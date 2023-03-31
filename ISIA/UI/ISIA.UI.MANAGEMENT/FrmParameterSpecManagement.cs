@@ -40,7 +40,7 @@ namespace ISIA.UI.MANAGEMENT
             args = new ParameterSpecManagementArgsPack();
             args.DBID = cmbDbName.EditValue.ToString();
             args.PARAMETERNAME = txtParam.Text;
-            args.RULENAME = txtRuleName.Text;
+            args.RULENAME = cmbRuleMain.Text;
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
 
             return ds;
@@ -167,8 +167,8 @@ namespace ISIA.UI.MANAGEMENT
             args.DBID = cmbAddDbName.EditValue.ToString();
             args.PARAMETERID = txtAddParaId.Text;
             args.PARAMETERNAME = txtAddParaName.Text;
-            args.RULENAME = txtAddRuleNm.Text;
-            args.RULENO = txtAddRuleNo.Text;
+            args.RULENAME = cmbRuleName.Text.Split('(')[0];
+            args.RULENO = cmbRuleName.EditValue.ToString();
             args.DAYS = txtAddDays.Text;
             args.SPECUPPERLIMIT = txtSpecUpper.EditValue.ToString();
             args.SPECLOWERLIMIT = txtSpecLow.EditValue.ToString();
@@ -203,8 +203,8 @@ namespace ISIA.UI.MANAGEMENT
                 cmbAddDbName.EditValue = dr["DBID"];
                 txtAddParaId.Text = dr["PARAMETERID"].ToString();
                 txtAddParaName.Text = dr["PARAMETERNAME"].ToString();
-                txtAddRuleNm.Text= dr["RULENAME"].ToString();
-                txtAddRuleNo.Text= dr["RULENO"].ToString();
+                cmbRuleName.Text= dr["RULENAME"].ToString();
+                cmbRuleName.EditValue= dr["RULENO"].ToString();
                 txtAddDays.Text = dr["DAYS"].ToString();
                 txtSpecUpper.Text = dr["SPECUPPERLIMIT"].ToString();
                 txtSpecLow.Text = dr["SPECLOWERLIMIT"].ToString();

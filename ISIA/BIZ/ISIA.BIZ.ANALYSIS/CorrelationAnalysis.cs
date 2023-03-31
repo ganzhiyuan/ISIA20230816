@@ -288,10 +288,12 @@ namespace ISIA.BIZ.ANALYSIS
             tmpSql.Remove(tmpSql.Length - 1, 1);
             AppendWithCRLF(tmpSql, "");
             AppendWithCRLF(tmpSql, "FROM");
-            tmpSql.AppendFormat("(SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */ " +
-                " sm.*,sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_ISFA sm,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
-                 "WHERE  1=1 AND SM.dbid=sn.dbid AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER IN (1)      " +
-                 "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, '{2}') BETWEEN '{0}' AND '{1}') s ", arguments.StartTime, arguments.EndTime,arguments.GroupingDateFormat);
+            tmpSql.AppendFormat("(SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */ ");
+            tmpSql.AppendFormat(" sm.*,sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm,ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn ",arguments.DBName);
+            tmpSql.AppendFormat("WHERE  1=1 AND SM.dbid=sn.dbid AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER IN (1)     ");
+            tmpSql.AppendFormat("AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, '{2}')", arguments.GroupingDateFormat); 
+            tmpSql.AppendFormat(" BETWEEN '{0}'", arguments.StartTime);
+            tmpSql.AppendFormat(" AND '{1}') s ", arguments.EndTime);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
             AppendWithCRLF(tmpSql, ")");
@@ -339,9 +341,9 @@ namespace ISIA.BIZ.ANALYSIS
             tmpSql.Remove(tmpSql.Length - 1, 1);
             AppendWithCRLF(tmpSql, "");
             AppendWithCRLF(tmpSql, "FROM");
-            tmpSql.AppendFormat("(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ " +
-                "ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_ISFA ss,ISIA.RAW_DBA_HIST_SNAPSHOT_ISFA sn " +
-                " where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and sn.INSTANCE_NUMBER IN ({0}) " +
+            tmpSql.AppendFormat("(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */ ");
+            tmpSql.AppendFormat("ss.*,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{0} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn ",arguments.DBName);
+            tmpSql.AppendFormat(" where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and sn.INSTANCE_NUMBER IN ({0}) " +
                 " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, '{3}') between '{1}' and '{2}') s ", 1, arguments.StartTime, arguments.EndTime,arguments.GroupingDateFormat);
             AppendWithCRLF(tmpSql, "where 1=1");
             AppendWithCRLF(tmpSql, "group by dbid,s.instance_number, snap_id");
