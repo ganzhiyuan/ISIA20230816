@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraPrinting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -460,6 +461,53 @@ namespace ISIA.UI.BASE
             }
         }
 
+        public string SelectedTCheckComboBoxDisplayData(TCheckComboBox checkComboBox)
+        {
+
+            string strReturn = string.Empty;
+
+            int count = 0;
+
+            foreach (CheckedListBoxItem item in checkComboBox.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked && count == 0)
+                {
+                    count++;
+                    strReturn = item.Tag.ToString();
+                }
+                else if (item.CheckState == CheckState.Checked && count > 0)
+                {
+                    strReturn = strReturn + "," + item.Tag.ToString();
+                }
+            }
+
+            return strReturn;
+
+        }
+
+        public string SelectedTCheckComboBoxValue(TCheckComboBox checkComboBox)
+        {
+
+            string strReturn = string.Empty;
+
+            int count = 0;
+
+            foreach (CheckedListBoxItem item in checkComboBox.Properties.Items)
+            {
+                if (item.CheckState == CheckState.Checked && count == 0)
+                {
+                    count++;
+                    strReturn = item.Value.ToString();
+                }
+                else if (item.CheckState == CheckState.Checked && count > 0)
+                {
+                    strReturn = strReturn + "," + item.Value.ToString();
+                }
+            }
+
+            return strReturn;
+
+        }
 
 
     }

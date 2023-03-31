@@ -241,10 +241,12 @@ namespace ISIA.UI.TREND
 
         public DataSet LoadData()
         {
+            ComboBoxControl comboBoxUtil = new ComboBoxControl();
             ChartServiceArgsPack chartServiceArgs = new ChartServiceArgsPack();
                         
             chartServiceArgs.ReportDate = dtpStartTime.DateTime.ToString("yyyyMMdd");
-            chartServiceArgs.DbId = cmbDbName.EditValue.ToString();
+            chartServiceArgs.DbId = comboBoxUtil.SelectedTCheckComboBoxValue(cmbDbName);
+            string teset = comboBoxUtil.SelectedTCheckComboBoxDisplayData(cmbDbName);
             chartServiceArgs.Instance_Number = cmbInstance.Text;
             chartServiceArgs.RuleName = cmbRuleName.Text;
             chartServiceArgs.RuleNo = cmbRuleNo.Text;

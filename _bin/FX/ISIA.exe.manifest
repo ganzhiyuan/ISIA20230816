@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zqtTxnz7ZO4ZcU818BeEA/AWIzEg5DUpz7ktXX0vDw8=</dsig:DigestValue>
+        <dsig:DigestValue>SRlGMl7pYsRhDKUltiRI0vcPKkkfF40Sze4mbputQrE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -487,14 +487,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="607232">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="608256">
       <assemblyIdentity name="TAP.UIControls.BasicControlsDEV" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aIaq1AdWHjSL6s2pOZxz28UAPnPtJW29We1X0BJI018=</dsig:DigestValue>
+        <dsig:DigestValue>rGXFdHHA0wahxCllKBqVGvSk4pvtUo0/1TmtVXLjuas=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
