@@ -45,7 +45,7 @@ namespace ISIA.UI.TREND
                     args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
                     args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
                     args.Days = i.ToString();
-                    args.DbName = cmbDbName.Text;
+                    args.DbName = cmbDbName.Text.Split(',')[0];
                     DataSet dataSet = bs.ExecuteDataSet("GetSqlstatByUnit", args.getPack());
                     if (dataSet == null||dataSet.Tables[0]==null||dataSet.Tables[0].Rows.Count<1)
                     {

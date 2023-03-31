@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
@@ -53,6 +54,16 @@ namespace ISIA.UI.MANAGEMENT
                 return;
             }
             GridViewDataBinding();
+            GridViewStyle();
+        }
+
+        private void GridViewStyle()
+        {
+            foreach (GridColumn item in gridView1.Columns)
+            {
+                if (item.FieldName == "N_VALUE"|| item.FieldName == "M_VALUE"||item.FieldName == "ROWID")
+                    item.Visible = false;
+            }
         }
 
         public void GridViewDataBinding()
@@ -226,5 +237,6 @@ namespace ISIA.UI.MANAGEMENT
                 txt.BackColor = Color.White;
             }
         }
+
     }
 }

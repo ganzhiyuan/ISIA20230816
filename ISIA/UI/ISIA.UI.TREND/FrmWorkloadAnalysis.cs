@@ -146,7 +146,7 @@ namespace ISIA.UI.TREND
                         dto.Time = DateTime.FromBinary((long)line[i].X);
                         DataTable dt1 = line.DataSource as DataTable;
                         dto.Time = (DateTime)dt1.Rows[i + 1]["BEGIN_TIME"];//SQL_ID
-                        dto.DbName = comboBoxDBName.Text;
+                        dto.DbName = comboBoxDBName.Text.Split('(')[0];
                         workloadList.Add(dto);
                     }
                 }

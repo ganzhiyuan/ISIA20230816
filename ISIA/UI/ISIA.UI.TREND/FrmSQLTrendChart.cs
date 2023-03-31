@@ -72,8 +72,8 @@ namespace ISIA.UI.TREND
             {
                 dataSet1.Tables.Clear();
 
-                args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
-                args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.DbId = cmbDbName.EditValue.ToString();
+                //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
 
                 args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");

@@ -30,10 +30,10 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             //init dbname 
             DataSet ds = (DataSet)data;
             DataTable dt=ds.Tables[0];
-            foreach ( DataRow dr in dt.Rows)
-            {
-                frm.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
-            }
+            //foreach ( DataRow dr in dt.Rows)
+            //{
+            //    frm.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
+            //}
             //init date period 
             frm.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);
             frm.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + EventArgPack.EndTime);

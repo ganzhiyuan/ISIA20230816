@@ -63,28 +63,78 @@ namespace ISIA.UI.TREND
 
         public DataSet LoadData()
         {
-            /*if (dataSet.Tables.Count == 0)
-            {*/
-                
-                dataSet1.Tables.Clear();
-                PARAMENT_NAME = cboParaName.Text;
-                args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
-                args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
-                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
-                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.ParameterName = cboParaName.Text;
+            dataSet1.Tables.Clear();
+            PARAMENT_NAME = cboParaName.Text;
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            args.ParameterName = cboParaName.Text;
 
-                dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
-                if (dataSet.Tables[0].Rows.Count == 0)
-                {
-                    return dataSet = null;
-                }
+            dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+            if (dataSet.Tables[0].Rows.Count == 0)
+            {
+                return dataSet = null;
+            }
 
 
 
             dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+            dataSet1.Tables[0].TableName = "TABLE";
+            foreach (DataRow row in dataSet1.Tables[0].Rows)
+            {
+                if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
+                {
+                    row[PARAMENT_NAME] = -1;
+                }
+            }
+
+            foreach (DataRow row in dataSet1.Tables[0].Rows)
+            {
+                if (row[PARAMENT_NAME].ToString() == "-1")
+                {
+                    row.Delete();
+                }
+
+            }
+            dataSet1.AcceptChanges();
+            return dataSet;
+            /*}
+            else
+            {
+                dataSet1.Tables.Clear();
+                //dataSet = bs.ExecuteDataSet("GetSnap");
+                //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
+                //dataSet1.Tables.Add(dt.Copy());
+
+
+                DataRow row1 = dataSet.Tables[0].Rows[0];
+                DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
+
+                PARAMENT_NAME =   row1["PARAMENT_NAME"].ToString();
+                stime  =  (DateTime)row1["END_INTERVAL_TIME"];
+                etime = (DateTime)row2["END_INTERVAL_TIME"];
+
+
+                DataClient tmpDataClient = new DataClient();
+
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id FROM raw_dba_hist_sqlstat_isfa T
+                    left join raw_dba_hist_sqltext_isfa a
+                    on t.sql_id=a.sql_id and t.dbid=a.dbid
+                    left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
+                        where 1=1 and b.end_interval_time>to_date('{1}','yyyy-MM-dd HH24:mi:ss')
+                        and    b.end_interval_time<=to_date('{2}','yyyy-MM-dd HH24:mi:ss' )  order by b.end_interval_time
+                        ", PARAMENT_NAME, stime, etime);
+
+                dataSet1 = tmpDataClient.SelectData(tmpSql.ToString(), "raw_dba_hist_sqlstat_isfa");
+
                 dataSet1.Tables[0].TableName = "TABLE";
+
+
+                *//*dataSet1.Tables.Add(dataSet.Tables[0].Copy());
+                dataSet1.Tables[0].TableName = "TABLE";*//*
                 foreach (DataRow row in dataSet1.Tables[0].Rows)
                 {
                     if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
@@ -102,66 +152,12 @@ namespace ISIA.UI.TREND
 
                 }
                 dataSet1.AcceptChanges();
+
+
                 return dataSet;
-                /*}
-                else
-                {
-                    dataSet1.Tables.Clear();
-                    //dataSet = bs.ExecuteDataSet("GetSnap");
-                    //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
-                    //dataSet1.Tables.Add(dt.Copy());
+        }*/
 
-
-                    DataRow row1 = dataSet.Tables[0].Rows[0];
-                    DataRow row2 = dataSet.Tables[0].Rows[dataSet.Tables[0].Rows.Count - 1];
-
-                    PARAMENT_NAME =   row1["PARAMENT_NAME"].ToString();
-                    stime  =  (DateTime)row1["END_INTERVAL_TIME"];
-                    etime = (DateTime)row2["END_INTERVAL_TIME"];
-
-
-                    DataClient tmpDataClient = new DataClient();
-
-                    StringBuilder tmpSql = new StringBuilder();
-
-                    tmpSql.AppendFormat(@" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id FROM raw_dba_hist_sqlstat_isfa T
-                        left join raw_dba_hist_sqltext_isfa a
-                        on t.sql_id=a.sql_id and t.dbid=a.dbid
-                        left join raw_dba_hist_snapshot_isfa b on t.snap_id=b.snap_id
-                            where 1=1 and b.end_interval_time>to_date('{1}','yyyy-MM-dd HH24:mi:ss')
-                            and    b.end_interval_time<=to_date('{2}','yyyy-MM-dd HH24:mi:ss' )  order by b.end_interval_time
-                            ", PARAMENT_NAME, stime, etime);
-
-                    dataSet1 = tmpDataClient.SelectData(tmpSql.ToString(), "raw_dba_hist_sqlstat_isfa");
-
-                    dataSet1.Tables[0].TableName = "TABLE";
-
-
-                    *//*dataSet1.Tables.Add(dataSet.Tables[0].Copy());
-                    dataSet1.Tables[0].TableName = "TABLE";*//*
-                    foreach (DataRow row in dataSet1.Tables[0].Rows)
-                    {
-                        if (string.IsNullOrEmpty(row[PARAMENT_NAME].ToString()) || row[PARAMENT_NAME].ToString() == "0")
-                        {
-                            row[PARAMENT_NAME] = -1;
-                        }
-                    }
-
-                    foreach (DataRow row in dataSet1.Tables[0].Rows)
-                    {
-                        if (row[PARAMENT_NAME].ToString() == "-1")
-                        {
-                            row.Delete();
-                        }
-
-                    }
-                    dataSet1.AcceptChanges();
-
-
-                    return dataSet;
-            }*/
-
-            }
+        }
 
 
         public void DisplayData(DataSet dataSet)

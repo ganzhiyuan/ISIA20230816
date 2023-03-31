@@ -36,6 +36,7 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.txtMainRULENO = new DevExpress.XtraEditors.TextEdit();
@@ -46,7 +47,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
@@ -314,6 +314,19 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
+            // navBarGroup3
+            // 
+            this.navBarGroup3.Appearance.BackColor = System.Drawing.Color.MistyRose;
+            this.navBarGroup3.Appearance.Options.UseBackColor = true;
+            this.navBarGroup3.Caption = "Serach options";
+            this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer2;
+            this.navBarGroup3.Expanded = true;
+            this.navBarGroup3.GroupClientHeight = 168;
+            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            this.navBarGroup3.Name = "navBarGroup3";
+            // 
             // navBarGroupControlContainer2
             // 
             this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
@@ -414,19 +427,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem2.Size = new System.Drawing.Size(229, 24);
             this.layoutControlItem2.Text = "RULENO";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(60, 14);
-            // 
-            // navBarGroup3
-            // 
-            this.navBarGroup3.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.navBarGroup3.Appearance.Options.UseBackColor = true;
-            this.navBarGroup3.Caption = "Serach options";
-            this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer2;
-            this.navBarGroup3.Expanded = true;
-            this.navBarGroup3.GroupClientHeight = 168;
-            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
-            this.navBarGroup3.Name = "navBarGroup3";
             // 
             // navBarItem2
             // 

@@ -3486,6 +3486,27 @@ namespace ISIA.BIZ.COMMON
             }
         }
 
+        public void GetRule()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT RULENO,RULENAME FROM tapctspcrulespec WHERE 1=1 AND ISALIVE = 'YES'");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void GetInstanceNumber()
         {
             DBCommunicator db = new DBCommunicator();
