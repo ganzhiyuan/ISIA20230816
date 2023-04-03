@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using UIService;
 
-namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmOrclParmsTrend
+namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteringAnalysis
 {
     public class InitializationUIService : CommonUIService<FrmParameterClusteringAnalysis, object, AwrArgsPack>
     {

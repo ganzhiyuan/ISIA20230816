@@ -38,7 +38,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="TAP.Base">
       <HintPath>C:\Users\Administrator\Desktop\ISIE_MC_20220428\_bin\FX\TAP.Base.dll</HintPath>

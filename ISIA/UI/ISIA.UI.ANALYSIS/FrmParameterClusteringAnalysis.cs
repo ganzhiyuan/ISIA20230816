@@ -21,11 +21,11 @@ using DevExpress.XtraEditors.Controls;
 using TAP.UIControls.BasicControlsDEV;
 using UIHelper;
 using Steema.TeeChart;
-using ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmOrclParmsTrend;
+using ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteringAnalysis;
 using ISIA.UI.BASE;
 using TAP.UI;
 
-namespace ISIA.UI.TREND
+namespace ISIA.UI.ANALYSIS
 {
     public partial class FrmParameterClusteringAnalysis : DockUIBase1T1
     {

@@ -13,7 +13,7 @@ using TAP.Base.Mathematics;
 using TAP.UI;
 using UIService;
 
-namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmOrclParmsTrend
+namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteringAnalysis
 {
     public class SerchUiService : CommonUIService<FrmParameterClusteringAnalysis, object, AwrArgsPack>
     {

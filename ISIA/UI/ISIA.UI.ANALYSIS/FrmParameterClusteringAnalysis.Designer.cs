@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors.Controls;
 
-namespace ISIA.UI.TREND
+namespace ISIA.UI.ANALYSIS
 {
     partial class FrmParameterClusteringAnalysis
     {
