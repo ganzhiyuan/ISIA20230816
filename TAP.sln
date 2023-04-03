@@ -53,6 +53,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIA.DETECTING.SERVICE", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIA.UI.COMMON", "ISIA\UI\ISIA.UI.COMMON\ISIA.UI.COMMON.csproj", "{28EFE14C-E66C-44BF-957B-D0FB38676A3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Development documents", "00.Development documents", "{2D212AFC-4FDD-418E-8A3D-A48164792B33}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\10.Project\20222101_C2_ISIA\02 Design\Definition_controlname and Linkage.xlsx = ..\..\10.Project\20222101_C2_ISIA\02 Design\Definition_controlname and Linkage.xlsx
+		C:\Users\Kim.Seoil\Downloads\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf = C:\Users\Kim.Seoil\Downloads\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf
+		C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf = C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf
+		C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf = C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf
+		C:\Users\Kim.Seoil\Downloads\TAPFX3100_Help.chm = C:\Users\Kim.Seoil\Downloads\TAPFX3100_Help.chm
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -864,6 +873,7 @@ Global
 		{456EFAB7-C315-4F33-863D-6AF3658E3EEE} = {1EC56DF2-7393-4C23-A6C5-95F1F01A2074}
 		{C0CA6AED-F2C1-4773-A72B-24EB845B122B} = {1EC56DF2-7393-4C23-A6C5-95F1F01A2074}
 		{28EFE14C-E66C-44BF-957B-D0FB38676A3D} = {C99E8FD3-F082-4C82-A3F1-445AD1662C76}
+		{2D212AFC-4FDD-418E-8A3D-A48164792B33} = {1FC4815E-9354-4E1E-994D-CB8791702A71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F07C7A9-5F66-4783-9A5E-F20FFF2987A4}
