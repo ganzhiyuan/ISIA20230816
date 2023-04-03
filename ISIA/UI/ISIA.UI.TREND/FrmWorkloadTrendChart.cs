@@ -188,5 +188,34 @@ namespace ISIA.UI.TREND
 
 
         }
+        
+        private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEditGroupUnit.Text == "DAY")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "WEEK")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "MONTH")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "QUARTER")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-3);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "YEAR")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddYears(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+        }
     }
 }

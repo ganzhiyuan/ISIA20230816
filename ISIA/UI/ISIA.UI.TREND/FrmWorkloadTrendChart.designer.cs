@@ -28,6 +28,7 @@
         /// </summary>
         public void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkloadTrendChart));
             Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -64,7 +65,7 @@
             this.tChart1 = new Steema.TeeChart.TChart();
             this.gridControlWorkloadData = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleSeparator3 = new DevExpress.XtraLayout.SimpleSeparator();
             this.xtraUserControl1.SuspendLayout();
@@ -364,6 +365,7 @@
             this.comboBoxEditGroupUnit.Size = new System.Drawing.Size(149, 20);
             this.comboBoxEditGroupUnit.StyleController = this.PeriodLayout;
             this.comboBoxEditGroupUnit.TabIndex = 26;
+            this.comboBoxEditGroupUnit.SelectedValueChanged += new System.EventHandler(this.comboBoxEditGroupUnit_SelectedValueChanged);
             // 
             // layoutControlGroup1
             // 
@@ -1842,13 +1844,13 @@
             this.simpleSeparator3.Name = "simpleSeparator3";
             this.simpleSeparator3.Size = new System.Drawing.Size(194, 1);
             // 
-            // FrmWorkloadAnalysis
+            // FrmWorkloadTrendChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 570);
             this.Margin = new System.Windows.Forms.Padding(3);
-            this.Name = "FrmWorkloadAnalysis";
+            this.Name = "FrmWorkloadTrendChart";
             this.Text = "WorkLoadAnalysis";
             this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
             this.Controls.SetChildIndex(this.tPanelTop, 0);

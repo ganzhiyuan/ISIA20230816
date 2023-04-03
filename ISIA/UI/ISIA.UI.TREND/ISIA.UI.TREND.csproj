@@ -188,12 +188,6 @@
     <Compile Include="FrmSQLTotalStatisticsTrend.Designer.cs">
       <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSnapTrendChart1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSnapTrendChart1.Designer.cs">
-      <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmWorkloadDataGridView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,9 +218,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLTotalStatisticsTrend.resx">
       <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSnapTrendChart1.resx">
-      <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLTrendChart.resx">
       <DependentUpon>FrmSQLTrendChart.cs</DependentUpon>
