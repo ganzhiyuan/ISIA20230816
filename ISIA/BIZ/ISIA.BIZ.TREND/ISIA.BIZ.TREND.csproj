@@ -60,6 +60,7 @@
     <Compile Include="SQLAnalysisChart.cs" />
     <Compile Include="SQLTrendChart.cs" />
     <Compile Include="SnapTrendChart1.cs" />
+    <Compile Include="WorkloadTrendChart.cs" />
     <Compile Include="WorkloadSqlRelationAnalysis.cs" />
     <Compile Include="OrclParmsTrendChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,6 +29,7 @@ using Series = Steema.TeeChart.Styles.Series;
 using ISIA.COMMON;
 using ISIA.UI.TREND.Dto;
 using System.Collections;
+using EnumDataObject = TAP.UI.EnumDataObject;
 
 namespace ISIA.UI.TREND
 {
@@ -43,32 +44,191 @@ namespace ISIA.UI.TREND
         private bool bfirst = false;
         AwrArgsPack args = new AwrArgsPack();
         BizDataClient bs;
-        DataSet dataSet;
+        DataSet dataSet = null;
+        object[] result = new object[2];
         List<Series> series = new List<Series>();
         List<WorkloadDto> workloadList = new List<WorkloadDto>();
         public FrmWorkloadTrendChart()
         {
             InitializeComponent();
-            new InitializationUIService(this, null, new AwrArgsPack()).Run();
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
+
+
+            //new InitializationUIService(this, null, new AwrArgsPack()).Run();
         }
 
-        private int SeriesIndex = -1;
+
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
             try
             {
-                SearchUiService searchUiService = new SearchUiService(this, e, new AwrArgsPack());
-                searchUiService.RunAsync();
+
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
+
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
+                throw;
+            }
+        }
+        public DataSet LoadData()
+        {
+            try
+            {
+                
+                
+                
+                //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
+                args.DBName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+                args.StartTime = dtpStartTime.DateTime.ToString("yyyyMMddHHmmss");
+                args.EndTime = dtpEndTime.DateTime.ToString("yyyyMMddHHmmss");
+                args.GroupingDateFormat = "yyyyMMdd";
+                dataSet = bs.ExecuteDataSet("GetWorkloadDataByParams", args.getPack());
+
+                
+                return dataSet;
+                
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
-       
 
+
+        public void DisplayData(DataSet dataSet)
+        {
+            if (dataSet == null)
+            {
+                return;
+            }
+            ConvertData(dataSet);
+            CreateTeeChart();
+            gridviewStyle();
+        }
+
+
+        private void CreateTeeChart() {
+
+
+            this.splitContainerControl1.Panel1.Controls.Clear();
+            this.tChart1.Zoom.Direction = ZoomDirections.None;
+
+            this.tChart1.Series.Clear();
+            this.tChart1.ContextMenuStrip = this.contextMenuStrip1;
+            this.tChart1.Dock = DockStyle.Fill;
+            //Header set
+            this.tChart1.Header.Text = "WORKLOAD";
+            //Legend set
+            this.tChart1.Legend.LegendStyle = LegendStyles.Series;
+            this.tChart1.Legend.Visible = true;
+            this.tChart1.Legend.CheckBoxes = true;
+
+            
+
+            //object[] res = (object[])data;
+            DataTable[] tables = (DataTable[])result[0];
+            //XAXIS MULTILINE CONTROL
+            this.tChart1.Axes.Bottom.Labels.MultiLine = true;
+            //tool tip
+            MarksTip marksTip = new MarksTip(this.tChart1.Chart);
+            marksTip.Active = true;
+            marksTip.MouseDelay = 100;
+            marksTip.MouseAction = MarksTipMouseAction.Move;
+            marksTip.Style = MarksStyles.XY;
+            /*this.tChart1.MouseMove += new MouseEventHandler(tChart_MouseMove);
+            marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);*/
+            //Color color = new Color();
+
+            foreach (DataTable dt in tables)
+            {
+                //color.getRandomColor();
+                Line line = CreateLine(dt);
+                this.tChart1.Series.Add(line);
+                this.tChart1.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
+                this.tChart1.Axes.Bottom.Labels.ExactDateTime = true;
+                this.tChart1.Axes.Bottom.Ticks.Width = 0;
+            }
+            this.splitContainerControl1.Panel1.Controls.Add(this.tChart1);
+
+            
+
+        }
+
+
+        public void  ConvertData(DataSet data)
+        {
+            DataSet ds = data;
+            //object[] result = new object[2];
+            DataTable originTable = ds.Tables[0];
+            string[] paramStrings = AwrArgsPack.WorkloadParamNamesList.ToArray();
+            DataTable[] tableSplit = new DataTable[AwrArgsPack.WorkloadParamNamesList.Count];
+            for (int j = 0; j < AwrArgsPack.WorkloadParamNamesList.Count; j++)
+            {
+                tableSplit[j] = new DataTable();
+                DataTable tempDt = tableSplit[j];
+                string parmName = (string)paramStrings[j];
+                tempDt.Columns.Add(parmName, originTable.Columns[parmName].DataType);
+                tempDt.Columns.Add("BEGIN_TIME", originTable.Columns["BEGIN_TIME"].DataType);
+                tempDt.TableName = parmName;
+            }
+            foreach (DataRow dr in originTable.Rows)
+            {
+                for (int j = 0; j < paramStrings.Length; j++)
+                {
+                    string parmName = (string)paramStrings[j];
+                    DataTable tempDt = tableSplit[j];
+                    tempDt.Rows.Add(dr[parmName], dr["BEGIN_TIME"]);
+                }
+            }
+            result[0] = tableSplit;
+            result[1] = originTable;
+
+
+            
+        }
+
+        private Line CreateLine(DataTable dt)
+        {
+            Line line = new Line();
+            line.DataSource = dt;
+            line.YValues.DataMember = dt.TableName;
+            line.XValues.DataMember = "BEGIN_TIME";
+            line.ShowInLegend = true;
+            line.Legend.Text = dt.TableName;
+            line.Title = dt.TableName;
+            /*line.Color =
+                System.Drawing.Color.FromArgb(color.R1, color.G1, color.S1);*/
+            line.Legend.BorderRound = 20;
+            line.XValues.DateTime = true;
+            //line.GetSeriesMark += Line_GetSeriesMark;
+
+
+            /*void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = "PARAMENT_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMENT_NAME"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["PARAMENT_VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+            }*/
+            return line;
+        }
+
+        private void gridviewStyle() {
+
+            
+            //grid display
+            this.gridControlWorkloadData.DataSource = null;
+            this.gridView1.Columns.Clear();
+            this.gridControlWorkloadData.DataSource = (DataTable)result[1];
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.Columns[4].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridView1.Columns[4].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridView1.Columns[5].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridView1.Columns[5].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridView1.BestFitColumns();
+        }
 
         private void tCheckComboBoxParmType_EditValueChanged(object sender, EventArgs e)
         {
@@ -146,7 +306,7 @@ namespace ISIA.UI.TREND
                         dto.Time = DateTime.FromBinary((long)line[i].X);
                         DataTable dt1 = line.DataSource as DataTable;
                         dto.Time = (DateTime)dt1.Rows[i + 1]["BEGIN_TIME"];//SQL_ID
-                        dto.DbName = comboBoxDBName.Text.Split('(')[0];
+                        dto.DbName = cmbDbName.Text.Split('(')[0];
                         workloadList.Add(dto);
                     }
                 }
@@ -193,28 +353,28 @@ namespace ISIA.UI.TREND
         {
             if (comboBoxEditGroupUnit.Text == "DAY")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (comboBoxEditGroupUnit.Text == "WEEK")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (comboBoxEditGroupUnit.Text == "MONTH")
             {
-                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (comboBoxEditGroupUnit.Text == "QUARTER")
             {
-                this.dateStart.DateTime = DateTime.Now.AddMonths(-3);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-3);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (comboBoxEditGroupUnit.Text == "YEAR")
             {
-                this.dateStart.DateTime = DateTime.Now.AddYears(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
         }
     }

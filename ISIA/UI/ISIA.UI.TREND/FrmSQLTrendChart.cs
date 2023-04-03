@@ -44,10 +44,10 @@ namespace ISIA.UI.TREND
 
             /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
             this.dateEnd.DateTime = DateTime.Now;*/
-            tcmbday.Text = "D";
-            tcmbday.Items.Add("D");
-            tcmbday.Items.Add("W");
-            tcmbday.Items.Add("M");
+            cmbTime.Text = "D";
+            cmbTime.Items.Add("D");
+            cmbTime.Items.Add("W");
+            cmbTime.Items.Add("M");
             
 
         }
@@ -75,11 +75,11 @@ namespace ISIA.UI.TREND
                 args.DbId = cmbDbName.EditValue.ToString();
                 //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
-
-                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 
-                List<string > itemList = cboParaName.Text.Split(',').ToArray().ToList();
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                
+                List<string > itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
@@ -93,7 +93,7 @@ namespace ISIA.UI.TREND
                 //dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
-                List<SqlShow>  list1  = (from d in list where cboParaName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
+                List<SqlShow>  list1  = (from d in list where cmbParameterName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
 
 
                 DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
@@ -447,20 +447,20 @@ namespace ISIA.UI.TREND
 
         private void tcmbday_EditValueChanged(object sender, EventArgs e)
         {
-            if (tcmbday.Text == "D")
+            if (cmbTime.Text == "D")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
-            else if (tcmbday.Text == "W")
+            else if (cmbTime.Text == "W")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
-            else if (tcmbday.Text == "M")
+            else if (cmbTime.Text == "M")
             {
-                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
 
 

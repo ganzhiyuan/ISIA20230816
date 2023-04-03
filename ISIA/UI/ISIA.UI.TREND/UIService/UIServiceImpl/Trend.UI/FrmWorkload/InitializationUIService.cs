@@ -35,8 +35,8 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             //    frm.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
             //}
             //init date period 
-            frm.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);
-            frm.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + EventArgPack.EndTime);
+            frm.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);
+            frm.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + EventArgPack.EndTime);
 
         }
 

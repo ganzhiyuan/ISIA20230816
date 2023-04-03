@@ -25,15 +25,15 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
 
         public override AwrArgsPack HandleArugument(FrmWorkloadTrendChart frm)
         {
-            object startTime = frm.dateStart.EditValue;
-            object endTime = frm.dateEnd.EditValue;
+            object startTime = frm.dtpStartTime.EditValue;
+            object endTime = frm.dtpEndTime.EditValue;
             if (startTime == null || endTime == null)
             {
                 string errMessage = "Please select StartTime or EndTime";
                 throw new Exception(errMessage);
             }
-            DateTime startDateTime = (DateTime)frm.dateStart.EditValue;
-            DateTime endDateTime = (DateTime)frm.dateEnd.EditValue;
+            DateTime startDateTime = frm.dtpStartTime.DateTime;
+            DateTime endDateTime = frm.dtpEndTime.DateTime;
 
             if (startDateTime > endDateTime)
             {
@@ -57,7 +57,7 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
             //combobox edit db name 
-            string dbName = frm.comboBoxDBName.Text.Split(',')[0];
+            string dbName = frm.cmbDbName.Text.Split(',')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
