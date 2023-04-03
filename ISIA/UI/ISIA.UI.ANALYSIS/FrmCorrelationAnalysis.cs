@@ -78,21 +78,21 @@ namespace ISIA.UI.ANALYSIS
 
 
                 List<object> paramList = cboPrmt.Properties.Items.GetCheckedValues();
-                if (paramList == null || paramList.Count <= 0)
-                {
-                    string errMessage = "Please select Param Names";
-                    throw new Exception(errMessage);
-                }
+                //if (paramList == null || paramList.Count <= 0)
+                //{
+                //    string errMessage = "Please select Param Names";
+                //    return null;
+                //}
                 EventArgPack.ParamNamesList = paramList;
 
                 //time argument checked
                 var startTime = this.dateStart.EditValue;
                 var endTime = dateEnd.EditValue;
-                if (startTime == null || endTime == null)
-                {
-                    string errMessage = "Please select StartTime or EndTime";
-                    throw new Exception(errMessage);
-                }
+                //if (startTime == null || endTime == null)
+                //{
+                //    string errMessage = "Please select StartTime or EndTime";
+                //    return null;
+                //}
                 DateTime startDateTime = (DateTime)dateStart.EditValue;
                 DateTime endDateTime = (DateTime)dateEnd.EditValue;
 
@@ -107,18 +107,18 @@ namespace ISIA.UI.ANALYSIS
                 EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
                 //xasix_interval check
-                if (rgType.SelectedIndex == 1)
-                {
-                    EventArgPack.StartTime = EventArgPack.StartTime + "00";
-                    EventArgPack.EndTime = EventArgPack.EndTime + "23";
-                    EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
-                }
-                else if (rgType.SelectedIndex == 2)
-                {
-                    EventArgPack.StartTime = EventArgPack.StartTime + "000";
-                    EventArgPack.EndTime = EventArgPack.EndTime + "235";
-                    EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
-                }
+                //if (rgType.SelectedIndex == 1)
+                //{
+                //    EventArgPack.StartTime = EventArgPack.StartTime + "00";
+                //    EventArgPack.EndTime = EventArgPack.EndTime + "23";
+                //    EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
+                //}
+                //else if (rgType.SelectedIndex == 2)
+                //{
+                //    EventArgPack.StartTime = EventArgPack.StartTime + "000";
+                //    EventArgPack.EndTime = EventArgPack.EndTime + "235";
+                //    EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
+                //}
                 EventArgPack.DBName = cmbDbName.Text.Split('(')[0];
 
                 dsTrend = bs.ExecuteDataSet("GetParmDailyTrendData", EventArgPack.getPack());
@@ -282,25 +282,25 @@ namespace ISIA.UI.ANALYSIS
             return monitorArg;
         }
 
-        private string GetDateTimeFormat()
-        {
-            var ret = string.Empty;
-            switch (rgType.SelectedIndex)
-            {
-                case 0:
-                    ret = "MM-dd";
-                    break;
-                case 1:
-                    ret = "MM-dd-HH";
-                    break;
-                case 2:
-                    ret = "MM-dd-HH:mm";
-                    break;
-                default:
-                    break;
-            }
-            return ret;
-        }
+        //private string GetDateTimeFormat()
+        //{
+        //    var ret = string.Empty;
+        //    switch (rgType.SelectedIndex)
+        //    {
+        //        case 0:
+        //            ret = "MM-dd";
+        //            break;
+        //        case 1:
+        //            ret = "MM-dd-HH";
+        //            break;
+        //        case 2:
+        //            ret = "MM-dd-HH:mm";
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    return ret;
+        //}
 
         private void InitControls()
         {
@@ -312,6 +312,8 @@ namespace ISIA.UI.ANALYSIS
                 this.cboDB.Properties.Items.Add(dr["name"]);
             }*/
 
+            this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
+            this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
             this.cboPrmtType.Properties.Items.Clear();
             DataSet dsParmType = bs1.ExecuteDataSet("GetParmType", awrArg.getPack());
@@ -321,26 +323,26 @@ namespace ISIA.UI.ANALYSIS
             }
 
 
-            this.cboShift.SelectedIndex = 0;
+            //this.cboShift.SelectedIndex = 0;
             MonitorArgsPack argsTimePack = new MonitorArgsPack();
-            argsTimePack = GetXmlElement("A");
-            try
-            {
-                if (argsTimePack != null)
-                {
-                    string startTime = argsTimePack.StartTime;
-                    string endTime = argsTimePack.EndTime;
+            //argsTimePack = GetXmlElement("A");
+            //try
+            //{
+            //    if (argsTimePack != null)
+            //    {
+            //        string startTime = argsTimePack.StartTime;
+            //        string endTime = argsTimePack.EndTime;
 
-                    this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + startTime);
-                    this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + endTime);
-                }
+            //        this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + startTime);
+            //        this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + endTime);
+            //    }
 
-                this.cboPrmt.Properties.PopupFormSize = new Size(400, 600);
-            }
-            catch (Exception)
-            {
-                throw;
-            }           
+            //    //this.cboPrmt.Properties.PopupFormSize = new Size(400, 600);
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}           
         }
         #endregion
 
@@ -350,6 +352,16 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
+                if (string.IsNullOrEmpty(cboPrmtType.Text))
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose ParamanetType.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(cboPrmt.Text))
+                {
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose paramentName.");
+                    return;
+                }
                 ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.layoutControl1)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
@@ -372,12 +384,12 @@ namespace ISIA.UI.ANALYSIS
         private void cboShift_SelectedValueChanged(object sender, EventArgs e)
         {
             MonitorArgsPack argsTimePack = new MonitorArgsPack();
-            var shift = this.cboShift.Text;
-            if (string.IsNullOrWhiteSpace(shift))
-            {
-                return;
-            }
-            argsTimePack = GetXmlElement(shift);
+            //var shift = this.cboShift.Text;
+            //if (string.IsNullOrWhiteSpace(shift))
+            //{
+            //    return;
+            //}
+            //argsTimePack = GetXmlElement(shift);
             //if (argsTimePack != null)
             //{
             //    string startTime = argsTimePack.StartTime;
@@ -400,6 +412,36 @@ namespace ISIA.UI.ANALYSIS
             }
         }
 
+        private void comboBoxEditGroupUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEditGroupUnit.Text == "DAY")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "WEEK")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "MONTH")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "QUARTER")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddMonths(-3);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+            else if (comboBoxEditGroupUnit.Text == "YEAR")
+            {
+                this.dateStart.DateTime = DateTime.Now.AddYears(-1);
+                this.dateEnd.DateTime = DateTime.Now;
+            }
+        }
+
         #endregion
+
     }
 }
