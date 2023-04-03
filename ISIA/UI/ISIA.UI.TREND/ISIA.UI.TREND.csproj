@@ -173,20 +173,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\WorkloadDto.cs" />
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="Dto\WorkloadDto.cs" />
     <Compile Include="FrmChartServiceTrend.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmChartServiceTrend.Designer.cs">
       <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmParaTrend.cs">
+    <Compile Include="FrmSQLTotalStatisticsTrend.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmParaTrend.Designer.cs">
-      <DependentUpon>FrmParaTrend.cs</DependentUpon>
+    <Compile Include="FrmSQLTotalStatisticsTrend.Designer.cs">
+      <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSnapTrendChart1.cs">
       <SubType>Form</SubType>
@@ -194,35 +194,11 @@
     <Compile Include="FrmSnapTrendChart1.Designer.cs">
       <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSQLAnalysisBySQL_ID.cs">
+    <Compile Include="FrmWorkloadDataGridView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSQLAnalysisBySQL_ID.Designer.cs">
-      <DependentUpon>FrmSQLAnalysisBySQL_ID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSQLFullTextQueryAnalysis1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSQLFullTextQueryAnalysis1.Designer.cs">
-      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frm1NewSqlStat.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm1NewSqlStat.Designer.cs">
-      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PopupGrid.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PopupGrid.Designer.cs">
-      <DependentUpon>PopupGrid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmOrclParmsTrendChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmOrclParmsTrendChart.Designer.cs">
-      <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
+    <Compile Include="FrmWorkloadDataGridView.Designer.cs">
+      <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSQLTrendChart.cs">
       <SubType>Form</SubType>
@@ -230,58 +206,24 @@
     <Compile Include="FrmSQLTrendChart.Designer.cs">
       <DependentUpon>FrmSQLTrendChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSQLAnalysisChart.cs">
+    <Compile Include="FrmWorkloadTrendChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSQLAnalysisChart.Designer.cs">
-      <DependentUpon>FrmSQLAnalysisChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSqlStatModels.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmSqlStatModels.Designer.cs">
-      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmWorkloadAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmWorkloadAnalysis.designer.cs">
-      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmWorkloadDataGridView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmWorkloadDataGridView.Designer.cs">
-      <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmWorkloadSqlRelationAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmWorkloadSqlRelationAnalysis.designer.cs">
-      <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
+    <Compile Include="FrmWorkloadTrendChart.designer.cs">
+      <DependentUpon>FrmWorkloadTrendChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIService\CommonUIService.cs" />
     <Compile Include="UIService\IInitService.cs" />
     <Compile Include="UIService\IRun.cs" />
     <Compile Include="UIService\IUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\InitializationComboxParmTypeUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\InitializationUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\SerchUiService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmOrclParmsTrend\ShowComboxParmNamesUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\InitializationUIService.cs" />
     <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmWorkload\SearchUiService.cs" />
-    <EmbeddedResource Include="Frm1NewSqlStat.resx">
-      <DependentUpon>Frm1NewSqlStat.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmChartServiceTrend.resx">
       <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmOrclParmsTrendChart.resx">
-      <DependentUpon>FrmOrclParmsTrendChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmParaTrend.resx">
-      <DependentUpon>FrmParaTrend.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSQLTotalStatisticsTrend.resx">
+      <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapTrendChart1.resx">
       <DependentUpon>FrmSnapTrendChart1.cs</DependentUpon>
@@ -289,29 +231,11 @@
     <EmbeddedResource Include="FrmSQLTrendChart.resx">
       <DependentUpon>FrmSQLTrendChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSQLAnalysisBySQL_ID.resx">
-      <DependentUpon>FrmSQLAnalysisBySQL_ID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis1.resx">
-      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSQLAnalysisChart.resx">
-      <DependentUpon>FrmSQLAnalysisChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSqlStatModels.resx">
-      <DependentUpon>FrmSqlStatModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmWorkloadAnalysis.resx">
-      <DependentUpon>FrmWorkloadAnalysis.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadDataGridView.resx">
       <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmWorkloadSqlRelationAnalysis.resx">
-      <DependentUpon>FrmWorkloadSqlRelationAnalysis.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PopupGrid.resx">
-      <DependentUpon>PopupGrid.cs</DependentUpon>
+    <EmbeddedResource Include="FrmWorkloadTrendChart.resx">
+      <DependentUpon>FrmWorkloadTrendChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

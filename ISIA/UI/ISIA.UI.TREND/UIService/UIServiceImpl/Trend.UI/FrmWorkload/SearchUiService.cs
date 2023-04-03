@@ -15,15 +15,15 @@ using UIService;
 
 namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
 {
-    public class SearchUiService : CommonUIService<FrmWorkloadAnalysis, object, AwrArgsPack>
+    public class SearchUiService : CommonUIService<FrmWorkloadTrendChart, object, AwrArgsPack>
     {
 
-        public SearchUiService(FrmWorkloadAnalysis frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
+        public SearchUiService(FrmWorkloadTrendChart frm, object args, AwrArgsPack argsPack) : base(frm, args, argsPack)
         {
 
         }
 
-        public override AwrArgsPack HandleArugument(FrmWorkloadAnalysis frm)
+        public override AwrArgsPack HandleArugument(FrmWorkloadTrendChart frm)
         {
             object startTime = frm.dateStart.EditValue;
             object endTime = frm.dateEnd.EditValue;
@@ -103,7 +103,7 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             result[1] = originTable;
             return result;
         }
-        public override void DisplayData(FrmWorkloadAnalysis frm, object data)
+        public override void DisplayData(FrmWorkloadTrendChart frm, object data)
         {
             //Tfrm.tChart1 display
             frm.splitContainerControl1.Panel1.Controls.Clear();

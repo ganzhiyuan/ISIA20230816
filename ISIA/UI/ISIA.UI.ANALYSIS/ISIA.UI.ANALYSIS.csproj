@@ -121,6 +121,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\SnapshotDto.cs" />
+    <Compile Include="Dto\SqlstatDto.cs" />
+    <Compile Include="Dto\WorkloadDto.cs" />
     <Compile Include="FrmCorrelationAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,17 +136,59 @@
     <Compile Include="FrmEquipmentAnalysis.Designer.cs">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmFindNewSqlID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFindNewSqlID.Designer.cs">
+      <DependentUpon>FrmFindNewSqlID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParameterClusteringAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParameterClusteringAnalysis.Designer.cs">
+      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSQLFullTextQueryAnalysis1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLFullTextQueryAnalysis1.Designer.cs">
+      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSQLIDShereByModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLIDShereByModule.Designer.cs">
+      <DependentUpon>FrmSQLIDShereByModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSqlInfluenceAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmSqlInfluenceAnalysis.designer.cs">
       <DependentUpon>FrmSqlInfluenceAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSQLStatisticsAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLStatisticsAnalysis.Designer.cs">
+      <DependentUpon>FrmSQLStatisticsAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSQLStatisticsBySqlID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLStatisticsBySqlID.Designer.cs">
+      <DependentUpon>FrmSQLStatisticsBySqlID.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadSqlCorrelationAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmWorkloadSqlCorrelationAnalysis.designer.cs">
       <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWorkloadSQLIDDataRatioAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkloadSQLIDDataRatioAnalysis.designer.cs">
+      <DependentUpon>FrmWorkloadSQLIDDataRatioAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="HeatMapUtils\Config.cs" />
     <Compile Include="HeatMapUtils\CorrelationAnalysisExecuterFactory.cs" />
@@ -156,6 +201,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UIService\CommonUIService.cs" />
+    <Compile Include="UIService\IInitService.cs" />
+    <Compile Include="UIService\IRun.cs" />
+    <Compile Include="UIService\IUIService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\InitializationComboxParmTypeUIService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\InitializationUIService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\SerchUiService.cs" />
+    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\ShowComboxParmNamesUIService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
@@ -164,11 +217,32 @@
     <EmbeddedResource Include="FrmEquipmentAnalysis.resx">
       <DependentUpon>FrmEquipmentAnalysis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmFindNewSqlID.resx">
+      <DependentUpon>FrmFindNewSqlID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParameterClusteringAnalysis.resx">
+      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLFullTextQueryAnalysis1.resx">
+      <DependentUpon>FrmSQLFullTextQueryAnalysis1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLIDShereByModule.resx">
+      <DependentUpon>FrmSQLIDShereByModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSqlInfluenceAnalysis.resx">
       <DependentUpon>FrmSqlInfluenceAnalysis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLStatisticsAnalysis.resx">
+      <DependentUpon>FrmSQLStatisticsAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLStatisticsBySqlID.resx">
+      <DependentUpon>FrmSQLStatisticsBySqlID.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlCorrelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkloadSQLIDDataRatioAnalysis.resx">
+      <DependentUpon>FrmWorkloadSQLIDDataRatioAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
@@ -176,6 +250,10 @@
     <ProjectReference Include="..\..\..\UI\TAP.UI\TAP.UI.csproj">
       <Project>{78f57803-0868-4941-8954-833c045664b5}</Project>
       <Name>TAP.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">
+      <Project>{4017597e-0dc9-4441-8492-f1512f907ebf}</Project>
+      <Name>ISIA.COMMON</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\INTERFACE\ISIA.INTERFACE.ARGUMENTSPACK\ISIA.INTERFACE.ARGUMENTSPACK.csproj">
       <Project>{3a02ff43-6d96-4400-9678-ab2bc1d73606}</Project>
