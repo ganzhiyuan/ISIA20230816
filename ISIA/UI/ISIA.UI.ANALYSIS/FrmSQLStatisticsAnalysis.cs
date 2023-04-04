@@ -49,6 +49,8 @@ namespace ISIA.UI.ANALYSIS
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLAnalysisChart");
 
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
             tcmbday.Text = "D";
             tcmbday.Items.Add("D");
             tcmbday.Items.Add("W");
@@ -66,11 +68,11 @@ namespace ISIA.UI.ANALYSIS
                 args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
                 args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
-                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
 
-                List<string> itemList = cboParaName.Text.Split(',').ToArray().ToList();
+                List<string> itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
@@ -80,7 +82,7 @@ namespace ISIA.UI.ANALYSIS
                 DataTable dataTable = ConvertDTToListRef(dataSet.Tables[0]);
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
-                List<SqlShow> list1 = (from d in list where cboParaName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
+                List<SqlShow> list1 = (from d in list where cmbParameterName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
 
                 DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
                 dataSet1.Tables.Add(dt.Copy());
@@ -431,10 +433,10 @@ namespace ISIA.UI.ANALYSIS
 
                     
 
-                    SelectedComboBox(cboParaName, para);
+                    SelectedComboBox(cmbParameterName, para);
                     SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
-                    dateStart.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
-                    dateEnd.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
+                    dtpStartTime.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
+                    dtpEndTime.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
 
                     /*cmbDbName.SelectedText = row1["PARAMENT_NAME"].ToString();
                     dateStart.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
@@ -559,15 +561,22 @@ namespace ISIA.UI.ANALYSIS
         }
 
         private void tbnSeach_Click(object sender, EventArgs e)
-        {
-            
-            
-
-
+        { 
             try
             {
-                
-                
+                if (string.IsNullOrEmpty(cmbDbName.Text))
+                {
+                    string errMessage = "Please select DB_NAME";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbParameterName.Text))
+                {
+                    string errMessage = "Please select ParameterName";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+
                 //ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
@@ -582,18 +591,18 @@ namespace ISIA.UI.ANALYSIS
         {
             if (tcmbday.Text == "D")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (tcmbday.Text == "W")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (tcmbday.Text == "M")
             {
-                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
         }
 

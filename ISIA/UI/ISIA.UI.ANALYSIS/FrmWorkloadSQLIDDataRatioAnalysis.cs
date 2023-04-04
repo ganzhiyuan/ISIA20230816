@@ -12,6 +12,7 @@ using System.Xml;
 using Steema.TeeChart.Tools;
 using Steema.TeeChart.Styles;
 using DevExpress.XtraEditors.Controls;
+using System.Linq;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -32,6 +33,8 @@ namespace ISIA.UI.ANALYSIS
             Bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadSqlRelationAnalysis");
             this.InitializeControls();
             //initialize bs
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
         }
 
         #region event
@@ -39,6 +42,18 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
+                if (string.IsNullOrEmpty(cmbDbName.Text))
+                {
+                    string errMessage = "Please select DB_NAME";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbParameterName.Text))
+                {
+                    string errMessage = "Please select ParameterName";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
                 this.AsyncGetWorkloadAndSqlComparisonData();
             }
             catch (Exception ex)
@@ -51,7 +66,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                InitializeSqlId();
+                //InitializeSqlId();
             }
             catch (Exception ex)
             {
@@ -76,7 +91,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                InitializeSqlId();
+                //InitializeSqlId();
             }
             catch (Exception ex)
             {
@@ -85,12 +100,6 @@ namespace ISIA.UI.ANALYSIS
             }
         }
 
-        private void textEditSqlId_EditValueChanged(object sender, EventArgs e)
-        {
-
-            FilteringCheckedListBoxSqlIds();
-            
-        }
         #endregion
 
         #region Initialize
@@ -114,10 +123,10 @@ namespace ISIA.UI.ANALYSIS
             XmlDocument doc = new XmlDocument();
             doc.Load(@".\ISIA.config");
             XmlNodeList nodeList = doc.SelectNodes("configuration/TAP.ISIA.Configuration/WX/Shift");
-            this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
-            this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
-            this.dateStart.EditValueChanged += new System.EventHandler(this.dateStart_EditValueChanged);
-            this.dateEnd.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
+            this.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
+            this.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
+            this.dtpStartTime.EditValueChanged += new System.EventHandler(this.dateStart_EditValueChanged);
+            this.dtpEndTime.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
 
 
 
@@ -137,26 +146,16 @@ namespace ISIA.UI.ANALYSIS
         private void InitializeSqlId()
         {
             AwrArgsPack args = new AwrArgsPack();
-            args.StartTime = ((DateTime)dateStart.EditValue).ToString("yyyyMMddHHmmss");
-            args.EndTime = ((DateTime)dateEnd.EditValue).ToString("yyyyMMddHHmmss");
-            if (string.IsNullOrEmpty(comboBoxDBName.Text))
+            args.StartTime = ((DateTime)dtpStartTime.EditValue).ToString("yyyyMMddHHmmss");
+            args.EndTime = ((DateTime)dtpEndTime.EditValue).ToString("yyyyMMddHHmmss");
+            if (string.IsNullOrEmpty(cmbDbName.Text))
             {
-                throw new Exception(" Please select db name first");
+                string errMessage = "Please select DB_NAME";
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                return;
             }
-            args.DBName = comboBoxDBName.Text.Split('(')[0];
-
-            DataSet ds = Bs.ExecuteDataSet("GetSqlId", args.getPack());
-            this.clbSqlIds.Items.Clear();
-            DataTable dt = ds.Tables[0];
-            foreach (DataRow dr in dt.Rows)
-            {
-                this.clbSqlIds.Items.Add(dr["SQL_ID"]);
-            }
-            //sqlcollection update.
-            foreach(CheckedListBoxItem item in this.clbSqlIds.Items)
-            {
-                sqlCollection.Add((string)item.Value);
-            }
+            args.DBName = cmbDbName.Text.Split('(')[0];            
+            sqlCollection=SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
 
         }
 
@@ -164,7 +163,7 @@ namespace ISIA.UI.ANALYSIS
         {
             foreach (KeyValuePair<string, string> pair in AwrArgsPack.WorkloadSqlRelationMapping)
             {
-                this.comboBoxEditWorkloadSql.Properties.Items.Add(pair.Key);
+                this.cmbParameterName.Properties.Items.Add(pair.Key);
             }
         }
 
@@ -185,15 +184,15 @@ namespace ISIA.UI.ANALYSIS
         {
             AwrArgsPack argument = new AwrArgsPack();
             //date period handling 
-            object startTime = dateStart.EditValue;
-            object endTime = dateEnd.EditValue;
-            if (startTime == null || endTime == null)
-            {
-                string errMessage = "Please select StartTime or EndTime";
-                throw new Exception(errMessage);
-            }
-            DateTime startDateTime = (DateTime)dateStart.EditValue;
-            DateTime endDateTime = (DateTime)dateEnd.EditValue;
+            object startTime = dtpStartTime.EditValue;
+            object endTime = dtpEndTime.EditValue;
+            //if (startTime == null || endTime == null)
+            //{
+            //    string errMessage = "Please select StartTime or EndTime";
+            //    throw new Exception(errMessage);
+            //}
+            DateTime startDateTime = (DateTime)dtpStartTime.EditValue;
+            DateTime endDateTime = (DateTime)dtpEndTime.EditValue;
 
             if (startDateTime > endDateTime)
             {
@@ -204,21 +203,17 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = comboBoxDBName.Text.Split('(')[0];
-            if (string.IsNullOrEmpty(dbName))
-            {
-                string errMessage = "Please select DB_NAME";
-                throw new Exception(errMessage);
-            }
+            string dbName = cmbDbName.Text.Split('(')[0];
+           
             argument.DBName = dbName;
 
             //SQLID handling 
 
-            argument.SqlIdList = clbSqlIds.Items.GetCheckedValues();
+            argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
 
 
             //combobox edit workload parm
-            string workloadSql = comboBoxEditWorkloadSql.Text;
+            string workloadSql = cmbParameterName.Text;
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select Workload parm";
@@ -346,29 +341,6 @@ namespace ISIA.UI.ANALYSIS
 
         private List<string> sqlCollection = new List<string>();
 
-        private void FilteringCheckedListBoxSqlIds()
-        {
-            if (string.IsNullOrEmpty(textEditSqlId.Text) == false)
-            {
-                clbSqlIds.Items.Clear();
-                foreach (string str in sqlCollection)
-                {
-                    if (str.Contains(textEditSqlId.Text))
-                    {
-                        clbSqlIds.Items.Add(str);
-                    }
-                }
-            }
-            else if (textEditSqlId.Text == "")
-            {
-                clbSqlIds.Items.Clear();
-                foreach (string str in sqlCollection)
-                {
-                    clbSqlIds.Items.Add(str);
-
-                }
-            }
-        }
         #endregion
         private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

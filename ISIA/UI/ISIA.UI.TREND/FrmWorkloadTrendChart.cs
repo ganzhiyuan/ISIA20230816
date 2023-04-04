@@ -53,7 +53,8 @@ namespace ISIA.UI.TREND
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
 
-
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
             //new InitializationUIService(this, null, new AwrArgsPack()).Run();
         }
 
@@ -318,6 +319,11 @@ namespace ISIA.UI.TREND
             this._DataTable = DataTableExtend.ConvertToDataSet<WorkloadDto>(workloadList).Tables[0];
             FrmWorkloadDataGridView frm = new FrmWorkloadDataGridView(_DataTable);
             frm.ShowDialog();
+
+            //tmpUIDefaultInfo = new UIBasicDefaultInfo();
+            //tmpUIDefaultInfo.Region = InfoBase._USER_INFO.Region;
+            //tmpUIDefaultInfo.Facility = InfoBase._USER_INFO.Facility;
+
             DataTable dtForNext = frm.ResultForNextPageDt;
             if (frm.args == null)
             {
@@ -328,7 +334,7 @@ namespace ISIA.UI.TREND
             ht.Add("endTime", frm.args.EndTime);
             ht.Add("workloadParm", frm.args.WorkloadSqlParm);
             ht.Add("DbName", frm.args.DBName);
-            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "ANALYSIS", "Sql Parm Correlation Analysis", null, ht);
+            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "AWR", "Correlation between Workload and SQL", null, ht);
 
 
 

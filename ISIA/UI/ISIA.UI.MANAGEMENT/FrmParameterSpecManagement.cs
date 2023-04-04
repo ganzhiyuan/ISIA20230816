@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
@@ -53,6 +54,16 @@ namespace ISIA.UI.MANAGEMENT
                 return;
             }
             GridViewDataBinding();
+            GridViewStyle();
+        }
+
+        private void GridViewStyle()
+        {
+            foreach (GridColumn item in gridView1.Columns)
+            {
+                if (item.FieldName == "ID"  || item.FieldName == "ROWID")
+                    item.Visible = false;
+            }
         }
 
         public void GridViewDataBinding()

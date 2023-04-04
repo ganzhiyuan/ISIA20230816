@@ -54,6 +54,7 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.tLabel3 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.SLUEParamentName = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditControl();
             this.cmbDbName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabelDB = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -62,13 +63,12 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.PnlDetailContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.heatmap = new DevExpress.XtraCharts.Heatmap.HeatmapControl();
-            this.tLabel3 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -110,8 +110,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -588,6 +588,19 @@
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
+            // tLabel3
+            // 
+            this.tLabel3.ControlID = "tLabelDB";
+            this.tLabel3.IsRequired = false;
+            this.tLabel3.Location = new System.Drawing.Point(4, 28);
+            this.tLabel3.Name = "tLabel3";
+            this.tLabel3.NeedToTranslate = true;
+            this.tLabel3.RepresentativeValue = "ParamentName";
+            this.tLabel3.Size = new System.Drawing.Size(83, 144);
+            this.tLabel3.StyleController = this.layoutControl2;
+            this.tLabel3.TabIndex = 119;
+            this.tLabel3.Text = "ParamentName";
+            // 
             // SLUEParamentName
             // 
             this.SLUEParamentName.ControlID = "txtParamentName";
@@ -705,6 +718,18 @@
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.tLabel3;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem17.MaxSize = new System.Drawing.Size(87, 148);
+            this.layoutControlItem17.MinSize = new System.Drawing.Size(87, 148);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(87, 148);
+            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
             // navBarGroup1
             // 
             this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.MistyRose;
@@ -750,31 +775,6 @@
             this.heatmap.Size = new System.Drawing.Size(1038, 664);
             this.heatmap.TabIndex = 0;
             this.heatmap.Text = "heatmapControl1";
-            // 
-            // tLabel3
-            // 
-            this.tLabel3.ControlID = "tLabelDB";
-            this.tLabel3.IsRequired = false;
-            this.tLabel3.Location = new System.Drawing.Point(4, 28);
-            this.tLabel3.Name = "tLabel3";
-            this.tLabel3.NeedToTranslate = true;
-            this.tLabel3.RepresentativeValue = "ParamentName";
-            this.tLabel3.Size = new System.Drawing.Size(83, 144);
-            this.tLabel3.StyleController = this.layoutControl2;
-            this.tLabel3.TabIndex = 119;
-            this.tLabel3.Text = "ParamentName";
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.tLabel3;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem17.MaxSize = new System.Drawing.Size(87, 148);
-            this.layoutControlItem17.MinSize = new System.Drawing.Size(87, 148);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(87, 148);
-            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
             // 
             // FrmCorrelationAnalysis
             // 
@@ -826,8 +826,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            this.xtraTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
