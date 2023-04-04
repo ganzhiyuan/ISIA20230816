@@ -82,7 +82,8 @@ namespace ISIA.UI.ANALYSIS
                 DataTable dataTable = ConvertDTToListRef(dataSet.Tables[0]);
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
-                List<SqlShow> list1 = (from d in list where cmbParameterName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
+                var aryylist = cmbParameterName.Text.Replace(", ", ",").Split(',').ToList<string>();
+                List<SqlShow> list1 = list.Where(x => aryylist.Contains(x.PARAMENT_NAME)).ToList();
 
                 DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
                 dataSet1.Tables.Add(dt.Copy());

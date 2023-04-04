@@ -3923,7 +3923,7 @@ namespace ISIA.BIZ.COMMON
 
                     tmpSql.Append(" SELECT COLUMN_NAME AS PARAMETERNAME FROM( ");
                     tmpSql.AppendFormat(" SELECT  COLUMN_NAME  FROM USER_TAB_COLUMNS  WHERE TABLE_NAME = 'RAW_DBA_HIST_SQLSTAT_{0}')", dbName);
-                    tmpSql.Append(" T WHERE T.COLUMN_NAME LIKE '%TOTAL' OR T.COLUMN_NAME LIKE '%DELTA'");
+                    tmpSql.Append(" T WHERE T.COLUMN_NAME LIKE '%TOTAL' --OR T.COLUMN_NAME LIKE '%DELTA'");
                 }
                 else
                 {

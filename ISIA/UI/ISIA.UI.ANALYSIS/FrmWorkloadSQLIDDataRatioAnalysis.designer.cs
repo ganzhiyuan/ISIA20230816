@@ -710,12 +710,14 @@ namespace ISIA.UI.ANALYSIS
             // tLabel2
             // 
             this.tLabel2.ControlID = "tLabelParmNames";
+            this.tLabel2.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.tLabel2.IsRequired = false;
             this.tLabel2.Location = new System.Drawing.Point(5, 5);
             this.tLabel2.Name = "tLabel2";
             this.tLabel2.NeedToTranslate = true;
+            this.tLabel2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.tLabel2.RepresentativeValue = "ParamentName";
-            this.tLabel2.Size = new System.Drawing.Size(87, 138);
+            this.tLabel2.Size = new System.Drawing.Size(88, 14);
             this.tLabel2.StyleController = this.layoutControl4;
             this.tLabel2.TabIndex = 120;
             this.tLabel2.Text = "ParamentName";
@@ -727,7 +729,7 @@ namespace ISIA.UI.ANALYSIS
             this.SLUEParamentName.DisplayMember = "PARAMETERNAME";
             this.SLUEParamentName.DominantControl = null;
             this.SLUEParamentName.IsRequired = false;
-            this.SLUEParamentName.Location = new System.Drawing.Point(97, 0);
+            this.SLUEParamentName.Location = new System.Drawing.Point(0, 24);
             this.SLUEParamentName.Name = "SLUEParamentName";
             this.SLUEParamentName.NeedToTranslate = false;
             this.SLUEParamentName.ParameterID = "PARAMETERNAME";
@@ -737,7 +739,7 @@ namespace ISIA.UI.ANALYSIS
             this.SLUEParamentName.RepresentativeValue = "";
             this.SLUEParamentName.SetEditValue = null;
             this.SLUEParamentName.ShowDescription = false;
-            this.SLUEParamentName.Size = new System.Drawing.Size(216, 191);
+            this.SLUEParamentName.Size = new System.Drawing.Size(313, 167);
             this.SLUEParamentName.Sql = "ISIA.BIZ.TREND.OrclParmsTrendChart.GetParmNameByTypeAll";
             this.SLUEParamentName.SqlDataBase = null;
             this.SLUEParamentName.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -762,10 +764,10 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem1.AppearanceItemCaption.BackColor = System.Drawing.Color.White;
             this.layoutControlItem1.AppearanceItemCaption.Options.UseBackColor = true;
             this.layoutControlItem1.Control = this.SLUEParamentName;
-            this.layoutControlItem1.Location = new System.Drawing.Point(97, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem1.Size = new System.Drawing.Size(216, 191);
+            this.layoutControlItem1.Size = new System.Drawing.Size(313, 167);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -775,11 +777,8 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem8.AppearanceItemCaption.Options.UseBackColor = true;
             this.layoutControlItem8.Control = this.tLabel2;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(97, 148);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(97, 148);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(97, 191);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem8.Size = new System.Drawing.Size(313, 24);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 

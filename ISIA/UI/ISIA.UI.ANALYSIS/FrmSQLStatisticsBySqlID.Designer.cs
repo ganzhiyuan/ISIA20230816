@@ -56,7 +56,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.lcSerachOptions = new DevExpress.XtraLayout.LayoutControl();
-            this.cmbParameterName = new TAP.UIControls.BasicControlsDEV.TComboBox();
+            this.cmbParameterName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.cmbDbName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabelParmNames = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.tLabelDB = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -585,35 +585,30 @@ namespace ISIA.UI.ANALYSIS
             // 
             // cmbParameterName
             // 
-            this.cmbParameterName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.cmbParameterName.BuiltInCategory = "";
-            this.cmbParameterName.BuiltInDispay = TAP.UIControls.EnumBuitInDispay.NONE;
-            this.cmbParameterName.BuiltInIncludeAll = false;
-            this.cmbParameterName.BuiltInSubCategory = "";
-            this.cmbParameterName.ControlID = "cboParaName";
-            this.cmbParameterName.DisplayMember = null;
-            this.cmbParameterName.DominantControl = "";
-            this.cmbParameterName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbParameterName.DropDownHeight = 100;
+            this.cmbParameterName.CheckItemSelectMode = true;
+            this.cmbParameterName.ControlID = "cmbParameterName";
+            this.cmbParameterName.DescriptionMember = null;
+            this.cmbParameterName.DisplayMember = "PARAMETERNAME";
+            this.cmbParameterName.DominantControl = "cmbDbName";
             this.cmbParameterName.EditValue = "";
-            this.cmbParameterName.IsColorData = false;
             this.cmbParameterName.IsRequired = false;
             this.cmbParameterName.Location = new System.Drawing.Point(100, 28);
             this.cmbParameterName.Margin = new System.Windows.Forms.Padding(2);
             this.cmbParameterName.Name = "cmbParameterName";
             this.cmbParameterName.NeedToTranslate = true;
-            this.cmbParameterName.ParameterID = "COLUMN_NAME";
+            this.cmbParameterName.ParameterID = "PARAMETERNAME";
             this.cmbParameterName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbParameterName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbParameterName.RepresentativeValue = null;
+            this.cmbParameterName.Properties.SelectAllItemVisible = false;
+            this.cmbParameterName.RepresentativeValue = "";
+            this.cmbParameterName.ShowDescription = false;
             this.cmbParameterName.Size = new System.Drawing.Size(128, 20);
             this.cmbParameterName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlstatParaName";
             this.cmbParameterName.SqlDataBase = "";
             this.cmbParameterName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cmbParameterName.StyleController = this.lcSerachOptions;
             this.cmbParameterName.TabIndex = 23;
-            this.cmbParameterName.ValueMember = null;
+            this.cmbParameterName.ValueMember = "PARAMETERNAME";
             // 
             // cmbDbName
             // 
@@ -883,7 +878,7 @@ namespace ISIA.UI.ANALYSIS
         public DevExpress.XtraLayout.LayoutControlGroup Root;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private TAP.UIControls.BasicControlsDEV.TComboBox cmbParameterName;
+        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbParameterName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private TAP.UIControls.BasicControlsDEV.TComboBox tcmbday;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
