@@ -14,6 +14,7 @@ using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
+using TAP.Models.Factories.BIZ;
 
 namespace ISIA.BIZ.COMMON
 {
@@ -3862,8 +3863,73 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@" select COLUMN_NAME from(
-                        select  COLUMN_NAME  from user_tab_columns  where Table_Name = 'RAW_DBA_HIST_SQLSTAT_ISFA') t where t.column_name like '%TOTAL' ");
+                tmpSql.Append(@" SELECT NULL AS PARAMETERNAME FROM DUAL ");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSqlstatParaName(ArgumentPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                if (!string.IsNullOrEmpty((string)arguments["DBID"].ArgumentValue))
+                {
+                    string dbID = (string)arguments["DBID"].ArgumentValue;
+
+                    StringBuilder tmpSql2 = new StringBuilder();
+                    tmpSql2.Append("SELECT DBID,DBNAME FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+
+                    RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                           tmpSql2.ToString(), false);
+
+                    DataSet dataBase =  db.Select(tmpSql2.ToString());
+
+                    if(dataBase == null)
+                    {
+                        RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", "SQL ERROR"), false);
+                        return;
+                    }
+
+                    DataTable dataTable = dataBase.Tables[0];
+
+                    string dbName = "";
+
+                    foreach(DataRow dr in dataTable.Rows)
+                    {
+                        if(dr["DBID"].ToString() == dbID)
+                        {
+                            dbName = dr["DBNAME"].ToString();
+                        }
+
+                    }
+
+                    if(dbName.Length < 1)
+                    {
+                        return;
+                    }
+
+                    tmpSql.Append(" SELECT COLUMN_NAME AS PARAMETERNAME FROM( ");
+                    tmpSql.AppendFormat(" SELECT  COLUMN_NAME  FROM USER_TAB_COLUMNS  WHERE TABLE_NAME = 'RAW_DBA_HIST_SQLSTAT_{0}')", dbName);
+                    tmpSql.Append(" T WHERE T.COLUMN_NAME LIKE '%TOTAL' OR T.COLUMN_NAME LIKE '%DELTA'");
+                }
+                else
+                {
+                    tmpSql.Append(@" SELECT NULL AS PARAMETERNAME FROM DUAL ");
+                }
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
