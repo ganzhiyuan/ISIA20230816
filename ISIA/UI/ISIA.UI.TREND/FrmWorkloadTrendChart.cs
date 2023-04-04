@@ -53,6 +53,8 @@ namespace ISIA.UI.TREND
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
 
+            this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            this.dtpEndTime.DateTime = DateTime.Now;
 
             //new InitializationUIService(this, null, new AwrArgsPack()).Run();
         }

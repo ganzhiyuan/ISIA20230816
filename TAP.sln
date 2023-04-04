@@ -55,11 +55,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIA.UI.COMMON", "ISIA\UI\I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Development documents", "00.Development documents", "{2D212AFC-4FDD-418E-8A3D-A48164792B33}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\10.Project\20222101_C2_ISIA\02 Design\Definition_controlname and Linkage.xlsx = ..\..\10.Project\20222101_C2_ISIA\02 Design\Definition_controlname and Linkage.xlsx
-		C:\Users\Kim.Seoil\Downloads\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf = C:\Users\Kim.Seoil\Downloads\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf
-		C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf = C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf
-		C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf = C:\Users\Kim.Seoil\Downloads\OneDrive_2023-04-03\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf
-		C:\Users\Kim.Seoil\Downloads\TAPFX3100_Help.chm = C:\Users\Kim.Seoil\Downloads\TAPFX3100_Help.chm
+		00.Development documents\Definition_controlname and Linkage.xlsx = 00.Development documents\Definition_controlname and Linkage.xlsx
+		00.Development documents\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf = 00.Development documents\desc_SH_ST_TAP_How to Use Fressage_r1.0_20220711_cn.pdf
+		00.Development documents\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf = 00.Development documents\guide_SH_ST_IntSysDev_r3.0_20220622_cn.pdf
+		00.Development documents\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf = 00.Development documents\guide_SH_ST_IntSysDev_r3.0_20220622_kr.pdf
+		00.Development documents\TAPFX3100_Help.chm = 00.Development documents\TAPFX3100_Help.chm
 	EndProjectSection
 EndProject
 Global

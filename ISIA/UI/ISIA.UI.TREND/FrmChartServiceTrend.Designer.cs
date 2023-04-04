@@ -1009,7 +1009,7 @@ namespace ISIA.UI.TREND
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmChartServiceTrend";
-            this.Text = "FrmChartServiceTrand";
+            this.Text = "Chart Service Trand";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);

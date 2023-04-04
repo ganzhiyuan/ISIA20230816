@@ -49,16 +49,19 @@ namespace ISIA.UI.TREND
             // gridControlWorkloadData
             // 
             this.gridControlWorkloadData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlWorkloadData.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControlWorkloadData.Location = new System.Drawing.Point(0, 0);
             this.gridControlWorkloadData.MainView = this.gridView1;
+            this.gridControlWorkloadData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControlWorkloadData.Name = "gridControlWorkloadData";
-            this.gridControlWorkloadData.Size = new System.Drawing.Size(886, 679);
+            this.gridControlWorkloadData.Size = new System.Drawing.Size(775, 528);
             this.gridControlWorkloadData.TabIndex = 0;
             this.gridControlWorkloadData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.DetailHeight = 272;
             this.gridView1.GridControl = this.gridControlWorkloadData;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -105,15 +108,17 @@ namespace ISIA.UI.TREND
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(886, 0);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(775, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 679);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 528);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(886, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(775, 0);
             // 
             // barDockControlLeft
             // 
@@ -121,28 +126,31 @@ namespace ISIA.UI.TREND
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 679);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 528);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(886, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(775, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 679);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 528);
             // 
             // FrmWorkloadDataGridView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 679);
+            this.ClientSize = new System.Drawing.Size(775, 528);
             this.Controls.Add(this.gridControlWorkloadData);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmWorkloadDataGridView";
-            this.Text = "FrmWorkloadDataGridView";
+            this.Text = "Workload Data GridView";
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWorkloadData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
