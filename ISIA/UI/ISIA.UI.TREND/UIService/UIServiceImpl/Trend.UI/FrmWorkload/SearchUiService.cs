@@ -105,7 +105,7 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
         }
         public override void DisplayData(FrmWorkloadTrendChart frm, object data)
         {
-            //Tfrm.tChart1 display
+           /* //Tfrm.tChart1 display
             frm.splitContainerControl1.Panel1.Controls.Clear();
             frm.tChart1.Zoom.Direction = ZoomDirections.None;
 
@@ -153,7 +153,7 @@ namespace ISIA.UI.TREND.UIService.UIServiceImpl.Trend.UI.FrmWorkload
             frm.gridView1.Columns[4].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             frm.gridView1.Columns[5].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             frm.gridView1.Columns[5].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
-            frm.gridView1.BestFitColumns();
+            frm.gridView1.BestFitColumns();*/
         }
 
 

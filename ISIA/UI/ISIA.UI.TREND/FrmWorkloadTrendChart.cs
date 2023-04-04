@@ -35,7 +35,7 @@ namespace ISIA.UI.TREND
 {
     public partial class FrmWorkloadTrendChart : DockUIBase1T1
     {
-        TChart currentChart = null;
+        
 
         protected PointF _pStart;
         protected PointF _pEnd;
@@ -115,46 +115,50 @@ namespace ISIA.UI.TREND
 
 
             this.splitContainerControl1.Panel1.Controls.Clear();
-            this.tChart1.Zoom.Direction = ZoomDirections.None;
+            //this.tChart1.Zoom.Direction = ZoomDirections.None;
+            TChart tChart1 = new TChart();
 
-            this.tChart1.Series.Clear();
-            this.tChart1.ContextMenuStrip = this.contextMenuStrip1;
-            this.tChart1.Dock = DockStyle.Fill;
+            this.splitContainerControl1.Panel1.Controls.Add(tChart1);
+
+            
+            tChart1.Dock = DockStyle.Fill;
             //Header set
-            this.tChart1.Header.Text = "WORKLOAD";
+            //this.tChart1.Header.Text = "WORKLOAD";
             //Legend set
-            this.tChart1.Legend.LegendStyle = LegendStyles.Series;
-            this.tChart1.Legend.Visible = true;
-            this.tChart1.Legend.CheckBoxes = true;
+            tChart1.Legend.LegendStyle = LegendStyles.Series;
+            tChart1.Legend.Visible = true;
+            //this.tChart1.Legend.CheckBoxes = true;
 
             
 
-            //object[] res = (object[])data;
             DataTable[] tables = (DataTable[])result[0];
             //XAXIS MULTILINE CONTROL
-            this.tChart1.Axes.Bottom.Labels.MultiLine = true;
+            tChart1.Axes.Bottom.Labels.MultiLine = true;
             //tool tip
-            MarksTip marksTip = new MarksTip(this.tChart1.Chart);
+            MarksTip marksTip = new MarksTip(tChart1.Chart);
             marksTip.Active = true;
             marksTip.MouseDelay = 100;
             marksTip.MouseAction = MarksTipMouseAction.Move;
-            marksTip.Style = MarksStyles.XY;
-            /*this.tChart1.MouseMove += new MouseEventHandler(tChart_MouseMove);
-            marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);*/
+            //marksTip.Style = MarksStyles.XY;
+            //tChart1.MouseMove += tChart_MouseMove;
+            /*marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);*/
             //Color color = new Color();
 
             foreach (DataTable dt in tables)
             {
                 //color.getRandomColor();
                 Line line = CreateLine(dt);
-                this.tChart1.Series.Add(line);
-                this.tChart1.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
-                this.tChart1.Axes.Bottom.Labels.ExactDateTime = true;
-                this.tChart1.Axes.Bottom.Ticks.Width = 0;
+                tChart1.Series.Add(line);
+                tChart1.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
+                tChart1.Axes.Bottom.Labels.ExactDateTime = true;
+                tChart1.Axes.Bottom.Ticks.Width = 0;
             }
-            this.splitContainerControl1.Panel1.Controls.Add(this.tChart1);
+            //this.splitContainerControl1.Panel1.Controls.Add(this.tChart1);
 
-            
+            tChart1.MouseDown += tChart1_MouseDown;
+            tChart1.MouseUp += tChart1_MouseUp;
+
+
 
         }
 
@@ -204,13 +208,13 @@ namespace ISIA.UI.TREND
                 System.Drawing.Color.FromArgb(color.R1, color.G1, color.S1);*/
             line.Legend.BorderRound = 20;
             line.XValues.DateTime = true;
-            //line.GetSeriesMark += Line_GetSeriesMark;
+            line.GetSeriesMark += Line_GetSeriesMark;
 
 
-            /*void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMENT_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMENT_NAME"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["PARAMENT_VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
-            }*/
+                e.MarkText = "PARAMENT_NAME :" + $"{dt.Columns[0].ColumnName}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex][0]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex][1]}";
+            }
             return line;
         }
 
@@ -238,20 +242,15 @@ namespace ISIA.UI.TREND
 
 
 
-        private void editChartToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            currentChart.ShowEditor();
-        }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-            currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
-        }
+
+
 
 
 
         private void tChart1_MouseUp(object sender, MouseEventArgs e)
         {
+
             if (e.Button == MouseButtons.Left && bfirst)
             {
                 _pEnd.X = (float)e.X;
@@ -259,12 +258,12 @@ namespace ISIA.UI.TREND
                 bfirst = false;
                 if (_pStart != _pEnd)
                 {
-                    SerachDataPoint(_pStart, _pEnd);
+                    SerachDataPoint(_pStart, _pEnd, sender as TChart);
                 }
             }
         }
 
-        private void SerachDataPoint(PointF pStart, PointF pEnd)
+        private void SerachDataPoint(PointF pStart, PointF pEnd , TChart chart)
         {
             workloadList = new List<WorkloadDto>();
             float minX;
@@ -292,7 +291,7 @@ namespace ISIA.UI.TREND
                 maxY = pStart.Y;
             }
 
-            foreach (Line line in tChart1.Chart.Series)
+            foreach (Line line in chart.Series)
             {
                 for (int i = 0; i < line.Count; i++)
                 {
@@ -348,7 +347,8 @@ namespace ISIA.UI.TREND
 
 
         }
-        
+
+
         private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
         {
             if (comboBoxEditGroupUnit.Text == "DAY")
