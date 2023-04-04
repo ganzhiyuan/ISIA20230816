@@ -70,29 +70,17 @@ namespace ISIA.UI.ANALYSIS
             try
             {
 
-                /*var listDB = this.cboDB.Properties.Items.GetCheckedValues();
-                var DATABASE = string.Join(",", listDB);*/
-
-                var listPrmt = this.cboPrmt.Properties.Items.GetCheckedValues();
-                var Params = string.Join(",", listPrmt);
+                //var listPrmt = this.cboPrmt.Properties.Items.GetCheckedValues();
+                //var Params = string.Join(",", listPrmt);
 
 
-                List<object> paramList = cboPrmt.Properties.Items.GetCheckedValues();
-                //if (paramList == null || paramList.Count <= 0)
-                //{
-                //    string errMessage = "Please select Param Names";
-                //    return null;
-                //}
+                List<object> paramList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
                 EventArgPack.ParamNamesList = paramList;
 
                 //time argument checked
                 var startTime = this.dateStart.EditValue;
                 var endTime = dateEnd.EditValue;
-                //if (startTime == null || endTime == null)
-                //{
-                //    string errMessage = "Please select StartTime or EndTime";
-                //    return null;
-                //}
+
                 DateTime startDateTime = (DateTime)dateStart.EditValue;
                 DateTime endDateTime = (DateTime)dateEnd.EditValue;
 
@@ -106,19 +94,6 @@ namespace ISIA.UI.ANALYSIS
                 EventArgPack.EndTime = endDateTime.ToString("yyyyMMdd");
                 EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
-                //xasix_interval check
-                //if (rgType.SelectedIndex == 1)
-                //{
-                //    EventArgPack.StartTime = EventArgPack.StartTime + "00";
-                //    EventArgPack.EndTime = EventArgPack.EndTime + "23";
-                //    EventArgPack.GroupingDateFormat = "yyyyMMddHH24";
-                //}
-                //else if (rgType.SelectedIndex == 2)
-                //{
-                //    EventArgPack.StartTime = EventArgPack.StartTime + "000";
-                //    EventArgPack.EndTime = EventArgPack.EndTime + "235";
-                //    EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
-                //}
                 EventArgPack.DBName = cmbDbName.Text.Split('(')[0];
 
                 dsTrend = bs.ExecuteDataSet("GetParmDailyTrendData", EventArgPack.getPack());
@@ -127,7 +102,7 @@ namespace ISIA.UI.ANALYSIS
                 dsHeat = new DataSet();
                 dsHeat.Tables.Add(dtTemp);
 
-                listHeap = Params.Split(',').ToList<string>();
+                listHeap = SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
                 return dsHeat;
             }
             catch (Exception ex)
@@ -315,12 +290,12 @@ namespace ISIA.UI.ANALYSIS
             this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm"));
             this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
-            this.cboPrmtType.Properties.Items.Clear();
-            DataSet dsParmType = bs1.ExecuteDataSet("GetParmType", awrArg.getPack());
-            foreach (DataRow dr in dsParmType.Tables[0].Rows)
-            {
-                cboPrmtType.Properties.Items.Add(dr["parametertype"]);
-            }
+            //this.cboPrmtType.Properties.Items.Clear();
+            //DataSet dsParmType = bs1.ExecuteDataSet("GetParmType", awrArg.getPack());
+            //foreach (DataRow dr in dsParmType.Tables[0].Rows)
+            //{
+            //    cboPrmtType.Properties.Items.Add(dr["parametertype"]);
+            //}
 
 
             //this.cboShift.SelectedIndex = 0;
@@ -352,14 +327,15 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                if (string.IsNullOrEmpty(cboPrmtType.Text))
+
+                if (string.IsNullOrEmpty(cmbDbName.Text))
                 {
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose ParamanetType.");
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose ParamanetName.");
                     return;
                 }
-                if (string.IsNullOrEmpty(cboPrmt.Text))
+                if (string.IsNullOrEmpty(SLUEParamentName.PARAMETERNAME))
                 {
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose paramentName.");
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose ParamanetName.");
                     return;
                 }
                 ComboBoxControl.SetCrossLang(this._translator);
@@ -379,37 +355,6 @@ namespace ISIA.UI.ANALYSIS
                 return;
             }
 
-        }
-
-        private void cboShift_SelectedValueChanged(object sender, EventArgs e)
-        {
-            MonitorArgsPack argsTimePack = new MonitorArgsPack();
-            //var shift = this.cboShift.Text;
-            //if (string.IsNullOrWhiteSpace(shift))
-            //{
-            //    return;
-            //}
-            //argsTimePack = GetXmlElement(shift);
-            //if (argsTimePack != null)
-            //{
-            //    string startTime = argsTimePack.StartTime;
-            //    string endTime = argsTimePack.EndTime;
-
-            //    this.dateStart.DateTime = Convert.ToDateTime(this.dateStart.DateTime.ToString("yyyy-MM-dd") + " " + startTime);
-            //    this.dateEnd.DateTime = Convert.ToDateTime(this.dateEnd.DateTime.ToString("yyyy-MM-dd") + " " + endTime);
-            //}
-        }
-
-        private void cboPrmtType_EditValueChanged(object sender, EventArgs e)
-        {
-            AwrArgsPack awrArg = new AwrArgsPack();
-            awrArg.ParamType = this.cboPrmtType.Text.Trim();
-            this.cboPrmt.Properties.Items.Clear();
-            dsParmType = bs1.ExecuteDataSet("GetParmNameByType", awrArg.getPack());
-            foreach (DataRow dr in dsParmType.Tables[0].Rows)
-            {
-                this.cboPrmt.Properties.Items.Add(dr["parametername"]);
-            }
         }
 
         private void comboBoxEditGroupUnit_SelectedIndexChanged(object sender, EventArgs e)
