@@ -27,7 +27,7 @@ namespace ISIA.UI.ANALYSIS
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart1");
-            dateStart.DateTime = DateTime.Now;
+            dtpStartTime.DateTime = DateTime.Now;
         }
 
         #region Method
@@ -35,7 +35,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                DateTime dtNow = dateStart.DateTime;
+                DateTime dtNow = dtpStartTime.DateTime;
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 args.Days = "WEEK";
                 List<SqlShow> listReturn = new List<SqlShow>();

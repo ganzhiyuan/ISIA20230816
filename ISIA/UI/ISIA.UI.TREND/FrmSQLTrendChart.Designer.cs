@@ -368,7 +368,6 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 95);
             this.dtpStartTime.Size = new System.Drawing.Size(82, 24);
@@ -380,7 +379,7 @@ namespace ISIA.UI.TREND
             this.dtpEndTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
             this.dtpEndTime.Checked = false;
             this.dtpEndTime.ControlID = "dtpEndTime";
-            this.dtpEndTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dtpEndTime.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dtpEndTime.EditValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 105);
             this.dtpEndTime.Format = DevExpress.Utils.FormatType.Custom;
             this.dtpEndTime.IsRequired = false;
@@ -392,12 +391,11 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpEndTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpEndTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dtpEndTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
-            this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm:ss");
+            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 105);
             this.dtpEndTime.Size = new System.Drawing.Size(102, 24);
             this.dtpEndTime.StyleController = this.lcPeriod;

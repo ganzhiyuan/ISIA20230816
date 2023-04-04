@@ -91,12 +91,12 @@ namespace ISIA.UI.ANALYSIS
 
         private void InitializeDatePeriod()
         {
-            XmlDocument doc = new XmlDocument();
+            /*XmlDocument doc = new XmlDocument();
             doc.Load(@".\ISIA.config");
             XmlNodeList nodeList = doc.SelectNodes("configuration/TAP.ISIA.Configuration/WX/Shift");
-            this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
-            this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
-
+            this.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
+            this.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
+*/
         }
 
         private void InitializeDbName()
@@ -106,7 +106,7 @@ namespace ISIA.UI.ANALYSIS
             DataTable dt = ds.Tables[0];
             foreach (DataRow dr in dt.Rows)
             {
-                this.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
+                this.cmbDbName.Properties.Items.Add(dr["DbName"]);
             }
         }
 
@@ -116,7 +116,7 @@ namespace ISIA.UI.ANALYSIS
         {
             foreach ( string ele in AwrArgsPack.SqlParmsList)
             {
-                this.comboBoxEditSqlParm.Properties.Items.Add(ele);
+                this.cmbParameterName.Properties.Items.Add(ele);
             }
         }
 
@@ -137,15 +137,15 @@ namespace ISIA.UI.ANALYSIS
         {
              argument = new AwrArgsPack();
             //date period handling 
-            object startTime = dateStart.EditValue;
-            object endTime = dateEnd.EditValue;
+            object startTime = dtpStartTime.DateTime;
+            object endTime = dtpEndTime.DateTime;
             if (startTime == null || endTime == null)
             {
                 string errMessage = "Please select StartTime or EndTime";
                 throw new Exception(errMessage);
             }
-            DateTime startDateTime = (DateTime)dateStart.EditValue;
-            DateTime endDateTime = (DateTime)dateEnd.EditValue;
+            DateTime startDateTime = dtpStartTime.DateTime;
+            DateTime endDateTime = dtpEndTime.DateTime;
 
             if (startDateTime > endDateTime)
             {
@@ -156,7 +156,7 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = comboBoxDBName.Text;
+            string dbName = cmbDbName.Text;
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
@@ -167,7 +167,7 @@ namespace ISIA.UI.ANALYSIS
 
 
             //combobox edit workload parm
-            string sqlParm = comboBoxEditSqlParm.Text;
+            string sqlParm = cmbParameterName.Text;
             if (string.IsNullOrEmpty(sqlParm))
             {
                 string errMessage = "Please select Workload parm";
@@ -186,14 +186,14 @@ namespace ISIA.UI.ANALYSIS
         {
 
             DataTable dt=ConvertDs(ds);
-            this.tChart1.Series.Clear();
-            this.tChart1.ContextMenuStrip = this.contextMenuStrip1;
-            this.tChart1.Legend.LegendStyle = LegendStyles.Series;
-            this.tChart1.Header.Text = "SQL Influence TOP10";
-            Steema.TeeChart.Styles.Bar bar1 = new Steema.TeeChart.Styles.Bar(tChart1.Chart);
-            this.tChart1.Axes.Bottom.Title.Text = "SQL ID";  //设置X轴标题
-            this.tChart1.Axes.Left.Title.Text = "Parm Value";//设置Y轴标题
-            var markstip = new MarksTip(tChart1.Chart);
+            this.lcPeriod.Series.Clear();
+            this.lcPeriod.ContextMenuStrip = this.contextMenuStrip1;
+            this.lcPeriod.Legend.LegendStyle = LegendStyles.Series;
+            this.lcPeriod.Header.Text = "SQL Influence TOP10";
+            Steema.TeeChart.Styles.Bar bar1 = new Steema.TeeChart.Styles.Bar(lcPeriod.Chart);
+            this.lcPeriod.Axes.Bottom.Title.Text = "SQL ID";  //设置X轴标题
+            this.lcPeriod.Axes.Left.Title.Text = "Parm Value";//设置Y轴标题
+            var markstip = new MarksTip(lcPeriod.Chart);
 
             //tChart1.Chart.Panning.Allow = ScrollModes.None;
             //tChart1.Chart.Panel.Gradient.Visible = false;
