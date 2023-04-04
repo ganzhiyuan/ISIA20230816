@@ -71,8 +71,7 @@ namespace ISIA.UI.TREND
             // popupMenu1
             // 
             this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCorrelation),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemSqlTopTen)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemCorrelation)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 

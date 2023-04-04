@@ -69,17 +69,17 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
+            this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
+            this.SLUEParamentName = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.SqlIds = new DevExpress.XtraNavBar.NavBarGroup();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.SLUEParamentName = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditControl();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -124,11 +124,11 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
             this.layoutControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -164,7 +164,7 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(688, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(726, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(734, 662);
@@ -707,6 +707,43 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControl4.TabIndex = 0;
             this.layoutControl4.Text = "layoutControl4";
             // 
+            // tLabel2
+            // 
+            this.tLabel2.ControlID = "tLabelParmNames";
+            this.tLabel2.IsRequired = false;
+            this.tLabel2.Location = new System.Drawing.Point(5, 5);
+            this.tLabel2.Name = "tLabel2";
+            this.tLabel2.NeedToTranslate = true;
+            this.tLabel2.RepresentativeValue = "ParamentName";
+            this.tLabel2.Size = new System.Drawing.Size(87, 138);
+            this.tLabel2.StyleController = this.layoutControl4;
+            this.tLabel2.TabIndex = 120;
+            this.tLabel2.Text = "ParamentName";
+            // 
+            // SLUEParamentName
+            // 
+            this.SLUEParamentName.ControlID = "txtParamentName";
+            this.SLUEParamentName.DescriptionMember = null;
+            this.SLUEParamentName.DisplayMember = "PARAMETERNAME";
+            this.SLUEParamentName.DominantControl = null;
+            this.SLUEParamentName.IsRequired = false;
+            this.SLUEParamentName.Location = new System.Drawing.Point(97, 0);
+            this.SLUEParamentName.Name = "SLUEParamentName";
+            this.SLUEParamentName.NeedToTranslate = false;
+            this.SLUEParamentName.ParameterID = "PARAMETERNAME";
+            this.SLUEParamentName.PARAMETERID = null;
+            this.SLUEParamentName.PARAMETERNAME = null;
+            this.SLUEParamentName.PARAMETERTYPE = null;
+            this.SLUEParamentName.RepresentativeValue = "";
+            this.SLUEParamentName.SetEditValue = null;
+            this.SLUEParamentName.ShowDescription = false;
+            this.SLUEParamentName.Size = new System.Drawing.Size(216, 191);
+            this.SLUEParamentName.Sql = "ISIA.BIZ.TREND.OrclParmsTrendChart.GetParmNameByTypeAll";
+            this.SLUEParamentName.SqlDataBase = null;
+            this.SLUEParamentName.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.SLUEParamentName.TabIndex = 119;
+            this.SLUEParamentName.ValueMember = "PARAMETERNAME";
+            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.AppearanceGroup.BackColor = System.Drawing.Color.White;
@@ -719,6 +756,32 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(313, 191);
             this.layoutControlGroup3.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.AppearanceItemCaption.BackColor = System.Drawing.Color.White;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseBackColor = true;
+            this.layoutControlItem1.Control = this.SLUEParamentName;
+            this.layoutControlItem1.Location = new System.Drawing.Point(97, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlItem1.Size = new System.Drawing.Size(216, 191);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.AppearanceItemCaption.BackColor = System.Drawing.Color.White;
+            this.layoutControlItem8.AppearanceItemCaption.Options.UseBackColor = true;
+            this.layoutControlItem8.Control = this.tLabel2;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(97, 148);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(97, 148);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(97, 191);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // navBarGroup3
             // 
@@ -779,68 +842,6 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // SLUEParamentName
-            // 
-            this.SLUEParamentName.ControlID = "txtParamentName";
-            this.SLUEParamentName.DescriptionMember = null;
-            this.SLUEParamentName.DisplayMember = "PARAMETERNAME";
-            this.SLUEParamentName.DominantControl = null;
-            this.SLUEParamentName.IsRequired = false;
-            this.SLUEParamentName.Location = new System.Drawing.Point(102, 5);
-            this.SLUEParamentName.Name = "SLUEParamentName";
-            this.SLUEParamentName.NeedToTranslate = false;
-            this.SLUEParamentName.ParameterID = "PARAMETERNAME";
-            this.SLUEParamentName.PARAMETERID = null;
-            this.SLUEParamentName.PARAMETERNAME = null;
-            this.SLUEParamentName.PARAMETERTYPE = null;
-            this.SLUEParamentName.RepresentativeValue = "";
-            this.SLUEParamentName.SetEditValue = null;
-            this.SLUEParamentName.ShowDescription = false;
-            this.SLUEParamentName.Size = new System.Drawing.Size(206, 181);
-            this.SLUEParamentName.Sql = "ISIA.BIZ.TREND.OrclParmsTrendChart.GetParmNameByTypeAll";
-            this.SLUEParamentName.SqlDataBase = null;
-            this.SLUEParamentName.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.SLUEParamentName.TabIndex = 119;
-            this.SLUEParamentName.ValueMember = "PARAMETERNAME";
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.AppearanceItemCaption.BackColor = System.Drawing.Color.White;
-            this.layoutControlItem1.AppearanceItemCaption.Options.UseBackColor = true;
-            this.layoutControlItem1.Control = this.SLUEParamentName;
-            this.layoutControlItem1.Location = new System.Drawing.Point(97, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(216, 191);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // tLabel2
-            // 
-            this.tLabel2.ControlID = "tLabelParmNames";
-            this.tLabel2.IsRequired = false;
-            this.tLabel2.Location = new System.Drawing.Point(5, 5);
-            this.tLabel2.Name = "tLabel2";
-            this.tLabel2.NeedToTranslate = true;
-            this.tLabel2.RepresentativeValue = "ParamentName";
-            this.tLabel2.Size = new System.Drawing.Size(87, 138);
-            this.tLabel2.StyleController = this.layoutControl4;
-            this.tLabel2.TabIndex = 120;
-            this.tLabel2.Text = "ParamentName";
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.AppearanceItemCaption.BackColor = System.Drawing.Color.White;
-            this.layoutControlItem8.AppearanceItemCaption.Options.UseBackColor = true;
-            this.layoutControlItem8.Control = this.tLabel2;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(97, 148);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(97, 148);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(97, 191);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
             // FrmWorkloadSQLIDDataRatioAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -897,11 +898,11 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
             this.layoutControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
