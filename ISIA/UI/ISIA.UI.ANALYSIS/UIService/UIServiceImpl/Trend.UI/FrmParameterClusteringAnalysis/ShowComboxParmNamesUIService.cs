@@ -24,12 +24,12 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
 
         public override void DisplayData(FrmParameterClusteringAnalysis frm, object data)
         {
-            frm.tCheckComboBoxParmNames.Properties.Items.Clear();
+            frm.cmbParameterName.Properties.Items.Clear();
             DataSet ds = (DataSet)data;
             DataTable dt = ds.Tables[0];
             foreach (DataRow dr in dt.Rows)
             {
-                frm.tCheckComboBoxParmNames.Properties.Items.Add(dr["parametername"]);
+                frm.cmbParameterName.Properties.Items.Add(dr["parametername"]);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
         public override AwrArgsPack HandleArugument(FrmParameterClusteringAnalysis frm)
         {
             AwrArgsPack awrArgsPack = new AwrArgsPack();
-            awrArgsPack.ParamType = frm.tCheckComboBoxParmType.EditValue.ToString();
+            awrArgsPack.ParamType = frm.cmbParameterType.EditValue.ToString();
             return awrArgsPack;
         }
 

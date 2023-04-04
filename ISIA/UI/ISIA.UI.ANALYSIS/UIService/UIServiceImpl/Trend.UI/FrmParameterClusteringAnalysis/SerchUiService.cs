@@ -32,7 +32,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
         public override AwrArgsPack HandleArugument(FrmParameterClusteringAnalysis frm)
         {
             //param_name arguments
-            List<object> paramList = frm.tCheckComboBoxParmNames.Properties.Items.GetCheckedValues();
+            List<object> paramList = frm.cmbParameterName.Properties.Items.GetCheckedValues();
             if (paramList == null || paramList.Count <= 0)
             {
                 string errMessage = "Please select Param Names";
@@ -41,16 +41,16 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             EventArgPack.ParamNamesList = paramList;
 
             //time argument checked
-            object startTime = frm.dateStart.EditValue;
-            object endTime = frm.dateEnd.EditValue;
+            /*object startTime = frm.dtpStartTime.EditValue;
+            object endTime = frm.dtpEndTime.EditValue;
             if (startTime == null || endTime == null)
             {
                 string errMessage = "Please select StartTime or EndTime";
                 throw new Exception(errMessage);
 
-            }
-            DateTime startDateTime = (DateTime)frm.dateStart.EditValue;
-            DateTime endDateTime = (DateTime)frm.dateEnd.EditValue;
+            }*/
+            DateTime startDateTime = frm.dtpStartTime.DateTime;
+            DateTime endDateTime = frm.dtpEndTime.DateTime;
 
             if (startDateTime > endDateTime)
             {
@@ -62,7 +62,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
             //grouping unit handling
-            string groupingUnit = frm.comboBoxEditGroupUnit.Text;
+            string groupingUnit = frm.cmbGroupUnit.Text;
 
             //xasix_interval check
             if (groupingUnit.Equals("HOUR"))
@@ -74,7 +74,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
                 EventArgPack.GroupingDateFormat = "yyyyMMddHH24mi";
             }
             //combobox edit db name 
-            string dbName = frm.comboBoxDBName.Text.Split('(')[0];
+            string dbName = frm.cmbDbName.Text.Split('(')[0];
             if(string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
@@ -83,9 +83,9 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             EventArgPack.DBName = dbName;
             //clustering cnt 
             EventArgPack.ClustersNumber = DEFAUlT_CLUSTERING_CNT;
-            string clusterNum = frm.comboBoxEditClusteringCnt.Text;
+            /*string clusterNum = frm.cmbClusteringCnt.Text;
             EventArgPack.ClustersNumber = int.Parse(clusterNum);
-            EventArgPack.ClustersNumber = EventArgPack.ClustersNumber < paramList.Count ? EventArgPack.ClustersNumber : paramList.Count;
+            EventArgPack.ClustersNumber = EventArgPack.ClustersNumber < paramList.Count ? EventArgPack.ClustersNumber : paramList.Count;*/
             return base.EventArgPack;
         }
 

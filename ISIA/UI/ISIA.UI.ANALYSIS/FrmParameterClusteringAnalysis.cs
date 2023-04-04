@@ -27,14 +27,26 @@ using TAP.UI;
 
 namespace ISIA.UI.ANALYSIS
 {
+    
+
     public partial class FrmParameterClusteringAnalysis : DockUIBase1T1
     {
         TChart currentChart = null;
+        
+
         public FrmParameterClusteringAnalysis()
         {
             InitializeComponent();
-            new InitializationUIService(this, null, new AwrArgsPack()).Run();
-            new InitializationComboxParmTypeUIService(this, null, null).Run();
+
+            
+            
+            /*new InitializationUIService(this, null, new AwrArgsPack()).Run();
+            new InitializationComboxParmTypeUIService(this, null, null).Run();*/
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
+
+            
+
         }
 
 

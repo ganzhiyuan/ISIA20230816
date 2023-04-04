@@ -15,19 +15,19 @@ using TAP.UI;
 
 namespace ISIA.UI.ANALYSIS
 {
-    public partial class FrmSQLIDShereByModule : DockUIBase1T1
+    public partial class FrmSQLIDShereByModel : DockUIBase1T1
     {
 
         AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
         string[] columStr = new string[] {"MODULE", "SQL_ID" };
 
-        public FrmSQLIDShereByModule()
+        public FrmSQLIDShereByModel()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SnapTrendChart1");
-            dateStart.DateTime = DateTime.Now.AddDays(-1);
-            dateEnd.DateTime = DateTime.Now;
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -47,9 +47,9 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                args.CommandName = cboModules.Text;
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                args.CommandName = cmbModel.Text;
                 if (args.CommandName.Contains("空"))
                 {
                     args.CommandName=args.CommandName.Count()>1? args.CommandName.Remove(0,2).Trim(): args.CommandName.Remove(0, 1).Trim();
@@ -85,7 +85,7 @@ namespace ISIA.UI.ANALYSIS
 
         private void SetGridViewStyle()
         {
-            string[] s = cboParaName.Text.Replace(", ", ",").Split(',');
+            string[] s = cmbParameterName.Text.Replace(", ", ",").Split(',');
             if (string.IsNullOrEmpty(s[0]))
             {
                 foreach (GridColumn item in gridView1.Columns)

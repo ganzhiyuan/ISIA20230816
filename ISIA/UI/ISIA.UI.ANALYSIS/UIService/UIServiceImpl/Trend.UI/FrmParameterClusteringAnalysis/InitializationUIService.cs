@@ -35,11 +35,11 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             //}
             for (int i = 1; i <= ClusteringMaxNum; i++)
             {
-                frm.comboBoxEditClusteringCnt.Properties.Items.Add(i);
+                frm.cmbClusteringCnt.Properties.Items.Add(i);
             }
             //init date period 
-            frm.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);
-            frm.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + EventArgPack.EndTime);
+            frm.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + EventArgPack.StartTime);
+            frm.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + EventArgPack.EndTime);
         }
 
         public override bool Equals(object obj)

@@ -28,7 +28,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             DataTable dt=ds.Tables[0];
             foreach( DataRow dr in dt.Rows)
             {
-                frm.tCheckComboBoxParmType.Properties.Items.Add(dr["parametertype"]);
+                frm.cmbParameterType.Properties.Items.Add(dr["parametertype"]);
 
             }
         }
