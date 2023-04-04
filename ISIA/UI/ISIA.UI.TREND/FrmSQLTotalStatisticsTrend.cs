@@ -91,8 +91,9 @@ namespace ISIA.UI.TREND
 
                 //dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
+                var aryylist = cmbParameterName.Text.Replace(", ",",").Split(',').ToList<string>();
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
-                List<SqlShow>  list1  = (from d in list where cmbParameterName.Text.ToString().Contains(d.PARAMENT_NAME) select d).ToList();
+                List<SqlShow> list1 = list.Where(x => aryylist.Contains(x.PARAMENT_NAME)).ToList();
 
 
                 DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
