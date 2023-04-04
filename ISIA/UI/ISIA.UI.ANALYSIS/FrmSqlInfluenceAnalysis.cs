@@ -84,7 +84,7 @@ namespace ISIA.UI.ANALYSIS
             //init date
             InitializeDatePeriod();
             //init dbname
-            InitializeDbName();
+           
             //init workload
             InitializeSqlParm();
         }
@@ -99,16 +99,7 @@ namespace ISIA.UI.ANALYSIS
 */
         }
 
-        private void InitializeDbName()
-        {
-            AwrArgsPack args = new AwrArgsPack();
-            DataSet ds = Bs.ExecuteDataSet("GetDBName", args.getPack());
-            DataTable dt = ds.Tables[0];
-            foreach (DataRow dr in dt.Rows)
-            {
-                this.cmbDbName.Properties.Items.Add(dr["DbName"]);
-            }
-        }
+        
 
 
 
@@ -156,7 +147,7 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = cmbDbName.Text;
+            string dbName =string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";

@@ -372,6 +372,7 @@ namespace ISIA.UI.ANALYSIS
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 95);
             this.dtpStartTime.Size = new System.Drawing.Size(142, 24);
@@ -602,7 +603,7 @@ namespace ISIA.UI.ANALYSIS
             this.tLabelParmNames.Name = "tLabelParmNames";
             this.tLabelParmNames.NeedToTranslate = true;
             this.tLabelParmNames.RepresentativeValue = "Parameter Name";
-            this.tLabelParmNames.Size = new System.Drawing.Size(124, 23);
+            this.tLabelParmNames.Size = new System.Drawing.Size(124, 24);
             this.tLabelParmNames.StyleController = this.lcSerachOptions;
             this.tLabelParmNames.TabIndex = 9;
             this.tLabelParmNames.Text = "Parameter Name";
@@ -616,7 +617,7 @@ namespace ISIA.UI.ANALYSIS
             this.tLabelDB.Name = "tLabelDB";
             this.tLabelDB.NeedToTranslate = true;
             this.tLabelDB.RepresentativeValue = "Model";
-            this.tLabelDB.Size = new System.Drawing.Size(124, 23);
+            this.tLabelDB.Size = new System.Drawing.Size(124, 24);
             this.tLabelDB.StyleController = this.lcSerachOptions;
             this.tLabelDB.TabIndex = 5;
             this.tLabelDB.Text = "Model";
@@ -642,8 +643,8 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.layoutControlItem2.Control = this.tLabelDB;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 28);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(128, 27);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(128, 27);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(128, 28);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(128, 28);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(128, 28);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -654,8 +655,8 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.layoutControlItem10.Control = this.tLabelParmNames;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 56);
-            this.layoutControlItem10.MaxSize = new System.Drawing.Size(128, 27);
-            this.layoutControlItem10.MinSize = new System.Drawing.Size(128, 27);
+            this.layoutControlItem10.MaxSize = new System.Drawing.Size(128, 28);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(128, 28);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(128, 28);
             this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -694,8 +695,8 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.layoutControlItem4.Control = this.tLabel2;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem4.MaxSize = new System.Drawing.Size(128, 31);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(128, 27);
+            this.layoutControlItem4.MaxSize = new System.Drawing.Size(128, 28);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(128, 28);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(128, 28);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -784,13 +785,13 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             // 
-            // FrmSQLIDShereByModule
+            // FrmSQLIDShereByModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 917);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmSQLIDShereByModule";
+            this.Name = "FrmSQLIDShereByModel";
             this.Text = "FrmSqlStatModels";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
