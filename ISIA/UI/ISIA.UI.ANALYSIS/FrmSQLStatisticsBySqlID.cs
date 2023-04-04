@@ -53,6 +53,8 @@ namespace ISIA.UI.ANALYSIS
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLAnalysisBySQL_ID");
 
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
             tcmbday.Text = "D";
             tcmbday.Items.Add("D");
             tcmbday.Items.Add("W");
@@ -64,12 +66,12 @@ namespace ISIA.UI.ANALYSIS
         public DataSet LoadData()
         {
             dataSet1.Tables.Clear();
-            PARAMENT_NAME = cboParaName.Text;
+            PARAMENT_NAME = cmbParameterName.Text;
             args.DbId = cmbDbName.EditValue.ToString();
             args.DbName = cmbDbName.Text.Split('(')[0];
-            args.StartTimeKey = dateStart.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            args.EndTimeKey = dateEnd.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            args.ParameterName = cboParaName.Text;
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            args.ParameterName = cmbParameterName.Text;
 
             dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
             if (dataSet.Tables[0].Rows.Count == 0)
@@ -526,11 +528,11 @@ namespace ISIA.UI.ANALYSIS
                     DataRow row2 = tmpdt.Rows[tmpdt.Rows.Count - 1];
 
 
-                    cboParaName.Text = row1["PARAMENT_NAME"].ToString();
+                    cmbParameterName.Text = row1["PARAMENT_NAME"].ToString();
                     
                     SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
-                    dateStart.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
-                    dateEnd.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
+                    dtpStartTime.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
+                    dtpEndTime.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
 
                     //if (tmpdt.Rows.Count > 0)
                     //{
@@ -652,14 +654,18 @@ namespace ISIA.UI.ANALYSIS
             try
             {
 
-                
-                    if (string.IsNullOrEmpty(cboParaName.Text))
-                    {
-                        cboParaName.BackColor = Color.Orange;
-                        return;
-                    }
-                    
-                
+                if (string.IsNullOrEmpty(cmbDbName.Text))
+                {
+                    string errMessage = "Please select DB_NAME";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbParameterName.Text))
+                {
+                    string errMessage = "Please select ParameterName";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
                 //ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
@@ -674,18 +680,18 @@ namespace ISIA.UI.ANALYSIS
         {
             if (tcmbday.Text == "D")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (tcmbday.Text == "W")
             {
-                this.dateStart.DateTime = DateTime.Now.AddDays(-7);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (tcmbday.Text == "M")
             {
-                this.dateStart.DateTime = DateTime.Now.AddMonths(-1);
-                this.dateEnd.DateTime = DateTime.Now;
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
             }
         }
 

@@ -44,6 +44,8 @@ namespace ISIA.UI.ANALYSIS
             Bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.WorkloadSqlCorrelationAnalysis");
             this.InitializeControls();
             //initialize bs
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
         }
 
         #region event
@@ -51,6 +53,18 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
+                if (string.IsNullOrEmpty(cmbDbName.Text))
+                {
+                    string errMessage = "Please select DB_NAME";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbParameterName.Text))
+                {
+                    string errMessage = "Please select ParameterName";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
                 this.AsyncGetWorkloadAndSqlComparisonData();
             }
             catch (Exception ex)
@@ -135,8 +149,8 @@ namespace ISIA.UI.ANALYSIS
             XmlDocument doc = new XmlDocument();
             doc.Load(@".\ISIA.config");
             XmlNodeList nodeList = doc.SelectNodes("configuration/TAP.ISIA.Configuration/WX/Shift");
-            this.dateStart.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
-            this.dateEnd.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
+            this.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
+            this.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
 
         }
 
@@ -157,7 +171,7 @@ namespace ISIA.UI.ANALYSIS
         {
             foreach (KeyValuePair<string, string> pair in AwrArgsPack.WorkloadSqlRelationMapping)
             {
-                this.comboBoxEditWorkloadSql.Properties.Items.Add(pair.Key);
+                this.cmbParameterName.Properties.Items.Add(pair.Key);
             }
         }
 
@@ -177,15 +191,15 @@ namespace ISIA.UI.ANALYSIS
         {
             AwrArgsPack argument = new AwrArgsPack();
             //date period handling 
-            object startTime = dateStart.EditValue;
-            object endTime = dateEnd.EditValue;
+            object startTime = dtpStartTime.EditValue;
+            object endTime = dtpEndTime.EditValue;
             if (startTime == null || endTime == null)
             {
                 string errMessage = "Please select StartTime or EndTime";
                 throw new Exception(errMessage);
             }
-            DateTime startDateTime = (DateTime)dateStart.EditValue;
-            DateTime endDateTime = (DateTime)dateEnd.EditValue;
+            DateTime startDateTime = (DateTime)dtpStartTime.EditValue;
+            DateTime endDateTime = (DateTime)dtpEndTime.EditValue;
 
             if (startDateTime > endDateTime)
             {
@@ -196,7 +210,7 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = comboBoxDBName.Text.Split('(')[0];
+            string dbName = cmbDbName.Text.Split('(')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
@@ -207,7 +221,7 @@ namespace ISIA.UI.ANALYSIS
 
 
             //combobox edit workload parm
-            string workloadSql = comboBoxEditWorkloadSql.Text;
+            string workloadSql = cmbParameterName.Text;
             if (string.IsNullOrEmpty(workloadSql))
             {
                 string errMessage = "Please select Workload parm";

@@ -3492,7 +3492,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT RULENO,RULENAME FROM tapctspcrulespec WHERE 1=1 AND ISALIVE = 'YES'");
+                tmpSql.Append("SELECT to_char(RULENO) RULENO,RULENAME FROM tapctspcrulespec WHERE 1=1 AND ISALIVE = 'YES'");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
