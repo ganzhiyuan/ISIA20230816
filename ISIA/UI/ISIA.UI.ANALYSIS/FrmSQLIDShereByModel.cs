@@ -32,6 +32,11 @@ namespace ISIA.UI.ANALYSIS
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cmbDbName.Text))
+            {
+
+                return;
+            }
             try
             {
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
@@ -85,6 +90,9 @@ namespace ISIA.UI.ANALYSIS
 
         private void SetGridViewStyle()
         {
+            //GridColumn item1 = gridView1.Columns.ColumnByFieldName("MODULE");
+            //item1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+
             string[] s = cmbParameterName.Text.Replace(", ", ",").Split(',');
             if (string.IsNullOrEmpty(s[0]))
             {
@@ -107,7 +115,18 @@ namespace ISIA.UI.ANALYSIS
         {
             if (e.Column.FieldName == "MODULE")
             {
-                e.Merge = true;
+                //DevExpress.XtraGrid.Views.Grid.GridView gridView = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                //if (gridView != null)
+                //{
+                //    string value1 = (string)gridView1.GetRowCellValue(e.RowHandle1, e.Column);
+                //    string value2 = (string)gridView1.GetRowCellValue(e.RowHandle2, e.Column);
+
+                //    //if (value3 == value4)
+                //    //{
+                //    e.Merge = value1 == value2 ;
+                //    e.Handled = true;
+                //    //}
+                //}
             }
         }
     }

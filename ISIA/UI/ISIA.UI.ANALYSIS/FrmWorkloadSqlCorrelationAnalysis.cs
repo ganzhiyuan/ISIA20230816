@@ -118,7 +118,7 @@ namespace ISIA.UI.ANALYSIS
                 Hashtable ht = new Hashtable();
                 ht.Add("DS", resultDs);
                 ht.Add("SQL_PARM", argument.WorkloadSqlParm);
-                base.OpenUI("SQLINFLUENCEANALYSIS", "ANALYSIS", "Sql Influence Analysis", null, ht);
+                base.OpenUI("SQLINFLUENCEANALYSIS", "AWR", "Ranking of SQL Statistics by Impact", null, ht);
             }
             catch (Exception ex)
             {
