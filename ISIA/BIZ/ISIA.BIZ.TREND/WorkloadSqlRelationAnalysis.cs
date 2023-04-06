@@ -86,10 +86,10 @@ namespace ISIA.BIZ.TREND
                     "ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on stat.snap_id = snap.snap_id " +
                     "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}' "
                    , AwrArgsPack.WorkloadSqlRelationMapping[arguments.WorkloadSqlParm], arguments.StartTime, arguments.EndTime, arguments.DBName);
-                if (arguments.SqlIdList.Count != 0)
+                /*if (arguments.SqlIdList.Count != 0 )
                 {
                     getSqlIdDataSql.AppendFormat("and sql_id in({0}) ", Utils.MakeSqlQueryIn2(arguments.SqlIdList));
-                }
+                }*/
                 getSqlIdDataSql.Append(" group by stat.snap_id ORDER BY SNAP_ID");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
