@@ -41,6 +41,8 @@ namespace ISIA.UI.ANALYSIS
             InitializeComponent();
             Bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SqlInfluenceAnalysis");
             this.InitializeControls();
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
             //initialize bs
         }
 
