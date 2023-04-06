@@ -207,25 +207,25 @@ namespace ISIA.UI.ANALYSIS
       
         private DataTable ConvertDs(DataSet ds)
         {
-            DataTable dtResult = new DataTable();
+            //DataTable dtResult = new DataTable();
 
-            dtResult.Columns.Add("sql_id", typeof(string));
-            dtResult.Columns.Add(argument.WorkloadSqlParm, typeof(double));
-            dtResult.Columns.Add("text", typeof(string));
-            int count = 0;
-            foreach(DataRow dr in ds.Tables[0].Rows)
-            {
-                string sqlId = (string)dr["SQL_ID"];
-                string sqlText = (string)dr["SQL_TEXT"];
-                double value = (double)((decimal)dr[argument.WorkloadSqlParm]);
-                dtResult.Rows.Add(sqlId, value, sqlText);
-                count++;
-                if (count >= 10)
-                {
-                    break;
-                }
-            }
-            return dtResult;
+            //dtResult.Columns.Add("sql_id", typeof(string));
+            //dtResult.Columns.Add(argument.WorkloadSqlParm, typeof(double));
+            ////dtResult.Columns.Add("text", typeof(string));
+            //int count = 0;
+            //foreach(DataRow dr in ds.Tables[0].Rows)
+            //{
+            //    string sqlId = (string)dr["SQL_ID"];
+            //    //string sqlText = (string)dr["SQL_TEXT"];
+            //    double value = (double)((decimal)dr[argument.WorkloadSqlParm]);
+            //    dtResult.Rows.Add(sqlId, value);
+            //    count++;
+            //    if (count >= 10)
+            //    {
+            //        break;
+            //    }
+            //}
+            return ds.Tables[0];
         }
 
 

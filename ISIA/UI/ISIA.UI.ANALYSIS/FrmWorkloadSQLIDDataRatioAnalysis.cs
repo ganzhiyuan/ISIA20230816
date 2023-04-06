@@ -209,7 +209,7 @@ namespace ISIA.UI.ANALYSIS
 
             //SQLID handling 
 
-            argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
+            //argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
 
 
             //combobox edit workload parm

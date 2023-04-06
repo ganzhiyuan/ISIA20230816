@@ -48,18 +48,14 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
                
-                    tmpSql.AppendFormat(@"select si.* , ts.sql_text from
-                        (select stat.sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time,  
+                    tmpSql.AppendFormat(@"select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time,  
                         NVL(sum({0}),0) {0}
                         from ISIA.RAW_DBA_HIST_SQLSTAT_{3} stat 
                         left join ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on 
                         stat.snap_id=snap.snap_id  
                         where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}'
-                        group by stat.sql_id
-                        ) si 
-                        left join  ISIA.RAW_DBA_HIST_SQLTEXT_{3}  ts 
-                        on si.sql_id=ts.sql_id
-                        order by {0} desc" 
+                        group by stat.sql_id                        
+                        order by {0} desc) t where rownum<11"
                         , arguments.WorkloadSqlParm,arguments.StartTime,arguments.EndTime,arguments.DBName
                      );
                
