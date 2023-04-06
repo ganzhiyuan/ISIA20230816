@@ -128,9 +128,9 @@ namespace ISIA.BIZ.TREND
                 }
                 else
                 {
-                    getWorkloadDtaSql.AppendFormat("SELECT dbid,INSTANCE_NUMBER, snap_id, begin_interval_time,end_interval_time,ROUND (({0}", arguments.WorkloadSqlParm);
-                    getWorkloadDtaSql.AppendFormat(" - LAG ({0}, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER  ORDER BY snap_id)))    {0} from (select MIN(begin_interval_time) begin_interval_time,", arguments.WorkloadSqlParm);
-                    getWorkloadDtaSql.AppendFormat(" MAX(end_interval_time) end_interval_time,dbid,snap_id,instance_number ,SUM(DECODE(STAT_NAME,'{0}',value ,0)){0}", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.AppendFormat("SELECT dbid,INSTANCE_NUMBER, snap_id, begin_interval_time,end_interval_time,ROUND ((\"{0}\"", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.AppendFormat(" - LAG (\"{0}\", 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER  ORDER BY snap_id)))    \"{0}\" from (select MIN(begin_interval_time) begin_interval_time,", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.AppendFormat(" MAX(end_interval_time) end_interval_time,dbid,snap_id,instance_number ,SUM(DECODE(STAT_NAME,'{0}',value ,0))\"{0}\"", arguments.WorkloadSqlParm);
                     getWorkloadDtaSql.Append(" FROM(select ss.dbid,ss.instance_number,ss.snap_id,ss.VALUE,");
                     getWorkloadDtaSql.AppendFormat(" ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{0} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn  ", arguments.DBName);
                     getWorkloadDtaSql.AppendFormat(" where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{0}' ", arguments.WorkloadSqlParm);
