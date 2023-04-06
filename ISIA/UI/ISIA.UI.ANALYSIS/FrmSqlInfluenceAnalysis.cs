@@ -86,7 +86,6 @@ namespace ISIA.UI.ANALYSIS
             //init dbname
            
             //init workload
-            InitializeSqlParm();
         }
 
         private void InitializeDatePeriod()
@@ -97,19 +96,7 @@ namespace ISIA.UI.ANALYSIS
             this.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
             this.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
 */
-        }
-
-        
-
-
-
-        private void InitializeSqlParm()
-        {
-            foreach ( string ele in AwrArgsPack.SqlParmsList)
-            {
-                this.cmbParameterName.Properties.Items.Add(ele);
-            }
-        }
+        }      
 
         #endregion
 
