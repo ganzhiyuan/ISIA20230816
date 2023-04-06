@@ -47,370 +47,58 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
                 //TODO row 60 may have trouble.
-                tmpSql.AppendFormat("" +
-                    "WITH\r\n" +
-                    "t1_sysmetric_summary\r\n" +
-                    "AS\r\n" +
-                    "( SELECT /*+ MATERIALIZE */\r\n" +
-                    "MIN (begin_interval_time)\r\n" +
-                    "begin_time,\r\n" +
-                    "MAX (end_interval_time)\r\n" +
-                    "end_time,\r\n" +
-                    "dbid,\r\n" +
-                    "(SELECT instance_name\r\n" +
-                    "FROM gv$instance\r\n" +
-                    "WHERE INSTANCE_NUMBER = s.instance_number)\r\n" +
-                    "dbname,\r\n" +
-                    "snap_id,\r\n" +
-                    "s.instance_number\r\n" +
-                    "AS inst_id,\r\n" +
-                    "MIN (NUM_INTERVAL)\r\n" +
-                    "NUM_INTERVAL,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Host CPU Utilization (%)', average,\r\n" +
-                    "0))\r\n" +
-                    "CPU_Util_pct,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Host CPU Utilization (%)', maxval,\r\n" +
-                    "0))\r\n" +
-                    "CPU_Util_pct_max,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name, 'Logical Reads Per Sec', average, 0))\r\n" +
-                    "Logical_Reads_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Physical Reads Per Sec', average,\r\n" +
-                    "0))\r\n" +
-                    "Physical_Reads_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Physical Writes Per Sec', average,\r\n" +
-                    "0))\r\n" +
-                    "Physical_Writes_psec,\r\n" +
-                    "SUM (DECODE (metric_name, 'Executions Per Sec', average, 0))\r\n" +
-                    "Execs_psec_avg,\r\n" +
-                    "SUM (DECODE (metric_name, 'Executions Per Sec', maxval, 0))\r\n" +
-                    "Execs_psec_max,\r\n" +
-                    "SUM (DECODE (metric_name, 'User Calls Per Sec', average, 0))\r\n" +
-                    "User_Calls_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'DB Block Changes Per Sec', average,\r\n" +
-                    "0))\r\n" +
-                    "DB_Block_Changes_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'SQL Service Response Time', average,\r\n" +
-                    "0))\r\n" +
-                    "SQL_Service_Response_Time,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name, 'User Commits Per Sec', average, 0))\r\n" +
-                    "User_Commits_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Redo Generated Per Sec', average,\r\n" +
-                    "0))\r\n" +
-                    "Redo_Generated_psec,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (metric_name,\r\n" +
-                    "'Hard Parse Count Per Sec', average,\r\n" +
-                    "0))\r\n" +
-                    "Hard_Parse_Cnt_psec\r\n" +
-                    "FROM (SELECT /*+ LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */\r\n" +
-                    "sm.*, sn.begin_interval_time, sn.end_interval_time\r\n" +
-                    "FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{3} sm, -- DBA_HIST_METRIC_NAME mn,\r\n" +
-                    "ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "-- and sm.dbid = mn.dbid and sm.group_id = mn.group_id and sm.metric_id = mn.metric_id\r\n" +
-                    "AND sm.dbid = sn.dbid\r\n" +
-                    "AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER\r\n" +
-                    "AND sm.snap_id = sn.snap_id\r\n" +
-                    "AND sn.INSTANCE_NUMBER IN (1) --<< 조회 대상 instance number 입력\r\n" +
-                    "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}'\r\n" +
-                    "AND '{2}' --<< 조회 기간 입력\r\n" +
-                    ")\r\n" +
-                    "s\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "GROUP BY dbid, s.instance_number, snap_id),\r\n" +
-
-                    "t1_sysstat\r\n" +
-                    "AS\r\n" +
-                    "(SELECT /*+ MATERIALIZE */\r\n" +
-                    "dbid,\r\n" +
-                    "INSTANCE_NUMBER\r\n" +
-                    "AS inst_id,\r\n" +
-                    "snap_id,\r\n" +
-                    "begin_interval_time\r\n" +
-                    "AS begin_time,\r\n" +
-                    "end_interval_time\r\n" +
-                    "AS end_time,\r\n" +
-                    "(SELECT EXTRACT (\r\n" +
-                    "HOUR FROM ( END_INTERVAL_TIME\r\n" +
-                    "- BEGIN_INTERVAL_TIME))\r\n" +
-                    "* 60\r\n" +
-                    "* 60\r\n" +
-                    "+ EXTRACT (\r\n" +
-                    "MINUTE FROM ( END_INTERVAL_TIME\r\n" +
-                    "- BEGIN_INTERVAL_TIME))\r\n" +
-                    "* 60\r\n" +
-                    "+ EXTRACT (\r\n" +
-                    "SECOND FROM ( END_INTERVAL_TIME\r\n" +
-                    "- BEGIN_INTERVAL_TIME))\r\n" +
-                    "FROM DBA_HIST_SNAPSHOT\r\n" +
-                    "WHERE dbid = s.dbid\r\n" +
-                    "AND SNAP_ID = s.SNAP_ID\r\n" +
-                    "AND INSTANCE_NUMBER = s.INSTANCE_NUMBER)\r\n" +
-                    "snap_time,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_Cnt_Client\r\n" +
-                    "- LAG (NET_Cnt_Client, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_Cnt_Client,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_B_To_Client\r\n" +
-                    "- LAG (NET_B_To_Client, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_B_To_Client,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_B_From_Client\r\n" +
-                    "- LAG (NET_B_From_Client, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_B_From_Client,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_Cnt_DBLink\r\n" +
-                    "- LAG (NET_Cnt_DBLink, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_Cnt_DBLink,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_B_From_DBLink\r\n" +
-                    "- LAG (NET_B_From_DBLink, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_B_From_DBLink,\r\n" +
-                    "ROUND (\r\n" +
-                    "( NET_B_To_DBLink\r\n" +
-                    "- LAG (NET_B_To_DBLink, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)))\r\n" +
-                    "NET_B_To_DBLink,\r\n" +
-                    "ROUND (\r\n" +
-                    "( gc_recv\r\n" +
-                    "- LAG (gc_recv, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)),\r\n" +
-                    "2)\r\n" +
-                    "gc_recv,\r\n" +
-                    "ROUND (\r\n" +
-                    "( gc_send\r\n" +
-                    "- LAG (gc_send, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)),\r\n" +
-                    "2)\r\n" +
-                    "gc_send,\r\n" +
-                    "ROUND (\r\n" +
-                    "( gcs_msg_send\r\n" +
-                    "- LAG (gcs_msg_send, 1)\r\n" +
-                    "OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-                    "ORDER BY snap_id)),\r\n" +
-                    "2)\r\n" +
-                    "gcs_msg_send\r\n" +
-
-                    "FROM ( SELECT dbid,\r\n" +
-                    "snap_id,\r\n" +
-                    "INSTANCE_NUMBER,\r\n" +
-                    "MIN (begin_interval_time)\r\n" +
-                    "AS begin_interval_time,\r\n" +
-                    "MAX (end_interval_time)\r\n" +
-                    "AS end_interval_time,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'SQL*Net roundtrips to/from client', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_Cnt_Client,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'bytes sent via SQL*Net to client', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_B_To_Client,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'bytes received via SQL*Net from client', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_B_From_Client,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'SQL*Net roundtrips to/from dblink', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_Cnt_DBLink,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'bytes received via SQL*Net from dblink', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_B_From_DBLink,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (\r\n" +
-                    "stat_name,\r\n" +
-                    "'bytes sent via SQL*Net to dblink', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "NET_B_To_DBLink,\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (stat_name,\r\n" +
-                    "'gc cr blocks received', VALUE,\r\n" +
-                    "'gc current blocks received', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "gc_recv -- Global Cache blocks received\r\n" +
-                    ",\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (stat_name,\r\n" +
-                    "'gc cr blocks served', VALUE,\r\n" +
-                    "'gc current blocks served', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "gc_send -- Global Cache blocks served\r\n" +
-                    ",\r\n" +
-                    "SUM (\r\n" +
-                    "DECODE (stat_name,\r\n" +
-                    "'gcs messages sent', VALUE,\r\n" +
-                    "'ges messages sent', VALUE,\r\n" +
-                    "0))\r\n" +
-                    "gcs_msg_send -- GCS/GES messages sent\r\n" +
-                    "FROM (SELECT /*+ LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
-                    "ss.dbid,\r\n" +
-                    "ss.instance_number,\r\n" +
-                    "ss.snap_id,\r\n" +
-                    "ss.VALUE,\r\n" +
-                    "ss.stat_name,\r\n" +
-                    "sn.begin_interval_time,\r\n" +
-                    "sn.end_interval_time\r\n" +
-                    "FROM ISIA.RAW_DBA_HIST_SYSSTAT_{3} ss, -- DBA_HIST_STAT_NAME nm,\r\n" +
-                    "ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "-- and ss.dbid = nm.dbid and ss.stat_id = nm.stat_id\r\n" +
-                    "AND ss.dbid = sn.dbid\r\n" +
-                    "AND ss.INSTANCE_NUMBER = sn.INSTANCE_NUMBER\r\n" +
-                    "AND ss.snap_id = sn.snap_id\r\n" +
-                    "AND sn.INSTANCE_NUMBER IN (1) --<< 조회 대상 instance number 입력))\r\n" +
-                    "AND TO_CHAR (sn.BEGIN_INTERVAL_TIME,\r\n" +
-                    "'yyyyMMddHH24miss') BETWEEN '{1}'\r\n" +
-                    "AND '{2}' --<< 조회 기간 입력\r\n" +
-                    ")\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "GROUP BY dbid, INSTANCE_NUMBER, snap_id) s),\r\n" +
-                    "t2_sysmetric_summary\r\n" +
-                    "AS\r\n" +
-                    "( SELECT dbid,\r\n" +
-                    "inst_id,\r\n" +
-                    "MIN (snap_id)\r\n" +
-                    "snap_id_min,\r\n" +
-                    "TO_CHAR (BEGIN_TIME, '{0}')\r\n" +
-                    "workdate,\r\n" +
-                    "MIN (BEGIN_TIME)\r\n" +
-                    "BEGIN_TIME,\r\n" +
-                    "MAX (END_TIME)\r\n" +
-                    "END_TIME,\r\n" +
-                    "ROUND (AVG (CPU_Util_pct), 2)\r\n" +
-                    "CPU_Util_pct,\r\n" +
-                    "ROUND (MAX (CPU_Util_pct_max), 2)\r\n" +
-                    "CPU_Util_pct_max,\r\n" +
-                    "ROUND (AVG (LOGICAL_READS_PSEC))\r\n" +
-                    "LOGICAL_READS_PSEC,\r\n" +
-                    "ROUND (AVG (Physical_Reads_psec))\r\n" +
-                    "PHYSICAL_READS_PSEC,\r\n" +
-                    "ROUND (AVG (Physical_Writes_psec))\r\n" +
-                    "Physical_Writes_psec,\r\n" +
-                    "ROUND (AVG (Execs_psec_avg))\r\n" +
-                    "Execs_psec_avg,\r\n" +
-                    "ROUND (MAX (Execs_psec_max))\r\n" +
-                    "Execs_psec_max,\r\n" +
-                    "ROUND (AVG (USER_CALLS_PSEC))\r\n" +
-                    "USER_CALLS_PSEC,\r\n" +
-                    "ROUND (AVG (DB_BLOCK_CHANGES_PSEC))\r\n" +
-                    "DB_BLOCK_CHANGES_PSEC,\r\n" +
-                    "ROUND (AVG (SQL_Service_Response_Time), 4)\r\n" +
-                    "SQL_Service_Response_Time,\r\n" +
-                    "ROUND (AVG (User_Commits_psec), 2)\r\n" +
-                    "Commit_psec_avg,\r\n" +
-                    "ROUND (AVG (Redo_Generated_psec / 1024 / 1024), 2)\r\n" +
-                    "Redo_mb_psec_avg,\r\n" +
-                    "ROUND (AVG (Hard_Parse_Cnt_psec), 2)\r\n" +
-                    "Hard_Parse_Cnt_psec\r\n" +
-                    "FROM t1_sysmetric_summary s\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}')),\r\n" +
-
-                    "t2_sysstat\r\n" +
-                    "AS\r\n" +
-                    "( SELECT dbid,\r\n" +
-                    "inst_id,\r\n" +
-                    "MIN (snap_id)\r\n" +
-                    "AS snap_id_min,\r\n" +
-                    "TO_CHAR (BEGIN_TIME, '{0}')\r\n" +
-                    "workdate,\r\n" +
-                    "MIN (BEGIN_TIME)\r\n" +
-                    "BEGINE_TIME,\r\n" +
-                    "MAX (END_TIME)\r\n" +
-                    "END_TIME,\r\n" +
-                    "ROUND (\r\n" +
-                    "AVG (\r\n" +
-                    "((gc_recv + gc_send) * 8192 + gcs_msg_send * 200)\r\n" +
-                    "/ 1024\r\n" +
-                    "/ 1024\r\n" +
-                    "/ SNAP_TIME),\r\n" +
-                    "3)\r\n" +
-                    "DLM_MB_psec,\r\n" +
-                    "ROUND (AVG (NET_B_To_Client / 1024 / 1024 / SNAP_TIME), 3)\r\n" +
-                    "NET_MB_To_Client_psec,\r\n" +
-                    "ROUND (AVG (NET_B_From_Client / 1024 / 1024 / SNAP_TIME), 3)\r\n" +
-                    "NET_MB_From_Client_psec,\r\n" +
-                    "ROUND (AVG (NET_B_From_DBLink / 1024 / 1024 / SNAP_TIME), 3)\r\n" +
-                    "NET_MB_From_DBLink_psec,\r\n" +
-                    "ROUND (AVG (NET_B_To_DBLink / 1024 / 1024 / SNAP_TIME), 3)\r\n" +
-                    "NET_MB_To_DBLink_psec\r\n" +
-                    "FROM t1_sysstat s\r\n" +
-                    "WHERE 1 = 1\r\n" +
-                    "GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}'))\r\n" +
-
-                    "SELECT sm.dbid,\r\n" +
-                    "sm.inst_id,\r\n" +
-                    "sm.snap_id_min,\r\n" +
-                    "sm.workdate AS workdate,\r\n" +
-                    "sm.begin_time,\r\n" +
-                    "sm.end_time,\r\n" +
-                    "sm.CPU_Util_pct,\r\n" +
-                    "sm.CPU_Util_pct_max,\r\n" +
-                    "sm.LOGICAL_READS_PSEC,\r\n" +
-                    "sm.PHYSICAL_READS_PSEC,\r\n" +
-                    "sm.Physical_Writes_psec,\r\n" +
-                    "sm.Execs_psec_avg,\r\n" +
-                    "sm.Execs_psec_max,\r\n" +
-                    "sm.USER_CALLS_PSEC,\r\n" +
-                    "sm.Hard_Parse_Cnt_psec,\r\n" +
-                    "sm.DB_BLOCK_CHANGES_PSEC,\r\n" +
-                    "sm.SQL_Service_Response_Time,\r\n" +
-                    "sm.Commit_psec_avg,\r\n" +
-                    "sm.Redo_mb_psec_avg,\r\n" +
-                    "ss.DLM_MB_psec,\r\n" +
-                    "ss.NET_MB_To_Client_psec,\r\n" +
-                    "ss.NET_MB_From_Client_psec,\r\n" +
-                    "ss.NET_MB_From_DBLink_psec,\r\n" +
-                    "ss.NET_MB_To_DBLink_psec\r\n" +
-                    "FROM t2_sysmetric_summary sm, t2_sysstat ss\r\n" +
-                    "WHERE sm.dbid = ss.dbid(+)\r\n" +
-                    "AND sm.inst_id = ss.inst_id(+)\r\n" +
-                    "AND sm.workdate = ss.workdate(+)\r\n" +
-                    "ORDER BY dbid, workdate\r\n"
-                     , arguments.GroupingDateFormat, arguments.StartTime, arguments.EndTime,arguments.DBName
-                    );
+                tmpSql.AppendFormat("WITH t1_sysmetric_summary AS ( SELECT  MIN (begin_interval_time) begin_time, MAX (end_interval_time)");
+                tmpSql.Append(" end_time, dbid, (SELECT instance_name FROM gv$instance WHERE INSTANCE_NUMBER = s.instance_number)");
+                tmpSql.Append(" dbname, snap_id, s.instance_number AS inst_id, MIN (NUM_INTERVAL) NUM_INTERVAL, SUM ( DECODE (metric_name,");
+                tmpSql.Append("'Host CPU Utilization (%)', average, 0)) CPU_Util_pct, SUM ( DECODE (metric_name, 'Host CPU Utilization (%)', maxval,");
+                tmpSql.Append("0)) CPU_Util_pct_max, SUM ( DECODE (metric_name, 'Logical Reads Per Sec', average, 0)) Logical_Reads_psec,");
+                tmpSql.Append(" SUM (DECODE (metric_name, 'Physical Reads Per Sec', average, 0)) Physical_Reads_psec, SUM ( DECODE (metric_name,");
+                tmpSql.Append("'Physical Writes Per Sec', average, 0)) Physical_Writes_psec, SUM (DECODE (metric_name, 'Executions Per Sec', average, 0))");
+                tmpSql.Append(" Execs_psec_avg, SUM (DECODE (metric_name, 'Executions Per Sec', maxval, 0)) Execs_psec_max, SUM (DECODE (metric_name, 'User Calls Per Sec', average, 0))");
+                tmpSql.Append(" User_Calls_psec, SUM ( DECODE (metric_name, 'DB Block Changes Per Sec', average, 0)) DB_Block_Changes_psec, SUM (");
+                tmpSql.Append(" DECODE (metric_name, 'SQL Service Response Time', average, 0)) SQL_Service_Response_Time, SUM (");
+                tmpSql.Append(" DECODE (metric_name, 'User Commits Per Sec', average, 0)) User_Commits_psec, SUM ( DECODE (metric_name, 'Redo Generated Per Sec', average,");
+                tmpSql.Append("0)) Redo_Generated_psec, SUM ( DECODE (metric_name, 'Hard Parse Count Per Sec', average, 0)) Hard_Parse_Cnt_psec");
+                tmpSql.AppendFormat(" FROM (SELECT  sm.*, sn.begin_interval_time, sn.end_interval_time FROM ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm,", arguments.DBName);
+                tmpSql.AppendFormat(" ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn WHERE 1 = 1 AND sm.dbid = sn.dbid AND sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND sm.snap_id = sn.snap_id", arguments.DBName);
+                tmpSql.AppendFormat(" AND sn.INSTANCE_NUMBER IN (1)  AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}'", arguments.StartTime);
+                tmpSql.Append(" AND '{2}' ) s WHERE 1 = 1 GROUP BY dbid, s.instance_number, snap_id), t1_sysstat AS (SELECT  dbid, INSTANCE_NUMBER AS inst_id, snap_id,");
+                tmpSql.Append(" begin_interval_time AS begin_time, end_interval_time AS end_time, (SELECT EXTRACT ( HOUR FROM ( END_INTERVAL_TIME - BEGIN_INTERVAL_TIME))");
+                tmpSql.Append(" * 60 * 60 + EXTRACT ( MINUTE FROM ( END_INTERVAL_TIME - BEGIN_INTERVAL_TIME)) * 60 + EXTRACT ( SECOND FROM ( END_INTERVAL_TIME - BEGIN_INTERVAL_TIME))");
+                tmpSql.Append(" FROM DBA_HIST_SNAPSHOT WHERE dbid = s.dbid AND SNAP_ID = s.SNAP_ID AND INSTANCE_NUMBER = s.INSTANCE_NUMBER) snap_time, ROUND ( ( NET_Cnt_Client");
+                tmpSql.Append("- LAG (NET_Cnt_Client, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_Cnt_Client, ROUND ( ( NET_B_To_Client - LAG (NET_B_To_Client, 1)");
+                tmpSql.Append(" OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_To_Client, ROUND ( ( NET_B_From_Client - LAG (NET_B_From_Client, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER");
+                tmpSql.Append(" ORDER BY snap_id))) NET_B_From_Client, ROUND ( ( NET_Cnt_DBLink - LAG (NET_Cnt_DBLink, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id)))");
+                tmpSql.Append(" NET_Cnt_DBLink, ROUND ( ( NET_B_From_DBLink - LAG (NET_B_From_DBLink, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_From_DBLink,ROUND (");
+                tmpSql.Append("( NET_B_To_DBLink - LAG (NET_B_To_DBLink, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_To_DBLink, ROUND ( ( gc_recv - LAG (gc_recv, 1)");
+                tmpSql.Append("OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id)), 2) gc_recv, ROUND ( ( gc_send - LAG (gc_send, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER");
+                tmpSql.Append("ORDER BY snap_id)), 2) gc_send, ROUND ( ( gcs_msg_send - LAG (gcs_msg_send, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id)), 2) gcs_msg_send");
+                tmpSql.Append("FROM ( SELECT dbid,snap_id,INSTANCE_NUMBER,MIN (begin_interval_time)AS begin_interval_time, MAX (end_interval_time)");
+                tmpSql.Append("AS end_interval_time,SUM (DECODE (stat_name,'SQL*Net roundtrips to/from client', VALUE, 0)) NET_Cnt_Client, SUM ( DECODE (stat_name, 'bytes sent via SQL*Net to client', VALUE, ");
+                tmpSql.Append("0)) NET_B_To_Client, SUM ( DECODE ( stat_name, 'bytes received via SQL*Net from client', VALUE, 0)) NET_B_From_Client, SUM ( DECODE ( stat_name, 'SQL*Net roundtrips to/from dblink', VALUE, ");
+                tmpSql.Append("0)) NET_Cnt_DBLink, SUM ( DECODE ( stat_name, 'bytes received via SQL*Net from dblink', VALUE, 0)) NET_B_From_DBLink, SUM (DECODE ( stat_name, 'bytes sent via SQL*Net to dblink', VALUE, ");
+                tmpSql.Append("0)) NET_B_To_DBLink,SUM ( DECODE (stat_name, 'gc cr blocks received', VALUE, 'gc current blocks received', VALUE, 0)) gc_recv , SUM (DECODE (stat_name,'gc cr blocks served', VALUE, ");
+                tmpSql.Append("'gc current blocks served', VALUE, 0)) gc_send , SUM ( DECODE (stat_name, 'gcs messages sent', VALUE, 'ges messages sent', VALUE, 0)) gcs_msg_send ");
+                tmpSql.Append("FROM (SELECT  ss.dbid, ss.instance_number, ss.snap_id, ss.VALUE, ss.stat_name, sn.begin_interval_time, sn.end_interval_time ");
+                tmpSql.AppendFormat("FROM ISIA.RAW_DBA_HIST_SYSSTAT_{0} ss,", arguments.DBName);
+                tmpSql.AppendFormat("ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn ", arguments.DBName);
+                tmpSql.AppendFormat("WHERE 1 = 1 AND ss.dbid = sn.dbid AND ss.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND ss.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER IN (1) AND TO_CHAR (sn.BEGIN_INTERVAL_TIME, ");
+                tmpSql.AppendFormat("'yyyyMMddHH24miss') BETWEEN '{0}' ", arguments.StartTime);
+                tmpSql.AppendFormat("AND '{0}'", arguments.EndTime);
+                tmpSql.AppendFormat(@") WHERE 1 = 1 GROUP BY dbid, INSTANCE_NUMBER, snap_id) s), t2_sysmetric_summary AS ( SELECT dbid, inst_id, MIN (snap_id) snap_id_min, TO_CHAR (BEGIN_TIME, '{0}') ", arguments.GroupingDateFormat);
+                tmpSql.Append("workdate, MIN (BEGIN_TIME) BEGIN_TIME, MAX (END_TIME) END_TIME, ROUND (AVG (CPU_Util_pct), 2) CPU_Util_pct, ROUND (MAX (CPU_Util_pct_max), 2) CPU_Util_pct_max, ");
+                tmpSql.Append("ROUND (AVG (LOGICAL_READS_PSEC)) LOGICAL_READS_PSEC, ROUND (AVG (Physical_Reads_psec)) PHYSICAL_READS_PSEC, ROUND (AVG (Physical_Writes_psec)) Physical_Writes_psec, ");
+                tmpSql.Append("ROUND (AVG (Execs_psec_avg)) Execs_psec_avg, ROUND (MAX (Execs_psec_max)) Execs_psec_max, ROUND (AVG (USER_CALLS_PSEC)) USER_CALLS_PSEC, ROUND (AVG (DB_BLOCK_CHANGES_PSEC)) ");
+                tmpSql.Append("DB_BLOCK_CHANGES_PSEC, ROUND (AVG (SQL_Service_Response_Time), 4) SQL_Service_Response_Time, ROUND (AVG (User_Commits_psec), 2) Commit_psec_avg, ROUND (AVG (Redo_Generated_psec / 1024 / 1024), 2) ");
+                tmpSql.AppendFormat("Redo_mb_psec_avg, ROUND (AVG (Hard_Parse_Cnt_psec), 2) Hard_Parse_Cnt_psec FROM t1_sysmetric_summary s WHERE 1 = 1 GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}')), ", arguments.GroupingDateFormat);
+                tmpSql.AppendFormat("t2_sysstat AS ( SELECT dbid, inst_id, MIN (snap_id) AS snap_id_min, TO_CHAR (BEGIN_TIME, '{0}') workdate, MIN (BEGIN_TIME) BEGINE_TIME, MAX (END_TIME) ", arguments.GroupingDateFormat);
+                tmpSql.Append("END_TIME, ROUND ( AVG ( ((gc_recv + gc_send) * 8192 + gcs_msg_send * 200) / 1024 / 1024 / SNAP_TIME), 3) DLM_MB_psec, ROUND (AVG (NET_B_To_Client / 1024 / 1024 / SNAP_TIME), 3) ");
+                tmpSql.Append("NET_MB_To_Client_psec, ROUND (AVG (NET_B_From_Client / 1024 / 1024 / SNAP_TIME), 3) NET_MB_From_Client_psec, ROUND (AVG (NET_B_From_DBLink / 1024 / 1024 / SNAP_TIME), 3) ");
+                tmpSql.AppendFormat("NET_MB_From_DBLink_psec, ROUND (AVG (NET_B_To_DBLink / 1024 / 1024 / SNAP_TIME), 3) NET_MB_To_DBLink_psec FROM t1_sysstat s WHERE 1 = 1 GROUP BY dbid, inst_id, TO_CHAR (BEGIN_TIME, '{0}')) ", arguments.GroupingDateFormat);
+                tmpSql.Append("SELECT sm.dbid, sm.inst_id, sm.snap_id_min, sm.workdate AS workdate, sm.begin_time, sm.end_time, sm.CPU_Util_pct, sm.CPU_Util_pct_max, sm.LOGICAL_READS_PSEC, ");
+                tmpSql.Append("sm.PHYSICAL_READS_PSEC, sm.Physical_Writes_psec, sm.Execs_psec_avg, sm.Execs_psec_max, sm.USER_CALLS_PSEC, sm.Hard_Parse_Cnt_psec, sm.DB_BLOCK_CHANGES_PSEC, ");
+                tmpSql.Append("sm.SQL_Service_Response_Time, sm.Commit_psec_avg, sm.Redo_mb_psec_avg, ss.DLM_MB_psec, ss.NET_MB_To_Client_psec, ss.NET_MB_From_Client_psec, ss.NET_MB_From_DBLink_psec, ");
+                tmpSql.Append("ss.NET_MB_To_DBLink_psec FROM t2_sysmetric_summary sm, t2_sysstat ss WHERE sm.dbid = ss.dbid(+) AND sm.inst_id = ss.inst_id(+) AND sm.workdate = ss.workdate(+) ORDER BY dbid, workdate ");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
@@ -428,7 +116,7 @@ namespace ISIA.BIZ.TREND
 
         private void AppendWithCRLF(StringBuilder main, string append)
         {
-            main.Append(append).Append("\r\n");
+            main.Append(append).Append(" ");
         }
 
         private void AppendSumWithDeode(StringBuilder main, string colunm, string decodeMode, string paramType)

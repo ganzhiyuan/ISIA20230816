@@ -86,10 +86,10 @@ namespace ISIA.BIZ.TREND
                     "ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on stat.snap_id = snap.snap_id " +
                     "where TO_CHAR(snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}' "
                    , AwrArgsPack.WorkloadSqlRelationMapping[arguments.WorkloadSqlParm], arguments.StartTime, arguments.EndTime, arguments.DBName);
-                /*if (arguments.SqlIdList.Count != 0 )
-                {
-                    getSqlIdDataSql.AppendFormat("and sql_id in({0}) ", Utils.MakeSqlQueryIn2(arguments.SqlIdList));
-                }*/
+                //if (arguments.SqlIdList.Count != 0)
+                //{
+                //    getSqlIdDataSql.AppendFormat("and sql_id in({0}) ", Utils.MakeSqlQueryIn2(arguments.SqlIdList));
+                //}
                 getSqlIdDataSql.Append(" group by stat.snap_id ORDER BY SNAP_ID");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -128,42 +128,17 @@ namespace ISIA.BIZ.TREND
                 }
                 else
                 {
-                    getWorkloadDtaSql.AppendFormat("SELECT /*+ MATERIALIZE */\r\n" +
-"                dbid,\r\n" +
-"                INSTANCE_NUMBER,\r\n" +
-"                   \r\n" +
-"                snap_id,\r\n" +
-"                \"begin_interval_time\",\r\n" +
-"                \"end_interval_time\",\r\n" +
-"                ROUND (\r\n" +
-"                    (  \"{0}\"\r\n" +
-"                     - LAG (\"{0}\", 1)\r\n" +
-"                           OVER (PARTITION BY dbid, INSTANCE_NUMBER\r\n" +
-"                                 ORDER BY snap_id)))\r\n" +
-"                    \"{0}\"\r\n" +
-"from\r\n" +
-"(select\r\n" +
-"/*+MATERIALIZE */\r\n" +
-"MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
-"MAX(end_interval_time) \"end_interval_time\",\r\n" +
-"dbid,\r\n" +
-"snap_id,\r\n" +
-"instance_number ,\r\n" +
-"SUM(DECODE(STAT_NAME,'{0}',value ,0))\r\n" +
-"\"{0}\"\r\n" +
-"FROM\r\n" +
-"(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
-"ss.dbid,\r\n" +
-"ss.instance_number,\r\n" +
-"ss.snap_id,\r\n" +
-"ss.VALUE,\r\n" +
-"ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{3} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{3} sn  \r\n" +
-"where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{0}' --configurable\r\n" +
-"and sn.INSTANCE_NUMBER IN (1)\r\n" +
-"and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') t\r\n" +
-" where 1=1\r\n" +
-"group by dbid, instance_number ,snap_id) s\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
-                   arguments.DBName);
+                    getWorkloadDtaSql.AppendFormat("SELECT dbid,INSTANCE_NUMBER, snap_id, begin_interval_time,end_interval_time,ROUND (({0}", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.AppendFormat(" - LAG ({0}, 1) OVER (PARTITION BY dbid, INSTANCE_NUMBER  ORDER BY snap_id)))    {0} from (select MIN(begin_interval_time) begin_interval_time,", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.AppendFormat(" MAX(end_interval_time) end_interval_time,dbid,snap_id,instance_number ,SUM(DECODE(STAT_NAME,'{0}',value ,0)){0}", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.Append(" FROM(select ss.dbid,ss.instance_number,ss.snap_id,ss.VALUE,");
+                    getWorkloadDtaSql.AppendFormat(" ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{0} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{0} sn  ", arguments.DBName);
+                    getWorkloadDtaSql.AppendFormat(" where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{0}' ", arguments.WorkloadSqlParm);
+                    getWorkloadDtaSql.Append(" and sn.INSTANCE_NUMBER IN (1)");
+                    getWorkloadDtaSql.AppendFormat(" and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' ", arguments.StartTime);
+                    getWorkloadDtaSql.AppendFormat(" and '{0}') t", arguments.EndTime);
+                    getWorkloadDtaSql.Append(" where 1=1");
+                    getWorkloadDtaSql.Append(" group by dbid, instance_number ,snap_id) s");
 
                 }
 

@@ -208,11 +208,8 @@ namespace ISIA.UI.ANALYSIS
             argument.DBName = dbName;
 
             //SQLID handling 
-            if (!string.IsNullOrEmpty(SLUEParamentName.PARAMETERNAME))
-            {
-                argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
-            }
-            
+
+            //argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
 
 
             //combobox edit workload parm

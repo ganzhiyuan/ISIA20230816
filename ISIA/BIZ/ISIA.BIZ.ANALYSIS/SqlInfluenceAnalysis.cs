@@ -48,20 +48,14 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
                
-                    tmpSql.AppendFormat(
-                        "select si.* , ts.sql_text\r\n" +
-                        "from\r\n" +
-                        "(select stat.sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n" +
-                        "NVL(sum({0}),0) \"{0}\"\r\n" +
-                        "from ISIA.RAW_DBA_HIST_SQLSTAT_{3} stat \r\n" +
-                        "left join ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on \r\n" +
-                        "stat.snap_id=snap.snap_id  \r\n" +
-                        "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}'\r\n" +
-                        "group by stat.sql_id\r\n" +
-                        ") si \r\n" +
-                        "left join  ISIA.RAW_DBA_HIST_SQLTEXT_{3}  ts \r\n" +
-                        "on si.sql_id=ts.sql_id\r\n" +
-                        "order by \"{0}\" desc\r\n" 
+                    tmpSql.AppendFormat(@"select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time,  
+                        NVL(sum({0}),0) {0}
+                        from ISIA.RAW_DBA_HIST_SQLSTAT_{3} stat 
+                        left join ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on 
+                        stat.snap_id=snap.snap_id  
+                        where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}'
+                        group by stat.sql_id                        
+                        order by {0} desc) t where rownum<11"
                         , arguments.WorkloadSqlParm,arguments.StartTime,arguments.EndTime,arguments.DBName
                      );
                
