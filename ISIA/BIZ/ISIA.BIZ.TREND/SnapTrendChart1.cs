@@ -77,10 +77,10 @@ namespace ISIA.BIZ.TREND
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.AppendFormat("SELECT a.end_interval_time,t.sql_id,{0} as typNum ", Convert.ToDecimal(arguments.ParameterType));
-                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id  ", arguments.DbName);
+                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T left join raw_dba_hist_snapshot_{0} a on t.snap_id=a.snap_id  ", arguments.DbName);
                 tmpSql.Append(" where t.snap_id in ");
                 tmpSql.Append(" (SELECT T.Snap_Id ");
-                tmpSql.Append(" FROM raw_dba_hist_snapshot_isfa T ");
+                tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T ", arguments.DbName);
                 tmpSql.Append(" WHERE T.END_INTERVAL_TIME > ");
                 tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey);
                 tmpSql.Append(" and t.end_interval_time <= ");

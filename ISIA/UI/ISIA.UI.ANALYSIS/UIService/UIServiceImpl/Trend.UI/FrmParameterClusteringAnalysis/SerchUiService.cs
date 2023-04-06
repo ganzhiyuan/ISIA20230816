@@ -154,7 +154,7 @@ namespace ISIA.UI.ANALYSIS.UIService.UIServiceImpl.ANALYSIS.UI.ParameterClusteri
             frm.splitContainerControl1.Panel1.Controls.Add(chart);
             //display clustering chart 
             Statistics st = new Statistics();
-            int[] clusteringResult = st.KMeans(ClusterInput, EventArgPack.ClustersNumber);
+            int[] clusteringResult = st.KMeans(ClusterInput, EventArgPack.ClustersNumber = 1);
             cycleIndex = 0;
             foreach (DataTable dt in tables)
             {
