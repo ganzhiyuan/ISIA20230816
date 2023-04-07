@@ -40,6 +40,32 @@ namespace ISIA.BIZ.TREND
             }
         }
 
+        public void GetWorkLoadTrend(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append("SELECT T.* FROM sum_workload T where 1=1 ");
+                tmpSql.AppendFormat(" and END_TIME >=TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTime);
+                tmpSql.AppendFormat(" and END_TIME <TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTime);
+
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void GetWorkloadDataByParams(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -158,7 +184,7 @@ namespace ISIA.BIZ.TREND
                     "+ EXTRACT (\r\n" +
                     "SECOND FROM ( END_INTERVAL_TIME\r\n" +
                     "- BEGIN_INTERVAL_TIME))\r\n" +
-                    "FROM DBA_HIST_SNAPSHOT\r\n" +
+                    "FROM ISIA.RAW_DBA_HIST_SNAPSHOT\r\n" +
                     "WHERE dbid = s.dbid\r\n" +
                     "AND SNAP_ID = s.SNAP_ID\r\n" +
                     "AND INSTANCE_NUMBER = s.INSTANCE_NUMBER)\r\n" +
