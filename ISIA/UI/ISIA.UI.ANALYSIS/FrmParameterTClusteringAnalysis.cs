@@ -15,8 +15,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TAP.Base.Mathematics;
 using TAP.Data.Client;
 using TAP.UI;
+
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -32,7 +34,7 @@ namespace ISIA.UI.ANALYSIS
         AwrCommonArgsPack args = new AwrCommonArgsPack();
         BizDataClient bs;
         DataSet dataSet = null;
-        DataSet dataSet1 = new DataSet();
+        
         List<Series> series = new List<Series>();
         //List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
@@ -68,7 +70,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                dataSet1.Tables.Clear();
+                
 
                 //args.DbId = cmbDbName.EditValue.ToString();
                 //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
@@ -83,6 +85,15 @@ namespace ISIA.UI.ANALYSIS
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
                     return dataSet = null;
+                }
+
+                foreach (DataRow item in dataSet.Tables[0].Rows)
+                {
+                    if (string.IsNullOrEmpty(item["N_VALUE"].ToString()) )
+                    {
+                        item["N_VALUE"] = 0;
+                    }
+                    
                 }
 
                 //DataTable dataTable =  ConvertDTToListRef(dataSet.Tables[0]);
@@ -260,7 +271,6 @@ namespace ISIA.UI.ANALYSIS
             }
 
 
-
         }
 
 
@@ -268,10 +278,11 @@ namespace ISIA.UI.ANALYSIS
 
         private void CreateTeeChart(DataTable dsTable)
         {
-            panelControl1.Controls.Clear();
+            double[][] input = null;
+
+            pncChart.Controls.Clear();
 
             TChart tChart1 = new TChart();
-
 
             tChart1.Header.Text = " ";//清除chart标题
 
@@ -279,8 +290,7 @@ namespace ISIA.UI.ANALYSIS
 
             tChart1.Series.RemoveAllSeries();
 
-
-            panelControl1.Controls.Add(tChart1);
+            pncChart.Controls.Add(tChart1);
 
             /*var cuTool = new CursorTool(tChart1.Chart)
             {
@@ -323,19 +333,32 @@ namespace ISIA.UI.ANALYSIS
             }
             if (dataSet.Tables.Count > 1)
             {
-                int i = 0;
+                input = new double[dataSet.Tables.Count-1][];
+                int x = 0;
                 foreach (DataTable dt in dataSet.Tables)
                 {
                     if (dt.TableName != "TABLE")
                     {
+                        //Type aa =  dt.Columns["N_VALUE"].DataType;
                         
-                        i++;
-                        Line line = CreateLine(dt,i);
+                        input[x] = new double[dt.Rows.Count];
+                        for (int i = 0; i < dt.Rows.Count-1; i++)
+                        {
+                            input[x][i] = Convert.ToDouble(dt.Rows[i]["N_VALUE"]);
+                        }
+
+
+                        Line line = CreateLine(dt,x);
                         series.Add(line);
                         tChart1.Series.Add(line);
+                        x++;
                     }
                 }
             }
+
+            Statistics st = new Statistics();
+            int[] clusteringResult = st.KMeans(input, 3);
+
             /*string daytime =  radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
             if (daytime == "day" )
             {
@@ -350,7 +373,7 @@ namespace ISIA.UI.ANALYSIS
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
             }*/
             //tChart1.Axes.Bottom.Labels.Angle = 1;
-            
+
             tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             tChart1.MouseDown += tChart1_MouseDown;
@@ -382,10 +405,10 @@ namespace ISIA.UI.ANALYSIS
             //line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["N_VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
             }
             line.DataSource = dstable;
-            line.YValues.DataMember = "VALUE";
+            line.YValues.DataMember = "N_VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.Legend.Visible = true;
             line.Color = GetRandomColor(i);

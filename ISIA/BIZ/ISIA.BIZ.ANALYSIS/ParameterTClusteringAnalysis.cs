@@ -23,15 +23,18 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@" select A.* ,B.end_interval_time  from  RAW_DBA_HIST_SYSSTAT_{0}  A 
-                 left join RAW_DBA_HIST_SNAPSHOT_{0} ", arguments.DbName);
+                tmpSql.Append("select T.*,  (to_number(t.value) - t.next_value) N_VALUE  from  (");
 
+
+                tmpSql.AppendFormat(@" select A.* ,B.end_interval_time ,
+                lag(a.value, 1, null) over (partition by a.stat_name order by a.snap_id )  next_value  from  RAW_DBA_HIST_SYSSTAT_{0}  A 
+                 left join RAW_DBA_HIST_SNAPSHOT_{0} ", arguments.DbName);
 
 
                 tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                tmpSql.AppendFormat(@" and  stat_name in ( '{0}')  order by B.end_interval_time", arguments.ParameterName);
+                tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
