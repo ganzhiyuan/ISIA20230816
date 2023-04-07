@@ -257,7 +257,7 @@ namespace ISIA.UI.ANALYSIS
                     DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
                     tableMain1.TableName = "sql";
 
-                    memoEdit1.Text = tableMain1.Rows[0][0].ToString();
+                    SqlView.TextChangeBindSQLType(tableMain1.Rows[0][0].ToString());
                 }
             }
 

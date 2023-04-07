@@ -32,7 +32,7 @@ namespace ISIA.UI.ANALYSIS
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSQLStatisticsBySqlID));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.SqlView = new TAP.UIControls.BasicControlsDEV.THtmlView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -81,7 +81,6 @@ namespace ISIA.UI.ANALYSIS
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -198,20 +197,32 @@ namespace ISIA.UI.ANALYSIS
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.memoEdit1);
+            this.panelControl1.Controls.Add(this.SqlView);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 560);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(906, 100);
             this.panelControl1.TabIndex = 0;
             // 
-            // memoEdit1
+            // SqlView
             // 
-            this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit1.Location = new System.Drawing.Point(2, 2);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(902, 96);
-            this.memoEdit1.TabIndex = 0;
+            this.SqlView.AcceptsEscape = false;
+            this.SqlView.AcceptsReturn = false;
+            this.SqlView.AcceptsTab = false;
+            this.SqlView.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.SqlView.ControlID = "SqlView";
+            this.SqlView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SqlView.DragDropMode = DevExpress.XtraRichEdit.DragDropMode.Manual;
+            this.SqlView.IsRequired = false;
+            this.SqlView.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
+            this.SqlView.Location = new System.Drawing.Point(2, 2);
+            this.SqlView.Name = "SqlView";
+            this.SqlView.NeedToTranslate = false;
+            this.SqlView.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
+            this.SqlView.ReadOnly = true;
+            this.SqlView.RepresentativeValue = "";
+            this.SqlView.Size = new System.Drawing.Size(902, 96);
+            this.SqlView.TabIndex = 19;
             // 
             // panelControl2
             // 
@@ -798,7 +809,6 @@ namespace ISIA.UI.ANALYSIS
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -844,7 +854,7 @@ namespace ISIA.UI.ANALYSIS
 
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private TAP.UIControls.BasicControlsDEV.THtmlView SqlView;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup6;
         public DevExpress.XtraLayout.LayoutControl layoutControl1;

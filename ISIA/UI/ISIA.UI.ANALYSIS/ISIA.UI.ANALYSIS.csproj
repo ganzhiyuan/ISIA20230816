@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ISIA.UI.ANALYSIS</RootNamespace>
     <AssemblyName>ISIA.UI.ANALYSIS</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -148,12 +148,6 @@
     </Reference>
     <Reference Include="TeeChart, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=9c8126276c77bdb7, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.dll</HintPath>
-    </Reference>
-    <Reference Include="TeeChart.WPF, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=98e8c3f289a4e286, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="TeeChart.Xaml.WPF, Version=4.2023.3.23, Culture=neutral, PublicKeyToken=9406d226170aa089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Steema.TeeChart.NET.4.2023.3.23\lib\net40\TeeChart.Xaml.WPF.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
