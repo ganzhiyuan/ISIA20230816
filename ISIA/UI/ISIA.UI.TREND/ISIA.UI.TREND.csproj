@@ -200,6 +200,12 @@
     <Compile Include="FrmWorkloadTrendChart.designer.cs">
       <DependentUpon>FrmWorkloadTrendChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmWorkLoadTrendChartNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkLoadTrendChartNew.Designer.cs">
+      <DependentUpon>FrmWorkLoadTrendChartNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIService\CommonUIService.cs" />
     <Compile Include="UIService\IInitService.cs" />
@@ -218,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadTrendChart.resx">
       <DependentUpon>FrmWorkloadTrendChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkLoadTrendChartNew.resx">
+      <DependentUpon>FrmWorkLoadTrendChartNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
