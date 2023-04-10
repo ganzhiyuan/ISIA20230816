@@ -50,6 +50,92 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append("SELECT T.* FROM sum_workload T where 1=1 ");
                 tmpSql.AppendFormat(" and END_TIME >=TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTime);
                 tmpSql.AppendFormat(" and END_TIME <TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTime);
+                tmpSql.Append(" order by END_TIME");
+
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetParamentRelation()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append("SELECT T.* FROM tapctparamentrelation T where CONFIG_TYPE='2' ");
+
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        
+        public void GetWorkLoadLagestSql(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("select rownum,c.* from (");
+                tmpSql.AppendFormat("select end_interval_time,snap_id,sql_id,sum({0}) {0} from (",arguments.ParamNamesString);
+                tmpSql.AppendFormat("SELECT a.end_interval_time, t.snap_id, t.dbid, t.sql_id, t.{0}", arguments.ParamNamesString);
+                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
+                tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id", arguments.DBName);
+                tmpSql.Append(" where t.snap_id in ");
+                tmpSql.Append("       (SELECT T.Snap_Id ");
+                tmpSql.AppendFormat("          FROM raw_dba_hist_snapshot_{0} T ", arguments.DBName);
+                tmpSql.Append("         WHERE T.END_INTERVAL_TIME > ");
+                tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime);
+                tmpSql.Append("           and t.end_interval_time <= ");
+                tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')) ", arguments.EndTime);
+                tmpSql.AppendFormat("          ) b ");
+                tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);
+                tmpSql.AppendFormat("            group by end_interval_time, snap_id, sql_id order by {0} desc", arguments.ParamNamesString);
+                tmpSql.Append(" ) c where rownum=1");
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSqlTextBySqlID(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqltext_{0} T where t.sql_id='{1}'",arguments.DBName ,arguments.WorkloadSqlParm);
 
 
 

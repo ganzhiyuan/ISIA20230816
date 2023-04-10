@@ -31,6 +31,7 @@ namespace ISIA.UI.TREND
         BizDataClient bs;
         AwrArgsPack args = new AwrArgsPack();
         object[] result = new object[2];
+        DataSet ParamentRelationDS = new DataSet();
 
 
         public FrmWorkLoadTrendChartNew()
@@ -101,8 +102,11 @@ namespace ISIA.UI.TREND
         {
             args.StartTime = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
             args.EndTime = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DBName = cmbDbName.Text.Split('(')[0];
 
             dataSet = bs.ExecuteDataSet("GetWorkLoadTrend", args.getPack());
+
+            ParamentRelationDS = bs.ExecuteDataSet("GetParamentRelation");
             return dataSet;
         }
         public void DisplayData(DataSet ds)
@@ -147,7 +151,7 @@ namespace ISIA.UI.TREND
                     //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     rowDto.END_INTERVAL_TIME = item.END_TIME;
-                    //rowDto.SNAP_ID = item.SNAP_ID;
+                    rowDto.SNAP_ID = item.SNAP_ID_MIN;
                     foreach (PropertyInfo para in proInfo)
                     {
                         if (s == para.Name)
@@ -239,7 +243,9 @@ namespace ISIA.UI.TREND
             line.Legend.BorderRound = 10; 
             line.Pointer.Style = PointerStyles.Circle;
             line.Pointer.Visible = true;
-            line.Pointer.Color = Color.Black;
+            line.Pointer.Color = Color.OrangeRed;
+            line.Pointer.HorizSize = 1;
+            line.Pointer.VertSize = 1;
             //line.Pointer.SizeDouble = 1;
             line.XValues.DateTime = true;
             return line;
@@ -318,7 +324,7 @@ namespace ISIA.UI.TREND
 
 
                             DataTable dt1 = line.DataSource as DataTable;
-                            //dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
+                            dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
                             //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
                             dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
                             snaplist.Add(dto);
@@ -329,19 +335,33 @@ namespace ISIA.UI.TREND
                 {
                     return;
                 }
-
-
-                //this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
-
-                //PopupGrid popupGrid = new PopupGrid(this._DataTable);
-                //popupGrid.StartPosition = FormStartPosition.CenterScreen;
-                //popupGrid.ShowDialog();
-                //DataTable dt = popupGrid._DataTable;
-
-                //if (popupGrid.linkage == true)
-                //{
-                //    base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", "SQLANALYSISBYSQL_ID", dt);
-                //}
+                DateTime maxTime = snaplist.Max(x => x.END_INTERVAL_TIME);
+                DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
+                var snapId = snaplist.Select(x => x.SNAP_ID.ToString()).Distinct().ToArray();
+                string tbNm = snaplist.FirstOrDefault().PARAMENT_NAME;
+                var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x=>x.Field<string>("CONFIG_ID").ToUpper()==tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+                AwrArgsPack argsSel = new AwrArgsPack();
+                argsSel.StartTime = minTime.ToString("yyyy-MM-dd");
+                argsSel.EndTime = maxTime.ToString("yyyy-MM-dd");
+                argsSel.ParamNamesString = result;
+                argsSel.ParamType =  string.Join(",", snapId);
+                argsSel.DBName = args.DBName;
+                DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+                if (dsRelation==null||dsRelation.Tables.Count==0||dsRelation.Tables[0].Rows.Count==0)
+                {
+                    return;
+                }
+                DataRow dr = dsRelation.Tables[0].Rows[0];
+                argsSel.WorkloadSqlParm = dr["SQL_ID"].ToString();
+                DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
+                if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+                string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+                string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+                FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(sqlid, sqlText);
+                frm.ShowDialog();
             }
             catch
             {
@@ -354,6 +374,7 @@ namespace ISIA.UI.TREND
 
     public class WorkLoadInfo
     {
+        public decimal SNAP_ID_MIN { get; set; }
         public decimal PARAMENT_VALUE { get; set; }
         public DateTime END_TIME { get; set; }
         public decimal CPU_UTIL_PCT { get; set; }

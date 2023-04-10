@@ -527,13 +527,13 @@ namespace ISIA.UI.TREND
             // 
             // cmbInstance
             // 
-            this.cmbInstance.CheckItemSelectMode = false;
+            this.cmbInstance.CheckItemSelectMode = true;
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
             this.cmbInstance.DominantControl = "cmbDbName";
             this.cmbInstance.EditValue = "";
-            this.cmbInstance.IsRequired = false;
+            this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(92, 27);
             this.cmbInstance.Margin = new System.Windows.Forms.Padding(4);
             this.cmbInstance.Name = "cmbInstance";
@@ -542,6 +542,7 @@ namespace ISIA.UI.TREND
             this.cmbInstance.Properties.AllowMultiSelect = true;
             this.cmbInstance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbInstance.Properties.SelectAllItemVisible = false;
             this.cmbInstance.RepresentativeValue = "";
             this.cmbInstance.ShowDescription = false;
             this.cmbInstance.Size = new System.Drawing.Size(140, 20);
@@ -554,7 +555,7 @@ namespace ISIA.UI.TREND
             // 
             // cmbDbName
             // 
-            this.cmbDbName.CheckItemSelectMode = false;
+            this.cmbDbName.CheckItemSelectMode = true;
             this.cmbDbName.ControlID = "cmbDbName";
             this.cmbDbName.DescriptionMember = "DBID";
             this.cmbDbName.DisplayMember = "DBNAME";
@@ -569,6 +570,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
             this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbDbName.Properties.SelectAllItemVisible = false;
             this.cmbDbName.RepresentativeValue = "";
             this.cmbDbName.ShowDescription = true;
             this.cmbDbName.Size = new System.Drawing.Size(140, 20);
