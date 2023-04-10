@@ -161,6 +161,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ChartColor.cs" />
     <Compile Include="Dto\SnapshotDto.cs" />
     <Compile Include="Dto\SqlstatDto.cs" />
     <Compile Include="Dto\WorkloadDto.cs" />

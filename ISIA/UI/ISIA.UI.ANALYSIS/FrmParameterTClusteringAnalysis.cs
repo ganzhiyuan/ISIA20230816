@@ -2,6 +2,7 @@
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using Steema.TeeChart;
+using Steema.TeeChart.Components;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
 using System;
@@ -79,6 +80,7 @@ namespace ISIA.UI.ANALYSIS
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cmbParameterName.Text;
+                args.ParameterType = cmbParameterType.Text;
 
                 //List<string > itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetParaValue", args.getPack());
@@ -274,23 +276,25 @@ namespace ISIA.UI.ANALYSIS
         }
 
 
-
-
         private void CreateTeeChart(DataTable dsTable)
         {
             double[][] input = null;
 
-            pncChart.Controls.Clear();
+            tpchart.Controls.Clear();
+
+            tplychart.Controls.Clear();
 
             TChart tChart1 = new TChart();
 
+            ChartLayout chartLayout = new ChartLayout();
+
+            chartLayout.Dock = DockStyle.Fill;
+
             tChart1.Header.Text = " ";//清除chart标题
 
-            tChart1.Series.Clear();
+            tpchart.Controls.Add(tChart1);
 
-            tChart1.Series.RemoveAllSeries();
-
-            pncChart.Controls.Add(tChart1);
+            tplychart.Controls.Add(chartLayout);
 
             /*var cuTool = new CursorTool(tChart1.Chart)
             {
@@ -318,7 +322,7 @@ namespace ISIA.UI.ANALYSIS
             tChart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
             tChart1.Header.Text = " ";//teechart标题 
             tChart1.Legend.Visible = true;
-            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["STAT_NAME"].ToString());
+            IEnumerable<IGrouping<string, DataRow>> result = dsTable.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
             if (result != null && result.Count() > 0)
             {
                 foreach (IGrouping<string, DataRow> rows in result)
@@ -347,7 +351,6 @@ namespace ISIA.UI.ANALYSIS
                             input[x][i] = Convert.ToDouble(dt.Rows[i]["N_VALUE"]);
                         }
 
-
                         Line line = CreateLine(dt,x);
                         series.Add(line);
                         tChart1.Series.Add(line);
@@ -357,33 +360,53 @@ namespace ISIA.UI.ANALYSIS
             }
 
             Statistics st = new Statistics();
-            int[] clusteringResult = st.KMeans(input, 3);
+            int[] clusteringResult = st.KMeans(input, Convert.ToInt32(seclusterin.Value));
 
-            /*string daytime =  radioGroup1.Properties.Items[radioGroup1.SelectedIndex].Value.ToString();
-            if (daytime == "day" )
-            {
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";//x轴横坐标值
-            }
-            else if (daytime == "hour")
-            {
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH";
-            }
-            else if (daytime == "min")
-            {
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd_HH:MI";
-            }*/
-            //tChart1.Axes.Bottom.Labels.Angle = 1;
+            
 
             tChart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
             tChart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             tChart1.MouseDown += tChart1_MouseDown;
             tChart1.MouseUp += tChart1_MouseUp;
-            /*line.Legend.Visible = true;*/
+            
 
-            tChart1.Refresh();
+            var chartname = clusteringResult.Distinct().ToArray();
+
+            foreach (var chart in chartname)
+            {
+                chartLayout.Add(chart.ToString());
+            }
+
+            if (dataSet.Tables.Count > 1)
+            {
+                for (int i = 0; i < clusteringResult.Length; i++)
+                {
+
+                    Line line = CreateLine(dataSet.Tables[i + 1], i);
+
+                    chartLayout.Charts[clusteringResult[i]].Series.Add(line);
+
+                }
+            }
+
+            foreach (TChart chart in chartLayout.Charts)
+            {
+
+
+                MarksTip markstip1 = new MarksTip(chart.Chart);
+                chart.Legend.Visible = true;
+                chart.Legend.LegendStyle = LegendStyles.Series;
+                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+                chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+                chart.MouseDown += tChart1_MouseDown;
+                chart.MouseUp += tChart1_MouseUp;
+                
+            }
+            chartLayout.ChartWidth = 800;
+            chartLayout.ChartHeight = 360;
+
             return;
         }
-
 
 
         private Line CreateLine(DataTable dstable ,int i)
@@ -405,7 +428,7 @@ namespace ISIA.UI.ANALYSIS
             //line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["STAT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["N_VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["PARAMENT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["N_VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
             }
             line.DataSource = dstable;
             line.YValues.DataMember = "N_VALUE";
@@ -423,14 +446,16 @@ namespace ISIA.UI.ANALYSIS
 
         public Color GetRandomColor(int i )
         {
-             DataTable da = new DataTable();
+
+            int[,] color = { { 26, 188, 156 },{
+              250, 192, 61  } };
+
+            DataTable da = new DataTable();
             da.Columns.Add("R",typeof(Int32));
             da.Columns.Add("G",typeof(Int32));
             da.Columns.Add("B",typeof(Int32));
 
-            da.Rows.Add(52, 152, 219);
             da.Rows.Add(26, 188, 156);
-            da.Rows.Add(249, 202, 36);
             da.Rows.Add(10, 189, 227);
             da.Rows.Add(197, 108, 240);
             da.Rows.Add(30, 144, 255);
@@ -442,30 +467,30 @@ namespace ISIA.UI.ANALYSIS
             da.Rows.Add(255, 168, 1);
             da.Rows.Add(204, 174, 98);
             da.Rows.Add(84, 109, 229);
+            da.Rows.Add(249, 202, 36);
             da.Rows.Add(210, 57, 24);
             da.Rows.Add(56, 103, 214);
             da.Rows.Add(225, 95, 65);
             da.Rows.Add(184, 53, 112);
             da.Rows.Add(230, 0, 18);
             da.Rows.Add(93, 163, 157);
+            da.Rows.Add(52, 152, 219);
             da.Rows.Add(95, 39, 205);
             da.Rows.Add(83, 61, 205);
             da.Rows.Add(51, 205, 64);
             da.Rows.Add(205, 159, 23);
-            da.Rows.Add(109, 173, 205);
             da.Rows.Add(39, 205, 86);
             da.Rows.Add(205, 51, 72);
             da.Rows.Add(57, 190, 205);
             da.Rows.Add(45, 205, 64);
             da.Rows.Add(49, 35, 205);
             da.Rows.Add(203, 59, 205);
+            da.Rows.Add(109, 173, 205);
             da.Rows.Add(45, 149, 214);
             da.Rows.Add(214, 200, 41);
 
             return Color.FromArgb((Int32)da.Rows[i]["R"], (Int32)da.Rows[i]["G"], (Int32)da.Rows[i]["B"]);
         }
-
-
 
 
         private void tcmbday_EditValueChanged(object sender, EventArgs e)
