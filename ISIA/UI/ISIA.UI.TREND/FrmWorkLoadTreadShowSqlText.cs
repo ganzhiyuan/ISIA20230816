@@ -23,5 +23,11 @@ namespace ISIA.UI.TREND
         {
             this.Close();
         }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(txtSqlId.SelectedText);
+            TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+        }
     }
 }
