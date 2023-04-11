@@ -31,6 +31,7 @@ namespace ISIA.UI.TREND
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkLoadTreadShowSqlText));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnCopy = new TAP.UIControls.BasicControlsDEV.TButton();
             this.SqlView = new TAP.UIControls.BasicControlsDEV.THtmlView();
             this.tButton1 = new TAP.UIControls.BasicControlsDEV.TButton();
             this.txtSqlId = new DevExpress.XtraEditors.TextEdit();
@@ -40,7 +41,6 @@ namespace ISIA.UI.TREND
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnCopy = new TAP.UIControls.BasicControlsDEV.TButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -70,6 +70,39 @@ namespace ISIA.UI.TREND
             this.layoutControl1.Size = new System.Drawing.Size(863, 441);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnCopy.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btnCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btnCopy.Appearance.Options.UseBackColor = true;
+            this.btnCopy.Appearance.Options.UseBorderColor = true;
+            this.btnCopy.Appearance.Options.UseFont = true;
+            this.btnCopy.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCopy.AppearanceHovered.Options.UseBackColor = true;
+            this.btnCopy.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCopy.AppearancePressed.Options.UseBackColor = true;
+            this.btnCopy.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btnCopy.ControlID = "btnSelect";
+            this.btnCopy.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnCopy.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btnCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.ImageOptions.Image")));
+            this.btnCopy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnCopy.IsRequired = false;
+            this.btnCopy.Location = new System.Drawing.Point(770, 12);
+            this.btnCopy.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCopy.MaximumSize = new System.Drawing.Size(70, 25);
+            this.btnCopy.MinimumSize = new System.Drawing.Size(70, 25);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.NeedToTranslate = true;
+            this.btnCopy.RepresentativeValue = "Copy";
+            this.btnCopy.Size = new System.Drawing.Size(70, 25);
+            this.btnCopy.StyleController = this.layoutControl1;
+            this.btnCopy.TabIndex = 115;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // SqlView
             // 
@@ -193,39 +226,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem2.Text = "SQL_TEXT";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(59, 14);
             // 
-            // btnCopy
-            // 
-            this.btnCopy.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnCopy.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.btnCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.btnCopy.Appearance.Options.UseBackColor = true;
-            this.btnCopy.Appearance.Options.UseBorderColor = true;
-            this.btnCopy.Appearance.Options.UseFont = true;
-            this.btnCopy.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnCopy.AppearanceHovered.Options.UseBackColor = true;
-            this.btnCopy.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnCopy.AppearancePressed.Options.UseBackColor = true;
-            this.btnCopy.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
-            this.btnCopy.ControlID = "btnSelect";
-            this.btnCopy.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnCopy.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.btnCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton3.ImageOptions.Image")));
-            this.btnCopy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnCopy.IsRequired = false;
-            this.btnCopy.Location = new System.Drawing.Point(770, 12);
-            this.btnCopy.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCopy.MaximumSize = new System.Drawing.Size(70, 25);
-            this.btnCopy.MinimumSize = new System.Drawing.Size(70, 25);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.NeedToTranslate = true;
-            this.btnCopy.RepresentativeValue = "Copy";
-            this.btnCopy.Size = new System.Drawing.Size(70, 25);
-            this.btnCopy.StyleController = this.layoutControl1;
-            this.btnCopy.TabIndex = 115;
-            this.btnCopy.Text = "Copy";
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnCopy;
@@ -252,6 +252,7 @@ namespace ISIA.UI.TREND
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmWorkLoadTreadShowSqlText";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WorkLoadTreadShowSqlText";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

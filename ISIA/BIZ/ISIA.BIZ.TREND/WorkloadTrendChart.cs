@@ -46,11 +46,22 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-
-                tmpSql.Append("SELECT T.* FROM sum_workload T where 1=1 ");
-                tmpSql.AppendFormat(" and END_TIME >=TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTime);
-                tmpSql.AppendFormat(" and END_TIME <TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTime);
-                tmpSql.Append(" order by END_TIME");
+                tmpSql.Append("SELECT t.dbid,t.snap_id_min,t.workdate,t.begin_time,t.end_time,avg(t.cpu_util_pct) CPU_UTIL_PCT,avg(t.cpu_util_pct_max) CPU_UTIL_PCT_MAX,");
+                tmpSql.Append("avg(LOGICAL_READS_PSEC) LOGICAL_READS_PSEC,avg(PHYSICAL_READS_PSEC) PHYSICAL_READS_PSEC,avg(PHYSICAL_WRITES_PSEC) PHYSICAL_WRITES_PSEC,");
+                tmpSql.Append("avg(EXECS_PSEC_AVG) EXECS_PSEC_AVG,avg(EXECS_PSEC_MAX) EXECS_PSEC_MAX,avg(USER_CALLS_PSEC) USER_CALLS_PSEC,avg(HARD_PARSE_CNT_PSEC) HARD_PARSE_CNT_PSEC,");
+                tmpSql.Append("avg(DB_BLOCK_CHANGES_PSEC) DB_BLOCK_CHANGES_PSEC,avg(SQL_SERVICE_RESPONSE_TIME) SQL_SERVICE_RESPONSE_TIME,avg(COMMIT_PSEC_AVG) COMMIT_PSEC_AVG,");
+                tmpSql.Append("avg(REDO_MB_PSEC_AVG) REDO_MB_PSEC_AVG,avg(DLM_MB_PSEC) DLM_MB_PSEC ,avg(NET_MB_TO_CLIENT_PSEC) NET_MB_TO_CLIENT_PSEC,avg(NET_MB_FROM_CLIENT_PSEC)NET_MB_FROM_CLIENT_PSEC,");
+                tmpSql.Append("avg(NET_MB_FROM_DBLINK_PSEC) NET_MB_FROM_DBLINK_PSEC,avg(NET_MB_TO_DBLINK_PSEC) NET_MB_TO_DBLINK_PSEC");
+                tmpSql.Append(" FROM sum_workload T where 1=1 ");
+                tmpSql.AppendFormat(" and DBID='{0}'", arguments.DBID);
+                if (!string.IsNullOrEmpty(arguments.INSTANCE_NUMBER))
+                {
+                    tmpSql.AppendFormat(" and INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                }                
+                tmpSql.AppendFormat(" and BEGIN_TIME >=TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTime);
+                tmpSql.AppendFormat(" and BEGIN_TIME <TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTime);
+                tmpSql.Append("group by t.instance_number, t.dbid, t.snap_id_min, t.workdate, t.begin_time, t.end_time ");
+                tmpSql.Append(" order by BEGIN_TIME");
 
 
 

@@ -52,6 +52,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         public const string GET_ALL = "ALL";
 
+        public string DBID { get; set; }
+        public string INSTANCE_NUMBER { get; set; }
+
         static AwrArgsPack()
         {
             //_WorkloadParamNamesList

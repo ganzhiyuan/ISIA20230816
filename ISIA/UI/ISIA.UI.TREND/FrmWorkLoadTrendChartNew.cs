@@ -103,6 +103,8 @@ namespace ISIA.UI.TREND
             args.StartTime = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
             args.EndTime = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
             args.DBName = cmbDbName.Text.Split('(')[0];
+            args.DBID = cmbDbName.EditValue.ToString();
+            args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
 
             dataSet = bs.ExecuteDataSet("GetWorkLoadTrend", args.getPack());
 
@@ -279,94 +281,87 @@ namespace ISIA.UI.TREND
         }
         private void SerachDataPoint(PointF pStart, PointF pEnd, TChart chart)
         {
-
-            try
+            List<SnapshotDto> snaplist = new List<SnapshotDto>();
+            float minX;
+            float minY;
+            float maxX;
+            float maxY;
+            if (pStart.X < pEnd.X)
             {
-                List<SnapshotDto> snaplist = new List<SnapshotDto>();
-                float minX;
-                float minY;
-                float maxX;
-                float maxY;
-                if (pStart.X < pEnd.X)
-                {
-                    minX = pStart.X;
-                    maxX = pEnd.X;
-                }
-                else
-                {
-                    minX = pEnd.X;
-                    maxX = pStart.X;
-                }
-                if (pStart.Y < pEnd.Y)
-                {
-                    minY = pStart.Y;
-                    maxY = pEnd.Y;
-                }
-                else
-                {
-                    minY = pEnd.Y;
-                    maxY = pStart.Y;
-                }
+                minX = pStart.X;
+                maxX = pEnd.X;
+            }
+            else
+            {
+                minX = pEnd.X;
+                maxX = pStart.X;
+            }
+            if (pStart.Y < pEnd.Y)
+            {
+                minY = pStart.Y;
+                maxY = pEnd.Y;
+            }
+            else
+            {
+                minY = pEnd.Y;
+                maxY = pStart.Y;
+            }
 
-                foreach (Line line in chart.Chart.Series)
+            foreach (Line line in chart.Chart.Series)
+            {
+                for (int i = 0; i < line.Count; i++)
                 {
-                    for (int i = 0; i < line.Count; i++)
+                    if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
                     {
-                        if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
-                        {
-                            SnapshotDto dto = new SnapshotDto();
-                            //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
-                            dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
-                            //double value = line[i].Y;//VALUE
-                            //dto.Value = line[i].Y.ToString();//value
-                            dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
-                            //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+                        SnapshotDto dto = new SnapshotDto();
+                        //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+                        dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
+                        //double value = line[i].Y;//VALUE
+                        //dto.Value = line[i].Y.ToString();//value
+                        dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
+                                                                //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
 
 
-                            DataTable dt1 = line.DataSource as DataTable;
-                            dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
-                            //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
-                            dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
-                            snaplist.Add(dto);
-                        }
+                        DataTable dt1 = line.DataSource as DataTable;
+                        dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
+                                                                      //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
+                        dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
+                        snaplist.Add(dto);
                     }
                 }
-                if (!snaplist.Any())
-                {
-                    return;
-                }
-                DateTime maxTime = snaplist.Max(x => x.END_INTERVAL_TIME);
-                DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
-                var snapId = snaplist.Select(x => x.SNAP_ID.ToString()).Distinct().ToArray();
-                string tbNm = snaplist.FirstOrDefault().PARAMENT_NAME;
-                var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x=>x.Field<string>("CONFIG_ID").ToUpper()==tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
-                AwrArgsPack argsSel = new AwrArgsPack();
-                argsSel.StartTime = minTime.ToString("yyyy-MM-dd");
-                argsSel.EndTime = maxTime.ToString("yyyy-MM-dd");
-                argsSel.ParamNamesString = result;
-                argsSel.ParamType =  string.Join(",", snapId);
-                argsSel.DBName = args.DBName;
-                DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
-                if (dsRelation==null||dsRelation.Tables.Count==0||dsRelation.Tables[0].Rows.Count==0)
-                {
-                    return;
-                }
-                DataRow dr = dsRelation.Tables[0].Rows[0];
-                argsSel.WorkloadSqlParm = dr["SQL_ID"].ToString();
-                DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
-                if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
-                {
-                    return;
-                }
-                string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
-                string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
-                FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(sqlid, sqlText);
-                frm.ShowDialog();
             }
-            catch
+            if (!snaplist.Any())
             {
-
+                return;
             }
+            DateTime maxTime = snaplist.Max(x => x.END_INTERVAL_TIME);
+            DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
+            var snapId = snaplist.Select(x => x.SNAP_ID.ToString()).Distinct().ToArray();
+            string tbNm = snaplist.FirstOrDefault().PARAMENT_NAME;
+            var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+            AwrArgsPack argsSel = new AwrArgsPack();
+            argsSel.StartTime = minTime.ToString("yyyy-MM-dd");
+            argsSel.EndTime = maxTime.ToString("yyyy-MM-dd");
+            argsSel.ParamNamesString = result;
+            argsSel.ParamType = string.Join(",", snapId);
+            argsSel.DBName = args.DBName;
+            DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+            if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            DataRow dr = dsRelation.Tables[0].Rows[0];
+            argsSel.WorkloadSqlParm = dr["SQL_ID"].ToString();
+            DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
+            if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+            string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(sqlid, sqlText);
+            frm.ShowDialog();
+
 
 
         }
