@@ -74,14 +74,16 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.tpchart = new TAP.UIControls.BasicControlsDEV.TPanel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtralychart = new DevExpress.XtraTab.XtraTabPage();
-            this.tpchart = new TAP.UIControls.BasicControlsDEV.TPanel();
             this.tSplitContainerControl1 = new TAP.UIControls.BasicControlsDEV.TSplitContainerControl();
+            this.tplychart = new TAP.UIControls.BasicControlsDEV.TPanel();
+            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tPanel6 = new TAP.UIControls.BasicControlsDEV.TPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tplychart = new TAP.UIControls.BasicControlsDEV.TPanel();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -137,21 +139,24 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tpchart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtralychart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tpchart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1.Panel1)).BeginInit();
             this.tSplitContainerControl1.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1.Panel2)).BeginInit();
             this.tSplitContainerControl1.Panel2.SuspendLayout();
             this.tSplitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tplychart)).BeginInit();
+            this.tplychart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPanel6)).BeginInit();
             this.tPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tplychart)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -929,6 +934,18 @@ namespace ISIA.UI.ANALYSIS
             this.splitContainerControl1.SplitterPosition = 378;
             this.splitContainerControl1.TabIndex = 0;
             // 
+            // tpchart
+            // 
+            this.tpchart.ControlID = "tpchart";
+            this.tpchart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tpchart.IsRequired = false;
+            this.tpchart.Location = new System.Drawing.Point(0, 0);
+            this.tpchart.Name = "tpchart";
+            this.tpchart.NeedToTranslate = true;
+            this.tpchart.RepresentativeValue = "tpchart [TAP.UIControls.BasicControlsDEV.TPanel]";
+            this.tpchart.Size = new System.Drawing.Size(1232, 378);
+            this.tpchart.TabIndex = 0;
+            // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -947,18 +964,6 @@ namespace ISIA.UI.ANALYSIS
             this.xtralychart.Size = new System.Drawing.Size(1230, 380);
             this.xtralychart.Text = "Clustering Chart";
             // 
-            // tpchart
-            // 
-            this.tpchart.ControlID = "tpchart";
-            this.tpchart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tpchart.IsRequired = false;
-            this.tpchart.Location = new System.Drawing.Point(0, 0);
-            this.tpchart.Name = "tpchart";
-            this.tpchart.NeedToTranslate = true;
-            this.tpchart.RepresentativeValue = "tpchart [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tpchart.Size = new System.Drawing.Size(1232, 378);
-            this.tpchart.TabIndex = 0;
-            // 
             // tSplitContainerControl1
             // 
             this.tSplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -974,9 +979,40 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.tSplitContainerControl1.Panel2.Controls.Add(this.tPanel6);
             this.tSplitContainerControl1.Panel2.Text = "Panel2";
-            this.tSplitContainerControl1.Size = new System.Drawing.Size(1538, 475);
-            this.tSplitContainerControl1.SplitterPosition = 1026;
+            this.tSplitContainerControl1.Size = new System.Drawing.Size(1230, 380);
+            this.tSplitContainerControl1.SplitterPosition = 1149;
             this.tSplitContainerControl1.TabIndex = 0;
+            // 
+            // tplychart
+            // 
+            this.tplychart.ControlID = "tPanel7";
+            this.tplychart.Controls.Add(this.layoutControl2);
+            this.tplychart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tplychart.IsRequired = false;
+            this.tplychart.Location = new System.Drawing.Point(0, 0);
+            this.tplychart.Name = "tplychart";
+            this.tplychart.NeedToTranslate = true;
+            this.tplychart.RepresentativeValue = "tplychart [TAP.UIControls.BasicControlsDEV.TPanel]";
+            this.tplychart.Size = new System.Drawing.Size(1795, 594);
+            this.tplychart.TabIndex = 0;
+            // 
+            // layoutControl2
+            // 
+            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl2.Location = new System.Drawing.Point(2, 2);
+            this.layoutControl2.Name = "layoutControl2";
+            this.layoutControl2.Root = this.layoutControlGroup1;
+            this.layoutControl2.Size = new System.Drawing.Size(1791, 590);
+            this.layoutControl2.TabIndex = 0;
+            this.layoutControl2.Text = "layoutControl2";
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1791, 590);
+            this.layoutControlGroup1.TextVisible = false;
             // 
             // tPanel6
             // 
@@ -988,7 +1024,7 @@ namespace ISIA.UI.ANALYSIS
             this.tPanel6.Name = "tPanel6";
             this.tPanel6.NeedToTranslate = true;
             this.tPanel6.RepresentativeValue = "tPanel6 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel6.Size = new System.Drawing.Size(497, 475);
+            this.tPanel6.Size = new System.Drawing.Size(104, 594);
             this.tPanel6.TabIndex = 0;
             // 
             // gridControl1
@@ -997,7 +1033,7 @@ namespace ISIA.UI.ANALYSIS
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(493, 471);
+            this.gridControl1.Size = new System.Drawing.Size(100, 590);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1007,18 +1043,6 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // tplychart
-            // 
-            this.tplychart.ControlID = "tPanel7";
-            this.tplychart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplychart.IsRequired = false;
-            this.tplychart.Location = new System.Drawing.Point(0, 0);
-            this.tplychart.Name = "tplychart";
-            this.tplychart.NeedToTranslate = true;
-            this.tplychart.RepresentativeValue = "tplychart [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tplychart.Size = new System.Drawing.Size(1026, 475);
-            this.tplychart.TabIndex = 0;
             // 
             // FrmParameterTClusteringAnalysis
             // 
@@ -1084,21 +1108,24 @@ namespace ISIA.UI.ANALYSIS
             this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tpchart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtralychart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tpchart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1.Panel1)).EndInit();
             this.tSplitContainerControl1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1.Panel2)).EndInit();
             this.tSplitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tSplitContainerControl1)).EndInit();
             this.tSplitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tplychart)).EndInit();
+            this.tplychart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tPanel6)).EndInit();
             this.tPanel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tplychart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1158,5 +1185,7 @@ namespace ISIA.UI.ANALYSIS
         private TAP.UIControls.BasicControlsDEV.TPanel tPanel6;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
     }
 }

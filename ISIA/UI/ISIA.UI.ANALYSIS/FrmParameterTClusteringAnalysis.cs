@@ -1,5 +1,9 @@
-﻿using ISIA.COMMON;
+﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraLayout;
+using DevExpress.XtraLayout.Utils;
+using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
+using ISIA.UI.ANALYSIS.Dto;
 using ISIA.UI.BASE;
 using Steema.TeeChart;
 using Steema.TeeChart.Components;
@@ -33,8 +37,11 @@ namespace ISIA.UI.ANALYSIS
         private bool _PointMap = false;
         private bool bfirst = false;
         AwrCommonArgsPack args = new AwrCommonArgsPack();
-        BizDataClient bs;
+        BizDataClient bs = null;
         DataSet dataSet = null;
+        DataTable dtcolor = null ;
+
+        
         
         List<Series> series = new List<Series>();
         //List<SnapshotDto> snaplist = new List<SnapshotDto>();
@@ -49,7 +56,13 @@ namespace ISIA.UI.ANALYSIS
             cmbTime.Text = "D";
             cmbTime.Items.Add("D");
             cmbTime.Items.Add("W");
-            cmbTime.Items.Add("M");         
+            cmbTime.Items.Add("M");
+            dtcolor = new DataTable();
+            dtcolor.Columns.Add("PARAMETER_NAME", typeof(System.String));
+            dtcolor.Columns.Add("CHART_NUM", typeof(System.String));
+            dtcolor.Columns.Add("PARAMETER_COLOR", typeof(System.Drawing.Color));
+
+
 
         }
 
@@ -99,21 +112,17 @@ namespace ISIA.UI.ANALYSIS
                 }
 
                 //DataTable dataTable =  ConvertDTToListRef(dataSet.Tables[0]);
-
-                
-
                 //dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 //List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
                 //var aryylist = cmbParameterName.Text.Replace(", ",",").Split(',').ToList<string>();
                 //list = list.Where(x => itemList.Contains(x.PARAMENT_NAME)).ToList();
                 //List<SqlShow> list1 = list.Where(x => aryylist.Contains(x.PARAMENT_NAME)).ToList();
-
-
                 //DataTable dt = DataTableExtend.ConvertToDataSet(list1).Tables[0];
-
                 //DataTable dt = ConvertDTToListRef(dataSet.Tables[0]);
                 //dataSet1.Tables.Add(dt.Copy());
                 dataSet.Tables[0].TableName = "TABLE";
+
+                
 
 
                 return dataSet;
@@ -174,6 +183,8 @@ namespace ISIA.UI.ANALYSIS
                 return;
             }
             CreateTeeChart(dataSet.Tables[0]);
+            
+
         }
         private void tChart1_MouseUp(object sender, MouseEventArgs e)
         { 
@@ -278,6 +289,8 @@ namespace ISIA.UI.ANALYSIS
 
         private void CreateTeeChart(DataTable dsTable)
         {
+            dtcolor.Rows.Clear();
+
             double[][] input = null;
 
             tpchart.Controls.Clear();
@@ -372,10 +385,10 @@ namespace ISIA.UI.ANALYSIS
 
             var chartname = clusteringResult.Distinct().ToArray();
 
-            foreach (var chart in chartname)
+            /*foreach (var chart in chartname)
             {
                 chartLayout.Add(chart.ToString());
-            }
+            }*/
 
             if (dataSet.Tables.Count > 1)
             {
@@ -384,26 +397,77 @@ namespace ISIA.UI.ANALYSIS
 
                     Line line = CreateLine(dataSet.Tables[i + 1], i);
 
-                    chartLayout.Charts[clusteringResult[i]].Series.Add(line);
+                    //chartLayout.Charts[clusteringResult[i]].Series.Add(line);
 
+                    dtcolor.Rows.Add(dataSet.Tables[i + 1].TableName, clusteringResult[i], ChartColor.GetRandomColor(i));
+                    
                 }
             }
-
+/*
             foreach (TChart chart in chartLayout.Charts)
             {
 
 
                 MarksTip markstip1 = new MarksTip(chart.Chart);
-                chart.Legend.Visible = true;
+                chart.Legend.Visible = false;
                 chart.Legend.LegendStyle = LegendStyles.Series;
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
                 
+
+
             }
-            chartLayout.ChartWidth = 800;
-            chartLayout.ChartHeight = 360;
+            chartLayout.Columns = 3;*/
+
+            
+
+            
+
+            
+
+            foreach (var chartnum in chartname)
+            {
+                TChart chart1 = new TChart();
+                LayoutControlItem layoutControlItem = new LayoutControlItem();
+                layoutControlGroup1.AddItem(layoutControlItem);
+                chart1.Name = chartnum.ToString();
+                tChart1.Header.Text = chartnum.ToString();//清除chart标题
+
+
+
+
+                int a = (layoutControlGroup1.Items.Count -1 ) % 3;
+                if (a == 0)
+                {
+                    layoutControlItem.Control = chart1;
+                    layoutControlItem.Name = chartnum.ToString();
+                    //layoutControlItem.TextVisible = false;
+                }
+                else {
+                    layoutControlItem.Control = chart1;
+                    layoutControlItem.Name = chartnum.ToString();
+                    //layoutControlItem.TextVisible = false;
+                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum-1], InsertType.Right);
+                }
+            }
+
+
+
+
+
+            gridControl1.DataSource = null;
+            gridControl1.DataSource = dtcolor;
+
+            gridView1.Columns["CHART_NUM"].Visible = false;
+            gridView1.Columns["PARAMETER_NAME"].OptionsColumn.ReadOnly = true;
+
+            RepositoryItemColorEdit colorEdit = new RepositoryItemColorEdit();
+            gridView1.Columns["PARAMETER_COLOR"].ColumnEdit = colorEdit;
+            gridView1.GridControl.RepositoryItems.Add(colorEdit);
+            colorEdit.ReadOnly = true;
+
 
             return;
         }
@@ -434,7 +498,7 @@ namespace ISIA.UI.ANALYSIS
             line.YValues.DataMember = "N_VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.Legend.Visible = true;
-            line.Color = GetRandomColor(i);
+            line.Color = ChartColor.GetRandomColor(i);
 
 
             line.Legend.Text = dstable.TableName;
@@ -444,11 +508,10 @@ namespace ISIA.UI.ANALYSIS
             return line;
         }
 
-        public Color GetRandomColor(int i )
+        /*public Color GetRandomColor(int i )
         {
 
-            int[,] color = { { 26, 188, 156 },{
-              250, 192, 61  } };
+            
 
             DataTable da = new DataTable();
             da.Columns.Add("R",typeof(Int32));
@@ -490,7 +553,7 @@ namespace ISIA.UI.ANALYSIS
             da.Rows.Add(214, 200, 41);
 
             return Color.FromArgb((Int32)da.Rows[i]["R"], (Int32)da.Rows[i]["G"], (Int32)da.Rows[i]["B"]);
-        }
+        }*/
 
 
         private void tcmbday_EditValueChanged(object sender, EventArgs e)
