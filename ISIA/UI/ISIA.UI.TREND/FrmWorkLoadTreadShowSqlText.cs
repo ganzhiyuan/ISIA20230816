@@ -33,7 +33,7 @@ namespace ISIA.UI.TREND
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             DataRow dr = gridView1.GetDataRow(e.FocusedRowHandle) as DataRow;
-            if (dr==null)
+            if (dr == null)
             {
                 return;
             }
