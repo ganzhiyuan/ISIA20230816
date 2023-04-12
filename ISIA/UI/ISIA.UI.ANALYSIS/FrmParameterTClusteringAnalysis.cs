@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors.Repository;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraLayout;
 using DevExpress.XtraLayout.Utils;
 using ISIA.COMMON;
@@ -62,6 +63,8 @@ namespace ISIA.UI.ANALYSIS
             dtcolor.Columns.Add("CHART_NUM", typeof(System.String));
             dtcolor.Columns.Add("PARAMETER_COLOR", typeof(System.Drawing.Color));
 
+
+            
 
 
         }
@@ -295,19 +298,19 @@ namespace ISIA.UI.ANALYSIS
 
             tpchart.Controls.Clear();
 
-            tplychart.Controls.Clear();
+            //tplychart.Controls.Clear();
 
             TChart tChart1 = new TChart();
 
-            ChartLayout chartLayout = new ChartLayout();
+            //ChartLayout chartLayout = new ChartLayout();
 
-            chartLayout.Dock = DockStyle.Fill;
+            //chartLayout.Dock = DockStyle.Fill;
 
             tChart1.Header.Text = " ";//清除chart标题
 
             tpchart.Controls.Add(tChart1);
 
-            tplychart.Controls.Add(chartLayout);
+            //tplychart.Controls.Add(chartLayout);
 
             /*var cuTool = new CursorTool(tChart1.Chart)
             {
@@ -390,6 +393,51 @@ namespace ISIA.UI.ANALYSIS
                 chartLayout.Add(chart.ToString());
             }*/
 
+
+            layoutControl2.Refresh();
+            layoutControlGroup1.Items.Clear();
+            layoutControl2.Controls.Clear();
+            
+            layoutControl2.AutoScroll = true;
+            //layoutControl2.AutoSize = true;
+            foreach (var chartnum in chartname)
+            {
+                
+
+                TChart chart1 = new TChart();
+                chart1.Name = chartnum.ToString();
+                chart1.Header.Text = chartnum.ToString();//清除chart标题
+                chart1.Legend.LegendStyle = LegendStyles.Series;//Legend显示样式以Series名字显示
+                chart1.Header.Text = chartnum.ToString();//teechart标题 
+                chart1.Legend.Visible = false;
+                chart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
+                chart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+                chart1.Size = new System.Drawing.Size(layoutControl2.Width / 6, (int)(layoutControl2.Height / 0.6));
+
+                LayoutControlItem layoutControlItem = new LayoutControlItem();
+                layoutControlItem.SizeConstraintsType = SizeConstraintsType.Custom;//控件的大小设置为自定义
+                
+                layoutControlItem.Size = new System.Drawing.Size (layoutControlGroup1.Width /6, (int)(layoutControlGroup1.Height/0.6));
+                layoutControlItem.Name = chartnum.ToString();
+                layoutControlItem.Control = chart1;
+                layoutControlItem.TextVisible = false;
+                layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem });
+                if (chartnum % 3 == 0 && chartnum != 0)
+                {
+                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 3], InsertType.Bottom);
+                    layoutControl2.Height = layoutControlGroup1.Height + chart1.Height;
+                }
+                else if (chartnum == 0) {
+                
+                }
+                else
+
+                {
+                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 1], InsertType.Right);
+                }
+
+            }
+
             if (dataSet.Tables.Count > 1)
             {
                 for (int i = 0; i < clusteringResult.Length; i++)
@@ -398,6 +446,10 @@ namespace ISIA.UI.ANALYSIS
                     Line line = CreateLine(dataSet.Tables[i + 1], i);
 
                     //chartLayout.Charts[clusteringResult[i]].Series.Add(line);
+
+                    LayoutControlItem chart = (LayoutControlItem)layoutControlGroup1.Items[clusteringResult[i]];
+                    TChart chart1 = (TChart)chart.Control;
+                    chart1.Series.Add(line);
 
                     dtcolor.Rows.Add(dataSet.Tables[i + 1].TableName, clusteringResult[i], ChartColor.GetRandomColor(i));
                     
@@ -420,39 +472,6 @@ namespace ISIA.UI.ANALYSIS
 
             }
             chartLayout.Columns = 3;*/
-
-            
-
-            
-
-            
-
-            foreach (var chartnum in chartname)
-            {
-                TChart chart1 = new TChart();
-                LayoutControlItem layoutControlItem = new LayoutControlItem();
-                layoutControlGroup1.AddItem(layoutControlItem);
-                chart1.Name = chartnum.ToString();
-                tChart1.Header.Text = chartnum.ToString();//清除chart标题
-
-
-
-
-                int a = (layoutControlGroup1.Items.Count -1 ) % 3;
-                if (a == 0)
-                {
-                    layoutControlItem.Control = chart1;
-                    layoutControlItem.Name = chartnum.ToString();
-                    //layoutControlItem.TextVisible = false;
-                }
-                else {
-                    layoutControlItem.Control = chart1;
-                    layoutControlItem.Name = chartnum.ToString();
-                    //layoutControlItem.TextVisible = false;
-                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum-1], InsertType.Right);
-                }
-            }
-
 
 
 
