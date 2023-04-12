@@ -12,11 +12,11 @@ namespace ISIA.UI.TREND
 {
     public partial class FrmWorkLoadTreadShowSqlText : Form
     {
-        public FrmWorkLoadTreadShowSqlText(string sqlid,string sqltext)
+        public FrmWorkLoadTreadShowSqlText(DataTable dt)
         {
             InitializeComponent();
-            this.txtSqlId.Text = sqlid;
-            SqlView.TextChangeBindSQLType(sqltext);
+            gridControl1.DataSource = dt;
+            gridView1.BestFitColumns();
         }
 
         private void tButton1_Click(object sender, EventArgs e)
@@ -28,6 +28,17 @@ namespace ISIA.UI.TREND
         {
             Clipboard.SetDataObject(txtSqlId.SelectedText);
             TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(e.FocusedRowHandle) as DataRow;
+            if (dr==null)
+            {
+                return;
+            }
+            this.txtSqlId.Text = dr["SQL_ID"].ToString();
+            SqlView.TextChangeBindSQLType(dr["SQL_TEXT"].ToString());
         }
     }
 }

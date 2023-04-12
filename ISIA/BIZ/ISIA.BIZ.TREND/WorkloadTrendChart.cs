@@ -50,7 +50,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append("avg(LOGICAL_READS_PSEC) LOGICAL_READS_PSEC,avg(PHYSICAL_READS_PSEC) PHYSICAL_READS_PSEC,avg(PHYSICAL_WRITES_PSEC) PHYSICAL_WRITES_PSEC,");
                 tmpSql.Append("avg(EXECS_PSEC_AVG) EXECS_PSEC_AVG,avg(EXECS_PSEC_MAX) EXECS_PSEC_MAX,avg(USER_CALLS_PSEC) USER_CALLS_PSEC,avg(HARD_PARSE_CNT_PSEC) HARD_PARSE_CNT_PSEC,");
                 tmpSql.Append("avg(DB_BLOCK_CHANGES_PSEC) DB_BLOCK_CHANGES_PSEC,avg(SQL_SERVICE_RESPONSE_TIME) SQL_SERVICE_RESPONSE_TIME,avg(COMMIT_PSEC_AVG) COMMIT_PSEC_AVG,");
-                tmpSql.Append("avg(REDO_MB_PSEC_AVG) REDO_MB_PSEC_AVG,avg(DLM_MB_PSEC) DLM_MB_PSEC ,avg(NET_MB_TO_CLIENT_PSEC) NET_MB_TO_CLIENT_PSEC,avg(NET_MB_FROM_CLIENT_PSEC)NET_MB_FROM_CLIENT_PSEC,");
+                tmpSql.Append("avg(REDO_MB_PSEC_AVG) REDO_MB_PSEC_AVG,avg(DLM_MB_PSEC) DLM_MB_PSEC ,avg(NET_MB_TO_CLIENT_PSEC) NET_MB_TO_CLIENT_PSEC,avg(NET_MB_FROM_CLIENT_PSEC) NET_MB_FROM_CLIENT_PSEC,");
                 tmpSql.Append("avg(NET_MB_FROM_DBLINK_PSEC) NET_MB_FROM_DBLINK_PSEC,avg(NET_MB_TO_DBLINK_PSEC) NET_MB_TO_DBLINK_PSEC");
                 tmpSql.Append(" FROM sum_workload T where 1=1 ");
                 tmpSql.AppendFormat(" and DBID='{0}'", arguments.DBID);
@@ -58,10 +58,10 @@ namespace ISIA.BIZ.TREND
                 {
                     tmpSql.AppendFormat(" and INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                 }                
-                tmpSql.AppendFormat(" and BEGIN_TIME >=TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTime);
-                tmpSql.AppendFormat(" and BEGIN_TIME <TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTime);
-                tmpSql.Append("group by t.instance_number, t.dbid, t.snap_id_min, t.workdate, t.begin_time, t.end_time ");
-                tmpSql.Append(" order by BEGIN_TIME");
+                tmpSql.AppendFormat(" and workdate >={0}", arguments.StartTime);
+                tmpSql.AppendFormat(" and workdate <{0}", arguments.EndTime);
+                tmpSql.Append(" group by t.dbid, t.snap_id_min, t.workdate,t.begin_time,t.end_time");
+                tmpSql.Append(" order by workdate");
 
 
 
@@ -109,8 +109,8 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append("select rownum,c.* from (");
-                tmpSql.AppendFormat("select end_interval_time,snap_id,sql_id,sum({0}) {0} from (",arguments.ParamNamesString);
-                tmpSql.AppendFormat("SELECT a.end_interval_time, t.snap_id, t.dbid, t.sql_id, t.{0}", arguments.ParamNamesString);
+                tmpSql.AppendFormat("select sql_id,sum({0}) {0} from (",arguments.ParamNamesString);
+                tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0}", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                 tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id", arguments.DBName);
                 tmpSql.Append(" where t.snap_id in ");
@@ -122,8 +122,8 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')) ", arguments.EndTime);
                 tmpSql.AppendFormat("          ) b ");
                 tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);
-                tmpSql.AppendFormat("            group by end_interval_time, snap_id, sql_id order by {0} desc", arguments.ParamNamesString);
-                tmpSql.Append(" ) c where rownum=1");
+                tmpSql.AppendFormat("            group by   sql_id order by {0} desc", arguments.ParamNamesString);
+                tmpSql.Append(" ) c where rownum<11");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -146,7 +146,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqltext_{0} T where t.sql_id='{1}'",arguments.DBName ,arguments.WorkloadSqlParm);
+                tmpSql.AppendFormat("SELECT ROWNUM, T.SQL_ID,T.SQL_TEXT FROM raw_dba_hist_sqltext_{0} T where t.sql_id IN ({1})", arguments.DBName , Utils.MakeSqlQueryIn2(arguments.WorkloadSqlParm));
 
 
 

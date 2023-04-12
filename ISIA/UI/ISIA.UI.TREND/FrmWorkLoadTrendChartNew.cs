@@ -100,8 +100,8 @@ namespace ISIA.UI.TREND
 
         public DataSet LoadData()
         {
-            args.StartTime = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-            args.EndTime = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.StartTime = dtpStartTime.DateTime.ToString("yyyyMMdd");
+            args.EndTime = dtpEndTime.DateTime.ToString("yyyyMMdd");
             args.DBName = cmbDbName.Text.Split('(')[0];
             args.DBID = cmbDbName.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
@@ -152,7 +152,8 @@ namespace ISIA.UI.TREND
                     SqlStatRowDto rowDto = new SqlStatRowDto();
                     //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
-                    rowDto.END_INTERVAL_TIME = item.END_TIME;
+                    string ss = item.WORKDATE.ToString();
+                    rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss,"yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
                     rowDto.SNAP_ID = item.SNAP_ID_MIN;
                     foreach (PropertyInfo para in proInfo)
                     {
@@ -350,16 +351,16 @@ namespace ISIA.UI.TREND
             {
                 return;
             }
-            DataRow dr = dsRelation.Tables[0].Rows[0];
-            argsSel.WorkloadSqlParm = dr["SQL_ID"].ToString();
+            var sqlidList= dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
+            argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
             DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
             if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
             {
                 return;
             }
-            string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
-            string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
-            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(sqlid, sqlText);
+            //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+            //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsSqlText.Tables[0]);
             frm.ShowDialog();
 
 
@@ -369,9 +370,9 @@ namespace ISIA.UI.TREND
 
     public class WorkLoadInfo
     {
+        public decimal WORKDATE { get; set; }
         public decimal SNAP_ID_MIN { get; set; }
         public decimal PARAMENT_VALUE { get; set; }
-        public DateTime END_TIME { get; set; }
         public decimal CPU_UTIL_PCT { get; set; }
         public decimal CPU_UTIL_PCT_MAX { get; set; }
         public decimal LOGICAL_READS_PSEC { get; set; }

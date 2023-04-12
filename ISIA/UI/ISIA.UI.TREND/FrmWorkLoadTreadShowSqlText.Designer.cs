@@ -30,6 +30,8 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkLoadTreadShowSqlText));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCopy = new TAP.UIControls.BasicControlsDEV.TButton();
             this.SqlView = new TAP.UIControls.BasicControlsDEV.THtmlView();
@@ -43,6 +45,14 @@ namespace ISIA.UI.TREND
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSqlId.Properties)).BeginInit();
@@ -54,6 +64,12 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -63,11 +79,11 @@ namespace ISIA.UI.TREND
             this.layoutControl1.Controls.Add(this.SqlView);
             this.layoutControl1.Controls.Add(this.tButton1);
             this.layoutControl1.Controls.Add(this.txtSqlId);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 482);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(863, 441);
+            this.layoutControl1.Size = new System.Drawing.Size(1140, 240);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -90,7 +106,7 @@ namespace ISIA.UI.TREND
             this.btnCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.ImageOptions.Image")));
             this.btnCopy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCopy.IsRequired = false;
-            this.btnCopy.Location = new System.Drawing.Point(770, 12);
+            this.btnCopy.Location = new System.Drawing.Point(1019, 12);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(2);
             this.btnCopy.MaximumSize = new System.Drawing.Size(70, 25);
             this.btnCopy.MinimumSize = new System.Drawing.Size(70, 25);
@@ -120,7 +136,7 @@ namespace ISIA.UI.TREND
             this.SqlView.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
             this.SqlView.ReadOnly = true;
             this.SqlView.RepresentativeValue = "";
-            this.SqlView.Size = new System.Drawing.Size(768, 322);
+            this.SqlView.Size = new System.Drawing.Size(1045, 148);
             this.SqlView.TabIndex = 113;
             // 
             // tButton1
@@ -142,7 +158,7 @@ namespace ISIA.UI.TREND
             this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
             this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(781, 404);
+            this.tButton1.Location = new System.Drawing.Point(1058, 203);
             this.tButton1.Margin = new System.Windows.Forms.Padding(2);
             this.tButton1.MaximumSize = new System.Drawing.Size(70, 25);
             this.tButton1.MinimumSize = new System.Drawing.Size(70, 25);
@@ -163,7 +179,7 @@ namespace ISIA.UI.TREND
             this.txtSqlId.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtSqlId.Properties.Appearance.Options.UseBackColor = true;
             this.txtSqlId.Properties.ReadOnly = true;
-            this.txtSqlId.Size = new System.Drawing.Size(683, 20);
+            this.txtSqlId.Size = new System.Drawing.Size(932, 20);
             this.txtSqlId.StyleController = this.layoutControl1;
             this.txtSqlId.TabIndex = 4;
             // 
@@ -180,7 +196,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem5,
             this.emptySpaceItem3});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(863, 441);
+            this.Root.Size = new System.Drawing.Size(1140, 240);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -188,30 +204,30 @@ namespace ISIA.UI.TREND
             this.layoutControlItem1.Control = this.txtSqlId;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(758, 29);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1007, 29);
             this.layoutControlItem1.Text = "SQL_ID";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(59, 14);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 355);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 181);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(843, 37);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1120, 10);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 392);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 191);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(769, 29);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(1046, 29);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.tButton1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(769, 392);
+            this.layoutControlItem3.Location = new System.Drawing.Point(1046, 191);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(74, 29);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -222,14 +238,14 @@ namespace ISIA.UI.TREND
             this.layoutControlItem2.Control = this.SqlView;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 29);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(843, 326);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1120, 152);
             this.layoutControlItem2.Text = "SQL_TEXT";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(59, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnCopy;
-            this.layoutControlItem5.Location = new System.Drawing.Point(758, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(1007, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(74, 29);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -238,19 +254,106 @@ namespace ISIA.UI.TREND
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(832, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(1081, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(11, 29);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(39, 29);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControl2
+            // 
+            this.layoutControl2.Controls.Add(this.gridControl1);
+            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl2.Name = "layoutControl2";
+            this.layoutControl2.Root = this.layoutControlGroup1;
+            this.layoutControl2.Size = new System.Drawing.Size(1140, 482);
+            this.layoutControl2.TabIndex = 1;
+            this.layoutControl2.Text = "layoutControl2";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(12, 12);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1116, 458);
+            this.gridControl1.TabIndex = 4;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
+            gridFormatRule1.Name = "Format2";
+            formatConditionRuleValue1.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue1.Value1 = 1;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsCustomization.AllowGroup = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4});
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1140, 482);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.gridControl1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(1120, 462);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "ROWNUM";
+            this.gridColumn1.FieldName = "ROWNUM";
+            this.gridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "SQL_ID";
+            this.gridColumn2.FieldName = "SQL_ID";
+            this.gridColumn2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "SQL_TEXT";
+            this.gridColumn3.FieldName = "SQL_TEXT";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
             // 
             // FrmWorkLoadTreadShowSqlText
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 441);
+            this.ClientSize = new System.Drawing.Size(1140, 722);
+            this.Controls.Add(this.layoutControl2);
             this.Controls.Add(this.layoutControl1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FrmWorkLoadTreadShowSqlText";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WorkLoadTreadShowSqlText";
@@ -265,6 +368,12 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -284,5 +393,13 @@ namespace ISIA.UI.TREND
         public TAP.UIControls.BasicControlsDEV.TButton btnCopy;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

@@ -3672,8 +3672,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1 GROUP BY PARAMETERNAME");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1 and  parametertype in ('STATISTIC','METRIC') GROUP BY PARAMETERNAME");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
@@ -3731,8 +3731,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT PARAMETERTYPE FROM TAPCTPARAMETERDEF WHERE 1 = 1 GROUP BY PARAMETERTYPE");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT DISTINCT PARAMETERTYPE FROM TAPCTPARAMETERDEF WHERE 1 = 1 and  parametertype in ('STATISTIC','METRIC')  GROUP BY PARAMETERTYPE");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
                 this.ExecutingValue = db.Select(tmpSql.ToString());
@@ -3750,8 +3750,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1 GROUP BY PARAMETERNAME");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF  parametertype in ('STATISTIC','METRIC')  WHERE 1 = 1 GROUP BY PARAMETERNAME");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
@@ -3769,8 +3769,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1  ");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT DISTINCT PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE 1 = 1 and  parametertype in ('STATISTIC','METRIC')  ");
                 if (!string.IsNullOrEmpty((string)arguments["PARAMETERTYPE"].ArgumentValue))
                 {
                     //tmpSql.AppendFormat(" AND QUALITYTYPE IN ({0})", Utils.MakeSqlQueryIn((string)arguments["QUALITYTYPE"].ArgumentValue, ','));
@@ -3796,8 +3796,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT a.PARAMETERID,a.PARAMETERNAME FROM TAPCTPARAMETERDEF a WHERE 1=1 ");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT a.PARAMETERID,a.PARAMETERNAME FROM TAPCTPARAMETERDEF a WHERE 1=1 and  parametertype in ('STATISTIC','METRIC') ");
                 if (!string.IsNullOrEmpty((string)arguments["PARAMETERTYPE"].ArgumentValue))
                 {
                     tmpSql.AppendFormat(" AND PARAMETERTYPE IN ({0})", Utils.MakeSqlQueryIn2((string)arguments["PARAMETERTYPE"].ArgumentValue));
@@ -3822,8 +3822,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT a.PARAMETERID,a.PARAMETERNAME FROM TAPCTPARAMETERDEF a ORDER BY a.parametername");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT a.PARAMETERID,a.PARAMETERNAME FROM TAPCTPARAMETERDEF a where  parametertype in ('STATISTIC','METRIC')  ORDER BY a.parametername");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
@@ -3842,8 +3842,8 @@ namespace ISIA.BIZ.COMMON
             DBCommunicator db = new DBCommunicator();
             try
             {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DISTINCT a.PARAMETERTYPE FROM TAPCTPARAMETERDEF a");
+                StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
+                tmpSql.Append("SELECT DISTINCT a.PARAMETERTYPE FROM TAPCTPARAMETERDEF a where  parametertype in ('STATISTIC','METRIC') ");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
