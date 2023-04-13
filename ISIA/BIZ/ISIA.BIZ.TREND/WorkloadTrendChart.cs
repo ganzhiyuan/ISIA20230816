@@ -74,7 +74,7 @@ namespace ISIA.BIZ.TREND
                     tmpSql.AppendFormat(" and INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                 }                
                 tmpSql.AppendFormat(" and workdate >='{0}'", arguments.StartTime);
-                tmpSql.AppendFormat(" and workdate <'{0}'", arguments.EndTime);
+                tmpSql.AppendFormat(" and workdate <='{0}'", arguments.EndTime);
                 tmpSql.Append(" group by t.dbid, t.snap_id_min, t.workdate");
                 tmpSql.Append(" order by workdate");
 

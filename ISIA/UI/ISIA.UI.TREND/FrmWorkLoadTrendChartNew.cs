@@ -38,8 +38,8 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
-            dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
-            dtpEndTime.DateTime = DateTime.Now;
+            dtpStartTime.DateTime = DateTime.Now.AddYears(-1).AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now.AddDays(-1);
         }
 
         private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
