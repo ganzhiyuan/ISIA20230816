@@ -178,12 +178,6 @@
     <Compile Include="FrmFindNewSqlID.Designer.cs">
       <DependentUpon>FrmFindNewSqlID.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmParameterClusteringAnalysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmParameterClusteringAnalysis.Designer.cs">
-      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSQLIDShereByModel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,9 +246,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFindNewSqlID.resx">
       <DependentUpon>FrmFindNewSqlID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmParameterClusteringAnalysis.resx">
-      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLIDShereByModel.resx">
       <DependentUpon>FrmSQLIDShereByModel.cs</DependentUpon>
