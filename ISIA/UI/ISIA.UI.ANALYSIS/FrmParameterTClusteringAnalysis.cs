@@ -63,8 +63,10 @@ namespace ISIA.UI.ANALYSIS
             dtcolor.Columns.Add("CHART_NUM", typeof(System.String));
             dtcolor.Columns.Add("PARAMETER_COLOR", typeof(System.Drawing.Color));
 
+            /*tPanel6.Width = (int)(tSplitContainerControl1.Width * 0.1);
+            tSplitContainerControl1.Panel2.Width = (int)(tSplitContainerControl1.Width * 0.1);
+            gridControl1.Width = (int)(tSplitContainerControl1.Width * 0.1); */
 
-            
 
 
         }
@@ -397,12 +399,45 @@ namespace ISIA.UI.ANALYSIS
             layoutControl2.Refresh();
             layoutControlGroup1.Items.Clear();
             layoutControl2.Controls.Clear();
+
+
+            layoutControlGroup1.LayoutMode = LayoutMode.Table;
+            layoutControlGroup1.OptionsTableLayoutGroup.ColumnDefinitions.Clear();//layoutControlGroup1列清除
+            layoutControlGroup1.OptionsTableLayoutGroup.RowDefinitions.Clear();//layoutControlGroup1行清除
             
-            layoutControl2.AutoScroll = true;
-            //layoutControl2.AutoSize = true;
+
+
+            //创建layoutControlGroup1 table列
+            for (int i = 0; i < 3; i++)
+            {
+                ColumnDefinition columnDefinition =  layoutControlGroup1.OptionsTableLayoutGroup.AddColumn();
+                columnDefinition.SizeType = SizeType.Percent;
+                columnDefinition.Width = 33D;
+
+            }
+            //创建layoutControlGroup1 table行
+            
+            for (int i = chartname.Length; i > 0; i = i-3)
+            {
+
+                RowDefinition rowDefinition =  layoutControlGroup1.OptionsTableLayoutGroup.AddRow();
+                rowDefinition.SizeType = SizeType.Absolute;
+                rowDefinition.Height = 400D;
+            }
+
+
+
+            int rowindex = 0;
+            int colindex = 0;
+
             foreach (var chartnum in chartname)
             {
-                
+
+                if (colindex == 3)
+                {
+                    colindex = 0;
+                    rowindex++;
+                }
 
                 TChart chart1 = new TChart();
                 chart1.Name = chartnum.ToString();
@@ -412,29 +447,33 @@ namespace ISIA.UI.ANALYSIS
                 chart1.Legend.Visible = false;
                 chart1.Axes.Bottom.Labels.DateTimeFormat = "MM-dd HH:MI";
                 chart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
-                chart1.Size = new System.Drawing.Size(layoutControl2.Width / 6, (int)(layoutControl2.Height / 0.6));
 
                 LayoutControlItem layoutControlItem = new LayoutControlItem();
-                layoutControlItem.SizeConstraintsType = SizeConstraintsType.Custom;//控件的大小设置为自定义
-                
-                layoutControlItem.Size = new System.Drawing.Size (layoutControlGroup1.Width /6, (int)(layoutControlGroup1.Height/0.6));
+                //layoutControlItem.SizeConstraintsType = SizeConstraintsType.Custom;//控件的大小设置为自定义
+
                 layoutControlItem.Name = chartnum.ToString();
                 layoutControlItem.Control = chart1;
                 layoutControlItem.TextVisible = false;
-                layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem });
-                if (chartnum % 3 == 0 && chartnum != 0)
-                {
-                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 3], InsertType.Bottom);
-                    layoutControl2.Height = layoutControlGroup1.Height + chart1.Height;
-                }
-                else if (chartnum == 0) {
+                layoutControlItem.OptionsTableLayoutItem.ColumnIndex = colindex;
+                layoutControlItem.OptionsTableLayoutItem.RowIndex = rowindex;
+                colindex++;
                 
-                }
-                else
+                layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem });
+                /*if (chartnum % 3 == 0 && chartnum != 0)
+                {
 
+                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 3], InsertType.Bottom);
+
+                }
+                else if (chartnum == 0)
+                {
+
+                }
+                else 
                 {
                     layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 1], InsertType.Right);
-                }
+                }*/
+                
 
             }
 
