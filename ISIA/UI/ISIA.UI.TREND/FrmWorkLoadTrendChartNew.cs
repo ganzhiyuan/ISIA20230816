@@ -44,31 +44,31 @@ namespace ISIA.UI.TREND
 
         private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (comboBoxEditGroupUnit.Text == "DAY")
-            {
-                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
-                this.dtpEndTime.DateTime = DateTime.Now;
-            }
-            else if (comboBoxEditGroupUnit.Text == "WEEK")
-            {
-                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
-                this.dtpEndTime.DateTime = DateTime.Now;
-            }
-            else if (comboBoxEditGroupUnit.Text == "MONTH")
-            {
-                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
-                this.dtpEndTime.DateTime = DateTime.Now;
-            }
-            else if (comboBoxEditGroupUnit.Text == "QUARTER")
-            {
-                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-3);
-                this.dtpEndTime.DateTime = DateTime.Now;
-            }
-            else if (comboBoxEditGroupUnit.Text == "YEAR")
-            {
-                this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
-                this.dtpEndTime.DateTime = DateTime.Now;
-            }
+            //if (comboBoxEditGroupUnit.Text == "DAY")
+            //{
+            //    this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            //    this.dtpEndTime.DateTime = DateTime.Now;
+            //}
+            //else if (comboBoxEditGroupUnit.Text == "WEEK")
+            //{
+            //    this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+            //    this.dtpEndTime.DateTime = DateTime.Now;
+            //}
+            //else if (comboBoxEditGroupUnit.Text == "MONTH")
+            //{
+            //    this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+            //    this.dtpEndTime.DateTime = DateTime.Now;
+            //}
+            //else if (comboBoxEditGroupUnit.Text == "QUARTER")
+            //{
+            //    this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-3);
+            //    this.dtpEndTime.DateTime = DateTime.Now;
+            //}
+            //else if (comboBoxEditGroupUnit.Text == "YEAR")
+            //{
+            //    this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
+            //    this.dtpEndTime.DateTime = DateTime.Now;
+            //}
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace ISIA.UI.TREND
                     SqlStatRowDto rowDto = new SqlStatRowDto();
                     //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
-                    string ss = item.WORKDATE.ToString();
+                    string ss = item.WORKDATE;
                     rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss,"yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
                     rowDto.SNAP_ID = item.SNAP_ID_MIN;
                     foreach (PropertyInfo para in proInfo)
@@ -172,7 +172,10 @@ namespace ISIA.UI.TREND
         private void CreateTeeChart(DataTable dsTable)
         {
             List<WorkLoadInfo> workLoadList = DataTableExtend.GetList<WorkLoadInfo>(dsTable);
-
+            if (workLoadList==null||!workLoadList.Any())
+            {
+                return;
+            }
             panelControl1.Controls.Clear();
 
             ChartLayout chartLayout1 = new ChartLayout();
@@ -370,7 +373,7 @@ namespace ISIA.UI.TREND
 
     public class WorkLoadInfo
     {
-        public decimal WORKDATE { get; set; }
+        public string WORKDATE { get; set; }
         public decimal SNAP_ID_MIN { get; set; }
         public decimal PARAMENT_VALUE { get; set; }
         public decimal CPU_UTIL_PCT { get; set; }

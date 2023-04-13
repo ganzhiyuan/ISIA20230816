@@ -107,7 +107,13 @@ namespace ISIA.BIZ.TREND
                                           'parse time cpu',
                                           'parse time elapsed',
                                           'CPU used by this session')");
-                tmpSql.AppendFormat("and sn.snap_id between {0} and {1}", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat("and sn.snap_id between {0} and {1}", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("     and sn.dbid = {0}", arguments.DbId);
                 tmpSql.AppendFormat("      and sn.instance_number = {0})", arguments.InstanceNumber);
                 tmpSql.Append(@"select snap_id,
@@ -308,12 +314,6 @@ namespace ISIA.BIZ.TREND
                      dba_hist_current_block_server cus,
                      dba_hist_cr_block_server cbs,
                      dba_hist_sysstat sy
-
-                --from dba_hist_sysstat sy,
-                --dba_hist_snapshot sn,
-                             --dba_hist_dlm_misc dm,
-                             --dba_hist_cr_block_server cbs,
-                             --dba_hist_current_block_server cus
                        where sy.snap_id = sn.snap_id
                               and sy.instance_number = sn.instance_number
                               and sy.dbid = sn.dbid
@@ -366,7 +366,13 @@ namespace ISIA.BIZ.TREND
                                            'msgs received queue time (ms)',
                                            'msgs received queued'
                                           )");
-                tmpSql.AppendFormat("          and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                //tmpSql.AppendFormat("          and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0}",arguments.DbId);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ",arguments.InstanceNumber);
                 tmpSql.Append(@"  )   select snap_id \""SnapID\"",
@@ -516,7 +522,13 @@ namespace ISIA.BIZ.TREND
                        'msgs received queue time (ms)',
                        'msgs received queued'
                       ) ");
-                tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ",arguments.DbId);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ",arguments.InstanceNumber);
                 tmpSql.AppendFormat(@" ) select  snap_id,   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",");
@@ -663,7 +675,13 @@ namespace ISIA.BIZ.TREND
                        'msgs received queue time (ms)',
                        'msgs received queued'
                       ) ");
-                tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ",arguments.DbId);
 
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ",arguments.InstanceNumber);
@@ -783,7 +801,13 @@ namespace ISIA.BIZ.TREND
                                             lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta
                                    from dba_hist_system_event
                                   where wait_class != 'Idle' ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" union all
@@ -792,7 +816,13 @@ namespace ISIA.BIZ.TREND
                                         nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
                                    from dba_hist_sys_time_model
                                   where stat_name = 'DB CPU' ");
-                tmpSql.AppendFormat("                    and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat("                    and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("                    and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("                     and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@"               )  group by event_name order by sum(delta) desc
@@ -805,7 +835,13 @@ namespace ISIA.BIZ.TREND
                           nvl(time_waited_micro - lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta_time
                      from dba_hist_system_event
                     where wait_class != 'Idle' ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" union all
@@ -815,7 +851,13 @@ namespace ISIA.BIZ.TREND
                           nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
                      from dba_hist_sys_time_model
                     where stat_name = 'DB CPU' ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("       and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0}", arguments.DbId);
                 tmpSql.Append(@" ) v_wait
@@ -826,7 +868,13 @@ namespace ISIA.BIZ.TREND
                    nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
            from dba_hist_sys_time_model
           where stat_name = 'DB time' ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" ) v_dbtime,
@@ -835,15 +883,26 @@ namespace ISIA.BIZ.TREND
                    nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
            from dba_hist_sysstat
           where stat_name in ('user calls', 'recursive calls', 'execute count') ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
-
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" ) v_call,
                (select snap_id,
                    end_interval_time
               from dba_hist_snapshot");
-                tmpSql.AppendFormat("  where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat("  where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" ) sn     
@@ -885,14 +944,26 @@ namespace ISIA.BIZ.TREND
                               lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta
                         from dba_hist_system_event
                        where wait_class != 'Idle' ");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}",arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0}",arguments.DbId);
                 tmpSql.Append(@" union all  select snap_id,decode(stat_name, 'DB CPU', 'CPU time', stat_name) event_name,null,
                              nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
                         from dba_hist_sys_time_model
                        where stat_name = 'DB CPU'");
-                tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                //tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" and snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}",arguments.InstanceNumber);
                 tmpSql.AppendFormat("and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" )   group by event_name, wait_class order by sum(delta) desc )  where rownum <= 5 order by rank; ");
@@ -969,7 +1040,13 @@ namespace ISIA.BIZ.TREND
                  where stm.snap_id = sn.snap_id
                    and stm.instance_number = sn.instance_number
                    and stm.dbid = sn.dbid");
-                tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" ) ) where snap_id >{0} ", arguments.SnapId);
@@ -1032,7 +1109,13 @@ namespace ISIA.BIZ.TREND
                      where os.snap_id = sn.snap_id
                        and os.instance_number = sn.instance_number
                        and os.dbid = sn.dbid ");
-                tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and sn.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" ) where snap_id > {0} ", arguments.SnapId);
@@ -1093,7 +1176,13 @@ namespace ISIA.BIZ.TREND
                          where v1.snap_id = sn.snap_id
                            and v1.instance_number = sn.instance_number
                            and v1.dbid = sn.dbid ");
-                tmpSql.AppendFormat(" and sn.snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and sn.snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("           and sn.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("and sn.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(") group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
@@ -1161,7 +1250,13 @@ namespace ISIA.BIZ.TREND
                      from
                         (select sql_id, sum(nvl(elapsed_time_delta, 0))
                             from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" group by sql_id order by sum(nvl(elapsed_time_delta, 0)) desc)
@@ -1174,7 +1269,13 @@ namespace ISIA.BIZ.TREND
                           cpu_time_delta cput,
                           executions_delta exec
                      from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(@") v_sqlstat 
@@ -1189,7 +1290,13 @@ namespace ISIA.BIZ.TREND
                and sn.instance_number = stm.instance_number
                and sn.dbid = stm.dbid
                and stm.stat_name = 'DB time' ");
-                tmpSql.AppendFormat(" and stm.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" and stm.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and stm.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and stm.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and stm.dbid = {0} ", arguments.DbId);
                 tmpSql.Append(" ) sn where v1.snap_id(+) = sn.snap_id ");
@@ -1217,7 +1324,13 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append(@"select sql_id, rownum rank
                   from (select sql_id, sum(nvl(elapsed_time_delta, 0))
                           from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("           and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("         group by sql_id order by sum(nvl(elapsed_time_delta, 0)) desc) ");
@@ -1259,7 +1372,13 @@ namespace ISIA.BIZ.TREND
                                      module,
                                      sum(nvl(elapsed_time_delta, 0))
                                 from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("                  and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" group by sql_id, dbid, module  
@@ -1331,9 +1450,15 @@ namespace ISIA.BIZ.TREND
                                      from
                                         (select sql_id, sum(nvl(cpu_time_delta, 0))
                                             from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
-                tmpSql.AppendFormat("  and instance_number = &inst_no ");
-                tmpSql.AppendFormat(" and dbid = &dbid ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid ={0} ",arguments.DbId);
                 tmpSql.Append(@" group by sql_id order by sum(nvl(cpu_time_delta, 0)) desc
                 )
                                     where rownum <= 5
@@ -1345,9 +1470,15 @@ namespace ISIA.BIZ.TREND
                                           cpu_time_delta cput,
                                           executions_delta exec
                                      from dba_hist_sqlstat ");
-                tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
-                tmpSql.AppendFormat(" and instance_number = &inst_no ");
-                tmpSql.AppendFormat("  and dbid = &dbid ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0} ", arguments.DbId);
                 tmpSql.Append(@" ) v_sqlstat 
                             where v_sqlstat.sql_id = v_rank.sql_id
                           ) v1,
@@ -1360,15 +1491,21 @@ namespace ISIA.BIZ.TREND
                                and sn.instance_number = stm.instance_number
                                and sn.dbid = stm.dbid
                                and stm.stat_name = 'DB time' ");
-                tmpSql.AppendFormat(" and stm.snap_id between &snap_fr and & snap_to ");
-                tmpSql.AppendFormat(" and stm.instance_number = &inst_no ");
-                tmpSql.AppendFormat("  and stm.dbid = &dbid ");
-                tmpSql.Append(@") sn   
+                //tmpSql.AppendFormat(" and stm.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and stm.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and stm.instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and stm.dbid = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(@") sn   
                     where v1.snap_id(+) = sn.snap_id
-                   and sn.snap_id > &snap_fr
+                   and sn.snap_id > {0}
                  group by sn.snap_id,
                        to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
-                 order by sn.snap_id");
+                 order by sn.snap_id",arguments.SnapId);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -1389,7 +1526,20 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"");
+                tmpSql.Append(@" select sql_id, rownum rank
+                     from
+                        ( select sql_id, sum(nvl(cpu_time_delta,0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1+ {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("and dbid = {0}", arguments.DbId);
+                tmpSql.Append(" group by sql_id order by sum(nvl(cpu_time_delta,0)) desc) where rownum <= 5 order by rank");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -1405,6 +1555,2976 @@ namespace ISIA.BIZ.TREND
         }
 
         public void GetSql_cpu_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(cpu_time_delta, 0))
+                                from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("                and dbid = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(@"group by sql_id, dbid, module order by sum(nvl(cpu_time_delta, 0)) desc
+                    )
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_get_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id,
+       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+       max(decode(rank, 1, bufget, 0)) rank1_bufget,
+       max(decode(rank, 2, bufget, 0)) rank2_bufget,
+       max(decode(rank, 3, bufget, 0)) rank3_bufget,
+       max(decode(rank, 4, bufget, 0)) rank4_bufget,
+       max(decode(rank, 5, bufget, 0)) rank5_bufget,
+       max(decode(rank, 1, exec, 0)) rank1_exec,
+       max(decode(rank, 2, exec, 0)) rank2_exec,
+       max(decode(rank, 3, exec, 0)) rank3_exec,
+       max(decode(rank, 4, exec, 0)) rank4_exec,
+       max(decode(rank, 5, exec, 0)) rank5_exec,
+       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, bufget, 0)) / max(decode(rank, 1, exec, 0))) rank1_bufget_per_exec,
+       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, bufget, 0)) / max(decode(rank, 2, exec, 0))) rank2_bufget_per_exec,
+       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, bufget, 0)) / max(decode(rank, 3, exec, 0))) rank3_bufget_per_exec,
+       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, bufget, 0)) / max(decode(rank, 4, exec, 0))) rank4_bufget_per_exec,
+       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, bufget, 0)) / max(decode(rank, 5, exec, 0))) rank5_bufget_per_exec,
+       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 1, bufget, 0)) / max(delta_bufget_tot)) rank1_bufget_per_tot,
+       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 2, bufget, 0)) / max(delta_bufget_tot)) rank2_bufget_per_tot,
+       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 3, bufget, 0)) / max(delta_bufget_tot)) rank3_bufget_per_tot,
+       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 4, bufget, 0)) / max(delta_bufget_tot)) rank4_bufget_per_tot,
+       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 5, bufget, 0)) / max(delta_bufget_tot)) rank5_bufget_per_tot,
+       max(decode(rank, 1, cput / 1000000, 0)) rank1_cput,
+       max(decode(rank, 2, cput / 1000000, 0)) rank2_cput,
+       max(decode(rank, 3, cput / 1000000, 0)) rank3_cput,
+       max(decode(rank, 4, cput / 1000000, 0)) rank4_cput,
+       max(decode(rank, 5, cput / 1000000, 0)) rank5_cput,
+       max(decode(rank, 1, elap / 1000000, 0)) rank1_elap,
+       max(decode(rank, 2, elap / 1000000, 0)) rank2_elap,
+       max(decode(rank, 3, elap / 1000000, 0)) rank3_elap,
+       max(decode(rank, 4, elap / 1000000, 0)) rank4_elap,
+       max(decode(rank, 5, elap / 1000000, 0)) rank5_elap,
+       max(decode(rank, 1, sql_id, null)) rank1,
+       max(decode(rank, 2, sql_id, null)) rank2,
+       max(decode(rank, 3, sql_id, null)) rank3,
+       max(decode(rank, 4, sql_id, null)) rank4,
+       max(decode(rank, 5, sql_id, null)) rank5
+  from(select v_sqlstat.snap_id,
+                 v_rank.rank,
+                 v_sqlstat.sql_id,
+                 v_sqlstat.module,
+                 v_sqlstat.bufget,
+                 v_sqlstat.elap,
+                 v_sqlstat.cput,
+                 v_sqlstat.exec
+            from(select sql_id, rownum rank
+                     from
+                        (select sql_id, sum(nvl(buffer_gets_delta, 0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ",arguments.SnapId,arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("             and instance_number = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("             and dbid = {0} ", arguments.DbId);
+                tmpSql.Append(@"           group by sql_id order by sum(nvl(buffer_gets_delta, 0)) desc
+                        )
+                    where rownum <= 5
+                 ) v_rank,
+                 (select snap_id,
+                          sql_id,
+                          module,
+                          buffer_gets_delta bufget,
+                          elapsed_time_delta elap,
+                          cpu_time_delta cput,
+                          executions_delta exec
+                     from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("   where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("      and dbid = {0} ", arguments.DbId);
+                tmpSql.Append(@" ) v_sqlstat
+           where v_sqlstat.sql_id = v_rank.sql_id
+          ) v1,
+          (select sn.snap_id,
+                   sn.end_interval_time,
+                   nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_bufget_tot
+             from dba_hist_snapshot sn,
+                  dba_hist_sysstat sy
+            where sn.snap_id = sy.snap_id
+               and sn.instance_number = sy.instance_number
+               and sn.dbid = sy.dbid
+               and sy.stat_name = 'session logical reads' ");
+                //tmpSql.AppendFormat(" and sy.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" and sy.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and sy.instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and sy.dbid = {0} ", arguments.DbId);
+                tmpSql.Append("  ) sn  where v1.snap_id(+) = sn.snap_id ");
+                tmpSql.AppendFormat(" and sn.snap_id > {0} ", arguments.SnapId);
+                tmpSql.AppendFormat(@"  group by sn.snap_id,  to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_get_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sql_id, rownum rank
+                     from
+                        ( select sql_id, sum(nvl(buffer_gets_delta,0))
+                            from dba_hist_sqlstat");
+                //tmpSql.AppendFormat(" where snap_id between 1+ {0} and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
+                tmpSql.Append("   group by sql_id order by sum(nvl(buffer_gets_delta,0)) desc)  where rownum <= 5 order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetSql_get_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(buffer_gets_delta, 0))
+                                from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("              where snap_id between {0} + 1 and {1} ", arguments.SnapId, arguments.SnapId);
+                tmpSql.AppendFormat(" where snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("                and instance_number ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("                 and dbid = {0} ", arguments.DbId);
+                tmpSql.Append(@" group by sql_id, dbid, module order by sum(nvl(buffer_gets_delta, 0)) desc
+                            )
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_read_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id,
+                       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+                       max(decode(rank, 1, phyrds, 0)) rank1_phyrds,
+                       max(decode(rank, 2, phyrds, 0)) rank2_phyrds,
+                       max(decode(rank, 3, phyrds, 0)) rank3_phyrds,
+                       max(decode(rank, 4, phyrds, 0)) rank4_phyrds,
+                       max(decode(rank, 5, phyrds, 0)) rank5_phyrds,
+                       max(decode(rank, 1, exec, 0)) rank1_exec,
+                       max(decode(rank, 2, exec, 0)) rank2_exec,
+                       max(decode(rank, 3, exec, 0)) rank3_exec,
+                       max(decode(rank, 4, exec, 0)) rank4_exec,
+                       max(decode(rank, 5, exec, 0)) rank5_exec,
+                       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, phyrds, 0)) / max(decode(rank, 1, exec, 0))) rank1_phyrds_per_exec,
+                       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, phyrds, 0)) / max(decode(rank, 2, exec, 0))) rank2_phyrds_per_exec,
+                       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, phyrds, 0)) / max(decode(rank, 3, exec, 0))) rank3_phyrds_per_exec,
+                       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, phyrds, 0)) / max(decode(rank, 4, exec, 0))) rank4_phyrds_per_exec,
+                       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, phyrds, 0)) / max(decode(rank, 5, exec, 0))) rank5_phyrds_per_exec,
+                       decode(max(delta_phyrds_tot), 0, 0, max(decode(rank, 1, phyrds, 0)) / max(delta_phyrds_tot)) rank1_phyrds_per_tot,
+                       decode(max(delta_phyrds_tot), 0, 0, max(decode(rank, 2, phyrds, 0)) / max(delta_phyrds_tot)) rank2_phyrds_per_tot,
+                       decode(max(delta_phyrds_tot), 0, 0, max(decode(rank, 3, phyrds, 0)) / max(delta_phyrds_tot)) rank3_phyrds_per_tot,
+                       decode(max(delta_phyrds_tot), 0, 0, max(decode(rank, 4, phyrds, 0)) / max(delta_phyrds_tot)) rank4_phyrds_per_tot,
+                       decode(max(delta_phyrds_tot), 0, 0, max(decode(rank, 5, phyrds, 0)) / max(delta_phyrds_tot)) rank5_phyrds_per_tot,
+                       max(decode(rank, 1, cput / 1000000, 0)) rank1_cput,
+                       max(decode(rank, 2, cput / 1000000, 0)) rank2_cput,
+                       max(decode(rank, 3, cput / 1000000, 0)) rank3_cput,
+                       max(decode(rank, 4, cput / 1000000, 0)) rank4_cput,
+                       max(decode(rank, 5, cput / 1000000, 0)) rank5_cput,
+                       max(decode(rank, 1, elap / 1000000, 0)) rank1_elap,
+                       max(decode(rank, 2, elap / 1000000, 0)) rank2_elap,
+                       max(decode(rank, 3, elap / 1000000, 0)) rank3_elap,
+                       max(decode(rank, 4, elap / 1000000, 0)) rank4_elap,
+                       max(decode(rank, 5, elap / 1000000, 0)) rank5_elap,
+                       max(decode(rank, 1, sql_id, null)) rank1,
+                       max(decode(rank, 2, sql_id, null)) rank2,
+                       max(decode(rank, 3, sql_id, null)) rank3,
+                       max(decode(rank, 4, sql_id, null)) rank4,
+                       max(decode(rank, 5, sql_id, null)) rank5
+                  from(select v_sqlstat.snap_id,
+                                 v_rank.rank,
+                                 v_sqlstat.sql_id,
+                                 v_sqlstat.module,
+                                 v_sqlstat.phyrds,
+                                 v_sqlstat.elap,
+                                 v_sqlstat.cput,
+                                 v_sqlstat.exec
+                            from(select sql_id, rownum rank
+                                     from
+                                        (select sql_id, sum(nvl(disk_reads_delta, 0))
+                                            from dba_hist_sqlstat ");
+
+                tmpSql.AppendFormat("                       where 1=1 ");
+                tmpSql.Append("               AND snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("                             and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("                             and dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(@"  group by sql_id order by sum(nvl(disk_reads_delta, 0)) desc
+                                        )
+                                    where rownum <= 5
+                                 ) v_rank,
+                                 (select snap_id,
+                                          sql_id,
+                                          module,
+                                          disk_reads_delta phyrds,
+                                          elapsed_time_delta elap,
+                                          cpu_time_delta cput,
+                                          executions_delta exec
+                                     from dba_hist_sqlstat ");
+                tmpSql.AppendFormat(" where 1=1 ");
+                tmpSql.Append("               AND snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0}",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@" ) v_sqlstat
+                           where v_sqlstat.sql_id = v_rank.sql_id
+                          ) v1,
+                          (select sn.snap_id,
+                                   sn.end_interval_time,
+                                   nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_phyrds_tot
+                             from dba_hist_snapshot sn,
+                                  dba_hist_sysstat sy
+                            where sn.snap_id = sy.snap_id
+                               and sn.instance_number = sy.instance_number
+                               and sn.dbid = sy.dbid
+                               and sy.stat_name = 'physical reads' ");
+                tmpSql.AppendFormat(" and sy.snap_id in( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and sy.instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and sy.dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(@"          ) sn
+                 where v1.snap_id(+) = sn.snap_id
+                   and sn.snap_id > {0}",arguments.SnapId);
+                tmpSql.Append(@" group by sn.snap_id,
+                      to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
+                 order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_read_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sql_id, rownum rank
+                                                 from
+                                                    ( select sql_id, sum(nvl(disk_reads_delta,0))
+                                                        from dba_hist_sqlstat
+                                                       where 1=1 ");
+                tmpSql.Append("               AND snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0}",arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(@" group by sql_id order by sum(nvl(disk_reads_delta,0)) desc) where rownum <= 5 order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_read_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(disk_reads_delta, 0))
+                                from dba_hist_sqlstat ");
+                tmpSql.AppendFormat("              where 1=1 ");
+                tmpSql.Append("               AND snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("                and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("                 and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"               group by sql_id, dbid, module order by sum(nvl(disk_reads_delta, 0)) desc)
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_excute_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id,
+       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+       max(decode(rank, 1, exec, 0)) rank1_exec,
+       max(decode(rank, 2, exec, 0)) rank2_exec,
+       max(decode(rank, 3, exec, 0)) rank3_exec,
+       max(decode(rank, 4, exec, 0)) rank4_exec,
+       max(decode(rank, 5, exec, 0)) rank5_exec,
+       max(decode(rank, 1, rows_processed, 0)) rank1_rows_processed,
+       max(decode(rank, 2, rows_processed, 0)) rank2_rows_processed,
+       max(decode(rank, 3, rows_processed, 0)) rank3_rows_processed,
+       max(decode(rank, 4, rows_processed, 0)) rank4_rows_processed,
+       max(decode(rank, 5, rows_processed, 0)) rank5_rows_processed,
+       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, rows_processed, 0)) / max(decode(rank, 1, exec, 0))) rank1_rows_per_exec,
+       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, rows_processed, 0)) / max(decode(rank, 2, exec, 0))) rank2_rows_per_exec,
+       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, rows_processed, 0)) / max(decode(rank, 3, exec, 0))) rank3_rows_per_exec,
+       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, rows_processed, 0)) / max(decode(rank, 4, exec, 0))) rank4_rows_per_exec,
+       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, rows_processed, 0)) / max(decode(rank, 5, exec, 0))) rank5_rows_per_exec,
+       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, cput / 1000000, 0)) / max(decode(rank, 1, exec, 0))) rank1_cpu_per_exec,
+       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, cput / 1000000, 0)) / max(decode(rank, 2, exec, 0))) rank2_cpu_per_exec,
+       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, cput / 1000000, 0)) / max(decode(rank, 3, exec, 0))) rank3_cpu_per_exec,
+       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, cput / 1000000, 0)) / max(decode(rank, 4, exec, 0))) rank4_cpu_per_exec,
+       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, cput / 1000000, 0)) / max(decode(rank, 5, exec, 0))) rank5_cpu_per_exec,
+       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, elap / 1000000, 0)) / max(decode(rank, 1, exec, 0))) rank1_elap_per_exec,
+       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, elap / 1000000, 0)) / max(decode(rank, 2, exec, 0))) rank2_elap_per_exec,
+       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, elap / 1000000, 0)) / max(decode(rank, 3, exec, 0))) rank3_elap_per_exec,
+       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, elap / 1000000, 0)) / max(decode(rank, 4, exec, 0))) rank4_elap_per_exec,
+       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, elap / 1000000, 0)) / max(decode(rank, 5, exec, 0))) rank5_elap_per_exec,
+       max(decode(rank, 1, sql_id, null)) rank1,
+       max(decode(rank, 2, sql_id, null)) rank2,
+       max(decode(rank, 3, sql_id, null)) rank3,
+       max(decode(rank, 4, sql_id, null)) rank4,
+       max(decode(rank, 5, sql_id, null)) rank5
+  from(select v_sqlstat.snap_id,
+                 v_rank.rank,
+                 v_sqlstat.sql_id,
+                 v_sqlstat.module,
+                 v_sqlstat.rows_processed,
+                 v_sqlstat.elap,
+                 v_sqlstat.cput,
+                 v_sqlstat.exec
+            from(select sql_id, rownum rank
+                     from
+                        (select sql_id, sum(nvl(executions_delta, 0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0}",arguments.DbId);
+
+                tmpSql.Append(@"group by sql_id order by sum(nvl(executions_delta, 0)) desc
+                         )
+                    where rownum <= 5
+                 ) v_rank,
+                 (select snap_id,
+                          sql_id,
+                          module,
+                          elapsed_time_delta elap,
+                          cpu_time_delta cput,
+                          executions_delta exec,
+                          rows_processed_delta rows_processed
+                     from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("  and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@") v_sqlstat
+ 
+            where v_sqlstat.sql_id = v_rank.sql_id
+          ) v1,
+          (select sn.snap_id,
+                   sn.end_interval_time
+              from dba_hist_snapshot sn ");
+                //tmpSql.AppendFormat(" where sn.snap_id between &snap_fr and & snap_to ");
+                tmpSql.Append("               where sn.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
+                tmpSql.Append(" ) sn  where v1.snap_id(+) - 1 = sn.snap_id ");
+                tmpSql.AppendFormat(" and sn.snap_id > {0} ",arguments.SnapId);
+
+                tmpSql.AppendFormat(@" group by sn.snap_id,   
+          to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
+ order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_excute_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sql_id, rownum rank
+                     from
+                        ( select sql_id, sum(nvl(executions_delta,0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("            where snap_id between 1+ &snap_fr and &snap_to ");
+                tmpSql.Append("               where sn.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("             and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("             and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"  group by sql_id order by sum(nvl(executions_delta,0)) desc)
+                    where rownum <= 5
+                    order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_excute_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(executions_delta, 0))
+                                from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where sn.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("            and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"              group by sql_id, dbid, module order by sum(nvl(executions_delta, 0)) desc
+                          )
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_parse_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id,
+                       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+                       max(decode(rank, 1, parse, 0)) rank1_parse,
+                       max(decode(rank, 2, parse, 0)) rank2_parse,
+                       max(decode(rank, 3, parse, 0)) rank3_parse,
+                       max(decode(rank, 4, parse, 0)) rank4_parse,
+                       max(decode(rank, 5, parse, 0)) rank5_parse,
+                       max(decode(rank, 1, exec, 0)) rank1_exec,
+                       max(decode(rank, 2, exec, 0)) rank2_exec,
+                       max(decode(rank, 3, exec, 0)) rank3_exec,
+                       max(decode(rank, 4, exec, 0)) rank4_exec,
+                       max(decode(rank, 5, exec, 0)) rank5_exec,
+                       decode(max(decode(rank, 1, sn.delta_parse_tot, 0)), 0, 0, max(decode(rank, 1, parse, 0)) / max(decode(rank, 1, sn.delta_parse_tot, 0))) rank1_parse_per_tot,
+                       decode(max(decode(rank, 2, sn.delta_parse_tot, 0)), 0, 0, max(decode(rank, 2, parse, 0)) / max(decode(rank, 2, sn.delta_parse_tot, 0))) rank2_parse_per_tot,
+                       decode(max(decode(rank, 3, sn.delta_parse_tot, 0)), 0, 0, max(decode(rank, 3, parse, 0)) / max(decode(rank, 3, sn.delta_parse_tot, 0))) rank3_parse_per_tot,
+                       decode(max(decode(rank, 4, sn.delta_parse_tot, 0)), 0, 0, max(decode(rank, 4, parse, 0)) / max(decode(rank, 4, sn.delta_parse_tot, 0))) rank4_parse_per_tot,
+                       decode(max(decode(rank, 5, sn.delta_parse_tot, 0)), 0, 0, max(decode(rank, 5, parse, 0)) / max(decode(rank, 5, sn.delta_parse_tot, 0))) rank5_parse_per_tot,
+                       max(decode(rank, 1, sql_id, null)) rank1,
+                       max(decode(rank, 2, sql_id, null)) rank2,
+                       max(decode(rank, 3, sql_id, null)) rank3,
+                       max(decode(rank, 4, sql_id, null)) rank4,
+                       max(decode(rank, 5, sql_id, null)) rank5
+                  from(select v_sqlstat.snap_id,
+                                 v_rank.rank,
+                                 v_sqlstat.sql_id,
+                                 v_sqlstat.module,
+                                 v_sqlstat.parse,
+                                 v_sqlstat.exec
+                            from(select sql_id, rownum rank
+                                     from
+                                        (select sql_id, sum(nvl(parse_calls_delta, 0))
+                                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0}",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("                             and dbid = {0} ",arguments.DbId);
+
+                tmpSql.Append(@" group by sql_id order by sum(nvl(parse_calls_delta, 0)) desc
+                                       )
+                                    where rownum <= 5
+                                 ) v_rank,
+                                 (select snap_id,
+                                          sql_id,
+                                          module,
+                                          parse_calls_delta parse,
+                                          executions_delta exec
+                                     from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("     where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("      and instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("                     and dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(@"  ) v_sqlstat
+                          where v_sqlstat.sql_id = v_rank.sql_id
+                          ) v1,
+                          (select sn.snap_id,
+                                   sn.end_interval_time,
+                                   nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_parse_tot
+                             from dba_hist_snapshot sn,
+                                  dba_hist_sysstat sy
+                            where sn.snap_id = sy.snap_id
+                               and sn.instance_number = sy.instance_number
+                               and sn.dbid = sy.dbid
+                               and sy.stat_name = 'parse count (total)' ");
+                //tmpSql.AppendFormat("  and sy.snap_id between &snap_fr and & snap_to ");
+                tmpSql.Append("               and sy.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and sy.instance_number = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and sy.dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat("   ) sn    where v1.snap_id(+) = sn.snap_id ");
+                tmpSql.AppendFormat("   and sn.snap_id > {0} " ,arguments.SnapId);
+                tmpSql.Append(@"  group by sn.snap_id,
+                      to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
+                 order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_parse_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sql_id, rownum rank
+                     from
+                        ( select sql_id, sum(nvl(parse_calls_delta,0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("    where snap_id between 1+ &snap_fr and &snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("          and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"        group by sql_id order by sum(nvl(parse_calls_delta,0)) desc                       )
+                    where rownum <= 5
+                order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_parse_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(parse_calls_delta, 0))
+                                from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@" group by sql_id, dbid, module order by sum(nvl(parse_calls_delta, 0)) desc
+                           )
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+        public void GetSql_clu_wait_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id,
+                       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+                       max(decode(rank, 1, clwait / 1000000, 0)) rank1_clwait,
+                       max(decode(rank, 2, clwait / 1000000, 0)) rank2_clwait,
+                       max(decode(rank, 3, clwait / 1000000, 0)) rank3_clwait,
+                       max(decode(rank, 4, clwait / 1000000, 0)) rank4_clwait,
+                       max(decode(rank, 5, clwait / 1000000, 0)) rank5_clwait,
+                       max(decode(rank, 1, elap / 1000000, 0)) rank1_elap,
+                       max(decode(rank, 2, elap / 1000000, 0)) rank2_elap,
+                       max(decode(rank, 3, elap / 1000000, 0)) rank3_elap,
+                       max(decode(rank, 4, elap / 1000000, 0)) rank4_elap,
+                       max(decode(rank, 5, elap / 1000000, 0)) rank5_elap,
+                       max(decode(rank, 1, cput / 1000000, 0)) rank1_cput,
+                       max(decode(rank, 2, cput / 1000000, 0)) rank2_cput,
+                       max(decode(rank, 3, cput / 1000000, 0)) rank3_cput,
+                       max(decode(rank, 4, cput / 1000000, 0)) rank4_cput,
+                       max(decode(rank, 5, cput / 1000000, 0)) rank5_cput,
+                       max(decode(rank, 1, exec, 0)) rank1_exec,
+                       max(decode(rank, 2, exec, 0)) rank2_exec,
+                       max(decode(rank, 3, exec, 0)) rank3_exec,
+                       max(decode(rank, 4, exec, 0)) rank4_exec,
+                       max(decode(rank, 5, exec, 0)) rank5_exec,
+                       decode(max(decode(rank, 1, elap, 0)), 0, 0, max(decode(rank, 1, clwait, 0)) / max(decode(rank, 1, elap, 0))) rank1_clwait_per_elap,
+                       decode(max(decode(rank, 2, elap, 0)), 0, 0, max(decode(rank, 2, clwait, 0)) / max(decode(rank, 2, elap, 0))) rank2_clwait_per_elap,
+                       decode(max(decode(rank, 3, elap, 0)), 0, 0, max(decode(rank, 3, clwait, 0)) / max(decode(rank, 3, elap, 0))) rank3_clwait_per_elap,
+                       decode(max(decode(rank, 4, elap, 0)), 0, 0, max(decode(rank, 4, clwait, 0)) / max(decode(rank, 4, elap, 0))) rank4_clwait_per_elap,
+                       decode(max(decode(rank, 5, elap, 0)), 0, 0, max(decode(rank, 5, clwait, 0)) / max(decode(rank, 5, elap, 0))) rank5_clwait_per_elap,
+                       max(decode(rank, 1, sql_id, null)) rank1,
+                       max(decode(rank, 2, sql_id, null)) rank2,
+                       max(decode(rank, 3, sql_id, null)) rank3,
+                       max(decode(rank, 4, sql_id, null)) rank4,
+                       max(decode(rank, 5, sql_id, null)) rank5
+                  from(select v_sqlstat.snap_id,
+                                 v_rank.rank,
+                                 v_sqlstat.sql_id,
+                                 v_sqlstat.module,
+                                 v_sqlstat.clwait,
+                                 v_sqlstat.elap,
+                                 v_sqlstat.cput,
+                                 v_sqlstat.exec
+                            from(select sql_id, rownum rank
+                                     from
+                                        (select sql_id, sum(nvl(clwait_delta, 0))
+                                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("    where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and dbid ={0} " ,arguments.DbId);
+                tmpSql.Append(@"   group by sql_id order by sum(nvl(clwait_delta, 0)) desc
+               )
+                                    where rownum <= 5
+                                 ) v_rank,
+                                 (select snap_id,
+                                          sql_id,
+                                          module,
+                                          elapsed_time_delta elap,
+                                          cpu_time_delta cput,
+                                          executions_delta exec,
+                                          clwait_delta clwait
+                                     from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(@" ) v_sqlstat   
+                              where v_sqlstat.sql_id = v_rank.sql_id
+                          ) v1,
+                          (select sn.snap_id,
+                                   sn.end_interval_time
+                              from dba_hist_snapshot sn ");
+                //tmpSql.AppendFormat(" where sn.snap_id between &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and sn.instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and sn.dbid = {0} " ,arguments.DbId);
+                tmpSql.Append(@" ) sn  where v1.snap_id(+) = sn.snap_id ");
+                tmpSql.AppendFormat(" and sn.snap_id > {0} ",arguments.SnapId);
+
+                tmpSql.Append(@"  group by sn.snap_id,   
+                          to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
+                 order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_clu_wait_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sql_id, rownum rank
+                     from
+                        ( select sql_id, sum(nvl(clwait_delta,0))
+                            from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("  where snap_id between 1+ &snap_fr and &snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("   and dbid = {0} ",arguments.DbId);
+
+                tmpSql.AppendFormat(@"  group by sql_id order by sum(nvl(clwait_delta,0)) desc) where rownum <= 5 order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetSql_clu_wait_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank,
+                       v1.sql_id,
+                       v1.module,
+                       nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
+                  from
+                      (select sql_id, dbid, module, rownum rank
+                         from
+                            (select sql_id, dbid, module, sum(nvl(clwait_delta, 0))
+                                from dba_hist_sqlstat ");
+                //tmpSql.AppendFormat("    where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(@"   group by sql_id, dbid, module order by sum(nvl(clwait_delta, 0)) desc
+                           )
+                        where rownum <= 5
+                      ) v1,
+                      dba_hist_sqltext st
+                where st.sql_id(+) = v1.sql_id
+                  and st.dbid(+) = v1.dbid");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 54
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetPga(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id \""SnapID\"",
+                       sn.snap_time \""Timestamp\"",
+                       max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0))            \""PGA Aggr Target(M)\"",
+                       max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0))                 \""Auto PGA Target(M)\"",
+                       max(decode(pga.name, 'total PGA allocated', value / 1024 / 1024, 0))                       \""PGA Mem Alloc(M)\"",
+                       max(decode(pga.name, 'total PGA used for auto workareas', value / 1024 / 1024, 0))         \""Auto W/A(M)\"",
+                       max(decode(pga.name, 'total PGA used for manual workareas', value / 1024 / 1024, 0))       \""Manual W/A(M)\"",
+                       decode(max(decode(pga.name, 'total PGA allocated', value, 0)), 0, 0,
+                             (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))
+                             ) / max(decode(pga.name, 'total PGA allocated', value, 0)))                        \""%PGA W/A Mem\"",
+                       decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0,
+                              max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                              / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                               + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \""%Auto W/A Mem\"",
+                       decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0,
+                              max(decode(pga.name, 'total PGA used for manual workareas', value, 0))
+                              / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
+                               + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \""%Manual W/A Mem\"",
+                       max(decode(pga.name, 'global memory bound', value / 1024, 0))                             \""Global Mem Bound(K)\"",
+                       max(case when pga.name = 'maximum PGA used for auto workareas' then value else 0 end)/ 1048576   \""max. auto W/A(M)\"",
+                       max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576 \""max. manual W/A(M)\""
+                 from(
+                       select dbid, instance_number, snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                         from dba_hist_snapshot ");
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("         and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"    ) sn,
+                   dba_hist_pgastat pga
+                where pga.snap_id = sn.snap_id
+                  and pga.instance_number = sn.instance_number
+                  and pga.dbid = sn.dbid
+                 group by sn.snap_id, sn.snap_time
+                 order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 54
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetPga_hit(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select  sn.snap_id \""SnapID\"",
+                        sn.snap_time \""Timestamp\"",
+                        sum(decode(name, 'bytes processed', delta, 0))
+                            / (sum(decode(name, 'bytes processed', delta, 0))
+                               + sum(decode(name, 'extra bytes read/written', delta, 0))
+                              ) \""PGA Cache Hit %\"",
+                        sum(decode(name, 'bytes processed', round(delta / 1024 / 1024), 0)) \""W/A MB Processed\"",
+                        sum(decode(name, 'extra bytes read/written', round(delta / 1024 / 1024), 0)) \""Extra W/A MB Read/Write\""
+                  from(
+                         select snap_id,
+                                name,
+                                value - lag(value) over(partition by name order by snap_id) delta
+                           from dba_hist_pgastat
+                          where name in ('bytes processed', 'extra bytes read/written') ");
+                //tmpSql.AppendFormat("  and snap_id between {0} and {1} ");
+                tmpSql.Append("               and snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(@" ) v1,
+                          (
+                       select snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                         from dba_hist_snapshot ");
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("        and dbid = {0} ",arguments.DbId);
+                tmpSql.Append(@"        ) sn
+                 where v1.snap_id = sn.snap_id
+                group by sn.snap_id, sn.snap_time
+                order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 55
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetWorkarea(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select 	b.snap_id,
+		                    b.snap_time,
+		                    a.total_executions,
+		                    a.optimal_executions,
+		                    a.onepass_executions,
+		                    a.multipasses_executions
+                    from
+		                    (select 	snap_id,
+        	                    sum(total_executions)   - lag(sum(total_executions)) over (order by snap_id) total_executions,
+        	                    sum(optimal_executions) - lag(sum(optimal_executions)) over (order by snap_id) optimal_executions,
+        	                    sum(onepass_executions) - lag(sum(onepass_executions)) over (order by snap_id) onepass_executions,
+        	                    sum(multipasses_executions) - lag(sum(multipasses_executions)) over (order by snap_id) multipasses_executions
+                             from DBA_HIST_SQL_WORKAREA_HSTGRM ");
+                //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and dbid = {0} " ,arguments.DbId);
+
+                tmpSql.AppendFormat(@"  group by snap_id) a,
+                         (select snap_id,
+                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
+                                  to_number(substr((end_interval_time-begin_interval_time)*86400,2,9)) interval
+                             from dba_hist_snapshot ");
+                //tmpSql.AppendFormat(" where snap_id between 1+ &snap_fr and &snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0}) b " ,arguments.DbId);
+                tmpSql.AppendFormat(" where a.snap_id=b.snap_id  order by b.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 55
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetWorkarea_raw(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id \""SnapID\""
+                      , snap_time  \""Timestamp\""
+                      ,case when low_optimal_size >= 1024 * 1024 * 1024 * 1024
+                            then lpad(round(low_optimal_size / 1024 / 1024 / 1024 / 1024) || 'T', 7)
+                            when low_optimal_size >= 1024 * 1024 * 1024
+                            then lpad(round(low_optimal_size / 1024 / 1024 / 1024) || 'G', 7)
+                            when low_optimal_size >= 1024 * 1024
+                            then lpad(round(low_optimal_size / 1024 / 1024) || 'M', 7)
+                            when low_optimal_size >= 1024
+                            then lpad(round(low_optimal_size / 1024) || 'K', 7)
+                            else lpad(low_optimal_size || 'B', 7)
+                       end                    \""Low Optimal\""
+                      ,case when high_optimal_size >= 1024 * 1024 * 1024 * 1024
+                            then lpad(round(high_optimal_size/ 1024 / 1024 / 1024 / 1024) || 'T',7)
+                            when high_optimal_size >= 1024 * 1024 * 1024
+                            then lpad(round(high_optimal_size/ 1024 / 1024 / 1024) || 'G',7)
+                            when high_optimal_size >= 1024 * 1024
+                            then lpad(round(high_optimal_size/ 1024 / 1024) || 'M',7)
+                            when high_optimal_size >= 1024
+                            then lpad(round(high_optimal_size/ 1024) || 'K',7)
+                            else high_optimal_size || 'B'
+                       end                           \""High Optimal\""
+                      ,nvl(total_executions, 0)       \""tot_exe\""
+                      ,nvl(optimal_executions, 0)     \""opt_exe\""
+                      ,nvl(onepass_executions, 0)     \""one_exe\""
+                      ,nvl(multipasses_executions, 0) \""mul_exe\""
+                  from(select  snap_id, low_optimal_size, high_optimal_size,
+                            total_executions - lag(total_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) total_executions,
+                            optimal_executions - lag(optimal_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) optimal_executions,
+                            onepass_executions - lag(onepass_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) onepass_executions,
+                            multipasses_executions - lag(multipasses_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) multipasses_executions
+                         from DBA_HIST_SQL_WORKAREA_HSTGRM ");
+                //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("         and dbid = {0} " ,arguments.DbId);
+                tmpSql.Append(@"      ) v1,
+                      (
+                       select snap_id,
+                              to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
+                              to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
+                               from dba_hist_snapshot ");
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and dbid = {0} " ,arguments.DbId);
+                tmpSql.Append(@" ) sn      
+                       where v1.snap_id = sn.snap_id
+                 order by low_optimal_size");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 55
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetWorkarea_histgram(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                      , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
+                      ,case when e.low_optimal_size >= 1024 * 1024 * 1024 * 1024
+                            then lpad(round(e.low_optimal_size / 1024 / 1024 / 1024 / 1024) || 'T', 7)
+                            when e.low_optimal_size >= 1024 * 1024 * 1024
+                            then lpad(round(e.low_optimal_size / 1024 / 1024 / 1024) || 'G', 7)
+                            when e.low_optimal_size >= 1024 * 1024
+                            then lpad(round(e.low_optimal_size / 1024 / 1024) || 'M', 7)
+                            when e.low_optimal_size >= 1024
+                            then lpad(round(e.low_optimal_size / 1024) || 'K', 7)
+                            else lpad(e.low_optimal_size || 'B', 7)
+                       end                                             \""Low Optimal\""
+                     , case when e.high_optimal_size >= 1024 * 1024 * 1024 * 1024
+                            then lpad(round(e.high_optimal_size/ 1024 / 1024 / 1024 / 1024) || 'T',7)
+                            when e.high_optimal_size >= 1024 * 1024 * 1024
+                            then lpad(round(e.high_optimal_size/ 1024 / 1024 / 1024) || 'G',7)
+                            when e.high_optimal_size >= 1024 * 1024
+                            then lpad(round(e.high_optimal_size/ 1024 / 1024) || 'M',7)
+                            when e.high_optimal_size >= 1024
+                            then lpad(round(e.high_optimal_size/ 1024) || 'K',7)
+                            else e.high_optimal_size || 'B'
+                       end                                              \""High Optimal\""
+                     , e.total_executions - nvl(b.total_executions, 0)        \""tot_exe\""
+                     , e.optimal_executions - nvl(b.optimal_executions, 0)      \""opt_exe\""
+                     , e.onepass_executions - nvl(b.onepass_executions, 0)      \""one_exe\""
+                     , e.multipasses_executions - nvl(b.multipasses_executions, 0)  \""mul_exe\""
+                  from DBA_HIST_SQL_WORKAREA_HSTGRM e
+                     , DBA_HIST_SQL_WORKAREA_HSTGRM b
+                     , DBA_HIST_SNAPSHOT S ");
+                tmpSql.AppendFormat(" where e.snap_id = {0} ",arguments.SnapId);
+
+                tmpSql.AppendFormat("   and e.dbid = {0} ",arguments.DbId);
+                tmpSql.AppendFormat(" and e.instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and b.snap_id(+) = {0} " ,arguments.SnapId);
+                tmpSql.Append(@" and b.dbid(+) = e.dbid
+
+                and b.instance_number(+) = e.instance_number
+                   and b.low_optimal_size(+) = e.low_optimal_size
+                   and b.high_optimal_size(+) = e.high_optimal_size
+                   and e.snap_id = s.snap_id ");
+                tmpSql.AppendFormat(" and s.INSTANCE_NUMBER = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and s.dbid = {0} " ,arguments.DbId);
+                //tmpSql.AppendFormat(" and s.snap_id between  &snap_fr and & snap_to ");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.Append("order by e.low_optimal_size");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        ///61
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetWaitstatm(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select snap_id \""SnapID\"",
+       snap_time \""Timestamp\"",
+       max(decode(class, '1st level bmb'        , delta, 0)) \""1st level bmb\"",
+       max(decode(class, '2nd level bmb'        , delta, 0)) \""2nd level bmb\"",
+       max(decode(class, '3rd level bmb'        , delta, 0)) \""3rd level bmb\"",
+       max(decode(class, 'bitmap block'         , delta, 0)) \""bitmap block\"",
+       max(decode(class, 'bitmap index block'   , delta, 0)) \""bitmap index block\"",
+       max(decode(class, 'data block'           , delta, 0)) \""data block\"",
+       max(decode(class, 'extent map'           , delta, 0)) \""extent map\"",
+       max(decode(class, 'file header block'    , delta, 0)) \""file header block\"",
+       max(decode(class, 'free list'            , delta, 0)) \""free list\"",
+       max(decode(class, 'save undo block'      , delta, 0)) \""save undo block\"",
+       max(decode(class, 'save undo header'     , delta, 0)) \""save undo header\"",
+       max(decode(class, 'segment header'       , delta, 0)) \""segment header\"",
+       max(decode(class, 'sort block'           , delta, 0)) \""sort block\"",
+       max(decode(class, 'system undo block'    , delta, 0)) \""system undo block\"",
+       max(decode(class, 'system undo header'   , delta, 0)) \""system undo header\"",
+       max(decode(class, 'undo block'           , delta, 0)) \""undo block\"",
+       max(decode(class, 'undo header'          , delta, 0)) \""undo header\"",
+       max(decode(class, '1st level bmb'        , delta_cnt, 0)) \""1st level bmb\"",
+       max(decode(class, '2nd level bmb'        , delta_cnt, 0)) \""2nd level bmb\"",
+       max(decode(class, '3rd level bmb'        , delta_cnt, 0)) \""3rd level bmb\"",
+       max(decode(class, 'bitmap block'         , delta_cnt, 0)) \""bitmap block\"",
+       max(decode(class, 'bitmap index block'   , delta_cnt, 0)) \""bitmap index block\"",
+       max(decode(class, 'data block'           , delta_cnt, 0)) \""data block\"",
+       max(decode(class, 'extent map'           , delta_cnt, 0)) \""extent map\"",
+       max(decode(class, 'file header block'    , delta_cnt, 0)) \""file header block\"",
+       max(decode(class, 'free list'            , delta_cnt, 0)) \""free list\"",
+       max(decode(class, 'save undo block'      , delta_cnt, 0)) \""save undo block\"",
+       max(decode(class, 'save undo header'     , delta_cnt, 0)) \""save undo header\"",
+       max(decode(class, 'segment header'       , delta_cnt, 0)) \""segment header\"",
+       max(decode(class, 'sort block'           , delta_cnt, 0)) \""sort block\"",
+       max(decode(class, 'system undo block'    , delta_cnt, 0)) \""system undo block\"",
+       max(decode(class, 'system undo header'   , delta_cnt, 0)) \""system undo header\"",
+       max(decode(class, 'undo block'           , delta_cnt, 0)) \""undo block\"",
+       max(decode(class, 'undo header'          , delta_cnt, 0)) \""undo header\""
+ from(
+      select class,snap_id,snap_time,delta_cnt,delta_time,decode(delta_cnt,0,0, delta_time/delta_cnt)*10 delta
+         from(
+              select class,
+                    ws.snap_id,
+                    to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
+                    time-lag(time) over(partition by class order by ws.snap_id) delta_time,
+                    wait_count-lag(wait_count) over(partition by class order by ws.snap_id) delta_cnt
+              from dba_hist_waitstat ws,
+                   dba_hist_snapshot sn
+             where ws.snap_id = sn.snap_id
+               and ws.instance_number = sn.instance_number
+               and ws.dbid = sn.dbid ");
+                //tmpSql.AppendFormat(" and ws.snap_id between &snap_fr and &snap_to ");
+                tmpSql.Append("               and ws.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and ws.instance_number = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and ws.dbid = {0} ",arguments.DbId);
+
+                tmpSql.AppendFormat(@" and class in (
+ 
+                        '1st level bmb',
+                       '2nd level bmb',
+                       '3rd level bmb',
+                       'bitmap block',
+                       'bitmap index block',
+                       'data block',
+                       'extent map',
+                       'file header block',
+                       'free list',
+                       'save undo block',
+                       'save undo header',
+                       'segment header',
+                       'sort block',
+                       'system undo block',
+                       'system undo header',
+                       'undo block',
+                       'undo header'
+                      )
+            ) ");
+                tmpSql.AppendFormat(" where snap_id > {0} ",arguments.SnapId);
+                tmpSql.Append(@" ) group by snap_id, snap_time order by snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetResource(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select sn.snap_id \""SnapID\"",
+                       to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+                       max(decode(r.resource_name, 'processes', current_utilization, 0)) processes_curr,
+                       max(decode(r.resource_name, 'processes', max_utilization, 0)) processes_max,
+                       max(decode(r.resource_name, 'processes', limit_value, 0)) processes_limit,
+                       max(decode(r.resource_name, 'sessions', current_utilization, 0)) sessions_curr,
+                       max(decode(r.resource_name, 'sessions', max_utilization, 0)) sessions_max,
+                       max(decode(r.resource_name, 'sessions', limit_value, 0)) sessions_limit,
+                       max(active_sess.cnt) active_session_cnt,
+                       max(decode(r.resource_name, 'enqueue_locks', current_utilization, 0)) enqueue_curr,
+                       max(decode(r.resource_name, 'enqueue_locks', max_utilization, 0)) enqueue_max,
+                       max(decode(r.resource_name, 'enqueue_locks', limit_value, 0)) enqueue_limit,
+                       max(decode(r.resource_name, 'max_rollback_segments', current_utilization, 0)) max_rollback_segments_curr,
+                       max(decode(r.resource_name, 'max_rollback_segments', max_utilization, 0)) max_rollback_segments_max,
+                       max(decode(r.resource_name, 'max_rollback_segments', limit_value, 0)) max_rollback_segments_limit,
+                       max(decode(r.resource_name, 'parallel_max_servers', current_utilization, 0)) parallel_max_servers_curr,
+                       max(decode(r.resource_name, 'parallel_max_servers', max_utilization, 0)) parallel_max_servers_max,
+                       max(decode(r.resource_name, 'parallel_max_servers', limit_value, 0)) parallel_max_servers_limit,
+                       max(decode(r.resource_name, 'gcs_resources', current_utilization, 0)) gcs_resources_curr,
+                       max(decode(r.resource_name, 'gcs_resources', max_utilization, 0)) gcs_resources_max,
+                       max(decode(r.resource_name, 'gcs_resources', limit_value, 0)) gcs_resources_limit,
+                       max(decode(r.resource_name, 'gcs_shadows', current_utilization, 0)) gcs_shadows_curr,
+                       max(decode(r.resource_name, 'gcs_shadows', max_utilization, 0)) gcs_shadows_max,
+                       max(decode(r.resource_name, 'gcs_shadows', limit_value, 0)) gcs_shadows_limit,
+                       max(decode(r.resource_name, 'ges_procs', current_utilization, 0)) ges_procs_curr,
+                       max(decode(r.resource_name, 'ges_procs', max_utilization, 0)) ges_procs_max,
+                       max(decode(r.resource_name, 'ges_procs', limit_value, 0)) ges_procs_limit
+                  from dba_hist_snapshot sn,
+                       dba_hist_resource_limit  r,
+                       (select snap_id, count(sample_id) cnt
+                          from(
+                                select snap_id, sample_id,
+                                       max(sample_id) over(partition by snap_id) max_sample_id
+                                  from dba_hist_active_sess_history ash ");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0}",arguments.DbId);
+
+                tmpSql.AppendFormat(" and instance_number = {0}",arguments.InstanceNumber);
+                tmpSql.Append(@" )
+
+                        where sample_id = max_sample_id
+                         group by snap_id) active_sess
+                where sn.snap_id = r.snap_id
+                  and sn.instance_number = r.instance_number
+                  and sn.dbid = r.dbid
+                  and sn.snap_id = active_sess.snap_id
+                  and r.resource_name in ('processes',
+                                          'sessions',
+                                          'enqueue_locks',
+                                          'max_rollback_segments',
+                                          'parallel_max_servers',
+                                          'gcs_resources',
+                                          'gcs_shadows',
+                                          'ges_procs') ");
+                //tmpSql.AppendFormat(" and r.snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               and r.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and r.instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and r.dbid = {0} " ,arguments.DbId);
+
+                tmpSql.AppendFormat("  group by sn.snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss')  order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 64
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetBuffer_pool(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select 	  sn.snap_id \""SnapID\""
+                          , snap_time \""Timestamp\""
+                          , block_size / 1024 || 'k' || substr(name, 1, 1) \""Pools\""
+                          , lpad(case
+                              when set_msize <= 9999
+                                   then to_char(set_msize) || ' '
+                              when trunc((set_msize) / 1000) <= 9999
+                                   then to_char(trunc((set_msize) / 1000)) || 'K'
+                              when trunc((set_msize) / 1000000) <= 9999
+                                   then to_char(trunc((set_msize) / 1000000)) || 'M'
+                              when trunc((set_msize) / 1000000000) <= 9999
+                                   then to_char(trunc((set_msize) / 1000000000)) || 'G'
+                              when trunc((set_msize) / 1000000000000) <= 9999
+                                   then to_char(trunc((set_msize) / 1000000000000)) || 'T'
+                              else substr(to_char(trunc((set_msize) / 1000000000000000)) || 'P', 1, 5) end , 7, ' ') \""numbufs\""
+                    , decode(db_block_gets + consistent_gets, 0, 0, 1 - (physical_reads / (db_block_gets + consistent_gets))) \""%Hit\""
+                         , db_block_gets + consistent_gets \""logical reads\""
+                         , physical_reads        \""ph.read\""
+                         , physical_writes       \""ph.write\""
+                         , free_buffer_wait      \""free buffer wait\""
+                         , write_complete_wait   \""write complete wait\""
+                         , buffer_busy_wait  \""buffer busy wait\""
+                 from(
+                     select  snap_id, block_size, name, set_msize,
+                         db_block_gets - lag(db_block_gets)    over(partition by block_size order  by snap_id) db_block_gets,
+                        consistent_gets - lag(consistent_gets)  over(partition by block_size order  by snap_id) consistent_gets,
+                        physical_reads - lag(physical_reads)   over(partition by block_size order  by snap_id) physical_reads,
+                        physical_writes - lag(physical_writes)  over(partition by block_size order  by snap_id) physical_writes,
+                        free_buffer_wait - lag(free_buffer_wait) over(partition by block_size order  by snap_id) free_buffer_wait,
+                        write_complete_wait - lag(write_complete_wait) over(partition by block_size order  by snap_id) write_complete_wait,
+                        buffer_busy_wait - lag(buffer_busy_wait) over(partition by block_size order  by snap_id) buffer_busy_wait
+
+                     from DBA_HIST_BUFFER_POOL_STAT ");
+                //tmpSql.AppendFormat("    where snap_id between & snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and   instance_number = {0}" ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and   dbid = {0} " ,arguments.DbId);
+
+
+                tmpSql.AppendFormat(@" and   name = 'DEFAULT'
+                    ) v1,
+                       (
+                       select snap_id,
+                              to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
+                              to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
+                               from dba_hist_snapshot ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} " ,arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and dbid = {0} " ,arguments.DbId);
+                tmpSql.Append(@" ) sn
+                 where v1.snap_id = sn.snap_id
+                 order by sn.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 64
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetBuffer_pool_other(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                      , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
+                      , e.block_size / 1024 || 'k' || substr(e.name, 1, 1) \""Pools\""
+                      , lpad(case
+                              when e.set_msize <= 9999
+                                   then to_char(e.set_msize) || ' '
+                              when trunc((e.set_msize) / 1000) <= 9999
+                                   then to_char(trunc((e.set_msize) / 1000)) || 'K'
+                              when trunc((e.set_msize) / 1000000) <= 9999
+                                   then to_char(trunc((e.set_msize) / 1000000)) || 'M'
+                              when trunc((e.set_msize) / 1000000000) <= 9999
+                                   then to_char(trunc((e.set_msize) / 1000000000)) || 'G'
+                              when trunc((e.set_msize) / 1000000000000) <= 9999
+                                   then to_char(trunc((e.set_msize) / 1000000000000)) || 'T'
+                              else substr(to_char(trunc((e.set_msize) / 1000000000000000)) || 'P', 1, 5) end
+                            , 7, ' ') \""numbufs\""
+                            , decode(e.db_block_gets - nvl(b.db_block_gets, 0)
+                              + e.consistent_gets - nvl(b.consistent_gets, 0)
+                             , 0, 0
+                              , (1 - ((e.physical_reads - nvl(b.physical_reads, 0))
+                                            / (e.db_block_gets - nvl(b.db_block_gets, 0)
+                                              + e.consistent_gets - nvl(b.consistent_gets, 0))
+                                     )
+                                )
+                             )                                                \""%Hit\""
+                     ,    e.db_block_gets - nvl(b.db_block_gets, 0)
+                       + e.consistent_gets - nvl(b.consistent_gets, 0)       \""buffer gets\""
+                     , e.physical_reads - nvl(b.physical_reads, 0)        \""ph. read\""
+                     , e.physical_writes - nvl(b.physical_writes, 0)       \""ph. write\""
+                     , e.free_buffer_wait - nvl(b.free_buffer_wait, 0)      \""free buffer wait\""
+                     , e.write_complete_wait - nvl(b.write_complete_wait, 0)   \""write complete wait\""
+                     , e.buffer_busy_wait - nvl(b.buffer_busy_wait, 0)      \""buffer busy wait\""
+                 from DBA_HIST_BUFFER_POOL_STAT b
+                     ,DBA_HIST_BUFFER_POOL_STAT e
+                     , DBA_HIST_SNAPSHOT S
+                  where b.snap_id(+) = e.snap_id - 1");
+                //tmpSql.AppendFormat("  and e.snap_id between  &snap_fr and & snap_to");
+                tmpSql.Append("               and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(" and b.dbid(+) = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and b.instance_number(+) = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number = {0} ", arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(@" and b.instance_number(+) = e.instance_number
+                  and b.id(+) = e.id
+                   and e.snap_id = s.snap_id");
+                tmpSql.AppendFormat("  and s.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and s.dbid = {0} ", arguments.DbId);
+                //tmpSql.AppendFormat(" and s.snap_id between  &snap_fr and & snap_to ");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and substr(e.name,1,1) <> 'D'     order by e.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 66
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetEnq_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select snap_id
+                          ,Time_stamp
+                          ,max(decode(rank, 1,wait_tm, 0))/1000  rank1_wait_tm
+                          ,max(decode(rank, 2,wait_tm, 0))/1000  rank2_wait_tm
+                          ,max(decode(rank, 3,wait_tm, 0))/1000  rank3_wait_tm
+                          ,max(decode(rank, 4,wait_tm, 0))/1000  rank4_wait_tm
+                          ,max(decode(rank, 5,wait_tm, 0))/1000  rank5_wait_tm
+                    from (
+                    select e.snap_id
+                          ,to_char(s.end_interval_time,'yyyy-mm-dd hh24:mi:ss') Time_stamp
+                          ,to_number(substr((s.end_interval_time-s.begin_interval_time)*86400,2,9)) interval
+                          ,rank
+                          ,(e.cum_wait_time - nvl(b.cum_wait_time,0))  wait_tm
+                    from DBA_HIST_ENQUEUE_STAT e
+                       , DBA_HIST_ENQUEUE_STAT b
+                       , DBA_HIST_SNAPSHOT S
+                       ,(select ety,req_reason,wttm, rownum rank
+                           from ( select e.eq_type  ety
+                                        ,e.req_reason
+                                        ,e.cum_wait_time - b.cum_wait_time  wttm
+                                    from DBA_HIST_ENQUEUE_STAT e
+                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                tmpSql.AppendFormat("   where b.snap_id         = {0}",arguments.SnapId);
+                tmpSql.AppendFormat(" and e.snap_id         = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat(" and b.dbid(+)            = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid               = {0} " ,arguments.DbId);
+                tmpSql.Append(" and b.dbid(+)            = e.dbid");
+                tmpSql.AppendFormat(" and b.instance_number(+) = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number    = {0} " ,arguments.InstanceNumber);
+                tmpSql.Append(@" and b.instance_number(+) = e.instance_number 
+
+                                 and b.eq_type(+)         = e.eq_type
+                                     and b.req_reason(+)      = e.req_reason
+                                     and e.total_wait# - nvl(b.total_wait#,0) > 0
+                                   order by wttm desc )  a
+                          where rownum <= 5  ) top_5
+                    where b.snap_id(+)         = e.snap_id - 1 ");
+                //tmpSql.AppendFormat(" and e.snap_id    between &snap_fr +1 and &snap_to ");
+                tmpSql.Append("               and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+)            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid               ={0} ", arguments.DbId);
+                tmpSql.Append(" and b.dbid(+)            = e.dbid ");
+                tmpSql.AppendFormat(" and b.instance_number(+) ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number    ={0} ", arguments.InstanceNumber);
+                tmpSql.Append(@" and b.eq_type            = e.eq_type 
+
+                and b.req_reason         = e.req_reason
+                       and e.eq_type = top_5.ety
+                       and b.eq_type = top_5.ety
+                       and e.req_reason = top_5.req_reason
+                       and b.req_reason = top_5.req_reason
+                       and e.snap_id = s.snap_id ");
+                tmpSql.AppendFormat(" and s.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and s.dbid = {0} ", arguments.DbId);
+                //tmpSql.AppendFormat(" and s.snap_id between  &snap_fr and &snap_to ");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(@" Order by e.snap_id )   
+                       Group by snap_id ,Time_stamp
+                    order by snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 66
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetEnq_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select rank||':'||ety || '-' || to_char(nvl(l.name,' '))
+                                || decode( upper(req_reason)
+                                   , 'CONTENTION', null
+                                   , '-',          null
+                                   , ' ('||req_reason||')')             Enqueu_type
+                    from v$lock_type l,
+                    (select ety,req_reason,wttm,rownum rank
+                      from  (select e.eq_type  ety,e.req_reason req_reason
+                                   ,e.cum_wait_time - b.cum_wait_time  wttm
+                              from DBA_HIST_ENQUEUE_STAT e
+                                  ,DBA_HIST_ENQUEUE_STAT b ");
+                tmpSql.Append("  where b.snap_id         =  ");
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.Append("   and e.snap_id         =  ");
+                tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+)            ={0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid               = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and b.dbid(+)            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and b.instance_number(+) = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and e.instance_number    ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@" and b.instance_number(+) = e.instance_number   and b.eq_type(+) = e.eq_type
+                                     and b.req_reason(+)      = e.req_reason
+                                     and e.total_wait# - nvl(b.total_wait#,0) > 0
+                                   order by wttm desc )  a
+                          where rownum <= 5  ) top_5
+                    where l.type(+) = top_5.ety
+                    order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 66
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetEnq_av_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select snap_id
+                          ,Time_stamp
+                          ,max(decode(rank, 1,av_wait_tm, 0))/1000  rank1_wait_tm
+                          ,max(decode(rank, 2,av_wait_tm, 0))/1000  rank2_wait_tm
+                          ,max(decode(rank, 3,av_wait_tm, 0))/1000  rank3_wait_tm
+                          ,max(decode(rank, 4,av_wait_tm, 0))/1000  rank4_wait_tm
+                          ,max(decode(rank, 5,av_wait_tm, 0))/1000  rank5_wait_tm
+                    from ( select e.snap_id Snap_ID
+                          ,to_char(s.end_interval_time,'yyyy-mm-dd hh24:mi:ss') Time_stamp
+                          ,rank
+                          ,decode((e.total_wait#   - nvl(b.total_wait#,0)), 0, 0,
+                                  (e.cum_wait_time - nvl(b.cum_wait_time,0))
+                                 /(e.total_wait# - nvl(b.total_wait#,0)))  av_wait_tm
+                    from DBA_HIST_ENQUEUE_STAT e
+                       , DBA_HIST_ENQUEUE_STAT b
+                       , DBA_HIST_SNAPSHOT S
+                       ,(select ety , rownum rank
+                           from ( select e.eq_type  ety,
+                                         decode((e.total_wait# - nvl(b.total_wait#,0)), 0, 0,
+                                                (e.cum_wait_time - nvl(b.cum_wait_time,0))
+                                               /(e.total_wait#   - nvl(b.total_wait#,0)))  awttm
+                                    from DBA_HIST_ENQUEUE_STAT e
+                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                tmpSql.AppendFormat(" where b.snap_id         =  ");
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.snap_id         =  ");
+                tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+)            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid               ={0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and b.dbid(+)            = e.dbid");
+                tmpSql.AppendFormat(" and b.instance_number(+) ={0} ", arguments.InstanceNumber);
+
+                tmpSql.AppendFormat(" and e.instance_number    ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and b.instance_number(+) = e.instance_number ");
+
+                tmpSql.AppendFormat(@" and b.eq_type(+)         = e.eq_type
+                                    and b.req_reason(+)      = e.req_reason
+                                     and e.total_wait# - nvl(b.total_wait#,0) > 0
+                                   order by awttm desc )  a
+                          where rownum <= 5  ) top_5
+                    where b.snap_id(+)         = e.snap_id - 1 ");
+                //tmpSql.AppendFormat("  and e.snap_id    between &snap_fr and &snap_to ");
+                tmpSql.Append("               and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+)            ={0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and e.dbid               ={0} ", arguments.DbId);
+                tmpSql.AppendFormat(" and b.dbid(+)            = e.dbid ");
+
+                tmpSql.AppendFormat(" and b.instance_number(+) = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number    ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"  and b.eq_type          = e.eq_type 
+                and b.req_reason         = e.req_reason
+                       and e.eq_type = top_5.ety
+                       and b.eq_type = top_5.ety
+                       and e.snap_id = s.snap_id");
+                tmpSql.AppendFormat("    and s.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and s.dbid = {0} ", arguments.DbId);
+                //tmpSql.AppendFormat("   and s.snap_id between  &snap_fr +1 and &snap_to");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"  Order by e.snap_id ) 
+                     Group by snap_id ,Time_stamp
+                    order by snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 66
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetEnq_av_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select ety || '-' ||req_reason|| ' ('||nvl(l.name,' ') ||')' Enqueu_type
+                    from v$lock_type l,
+                    (select ety,req_reason,awttm,rownum rank
+                      from  (select e.eq_type  ety,e.req_reason req_reason
+                                   ,decode((e.total_wait#   - nvl(b.total_wait#,0)), 0, 0
+                                          ,(e.cum_wait_time - nvl(b.cum_wait_time,0))
+                                          /(e.total_wait#   - nvl(b.total_wait#,0)))  awttm
+                                    from DBA_HIST_ENQUEUE_STAT e
+                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                tmpSql.AppendFormat(" where b.snap_id         = {0}"); 
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                     arguments.DbName,
+                     arguments.StartTimeKey,
+                     arguments.EndTimeKey,
+                     arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and e.snap_id         = {0}");
+                tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and b.dbid(+)            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and e.dbid               = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and b.dbid(+)            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and b.instance_number(+) = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and e.instance_number    = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"  and b.instance_number(+) = e.instance_number
+                                     and b.eq_type(+)         = e.eq_type
+                                     and b.req_reason(+)      = e.req_reason
+                                     and e.total_wait# - nvl(b.total_wait#,0) > 0
+                                   order by awttm desc )  a
+                          where rownum <= 5  ) top_5
+                    where l.type(+) = top_5.ety
+                    order by rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 66
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetEnq_raw(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select  e.snap_id \""SnapID\""
+                      , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
+                      , e.eq_type || '-' || to_char(nvl(l.name, ' '))
+                      || decode(upper(e.req_reason), 'CONTENTION', null, '-', null, ' (' || e.req_reason || ')')   Enqueu_type
+                     , e.total_req#    - nvl(b.total_req#,0)            \""Requests\""
+                     , e.succ_req#     - nvl(b.succ_req#,0)             \""Succ gets\""
+                     , e.failed_req#   - nvl(b.failed_req#,0)           \""Fail gets\""
+                     , e.total_wait#   - nvl(b.total_wait#,0)           \""Waits\""
+                     , (e.cum_wait_time - nvl(b.cum_wait_time, 0)) / 1000  \""Wait tm(s)\""
+                     , decode((e.total_wait#   - nvl(b.total_wait#,0)), 0,0,
+                              (e.cum_wait_time - nvl(b.cum_wait_time, 0))
+                             / (e.total_wait#   - nvl(b.total_wait#,0))) \""Avg. Wait tm(ms)\""
+                  from DBA_HIST_ENQUEUE_STAT e
+                     , DBA_HIST_ENQUEUE_STAT b
+                     , v$lock_type              l
+                     , DBA_HIST_SNAPSHOT S
+                 where b.snap_id(+) = e.snap_id - 1 ");
+                //tmpSql.AppendFormat("   and e.snap_id    between & snap_fr + 1 and & snap_to ");
+                tmpSql.Append("               and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and b.dbid(+) = {0}",arguments.DbId);
+                tmpSql.AppendFormat("   and e.dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat("  and b.dbid(+) = {0}", arguments.DbId);
+                tmpSql.AppendFormat("   and b.instance_number(+) = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"   and e.instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.Append(@" and b.instance_number(+) = e.instance_number
+                   and b.eq_type(+) = e.eq_type
+                   and b.req_reason(+) = e.req_reason
+                   and e.total_wait# - nvl(b.total_wait#,0) > 0
+                   and l.type(+) = e.eq_type
+                   and e.snap_id = s.snap_id");
+                 tmpSql.AppendFormat("   and s.INSTANCE_NUMBER = , arguments.InstanceNumber");
+                tmpSql.AppendFormat("    and s.dbid ={0}", arguments.DbId);
+                //tmpSql.AppendFormat("   and s.snap_id between & snap_fr and & snap_to");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  order by e.snap_id, 8 desc, 7 desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetLatch_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select
+                           e.snap_id  \""SnapID\"",
+                           snap_time \""Timestamp\"",
+                           max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1_wait_t,
+                           max(decode(rank, 2, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank2_wait_t,
+                           max(decode(rank, 3, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank3_wait_t,
+                           max(decode(rank, 4, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank4_wait_t,
+                           max(decode(rank, 5, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank5_wait_t,
+                           max(decode(rank, 1, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank1_missratio,
+                           max(decode(rank, 2, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank2_missratio,
+                           max(decode(rank, 3, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank3_missratio,
+                           max(decode(rank, 4, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank4_missratio,
+                           max(decode(rank, 5, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank5_missratio,
+                           max(decode(rank, 1, (e.misses - b.misses), 0)) rank1_misses,
+                           max(decode(rank, 2, (e.misses - b.misses), 0)) rank2_misses,
+                           max(decode(rank, 3, (e.misses - b.misses), 0)) rank3_misses,
+                           max(decode(rank, 4, (e.misses - b.misses), 0)) rank4_misses,
+                           max(decode(rank, 5, (e.misses - b.misses), 0)) rank5_misses
+                    from DBA_HIST_LATCH b
+                       , DBA_HIST_LATCH e
+                       , DBA_HIST_LATCH_NAME n
+                       , (
+                           select instance_number, snap_id
+                                  , to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                                  , to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
+                             from dba_hist_snapshot ");
+                //tmpSql.AppendFormat(" where snap_id between & snap_fr + 1 and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(@" ) s
+                         , (select latch_hash, rownum rank
+                           from(select b.latch_hash latch_hash
+                                       , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
+                                    from DBA_HIST_LATCH b
+                                       , DBA_HIST_LATCH e ");
+                tmpSql.AppendFormat(" where b.snap_id = {0} " ,arguments.SnapId);
+                tmpSql.AppendFormat(" and e.snap_id = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat(" and b.instance_number = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("and e.instance_number = {0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid = {0} ", arguments.DbId);
+
+                tmpSql.AppendFormat(@" and b.LATCH_HASH = e.LATCH_HASH 
+
+            order by WAIT_TIM desc) a
+                          where rownum <= 5
+                         ) top_5
+                    where b.snap_id(+) = e.snap_id - 1 ");
+                //tmpSql.AppendFormat(" and e.snap_id between &snap_fr and & snap_to ");
+                tmpSql.Append("               and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+) ={0} ", arguments.DbId);
+
+                tmpSql.AppendFormat(" and e.dbid ={0} ", arguments.DbId);
+                tmpSql.AppendFormat("and b.dbid(+) = e.dbid ");
+                tmpSql.AppendFormat(" and b.instance_number(+) ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number ={0} ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@" and b.LATCH_HASH = e.LATCH_HASH
+                   and e.LATCH_HASH = top_5.latch_hash
+                       and top_5.latch_hash = n.LATCH_HASH
+                       and b.LATCH_HASH = top_5.latch_hash
+                       and e.snap_id = s.snap_id
+                      Group by e.snap_id, snap_time
+                      Order by e.snap_id");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetLatch_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select n.latch_name latch5_Rank, rank
+                    from DBA_HIST_LATCH_NAME n,
+                         (select latch_hash ,rownum rank
+                           from ( select b.latch_hash latch_hash
+                                       , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
+                                    from DBA_HIST_LATCH b
+                                       , DBA_HIST_LATCH e ");
+                tmpSql.AppendFormat("    where b.snap_id         = {0} " ,arguments.SnapId);
+                tmpSql.AppendFormat("  and e.snap_id         = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat(" and b.instance_number = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and e.instance_number = {0} " ,arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and b.dbid(+)         = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(" and e.dbid            = {0} ", arguments.DbId);
+                tmpSql.AppendFormat(@" and b.LATCH_HASH      = e.LATCH_HASH
+                    order by WAIT_TIM desc
+                                ) a
+                           where rownum <= 5
+                         ) top_5
+                    where top_5.latch_hash = n.LATCH_HASH ");
+                tmpSql.AppendFormat(" and n.dbid={0} ", arguments.DbId);
+
+                tmpSql.Append(" order by top_5.rank");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetLatch_sleep(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                     , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
+                     , b.latch_name                                \""Name\""
+                     , e.gets - b.gets                      \""Gets\""
+                     , e.misses - b.misses                    \""Misses\""
+                     , e.sleeps - b.sleeps                    \""Sleeps\""
+                     , e.spin_gets - b.spin_gets                 \""Spin_gets\""
+                  from DBA_HIST_LATCH b
+                     , DBA_HIST_LATCH e
+                     , DBA_HIST_SNAPSHOT S ");
+                tmpSql.AppendFormat(" where b.snap_id = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat("   and e.snap_id = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat("    and b.dbid = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("    and e.dbid = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("    and b.dbid = e.dbid");
+                tmpSql.AppendFormat("    and b.instance_number ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and e.instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"    and b.instance_number = e.instance_number
+                   and b.latch_name = e.latch_name
+                   and e.sleeps - b.sleeps > 0
+                   and e.snap_id = s.snap_id");
+                tmpSql.AppendFormat("    and s.INSTANCE_NUMBER = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and s.dbid = {0} ", arguments.DbId);
+                //tmpSql.AppendFormat("    and s.snap_id between & snap_fr and & snap_to");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  order by e.snap_id, 5 desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetLatch_miss(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                     , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
+                     , e.parent_name                              parent
+                     , e.where_in_code                            \""where from\""
+                     , e.nwfail_count - nvl(b.nwfail_count, 0)    \""nowait_misses\""
+                     , e.sleep_count - nvl(b.sleep_count, 0)     sleeps
+                     , e.wtr_slp_count - nvl(b.wtr_slp_count, 0)   \""waiter_sleeps\""
+                  from DBA_HIST_LATCH_MISSES_SUMMARY b
+                     , DBA_HIST_LATCH_MISSES_SUMMARY e
+                     , DBA_HIST_SNAPSHOT S ");
+                tmpSql.AppendFormat("  where b.snap_id(+) ={0} ", arguments.SnapId);
+
+                tmpSql.AppendFormat("  and e.snap_id = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat("  and b.dbid(+) ={0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and e.dbid ={0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and b.dbid(+) = {0} ", arguments.DbId);
+                tmpSql.AppendFormat("  and b.instance_number(+) ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and e.instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"and b.instance_number(+) = e.instance_number
+                   and b.parent_name(+) = e.parent_name
+                   and b.where_in_code(+) = e.where_in_code
+                   and e.sleep_count > nvl(b.sleep_count, 0)
+                   and e.snap_id = s.snap_id");
+                  tmpSql.AppendFormat("  and s.INSTANCE_NUMBER ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and s.dbid ={0} ", arguments.DbId);
+                //tmpSql.AppendFormat("  and s.snap_id between & snap_fr and & snap_to");
+                tmpSql.Append("               and s.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  order by e.snap_id, e.parent_name, sleeps desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 69
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetRowcache(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                    decode(gets, 0, 0, getmisses / gets) \""getMiss /gets%\"",
+                    decode(scans, 0, 0, scanmisses / scans) \""scanMiss %\"",
+                    gets          \""Get\"",
+                    getmisses     \""getMiss\"",
+                    scans         \""Scan\"",
+                    scanmisses    \""scanMiss\"",
+                    modifications \""Modify\"",
+                    flushes       \""Flush\"",
+                    usage         \""Usage\"",
+                    dlm_requests  \""GES Request\"",
+                    dlm_conflicts \""GES Conflict\"",
+                    dlm_releases  \""GES Release\""
+                from(
+                    select  snap_id,
+                        sum(usage) - lag(sum(usage)) over(order by snap_id) usage,
+                        sum(gets) - lag(sum(gets)) over(order by snap_id) gets,
+                        sum(getmisses) - lag(sum(getmisses)) over(order by snap_id) getmisses,
+                        sum(scans) - lag(sum(scans)) over(order by snap_id) scans,
+                        sum(scanmisses) - lag(sum(scanmisses)) over(order by snap_id) scanmisses,
+                        sum(modifications) - lag(sum(modifications)) over(order by snap_id) modifications,
+                        sum(flushes) - lag(sum(flushes)) over(order by snap_id) flushes,
+                        sum(dlm_requests) - lag(sum(dlm_requests)) over(order by snap_id) dlm_requests,
+                        sum(dlm_conflicts) - lag(sum(dlm_conflicts)) over(order by snap_id) dlm_conflicts,
+                        sum(dlm_releases) - lag(sum(dlm_releases)) over(order by snap_id) dlm_releases
+                    from dba_hist_rowcache_summary ");
+                //tmpSql.AppendFormat(@"  where snap_id between & snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} ",arguments.DbId);
+
+                tmpSql.AppendFormat(@" group by snap_id
+                   ) a,
+                          (select snap_id,
+                                   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                              from dba_hist_snapshot ");
+                //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0} ",arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(@" ) b   
+                   where   a.snap_id = b.snap_id
+                order by 1, 4 desc, 5 desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 69
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetRowcache_raw(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                    parameter     \""Dictionary\"",
+                    decode(gets, 0, 0, getmisses / gets) \""getMiss/gets%\"",
+                    decode(scans, 0, 0, scanmisses / scans) \""scanMiss %\"",
+                    gets          \""Get\"",
+                    getmisses     \""getMiss\"",
+                    scans         \""Scan\"",
+                    scanmisses    \""scanMiss\"",
+                    modifications \""Modify\"",
+                    flushes       \""Flush\"",
+                    usage         \""Usage\"",
+                    dlm_requests  \""GES Request\"",
+                    dlm_conflicts \""GES Conflict\"",
+                    dlm_releases  \""GES Release\""
+                from(
+                    select  snap_id, parameter,
+                        usage,
+                        gets - lag(gets) over(partition by parameter order by parameter, snap_id) gets,
+                        getmisses - lag(getmisses) over(partition by parameter order by parameter, snap_id) getmisses,
+                        scans - lag(scans) over(partition by parameter order by parameter, snap_id) scans,
+                        scanmisses - lag(scanmisses) over(partition by parameter order by parameter, snap_id) scanmisses,
+                        modifications - lag(modifications) over(partition by parameter order by parameter, snap_id) modifications,
+                        flushes - lag(flushes) over(partition by parameter order by parameter, snap_id) flushes,
+                        dlm_requests - lag(dlm_requests) over(partition by parameter order by parameter, snap_id) dlm_requests,
+                        dlm_conflicts - lag(dlm_conflicts) over(partition by parameter order by parameter, snap_id) dlm_conflicts,
+                        dlm_releases - lag(dlm_releases) over(partition by parameter order by parameter, snap_id) dlm_releases
+
+                    from dba_hist_rowcache_summary ");
+                //tmpSql.AppendFormat(@"  where snap_id between & snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and instance_number = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0}" ,arguments.DbId);
+                tmpSql.AppendFormat(@"   ) a,
+                (select snap_id,
+                                   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                              from dba_hist_snapshot");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and instance_number = {0}" ,arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and dbid = {0} " ,arguments.DbId);
+                tmpSql.AppendFormat(@"  ) b
+                where   a.snap_id = b.snap_id
+                order by 1, 4 desc, 5 desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 70
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetLibrary_cache_hit(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select 	b.snap_id,
+		                b.snap_time, 
+		                a.gets,
+		                a.gethits,
+		                a.pins,
+		                a.pinhits,
+		                a.reloads,
+		                a.invalidations,
+		                pinhits/pins \""library_cache_hit % \""
+                from
+                    (select snap_id,
+                                --namespace,
+				                sum(gets)-lag(sum(gets),1) over(order by snap_id) gets,
+			                sum(gethits)-lag(sum(gethits),1) over(order by snap_id) gethits,
+			                sum(pins)-lag(sum(pins),1) over(order by snap_id) pins,
+			                sum(pinhits)-lag(sum(pinhits),1) over(order by snap_id) pinhits,
+			                sum(reloads)-lag(sum(reloads),1) over(order by snap_id) reloads,
+			                sum(invalidations)-lag(sum(invalidations),1) over(order by snap_id) invalidations
+                       from    dba_hist_librarycache ");
+                //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0}" ,arguments.DbId);
+                tmpSql.Append(@"  group by snap_id) a,
+                    (select snap_id, 
+                                    to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                                from dba_hist_snapshot");
+                //tmpSql.AppendFormat("   where snap_id between 1+ &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}",arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"   and dbid = {0}
+                            ) b
+                    where   a.snap_id=b.snap_id
+                    order by snap_time",arguments.DbId);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 70
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetLibrary_cache(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                    max(decode(namespace,'SQL AREA',reloads,0))        \""reload: sql\"",
+	                max(decode(namespace,'TABLE/PROCEDURE',reloads,0)) \""reload: tab/proc\"",
+	                max(decode(namespace,'TRIGGER',reloads,0))         \""reload: trg\"",
+	                max(decode(namespace,'BODY',reloads,0))            \""reload: body\"",
+	                max(decode(namespace,'SQL AREA',invalidations,0))        \""invalid: sql\"",
+	                max(decode(namespace,'TABLE/PROCEDURE',invalidations,0)) \""invalid: tab/proc\"",
+	                max(decode(namespace,'TRIGGER',invalidations,0))         \""invalid: trg\"",
+	                max(decode(namespace,'BODY',invalidations,0))            \""invalid: body\""
+                from(
+                    select snap_id,
+
+                            namespace,
+	                        gets-lag(gets,1) over(partition by namespace order by namespace,snap_id) gets,
+		                gethits-lag(gethits,1) over(partition by namespace order by namespace,snap_id) gethits,
+		                pins-lag(pins,1) over(partition by namespace order by namespace,snap_id) pins,
+		                pinhits-lag(pinhits,1) over(partition by namespace order by namespace,snap_id) pinhits,
+		                reloads-lag(reloads,1) over(partition by namespace order by namespace,snap_id) reloads,
+		                invalidations-lag(invalidations,1) over(partition by namespace order by namespace,snap_id) invalidations
+                   from    dba_hist_librarycache ");
+                //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}");
+                tmpSql.AppendFormat("    and dbid ={}");
+                tmpSql.AppendFormat(@"    and namespace in ('SQL AREA','TABLE/PROCEDURE','TRIGGER','BODY')
+                    ) a,
+                        ( select snap_id,
+                                 to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                            from dba_hist_snapshot");
+                        //tmpSql.AppendFormat("    where snap_id between 1+ &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and instance_number ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("      and dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"   ) b
+                 where   a.snap_id=b.snap_id
+                        group by b.snap_id, b.snap_time
+                        order by b.snap_time");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 70
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetLibrary_cache_raw(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                    namespace     \""Library\"",
+	                1-decode(gets,0,1, gethits/gets) \""getMiss %\"",
+	                1-decode(pins,0,1, pinhits/pins) \""pinMiss%\"",
+	                gets		\""Get\"",
+	                gethits		\""getHit\"",
+	                pins		\""Pin\"",
+	                pinhits		\""pinHit\"",
+	                reloads		\""Reload\"",
+	                invalidations	\""Invalid\"",
+	                dlm_lock_requests	\""GES lock req.\"",
+	                dlm_pin_requests	\""GES pin req.\"",
+	                dlm_pin_releases	\""GES pin release\"",
+	                dlm_invalidation_requests \""GES invalid req.\"",
+	                dlm_invalidations	\""GES invalid\""
+                from(
+                    select snap_id,namespace,
+		                gets-lag(gets,1) over(partition by namespace order by namespace,snap_id) gets,
+		                gethits-lag(gethits,1) over(partition by namespace order by namespace,snap_id) gethits,
+		                pins-lag(pins,1) over(partition by namespace order by namespace,snap_id) pins,
+		                pinhits-lag(pinhits,1) over(partition by namespace order by namespace,snap_id) pinhits,
+		                reloads-lag(reloads,1) over(partition by namespace order by namespace,snap_id) reloads,
+		                invalidations-lag(invalidations,1) over(partition by namespace order by namespace,snap_id) invalidations,
+		                dlm_lock_requests-lag(dlm_lock_requests,1) over(partition by namespace order by namespace,snap_id) dlm_lock_requests,
+		                dlm_pin_requests-lag(dlm_pin_requests,1) over(partition by namespace order by namespace,snap_id) dlm_pin_requests,
+		                dlm_pin_releases-lag(dlm_pin_releases,1) over(partition by namespace order by namespace,snap_id) dlm_pin_releases,
+		                dlm_invalidation_requests-lag(dlm_invalidation_requests,1) over(partition by namespace order by namespace,snap_id) dlm_invalidation_requests,
+		                dlm_invalidations-lag(dlm_invalidations,1) over(partition by namespace order by namespace,snap_id) dlm_invalidations
+                   from    dba_hist_librarycache ");
+                //tmpSql.AppendFormat(" where snap_id between &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid ={0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  ) a,
+                        (select snap_id,
+                                 to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                            from dba_hist_snapshot");
+                //tmpSql.AppendFormat("  where snap_id between 1+ &snap_fr and &snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"   ) b
+                where   a.snap_id=b.snap_id
+                order by 1, 4 desc, 5 desc");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 71
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetSga_raw1(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                        pool          \""Pool\"",
+                    name          \""Name\"",
+                    bytes / 1048576 \""Size(M)\"",
+                    (bytes - pre_bytes) / 1048576 \""A∑¨(M)\""
+                from(
+                    select  snap_id,
+                            nvl(pool, 'null') pool,
+                            name,
+                        bytes,
+                        nvl(lag(bytes, 1) over(partition by pool, name order by pool, name, snap_id), 0) pre_bytes
+
+                    from dba_hist_sgastat ");
+
+                //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and     instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and     dbid ={0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  and(nvl(pool, 'null') <> 'shared pool' or(pool = 'shared pool' and name < 'h'))
+                        ) a,
+                        (select snap_id,
+                                 to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                            from dba_hist_snapshot");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and dbid ={0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  ) b
+                where   a.snap_id = b.snap_id
+                order by pool,name,snap_time");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 71
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetSga_raw2(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                        b.snap_time   \""Timestamp\"",
+                        pool          \""Pool\"",
+                    name          \""Name\"",
+                    bytes / 1048576 \""Size(M)\"",
+                    (bytes - pre_bytes) / 1048576 \""A∑¨(M)\""
+                from(
+                    select  snap_id,
+                            nvl(pool, 'null') pool,
+                            name,
+                        bytes,
+                        nvl(lag(bytes, 1) over(partition by pool, name order by pool, name, snap_id), 0) pre_bytes
+
+                    from dba_hist_sgastat ");
+
+                //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and     instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and     dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  and     pool = 'shared pool'
+                        and     name >= 'h'
+                    ) a,
+                        (select snap_id,
+                                 to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                            from dba_hist_snapshot");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  ) b
+                where   a.snap_id = b.snap_id
+                order by pool,name,snap_time");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 71
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetSga(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"select 
+                    b.snap_id     \""SnapID\"",
+                    b.snap_time   \""Timestamp\"",
+                    sum(case when pool = 'null' and name = 'buffer_cache' then bytes / 1048576 else 0 end) \""buf.cache(M)\"",
+                    sum(case when pool = 'null' and name = 'log_buffer'   then bytes / 1048576 else 0 end) \""log.buf(M)\"",
+                    sum(case when pool = 'shared pool'                  then bytes / 1048576 else 0 end) \""shared.pool(M)\"",
+                    sum(case when pool = 'java pool'                    then bytes / 1048576 else 0 end) \""java.pool(M)\"",
+                    sum(case when pool = 'large pool'                   then bytes / 1048576 else 0 end) \""large.pool(M)\"",
+                    sum(case when pool = 'streams pool'                 then bytes / 1048576 else 0 end) \""streams.pool(M)\"",
+                    sum(case when pool = 'shared pool'  and name = 'SQLA' then bytes / 1048576 else 0 end) \""sqlarea(M)\"",
+                    sum(case when pool = 'shared pool'  and name in ('library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS') then bytes / 1048576 else 0 end) \""lib.cache(M)\"",
+                    sum(case when pool = 'shared pool'  and name not in ('SQLA', 'library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS', 'free memory') then bytes / 1048576 else 0 end) \""others(M)\"",
+                    sum(case when pool = 'shared pool'  and name = 'free memory' then bytes / 1048576 else 0 end) \""free(M)\"",
+                    sum(case when pool = 'large pool'   and name <> 'free memory' then bytes / 1048576 else 0 end) \""largepool:used(M)\"",
+                    sum(case when pool = 'large pool'   and name = 'free memory' then bytes / 1048576 else 0 end) \""largepool:free(M)\"",
+                    sum(case when pool = 'java pool'    and name <> 'free memory' then bytes / 1048576 else 0 end) \""javapool:used(M)\"",
+                    sum(case when pool = 'java pool'    and name = 'free memory' then bytes / 1048576 else 0 end) \""javapool:free(M)\"",
+                    sum(case when pool = 'streams pool' and name <> 'free memory' then bytes / 1048576 else 0 end) \""streams:used(M)\"",
+                    sum(case when pool = 'streams pool' and name = 'free memory' then bytes / 1048576 else 0 end) \""streams:free(M)\""
+                from(
+                    select  snap_id,
+                            nvl(pool, 'null') pool,
+                            name,
+                        bytes
+                    from dba_hist_sgastat ");
+                //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("     and     instance_number ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("      and     dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  ) a,
+                        (select snap_id,
+                                 to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
+                            from dba_hist_snapshot");
+                         //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and instance_number ={0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("    and dbid ={0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  ) b
+                where   a.snap_id = b.snap_id
+                group by b.snap_id, b.snap_time
+                order by b.snap_time");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 72
+        /// </summary>
+        /// <param name="arguments"></param>
+        public void GetLog_info(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
