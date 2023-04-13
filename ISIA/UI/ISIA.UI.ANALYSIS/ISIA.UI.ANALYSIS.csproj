@@ -202,11 +202,11 @@
     <Compile Include="FrmSQLStatisticsBySqlID.Designer.cs">
       <DependentUpon>FrmSQLStatisticsBySqlID.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmParameterTClusteringAnalysis.cs">
+    <Compile Include="FrmParameterClusteringAnalysis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmParameterTClusteringAnalysis.Designer.cs">
-      <DependentUpon>FrmParameterTClusteringAnalysis.cs</DependentUpon>
+    <Compile Include="FrmParameterClusteringAnalysis.Designer.cs">
+      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmWorkloadSqlCorrelationAnalysis.cs">
       <SubType>Form</SubType>
@@ -235,10 +235,6 @@
     <Compile Include="UIService\IInitService.cs" />
     <Compile Include="UIService\IRun.cs" />
     <Compile Include="UIService\IUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\InitializationComboxParmTypeUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\InitializationUIService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\SerchUiService.cs" />
-    <Compile Include="UIService\UIServiceImpl\Trend.UI\FrmParameterClusteringAnalysis\ShowComboxParmNamesUIService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
@@ -259,8 +255,8 @@
     <EmbeddedResource Include="FrmSQLStatisticsBySqlID.resx">
       <DependentUpon>FrmSQLStatisticsBySqlID.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmParameterTClusteringAnalysis.resx">
-      <DependentUpon>FrmParameterTClusteringAnalysis.cs</DependentUpon>
+    <EmbeddedResource Include="FrmParameterClusteringAnalysis.resx">
+      <DependentUpon>FrmParameterClusteringAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadSqlCorrelationAnalysis.resx">
       <DependentUpon>FrmWorkloadSqlCorrelationAnalysis.cs</DependentUpon>
@@ -288,7 +284,9 @@
     <None Include="ISIA.UI.ANALYSIS.csproj.bak" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UIService\UIServiceImpl\Trend.UI\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
