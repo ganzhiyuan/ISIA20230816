@@ -52,8 +52,6 @@ namespace ISIA.UI.ANALYSIS
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.ParameterClusteringAnalysis");
 
-            /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
-            this.dateEnd.DateTime = DateTime.Now;*/
             cmbTime.Text = "D";
             cmbTime.Items.Add("D");
             cmbTime.Items.Add("W");
@@ -447,7 +445,6 @@ namespace ISIA.UI.ANALYSIS
                 chart1.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
 
                 LayoutControlItem layoutControlItem = new LayoutControlItem();
-                //layoutControlItem.SizeConstraintsType = SizeConstraintsType.Custom;//控件的大小设置为自定义
 
                 layoutControlItem.Name = chartnum.ToString();
                 layoutControlItem.Control = chart1;
@@ -457,20 +454,7 @@ namespace ISIA.UI.ANALYSIS
                 colindex++;
                 
                 layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem });
-                /*if (chartnum % 3 == 0 && chartnum != 0)
-                {
-
-                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 3], InsertType.Bottom);
-
-                }
-                else if (chartnum == 0)
-                {
-
-                }
-                else 
-                {
-                    layoutControlItem.Move(layoutControlGroup1.Items[chartnum - 1], InsertType.Right);
-                }*/
+                
                 
 
             }
@@ -631,6 +615,22 @@ namespace ISIA.UI.ANALYSIS
             }
 
 
+        }
+
+        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            // 判断是否点击的是行标题，如果是则返回
+            if (e.RowHandle < 0) return;
+
+            // 获取当前行的数据
+            DataRow row = gridView1.GetDataRow(e.RowHandle);
+
+
+            // 获取指定 layoutControlGroup1 中包含的控件对象
+            Control control = ((LayoutControlItem)layoutControlGroup1.Items[Convert.ToInt32(row["CHART_NUM"].ToString())]).Control;
+
+            // 设置该控件为焦点
+            control.Focus();
         }
     }
 }

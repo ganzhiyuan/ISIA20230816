@@ -341,8 +341,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 337;
-            this.navBarControl1.Size = new System.Drawing.Size(337, 850);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 421;
+            this.navBarControl1.Size = new System.Drawing.Size(421, 1063);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -416,6 +416,7 @@ namespace ISIA.UI.ANALYSIS
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 95);
             this.dtpStartTime.Size = new System.Drawing.Size(118, 24);
@@ -443,6 +444,7 @@ namespace ISIA.UI.ANALYSIS
             this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm:ss";
             this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm:ss");
             this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 105);
             this.dtpEndTime.Size = new System.Drawing.Size(120, 24);
@@ -980,8 +982,8 @@ namespace ISIA.UI.ANALYSIS
             this.tSplitContainerControl1.Panel2.Controls.Add(this.tPanel6);
             this.tSplitContainerControl1.Panel2.Text = "Panel2";
             this.tSplitContainerControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tSplitContainerControl1.Size = new System.Drawing.Size(1661, 492);
-            this.tSplitContainerControl1.SplitterPosition = 1800;
+            this.tSplitContainerControl1.Size = new System.Drawing.Size(2076, 615);
+            this.tSplitContainerControl1.SplitterPosition = 1621;
             this.tSplitContainerControl1.TabIndex = 0;
             // 
             // tplychart
@@ -994,7 +996,7 @@ namespace ISIA.UI.ANALYSIS
             this.tplychart.Name = "tplychart";
             this.tplychart.NeedToTranslate = true;
             this.tplychart.RepresentativeValue = "tplychart [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tplychart.Size = new System.Drawing.Size(2573, 769);
+            this.tplychart.Size = new System.Drawing.Size(1621, 615);
             this.tplychart.TabIndex = 0;
             // 
             // layoutControl2
@@ -1004,7 +1006,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(2569, 765);
+            this.layoutControl2.Size = new System.Drawing.Size(1617, 611);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -1014,7 +1016,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(2569, 765);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1617, 611);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tPanel6
@@ -1027,16 +1029,16 @@ namespace ISIA.UI.ANALYSIS
             this.tPanel6.Name = "tPanel6";
             this.tPanel6.NeedToTranslate = true;
             this.tPanel6.RepresentativeValue = "tPanel6 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel6.Size = new System.Drawing.Size(0, 0);
+            this.tPanel6.Size = new System.Drawing.Size(440, 615);
             this.tPanel6.TabIndex = 0;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(0, 0);
+            this.gridControl1.Size = new System.Drawing.Size(436, 611);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1045,15 +1047,17 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
-            // FrmParameterTClusteringAnalysis
+            // FrmParameterClusteringAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2028, 1013);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmParameterTClusteringAnalysis";
+            this.Name = "FrmParameterClusteringAnalysis";
             this.Text = "Parameter Clustering Analysis";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);

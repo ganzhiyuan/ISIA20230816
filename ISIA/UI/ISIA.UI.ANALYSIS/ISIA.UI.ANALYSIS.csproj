@@ -231,10 +231,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UIService\CommonUIService.cs" />
-    <Compile Include="UIService\IInitService.cs" />
-    <Compile Include="UIService\IRun.cs" />
-    <Compile Include="UIService\IUIService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
@@ -284,9 +280,7 @@
     <None Include="ISIA.UI.ANALYSIS.csproj.bak" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UIService\UIServiceImpl\Trend.UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
