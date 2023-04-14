@@ -20,7 +20,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"with load_v as (select sy.stat_name, sy.snap_id, sn.end_interval_time, nvl(sy.value, 0) - nvl(lag(sy.value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_val,
+                tmpSql.AppendFormat(@"with load_v as (select sy.stat_name, sy.snap_id, sn.end_interval_time, nvl(sy.value, 0) - nvl(lag(sy.value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_val,
                          case
                            when(extract(day from
                                         sn.end_interval_time -lag(sn.end_interval_time) over(partition by sy.stat_name order by sy.snap_id)) * 86400 + extract(hour from
@@ -49,8 +49,8 @@ namespace ISIA.BIZ.TREND
                          nvl(lag(latch.gets) over(order by latch.snap_id), 0) delta_gets,
                          nvl(latch.misses, 0) -
                          nvl(lag(latch.misses) over(order by latch.snap_id), 0) delta_misses
-                    from raw_dba_hist_sysstat_isfa sy,
-                         dba_hist_snapshot sn,
+                    from raw_dba_hist_sysstat_{0} sy,
+                         raw_dba_hist_snapshot_{0} sn,
                          (select snap_id,
                                  instance_number,
                                  dbid,
@@ -106,7 +106,7 @@ namespace ISIA.BIZ.TREND
                                           'physical reads cache',
                                           'parse time cpu',
                                           'parse time elapsed',
-                                          'CPU used by this session')");
+                                          'CPU used by this session')",arguments.DbName);
                 //tmpSql.AppendFormat("and sn.snap_id between {0} and {1}", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -266,7 +266,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"With load_rac_v AS (
+                tmpSql.AppendFormat(@"With load_rac_v AS (
                 select  	
                 sy.stat_name,
                 sy.snap_id,
@@ -309,11 +309,11 @@ namespace ISIA.BIZ.TREND
                      nvl(cus.flush100, 0) - nvl(lag(cus.flush100) over(order by cus.snap_id), 0) delta_cusf100,
                      nvl(cus.flush1000, 0) - nvl(lag(cus.flush1000) over(order by cus.snap_id), 0) delta_cusf1000,
                      nvl(cus.flush10000, 0) - nvl(lag(cus.flush10000) over(order by cus.snap_id), 0) delta_cusf10000
-                 from dba_hist_snapshot sn,
-                      dba_hist_dlm_misc dm,
-                     dba_hist_current_block_server cus,
-                     dba_hist_cr_block_server cbs,
-                     dba_hist_sysstat sy
+                 from raw_dba_hist_snapshot_{0} sn,
+                      raw_dba_hist_dlm_misc_{0} dm,
+                     raw_dba_hist_current_block_server_{0} cus,
+                     raw_dba_hist_cr_block_server_{0} cbs,
+                     raw_dba_hist_sysstat_{0} sy
                        where sy.snap_id = sn.snap_id
                               and sy.instance_number = sn.instance_number
                               and sy.dbid = sn.dbid
@@ -365,7 +365,7 @@ namespace ISIA.BIZ.TREND
                                            'msgs sent queue time on ksxp (ms)',
                                            'msgs received queue time (ms)',
                                            'msgs received queued'
-                                          )");
+                                          )",arguments.DbName);
                 //tmpSql.AppendFormat("          and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -375,7 +375,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0}", arguments.DbId);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
-                tmpSql.Append(@"  )   select snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"  )   select snap_id \""SnapID\"",
                            to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                            max(decode(stat_name, 'gc cr blocks received', delta, 0)) +
                            max(decode(stat_name, 'gc current blocks received', delta, 0)) \""GC blocks received\"",
@@ -390,8 +390,8 @@ namespace ISIA.BIZ.TREND
                              max(decode(stat_name, 'gc current blocks received', delta, 0)) +
                              max(decode(stat_name, 'gc cr blocks served', delta, 0)) +
                              max(decode(stat_name, 'gc current blocks served', delta, 0))
-                            ) * (select to_number(value) from dba_hist_parameter
-                                  where parameter_name = 'db_block_size' ");
+                            ) * (select to_number(value) from raw_dba_hist_parameter_{0}
+                                  where parameter_name = 'db_block_size' ", arguments.DbName);
                 tmpSql.AppendFormat("   and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("    and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat("and snap_id = {0}) ", arguments.SnapId);
@@ -424,7 +424,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"With load_rac_v AS (select sy.stat_name,
+                tmpSql.AppendFormat(@"With load_rac_v AS (select sy.stat_name,
               sy.snap_id,
               sn.end_interval_time,
               nvl(sy.value, 0) - nvl(lag(sy.value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_val,
@@ -465,11 +465,11 @@ namespace ISIA.BIZ.TREND
               nvl(cus.flush100, 0) - nvl(lag(cus.flush100) over(order by cus.snap_id), 0) delta_cusf100,
               nvl(cus.flush1000, 0) - nvl(lag(cus.flush1000) over(order by cus.snap_id), 0) delta_cusf1000,
               nvl(cus.flush10000, 0) - nvl(lag(cus.flush10000) over(order by cus.snap_id), 0) delta_cusf10000
-          from dba_hist_snapshot sn,
-               dba_hist_dlm_misc dm,
-              dba_hist_current_block_server cus,
-              dba_hist_cr_block_server cbs,
-              dba_hist_sysstat sy
+          from raw_dba_hist_snapshot_{0} sn,
+               raw_dba_hist_dlm_misc_{0} dm,
+              raw_dba_hist_current_block_server_{0} cus,
+              raw_dba_hist_cr_block_server_{0} cbs,
+              raw_dba_hist_sysstat_{0} sy
    where sy.snap_id = sn.snap_id
           and sy.instance_number = sn.instance_number
           and sy.dbid = sn.dbid
@@ -521,7 +521,7 @@ namespace ISIA.BIZ.TREND
                        'msgs sent queue time on ksxp (ms)',
                        'msgs received queue time (ms)',
                        'msgs received queued'
-                      ) ");
+                      ) ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -576,7 +576,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"With load_rac_v AS (select 		
+                tmpSql.AppendFormat(@"With load_rac_v AS (select 		
               sy.stat_name,
               sy.snap_id,
               sn.end_interval_time,
@@ -618,11 +618,11 @@ namespace ISIA.BIZ.TREND
               nvl(cus.flush100, 0) - nvl(lag(cus.flush100) over(order by cus.snap_id), 0) delta_cusf100,
               nvl(cus.flush1000, 0) - nvl(lag(cus.flush1000) over(order by cus.snap_id), 0) delta_cusf1000,
               nvl(cus.flush10000, 0) - nvl(lag(cus.flush10000) over(order by cus.snap_id), 0) delta_cusf10000
-          from dba_hist_snapshot sn,
-               dba_hist_dlm_misc dm,
-              dba_hist_current_block_server cus,
-              dba_hist_cr_block_server cbs,
-              dba_hist_sysstat sy
+          from raw_dba_hist_snapshot_{0} sn,
+               raw_dba_hist_dlm_misc_{0} dm,
+              raw_dba_hist_current_block_server_{0} cus,
+              raw_dba_hist_cr_block_server_{0} cbs,
+              raw_dba_hist_sysstat_{0} sy
    where sy.snap_id = sn.snap_id
           and sy.instance_number = sn.instance_number
           and sy.dbid = sn.dbid
@@ -674,7 +674,7 @@ namespace ISIA.BIZ.TREND
                        'msgs sent queue time on ksxp (ms)',
                        'msgs received queue time (ms)',
                        'msgs received queued'
-                      ) ");
+                      ) ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -758,7 +758,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
        v_dbtime.delta / 1000000 \""DB time\"",
        decode(sum(case when v_call.stat_name in ('user calls', 'recursive calls') then v_call.delta else 0 end),0,0,
@@ -799,8 +799,8 @@ namespace ISIA.BIZ.TREND
                                         event_name,
                                         nvl(time_waited_micro -
                                             lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta
-                                   from dba_hist_system_event
-                                  where wait_class != 'Idle' ");
+                                   from raw_dba_hist_system_event_{0}
+                                  where wait_class != 'Idle' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -810,12 +810,12 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" union all
+                tmpSql.AppendFormat(@" union all
                                  select snap_id,
                                         decode(stat_name, 'DB CPU', 'CPU time', stat_name) event_name,
                                         nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
-                                   from dba_hist_sys_time_model
-                                  where stat_name = 'DB CPU' ");
+                                   from raw_dba_hist_sys_time_model_{0}
+                                  where stat_name = 'DB CPU' ", arguments.DbName);
                 //tmpSql.AppendFormat("                    and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -825,7 +825,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("                    and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("                     and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"               )  group by event_name order by sum(delta) desc
+                tmpSql.AppendFormat(@"               )  group by event_name order by sum(delta) desc
                        )
                     where rownum <= 5
                  ) v_rank,
@@ -833,8 +833,8 @@ namespace ISIA.BIZ.TREND
                           event_name,
                           nvl(total_waits - lag(total_waits) over(partition by event_name order by snap_id), 0) delta_wait,
                           nvl(time_waited_micro - lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta_time
-                     from dba_hist_system_event
-                    where wait_class != 'Idle' ");
+                     from raw_dba_hist_system_event_{0}
+                    where wait_class != 'Idle' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -844,13 +844,13 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" union all
+                tmpSql.AppendFormat(@" union all
                    select snap_id,
                           decode(stat_name, 'DB CPU', 'CPU time', stat_name) event_name,
                           NULL,
                           nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
-                     from dba_hist_sys_time_model
-                    where stat_name = 'DB CPU' ");
+                     from raw_dba_hist_sys_time_model_{0}
+                    where stat_name = 'DB CPU' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -860,14 +860,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("       and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0}", arguments.DbId);
-                tmpSql.Append(@" ) v_wait
+                tmpSql.AppendFormat(@" ) v_wait
      
                 where v_wait.event_name = v_rank.event_name
           ) v1,
           (select snap_id,
                    nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
-           from dba_hist_sys_time_model
-          where stat_name = 'DB time' ");
+           from raw_dba_hist_sys_time_model_{0}
+          where stat_name = 'DB time' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -877,12 +877,12 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" ) v_dbtime,
+                tmpSql.AppendFormat(@" ) v_dbtime,
                (select snap_id,
                    stat_name,
                    nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
-           from dba_hist_sysstat
-          where stat_name in ('user calls', 'recursive calls', 'execute count') ");
+           from raw_dba_hist_sysstat_{0}
+          where stat_name in ('user calls', 'recursive calls', 'execute count') ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -892,10 +892,10 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" ) v_call,
+                tmpSql.AppendFormat(@" ) v_call,
                (select snap_id,
                    end_interval_time
-              from dba_hist_snapshot");
+              from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -933,7 +933,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@" select event_name||' ('|| decode(event_name,'CPU time','N/A',wait_class)||')' AS \""Wait5_Rank\"", rownum rank
+                tmpSql.AppendFormat(@" select event_name||' ('|| decode(event_name,'CPU time','N/A',wait_class)||')' AS \""Wait5_Rank\"", rownum rank
            from
               (select event_name, wait_class, sum(nvl(delta, 0))
                   from
@@ -942,8 +942,8 @@ namespace ISIA.BIZ.TREND
                              wait_class,
                              nvl(time_waited_micro -
                               lag(time_waited_micro) over(partition by event_name order by snap_id), 0) delta
-                        from dba_hist_system_event
-                       where wait_class != 'Idle' ");
+                        from raw_dba_hist_system_event_{0}
+                       where wait_class != 'Idle' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -953,10 +953,10 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0}", arguments.DbId);
-                tmpSql.Append(@" union all  select snap_id,decode(stat_name, 'DB CPU', 'CPU time', stat_name) event_name,null,
+                tmpSql.AppendFormat(@" union all  select snap_id,decode(stat_name, 'DB CPU', 'CPU time', stat_name) event_name,null,
                              nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  delta
-                        from dba_hist_sys_time_model
-                       where stat_name = 'DB CPU'");
+                        from raw_dba_hist_sys_time_model_{0}
+                       where stat_name = 'DB CPU'", arguments.DbName);
                 //tmpSql.AppendFormat(" and snap_id between {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" and snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -988,7 +988,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select  snap_id,
+                tmpSql.AppendFormat(@"select  snap_id,
         to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
         sum(decode(stat_name, 'DB time', delta / 1000000, 0)) \""DB time\"",
         sum(decode(stat_name, 'DB CPU', delta / 1000000, 0)) \""DB CPU\"",
@@ -1035,11 +1035,11 @@ namespace ISIA.BIZ.TREND
                        stm.stat_name,
                       (nvl(value - lag(value)
                          over(partition by stm.stat_name order by stm.snap_id), 0)) delta
-                  from dba_hist_sys_time_model stm,
-                       dba_hist_snapshot sn
+                  from raw_dba_hist_sys_time_model_{0} stm,
+                       raw_dba_hist_snapshot_{0} sn
                  where stm.snap_id = sn.snap_id
                    and stm.instance_number = sn.instance_number
-                   and stm.dbid = sn.dbid");
+                   and stm.dbid = sn.dbid", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1071,7 +1071,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select  snap_id,
+                tmpSql.AppendFormat(@"select  snap_id,
                     to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                     max(decode(stat_name, 'BUSY_TIME', delta, 0)) / 100 \""BUSY_TIME\"",
                     max(decode(stat_name, 'IDLE_TIME', delta, 0)) / 100 \""IDLE_TIME\"",
@@ -1104,11 +1104,11 @@ namespace ISIA.BIZ.TREND
                             (nvl(value - lag(value)
                               over(partition by stat_name order by os.snap_id), 0)) delta,
                             os.value value
-                      from dba_hist_osstat os,
-                           dba_hist_snapshot sn
+                      from raw_dba_hist_osstat_{0} os,
+                           raw_dba_hist_snapshot_{0} sn
                      where os.snap_id = sn.snap_id
                        and os.instance_number = sn.instance_number
-                       and os.dbid = sn.dbid ");
+                       and os.dbid = sn.dbid ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1140,7 +1140,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select  snap_id,
+                tmpSql.AppendFormat(@"select  snap_id,
                         to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                         max(decode(stat_name, 'logons current', value, 0)) \""logons current\"",
                         max(decode(stat_name, 'opened cursors current', value, 0)) \""opened cursors current\"",
@@ -1157,7 +1157,7 @@ namespace ISIA.BIZ.TREND
                                        dbid,
                                        stat_name,
                                        value
-                                  from dba_hist_sysstat sy
+                                  from raw_dba_hist_sysstat_{0} sy
                                  where sy.stat_name in ('logons current',
                                                          'opened cursors current',
                                                          'workarea memory allocated',
@@ -1172,10 +1172,10 @@ namespace ISIA.BIZ.TREND
                                  where status = 'OPEN'
                                   group by snap_id, instance_number, dbid
                                ) v1,
-                               dba_hist_snapshot sn
+                               raw_dba_hist_snapshot_{0} sn
                          where v1.snap_id = sn.snap_id
                            and v1.instance_number = sn.instance_number
-                           and v1.dbid = sn.dbid ");
+                           and v1.dbid = sn.dbid ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1207,7 +1207,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
        max(decode(rank, 1, elap / 1000000, 0)) rank1_elap,
        max(decode(rank, 2, elap / 1000000, 0)) rank2_elap,
@@ -1249,7 +1249,7 @@ namespace ISIA.BIZ.TREND
             from(select sql_id, rownum rank
                      from
                         (select sql_id, sum(nvl(elapsed_time_delta, 0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1259,7 +1259,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" group by sql_id order by sum(nvl(elapsed_time_delta, 0)) desc)
+                tmpSql.AppendFormat(@" group by sql_id order by sum(nvl(elapsed_time_delta, 0)) desc)
                     where rownum <= 5
                  ) v_rank,
                  (select snap_id,
@@ -1268,7 +1268,7 @@ namespace ISIA.BIZ.TREND
                           elapsed_time_delta elap,
                           cpu_time_delta cput,
                           executions_delta exec
-                     from dba_hist_sqlstat ");
+                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1284,12 +1284,12 @@ namespace ISIA.BIZ.TREND
           (select sn.snap_id,
                    sn.end_interval_time,
                    nvl(value - lag(value) over(partition by stm.stat_name order by stm.snap_id), 0)  delta_dbtime
-             from dba_hist_snapshot sn,
-                  dba_hist_sys_time_model stm
+             from raw_dba_hist_snapshot_{0} sn,
+                  raw_dba_hist_sys_time_model_{0} stm
             where sn.snap_id = stm.snap_id
                and sn.instance_number = stm.instance_number
                and sn.dbid = stm.dbid
-               and stm.stat_name = 'DB time' ");
+               and stm.stat_name = 'DB time' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and stm.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and stm.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1321,9 +1321,9 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                   from (select sql_id, sum(nvl(elapsed_time_delta, 0))
-                          from dba_hist_sqlstat ");
+                          from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1355,7 +1355,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                      v1.sql_id,
                      v1.module,
                      nvl(replace(replace(replace(to_char(substr(st.sql_text, 1, 2500)),
@@ -1371,7 +1371,7 @@ namespace ISIA.BIZ.TREND
                                      dbid,
                                      module,
                                      sum(nvl(elapsed_time_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1407,7 +1407,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
                        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                        max(decode(rank, 1, cput / 1000000, 0)) rank1_cput,
                        max(decode(rank, 2, cput / 1000000, 0)) rank2_cput,
@@ -1449,7 +1449,7 @@ namespace ISIA.BIZ.TREND
                             from(select sql_id, rownum rank
                                      from
                                         (select sql_id, sum(nvl(cpu_time_delta, 0))
-                                            from dba_hist_sqlstat ");
+                                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1459,7 +1459,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid ={0} ", arguments.DbId);
-                tmpSql.Append(@" group by sql_id order by sum(nvl(cpu_time_delta, 0)) desc
+                tmpSql.AppendFormat(@" group by sql_id order by sum(nvl(cpu_time_delta, 0)) desc
                 )
                                     where rownum <= 5
                                  ) v_rank,
@@ -1469,7 +1469,7 @@ namespace ISIA.BIZ.TREND
                                           elapsed_time_delta elap,
                                           cpu_time_delta cput,
                                           executions_delta exec
-                                     from dba_hist_sqlstat ");
+                                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1479,18 +1479,18 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" ) v_sqlstat 
+                tmpSql.AppendFormat(@" ) v_sqlstat 
                             where v_sqlstat.sql_id = v_rank.sql_id
                           ) v1,
                           (select sn.snap_id,
                                    sn.end_interval_time,
                                    nvl(value - lag(value) over(partition by stm.stat_name order by stm.snap_id), 0)  delta_dbtime
-                             from dba_hist_snapshot sn,
-                                  dba_hist_sys_time_model stm
+                             from raw_dba_hist_snapshot_{0} sn,
+                                  raw_dba_hist_sys_time_model_{0} stm
                             where sn.snap_id = stm.snap_id
                                and sn.instance_number = stm.instance_number
                                and sn.dbid = stm.dbid
-                               and stm.stat_name = 'DB time' ");
+                               and stm.stat_name = 'DB time' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and stm.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and stm.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1526,10 +1526,10 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@" select sql_id, rownum rank
+                tmpSql.AppendFormat(@" select sql_id, rownum rank
                      from
                         ( select sql_id, sum(nvl(cpu_time_delta,0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1+ {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1560,7 +1560,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -1568,7 +1568,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(cpu_time_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1605,7 +1605,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
        max(decode(rank, 1, bufget, 0)) rank1_bufget,
        max(decode(rank, 2, bufget, 0)) rank2_bufget,
@@ -1653,7 +1653,7 @@ namespace ISIA.BIZ.TREND
             from(select sql_id, rownum rank
                      from
                         (select sql_id, sum(nvl(buffer_gets_delta, 0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ",arguments.SnapId,arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1663,7 +1663,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("             and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat("             and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"           group by sql_id order by sum(nvl(buffer_gets_delta, 0)) desc
+                tmpSql.AppendFormat(@"           group by sql_id order by sum(nvl(buffer_gets_delta, 0)) desc
                         )
                     where rownum <= 5
                  ) v_rank,
@@ -1674,7 +1674,7 @@ namespace ISIA.BIZ.TREND
                           elapsed_time_delta elap,
                           cpu_time_delta cput,
                           executions_delta exec
-                     from dba_hist_sqlstat ");
+                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1684,18 +1684,18 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("     and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat("      and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" ) v_sqlstat
+                tmpSql.AppendFormat(@" ) v_sqlstat
            where v_sqlstat.sql_id = v_rank.sql_id
           ) v1,
           (select sn.snap_id,
                    sn.end_interval_time,
                    nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_bufget_tot
-             from dba_hist_snapshot sn,
-                  dba_hist_sysstat sy
+             from raw_dba_hist_snapshot_{0} sn,
+                  raw_dba_hist_sysstat_{0} sy
             where sn.snap_id = sy.snap_id
                and sn.instance_number = sy.instance_number
                and sn.dbid = sy.dbid
-               and sy.stat_name = 'session logical reads' ");
+               and sy.stat_name = 'session logical reads' ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sy.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sy.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1728,10 +1728,10 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                      from
                         ( select sql_id, sum(nvl(buffer_gets_delta,0))
-                            from dba_hist_sqlstat");
+                            from raw_dba_hist_sqlstat_{0}", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1+ {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1761,7 +1761,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -1769,7 +1769,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(buffer_gets_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("              where snap_id between {0} + 1 and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" where snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1806,7 +1806,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
                        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                        max(decode(rank, 1, phyrds, 0)) rank1_phyrds,
                        max(decode(rank, 2, phyrds, 0)) rank2_phyrds,
@@ -1854,7 +1854,7 @@ namespace ISIA.BIZ.TREND
                             from(select sql_id, rownum rank
                                      from
                                         (select sql_id, sum(nvl(disk_reads_delta, 0))
-                                            from dba_hist_sqlstat ");
+                                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
 
                 tmpSql.AppendFormat("                       where 1=1 ");
                 tmpSql.Append("               AND snap_id in ( ");
@@ -1876,7 +1876,7 @@ namespace ISIA.BIZ.TREND
                                           elapsed_time_delta elap,
                                           cpu_time_delta cput,
                                           executions_delta exec
-                                     from dba_hist_sqlstat ");
+                                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 tmpSql.AppendFormat(" where 1=1 ");
                 tmpSql.Append("               AND snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -1886,18 +1886,18 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" ) v_sqlstat
+                tmpSql.AppendFormat(@" ) v_sqlstat
                            where v_sqlstat.sql_id = v_rank.sql_id
                           ) v1,
                           (select sn.snap_id,
                                    sn.end_interval_time,
                                    nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_phyrds_tot
-                             from dba_hist_snapshot sn,
-                                  dba_hist_sysstat sy
+                             from raw_dba_hist_snapshot_{0} sn,
+                                  raw_dba_hist_sysstat_{0} sy
                             where sn.snap_id = sy.snap_id
                                and sn.instance_number = sy.instance_number
                                and sn.dbid = sy.dbid
-                               and sy.stat_name = 'physical reads' ");
+                               and sy.stat_name = 'physical reads' ", arguments.DbName);
                 tmpSql.AppendFormat(" and sy.snap_id in( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
@@ -1933,11 +1933,11 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                                                  from
                                                     ( select sql_id, sum(nvl(disk_reads_delta,0))
-                                                        from dba_hist_sqlstat
-                                                       where 1=1 ");
+                                                        from raw_dba_hist_sqlstat_{0}
+                                                       where 1=1 ", arguments.DbName);
                 tmpSql.Append("               AND snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
@@ -1967,7 +1967,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -1975,7 +1975,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(disk_reads_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 tmpSql.AppendFormat("              where 1=1 ");
                 tmpSql.Append("               AND snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2011,7 +2011,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
        max(decode(rank, 1, exec, 0)) rank1_exec,
        max(decode(rank, 2, exec, 0)) rank2_exec,
@@ -2054,7 +2054,7 @@ namespace ISIA.BIZ.TREND
             from(select sql_id, rownum rank
                      from
                         (select sql_id, sum(nvl(executions_delta, 0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + {0} and {1} ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2065,7 +2065,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0}", arguments.DbId);
 
-                tmpSql.Append(@"group by sql_id order by sum(nvl(executions_delta, 0)) desc
+                tmpSql.AppendFormat(@"group by sql_id order by sum(nvl(executions_delta, 0)) desc
                          )
                     where rownum <= 5
                  ) v_rank,
@@ -2076,7 +2076,7 @@ namespace ISIA.BIZ.TREND
                           cpu_time_delta cput,
                           executions_delta exec,
                           rows_processed_delta rows_processed
-                     from dba_hist_sqlstat ");
+                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2087,13 +2087,13 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
 
                 tmpSql.AppendFormat("  and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@") v_sqlstat
+                tmpSql.AppendFormat(@") v_sqlstat
  
             where v_sqlstat.sql_id = v_rank.sql_id
           ) v1,
           (select sn.snap_id,
                    sn.end_interval_time
-              from dba_hist_snapshot sn ");
+              from raw_dba_hist_snapshot_{0} sn ", arguments.DbName);
                 //tmpSql.AppendFormat(" where sn.snap_id between &snap_fr and & snap_to ");
                 tmpSql.Append("               where sn.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2130,10 +2130,10 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                      from
                         ( select sql_id, sum(nvl(executions_delta,0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("            where snap_id between 1+ &snap_fr and &snap_to ");
                 tmpSql.Append("               where sn.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2166,7 +2166,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -2174,7 +2174,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(executions_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where sn.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2211,7 +2211,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
                        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                        max(decode(rank, 1, parse, 0)) rank1_parse,
                        max(decode(rank, 2, parse, 0)) rank2_parse,
@@ -2242,7 +2242,7 @@ namespace ISIA.BIZ.TREND
                             from(select sql_id, rownum rank
                                      from
                                         (select sql_id, sum(nvl(parse_calls_delta, 0))
-                                            from dba_hist_sqlstat ");
+                                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2254,7 +2254,7 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.AppendFormat("                             and dbid = {0} ", arguments.DbId);
 
-                tmpSql.Append(@" group by sql_id order by sum(nvl(parse_calls_delta, 0)) desc
+                tmpSql.AppendFormat(@" group by sql_id order by sum(nvl(parse_calls_delta, 0)) desc
                                        )
                                     where rownum <= 5
                                  ) v_rank,
@@ -2263,7 +2263,7 @@ namespace ISIA.BIZ.TREND
                                           module,
                                           parse_calls_delta parse,
                                           executions_delta exec
-                                     from dba_hist_sqlstat ");
+                                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("     where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2280,12 +2280,12 @@ namespace ISIA.BIZ.TREND
                           (select sn.snap_id,
                                    sn.end_interval_time,
                                    nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_parse_tot
-                             from dba_hist_snapshot sn,
-                                  dba_hist_sysstat sy
+                             from raw_dba_hist_snapshot_{0} sn,
+                                  raw_dba_hist_sysstat_{0} sy
                             where sn.snap_id = sy.snap_id
                                and sn.instance_number = sy.instance_number
                                and sn.dbid = sy.dbid
-                               and sy.stat_name = 'parse count (total)' ");
+                               and sy.stat_name = 'parse count (total)' ", arguments.DbName);
                 //tmpSql.AppendFormat("  and sy.snap_id between &snap_fr and & snap_to ");
                 tmpSql.Append("               and sy.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2320,10 +2320,10 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                      from
                         ( select sql_id, sum(nvl(parse_calls_delta,0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("    where snap_id between 1+ &snap_fr and &snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2356,7 +2356,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -2364,7 +2364,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(parse_calls_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2402,7 +2402,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id,
+                tmpSql.AppendFormat(@"select sn.snap_id,
                        to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                        max(decode(rank, 1, clwait / 1000000, 0)) rank1_clwait,
                        max(decode(rank, 2, clwait / 1000000, 0)) rank2_clwait,
@@ -2445,7 +2445,7 @@ namespace ISIA.BIZ.TREND
                             from(select sql_id, rownum rank
                                      from
                                         (select sql_id, sum(nvl(clwait_delta, 0))
-                                            from dba_hist_sqlstat ");
+                                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("    where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2456,7 +2456,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and instance_number = {0} ", arguments.InstanceNumber);
 
                 tmpSql.AppendFormat(" and dbid ={0} ", arguments.DbId);
-                tmpSql.Append(@"   group by sql_id order by sum(nvl(clwait_delta, 0)) desc
+                tmpSql.AppendFormat(@"   group by sql_id order by sum(nvl(clwait_delta, 0)) desc
                )
                                     where rownum <= 5
                                  ) v_rank,
@@ -2467,7 +2467,7 @@ namespace ISIA.BIZ.TREND
                                           cpu_time_delta cput,
                                           executions_delta exec,
                                           clwait_delta clwait
-                                     from dba_hist_sqlstat ");
+                                     from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2483,7 +2483,7 @@ namespace ISIA.BIZ.TREND
                           ) v1,
                           (select sn.snap_id,
                                    sn.end_interval_time
-                              from dba_hist_snapshot sn ");
+                              from raw_dba_hist_snapshot_{0} sn ", arguments.DbName);
                 //tmpSql.AppendFormat(" where sn.snap_id between &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2520,10 +2520,10 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sql_id, rownum rank
+                tmpSql.AppendFormat(@"select sql_id, rownum rank
                      from
                         ( select sql_id, sum(nvl(clwait_delta,0))
-                            from dba_hist_sqlstat ");
+                            from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1+ &snap_fr and &snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2556,7 +2556,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank,
+                tmpSql.AppendFormat(@"select rank,
                        v1.sql_id,
                        v1.module,
                        nvl(replace(replace(replace(to_char(substr(st.sql_text,1,2500)),chr(9),' '),chr(10),' '),chr(13),' '), '** Not Found **') \""SQL Text\""
@@ -2564,7 +2564,7 @@ namespace ISIA.BIZ.TREND
                       (select sql_id, dbid, module, rownum rank
                          from
                             (select sql_id, dbid, module, sum(nvl(clwait_delta, 0))
-                                from dba_hist_sqlstat ");
+                                from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("    where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2604,7 +2604,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\"",
                        sn.snap_time \""Timestamp\"",
                        max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0))            \""PGA Aggr Target(M)\"",
                        max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0))                 \""Auto PGA Target(M)\"",
@@ -2630,7 +2630,7 @@ namespace ISIA.BIZ.TREND
                        max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576 \""max. manual W/A(M)\""
                  from(
                        select dbid, instance_number, snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                         from dba_hist_snapshot ");
+                         from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2641,13 +2641,13 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("   and instance_number = {0} ", arguments.InstanceNumber);
 
                 tmpSql.AppendFormat("         and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"    ) sn,
-                   dba_hist_pgastat pga
+                tmpSql.AppendFormat(@"    ) sn,
+                   raw_dba_hist_pgastat_{0} pga
                 where pga.snap_id = sn.snap_id
                   and pga.instance_number = sn.instance_number
                   and pga.dbid = sn.dbid
                  group by sn.snap_id, sn.snap_time
-                 order by sn.snap_id");
+                 order by sn.snap_id", arguments.DbName);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -2672,7 +2672,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select  sn.snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"select  sn.snap_id \""SnapID\"",
                         sn.snap_time \""Timestamp\"",
                         sum(decode(name, 'bytes processed', delta, 0))
                             / (sum(decode(name, 'bytes processed', delta, 0))
@@ -2684,8 +2684,8 @@ namespace ISIA.BIZ.TREND
                          select snap_id,
                                 name,
                                 value - lag(value) over(partition by name order by snap_id) delta
-                           from dba_hist_pgastat
-                          where name in ('bytes processed', 'extra bytes read/written') ");
+                           from raw_dba_hist_pgastat_{0}
+                          where name in ('bytes processed', 'extra bytes read/written') ", arguments.DbName);
                 //tmpSql.AppendFormat("  and snap_id between {0} and {1} ");
                 tmpSql.Append("               and snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2698,7 +2698,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@" ) v1,
                           (
                        select snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                         from dba_hist_snapshot ");
+                         from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2737,7 +2737,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select 	b.snap_id,
+                tmpSql.AppendFormat(@"select 	b.snap_id,
 		                    b.snap_time,
 		                    a.total_executions,
 		                    a.optimal_executions,
@@ -2749,7 +2749,7 @@ namespace ISIA.BIZ.TREND
         	                    sum(optimal_executions) - lag(sum(optimal_executions)) over (order by snap_id) optimal_executions,
         	                    sum(onepass_executions) - lag(sum(onepass_executions)) over (order by snap_id) onepass_executions,
         	                    sum(multipasses_executions) - lag(sum(multipasses_executions)) over (order by snap_id) multipasses_executions
-                             from DBA_HIST_SQL_WORKAREA_HSTGRM ");
+                             from raw_DBA_HIST_SQL_WORKAREA_HSTGRM_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2765,7 +2765,7 @@ namespace ISIA.BIZ.TREND
                          (select snap_id,
                                   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
                                   to_number(substr((end_interval_time-begin_interval_time)*86400,2,9)) interval
-                             from dba_hist_snapshot ");
+                             from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1+ &snap_fr and &snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2800,7 +2800,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\""
                       , snap_time  \""Timestamp\""
                       ,case when low_optimal_size >= 1024 * 1024 * 1024 * 1024
                             then lpad(round(low_optimal_size / 1024 / 1024 / 1024 / 1024) || 'T', 7)
@@ -2831,7 +2831,7 @@ namespace ISIA.BIZ.TREND
                             optimal_executions - lag(optimal_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) optimal_executions,
                             onepass_executions - lag(onepass_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) onepass_executions,
                             multipasses_executions - lag(multipasses_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) multipasses_executions
-                         from DBA_HIST_SQL_WORKAREA_HSTGRM ");
+                         from raw_DBA_HIST_SQL_WORKAREA_HSTGRM_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2842,12 +2842,12 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("   and instance_number = {0} ", arguments.InstanceNumber);
 
                 tmpSql.AppendFormat("         and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"      ) v1,
+                tmpSql.AppendFormat(@"      ) v1,
                       (
                        select snap_id,
                               to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
                               to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
-                               from dba_hist_snapshot ");
+                               from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -2885,7 +2885,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select e.snap_id \""SnapID\""
                       , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
                       ,case when e.low_optimal_size >= 1024 * 1024 * 1024 * 1024
                             then lpad(round(e.low_optimal_size / 1024 / 1024 / 1024 / 1024) || 'T', 7)
@@ -2911,9 +2911,9 @@ namespace ISIA.BIZ.TREND
                      , e.optimal_executions - nvl(b.optimal_executions, 0)      \""opt_exe\""
                      , e.onepass_executions - nvl(b.onepass_executions, 0)      \""one_exe\""
                      , e.multipasses_executions - nvl(b.multipasses_executions, 0)  \""mul_exe\""
-                  from DBA_HIST_SQL_WORKAREA_HSTGRM e
-                     , DBA_HIST_SQL_WORKAREA_HSTGRM b
-                     , DBA_HIST_SNAPSHOT S ");
+                  from raw_DBA_HIST_SQL_WORKAREA_HSTGRM_{0} e
+                     , raw_DBA_HIST_SQL_WORKAREA_HSTGRM_{0} b
+                     , raw_dba_hist_snapshot_{0} S ", arguments.DbName);
                 tmpSql.AppendFormat(" where e.snap_id = {0} ", arguments.SnapId);
 
                 tmpSql.AppendFormat("   and e.dbid = {0} ", arguments.DbId);
@@ -2961,7 +2961,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"select snap_id \""SnapID\"",
        snap_time \""Timestamp\"",
        max(decode(class, '1st level bmb'        , delta, 0)) \""1st level bmb\"",
        max(decode(class, '2nd level bmb'        , delta, 0)) \""2nd level bmb\"",
@@ -3005,11 +3005,11 @@ namespace ISIA.BIZ.TREND
                     to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
                     time-lag(time) over(partition by class order by ws.snap_id) delta_time,
                     wait_count-lag(wait_count) over(partition by class order by ws.snap_id) delta_cnt
-              from dba_hist_waitstat ws,
-                   dba_hist_snapshot sn
+              from raw_dba_hist_waitstat_{0} ws,
+                   raw_dba_hist_snapshot_{0} sn
              where ws.snap_id = sn.snap_id
                and ws.instance_number = sn.instance_number
-               and ws.dbid = sn.dbid ");
+               and ws.dbid = sn.dbid ", arguments.DbName);
                 //tmpSql.AppendFormat(" and ws.snap_id between &snap_fr and &snap_to ");
                 tmpSql.Append("               and ws.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3067,7 +3067,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\"",
                        to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
                        max(decode(r.resource_name, 'processes', current_utilization, 0)) processes_curr,
                        max(decode(r.resource_name, 'processes', max_utilization, 0)) processes_max,
@@ -3094,13 +3094,13 @@ namespace ISIA.BIZ.TREND
                        max(decode(r.resource_name, 'ges_procs', current_utilization, 0)) ges_procs_curr,
                        max(decode(r.resource_name, 'ges_procs', max_utilization, 0)) ges_procs_max,
                        max(decode(r.resource_name, 'ges_procs', limit_value, 0)) ges_procs_limit
-                  from dba_hist_snapshot sn,
+                  from raw_dba_hist_snapshot_{0} sn,
                        dba_hist_resource_limit  r,
                        (select snap_id, count(sample_id) cnt
                           from(
                                 select snap_id, sample_id,
                                        max(sample_id) over(partition by snap_id) max_sample_id
-                                  from dba_hist_active_sess_history ash ");
+                                  from raw_dba_hist_active_sess_history_{0} ash ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3162,7 +3162,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select 	  sn.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select 	  sn.snap_id \""SnapID\""
                           , snap_time \""Timestamp\""
                           , block_size / 1024 || 'k' || substr(name, 1, 1) \""Pools\""
                           , lpad(case
@@ -3194,7 +3194,7 @@ namespace ISIA.BIZ.TREND
                         write_complete_wait - lag(write_complete_wait) over(partition by block_size order  by snap_id) write_complete_wait,
                         buffer_busy_wait - lag(buffer_busy_wait) over(partition by block_size order  by snap_id) buffer_busy_wait
 
-                     from DBA_HIST_BUFFER_POOL_STAT ");
+                     from raw_DBA_HIST_BUFFER_POOL_STAT_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("    where snap_id between & snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3213,7 +3213,7 @@ namespace ISIA.BIZ.TREND
                        select snap_id,
                               to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time,
                               to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
-                               from dba_hist_snapshot ");
+                               from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3250,7 +3250,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select e.snap_id \""SnapID\""
                       , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
                       , e.block_size / 1024 || 'k' || substr(e.name, 1, 1) \""Pools\""
                       , lpad(case
@@ -3282,10 +3282,10 @@ namespace ISIA.BIZ.TREND
                      , e.free_buffer_wait - nvl(b.free_buffer_wait, 0)      \""free buffer wait\""
                      , e.write_complete_wait - nvl(b.write_complete_wait, 0)   \""write complete wait\""
                      , e.buffer_busy_wait - nvl(b.buffer_busy_wait, 0)      \""buffer busy wait\""
-                 from DBA_HIST_BUFFER_POOL_STAT b
-                     ,DBA_HIST_BUFFER_POOL_STAT e
-                     , DBA_HIST_SNAPSHOT S
-                  where b.snap_id(+) = e.snap_id - 1");
+                 from raw_DBA_HIST_BUFFER_POOL_STAT_{0} b
+                     ,raw_DBA_HIST_BUFFER_POOL_STAT_{0} e
+                     , raw_dba_hist_snapshot_{0} S
+                  where b.snap_id(+) = e.snap_id - 1", arguments.DbName);
                 //tmpSql.AppendFormat("  and e.snap_id between  &snap_fr and & snap_to");
                 tmpSql.Append("               and e.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3334,7 +3334,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select snap_id
+                tmpSql.AppendFormat(@"select snap_id
                           ,Time_stamp
                           ,max(decode(rank, 1,wait_tm, 0))/1000  rank1_wait_tm
                           ,max(decode(rank, 2,wait_tm, 0))/1000  rank2_wait_tm
@@ -3347,15 +3347,15 @@ namespace ISIA.BIZ.TREND
                           ,to_number(substr((s.end_interval_time-s.begin_interval_time)*86400,2,9)) interval
                           ,rank
                           ,(e.cum_wait_time - nvl(b.cum_wait_time,0))  wait_tm
-                    from DBA_HIST_ENQUEUE_STAT e
-                       , DBA_HIST_ENQUEUE_STAT b
-                       , DBA_HIST_SNAPSHOT S
+                    from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                       , raw_DBA_HIST_ENQUEUE_STAT_{0} b
+                       , raw_dba_hist_snapshot_{0} S
                        ,(select ety,req_reason,wttm, rownum rank
                            from ( select e.eq_type  ety
                                         ,e.req_reason
                                         ,e.cum_wait_time - b.cum_wait_time  wttm
-                                    from DBA_HIST_ENQUEUE_STAT e
-                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                                    from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                                        ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.AppendFormat("   where b.snap_id         = {0}", arguments.SnapId);
                 tmpSql.AppendFormat(" and e.snap_id         = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(" and b.dbid(+)            = {0} ", arguments.DbId);
@@ -3427,7 +3427,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select rank||':'||ety || '-' || to_char(nvl(l.name,' '))
+                tmpSql.AppendFormat(@"select rank||':'||ety || '-' || to_char(nvl(l.name,' '))
                                 || decode( upper(req_reason)
                                    , 'CONTENTION', null
                                    , '-',          null
@@ -3436,8 +3436,8 @@ namespace ISIA.BIZ.TREND
                     (select ety,req_reason,wttm,rownum rank
                       from  (select e.eq_type  ety,e.req_reason req_reason
                                    ,e.cum_wait_time - b.cum_wait_time  wttm
-                              from DBA_HIST_ENQUEUE_STAT e
-                                  ,DBA_HIST_ENQUEUE_STAT b ");
+                              from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                                  ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.Append("  where b.snap_id         =  ");
                 tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
@@ -3486,7 +3486,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select snap_id
+                tmpSql.AppendFormat(@"select snap_id
                           ,Time_stamp
                           ,max(decode(rank, 1,av_wait_tm, 0))/1000  rank1_wait_tm
                           ,max(decode(rank, 2,av_wait_tm, 0))/1000  rank2_wait_tm
@@ -3499,16 +3499,16 @@ namespace ISIA.BIZ.TREND
                           ,decode((e.total_wait#   - nvl(b.total_wait#,0)), 0, 0,
                                   (e.cum_wait_time - nvl(b.cum_wait_time,0))
                                  /(e.total_wait# - nvl(b.total_wait#,0)))  av_wait_tm
-                    from DBA_HIST_ENQUEUE_STAT e
-                       , DBA_HIST_ENQUEUE_STAT b
-                       , DBA_HIST_SNAPSHOT S
+                    from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                       , raw_DBA_HIST_ENQUEUE_STAT_{0} b
+                       , raw_dba_hist_snapshot_{0} S
                        ,(select ety , rownum rank
                            from ( select e.eq_type  ety,
                                          decode((e.total_wait# - nvl(b.total_wait#,0)), 0, 0,
                                                 (e.cum_wait_time - nvl(b.cum_wait_time,0))
                                                /(e.total_wait#   - nvl(b.total_wait#,0)))  awttm
-                                    from DBA_HIST_ENQUEUE_STAT e
-                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                                    from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                                        ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.AppendFormat(" where b.snap_id         =  ");
                 tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
@@ -3589,15 +3589,15 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select ety || '-' ||req_reason|| ' ('||nvl(l.name,' ') ||')' Enqueu_type
+                tmpSql.AppendFormat(@"select ety || '-' ||req_reason|| ' ('||nvl(l.name,' ') ||')' Enqueu_type
                     from v$lock_type l,
                     (select ety,req_reason,awttm,rownum rank
                       from  (select e.eq_type  ety,e.req_reason req_reason
                                    ,decode((e.total_wait#   - nvl(b.total_wait#,0)), 0, 0
                                           ,(e.cum_wait_time - nvl(b.cum_wait_time,0))
                                           /(e.total_wait#   - nvl(b.total_wait#,0)))  awttm
-                                    from DBA_HIST_ENQUEUE_STAT e
-                                        ,DBA_HIST_ENQUEUE_STAT b ");
+                                    from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                                        ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.AppendFormat(" where b.snap_id         = {0}");
                 tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
                      arguments.DbName,
@@ -3647,7 +3647,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select  e.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select  e.snap_id \""SnapID\""
                       , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
                       , e.eq_type || '-' || to_char(nvl(l.name, ' '))
                       || decode(upper(e.req_reason), 'CONTENTION', null, '-', null, ' (' || e.req_reason || ')')   Enqueu_type
@@ -3659,11 +3659,11 @@ namespace ISIA.BIZ.TREND
                      , decode((e.total_wait#   - nvl(b.total_wait#,0)), 0,0,
                               (e.cum_wait_time - nvl(b.cum_wait_time, 0))
                              / (e.total_wait#   - nvl(b.total_wait#,0))) \""Avg. Wait tm(ms)\""
-                  from DBA_HIST_ENQUEUE_STAT e
-                     , DBA_HIST_ENQUEUE_STAT b
+                  from raw_DBA_HIST_ENQUEUE_STAT_{0} e
+                     , raw_DBA_HIST_ENQUEUE_STAT_{0} b
                      , v$lock_type              l
-                     , DBA_HIST_SNAPSHOT S
-                 where b.snap_id(+) = e.snap_id - 1 ");
+                     , raw_dba_hist_snapshot_{0} S
+                 where b.snap_id(+) = e.snap_id - 1 ", arguments.DbName);
                 //tmpSql.AppendFormat("   and e.snap_id    between & snap_fr + 1 and & snap_to ");
                 tmpSql.Append("               and e.snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3712,7 +3712,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select
+                tmpSql.AppendFormat(@"select
                            e.snap_id  \""SnapID\"",
                            snap_time \""Timestamp\"",
                            max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1_wait_t,
@@ -3730,14 +3730,14 @@ namespace ISIA.BIZ.TREND
                            max(decode(rank, 3, (e.misses - b.misses), 0)) rank3_misses,
                            max(decode(rank, 4, (e.misses - b.misses), 0)) rank4_misses,
                            max(decode(rank, 5, (e.misses - b.misses), 0)) rank5_misses
-                    from DBA_HIST_LATCH b
-                       , DBA_HIST_LATCH e
-                       , DBA_HIST_LATCH_NAME n
+                    from raw_DBA_HIST_LATCH_{0} b
+                       , raw_DBA_HIST_LATCH_{0} e
+                       , raw_DBA_HIST_LATCH_NAME_{0} n
                        , (
                            select instance_number, snap_id
                                   , to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
                                   , to_number(substr((end_interval_time - begin_interval_time) * 86400, 2, 9)) interval
-                             from dba_hist_snapshot ");
+                             from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between & snap_fr + 1 and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3751,8 +3751,8 @@ namespace ISIA.BIZ.TREND
                          , (select latch_hash, rownum rank
                            from(select b.latch_hash latch_hash
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
-                                    from DBA_HIST_LATCH b
-                                       , DBA_HIST_LATCH e ");
+                                    from raw_DBA_HIST_LATCH_{0} b
+                                       , raw_DBA_HIST_LATCH_{0} e ", arguments.DbName);
                 tmpSql.AppendFormat(" where b.snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(" and e.snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(" and b.instance_number = {0} ", arguments.InstanceNumber);
@@ -3805,13 +3805,13 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select n.latch_name latch5_Rank, rank
-                    from DBA_HIST_LATCH_NAME n,
+                tmpSql.AppendFormat(@"select n.latch_name latch5_Rank, rank
+                    from raw_DBA_HIST_LATCH_NAME_{0} n,
                          (select latch_hash ,rownum rank
                            from ( select b.latch_hash latch_hash
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
-                                    from DBA_HIST_LATCH b
-                                       , DBA_HIST_LATCH e ");
+                                    from raw_DBA_HIST_LATCH_{0} b
+                                       , raw_DBA_HIST_LATCH_{0} e ", arguments.DbName);
                 tmpSql.AppendFormat("    where b.snap_id         = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat("  and e.snap_id         = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(" and b.instance_number = {0}", arguments.InstanceNumber);
@@ -3846,16 +3846,16 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select e.snap_id \""SnapID\""
                      , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
                      , b.latch_name                                \""Name\""
                      , e.gets - b.gets                      \""Gets\""
                      , e.misses - b.misses                    \""Misses\""
                      , e.sleeps - b.sleeps                    \""Sleeps\""
                      , e.spin_gets - b.spin_gets                 \""Spin_gets\""
-                  from DBA_HIST_LATCH b
-                     , DBA_HIST_LATCH e
-                     , DBA_HIST_SNAPSHOT S ");
+                  from raw_DBA_HIST_LATCH_{0} b
+                     , raw_DBA_HIST_LATCH_{0} e
+                     , raw_dba_hist_snapshot_{0} S ", arguments.DbName);
                 tmpSql.AppendFormat(" where b.snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat("   and e.snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat("    and b.dbid = {0} ", arguments.DbId);
@@ -3896,16 +3896,16 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select e.snap_id \""SnapID\""
+                tmpSql.AppendFormat(@"select e.snap_id \""SnapID\""
                      , to_char(s.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\""
                      , e.parent_name                              parent
                      , e.where_in_code                            \""where from\""
                      , e.nwfail_count - nvl(b.nwfail_count, 0)    \""nowait_misses\""
                      , e.sleep_count - nvl(b.sleep_count, 0)     sleeps
                      , e.wtr_slp_count - nvl(b.wtr_slp_count, 0)   \""waiter_sleeps\""
-                  from DBA_HIST_LATCH_MISSES_SUMMARY b
-                     , DBA_HIST_LATCH_MISSES_SUMMARY e
-                     , DBA_HIST_SNAPSHOT S ");
+                  from raw_DBA_HIST_LATCH_MISSES_SUMMARY_{0} b
+                     , raw_DBA_HIST_LATCH_MISSES_SUMMARY_{0} e
+                     , raw_dba_hist_snapshot_{0} S ", arguments.DbName);
                 tmpSql.AppendFormat("  where b.snap_id(+) ={0} ", arguments.SnapId);
 
                 tmpSql.AppendFormat("  and e.snap_id = {0} ", arguments.SnapId);
@@ -3952,7 +3952,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                     decode(gets, 0, 0, getmisses / gets) \""getMiss /gets%\"",
                     decode(scans, 0, 0, scanmisses / scans) \""scanMiss %\"",
@@ -3978,7 +3978,7 @@ namespace ISIA.BIZ.TREND
                         sum(dlm_requests) - lag(sum(dlm_requests)) over(order by snap_id) dlm_requests,
                         sum(dlm_conflicts) - lag(sum(dlm_conflicts)) over(order by snap_id) dlm_conflicts,
                         sum(dlm_releases) - lag(sum(dlm_releases)) over(order by snap_id) dlm_releases
-                    from dba_hist_rowcache_summary ");
+                    from raw_dba_hist_rowcache_summary_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(@"  where snap_id between & snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -3993,7 +3993,7 @@ namespace ISIA.BIZ.TREND
                    ) a,
                           (select snap_id,
                                    to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                              from dba_hist_snapshot ");
+                              from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4030,7 +4030,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                     parameter     \""Dictionary\"",
                     decode(gets, 0, 0, getmisses / gets) \""getMiss/gets%\"",
@@ -4058,7 +4058,7 @@ namespace ISIA.BIZ.TREND
                         dlm_conflicts - lag(dlm_conflicts) over(partition by parameter order by parameter, snap_id) dlm_conflicts,
                         dlm_releases - lag(dlm_releases) over(partition by parameter order by parameter, snap_id) dlm_releases
 
-                    from dba_hist_rowcache_summary ");
+                    from raw_dba_hist_rowcache_summary_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(@"  where snap_id between & snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4071,7 +4071,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@"   ) a,
                 (select snap_id,
                                    to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                              from dba_hist_snapshot");
+                              from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4108,7 +4108,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select 	b.snap_id,
+                tmpSql.AppendFormat(@"select 	b.snap_id,
 		                b.snap_time, 
 		                a.gets,
 		                a.gethits,
@@ -4126,7 +4126,7 @@ namespace ISIA.BIZ.TREND
 			                sum(pinhits)-lag(sum(pinhits),1) over(order by snap_id) pinhits,
 			                sum(reloads)-lag(sum(reloads),1) over(order by snap_id) reloads,
 			                sum(invalidations)-lag(sum(invalidations),1) over(order by snap_id) invalidations
-                       from    dba_hist_librarycache ");
+                       from    raw_dba_hist_librarycache_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4136,10 +4136,10 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
-                tmpSql.Append(@"  group by snap_id) a,
+                tmpSql.AppendFormat(@"  group by snap_id) a,
                     (select snap_id, 
                                     to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                                from dba_hist_snapshot");
+                                from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1+ &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4176,7 +4176,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                     max(decode(namespace,'SQL AREA',reloads,0))        \""reload: sql\"",
 	                max(decode(namespace,'TABLE/PROCEDURE',reloads,0)) \""reload: tab/proc\"",
@@ -4196,7 +4196,7 @@ namespace ISIA.BIZ.TREND
 		                pinhits-lag(pinhits,1) over(partition by namespace order by namespace,snap_id) pinhits,
 		                reloads-lag(reloads,1) over(partition by namespace order by namespace,snap_id) reloads,
 		                invalidations-lag(invalidations,1) over(partition by namespace order by namespace,snap_id) invalidations
-                   from    dba_hist_librarycache ");
+                   from    raw_dba_hist_librarycache_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4210,7 +4210,7 @@ namespace ISIA.BIZ.TREND
                     ) a,
                         ( select snap_id,
                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                            from dba_hist_snapshot");
+                            from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("    where snap_id between 1+ &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4248,7 +4248,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                     namespace     \""Library\"",
 	                1-decode(gets,0,1, gethits/gets) \""getMiss %\"",
@@ -4277,7 +4277,7 @@ namespace ISIA.BIZ.TREND
 		                dlm_pin_releases-lag(dlm_pin_releases,1) over(partition by namespace order by namespace,snap_id) dlm_pin_releases,
 		                dlm_invalidation_requests-lag(dlm_invalidation_requests,1) over(partition by namespace order by namespace,snap_id) dlm_invalidation_requests,
 		                dlm_invalidations-lag(dlm_invalidations,1) over(partition by namespace order by namespace,snap_id) dlm_invalidations
-                   from    dba_hist_librarycache ");
+                   from    raw_dba_hist_librarycache_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4290,7 +4290,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@"  ) a,
                         (select snap_id,
                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                            from dba_hist_snapshot");
+                            from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1+ &snap_fr and &snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4326,7 +4326,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                         pool          \""Pool\"",
                     name          \""Name\"",
@@ -4339,7 +4339,7 @@ namespace ISIA.BIZ.TREND
                         bytes,
                         nvl(lag(bytes, 1) over(partition by pool, name order by pool, name, snap_id), 0) pre_bytes
 
-                    from dba_hist_sgastat ");
+                    from raw_dba_hist_sgastat_{0} ", arguments.DbName);
 
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
@@ -4354,7 +4354,7 @@ namespace ISIA.BIZ.TREND
                         ) a,
                         (select snap_id,
                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                            from dba_hist_snapshot");
+                            from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4390,7 +4390,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                         b.snap_time   \""Timestamp\"",
                         pool          \""Pool\"",
                     name          \""Name\"",
@@ -4403,7 +4403,7 @@ namespace ISIA.BIZ.TREND
                         bytes,
                         nvl(lag(bytes, 1) over(partition by pool, name order by pool, name, snap_id), 0) pre_bytes
 
-                    from dba_hist_sgastat ");
+                    from raw_dba_hist_sgastat_{0} ", arguments.DbName);
 
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
@@ -4419,7 +4419,7 @@ namespace ISIA.BIZ.TREND
                     ) a,
                         (select snap_id,
                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                            from dba_hist_snapshot");
+                            from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4455,7 +4455,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select 
+                tmpSql.AppendFormat(@"select 
                     b.snap_id     \""SnapID\"",
                     b.snap_time   \""Timestamp\"",
                     sum(case when pool = 'null' and name = 'buffer_cache' then bytes / 1048576 else 0 end) \""buf.cache(M)\"",
@@ -4479,7 +4479,7 @@ namespace ISIA.BIZ.TREND
                             nvl(pool, 'null') pool,
                             name,
                         bytes
-                    from dba_hist_sgastat ");
+                    from raw_dba_hist_sgastat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4492,7 +4492,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@"  ) a,
                         (select snap_id,
                                  to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                            from dba_hist_snapshot");
+                            from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4763,7 +4763,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select sn.snap_id \""SnapID\"",
+                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\"",
                                sn.snap_time \""Timestamp\"",
                             parse_req_total \""Parse requests\"",
                                 cursor_cache_hits   \""Cursor cache hits\"",
@@ -4781,7 +4781,7 @@ namespace ISIA.BIZ.TREND
                                 select  snap_id,
                                     stat_name,
                                     nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  value
-                                from dba_hist_sysstat ");
+                                from raw_dba_hist_sysstat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between & snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4797,7 +4797,7 @@ namespace ISIA.BIZ.TREND
 	                        ) v1,
                                   (select snap_id,
                                            to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                                       from dba_hist_snapshot ");
+                                       from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4833,12 +4833,12 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	parameter_name \""Parameter\"",
+                tmpSql.AppendFormat(@"select	parameter_name \""Parameter\"",
 
                                 nvl(value, 'n/a') \""Current_value\"",
                                 isdefault \""default ?\"",
                                 ismodified \""modified ?\""
-                            from dba_hist_parameter ");
+                            from raw_dba_hist_parameter_{0} ", arguments.DbName);
                 tmpSql.AppendFormat("  where snap_id = {0}", arguments.SnapId);
                 tmpSql.AppendFormat(" and     instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and     dbid = {0} ", arguments.DbId);
@@ -4866,9 +4866,9 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	parameter_name \""SGA Parameter\"",
+                tmpSql.AppendFormat(@"select	parameter_name \""SGA Parameter\"",
                     nvl(value, 'n/a') \""d\""
-                from dba_hist_parameter
+                from raw_dba_hist_parameter_{0}
                 where parameter_name in (
                              'db_block_buffers', 'db_block_size', 'db_cache_size', 'db_2k_cache_size', 'db_4k_cache_size',
                              'db_8k_cache_size', 'db_16k_cache_size', 'db_32k_cache_size', 'db_keep_cache_size', 'db_recycle_cache_size',
@@ -4876,7 +4876,7 @@ namespace ISIA.BIZ.TREND
                              'pga_aggregate_target',
                              'shared_pool_size', 'sga_max_size', 'sga_target',
                              'statistics_level', 'streams_pool_size', 'workarea_size_policy'
-                                )");
+                                )", arguments.DbName);
                 tmpSql.AppendFormat("  where snap_id = {0}", arguments.SnapId);
                 tmpSql.AppendFormat(" and     instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and     dbid = {0} ", arguments.DbId);
@@ -4905,7 +4905,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	b.snap_id     \""SnapID\"",
+                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
                             b.snap_time   \""Timestamp\"",
                             parameter_name \""parameter\"",
                         nvl(pre_value, 'null') \""value(before)\"",
@@ -4913,7 +4913,7 @@ namespace ISIA.BIZ.TREND
                     from(
                             select snap_id, parameter_name, value,
                                    lag(value, 1) over(partition by parameter_name order by parameter_name, snap_id) pre_value
-                            from dba_hist_parameter ");
+                            from raw_dba_hist_parameter_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4926,7 +4926,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@"  and    parameter_name in
                                     (
                                     select parameter_name
-                                    from dba_hist_parameter");
+                                    from raw_dba_hist_parameter_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4941,7 +4941,7 @@ namespace ISIA.BIZ.TREND
                             ) a,
                             (select snap_id,
                                      to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
-                                from dba_hist_snapshot");
+                                from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
                 tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -4984,7 +4984,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select 	aa.instance_number \""INST_ID\"",
+                tmpSql.AppendFormat(@"select 	aa.instance_number \""INST_ID\"",
                                 hostname,
                                 db_name,
                                 instance_name Instance,
@@ -5008,12 +5008,12 @@ namespace ISIA.BIZ.TREND
                                                 to_char(end_interval_time, 'yyyy/mm/dd hh24:mi') end_interval_time,
                                                 b.startup_time
 
-                                        from dba_hist_snapshot a,
-                                                DBA_HIST_DATABASE_INSTANCE b
+                                        from raw_dba_hist_snapshot_{0} a,
+                                                raw_DBA_HIST_DATABASE_INSTANCE_{0} b
 
                                         where   a.dbid = b.dbid
 
-                                        and     a.instance_number = b.instance_number ");
+                                        and     a.instance_number = b.instance_number ", arguments.DbName);
 
                 //tmpSql.AppendFormat(" and     a.snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               and a.snap_id in ( ");
@@ -5026,7 +5026,7 @@ namespace ISIA.BIZ.TREND
 
                                             from(select dbid, instance_number, sum(value) SZ
 
-                                                    from dba_hist_sga");
+                                                    from raw_dba_hist_sga_{0}", arguments.DbName);
 
                 tmpSql.AppendFormat("  where snap_id = ");
                 tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -5038,7 +5038,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(@"   group by dbid, instance_number
                                                  ) s1,
                                                 (select dbid, instance_number, sum(value) SZ
-                                                    from dba_hist_sga");
+                                                    from raw_dba_hist_sga_{0}", arguments.DbName);
                 tmpSql.AppendFormat("  where snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat("  and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(@"  group by dbid, instance_number
@@ -5049,12 +5049,12 @@ namespace ISIA.BIZ.TREND
 						                                 max(decode(stat_name, 'NUM_CPUS', value, 0)) NUM_CPUS,
 						                                 max(decode(stat_name, 'NUM_CPU_CORES', value, 0)) NUM_CPU_CORES,
 						                                 max(decode(stat_name, 'NUM_CPU_SOCKETS', value, 0)) NUM_CPU_SOCKETS
-                                                from dba_hist_osstat");
+                                                from raw_dba_hist_osstat_{0}", arguments.DbName);
                 tmpSql.AppendFormat("  where dbid ={0} ", arguments.DbId);
                 tmpSql.AppendFormat("  and snap_id = {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(@"  group by dbid, instance_number) d,
                                         (select dbid, instance_number, max(decode(name, 'aggregate PGA target parameter', value / 1024 / 1024 / 1024)) PGA
-                                                      from dba_hist_pgastat");
+                                                      from raw_dba_hist_pgastat_{0}", arguments.DbName);
                 tmpSql.AppendFormat("     where dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" and snap_id = ");
                 tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -5069,8 +5069,8 @@ namespace ISIA.BIZ.TREND
                                 and aa.instance_number = c.instance_number
                                 and aa.instance_number = d.instance_number
                                 and aa.instance_number = e.instance_number
-                                and parallel in (select  decode(value, 'TRUE', 'YES', 'NO') from dba_hist_parameter
-                                                 where parameter_name = 'cluster_database'");
+                                and parallel in (select  decode(value, 'TRUE', 'YES', 'NO') from raw_dba_hist_parameter_{0}
+                                                 where parameter_name = 'cluster_database'", arguments.DbName);
                 tmpSql.AppendFormat("  and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("  and snap_id = ");
                 tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
@@ -5207,7 +5207,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select   rownum RANK
+                tmpSql.AppendFormat(@"select   rownum RANK
 		                ,sql_id         \""SQL ID\""
                         , '\""' || force_matching_signature || '\""' force_matching_signature
                         , replace(replace(replace(sql_text, chr(9), ' '), chr(10), ' '), chr(13), ' ') \""SQL Text\""
@@ -5225,11 +5225,11 @@ namespace ISIA.BIZ.TREND
                         , sum(executions_delta) executions
                         , sum(sorts_delta) sorts
                         , max(module) module
-                    from dba_hist_sqlstat s, dba_hist_sqltext b
+                    from raw_dba_hist_sqlstat_{0} s, dba_hist_sqltext b
 
                         where s.dbid = b.dbid
 
-                        and s.sql_id = b.sql_id(+) ");
+                        and s.sql_id = b.sql_id(+) ", arguments.DbName);
 
                 //tmpSql.AppendFormat("  and snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               and snap_id in ( ");
@@ -5317,7 +5317,7 @@ namespace ISIA.BIZ.TREND
                     @"to_char(round(sum(nvl(disk_reads_delta, 0)) / d.Phy_VAL, 2) * 100, '999,999,999.90') "" % Tot Physical Reads"", ");
                 tmpSql.Append(
                     @"to_char(round(sum(nvl(parse_calls_delta, 0)) / f.Parse_VAL, 2) * 100, '999,999,999.90') "" % Tot Parse Calls"" ");
-                tmpSql.AppendFormat("   from RAW_DBA_HIST_SQLSTAT_{0} a, ", arguments.DbName);
+                tmpSql.AppendFormat("   from raw_dba_hist_sqlstat_{0} a, ", arguments.DbName);
                 tmpSql.Append("         (select SUM(max(VALUE)) - SUM(min(VALUE)) Phy_VAL ");
                 tmpSql.AppendFormat("         from RAW_DBA_HIST_SYSSTAT_{0} ", arguments.DbName);
                 tmpSql.AppendFormat("          where instance_number = {0} ", arguments.InstanceNumber);
@@ -5443,7 +5443,7 @@ namespace ISIA.BIZ.TREND
                     "to_char(round(sum(nvl(disk_reads_delta,0))/d.Phy_VAL,2)*100,'999,999,999.90') \"% Tot Physical Reads\", ");
                 tmpSql.Append(
                     "to_char(round(sum(nvl(parse_calls_delta,0))/f.Parse_VAL,2)*100,'999,999,999.90') \"% Tot Parse Calls\" ");
-                tmpSql.AppendFormat("from RAW_DBA_HIST_SQLSTAT_{0} a, ", arguments.DbName);
+                tmpSql.AppendFormat("from raw_dba_hist_sqlstat_{0} a, ", arguments.DbName);
                 tmpSql.Append("(select SUM(max(VALUE)) - SUM(min(VALUE)) Phy_VAL ");
                 tmpSql.AppendFormat("from RAW_DBA_HIST_SYSSTAT_{0} ", arguments.DbName);
                 tmpSql.AppendFormat("where instance_number = {0} ", arguments.InstanceNumber);
@@ -5623,7 +5623,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append("                          elapsed_time_delta elap,  ");
                 tmpSql.Append("                          cpu_time_delta cput,  ");
                 tmpSql.Append("                          executions_delta exec  ");
-                tmpSql.Append("                     from dba_hist_sqlstat  ");
+                tmpSql.AppendFormat("                     from raw_dba_hist_sqlstat_{0}  ", arguments.DbName);
                 tmpSql.Append("                    where 1 = 1  ");
                 tmpSql.Append("               AND snap_id in ( ");
                 tmpSql.AppendFormat(
@@ -5656,7 +5656,12 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("               and sy.dbid = {0} ", arguments.DbId);
                 tmpSql.Append("          ) sn ");
                 tmpSql.Append(" where v1.snap_id(+) = sn.snap_id ");
-                tmpSql.Append("   and sn.snap_id > &snap_fr ");
+                tmpSql.Append("   and sn.snap_id >  ");
+                tmpSql.AppendFormat(
+                    "                  ( select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey, arguments.InstanceNumber);
                 tmpSql.Append(" group by sn.snap_id, ");
                 tmpSql.Append("       to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') ");
                 tmpSql.Append(" order by sn.snap_id; ");
@@ -5768,6 +5773,383 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append(") ");
                 tmpSql.Append("where rownum <=5 ");
 
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance
+                    .WriteServerLog(
+                        MethodInfo.GetCurrentMethod().Name,
+                        LogBase._LOGTYPE_TRACE_ERROR,
+                        this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
+                        false);
+                throw ex;
+            }
+        }
+
+        public void GetSQL_literal_04()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("select dbms_utility.get_time time_pre from dual ");
+                
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance
+                    .WriteServerLog(
+                        MethodInfo.GetCurrentMethod().Name,
+                        LogBase._LOGTYPE_TRACE_ERROR,
+                        this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
+                        false);
+                throw ex;
+            }
+        }
+
+        public void GetSQL_literal_get_01(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@"select sn.snap_id,
+                       to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
+                       max(decode(rank, 1, bufget, 0)) rank1_bufget,
+                       max(decode(rank, 2, bufget, 0)) rank2_bufget,
+                       max(decode(rank, 3, bufget, 0)) rank3_bufget,
+                       max(decode(rank, 4, bufget, 0)) rank4_bufget,
+                       max(decode(rank, 5, bufget, 0)) rank5_bufget,
+                       max(decode(rank, 1, exec, 0)) rank1_exec,
+                       max(decode(rank, 2, exec, 0)) rank2_exec,
+                       max(decode(rank, 3, exec, 0)) rank3_exec,
+                       max(decode(rank, 4, exec, 0)) rank4_exec,
+                       max(decode(rank, 5, exec, 0)) rank5_exec,
+                       decode(max(decode(rank, 1, exec, 0)), 0, 0, max(decode(rank, 1, bufget, 0)) / max(decode(rank, 1, exec, 0))) rank1_bufget_per_exec,
+                       decode(max(decode(rank, 2, exec, 0)), 0, 0, max(decode(rank, 2, bufget, 0)) / max(decode(rank, 2, exec, 0))) rank2_bufget_per_exec,
+                       decode(max(decode(rank, 3, exec, 0)), 0, 0, max(decode(rank, 3, bufget, 0)) / max(decode(rank, 3, exec, 0))) rank3_bufget_per_exec,
+                       decode(max(decode(rank, 4, exec, 0)), 0, 0, max(decode(rank, 4, bufget, 0)) / max(decode(rank, 4, exec, 0))) rank4_bufget_per_exec,
+                       decode(max(decode(rank, 5, exec, 0)), 0, 0, max(decode(rank, 5, bufget, 0)) / max(decode(rank, 5, exec, 0))) rank5_bufget_per_exec,
+                       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 1, bufget, 0)) / max(delta_bufget_tot)) rank1_bufget_per_tot,
+                       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 2, bufget, 0)) / max(delta_bufget_tot)) rank2_bufget_per_tot,
+                       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 3, bufget, 0)) / max(delta_bufget_tot)) rank3_bufget_per_tot,
+                       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 4, bufget, 0)) / max(delta_bufget_tot)) rank4_bufget_per_tot,
+                       decode(max(delta_bufget_tot), 0, 0, max(decode(rank, 5, bufget, 0)) / max(delta_bufget_tot)) rank5_bufget_per_tot,
+                       max(decode(rank, 1, cput / 1000000, 0)) rank1_cput,
+                       max(decode(rank, 2, cput / 1000000, 0)) rank2_cput,
+                       max(decode(rank, 3, cput / 1000000, 0)) rank3_cput,
+                       max(decode(rank, 4, cput / 1000000, 0)) rank4_cput,
+                       max(decode(rank, 5, cput / 1000000, 0)) rank5_cput,
+                       max(decode(rank, 1, elap / 1000000, 0)) rank1_elap,
+                       max(decode(rank, 2, elap / 1000000, 0)) rank2_elap,
+                       max(decode(rank, 3, elap / 1000000, 0)) rank3_elap,
+                       max(decode(rank, 4, elap / 1000000, 0)) rank4_elap,
+                       max(decode(rank, 5, elap / 1000000, 0)) rank5_elap,
+                       to_char(max(decode(rank, 1, force_matching_signature, null))) rank1,
+                       to_char(max(decode(rank, 2, force_matching_signature, null))) rank2,
+                       to_char(max(decode(rank, 3, force_matching_signature, null))) rank3,
+                       to_char(max(decode(rank, 4, force_matching_signature, null))) rank4,
+                       to_char(max(decode(rank, 5, force_matching_signature, null))) rank5
+                  from(select v_sqlstat.snap_id,
+                                 v_rank.rank,
+                                 v_sqlstat.force_matching_signature,
+                                 v_sqlstat.module,
+                                 v_sqlstat.bufget,
+                                 v_sqlstat.elap,
+                                 v_sqlstat.cput,
+                                 v_sqlstat.exec
+                            from(select SQL, force_matching_signature, rownum rank
+
+                                    from
+                                        (select force_matching_signature, max(sql_id) SQL, count(distinct sql_id) CNT, sum(nvl(buffer_gets_delta, 0))
+                                        from raw_dba_hist_sqlstat_{0} ", arguments.DbName);
+                //tmpSql.AppendFormat(" where snap_id between 1 + &snap_fr and & snap_to ");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}",arguments.InstanceNumber);
+
+
+                tmpSql.AppendFormat(" and dbid = {0}",arguments.DbId);
+
+                tmpSql.AppendFormat(@"  and force_matching_signature > 0
+
+                                        and parsing_schema_name not in ('SYS', 'SYSTEM', 'SYSMAN')
+
+                                        group by force_matching_signature
+
+                                        having count(distinct sql_id) > 2
+
+                                        order by sum(nvl(buffer_gets_delta, 0)) desc
+                                        )
+
+                                    where rownum <= 5
+                                 ) v_rank,
+                                 (select snap_id,
+                                          force_matching_signature,
+                                          module,
+                                          buffer_gets_delta bufget,
+                                          elapsed_time_delta elap,
+                                          cpu_time_delta cput,
+                                          executions_delta exec
+                                     from raw_dba_hist_sqlstat_{0}", arguments.DbName);
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number =  {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
+
+                tmpSql.AppendFormat(@"   and force_matching_signature <> 0
+                                 ) v_sqlstat
+                           where v_sqlstat.force_matching_signature = v_rank.force_matching_signature
+                          ) v1,
+                          (select sn.snap_id,
+                                   sn.end_interval_time,
+                                   nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_bufget_tot
+                             from raw_dba_hist_snapshot_{0} sn,
+                                  raw_dba_hist_sysstat_{0} sy
+                            where sn.snap_id = sy.snap_id
+                               and sn.instance_number = sy.instance_number
+                               and sn.dbid = sy.dbid
+                               and sy.stat_name = 'session logical reads'", arguments.DbName);
+                //tmpSql.AppendFormat("   and sy.snap_id between &snap_fr and & snap_to");
+                tmpSql.Append("               and sy.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and sy.instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and sy.dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat("  ) sn                 where v1.snap_id(+) = sn.snap_id");
+                tmpSql.AppendFormat("    and sn.snap_id > ");
+                tmpSql.AppendFormat(" ( select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat(@"  group by sn.snap_id,
+                to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
+                 order by sn.snap_id ");
+
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance
+                    .WriteServerLog(
+                        MethodInfo.GetCurrentMethod().Name,
+                        LogBase._LOGTYPE_TRACE_ERROR,
+                        this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
+                        false);
+                throw ex;
+            }
+        }
+
+        public void GetSQL_literal_get_02(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@"select SQL, '\""'||force_matching_signature||'\""' force_matching_signature, rownum rank  
+
+    from
+        (select force_matching_signature, max(sql_id) SQL, count(distinct sql_id) CNT, sum(nvl(buffer_gets_delta, 0))
+
+        from raw_dba_hist_sqlstat_{0}",arguments.DbName);
+
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}", arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
+
+                tmpSql.AppendFormat(@"  and force_matching_signature > 0
+        and parsing_schema_name not in ('SYS', 'SYSTEM', 'SYSMAN')
+        group by force_matching_signature
+        having count(distinct sql_id) > 2
+        order by sum(nvl(buffer_gets_delta, 0)) desc
+        )
+where rownum <= 5 ");
+
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance
+                    .WriteServerLog(
+                        MethodInfo.GetCurrentMethod().Name,
+                        LogBase._LOGTYPE_TRACE_ERROR,
+                        this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
+                        false);
+                throw ex;
+            }
+        }
+
+        public void GetSQL_literal_get_03(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@"select rank,SQL,
+       '\""' || v1.force_matching_signature || '\""' force_matching_signature,
+       v1.module,
+       v1.CNT,
+       nvl(replace(replace(replace(to_char(substr(st.sql_text, 1, 2500)), chr(9), ' '), chr(10), ' '), chr(13), ' '), '** Not Found **') \""SQL Text\""
+  from
+      (select SQL, CNT, force_matching_signature, dbid, module, rownum rank
+
+            from
+                (select force_matching_signature, max(sql_id) SQL, count(distinct sql_id) CNT, sum(nvl(buffer_gets_delta, 0)), dbid, module
+
+                 from raw_dba_hist_sqlstat_{0}", arguments.DbName);
+
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number =  {0}", arguments.InstanceNumber);
+
+                tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
+
+                tmpSql.AppendFormat(@"  and force_matching_signature > 0
+                 and parsing_schema_name not in ('SYS', 'SYSTEM', 'SYSMAN')
+                 group by force_matching_signature, dbid, module
+                 having count(distinct sql_id) > 2
+                 order by sum(nvl(buffer_gets_delta, 0)) desc
+                )
+        where rownum <= 5
+      ) v1,
+      dba_hist_sqltext st
+where st.sql_id(+) = v1.sql
+  and st.dbid(+) = v1.dbid");
+
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance
+                    .WriteServerLog(
+                        MethodInfo.GetCurrentMethod().Name,
+                        LogBase._LOGTYPE_TRACE_ERROR,
+                        this.Requester.IP,
+                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
+                        false);
+                throw ex;
+            }
+        }
+
+        public void GetSQL_literal_get_04(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@"select sn.snap_id snap_id,
+                        to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') Time,
+                        sum(bufget) bufget,
+                        nvl(sum(bufget) / nullif(max(delta_bufget_tot), 0), 0) bufget_per_tot,
+                        sum(cput) / 1000000 cput,
+                        sum(elap) / 1000000 elap
+                        from(
+                                select SQL, force_matching_signature, rownum rank
+                                from(
+                                        select force_matching_signature, max(sql_id) SQL, count(distinct sql_id) CNT, sum(nvl(buffer_gets_delta, 0))
+                                        from raw_dba_hist_sqlstat_{0}", arguments.DbName);
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number = {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  and force_matching_signature > 0
+                                        and parsing_schema_name not in ('SYS', 'SYSTEM', 'SYSMAN')
+                                        group by force_matching_signature
+                                        having count(distinct sql_id) > 2
+                                        order by sum(nvl(buffer_gets_delta, 0)) desc
+                                        )
+                                where rownum <= 5
+                        ) v_rank,
+                        (select snap_id,
+                                 force_matching_signature,
+                                 module,
+                                 buffer_gets_delta bufget,
+                                 elapsed_time_delta elap,
+                                 cpu_time_delta cput,
+                                 executions_delta exec
+                         from raw_dba_hist_sqlstat_{0}", arguments.DbName);
+                //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and instance_number =  {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and dbid = {0}", arguments.DbId);
+                tmpSql.AppendFormat(@"  and force_matching_signature > 0
+                        ) v1,
+		                (select sn.snap_id,
+				                 sn.end_interval_time,
+				                 nvl(value - lag(value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_bufget_tot
+                        from raw_dba_hist_snapshot_{0} sn,
+                             raw_dba_hist_sysstat_{0} sy
+                        where sn.snap_id = sy.snap_id
+                         and sn.instance_number = sy.instance_number
+                         and sn.dbid = sy.dbid
+                         and sy.stat_name = 'session logical reads'", arguments.DbName);
+                //tmpSql.AppendFormat("  and sy.snap_id between 1 + &snap_fr and & snap_to");
+                tmpSql.Append("               where sy.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and sy.instance_number =  {0}", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and sy.dbid =  {0}", arguments.DbId);
+                tmpSql.AppendFormat("  ) sn                where v1.snap_id(+) = sn.snap_id");
+                tmpSql.AppendFormat("  and sn.snap_id > ");
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  group by sn.snap_id, to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')                order by 1");
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
