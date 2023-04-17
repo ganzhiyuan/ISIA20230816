@@ -37,7 +37,7 @@ namespace ISIA.BIZ.ANALYSIS
 
                     tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
-                if (arguments.ParameterType == "OS")
+                else if (arguments.ParameterType == "OS")
                 {
                     tmpSql.Append(" SELECT T.SNAP_ID,T.DBID, T.stat_name PARAMENT_NAME, (TO_NUMBER (t.VALUE) - t.next_value) N_VALUE,t.end_interval_time from  (");
 

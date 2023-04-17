@@ -26,7 +26,7 @@ namespace ISIA.BIZ.ANALYSIS
 
              
                 
-                    tmpSql.AppendFormat(" SELECT A.SNAP_ID,A.DBID,A.INSTANCE_NUMBER, A.SQL_ID , A.{0}, B.END_INTERVAL_TIME ", arguments.ParameterName);
+                    tmpSql.AppendFormat(" SELECT A.SNAP_ID,A.DBID,A.INSTANCE_NUMBER, A.SQL_ID , avg(NVL (A.{0}, 0)) {0}, B.END_INTERVAL_TIME ", arguments.ParameterName);
 
                     tmpSql.AppendFormat(@" FROM RAW_DBA_HIST_SQLSTAT_{0} A LEFT JOIN RAW_DBA_HIST_SNAPSHOT_{0} B ON A.SNAP_ID = B.SNAP_ID
                                         WHERE  1 = 1 ", arguments.DbName);
@@ -36,6 +36,8 @@ namespace ISIA.BIZ.ANALYSIS
                                            arguments.StartTimeKey, arguments.EndTimeKey);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", Convert.ToInt32(arguments.InstanceNumber));
+
+                    tmpSql.Append(" group by A.SQL_ID ,A.SNAP_ID, A.DBID,A.INSTANCE_NUMBER,B.END_INTERVAL_TIME ");
 
                     tmpSql.Append(" ORDER BY B.END_INTERVAL_TIME ");
 
