@@ -45,6 +45,8 @@ namespace ISIA.UI.ANALYSIS
         
         
         List<Series> series = new List<Series>();
+
+        public int colorI { get; set; } = 0;
         //List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
         public FrmParameterClusteringBySqlIDAnalysis()
@@ -340,6 +342,7 @@ namespace ISIA.UI.ANALYSIS
             //绘制主chart
             if (dataSet.Tables.Count > 1)
             {
+                colorI = 0;
                 input = new double[dataSet.Tables.Count-1][];
                 int x = 0;
                 foreach (DataTable dt in dataSet.Tables)
@@ -455,6 +458,7 @@ namespace ISIA.UI.ANALYSIS
             //绘制layoutchart
             if (dataSet.Tables.Count > 1)
             {
+                colorI = 0;
                 for (int i = 0; i < clusteringResult.Length; i++)
                 {
 
@@ -466,8 +470,10 @@ namespace ISIA.UI.ANALYSIS
                     TChart chart1 = (TChart)chart.Control;
                     chart1.Series.Add(line);
 
-                    dtcolor.Rows.Add(dataSet.Tables[i + 1].TableName, clusteringResult[i], ChartColor.GetRandomColor(i));
+                    dtcolor.Rows.Add(dataSet.Tables[i + 1].TableName, clusteringResult[i], ChartColor.GetRandomColor(colorI));
+
                     
+
                 }
             }
 /*
@@ -506,7 +512,8 @@ namespace ISIA.UI.ANALYSIS
             return;
         }
 
-        int y = 0;
+        
+        
         private Line CreateLine(DataTable dstable ,int i)
         {
             Line line = new Line();
@@ -534,13 +541,17 @@ namespace ISIA.UI.ANALYSIS
             line.Legend.Visible = true;
 
 
-            y = i;
-            if (i>30)
+            line.Color = ChartColor.GetRandomColor(colorI);
+            if (colorI > 30)
             {
-                y = 0; 
+                colorI = 0;
             }
-            line.Color = ChartColor.GetRandomColor(y);
-            y++;
+            else
+            {
+                colorI++;
+            }
+            
+            
 
             line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
