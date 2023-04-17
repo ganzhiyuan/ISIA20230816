@@ -1071,34 +1071,35 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select  snap_id,
-                    to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
-                    max(decode(stat_name, 'BUSY_TIME', delta, 0)) / 100 \""BUSY_TIME\"",
-                    max(decode(stat_name, 'IDLE_TIME', delta, 0)) / 100 \""IDLE_TIME\"",
-                    max(decode(stat_name, 'USER_TIME', delta, 0)) / 100 \""USER_TIME\"",
-                    max(decode(stat_name, 'SYS_TIME', delta, 0)) / 100 \""SYS_TIME\"",
-                    max(decode(stat_name, 'IOWAIT_TIME', delta, 0)) / 100 \""IOWAIT_TIME\"",
-                    max(decode(stat_name, 'NICE_TIME', delta, 0)) / 100 \""NICE_TIME\"",
-                    max(decode(stat_name, 'LOAD', delta, 0)) \""LOAD\"",
-                    max(decode(stat_name, 'RSRC_MGR_CPU_WAIT_TIME', delta, 0)) / 100 \""RSRC_MGR_CPU_WAIT_TIME\"",
-                    max(decode(stat_name, 'PHYSICAL_MEMORY_BYTES', value, 0)) \""PHYSICAL_MEMORY_BYTES\"",
-                    max(decode(stat_name, 'NUM_CPUS', value, 0)) \""NUM_CPUS\"",
-                    max(decode(stat_name, 'NUM_CPU_CORES', value, 0)) \""NUM_CPU_CORES\"",
-                    max(decode(stat_name, 'NUM_CPU_SOCKETS', value, 0)) \""NUM_CPU_SOCKETS\"",
+                tmpSql.Append(@"select  snap_id,
+                    to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') Timestamp,
+                    max(decode(stat_name, 'BUSY_TIME', delta, 0)) / 100 BUSY_TIME,
+                    max(decode(stat_name, 'IDLE_TIME', delta, 0)) / 100 IDLE_TIME,
+                    max(decode(stat_name, 'USER_TIME', delta, 0)) / 100 USER_TIME,
+                    max(decode(stat_name, 'SYS_TIME', delta, 0)) / 100 SYS_TIME,
+                    max(decode(stat_name, 'IOWAIT_TIME', delta, 0)) / 100 IOWAIT_TIME,
+                    max(decode(stat_name, 'NICE_TIME', delta, 0)) / 100 NICE_TIME,
+                    max(decode(stat_name, 'LOAD', delta, 0)) LOAD,
+                    max(decode(stat_name, 'RSRC_MGR_CPU_WAIT_TIME', delta, 0)) / 100 RSRC_MGR_CPU_WAIT_TIME,
+                    max(decode(stat_name, 'PHYSICAL_MEMORY_BYTES', value, 0)) PHYSICAL_MEMORY_BYTES,
+                    max(decode(stat_name, 'NUM_CPUS', value, 0)) NUM_CPUS,
+                    max(decode(stat_name, 'NUM_CPU_CORES', value, 0)) NUM_CPU_CORES,
+                    max(decode(stat_name, 'NUM_CPU_SOCKETS', value, 0)) NUM_CPU_SOCKETS,
                     decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
-                     (max(decode(stat_name, 'USER_TIME', delta, 0)) + max(decode(stat_name, 'NICE_TIME', delta, 0)))
-                    / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \""%usr\"",
-                    decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
-                     max(decode(stat_name, 'SYS_TIME', delta, 0))
-                    / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \""%sys\"",
-                    decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
-                     (max(decode(stat_name, 'IOWAIT_TIME', delta, 0)))
-                    / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \""%wio\"",
-                    decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
-                     max(decode(stat_name, 'IDLE_TIME', delta, 0))
-                    / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \""%idle\""
-                    from(
-                     select sn.snap_id,
+                     (max(decode(stat_name, 'USER_TIME', delta, 0)) + max(decode(stat_name, 'NICE_TIME', delta, 0))) ");
+                tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \"%usr\",");
+                tmpSql.Append(@"  decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                  max(decode(stat_name, 'SYS_TIME', delta, 0)) ");
+               tmpSql.Append("  / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) sys, ");
+                tmpSql.Append(@"  decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                  (max(decode(stat_name, 'IOWAIT_TIME', delta, 0)))");
+                    tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) wio, ");
+                tmpSql.Append(@" decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                 max(decode(stat_name, 'IDLE_TIME', delta, 0)) ");
+                     tmpSql.AppendFormat(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) idle ");
+                tmpSql.AppendFormat(@"from(
+
+                    select sn.snap_id,
                             sn.end_interval_time,
                             os.stat_name,
                             (nvl(value - lag(value)
@@ -1111,14 +1112,19 @@ namespace ISIA.BIZ.TREND
                        and os.dbid = sn.dbid ", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
-                tmpSql.AppendFormat(" ) where snap_id > {0} ", arguments.SnapId);
+                tmpSql.AppendFormat(" ) where snap_id >  ");
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.Append("group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
