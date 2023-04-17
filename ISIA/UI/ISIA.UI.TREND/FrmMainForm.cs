@@ -1,4 +1,5 @@
-﻿using ISIA.UI.BASE;
+﻿using ISIA.INTERFACE.ARGUMENTSPACK;
+using ISIA.UI.BASE;
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using System;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TAP.Data.Client;
+using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
@@ -18,6 +20,8 @@ namespace ISIA.UI.TREND
     {
 
         BizDataClient bs;
+        DataSet dataSet = new DataSet();
+        AwrCommonArgsPack args = new AwrCommonArgsPack();
         public FrmMainForm()
         {
             InitializeComponent();
@@ -46,6 +50,32 @@ namespace ISIA.UI.TREND
             return null;
         }
 
+        public DataSet LoadData()
+        {
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.InstanceNumber = cmbInstance.EditValue.ToString();
+            args.SnapId = "";
+
+            dataSet = bs.ExecuteDataSet("GetOsstat", args.getPack());
+
+            return dataSet;
+        }
+        public void DisplayData(DataSet ds)
+        {
+            if (dataSet == null)
+            {
+                return;
+            }
+            //ConvertData(dataSet);
+
+            //CreateTeeChart(dataSet.Tables[0]);
+            dataSet.Tables.Clear();
+
+        }
+
         // 定时器回调函数
         private void TimerCallback(object state)
         {
@@ -57,6 +87,7 @@ namespace ISIA.UI.TREND
                 {
                     // 调用异步加载方法
                     LoadDataAsync(tChart);
+
                 }));
             }
         }
@@ -89,6 +120,65 @@ namespace ISIA.UI.TREND
                 flowLayoutPanel1.Controls.Add(tChart);
             }
             comboBoxEdit1_SelectedIndexChanged(null, null);
+        }
+
+        private void ShowLoading(Control targetControl)
+        {
+            // 创建进度条控件
+            ProgressBar progressBar = new ProgressBar();
+            progressBar.Style = ProgressBarStyle.Marquee;
+            progressBar.Width = 100;
+            progressBar.Height = targetControl.Height;
+
+            // 将进度条添加到目标控件旁边
+            targetControl.Parent.Controls.Add(progressBar);
+            progressBar.Left = targetControl.Right + 10;
+            progressBar.Top = targetControl.Top;
+
+            // 启用进度条
+            progressBar.Visible = true;
+        }
+
+        // 隐藏加载中状态
+        private void HideLoading(Control targetControl)
+        {
+            // 查找进度条控件
+            foreach (Control control in targetControl.Parent.Controls)
+            {
+                if (control is ProgressBar)
+                {
+                    // 移除进度条控件
+                    targetControl.Parent.Controls.Remove(control);
+                    break;
+                }
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(cmbDbName.Text))
+                {
+                    string errMessage = "Please select DB_NAME";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+                if (string.IsNullOrEmpty(cmbInstance.Text))
+                {
+                    string errMessage = "Please select Instance";
+                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                    return;
+                }
+
+                //ComboBoxControl.SetCrossLang(this._translator);
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
+                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
