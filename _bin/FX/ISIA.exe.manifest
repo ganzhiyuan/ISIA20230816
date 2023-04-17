@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KSTdX66v2PoqVYb0QFelYpo4IEwnfvVIdUOTOnvT0F8=</dsig:DigestValue>
+        <dsig:DigestValue>PBH4o3ZjALA6Ez/e4Si7znTw31omNbFqB9B/GWs/grg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -319,14 +319,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.dll" size="142848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.Base.dll" size="156672">
       <assemblyIdentity name="TAP.Base" version="1.0.5.0" publicKeyToken="DF4842639AD2A0F5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7EEUIMKkAldKtlR9HInlais309gUfxUcrafbXsVlVXk=</dsig:DigestValue>
+        <dsig:DigestValue>lsK9zr/ULDJhjtTIPGjILvl3zp9Qfvfbad8FCufqXo0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -573,13 +573,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11286">
+  <file name="ISIA.exe.config" size="11281">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ewDLtEYYi3O6TRTdpGUMAS07IYZxeX530Qx2eeSw/94=</dsig:DigestValue>
+      <dsig:DigestValue>rPEqyg67N7Si6v4XPlYrbMMlwKC7FYd5zJ2A8Snp/o4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">
