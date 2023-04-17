@@ -170,14 +170,14 @@ namespace ISIA.UI.ANALYSIS
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraUserControl1.Size = new System.Drawing.Size(2028, 918);
+            this.xtraUserControl1.Size = new System.Drawing.Size(2028, 937);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.layoutControl1);
             this.dpnlLeft_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlLeft_Container.Size = new System.Drawing.Size(347, 885);
+            this.dpnlLeft_Container.Size = new System.Drawing.Size(347, 904);
             // 
             // dpnlRight
             // 
@@ -196,14 +196,14 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlRight.OriginalSize = new System.Drawing.Size(784, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
-            this.dpnlRight.Size = new System.Drawing.Size(1671, 918);
+            this.dpnlRight.Size = new System.Drawing.Size(1671, 937);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.splitContainerControl1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(1663, 885);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(1663, 904);
             // 
             // dpnlLeft
             // 
@@ -218,11 +218,11 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlLeft.Options.ShowMaximizeButton = false;
             this.dpnlLeft.OriginalSize = new System.Drawing.Size(268, 153);
             this.dpnlLeft.SavedSizeFactor = 1D;
-            this.dpnlLeft.Size = new System.Drawing.Size(357, 918);
+            this.dpnlLeft.Size = new System.Drawing.Size(357, 937);
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 981);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 982);
             this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(4);
             this.tPanelBottomBase.Size = new System.Drawing.Size(2028, 31);
             // 
@@ -233,9 +233,9 @@ namespace ISIA.UI.ANALYSIS
             // 
             // tPanelMain
             // 
-            this.tPanelMain.Location = new System.Drawing.Point(0, 56);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 45);
             this.tPanelMain.Margin = new System.Windows.Forms.Padding(4);
-            this.tPanelMain.Size = new System.Drawing.Size(2028, 918);
+            this.tPanelMain.Size = new System.Drawing.Size(2028, 937);
             // 
             // layoutControl1
             // 
@@ -245,7 +245,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(347, 885);
+            this.layoutControl1.Size = new System.Drawing.Size(347, 904);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -268,7 +268,7 @@ namespace ISIA.UI.ANALYSIS
             this.btnSelect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.ImageOptions.Image")));
             this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnSelect.IsRequired = false;
-            this.btnSelect.Location = new System.Drawing.Point(5, 847);
+            this.btnSelect.Location = new System.Drawing.Point(5, 866);
             this.btnSelect.MaximumSize = new System.Drawing.Size(93, 33);
             this.btnSelect.MinimumSize = new System.Drawing.Size(93, 33);
             this.btnSelect.Name = "btnSelect";
@@ -302,9 +302,9 @@ namespace ISIA.UI.ANALYSIS
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(337, 838);
+            this.tabPane1.RegularSize = new System.Drawing.Size(337, 857);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(337, 838);
+            this.tabPane1.Size = new System.Drawing.Size(337, 857);
             this.tabPane1.TabIndex = 6;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -318,7 +318,7 @@ namespace ISIA.UI.ANALYSIS
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
             this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(337, 850);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(337, 823);
             // 
             // navBarControl1
             // 
@@ -342,7 +342,7 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 421;
-            this.navBarControl1.Size = new System.Drawing.Size(421, 1063);
+            this.navBarControl1.Size = new System.Drawing.Size(421, 1029);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -737,7 +737,7 @@ namespace ISIA.UI.ANALYSIS
             // seclusterin
             // 
             this.seclusterin.EditValue = new decimal(new int[] {
-            4,
+            1,
             0,
             0,
             0});
@@ -895,7 +895,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem12});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.Root.Size = new System.Drawing.Size(347, 885);
+            this.Root.Size = new System.Drawing.Size(347, 904);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem11
@@ -903,14 +903,14 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem11.Control = this.tabPane1;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(341, 842);
+            this.layoutControlItem11.Size = new System.Drawing.Size(341, 861);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnSelect;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 842);
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 861);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(341, 37);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
@@ -932,7 +932,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1663, 885);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1663, 904);
             this.splitContainerControl1.SplitterPosition = 390;
             this.splitContainerControl1.TabIndex = 0;
             // 
@@ -954,7 +954,7 @@ namespace ISIA.UI.ANALYSIS
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtralychart;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1663, 480);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1663, 499);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtralychart});
@@ -963,7 +963,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.xtralychart.Controls.Add(this.tSplitContainerControl1);
             this.xtralychart.Name = "xtralychart";
-            this.xtralychart.Size = new System.Drawing.Size(1661, 446);
+            this.xtralychart.Size = new System.Drawing.Size(1661, 465);
             this.xtralychart.Text = "Clustering Chart";
             // 
             // tSplitContainerControl1
@@ -982,7 +982,7 @@ namespace ISIA.UI.ANALYSIS
             this.tSplitContainerControl1.Panel2.Controls.Add(this.tPanel6);
             this.tSplitContainerControl1.Panel2.Text = "Panel2";
             this.tSplitContainerControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tSplitContainerControl1.Size = new System.Drawing.Size(2076, 558);
+            this.tSplitContainerControl1.Size = new System.Drawing.Size(2076, 581);
             this.tSplitContainerControl1.SplitterPosition = 1621;
             this.tSplitContainerControl1.TabIndex = 0;
             // 
@@ -996,7 +996,7 @@ namespace ISIA.UI.ANALYSIS
             this.tplychart.Name = "tplychart";
             this.tplychart.NeedToTranslate = true;
             this.tplychart.RepresentativeValue = "tplychart [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tplychart.Size = new System.Drawing.Size(1621, 558);
+            this.tplychart.Size = new System.Drawing.Size(1621, 581);
             this.tplychart.TabIndex = 0;
             // 
             // layoutControl2
@@ -1006,7 +1006,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(1617, 554);
+            this.layoutControl2.Size = new System.Drawing.Size(1617, 577);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -1016,7 +1016,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1617, 554);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1617, 577);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tPanel6
@@ -1029,7 +1029,7 @@ namespace ISIA.UI.ANALYSIS
             this.tPanel6.Name = "tPanel6";
             this.tPanel6.NeedToTranslate = true;
             this.tPanel6.RepresentativeValue = "tPanel6 [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tPanel6.Size = new System.Drawing.Size(440, 558);
+            this.tPanel6.Size = new System.Drawing.Size(440, 581);
             this.tPanel6.TabIndex = 0;
             // 
             // gridControl1
@@ -1038,7 +1038,7 @@ namespace ISIA.UI.ANALYSIS
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(436, 554);
+            this.gridControl1.Size = new System.Drawing.Size(436, 577);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1055,7 +1055,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1622, 810);
+            this.ClientSize = new System.Drawing.Size(2028, 1013);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmParameterClusteringAnalysis";
             this.Text = "Parameter Clustering Analysis";
