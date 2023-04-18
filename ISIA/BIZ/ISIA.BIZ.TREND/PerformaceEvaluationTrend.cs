@@ -1085,18 +1085,18 @@ namespace ISIA.BIZ.TREND
                     max(decode(stat_name, 'NUM_CPUS', value, 0)) NUM_CPUS,
                     max(decode(stat_name, 'NUM_CPU_CORES', value, 0)) NUM_CPU_CORES,
                     max(decode(stat_name, 'NUM_CPU_SOCKETS', value, 0)) NUM_CPU_SOCKETS,
-                    decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                    round(decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
                      (max(decode(stat_name, 'USER_TIME', delta, 0)) + max(decode(stat_name, 'NICE_TIME', delta, 0))) ");
-                tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) \"%usr\",");
-                tmpSql.Append(@"  decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))),7) \"%usr\",");
+                tmpSql.Append(@"  round(decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
                   max(decode(stat_name, 'SYS_TIME', delta, 0)) ");
-               tmpSql.Append("  / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) sys, ");
-                tmpSql.Append(@"  decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+               tmpSql.Append("  / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))),7) \"%sys\", ");
+                tmpSql.Append(@"  round(decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
                   (max(decode(stat_name, 'IOWAIT_TIME', delta, 0)))");
-                    tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) wio, ");
-                tmpSql.Append(@" decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
+                    tmpSql.Append(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))),7) \"%wio\", ");
+                tmpSql.Append(@" round(decode((max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0))), 0, 0,
                  max(decode(stat_name, 'IDLE_TIME', delta, 0)) ");
-                     tmpSql.AppendFormat(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))) idle ");
+                     tmpSql.AppendFormat(" / (max(decode(stat_name, 'IDLE_TIME', delta, 0)) + max(decode(stat_name, 'BUSY_TIME', delta, 0)))),7) \"%idle\" ");
                 tmpSql.AppendFormat(@"from(
 
                     select sn.snap_id,
