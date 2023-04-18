@@ -229,7 +229,7 @@ namespace ISIA.DETECTING.SERVICE
                 _insertStatement += "INSERT INTO ISIA.TAPCTOUTOFCONTROLDATASUM ( ";
                 _insertStatement += "SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ";
                 _insertStatement += "MEASURE_VAL, STARTTIMEKEY, ENDTIMEKEY, ";
-                _insertStatement += "RULENO, MEASURE_DATE, ";
+                _insertStatement += "RULENO, MEASURE_TIMEKEY, ";
                 _insertStatement += "INSERTTIME, INSERTUSER, ISALIVE) ";
 
                 _mailAddress = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["MAIL_ADDRESS"].ToString();
@@ -272,7 +272,7 @@ namespace ISIA.DETECTING.SERVICE
             {
                 deleteSQL.Append("DELETE ISIA.TAPCTOUTOFCONTROLDATASUM ");
                 deleteSQL.Append("WHERE 1=1 ");
-                deleteSQL.AppendFormat("AND MEASURE_DATE LIKE '{0}%' ", DateTime.Now.ToString("yyyyMMdd"));
+                deleteSQL.AppendFormat("AND MEASURE_TIMEKEY LIKE '{0}%' ", DateTime.Now.ToString("yyyyMMdd"));
 
                 int resultCount = db.Save(new string[] { deleteSQL.ToString() });
             }
@@ -465,7 +465,7 @@ namespace ISIA.DETECTING.SERVICE
 
                 ruleNo1SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
                 ruleNo1SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-                ruleNo1SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+                ruleNo1SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
                 ruleNo1SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
                 ruleNo1SQL.Append("FROM ");
                 ruleNo1SQL.Append("( ");
@@ -499,7 +499,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo2SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo2SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo2SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo2SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo2SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo2SQL.Append("FROM ");
             ruleNo2SQL.Append("( ");
@@ -587,7 +587,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo3SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo3SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo3SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo3SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo3SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo3SQL.Append("FROM ");
             ruleNo3SQL.Append("( ");
@@ -676,7 +676,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo4SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo4SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo4SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo4SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo4SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo4SQL.Append("FROM ");
             ruleNo4SQL.Append("( ");
@@ -778,7 +778,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo5SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo5SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo5SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo5SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo5SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo5SQL.Append("FROM ");
             ruleNo5SQL.Append("( ");
@@ -852,7 +852,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo6SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo6SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo6SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo6SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo6SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo6SQL.Append("FROM ");
             ruleNo6SQL.Append("( ");
@@ -892,7 +892,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo7SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo7SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo7SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo7SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo7SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo7SQL.Append("FROM ");
             ruleNo7SQL.Append("( ");
@@ -940,7 +940,7 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo8SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo8SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo8SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_DATE, ", ruleNo, _measureDate);
+            ruleNo8SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
             ruleNo8SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo8SQL.Append("FROM ");
             ruleNo8SQL.Append("( ");
@@ -989,14 +989,14 @@ namespace ISIA.DETECTING.SERVICE
             try
             {
                 deleteSQL.Append("DELETE ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
-                deleteSQL.AppendFormat("WHERE MEASURE_DATE = '{0}' ", _measureDate);
+                deleteSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
                 deleteSQL.Append("AND EXISTS (SELECT 1 ");
                 deleteSQL.Append(" FROM ( ");
                 deleteSQL.Append("SELECT B.* ");
                 deleteSQL.Append("FROM TAPCTPARAMETERRULESPEC A, ");
                 deleteSQL.Append("TAPCTOUTOFCONTROLDATASUM B ");
-                deleteSQL.AppendFormat("WHERE B.MEASURE_DATE >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
-                deleteSQL.AppendFormat("AND B.MEASURE_DATE <= '{0}' ", _measureYesterDay);
+                deleteSQL.AppendFormat("WHERE B.MEASURE_TIMEKEY >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
+                deleteSQL.AppendFormat("AND B.MEASURE_TIMEKEY <= '{0}' ", _measureYesterDay);
                 deleteSQL.Append("AND B.DBID = A.DBID ");
                 deleteSQL.Append("AND B.INSTANCE_NUMBER = A.INSTANCE_NUMBER ");
                 deleteSQL.Append("AND B.PARAMETERID = A.PARAMETERID ");
@@ -1028,15 +1028,15 @@ namespace ISIA.DETECTING.SERVICE
             try
             {
                 deleteSQL.Append("DELETE ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
-                deleteSQL.AppendFormat("WHERE MEASURE_DATE = '{0}' ", _measureDate);
+                deleteSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
                 deleteSQL.AppendFormat("AND PARAMETERID = '{0}' ", ParamterId);
                 deleteSQL.Append("AND EXISTS (SELECT 1 ");
                 deleteSQL.Append(" FROM ( ");
                 deleteSQL.Append("SELECT B.* ");
                 deleteSQL.Append("FROM TAPCTPARAMETERRULESPEC A, ");
                 deleteSQL.Append("TAPCTOUTOFCONTROLDATASUM B ");
-                deleteSQL.AppendFormat("WHERE B.MEASURE_DATE >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
-                deleteSQL.AppendFormat("AND B.MEASURE_DATE <= '{0}' ", _measureYesterDay);
+                deleteSQL.AppendFormat("WHERE B.MEASURE_TIMEKEY >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
+                deleteSQL.AppendFormat("AND B.MEASURE_TIMEKEY <= '{0}' ", _measureYesterDay);
                 deleteSQL.Append("AND B.DBID = A.DBID ");
                 deleteSQL.Append("AND B.INSTANCE_NUMBER = A.INSTANCE_NUMBER ");
                 deleteSQL.Append("AND B.PARAMETERID = A.PARAMETERID ");
@@ -1079,11 +1079,11 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("RULENO, ");
                 selectSQL.Append("(SELECT RULENAME FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO) RULENAME,  ");
                 selectSQL.Append("(SELECT RULETEXT FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO) RULETEXT, ");
-                selectSQL.Append("SNAP_ID, MEASURE_DATE,  ");
+                selectSQL.Append("SNAP_ID, MEASURE_TIMEKEY,  ");
                 selectSQL.Append("STARTTIMEKEY, ENDTIMEKEY, MEASURE_VAL,  ");
                 selectSQL.Append("COMMENTS ");
                 selectSQL.Append("FROM ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
-                selectSQL.AppendFormat("WHERE MEASURE_DATE = '{0}' ", _measureDate);
+                selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
                 selectSQL.Append("AND EXISTS (SELECT 1 ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC ");
                 selectSQL.Append("WHERE MAILUSED = 'YES' ");
@@ -1115,8 +1115,8 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("SELECT B.* ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC A, ");
                 selectSQL.Append("TAPCTOUTOFCONTROLDATASUM B ");
-                selectSQL.AppendFormat("WHERE B.MEASURE_DATE >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
-                selectSQL.AppendFormat("AND B.MEASURE_DATE <= '{0}' ", _measureYesterDay);
+                selectSQL.AppendFormat("WHERE B.MEASURE_TIMEKEY >= TO_CHAR(TO_DATE('{0}', 'YYYYMMDD') - A.DAYS, 'YYYYMMDD') ", _measureYesterDay);
+                selectSQL.AppendFormat("AND B.MEASURE_TIMEKEY <= '{0}' ", _measureYesterDay);
                 selectSQL.Append("AND B.DBID = A.DBID ");
                 selectSQL.Append("AND B.INSTANCE_NUMBER = A.INSTANCE_NUMBER ");
                 selectSQL.Append("AND B.PARAMETERID = A.PARAMETERID ");
@@ -1129,11 +1129,11 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("RULENO, ");
                 selectSQL.Append("(SELECT RULENAME FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO) RULENAME,  ");
                 selectSQL.Append("(SELECT RULETEXT FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO) RULETEXT, ");
-                selectSQL.Append("SNAP_ID, MEASURE_DATE,  ");
+                selectSQL.Append("SNAP_ID, MEASURE_TIMEKEY,  ");
                 selectSQL.Append("STARTTIMEKEY, ENDTIMEKEY, MEASURE_VAL,  ");
                 selectSQL.Append("COMMENTS ");
                 selectSQL.Append("FROM ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
-                selectSQL.AppendFormat("WHERE MEASURE_DATE = '{0}' ", _measureDate);
+                selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
                 selectSQL.Append("AND EXISTS (SELECT 1 ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC ");
                 selectSQL.Append("WHERE MAILUSED = 'YES' ");
@@ -1256,7 +1256,7 @@ namespace ISIA.DETECTING.SERVICE
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENAME"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULETEXT"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_DATE"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_TIMEKEY"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["STARTTIMEKEY"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["ENDTIMEKEY"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_VAL"]);
@@ -1279,7 +1279,7 @@ namespace ISIA.DETECTING.SERVICE
             sbMailBody.AppendFormat("		<th style=\"width:90px;\">RULENAME</th>");
             sbMailBody.AppendFormat("		<th style=\"width:140px;\">RULETEXT</th>");
             sbMailBody.AppendFormat("		<th style=\"width:90px;\">SNAP_ID</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_DATE</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_TIMEKEY</th>");
             sbMailBody.AppendFormat("		<th style=\"width:90px;\">STARTTIMEKEY</th>");
             sbMailBody.AppendFormat("		<th style=\"width:90px;\">ENDTIMEKEY</th>");
             sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_VAL</th>");
@@ -1373,6 +1373,7 @@ namespace ISIA.DETECTING.SERVICE
         private const string _MAILUSED = "MAILUSED";
         private const string _MMSUSED = "MMSUSED";
         private const string _SPECLIMITUSED = "SPECLIMITUSED";
+        private const string _DETECTINGUSED = "DETECTINGUSED";
 
         private const string _TARGET = "TARGET";
         private const string _STDVALUE = "STD_VALUE";
@@ -1404,6 +1405,8 @@ namespace ISIA.DETECTING.SERVICE
         public string MAILUSED { get; set; }
         public string MMSUSED { get; set; }
         public string SPECLIMITUSED { get; set; }
+
+        public string DETECTINGUSED { get; set; }
         public string TARGET { get; set; }
         public string STDVALUE { get; set; }
         public string PARAVAL1 { get; set; }
@@ -1487,6 +1490,9 @@ namespace ISIA.DETECTING.SERVICE
                         break;
                     case _SPECLIMITUSED:
                         SPECLIMITUSED = dataRow[_SPECLIMITUSED].ToString();
+                        break;
+                    case _DETECTINGUSED:
+                        DETECTINGUSED = dataRow[_DETECTINGUSED].ToString();
                         break;
                     case _TARGET:
                         TARGET = dataRow[_TARGET].ToString();
