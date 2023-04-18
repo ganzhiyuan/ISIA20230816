@@ -90,11 +90,12 @@ namespace ISIA.UI.ANALYSIS
                 //args.DbId = cmbDbName.EditValue.ToString();
                 //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
-                
+                args.DbId = cmbDbName.EditValue.ToString();
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cmbParameterName.Text;
                 args.ParameterType = cmbParameterType.Text;
+                args.InstanceNumber = cmbInstance.Text;
 
                 //List<string > itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetParaValue", args.getPack());

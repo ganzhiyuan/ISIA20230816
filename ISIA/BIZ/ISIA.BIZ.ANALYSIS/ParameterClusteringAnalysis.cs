@@ -35,7 +35,11 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
+
+                    tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T ", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
                 else if (arguments.ParameterType == "OS")
                 {
@@ -47,6 +51,10 @@ namespace ISIA.BIZ.ANALYSIS
 
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
+
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
 
                     tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
@@ -61,6 +69,10 @@ namespace ISIA.BIZ.ANALYSIS
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
                     AND b.end_interval_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey, arguments.EndTimeKey);
+
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
 
                     tmpSql.AppendFormat(@" AND metric_name IN ( {0} ) order by a.metric_name ,B.end_interval_time", Utils.MakeSqlQueryIn2(arguments.ParameterName));
                 }
@@ -77,6 +89,10 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
+
                     tmpSql.AppendFormat(@" and  stat_name in ( {0})  ) T ", Utils.MakeSqlQueryIn2(arguments.ParameterName));
 
                     tmpSql.Append(" union all");
@@ -90,6 +106,10 @@ namespace ISIA.BIZ.ANALYSIS
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
                     AND b.end_interval_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey, arguments.EndTimeKey);
+
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
 
                     tmpSql.AppendFormat(@" AND metric_name IN ( {0} ) ", Utils.MakeSqlQueryIn2(arguments.ParameterName));
 
@@ -105,8 +125,11 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
                         and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
+                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
 
+                    tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
+
+                    tmpSql.AppendFormat(@" and  stat_name in ( {0})  order by B.end_interval_time ) T", Utils.MakeSqlQueryIn2(arguments.ParameterName));
 
 
                     tmpSql.Append(") order by parament_name ,end_interval_time");

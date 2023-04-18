@@ -185,11 +185,14 @@ namespace ISIA.UI.MANAGEMENT
             args.SPECLOWERLIMIT = txtSpecLow.EditValue.ToString();
             args.CONTROLLOWERLIMIT = txtControlLow.EditValue.ToString();
             args.CONTROLUPPERLIMIT = txtControlUpper.EditValue.ToString();
+            args.TARGET = sptarget.EditValue.ToString();
             args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
             args.CHARTUSED = rdoIsalive.Properties.Items[rdoChartused.SelectedIndex].Value.ToString();
             args.MAILUSED = rdoIsalive.Properties.Items[rdoIlused.SelectedIndex].Value.ToString();
             args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
             args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
+            args.DETECTINGUSED = rdodetecting.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
+            
 
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
             if (dst==null||dst.Tables==null||dst.Tables[0].Rows.Count==0)
@@ -317,5 +320,7 @@ namespace ISIA.UI.MANAGEMENT
                 txt.BackColor = Color.White;
             }
         }
+
+
     }
 }

@@ -24,6 +24,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private string _SPECLIMITUSED = null;
         private string _ISALIVE = null;
         private string _RowId = null;
+        private string _DETECTINGUSED = null;
+        private string _TARGET = null;
+
         
 
 
@@ -46,6 +49,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string SPECLIMITUSED { get { return _SPECLIMITUSED; } set { _SPECLIMITUSED = value; } }
         public string ISALIVE { get { return _ISALIVE; } set { _ISALIVE = value; } }
         public string ROWID { get { return _RowId; } set { _RowId = value; } }
+        public string DETECTINGUSED { get { return _DETECTINGUSED; } set { _DETECTINGUSED = value; } }
+        public string TARGET { get { return _TARGET; } set { _TARGET = value; } }
        
 
 
