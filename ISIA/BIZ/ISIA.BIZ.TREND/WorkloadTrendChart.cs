@@ -39,14 +39,252 @@ namespace ISIA.BIZ.TREND
                 throw ex;
             }
         }
+        public void GetWorkLoadTrendForInterval(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"WITH t1_sysmetric_summary AS
+ (SELECT /*+ MATERIALIZE */
+   MIN(begin_interval_time) begin_time
+  ,MAX(end_interval_time) end_time
+  ,dbid
+  ,(SELECT instance_name
+      FROM gv$instance
+     WHERE INSTANCE_NUMBER = s.instance_number) dbname
+  ,snap_id
+  ,s.instance_number AS inst_id
+  ,MIN(NUM_INTERVAL) NUM_INTERVAL
+  ,SUM(DECODE(metric_name, 'Host CPU Utilization (%)', average, 0)) CPU_Util_pct
+  ,SUM(DECODE(metric_name, 'Host CPU Utilization (%)', maxval, 0)) CPU_Util_pct_max
+  ,SUM(DECODE(metric_name, 'Logical Reads Per Sec', average, 0)) Logical_Reads_psec
+  ,SUM(DECODE(metric_name, 'Physical Reads Per Sec', average, 0)) Physical_Reads_psec
+  ,SUM(DECODE(metric_name, 'Physical Writes Per Sec', average, 0)) Physical_Writes_psec
+  ,SUM(DECODE(metric_name, 'Executions Per Sec', average, 0)) Execs_psec_avg
+  ,SUM(DECODE(metric_name, 'Executions Per Sec', maxval, 0)) Execs_psec_max
+  ,SUM(DECODE(metric_name, 'User Calls Per Sec', average, 0)) User_Calls_psec
+  ,SUM(DECODE(metric_name, 'DB Block Changes Per Sec', average, 0)) DB_Block_Changes_psec
+  ,SUM(DECODE(metric_name, 'SQL Service Response Time', average, 0)) SQL_Service_Response_Time
+  ,SUM(DECODE(metric_name, 'User Commits Per Sec', average, 0)) User_Commits_psec
+  ,SUM(DECODE(metric_name, 'User Commits Per Sec', maxval, 0)) User_Commits_max_psec
+  ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', average, 0)) Redo_Generated_psec
+  ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', maxval, 0)) Redo_Generated_max_psec
+    FROM (SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */
+           sm.*, sn.begin_interval_time, sn.end_interval_time ");
+                tmpSql.AppendFormat(" FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm ", arguments.DBName);
+                tmpSql.AppendFormat("  , RAW_DBA_HIST_SNAPSHOT_{0} sn ", arguments.DBName);
 
+                tmpSql.Append(@"  WHERE 1 = 1
+     
+
+                      AND sm.dbid = sn.dbid AND
+                 sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND
+                 sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER = 1 
+                 AND TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD-HH24MI') BETWEEN
+                 ");
+
+                tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
+                tmpSql.Append(@") s
+   WHERE 1 = 1
+   GROUP BY dbid, s.instance_number, snap_id),
+t1_sysstat AS
+ (SELECT 
+   dbid
+  ,INSTANCE_NUMBER AS inst_id
+  ,snap_id
+  ,begin_interval_time AS begin_time
+  ,end_interval_time AS end_time
+  ,(SELECT EXTRACT(HOUR FROM(END_INTERVAL_TIME - BEGIN_INTERVAL_TIME)) * 60 * 60 +
+           EXTRACT(MINUTE FROM(END_INTERVAL_TIME - BEGIN_INTERVAL_TIME)) * 60 +
+           EXTRACT(SECOND FROM(END_INTERVAL_TIME - BEGIN_INTERVAL_TIME)) ");
+                tmpSql.AppendFormat("   FROM RAW_DBA_HIST_SNAPSHOT_{0} ", arguments.DBName);
+
+                tmpSql.Append(@" WHERE dbid = s.dbid AND SNAP_ID = s.SNAP_ID AND
+           INSTANCE_NUMBER = s.INSTANCE_NUMBER) snap_time
+  ,ROUND((NET_Cnt_Client - LAG(NET_Cnt_Client, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_Cnt_Client
+  ,ROUND((NET_B_To_Client - LAG(NET_B_To_Client, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_To_Client
+  ,ROUND((NET_B_From_Client - LAG(NET_B_From_Client, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_From_Client
+  ,ROUND((NET_Cnt_DBLink - LAG(NET_Cnt_DBLink, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_Cnt_DBLink
+  ,ROUND((NET_B_From_DBLink - LAG(NET_B_From_DBLink, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_From_DBLink
+  ,ROUND((NET_B_To_DBLink - LAG(NET_B_To_DBLink, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))) NET_B_To_DBLink
+  ,ROUND((gc_recv - LAG(gc_recv, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))
+        ,2) gc_recv
+  ,ROUND((gc_send - LAG(gc_send, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))
+        ,2) gc_send
+  ,ROUND((gcs_msg_send - LAG(gcs_msg_send, 1)
+          OVER(PARTITION BY dbid, INSTANCE_NUMBER ORDER BY snap_id))
+        ,2) gcs_msg_send
+    FROM (SELECT dbid
+                ,snap_id
+                ,INSTANCE_NUMBER
+                ,MIN(begin_interval_time) AS begin_interval_time
+                ,MAX(end_interval_time) AS end_interval_time
+                ,SUM(DECODE(stat_name
+                           ,'SQL*Net roundtrips to/from client'
+                           ,VALUE
+                           ,0)) NET_Cnt_Client
+                ,SUM(DECODE(stat_name
+                           ,'bytes sent via SQL*Net to client'
+                           ,VALUE
+                           ,0)) NET_B_To_Client
+                ,SUM(DECODE(stat_name
+                           ,'bytes received via SQL*Net from client'
+                           ,VALUE
+                           ,0)) NET_B_From_Client
+                ,SUM(DECODE(stat_name
+                           ,'SQL*Net roundtrips to/from dblink'
+                           ,VALUE
+                           ,0)) NET_Cnt_DBLink
+                ,SUM(DECODE(stat_name
+                           ,'bytes received via SQL*Net from dblink'
+                           ,VALUE
+                           ,0)) NET_B_From_DBLink
+                ,SUM(DECODE(stat_name
+                           ,'bytes sent via SQL*Net to dblink'
+                           ,VALUE
+                           ,0)) NET_B_To_DBLink
+                ,SUM(DECODE(stat_name
+                           ,'gc cr blocks received'
+                           ,VALUE
+                           ,'gc current blocks received'
+                           ,VALUE
+                           ,0)) gc_recv 
+                ,SUM(DECODE(stat_name
+                           ,'gc cr blocks served'
+                           ,VALUE
+                           ,'gc current blocks served'
+                           ,VALUE
+                           ,0)) gc_send 
+                ,SUM(DECODE(stat_name
+                           ,'gcs messages sent'
+                           ,VALUE
+                           ,'ges messages sent'
+                           ,VALUE
+                           ,0)) gcs_msg_send
+            FROM (SELECT /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */
+                   ss.dbid
+                  ,ss.instance_number
+                  ,ss.snap_id
+                  ,ss.VALUE
+                  ,ss.stat_name
+                  ,sn.begin_interval_time
+                  ,sn.end_interval_time ");
+                tmpSql.AppendFormat("   FROM raw_DBA_HIST_SYSSTAT_{0} ss ", arguments.DBName);
+                tmpSql.AppendFormat("  ,  RAW_DBA_HIST_SNAPSHOT_{0} sn ", arguments.DBName);
+                tmpSql.Append(@"    WHERE 1 = 1
+                         AND ss.dbid = sn.dbid AND
+                         ss.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND
+                         ss.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER = 1
+                         AND TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD-HH24MI') BETWEEN ");
+                tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
+                tmpSql.Append(@")
+           WHERE 1 = 1
+           GROUP BY dbid, INSTANCE_NUMBER, snap_id) s),
+t2_sysmetric_summary AS
+ (SELECT dbid
+        ,inst_id
+        ,snap_id
+        ,MIN(BEGIN_TIME) BEGIN_TIME
+        ,MAX(END_TIME) END_TIME
+        ,ROUND(AVG(CPU_Util_pct), 2) CPU_Util_pct
+        ,ROUND(MAX(CPU_Util_pct_max), 2) CPU_Util_pct_max
+        ,ROUND(AVG(LOGICAL_READS_PSEC)) LOGICAL_READS_PSEC
+        ,ROUND(AVG(Physical_Reads_psec)) PHYSICAL_READS_PSEC
+        ,ROUND(AVG(Physical_Writes_psec)) Physical_Writes_psec
+        ,ROUND(AVG(Execs_psec_avg)) Execs_psec_avg
+        ,ROUND(MAX(Execs_psec_max)) Execs_psec_max
+        ,ROUND(AVG(USER_CALLS_PSEC)) USER_CALLS_PSEC
+        ,ROUND(AVG(DB_BLOCK_CHANGES_PSEC)) DB_BLOCK_CHANGES_PSEC
+        ,ROUND(AVG(SQL_Service_Response_Time), 4) SQL_Service_Response_Time
+        ,ROUND(AVG(User_Commits_psec), 2) Commit_psec_avg
+        ,ROUND(AVG(User_Commits_max_psec), 2) Commit_psec_max
+        ,ROUND(AVG(Redo_Generated_psec / 1024 / 1024), 2) Redo_mb_psec_avg
+        ,ROUND(AVG(Redo_Generated_max_psec / 1024 / 1024), 2) Redo_mb_psec_max
+    FROM t1_sysmetric_summary s
+   WHERE 1 = 1
+   GROUP BY dbid, inst_id, snap_id),
+t2_sysstat AS
+ (SELECT dbid
+        ,inst_id
+        ,snap_id
+        ,MIN(BEGIN_TIME) BEGIN_TIME
+        ,MAX(END_TIME) END_TIME
+        ,ROUND(AVG(((gc_recv + gc_send) * 8192 + gcs_msg_send * 200) / 1024 / 1024 /
+                   SNAP_TIME)
+              ,3) DLM_MB_psec
+        ,ROUND(AVG(NET_B_To_Client / 1024 / 1024 / SNAP_TIME), 3) NET_MB_To_Client_psec
+        ,ROUND(AVG(NET_B_From_Client / 1024 / 1024 / SNAP_TIME), 3) NET_MB_From_Client_psec
+        ,ROUND(AVG(NET_B_From_DBLink / 1024 / 1024 / SNAP_TIME), 3) NET_MB_From_DBLink_psec
+        ,ROUND(AVG(NET_B_To_DBLink / 1024 / 1024 / SNAP_TIME), 3) NET_MB_To_DBLink_psec
+    FROM t1_sysstat s
+   WHERE 1 = 1
+   GROUP BY dbid, inst_id, snap_id)
+SELECT sm.dbid
+      ,sm.inst_id as INSTANCE_NUMBER
+      ,sm.snap_id
+      ,TO_CHAR(sm.begin_time, 'yyyyMMDDHH24MI') AS WORKDATE
+      ,sm.begin_time
+      ,sm.end_time
+      ,sm.CPU_Util_pct
+      ,sm.CPU_Util_pct_max
+      ,sm.LOGICAL_READS_PSEC
+      ,sm.PHYSICAL_READS_PSEC
+      ,sm.Physical_Writes_psec
+      ,sm.Execs_psec_avg
+      ,sm.Execs_psec_max
+      ,sm.USER_CALLS_PSEC
+      ,sm.DB_BLOCK_CHANGES_PSEC
+      ,sm.SQL_Service_Response_Time
+      ,sm.Commit_psec_avg
+      ,sm.Commit_psec_max
+      ,sm.Redo_mb_psec_avg
+      ,sm.Redo_mb_psec_max
+      ,ss.DLM_MB_psec
+      ,ss.NET_MB_To_Client_psec
+      ,ss.NET_MB_From_Client_psec
+      ,ss.NET_MB_From_DBLink_psec
+      ,ss.NET_MB_To_DBLink_psec
+  FROM t2_sysmetric_summary sm, t2_sysstat ss
+ WHERE sm.dbid = ss.dbid(+) AND sm.inst_id = ss.inst_id(+) AND
+       sm.snap_id = ss.snap_id(+)
+ ORDER BY dbid, snap_id");
+                //if (!string.IsNullOrEmpty(arguments.INSTANCE_NUMBER))
+                //{
+                //    tmpSql.AppendFormat(" and INSTANCE_NUMBER in ('1','2')", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                //}
+                //tmpSql.AppendFormat(" and workdate >='{0}'", arguments.StartTime);
+                //tmpSql.AppendFormat(" and workdate <='{0}'", arguments.EndTime);
+
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
         public void GetWorkLoadTrend(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT t.dbid,t.snap_id_min,t.workdate,");
+                tmpSql.Append("SELECT t.dbid,t.snap_id_min,t.workdate, t.instance_number,");
                 tmpSql.Append(@"round(avg(t.cpu_util_pct),2) CPU_UTIL_PCT,
                                    round(avg(t.cpu_util_pct_max),2) CPU_UTIL_PCT_MAX,
                                    round(avg(t.cpu_util_pct),2) CPU_UTIL_PCT,
@@ -75,7 +313,7 @@ namespace ISIA.BIZ.TREND
                 }                
                 tmpSql.AppendFormat(" and workdate >='{0}'", arguments.StartTime);
                 tmpSql.AppendFormat(" and workdate <='{0}'", arguments.EndTime);
-                tmpSql.Append(" group by t.dbid, t.snap_id_min, t.workdate");
+                tmpSql.Append(" group by t.dbid, t.snap_id_min, t.workdate, t.instance_number");
                 tmpSql.Append(" order by workdate");
 
 
@@ -123,7 +361,8 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("select rownum,c.* from (");
+                tmpSql.AppendFormat("SELECT ROWNUM,e.* FROM ( ");
+                tmpSql.AppendFormat("SELECT c.sql_id,c.{0},d.sql_text FROM (", arguments.ParamNamesString);
                 tmpSql.AppendFormat("select sql_id,sum({0}) {0} from (",arguments.ParamNamesString);
                 tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0}", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
@@ -138,9 +377,38 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("          ) b ");
                 tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);
                 tmpSql.AppendFormat("            group by   sql_id order by {0} desc", arguments.ParamNamesString);
-                tmpSql.Append(" ) c where rownum<11");
+                tmpSql.AppendFormat("  ) c LEFT JOIN raw_dba_hist_sqltext_{0} d ON c.sql_id=d.sql_id", arguments.DBName);
+                tmpSql.AppendFormat("   ORDER BY c.{0} DESC) e", arguments.ParamNamesString);
+                tmpSql.AppendFormat("    where ROWNUM<={0}", arguments.ClustersNumber);
 
 
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetWorkloadNaerTwoM(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+            
+                tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,SUM(d.{0}) {0},d.sql_id  FROM ( ", arguments.ParamNamesString);
+                tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0}", arguments.ParamNamesString);
+                tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
+                tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id ", arguments.DBName);
+                tmpSql.AppendFormat(" WHERE a.begin_interval_time > TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ",arguments.StartTime);
+                tmpSql.AppendFormat("AND t.sql_id = '{0}' ",arguments.ParamType);
+                tmpSql.Append(" ORDER BY a.begin_interval_time) d GROUP BY d.workdate,d.sql_id ORDER BY d.workdate");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
