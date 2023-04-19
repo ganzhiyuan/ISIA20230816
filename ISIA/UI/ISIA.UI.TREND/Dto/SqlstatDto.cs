@@ -24,6 +24,8 @@ namespace ISIA.UI.TREND.Dto
 
         public DateTime END_INTERVAL_TIME { get; set; }
 
+        public decimal INSTANCE_NUMBER { get; set; }
+
     }
     public class SqlShowCl
     {

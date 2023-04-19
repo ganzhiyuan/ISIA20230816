@@ -1,4 +1,5 @@
-﻿using ISIA.COMMON;
+﻿using DevExpress.Utils;
+using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
@@ -32,6 +33,7 @@ namespace ISIA.UI.TREND
         AwrArgsPack args = new AwrArgsPack();
         object[] result = new object[2];
         DataSet ParamentRelationDS = new DataSet();
+        public string groupUnit { get; set; }
 
 
         public FrmWorkLoadTrendChartNew()
@@ -105,10 +107,22 @@ namespace ISIA.UI.TREND
             args.DBName = cmbDbName.Text.Split('(')[0];
             args.DBID = cmbDbName.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
+            if (cmbGroupUnit.Text=="DAY")
+            {
+                dataSet = bs.ExecuteDataSet("GetWorkLoadTrend", args.getPack());
 
-            dataSet = bs.ExecuteDataSet("GetWorkLoadTrend", args.getPack());
+            }
+            else if (cmbGroupUnit.Text == "INTERVAL")
+            {
+                dataSet = bs.ExecuteDataSet("GetWorkLoadTrendForInterval", args.getPack());
+
+            }
+
 
             ParamentRelationDS = bs.ExecuteDataSet("GetParamentRelation");
+            groupUnit = cmbGroupUnit.Text;
+            //cmbLinePara.EditValue = null;
+            //cmbLinePara.Text = "";
             return dataSet;
         }
         public void DisplayData(DataSet ds)
@@ -120,7 +134,7 @@ namespace ISIA.UI.TREND
             //ConvertData(dataSet);
 
             CreateTeeChart(dataSet.Tables[0]);
-            dataSet.Tables.Clear();
+            //dataSet.Tables.Clear();
 
         }
         private DataTable ConvertDTToListRef(List<WorkLoadInfo> list)
@@ -153,8 +167,15 @@ namespace ISIA.UI.TREND
                     //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     string ss = item.WORKDATE;
-                    rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss,"yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
+                    if (groupUnit == "INTERVAL")
+                    {
+                        rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss, "yyyyMMddHHmm", System.Globalization.CultureInfo.CurrentCulture);
+
+                    }
+                    else
+                        rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss,"yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
                     rowDto.SNAP_ID = item.SNAP_ID_MIN;
+                    rowDto.INSTANCE_NUMBER = item.INSTANCE_NUMBER;
                     foreach (PropertyInfo para in proInfo)
                     {
                         if (s == para.Name)
@@ -172,7 +193,7 @@ namespace ISIA.UI.TREND
         private void CreateTeeChart(DataTable dsTable)
         {
             List<WorkLoadInfo> workLoadList = DataTableExtend.GetList<WorkLoadInfo>(dsTable);
-            if (workLoadList==null||!workLoadList.Any())
+            if (workLoadList == null || !workLoadList.Any())
             {
                 return;
             }
@@ -189,6 +210,13 @@ namespace ISIA.UI.TREND
             chartLayout1.Refresh();
             dataSetTB = new DataSet();
             DataTable dataTable = ConvertDTToListRef(workLoadList);
+            SetCharts(chartLayout1, dataTable);
+
+            return;
+        }
+
+        private void SetCharts(ChartLayout chartLayout1, DataTable dataTable)
+        {
             List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
             DataTable dtKeyValue = DataTableExtend.ConvertToDataSet(list).Tables[0];
             IEnumerable<IGrouping<string, DataRow>> result = dtKeyValue.Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMENT_NAME"].ToString());
@@ -204,15 +232,29 @@ namespace ISIA.UI.TREND
                     }
                 }
             }
-            if (dataSetTB.Tables.Count > 1)
+            if (dataSetTB.Tables.Count > 0)
             {
 
                 foreach (DataTable dt in dataSetTB.Tables)
                 {
                     if (dt.TableName != "TABLE")
                     {
-                        Line line = CreateLine(dt);
-                        chartLayout1.Add(dt.TableName).Series.Add(line);
+                        List<SqlShow> listSqlShows = DataTableExtend.GetList<SqlShow>(dt);
+                        var listNum = listSqlShows.Select(x => x.INSTANCE_NUMBER).Distinct().ToList();
+                        chartLayout1.Add(dt.TableName);
+                        foreach (var item in listNum)
+                        {
+                            var listTem = listSqlShows.Where(x => x.INSTANCE_NUMBER == item).ToList();
+                            DataTable dtTem = DataTableExtend.ConvertToDataSet(listTem).Tables[0];
+                            Line line = CreateLine(dtTem,item);
+                            foreach (TChart chart in chartLayout1.Charts)
+                            {
+                                if (chart.Text==dt.TableName)
+                                {
+                                    chart.Series.Add(line);
+                                }
+                            }
+                        }
 
                     }
                 }
@@ -224,18 +266,19 @@ namespace ISIA.UI.TREND
                 //chart.Legend.LegendStyle = LegendStyles.Series;
                 chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
                 chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+                chart.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
+                chart.Axes.Left.AutomaticMinimum = false;
+                chart.Axes.Right.Minimum = 0; //设置右侧轴的最小值为0
                 chart.MouseDown += tChart1_MouseDown;
                 chart.MouseUp += tChart1_MouseUp;
+                chart.ClickSeries += Chart_ClickSeries;
                 //chart.Panning.Allow = ScrollModes.None;
                 //chart.Zoom.Direction = ZoomDirections.None;
                 chart.Panning.Allow = ScrollModes.None;
             }
-
-
-            return;
         }
 
-        private Line CreateLine(DataTable dstable)
+        private Line CreateLine(DataTable dstable,decimal d)
         {
             Line line = new Line();
 
@@ -243,131 +286,277 @@ namespace ISIA.UI.TREND
             line.YValues.DataMember = "PARAMENT_VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.Legend.Visible = false;
-            line.Color = Color.OrangeRed;
+            if (d==1)
+            {
+                line.Color = Color.OrangeRed;
+
+                line.Pointer.HorizSize = 1;
+                line.Pointer.VertSize = 1;
+            }
+            else
+            {
+
+                line.Pointer.HorizSize = 1;
+                line.Pointer.VertSize = 1;
+                line.Color = Color.Red;
+            }
             //line.ColorEachLine = true;
             //line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10; 
             line.Pointer.Style = PointerStyles.Circle;
             line.Pointer.Visible = true;
-            line.Pointer.Color = Color.OrangeRed;
-            line.Pointer.HorizSize = 1;
-            line.Pointer.VertSize = 1;
+            //line.Pointer.Color = Color.OrangeRed;
             //line.Pointer.SizeDouble = 1;
             line.XValues.DateTime = true;
             return line;
         }
 
+        private void Chart_ClickSeries(object sender, Series s, int valueIndex, MouseEventArgs e)
+        {
+            if (string.IsNullOrEmpty(cmbCount.Text))
+            {
+                string errMessage = "Please select SQLId Count";
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                return;
+            }
+
+            if (valueIndex >= 0 && valueIndex < s.Count)
+            {
+                // 从数据点中提取信息
+                //MessageBox.Show(string.Format("您单击了 \"{0}\" 系列的值 {1}", ((System.Data.DataTable)s.DataSource).TableName, s.YValues[valueIndex]));
+                var clickedSeries = s as Steema.TeeChart.Styles.Line;
+
+                if (clickedSeries != null)
+                {
+                    var dataPoint = clickedSeries[valueIndex];
+                    var dataSet = clickedSeries.DataSource as DataTable;
+
+                    if (dataSet != null)
+                    {
+                        WaitDialogForm wdf = new WaitDialogForm("Tip", "Please wait for a litter.");
+
+                        // Access the data set associated with the clicked series here.
+                        // ...
+                        DateTime maxTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
+                        DateTime minTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
+                        //DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
+                        var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
+                        string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
+                        var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+                        if (result==null)
+                        {
+                            return;
+                        }
+                        AwrArgsPack argsSel = new AwrArgsPack();
+                        argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
+                        argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                        argsSel.ParamNamesString = result;
+                        argsSel.ParamType = string.Join(",", snapId);
+                        argsSel.DBName = args.DBName;
+                        argsSel.ClustersNumber = Convert.ToInt32( cmbCount.Text);
+                        DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+                        if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
+                        {
+                            return;
+                        }
+                        //var sqlidList = dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
+                        //argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
+                        //DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
+                        //if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
+                        //{
+                        //    return;
+                        //}
+                        //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+                        //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+
+
+                        List<DataSet> listDs = new List<DataSet>();
+                        foreach (DataRow row in dsRelation.Tables[0].Rows)
+                        {
+                            AwrArgsPack args = new AwrArgsPack();
+                            args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
+                            args.DBName = argsSel.DBName;
+                            args.ParamNamesString = result;
+                            args.ParamType = row["SQL_ID"].ToString();
+                            DataSet dataSet1 = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
+                            listDs.Add(dataSet1);
+                        }
+                        FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
+
+                        wdf.Close();
+                        frm.ShowDialog();
+                    }
+                }
+            }
+        }
         private void tChart1_MouseUp(object sender, MouseEventArgs e)
         {
 
-            if (e.Button == MouseButtons.Left && bfirst)
-            {
-                _pEnd.X = (float)e.X;
-                _pEnd.Y = (float)e.Y;
-                bfirst = false;
-                if (_pStart != _pEnd)
-                {
-                    SerachDataPoint(_pStart, _pEnd, sender as TChart);
-                }
-            }
+            //if (e.Button == MouseButtons.Left && bfirst)
+            //{
+            //    _pEnd.X = (float)e.X;
+            //    _pEnd.Y = (float)e.Y;
+            //    bfirst = false;
+            //    if (_pStart != _pEnd)
+            //    {
+            //        SerachDataPoint(_pStart, _pEnd, sender as TChart);
+            //    }
+            //}
         }
 
         private void tChart1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                _pStart.X = (float)e.X;
-                _pStart.Y = (float)e.Y;
+            //if (e.Button == MouseButtons.Left)
+            //{
+            //    _pStart.X = (float)e.X;
+            //    _pStart.Y = (float)e.Y;
 
-                bfirst = true;
-            }
+            //    bfirst = true;
+            //}
 
         }
-        private void SerachDataPoint(PointF pStart, PointF pEnd, TChart chart)
+        //private void SerachDataPoint(PointF pStart, PointF pEnd, TChart chart)
+        //{
+        //    List<SnapshotDto> snaplist = new List<SnapshotDto>();
+        //    float minX;
+        //    float minY;
+        //    float maxX;
+        //    float maxY;
+        //    if (pStart.X < pEnd.X)
+        //    {
+        //        minX = pStart.X;
+        //        maxX = pEnd.X;
+        //    }
+        //    else
+        //    {
+        //        minX = pEnd.X;
+        //        maxX = pStart.X;
+        //    }
+        //    if (pStart.Y < pEnd.Y)
+        //    {
+        //        minY = pStart.Y;
+        //        maxY = pEnd.Y;
+        //    }
+        //    else
+        //    {
+        //        minY = pEnd.Y;
+        //        maxY = pStart.Y;
+        //    }
+
+        //    foreach (Line line in chart.Chart.Series)
+        //    {
+        //        for (int i = 0; i < line.Count; i++)
+        //        {
+        //            if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
+        //            {
+        //                SnapshotDto dto = new SnapshotDto();
+        //                //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+        //                dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
+        //                //double value = line[i].Y;//VALUE
+        //                //dto.Value = line[i].Y.ToString();//value
+        //                dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
+        //                                                        //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+
+
+        //                DataTable dt1 = line.DataSource as DataTable;
+        //                dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
+        //                                                              //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
+        //                dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
+        //                snaplist.Add(dto);
+        //            }
+        //        }
+        //    }
+        //    if (!snaplist.Any())
+        //    {
+        //        return;
+        //    }
+        //    DateTime maxTime = snaplist.Max(x => x.END_INTERVAL_TIME);
+        //    DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
+        //    var snapId = snaplist.Select(x => x.SNAP_ID.ToString()).Distinct().ToArray();
+        //    string tbNm = snaplist.FirstOrDefault().PARAMENT_NAME;
+        //    var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+        //    AwrArgsPack argsSel = new AwrArgsPack();
+        //    argsSel.StartTime = minTime.ToString("yyyy-MM-dd");
+        //    argsSel.EndTime = maxTime.ToString("yyyy-MM-dd");
+        //    argsSel.ParamNamesString = result;
+        //    argsSel.ParamType = string.Join(",", snapId);
+        //    argsSel.DBName = args.DBName;
+        //    DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+        //    if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
+        //    {
+        //        return;
+        //    }
+        //    var sqlidList= dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
+        //    argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
+        //    DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
+        //    if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
+        //    {
+        //        return;
+        //    }
+        //    //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+        //    //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+        //    FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsSqlText.Tables[0]);
+        //    frm.ShowDialog();
+
+
+
+        //}
+
+        //private void ClickDataPoint(TChart chart)
+        //{
+        //    //SnapshotDto dto = new SnapshotDto();
+        //    ////dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
+        //    //dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
+        //    ////double value = line[i].Y;//VALUE
+        //    ////dto.Value = line[i].Y.ToString();//value
+        //    //dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
+        //    //                                        //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
+
+
+        //    //DataTable dt1 = line.DataSource as DataTable;
+        //    //dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
+        //    //                                              //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
+        //    //dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
+        //}
+
+        private void cmbLinePara_EditValueChanged(object sender, EventArgs e)
         {
-            List<SnapshotDto> snaplist = new List<SnapshotDto>();
-            float minX;
-            float minY;
-            float maxX;
-            float maxY;
-            if (pStart.X < pEnd.X)
+            if (dataSet==null||dataSet.Tables.Count==0||dataSet.Tables[0]==null)
             {
-                minX = pStart.X;
-                maxX = pEnd.X;
+                return;
+            }
+            List<string> arrayStr = cmbLinePara.EditValue.ToString().Replace(", ",",").Split(',').ToList();
+
+            List<WorkLoadInfo> workLoadList = DataTableExtend.GetList<WorkLoadInfo>(dataSet.Tables[0]);
+            if (workLoadList == null || !workLoadList.Any())
+            {
+                return;
+            }
+            panelControl1.Controls.Clear();
+
+            ChartLayout chartLayout1 = new ChartLayout();
+
+
+            panelControl1.Controls.Add(chartLayout1);
+
+            chartLayout1.Dock = DockStyle.Fill;
+
+            chartLayout1.Charts.Clear();
+            chartLayout1.Refresh();
+            dataSetTB = new DataSet();
+            DataTable dataTable = ConvertDTToListRef(workLoadList);
+            List<SqlStatRowDto> list = DataTableExtend.GetList<SqlStatRowDto>(dataTable);
+            list = list.Where(x => arrayStr.Contains(x.PARAMENT_NAME)).ToList();
+            if (list.Any())
+            {
+
+                DataTable dt = DataTableExtend.ConvertToDataSet<SqlStatRowDto>(list).Tables[0];
+                SetCharts(chartLayout1, dt);
             }
             else
             {
-                minX = pEnd.X;
-                maxX = pStart.X;
+                SetCharts(chartLayout1, dataTable);
             }
-            if (pStart.Y < pEnd.Y)
-            {
-                minY = pStart.Y;
-                maxY = pEnd.Y;
-            }
-            else
-            {
-                minY = pEnd.Y;
-                maxY = pStart.Y;
-            }
-
-            foreach (Line line in chart.Chart.Series)
-            {
-                for (int i = 0; i < line.Count; i++)
-                {
-                    if (line.CalcXPos(i) >= minX && line.CalcXPos(i) < maxX && line.CalcYPos(i) >= minY && line.CalcYPos(i) <= maxY)
-                    {
-                        SnapshotDto dto = new SnapshotDto();
-                        //dto.SQL_ID = ((System.Data.DataTable)line.DataSource).TableName; //snap_id
-                        dto.PARAMENT_NAME = ((System.Data.DataTable)line.DataSource).TableName;
-                        //double value = line[i].Y;//VALUE
-                        //dto.Value = line[i].Y.ToString();//value
-                        dto.PARAMENT_VALUE = (decimal)line[i].Y;//value
-                                                                //int xValue = Convert.ToInt32(line[i].X);//ROWNUM
-
-
-                        DataTable dt1 = line.DataSource as DataTable;
-                        dto.SNAP_ID = (decimal)dt1.Rows[i]["SNAP_ID"];//SQL_ID
-                                                                      //dto.DBID = (decimal)dt1.Rows[i]["DBID"];//SQL_ID
-                        dto.END_INTERVAL_TIME = (DateTime)dt1.Rows[i]["END_INTERVAL_TIME"];
-                        snaplist.Add(dto);
-                    }
-                }
-            }
-            if (!snaplist.Any())
-            {
-                return;
-            }
-            DateTime maxTime = snaplist.Max(x => x.END_INTERVAL_TIME);
-            DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
-            var snapId = snaplist.Select(x => x.SNAP_ID.ToString()).Distinct().ToArray();
-            string tbNm = snaplist.FirstOrDefault().PARAMENT_NAME;
-            var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
-            AwrArgsPack argsSel = new AwrArgsPack();
-            argsSel.StartTime = minTime.ToString("yyyy-MM-dd");
-            argsSel.EndTime = maxTime.ToString("yyyy-MM-dd");
-            argsSel.ParamNamesString = result;
-            argsSel.ParamType = string.Join(",", snapId);
-            argsSel.DBName = args.DBName;
-            DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
-            if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
-            {
-                return;
-            }
-            var sqlidList= dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
-            argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
-            DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
-            if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
-            {
-                return;
-            }
-            //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
-            //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
-            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsSqlText.Tables[0]);
-            frm.ShowDialog();
-
-
-
         }
     }
 
@@ -394,5 +583,7 @@ namespace ISIA.UI.TREND
         public decimal NET_MB_FROM_CLIENT_PSEC { get; set; }
         public decimal NET_MB_FROM_DBLINK_PSEC { get; set; }
         public decimal NET_MB_TO_DBLINK_PSEC { get; set; }
+
+        public decimal INSTANCE_NUMBER { get; set; }
     }
 }
