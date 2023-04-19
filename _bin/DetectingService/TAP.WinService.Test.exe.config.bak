@@ -28,8 +28,8 @@
     <!-- Database-->
     <!-- Developer must edit this section!!!-->
     <DatabaseSection Default="DEFAULT" TimeOut="500">
-      <!--<Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = ISEM)));User ID=ISIA;Password=isia;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>-->
-      <Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = isfa)));User ID=ISIA;Password=isia;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>
+      <Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = ISEM)));User ID=ISIA;Password=isia;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>
+      <!--<Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = isfa)));User ID=ISIA;Password=isia;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>-->
     </DatabaseSection>
 
     <!-- XML Source-->
@@ -50,7 +50,7 @@
       <!-- Information Log-->
       <Log Type="I" Logging="false" Path="Info" Extension="ilog" MaxSize="100000"/>
       <!-- SQL Log-->
-      <Log Type="S" Logging="false" Path="Sql" Extension="slog" MaxSize="100000"/>
+      <Log Type="S" Logging="true" Path="Sql" Extension="slog" MaxSize="100000"/>
       <!-- Trace Log-->
       <Log Type="T" Logging="false" Path="Trace" Extension="tlog" MaxSize="100000"/>
       <!--Unknown Log-->

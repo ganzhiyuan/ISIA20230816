@@ -64,6 +64,8 @@ namespace ISIA.DETECTING.SERVICE
         // Days의 날짜기간동안의 평균값
         protected string _averageValue;
 
+        // 이상 발생 갯수
+        protected int _detectCount;
         #endregion
 
         protected override void StartMainProcess(SystemBasicDefaultInfo defaultInfo)
@@ -220,6 +222,7 @@ namespace ISIA.DETECTING.SERVICE
 
             try
             {
+                _detectCount = 0;
                 // 1. RuleOut 데이타를 처리 하기전에, 금일 처리한 데이타가 존재하면 삭제 먼저 진행한다.
                 ExecAverageRuleOutDelete();
 
@@ -239,7 +242,7 @@ namespace ISIA.DETECTING.SERVICE
                 _insertStatement += "PARAVAL2, PARAVAL3, PARAVAL4, PARAVAL5, ";
                 _insertStatement += "INSERTTIME, INSERTUSER, ISALIVE) ";
 
-                _mailAddress = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["MAIL_ADDRESS"].ToString();
+                //_mailAddress = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["MAIL_ADDRESS"].ToString();
                 _isDuplicatedAllow = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["ISDUPLICATEDALLOW"].ToString();
 
                 foreach (DataRow drRule in dtRuleList.Rows)
@@ -265,8 +268,12 @@ namespace ISIA.DETECTING.SERVICE
                     }
                 }
 
-                // Summary 완료후에 메일 발송
-                this.SendMail();
+                //Detect 한 경우에만 발송.
+                if (_detectCount > 0)
+                {
+                    // Summary 완료후에 메일 발송
+                    this.SendMail();
+                }
                 // Summary 완료후에 중복 데이타 삭제
                 // 중복 허용 Flag가 False이면 작업 진행
                 if (_isDuplicatedAllow.Equals("FALSE"))
@@ -293,10 +300,13 @@ namespace ISIA.DETECTING.SERVICE
                 deleteSQL.Append("WHERE 1=1 ");
                 deleteSQL.AppendFormat("AND MEASURE_TIMEKEY LIKE '{0}%' ", DateTime.Now.ToString("yyyyMMddHH"));
 
-                int resultCount = db.Save(new string[] { deleteSQL.ToString() });
+                base.SaveLog(SQL_LOG, "ExecAverageRuleOutDelete", deleteSQL.ToString());
+
+                int resultCount = db.Save(new string[] { deleteSQL.ToString() });                
             }
             catch (System.Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 throw ex;
             }
         }
@@ -315,8 +325,10 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("WHERE 1=1 ");
                 selectSQL.Append("AND ISALIVE = 'YES' ");
 
-                returnDt = db.Select(selectSQL.ToString()).Tables[0];
+                base.SaveLog(SQL_LOG, "GetAvailableRuleList", selectSQL.ToString());
 
+                returnDt = db.Select(selectSQL.ToString()).Tables[0];
+                
 
                 return returnDt;
             }
@@ -353,8 +365,11 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.AppendFormat("AND PRS.RULENO = {0} ", ruleNo);
                 selectSQL.AppendFormat("AND PRS.RULENAME = '{0}' ", ruleName);
 
+                base.SaveLog(SQL_LOG, "GetSpcRuleParaList", selectSQL.ToString());
+
                 returnDt = db.Select(selectSQL.ToString()).Tables[0];
 
+                
 
                 return returnDt;
             }
@@ -401,10 +416,13 @@ namespace ISIA.DETECTING.SERVICE
                     selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _startTimeKey, _endTimeKey);
                     selectSQL.AppendFormat("AND D.METRIC_ID = {0} ", parameterInfo.PARAMETERID);
                 }
-                selectSQL.Append(") ");            
+                selectSQL.Append(") ");
+
+
+                base.SaveLog(SQL_LOG, "GetAverageRuleTagetData", selectSQL.ToString());
 
                 returnDt = db.Select(selectSQL.ToString()).Tables[0];
-
+                
                 if (returnDt != null)
                 {
                     _averageValue = returnDt.Rows[0]["TARGET"].ToString();
@@ -478,7 +496,12 @@ namespace ISIA.DETECTING.SERVICE
                     finalSQL = MakeSqlByRuleNo8(ruleNo, parameterInfo);
                 }
 
+                base.SaveLog(SQL_LOG, "ExecSpcRuleOutDetect", finalSQL.ToString());
+
                 int resultCount = db.Save(new string[] { finalSQL.ToString() });
+
+                _detectCount += resultCount;
+
             }
             catch (System.Exception ex)
             {
@@ -521,6 +544,11 @@ namespace ISIA.DETECTING.SERVICE
                 }
                 
                 int resultCount = db.Save(new string[] { finalSQL.ToString() });
+
+                _detectCount += resultCount;
+
+                base.SaveLog(SQL_LOG, "ExecAverageRuleOutDetect", finalSQL.ToString());
+
             }
             catch (System.Exception ex)
             {
@@ -1212,6 +1240,8 @@ namespace ISIA.DETECTING.SERVICE
                 deleteSQL.Append("AND RULENAME = TD.RULENAME ");
                 deleteSQL.Append("AND SNAP_ID = TD.SNAP_ID) ");
 
+                base.SaveLog(SQL_LOG, "DeleteForDuplicatedSummaryRows", deleteSQL.ToString());
+
                 int resultCount = db.Save(new string[] { deleteSQL.ToString() });
             }
             catch (System.Exception ex)
@@ -1251,6 +1281,8 @@ namespace ISIA.DETECTING.SERVICE
                 deleteSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 deleteSQL.Append("AND RULENO = TD.RULENO ");
                 deleteSQL.Append("AND SNAP_ID = TD.SNAP_ID) ");
+
+                base.SaveLog(SQL_LOG, "DeleteForDuplicatedSummaryRows", deleteSQL.ToString());
 
                 int resultCount = db.Save(new string[] { deleteSQL.ToString() });
             }
@@ -1295,6 +1327,8 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
                 selectSQL.Append("AND RULENO = TD.RULENO) ");
+
+                base.SaveLog(SQL_LOG, "GetmailData", selectSQL.ToString());
 
                 returnDt = db.Select(selectSQL.ToString()).Tables[0];
 
@@ -1357,6 +1391,8 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
                 selectSQL.Append("AND SNAP_ID = TD.SNAP_ID) ");
 
+                base.SaveLog(SQL_LOG, "GetmailDataForEliminateDuplicatedRows", selectSQL.ToString());
+
                 returnDt = db.Select(selectSQL.ToString()).Tables[0];
 
 
@@ -1411,7 +1447,7 @@ namespace ISIA.DETECTING.SERVICE
 
                 if (tmpmaillist.Count > 0)
                 {
-                    mail.SendMail("SPC OOC DETECTING DATA - " + DateTime.Now.ToString("yyyy-MM-dd HH"), "DETECTING_MAIL_SERVICE", messageBody, tmpmaillist);
+                    mail.SendMail("SPC OOC DETECTING DATA - " + DateTime.Now.ToString("yyyy-MM-dd HH") + "Hour", "DETECTING_MAIL_SERVICE", messageBody, tmpmaillist);
                 }
 
             }
@@ -1424,6 +1460,9 @@ namespace ISIA.DETECTING.SERVICE
             tmpsb.Append("SELECT  MAILADDRESS FROM TAPUTUSERS U,(");
             tmpsb.Append(" SELECT USERID, USERNAME FROM TAPUTMAILGROUP G, TAPUTMAILGROUPMEMBER N WHERE G.NAME = N.GROUPNAME  AND G.REGION = N.REGION AND G.NAME in (");
             tmpsb.Append(" SELECT NAME FROM TAPCTCODES WHERE CATEGORY = 'MAIL' AND SUBCATEGORY = 'SPC_DETECT' AND ISALIVE = 'YES') )GN WHERE U.NAME = GN.USERID");
+
+
+            base.SaveLog(SQL_LOG, "GetMailGroup", tmpsb.ToString());
 
             DataTable mailGroupDt = db.Select(tmpsb.ToString()).Tables[0];
 
