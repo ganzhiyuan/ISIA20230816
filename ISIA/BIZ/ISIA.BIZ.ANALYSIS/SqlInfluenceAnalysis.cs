@@ -47,18 +47,14 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-               
-                    tmpSql.AppendFormat(@"select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time,  
-                        NVL(sum({0}),0) {0}
-                        from ISIA.RAW_DBA_HIST_SQLSTAT_{3} stat 
-                        left join ISIA.RAW_DBA_HIST_SNAPSHOT_{3} snap on 
-                        stat.snap_id=snap.snap_id  
-                        where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{1}' and '{2}'
-                        group by stat.sql_id                        
-                        order by {0} desc) t where rownum<11"
-                        , arguments.WorkloadSqlParm,arguments.StartTime,arguments.EndTime,arguments.DBName
-                     );
-               
+
+                tmpSql.AppendFormat(@" select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, NVL(sum({0}),0) {0} ", arguments.WorkloadSqlParm);
+                tmpSql.AppendFormat("  from ISIA.RAW_DBA_HIST_SQLSTAT_{0} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{0} snap on  stat.snap_id=snap.snap_id ", arguments.DBName);
+                tmpSql.AppendFormat("where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'", arguments.StartTime, arguments.EndTime);
+                tmpSql.AppendFormat("and stat.dbid in ('{0}')", arguments.DBID);
+                tmpSql.AppendFormat("and stat.INSTANCE_NUMBER in ('{0}')", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat("group by stat.sql_id  order by {0} desc) t where rownum<11" , arguments.WorkloadSqlParm);
+                
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 DataSet resultDs = db.Select(tmpSql.ToString());

@@ -174,6 +174,13 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id ", arguments.DbName);
                 tmpSql.AppendFormat("where  b.end_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey); 
                 tmpSql.AppendFormat("  and b.end_interval_time <= to_date('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
+
+
+                tmpSql.AppendFormat("  AND T.DBID IN ('{0}')   ", arguments.DbId);
+                tmpSql.AppendFormat("  AND T.INSTANCE_NUMBER IN ('1')  ", arguments.InstanceNumber);
+
+
+
                 tmpSql.Append("group by b.end_interval_time, a.command_type, t.snap_id, t.dbid, t.sql_id, t.module) w ");
                 tmpSql.AppendFormat("    where 1=1 ");
                 if (!string.IsNullOrEmpty(arguments.CommandName))

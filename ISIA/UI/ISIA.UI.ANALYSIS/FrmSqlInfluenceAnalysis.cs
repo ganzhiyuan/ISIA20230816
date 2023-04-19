@@ -108,6 +108,7 @@ namespace ISIA.UI.ANALYSIS
         private void AsyncGetWorkloadAndSqlComparisonData()
         {
             //handle argument
+            if (!base.ValidateUserInput(this.lcSerachOptions)) return;
             awrArgsPack = HandleArgument();
             //async load data 
             this.BeginAsyncCall("LoadWorkloadSqlData", "DisplayChart", EnumDataObject.DATASET, null);
@@ -116,6 +117,7 @@ namespace ISIA.UI.ANALYSIS
         private AwrArgsPack HandleArgument()
         {
              argument = new AwrArgsPack();
+
             //date period handling 
             object startTime = dtpStartTime.DateTime;
             object endTime = dtpEndTime.DateTime;
@@ -143,7 +145,7 @@ namespace ISIA.UI.ANALYSIS
                 throw new Exception(errMessage);
             }
             argument.DBName = dbName;
-
+            argument.DBID = cmbDbName.EditValue.ToString();
 
 
             //combobox edit workload parm
@@ -154,6 +156,8 @@ namespace ISIA.UI.ANALYSIS
                 throw new Exception(errMessage);
             }
             argument.WorkloadSqlParm = sqlParm;
+
+            argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
 
             return argument;
         }

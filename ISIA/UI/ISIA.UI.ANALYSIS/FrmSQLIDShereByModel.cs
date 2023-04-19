@@ -66,6 +66,8 @@ namespace ISIA.UI.ANALYSIS
                 }
                 //args.CommandType = cboParaName.Text;
                 args.DbName = string.IsNullOrEmpty(cmbDbName.Text)?"": cmbDbName.Text.Split('(')[0];
+                args.DbId = cmbDbName.EditValue.ToString();
+                args.InstanceNumber = cmbInstance.Text.ToString();
                 DataSet dataSet = bs.ExecuteDataSet("GetSqlStatModuleAll", args.getPack());
                 return dataSet;
             }
