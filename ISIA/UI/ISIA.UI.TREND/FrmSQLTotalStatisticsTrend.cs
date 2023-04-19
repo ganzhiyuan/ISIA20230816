@@ -77,7 +77,9 @@ namespace ISIA.UI.TREND
                 
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                
+                args.InstanceNumber = cmbInstance.Text.ToString();
+
+
                 List<string > itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
                 dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
                 if (dataSet.Tables[0].Rows.Count == 0)

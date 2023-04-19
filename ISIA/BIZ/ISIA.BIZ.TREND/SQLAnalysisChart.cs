@@ -69,6 +69,8 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
+                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER in ('{0}')", arguments.InstanceNumber);
+
                 tmpSql.Append(" group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

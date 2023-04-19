@@ -51,7 +51,7 @@ namespace ISIA.UI.ANALYSIS
         public FrmSQLStatisticsBySqlID()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLAnalysisBySQL_ID");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.ANALYSIS.SQLAnalysisBySQL_ID");
 
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
@@ -72,6 +72,7 @@ namespace ISIA.UI.ANALYSIS
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
             args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
             args.ParameterName = cmbParameterName.Text;
+            args.InstanceNumber = cmbInstance.Text.ToString();
 
             dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
             if (dataSet.Tables[0].Rows.Count == 0)
