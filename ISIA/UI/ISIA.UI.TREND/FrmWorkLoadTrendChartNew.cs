@@ -334,57 +334,66 @@ namespace ISIA.UI.TREND
                     if (dataSet != null)
                     {
                         WaitDialogForm wdf = new WaitDialogForm("Tip", "Please wait for a litter.");
-
-                        // Access the data set associated with the clicked series here.
-                        // ...
-                        DateTime maxTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
-                        DateTime minTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
-                        //DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
-                        var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
-                        string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
-                        var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
-                        if (result==null)
+                        try
                         {
-                            return;
+                            // Access the data set associated with the clicked series here.
+                            // ...
+                            DateTime maxTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
+                            DateTime minTime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
+                            //DateTime minTime = snaplist.Min(x => x.END_INTERVAL_TIME);
+                            var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
+                            string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
+                            string instance_num= dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
+                            var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+                            if (result == null)
+                            {
+                                return;
+                            }
+                            AwrArgsPack argsSel = new AwrArgsPack();
+                            argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
+                            argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                            argsSel.ParamNamesString = result;
+                            argsSel.ParamType = string.Join(",", snapId);
+                            argsSel.DBName = args.DBName;
+                            argsSel.INSTANCE_NUMBER = instance_num;
+                            argsSel.ClustersNumber = Convert.ToInt32(cmbCount.Text);
+                            DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+                            if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
+                            {
+                                return;
+                            }
+                            //var sqlidList = dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
+                            //argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
+                            //DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
+                            //if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
+                            //{
+                            //    return;
+                            //}
+                            //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
+                            //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
+
+
+                            List<DataSet> listDs = new List<DataSet>();
+                            foreach (DataRow row in dsRelation.Tables[0].Rows)
+                            {
+                                AwrArgsPack args = new AwrArgsPack();
+                                args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
+                                args.DBName = argsSel.DBName;
+                                args.ParamNamesString = result;
+                                args.ParamType = row["SQL_ID"].ToString();
+                                args.INSTANCE_NUMBER = instance_num;
+                                DataSet dataSet1 = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
+                                listDs.Add(dataSet1);
+                            }
+                            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
+
+                            wdf.Close();
+                            frm.ShowDialog();
                         }
-                        AwrArgsPack argsSel = new AwrArgsPack();
-                        argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
-                        argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
-                        argsSel.ParamNamesString = result;
-                        argsSel.ParamType = string.Join(",", snapId);
-                        argsSel.DBName = args.DBName;
-                        argsSel.ClustersNumber = Convert.ToInt32( cmbCount.Text);
-                        DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
-                        if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
+                        finally
                         {
-                            return;
+                            wdf.Close();
                         }
-                        //var sqlidList = dsRelation.Tables[0].AsEnumerable().Select(x => x.Field<string>("SQL_ID")).ToArray();
-                        //argsSel.WorkloadSqlParm = string.Join(",", sqlidList);
-                        //DataSet dsSqlText = bs.ExecuteDataSet("GetSqlTextBySqlID", argsSel.getPack());
-                        //if (dsSqlText == null || dsSqlText.Tables.Count == 0 || dsSqlText.Tables[0].Rows.Count == 0)
-                        //{
-                        //    return;
-                        //}
-                        //string sqlid = dsSqlText.Tables[0].Rows[0]["SQL_ID"].ToString();
-                        //string sqlText = dsSqlText.Tables[0].Rows[0]["SQL_TEXT"].ToString();
-
-
-                        List<DataSet> listDs = new List<DataSet>();
-                        foreach (DataRow row in dsRelation.Tables[0].Rows)
-                        {
-                            AwrArgsPack args = new AwrArgsPack();
-                            args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
-                            args.DBName = argsSel.DBName;
-                            args.ParamNamesString = result;
-                            args.ParamType = row["SQL_ID"].ToString();
-                            DataSet dataSet1 = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
-                            listDs.Add(dataSet1);
-                        }
-                        FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
-
-                        wdf.Close();
-                        frm.ShowDialog();
                     }
                 }
             }
