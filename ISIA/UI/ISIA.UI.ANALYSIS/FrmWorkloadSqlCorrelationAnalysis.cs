@@ -218,7 +218,9 @@ namespace ISIA.UI.ANALYSIS
             }
             argument.DBName = dbName;
 
+            argument.DBID = cmbDbName.EditValue.ToString();
 
+            argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
 
             //combobox edit workload parm
             string workloadSql = cmbParameterName.Text;
