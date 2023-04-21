@@ -304,7 +304,14 @@ SELECT sm.dbid
                                    round(avg(NET_MB_TO_CLIENT_PSEC), 2) NET_MB_TO_CLIENT_PSEC,
                                    round(avg(NET_MB_FROM_CLIENT_PSEC), 2) NET_MB_FROM_CLIENT_PSEC,
                                    round(avg(NET_MB_FROM_DBLINK_PSEC), 2) NET_MB_FROM_DBLINK_PSEC,
-                                   round(avg(NET_MB_TO_DBLINK_PSEC), 2) NET_MB_TO_DBLINK_PSEC");
+                                   round(avg(NET_MB_TO_DBLINK_PSEC), 2) NET_MB_TO_DBLINK_PSEC,
+                                   round(avg(EXECUTIONS), 2) EXECUTIONS,
+                                   round(avg(ELAPSED_TIME), 2) ELAPSED_TIME,
+                                   round(avg(CPU_TIME), 2) CPU_TIME,
+                                   round(avg(BUFFER_GETS), 2) BUFFER_GETS,
+                                   round(avg(DISK_READS), 2) DISK_READS,
+                                   round(avg(PARSE_CALL), 2) PARSE_CALL
+                                ");
                 tmpSql.Append(" FROM sum_workload T where 1=1 ");
                 tmpSql.AppendFormat(" and DBID='{0}'", arguments.DBID);
                 if (!string.IsNullOrEmpty(arguments.INSTANCE_NUMBER))
@@ -409,8 +416,9 @@ SELECT sm.dbid
                 tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id ", arguments.DBName);
                 tmpSql.AppendFormat(" WHERE a.begin_interval_time > TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ",arguments.StartTime);
                 tmpSql.AppendFormat("AND t.sql_id = '{0}' ",arguments.ParamType);
-                tmpSql.AppendFormat("AND t.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);
-                tmpSql.Append(" ORDER BY a.begin_interval_time) d GROUP BY d.workdate,d.sql_id,d.instance_number ORDER BY d.workdate");
+                tmpSql.Append(" ORDER BY a.begin_interval_time) d ");
+                tmpSql.AppendFormat("where d.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);
+                tmpSql.Append(" GROUP BY d.workdate,d.sql_id,d.instance_number ORDER BY d.workdate");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
