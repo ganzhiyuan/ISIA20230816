@@ -1072,7 +1072,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append(@"select  snap_id,
-                    to_char(end_interval_time,'yyyy-mm-dd hh24:mi:ss') Timestamp,
+                    end_interval_time Timestamp,
                     max(decode(stat_name, 'BUSY_TIME', delta, 0)) / 100 BUSY_TIME,
                     max(decode(stat_name, 'IDLE_TIME', delta, 0)) / 100 IDLE_TIME,
                     max(decode(stat_name, 'USER_TIME', delta, 0)) / 100 USER_TIME,
@@ -1125,7 +1125,7 @@ namespace ISIA.BIZ.TREND
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
-                tmpSql.Append("group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
+                tmpSql.Append("group by snap_id, end_interval_time order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
