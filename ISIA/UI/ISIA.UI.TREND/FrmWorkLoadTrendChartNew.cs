@@ -592,6 +592,12 @@ namespace ISIA.UI.TREND
         public decimal NET_MB_FROM_CLIENT_PSEC { get; set; }
         public decimal NET_MB_FROM_DBLINK_PSEC { get; set; }
         public decimal NET_MB_TO_DBLINK_PSEC { get; set; }
+        public decimal EXECUTIONS { get; set; }
+        public decimal ELAPSED_TIME { get; set; }
+        public decimal CPU_TIME { get; set; }
+        public decimal BUFFER_GETS { get; set; }
+        public decimal DISK_READS { get; set; }
+        public decimal PARSE_CALL { get; set; }
 
         public decimal INSTANCE_NUMBER { get; set; }
     }

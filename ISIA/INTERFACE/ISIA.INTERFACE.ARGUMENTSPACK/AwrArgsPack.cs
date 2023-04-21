@@ -77,6 +77,12 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             WorkloadParamNamesList.Add("NET_MB_From_Client_psec");
             WorkloadParamNamesList.Add("NET_MB_From_DBLink_psec");
             WorkloadParamNamesList.Add("NET_MB_To_DBLink_psec");
+            WorkloadParamNamesList.Add("EXECUTIONS");
+            WorkloadParamNamesList.Add("ELAPSED_TIME");
+            WorkloadParamNamesList.Add("CPU_TIME");
+            WorkloadParamNamesList.Add("BUFFER_GETS");
+            WorkloadParamNamesList.Add("DISK_READS");
+            WorkloadParamNamesList.Add("PARSE_CALL");
             //_WorkloadSqlRelationMapping
             WorkloadSqlRelationMapping.Add("CPU Usage Per Sec", "CPU_TIME_delta");
             WorkloadSqlRelationMapping.Add("DB time", "ELAPSED_TIME_delta");
