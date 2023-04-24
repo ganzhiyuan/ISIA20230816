@@ -1,5 +1,6 @@
 ﻿using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
+using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using System;
@@ -23,10 +24,14 @@ namespace ISIA.UI.TREND
         BizDataClient bs;
         DataSet dataSet = new DataSet();
         AwrCommonArgsPack args = new AwrCommonArgsPack();
+        List<DPIDto> list = new List<DPIDto>();
         public FrmMainForm()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.PerformaceEvaluationTrend");
+            dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+            dtpEndTime.DateTime = DateTime.Now;
+            Init();
         }
 
 
@@ -66,7 +71,7 @@ namespace ISIA.UI.TREND
 
         private void FrmMainForm_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 17; i++)
             {
                 // 创建 TChart 控件
                 TChart tChart = new TChart();
@@ -78,7 +83,7 @@ namespace ISIA.UI.TREND
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
                 flowLayoutPanel1.Controls.Add(tChart);
             }
-            comboBoxEdit1_SelectedIndexChanged(null, null);
+            //comboBoxEdit1_SelectedIndexChanged(null, null);
             //CreateCharts();
         }
 
@@ -121,16 +126,26 @@ namespace ISIA.UI.TREND
             // 禁用查询按钮
             btnSelect.Enabled = false;
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>();
-            foreach (TChart chart in charts1)
+            for (int i = 0; i < list.Count(); i++)
             {
-                ShowWaitIcon(chart);
+                ShowWaitIcon(charts1.ElementAt(i));
                 await Task.Run(() =>
                 {
                     // 查询每个TChart控件的数据
-                    QueryDataForTChart(chart);
+                    QueryDataForTChart(charts1.ElementAt(i),list[i]);
                 });
-                HideWaitIcon(chart);
+                HideWaitIcon(charts1.ElementAt(i));
             }
+            //foreach (TChart chart in charts1)
+            //{
+            //    ShowWaitIcon(chart);
+            //    await Task.Run(() =>
+            //    {
+            //        // 查询每个TChart控件的数据
+            //        QueryDataForTChart(chart);
+            //    });
+            //    HideWaitIcon(chart);
+            //}
 
             // 使用异步方法查询数据
             
@@ -140,7 +155,7 @@ namespace ISIA.UI.TREND
         }
 
 
-        private void QueryDataForTChart(TChart tChart)
+        private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
             tChart.Series.Clear();
             // 实际的查询逻辑
@@ -150,43 +165,25 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
-
-            dataSet = bs.ExecuteDataSet("GetOsstat", args.getPack());
-            for (int i = 1; i <= 4; i++)
+            
+            dataSet = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            for (int i = 0; i < dto.FileNameParament.Count(); i++)
             {
-                Line line = CreateLine(dataSet.Tables[0], i, "TIMESTAMP","");
+                Line line = CreateLine(dataSet.Tables[0], dto,i);
                 tChart.Series.Add(line);
             }
             // 将查询到的数据设置到TChart控件中
             
         }
-        private Line CreateLine(DataTable dstable,decimal d,string Xvalue,string Yvalue)
+        private Line CreateLine(DataTable dstable, DPIDto dto, int i)
         {
             Line line = new Line();
 
             line.DataSource = dstable;
-            line.XValues.DataMember = "TIMESTAMP";
+            line.XValues.DataMember = dto.Xvalue;
             line.Legend.Visible = false;
-            if (d==1)
-            {
-                line.YValues.DataMember = "%usr";
-                line.Color = Color.Red;
-            }
-            else if (d==2)
-            {
-                line.YValues.DataMember = "%sys";
-                line.Color = Color.Blue;
-            }
-            else if (d==3)
-            {
-                line.YValues.DataMember = "%wio";
-                line.Color = Color.Green;
-            }
-            else
-            {
-                line.YValues.DataMember = "%idle";
-                line.Color = Color.OrangeRed;
-            }
+            line.YValues.DataMember = dto.FileNameParament[i];
+            line.Color = Color.OrangeRed;
 
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
@@ -210,6 +207,56 @@ namespace ISIA.UI.TREND
         private void HideWaitIcon(TChart chart)
         {
             chart.Header.Text = "";
+        }
+
+        private void Init()
+        {
+            //19
+            DPIDto dto = new DPIDto();
+            dto.DPIFileName = "GetOsstat";
+            dto.Xvalue = "TIMESTAMP";
+            dto.FileNameParament = new List<string>();
+            dto.FileNameParament.Add("%usr");
+            dto.FileNameParament.Add("%sys");
+            dto.FileNameParament.Add("%wio");
+            dto.FileNameParament.Add("%idle");
+            list.Add(dto);
+            //18
+            dto = new DPIDto();
+            dto.Xvalue = "TIMESTAMP";
+            dto.FileNameParament = new List<string>();
+            dto.DPIFileName = "GetTimeModel";
+            dto.FileNameParament.Add("DB time");
+            dto.FileNameParament.Add("DB CPU");
+            dto.FileNameParament.Add("background");
+            dto.FileNameParament.Add("background cpu");
+            list.Add(dto);
+            //1
+            dto = new DPIDto();
+            dto.Xvalue = "TIMESTAMP";
+            dto.FileNameParament = new List<string>();
+            dto.DPIFileName = "GetLoadSQL";
+            dto.FileNameParament.Add("Logical reads");
+            dto.FileNameParament.Add("Physical reads");
+            list.Add(dto);
+            //1
+            dto = new DPIDto();
+            dto.Xvalue = "TIMESTAMP";
+            dto.FileNameParament = new List<string>();
+            dto.DPIFileName = "GetLoadSQL";
+            dto.FileNameParament.Add("User calls");
+            dto.FileNameParament.Add("Executes");
+            list.Add(dto);
+            //62
+            dto = new DPIDto();
+            dto.Xvalue = "TIMESTAMP";
+            dto.FileNameParament = new List<string>();
+            dto.DPIFileName = "GetResource";
+            dto.FileNameParament.Add("sessions_curr");
+            dto.FileNameParament.Add("sessions_max");
+            dto.FileNameParament.Add("active_session_cnt");
+            list.Add(dto);
+
         }
 
         //------------------------------------------------
