@@ -55,6 +55,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string DBID { get; set; }
         public string INSTANCE_NUMBER { get; set; }
 
+        private string _PARADEF;
+
         static AwrArgsPack()
         {
             //_WorkloadParamNamesList
@@ -398,6 +400,22 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
                 _WorkloadRealParmMapping = value;
             }
         }
+
+
+        public string PARADEF
+        {
+            get
+            {
+                return _PARADEF;
+            }
+
+            set
+            {
+                _PARADEF = value;
+            }
+        }
+
+
 
         public ArgumentPack getPack()
         {

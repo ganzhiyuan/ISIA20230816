@@ -65,6 +65,7 @@
     <Compile Include="SQLAnalysisChart.cs" />
     <Compile Include="SqlInfluenceAnalysis.cs" />
     <Compile Include="WorkloadSqlCorrelationAnalysis.cs" />
+    <Compile Include="WorkloadSqlRelationAnalysis.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">
