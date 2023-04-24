@@ -90,7 +90,8 @@ namespace ISIA.UI.ANALYSIS
             try
             {
                 InitializeSqlId();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
 
@@ -118,22 +119,22 @@ namespace ISIA.UI.ANALYSIS
         public static string TIME_SELECTION = "A";
 
 
-       
 
-       
 
-        
+
+
+
 
         private void InitializeSqlId()
         {
             AwrArgsPack args = new AwrArgsPack();
-            
-            
-            sqlCollection=SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
+
+
+            sqlCollection = SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
 
         }
 
-        
+
 
         #endregion
 
@@ -162,7 +163,7 @@ namespace ISIA.UI.ANALYSIS
 
             //combobox edit db name 
             string dbName = cmbDbName.Text.Split('(')[0];
-           
+
             argument.DBName = dbName;
             argument.DBID = cmbDbName.EditValue.ToString();
             //SQLID handling 
@@ -189,12 +190,12 @@ namespace ISIA.UI.ANALYSIS
             {
                 argument.PARADEF = SLUEParamentName.PARAMETERNAME.ToString();
             }
-            
+
 
             return argument;
         }
         public DataSet LoadWorkloadSqlData()
-        { 
+        {
             DataSet = Bs.ExecuteDataSet("GetWorkpara", awrArgsPack.getPack());
 
             if (SLUEParamentName.PARAMETERNAME != null)
@@ -202,13 +203,13 @@ namespace ISIA.UI.ANALYSIS
                 dsPARADEF = Bs.ExecuteDataSet("GetParmDEF", awrArgsPack.getPack());
                 dsPARADEF.Tables[0].TableName = "TABLE";
             }
-            
+
 
             if (DataSet.Tables[0].Rows.Count != null)
             {
                 DataSet.Tables[0].TableName = DataSet.Tables[0].Rows[0]["PARAMETER"].ToString();
             }
-            
+
 
 
             return DataSet;
@@ -236,12 +237,12 @@ namespace ISIA.UI.ANALYSIS
             marksTip.MouseDelay = 100;
             marksTip.MouseAction = MarksTipMouseAction.Move;
             marksTip.Style = MarksStyles.XY;
-           
 
-            
-            
-           
-            
+
+
+
+
+
             Line line = CreateLine(ds.Tables[0]);
             chart.Series.Add(line);
 
@@ -265,29 +266,29 @@ namespace ISIA.UI.ANALYSIS
 
                 if (dsPARADEF.Tables.Count > 1)
                 {
-                        foreach (DataTable dtPARAMETER in dsPARADEF.Tables)
+                    foreach (DataTable dtPARAMETER in dsPARADEF.Tables)
+                    {
+                        if (dtPARAMETER.TableName != "TABLE")
                         {
-                            if (dtPARAMETER.TableName != "TABLE")
-                            {
-                                Line lineSQL = CreateLine(dtPARAMETER);
-                                chart.Series.Add(lineSQL);
+                            Line lineSQL = CreateLine(dtPARAMETER);
+                            chart.Series.Add(lineSQL);
                         }
-                        }
+                    }
                 }
             }
 
-            
 
-            
+
+
 
             chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
             chart.Axes.Bottom.Labels.ExactDateTime = true;
             chart.Axes.Bottom.Ticks.Width = 0;
-            
-            
+
+
             dpnlRight_Container.Controls.Add(chart);
         }
-        
+
         private Line CreateLine(DataTable dt)
         {
             Line line = new Line();
@@ -297,7 +298,7 @@ namespace ISIA.UI.ANALYSIS
             line.ShowInLegend = true;
             line.Legend.Text = dt.TableName;
             line.Title = dt.TableName;
-            
+
             line.Legend.BorderRound = 20;
             line.XValues.DateTime = true;
 
@@ -308,7 +309,7 @@ namespace ISIA.UI.ANALYSIS
             }
             return line;
         }
-        
+
 
         #endregion
 
