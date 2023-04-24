@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TAP.Data.Client;
@@ -28,38 +29,9 @@ namespace ISIA.UI.TREND
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.PerformaceEvaluationTrend");
         }
 
-        private async void LoadDataAsync(TChart tChart)
-        {
-            // 异步加载数据
-            var data = await Task.Run(() => GetData());
-
-            // 将数据绑定到 TChart 中
-            tChart.Series.Clear();
-            var series = new Bar(); // 这里以 Bar 为例，你也可以根据需要选择其他类型的图表
-            foreach (var item in data)
-            {
-                series.Add(item.Value, item.Key);
-            }
-            tChart.Series.Add(series);
-        }
-
-        private Dictionary<string, double> GetData()
-        {
-            // TODO: 获取数据的代码
-
-            return null;
-        }
 
         public DataSet LoadData()
-        {
-            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = cmbDbName.Text.Split('(')[0];
-            args.DbId = cmbDbName.EditValue.ToString();
-            args.InstanceNumber = cmbInstance.EditValue.ToString();
-            args.SnapId = "";
-
-            dataSet = bs.ExecuteDataSet("GetOsstat", args.getPack());
+        {            
 
             return dataSet;
         }
@@ -76,21 +48,7 @@ namespace ISIA.UI.TREND
 
         }
 
-        // 定时器回调函数
-        private void TimerCallback(object state)
-        {
-            // 遍历所有 TChart 控件
-            foreach (var tChart in this.Controls.OfType<TChart>())
-            {
-                // 使用 Invoke 方法调用 UI 线程上的方法
-                tChart.Invoke((Action)(() =>
-                {
-                    // 调用异步加载方法
-                    LoadDataAsync(tChart);
 
-                }));
-            }
-        }
 
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,10 +66,11 @@ namespace ISIA.UI.TREND
 
         private void FrmMainForm_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 16; i++)
             {
                 // 创建 TChart 控件
                 TChart tChart = new TChart();
+                tChart.Tag = i;
                 tChart.Width = 200;
                 tChart.Height = 150;
                 // 设置每个 TChart 控件的其他属性或数据
@@ -120,41 +79,11 @@ namespace ISIA.UI.TREND
                 flowLayoutPanel1.Controls.Add(tChart);
             }
             comboBoxEdit1_SelectedIndexChanged(null, null);
+            //CreateCharts();
         }
 
-        private void ShowLoading(Control targetControl)
-        {
-            // 创建进度条控件
-            ProgressBar progressBar = new ProgressBar();
-            progressBar.Style = ProgressBarStyle.Marquee;
-            progressBar.Width = 100;
-            progressBar.Height = targetControl.Height;
 
-            // 将进度条添加到目标控件旁边
-            targetControl.Parent.Controls.Add(progressBar);
-            progressBar.Left = targetControl.Right + 10;
-            progressBar.Top = targetControl.Top;
-
-            // 启用进度条
-            progressBar.Visible = true;
-        }
-
-        // 隐藏加载中状态
-        private void HideLoading(Control targetControl)
-        {
-            // 查找进度条控件
-            foreach (Control control in targetControl.Parent.Controls)
-            {
-                if (control is ProgressBar)
-                {
-                    // 移除进度条控件
-                    targetControl.Parent.Controls.Remove(control);
-                    break;
-                }
-            }
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
+        private async void btnSelect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -174,11 +103,194 @@ namespace ISIA.UI.TREND
                 //ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+
+                //var charts1 = flowLayoutPanel1.Controls.OfType<TChart>();
+                //LoadChartDataAsync(charts1);
+
+
+                await QueryDataForAllTCharts();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
+        private async Task QueryDataForAllTCharts()
+        {
+            // 禁用查询按钮
+            btnSelect.Enabled = false;
+            var charts1 = flowLayoutPanel1.Controls.OfType<TChart>();
+            foreach (TChart chart in charts1)
+            {
+                ShowWaitIcon(chart);
+                await Task.Run(() =>
+                {
+                    // 查询每个TChart控件的数据
+                    QueryDataForTChart(chart);
+                });
+                HideWaitIcon(chart);
+            }
+
+            // 使用异步方法查询数据
+            
+
+            // 启用查询按钮
+            btnSelect.Enabled = true;
+        }
+
+
+        private void QueryDataForTChart(TChart tChart)
+        {
+            tChart.Series.Clear();
+            // 实际的查询逻辑
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.InstanceNumber = cmbInstance.EditValue.ToString();
+            args.SnapId = "";
+
+            dataSet = bs.ExecuteDataSet("GetOsstat", args.getPack());
+            for (int i = 1; i <= 4; i++)
+            {
+                Line line = CreateLine(dataSet.Tables[0], i, "TIMESTAMP","");
+                tChart.Series.Add(line);
+            }
+            // 将查询到的数据设置到TChart控件中
+            
+        }
+        private Line CreateLine(DataTable dstable,decimal d,string Xvalue,string Yvalue)
+        {
+            Line line = new Line();
+
+            line.DataSource = dstable;
+            line.XValues.DataMember = "TIMESTAMP";
+            line.Legend.Visible = false;
+            if (d==1)
+            {
+                line.YValues.DataMember = "%usr";
+                line.Color = Color.Red;
+            }
+            else if (d==2)
+            {
+                line.YValues.DataMember = "%sys";
+                line.Color = Color.Blue;
+            }
+            else if (d==3)
+            {
+                line.YValues.DataMember = "%wio";
+                line.Color = Color.Green;
+            }
+            else
+            {
+                line.YValues.DataMember = "%idle";
+                line.Color = Color.OrangeRed;
+            }
+
+            line.Pointer.HorizSize = 1;
+            line.Pointer.VertSize = 1;
+            line.Pointer.HorizSize = 1;
+            line.Pointer.VertSize = 1;
+            //line.ColorEachLine = true;
+            //line.Legend.Text = dstable.TableName;
+            line.Legend.BorderRound = 10;
+            line.Pointer.Style = PointerStyles.Circle;
+            line.Pointer.Visible = true;
+            //line.Pointer.Color = Color.OrangeRed;
+            //line.Pointer.SizeDouble = 1;
+            line.XValues.DateTime = true;
+            return line;
+        }
+        private void ShowWaitIcon(TChart chart)
+        {
+            chart.Header.Text = "加载中...";
+        }
+
+        private void HideWaitIcon(TChart chart)
+        {
+            chart.Header.Text = "";
+        }
+
+        //------------------------------------------------
+
+        //private async void LoadChartDataAsync(IEnumerable<TChart> charts)
+        //{
+        //    if (!charts.Any())
+        //    {
+        //        MessageBox.Show("No charts found");
+        //        return;
+        //    }
+
+        //    // Show wait icon on each TChart control
+        //    foreach (var chart in charts)
+        //    {
+        //        ShowWaitIcon(chart);
+        //    }
+
+        //    try
+        //    {
+        //        // Load data for each TChart control asynchronously
+        //        var tasks = new List<Task>();
+        //        foreach (var chart in charts)
+        //        {
+        //            tasks.Add(LoadDataAsync(chart));
+        //        }
+        //        await Task.WhenAll(tasks); // Wait for all tasks to complete
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        // Hide wait icon on each TChart control
+        //        foreach (var chart in charts)
+        //        {
+        //            HideWaitIcon(chart);
+        //        }
+        //    }
+        //}
+
+        //private async Task LoadDataAsync(TChart chart)
+        //{
+        //    // Show wait icon on TChart control
+        //    ShowWaitIcon(chart);
+
+        //    try
+        //    {
+        //        // Simulate data loading by waiting for a random time
+        //        var rnd = new Random();
+        //        await Task.Delay(rnd.Next(1000, 3000));
+
+        //        // Bind data to TChart control
+        //        var data = new double[10];
+        //        for (int i = 0; i < data.Length; i++)
+        //        {
+        //            data[i] = rnd.NextDouble() * 100;
+        //        }
+        //        //chart.Series[0].Add(data);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        // Hide wait icon on TChart control
+        //        HideWaitIcon(chart);
+        //    }
+        //}
+        //private void ShowWaitIcon(TChart chart)
+        //{
+        //    chart.Header.Text = "加载中...";
+        //}
+
+        //private void HideWaitIcon(TChart chart)
+        //{
+        //    chart.Header.Text = "";
+        //}
+
+
     }
 }
