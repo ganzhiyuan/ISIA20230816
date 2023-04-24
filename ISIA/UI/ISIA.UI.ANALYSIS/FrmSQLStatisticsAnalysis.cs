@@ -565,18 +565,7 @@ namespace ISIA.UI.ANALYSIS
         { 
             try
             {
-                if (string.IsNullOrEmpty(cmbDbName.Text))
-                {
-                    string errMessage = "Please select DB_NAME";
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
-                    return;
-                }
-                if (string.IsNullOrEmpty(cmbParameterName.Text))
-                {
-                    string errMessage = "Please select ParameterName";
-                    TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
-                    return;
-                }
+                
 
                 //ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;

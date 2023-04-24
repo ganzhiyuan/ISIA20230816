@@ -52,7 +52,7 @@ namespace ISIA.UI.ANALYSIS
         public FrmSqlIDClusteringAnalysis()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.ParameterClusteringBySqlIDAnalysis");
+            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SqlIDClusteringAnalysis");
 
             cmbTime.Text = "D";
             cmbTime.Items.Add("D");
