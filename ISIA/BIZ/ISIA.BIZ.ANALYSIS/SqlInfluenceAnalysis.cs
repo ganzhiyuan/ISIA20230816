@@ -49,7 +49,7 @@ namespace ISIA.BIZ.ANALYSIS
 
 
                 tmpSql.AppendFormat(@" select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, NVL(sum({0}),0) {0} ", arguments.WorkloadSqlParm);
-                tmpSql.AppendFormat("  from ISIA.RAW_DBA_HIST_SQLSTAT_{0} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{0} snap on  stat.snap_id=snap.snap_id ", arguments.DBName);
+                tmpSql.AppendFormat("  from ISIA.RAW_DBA_HIST_SQLSTAT_{0} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{0} snap on  stat.snap_id=snap.snap_id and stat.dbid=snap.dbid and stat.INSTANCE_NUMBER=snap.INSTANCE_NUMBER", arguments.DBName);
                 tmpSql.AppendFormat("where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'", arguments.StartTime, arguments.EndTime);
                 tmpSql.AppendFormat("and stat.dbid = {0}", arguments.DBID);
                 tmpSql.AppendFormat("and stat.INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
