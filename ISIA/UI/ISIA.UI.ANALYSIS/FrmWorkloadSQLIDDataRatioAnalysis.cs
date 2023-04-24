@@ -206,6 +206,7 @@ namespace ISIA.UI.ANALYSIS
             string dbName = cmbDbName.Text.Split('(')[0];
            
             argument.DBName = dbName;
+            argument.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
 
             //SQLID handling 
 

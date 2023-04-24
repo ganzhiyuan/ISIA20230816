@@ -123,8 +123,9 @@ namespace ISIA.BIZ.TREND
                    "and sn.INSTANCE_NUMBER IN (1) \r\n" +
                    "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s \r\n" +
                    " where 1=1\r\n" +
+                   " and s.instance_number in ({4})"+
                    "group by dbid,s.instance_number ,snap_id\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
-                   arguments.DBName);
+                   arguments.DBName, Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                 }
                 else
                 {
@@ -138,6 +139,7 @@ namespace ISIA.BIZ.TREND
                     getWorkloadDtaSql.AppendFormat(" and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' ", arguments.StartTime);
                     getWorkloadDtaSql.AppendFormat(" and '{0}') t", arguments.EndTime);
                     getWorkloadDtaSql.Append(" where 1=1");
+                    getWorkloadDtaSql.AppendFormat(" and INSTANCE_NUMBER in ({0})) t", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                     getWorkloadDtaSql.Append(" group by dbid, instance_number ,snap_id) s");
 
                 }

@@ -1,4 +1,5 @@
-﻿using ISIA.INTERFACE.ARGUMENTSPACK;
+﻿using ISIA.COMMON;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,9 +68,9 @@ namespace ISIA.BIZ.ANALYSIS
 
                 tmpSql.AppendFormat(" and t.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
 
-                tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
+                tmpSql.AppendFormat(" and T.dbid = {0}", arguments.DbId);
 
-                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER in ('{0}')", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
 
                 tmpSql.Append(" group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");
 
