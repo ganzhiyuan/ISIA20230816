@@ -1,7 +1,7 @@
 ﻿
 namespace ISIA.UI.ANALYSIS
 {
-    partial class FrmParameterClusteringBySqlIDAnalysis
+    partial class FrmSqlIDClusteringAnalysis
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ISIA.UI.ANALYSIS
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmParameterClusteringBySqlIDAnalysis));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSqlIDClusteringAnalysis));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -193,7 +193,7 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(970, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(805, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(1293, 734);
@@ -593,7 +593,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             // cmbInstance
             // 
-            this.cmbInstance.CheckItemSelectMode = false;
+            this.cmbInstance.CheckItemSelectMode = true;
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
@@ -608,6 +608,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.Properties.AllowMultiSelect = true;
             this.cmbInstance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbInstance.Properties.SelectAllItemVisible = false;
             this.cmbInstance.RepresentativeValue = "";
             this.cmbInstance.ShowDescription = false;
             this.cmbInstance.Size = new System.Drawing.Size(220, 24);
@@ -1054,13 +1055,13 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
-            // FrmParameterClusteringBySqlIDAnalysis
+            // FrmSqlIDClusteringAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1622, 810);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmParameterClusteringBySqlIDAnalysis";
+            this.Name = "FrmSqlIDClusteringAnalysis";
             this.Text = "Parameter Clustering Analysis";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
