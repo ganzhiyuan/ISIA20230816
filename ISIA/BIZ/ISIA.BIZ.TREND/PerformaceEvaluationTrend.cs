@@ -109,32 +109,32 @@ namespace ISIA.BIZ.TREND
                                           'CPU used by this session')",arguments.DbName);
                 //tmpSql.AppendFormat("and sn.snap_id between {0} and {1}", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("     and sn.dbid = {0}", arguments.DbId);
                 tmpSql.AppendFormat("      and sn.instance_number = {0})", arguments.InstanceNumber);
-                tmpSql.Append(@"select snap_id,
-                       to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
-                       max(decode(stat_name, 'redo size', delta, 0)) \""Redo size\"",
-                       max(decode(stat_name, 'session logical reads', delta, 0)) \""Logical reads\"",
-                       max(decode(stat_name, 'db block changes', delta, 0)) \""Block changes\"",
-                       max(decode(stat_name, 'physical reads', delta, 0)) \""Physical reads\"",
-                       max(decode(stat_name, 'physical reads direct', delta, 0)) \""Physical reads direct\"",
-                       max(decode(stat_name, 'physical writes', delta, 0)) \""Physical writes\"",
-                       max(decode(stat_name, 'physical writes direct', delta, 0)) \""Physical writes direct\"",
-                       max(decode(stat_name, 'user calls', delta, 0)) \""User calls\"",
-                       max(decode(stat_name, 'parse count (total)', delta, 0)) \""Parses(total)\"",
-                       max(decode(stat_name, 'parse count (hard)', delta, 0)) \""Parses(hard)\"",
-                       max(decode(stat_name, 'sorts (memory)', delta, 0)) \""Sorts (memory)\"",
-                       max(decode(stat_name, 'sorts (disk)', delta, 0)) \""Sorts (disk)\"",
-                       max(decode(stat_name, 'logons cumulative', delta, 0)) \""Logons\"",
-                       max(decode(stat_name, 'execute count', delta, 0)) \""Executes\"",
-                       max(decode(stat_name, 'user commits', delta, 0)) +
-                       max(decode(stat_name, 'user rollbacks', delta, 0)) \""Transactions\"",
-                       decode(max(decode(stat_name,
+                tmpSql.Append(@"select snap_id, ");
+                       tmpSql.Append(" end_interval_time \"Timestamp\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'redo size', delta, 0)) \"Redo size\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'session logical reads', delta, 0)) \"Logical reads\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'db block changes', delta, 0)) \"Block changes\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'physical reads', delta, 0)) \"Physical reads\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'physical reads direct', delta, 0)) \"Physical reads direct\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'physical writes', delta, 0)) \"Physical writes\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'physical writes direct', delta, 0)) \"Physical writes direct\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'user calls', delta, 0)) \"User calls\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'parse count (total)', delta, 0)) \"Parses(total)\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'parse count (hard)', delta, 0)) \"Parses(hard)\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'sorts (memory)', delta, 0)) \"Sorts (memory)\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'sorts (disk)', delta, 0)) \"Sorts (disk)\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'logons cumulative', delta, 0)) \"Logons\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'execute count', delta, 0)) \"Executes\", ");
+                       tmpSql.Append(" max(decode(stat_name, 'user commits', delta, 0)) +");
+                tmpSql.Append(" max(decode(stat_name, 'user rollbacks', delta, 0)) \"Transactions\", ");
+                tmpSql.Append(@" decode(max(decode(stat_name,
                                          'consistent gets from cache',
                                          delta_val,
                                          0)) + max(decode(stat_name,
@@ -151,9 +151,9 @@ namespace ISIA.BIZ.TREND
                                     max(decode(stat_name,
                                                                   'db block gets from cache',
                                                                   delta_val,
-                                                                  0))))),
-                                    2)) \""Buffer Nowait %\"",
-                       decode(max(decode(stat_name, 'redo entries', delta_val, 0)),
+                                                                  0))))), ");
+                tmpSql.Append("  2)) \"Buffer Nowait %\",");
+                tmpSql.Append(@"  decode(max(decode(stat_name, 'redo entries', delta_val, 0)),
                               0,
                               0,
                               round((1 -
@@ -161,9 +161,9 @@ namespace ISIA.BIZ.TREND
                                                  'redo log space requests',
                                                  delta_val,
                                                  0)) /
-                                    max(decode(stat_name, 'redo entries', delta_val, 0)))),
-                                    2)) \""Redo NoWait %\"",
-                       decode(max(decode(stat_name,
+                                    max(decode(stat_name, 'redo entries', delta_val, 0)))),");
+                                  tmpSql.Append("   2)) \"Redo NoWait %\", ");
+                tmpSql.Append(@"  decode(max(decode(stat_name,
                                          'consistent gets from cache',
                                          delta_val,
                                          0)) + max(decode(stat_name,
@@ -183,21 +183,21 @@ namespace ISIA.BIZ.TREND
                                     max(decode(stat_name,
                                                       'db block gets from cache',
                                                       delta_val,
-                                                      0))))),
-                                    2)) \""Buffer Hits %\"",
-                       decode(max(decode(stat_name, 'sorts (memory)', delta_val, 0)) +
+                                                      0))))), ");
+                                  tmpSql.Append("   2)) \"Buffer Hits %\", ");
+                tmpSql.Append(@"  decode(max(decode(stat_name, 'sorts (memory)', delta_val, 0)) +
                               max(decode(stat_name, 'sorts (disk)', delta_val, 0)),
                               0,
                               0,
                               round((max(decode(stat_name, 'sorts (memory)', delta_val, 0)) /
                                     (max(decode(stat_name, 'sorts (memory)', delta_val, 0)) +
-                                    max(decode(stat_name, 'sorts (disk)', delta_val, 0)))),
-                                    2)) \""In -memory Sort %\"",
-                       decode(max(delta_pins),
+                                    max(decode(stat_name, 'sorts (disk)', delta_val, 0)))), ");
+                                  tmpSql.Append("   2)) \"In -memory Sort %\", ");
+                tmpSql.Append(@"  decode(max(delta_pins),
                               0,
-                              0,
-                              round((max(delta_pinhits) / max(delta_pins)), 2)) \""Library Hit %\"",
-                       decode(max(decode(stat_name, 'parse count (total)', delta_val, 0)),
+                              0, ");
+                             tmpSql.Append("  round((max(delta_pinhits) / max(delta_pins)), 2)) \"Library Hit %\",");
+                tmpSql.Append(@"  decode(max(decode(stat_name, 'parse count (total)', delta_val, 0)),
                               0,
                               0,
                               round((1 -
@@ -207,9 +207,9 @@ namespace ISIA.BIZ.TREND
                                                  0)) / max(decode(stat_name,
                                                                     'parse count (total)',
                                                                     delta_val,
-                                                                    0)))),
-                                    2)) \""Soft Parse %\"",
-                       decode(max(decode(stat_name, 'execute count', delta_val, 0)),
+                                                                    0)))), ");
+                                   tmpSql.Append("  2)) \"Soft Parse %\",");
+                tmpSql.Append(@" decode(max(decode(stat_name, 'execute count', delta_val, 0)),
                               0,
                               0,
                               round((1 -
@@ -217,33 +217,38 @@ namespace ISIA.BIZ.TREND
                                                  'parse count (total)',
                                                  delta_val,
                                                  0)) /
-                                    max(decode(stat_name, 'execute count', delta_val, 0)))),
-                                    2)) \""Execute to Parse %\"",
-                       decode(max(delta_gets),
+                                    max(decode(stat_name, 'execute count', delta_val, 0)))), ");
+                tmpSql.Append("   2)) \"Execute to Parse %\",");
+                tmpSql.Append(@"   decode(max(delta_gets),
                               0,
-                              0,
-                              round((1 - (max(delta_misses) / max(delta_gets))), 2)) \""Latch Hit %\"",
-                       decode(max(decode(stat_name, 'parse time elapsed', delta_val, 0)),
+                              0,");
+                            tmpSql.Append("   round((1 - (max(delta_misses) / max(delta_gets))), 2)) \"Latch Hit %\",");
+                tmpSql.Append(@"  decode(max(decode(stat_name, 'parse time elapsed', delta_val, 0)),
                               0,
                               0,
                               round((max(decode(stat_name, 'parse time cpu', delta_val, 0)) /
                                     max(decode(stat_name,
                                                 'parse time elapsed',
                                                 delta_val,
-                                                0))),
-                                    2)) \""Parse CPU to Parse Elapsd %\"",
-                       decode(max(decode(stat_name,
+                                                0))),");
+                                  tmpSql.Append("   2)) \"Parse CPU to Parse Elapsd %\",");
+                tmpSql.Append(@" decode(max(decode(stat_name,
                                          'CPU used by this session',
                                          delta_val,
                                          0)), 0, 0,
                               round((1 - (max(decode(stat_name, 'parse time cpu', delta_val, 0)) / max(decode(stat_name,
-                                                 'CPU used by this session', delta_val, 0)))),
-                                    2)) \"" % Non-Parse CPU\"",
-                       max(decode(stat_name, 'parse time cpu', delta, 0)) / 100 \""parse cpu\"",
-                       max(decode(stat_name, 'parse time elapsed', delta, 0)) / 100 \""Parse ela\""
-                  from load_v");
-                tmpSql.AppendFormat(" where snap_id > {0} ", arguments.SnapId);
-                tmpSql.Append(" group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss')  order by snap_id");
+                                                 'CPU used by this session', delta_val, 0)))),");
+                tmpSql.Append("  2)) \" % Non-Parse CPU\", ");
+                      tmpSql.Append("  max(decode(stat_name, 'parse time cpu', delta, 0)) / 100 \"parse cpu\", ");
+                      tmpSql.Append("  max(decode(stat_name, 'parse time elapsed', delta, 0)) / 100 \"Parse ela\" ");
+                 tmpSql.Append("  from load_v");
+                tmpSql.Append(" where snap_id >  "); 
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                     arguments.DbName,
+                     arguments.StartTimeKey,
+                     arguments.EndTimeKey,
+                     arguments.InstanceNumber);
+                tmpSql.Append(" group by snap_id, end_interval_time  order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -988,40 +993,40 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select  snap_id,
-        to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
-        sum(decode(stat_name, 'DB time', delta / 1000000, 0)) \""DB time\"",
-        sum(decode(stat_name, 'DB CPU', delta / 1000000, 0)) \""DB CPU\"",
-        sum(decode(stat_name, 'background elapsed time', delta / 1000000, 0)) \""background\"",
-        sum(decode(stat_name, 'background cpu time', delta / 1000000, 0)) \""background cpu\"",
-        sum(decode(stat_name, 'sequence load elapsed time', delta / 1000000, 0)) \""sequence load\"",
-        sum(decode(stat_name, 'parse time elapsed', delta / 1000000, 0)) \""parse\"",
-        sum(decode(stat_name, 'hard parse elapsed time', delta / 1000000, 0)) \""hard parse\"",
-        sum(decode(stat_name, 'sql execute elapsed time', delta / 1000000, 0)) \""sql execute\"",
-        sum(decode(stat_name, 'connection management call elapsed time', delta / 1000000, 0)) \""CM call\"",
-        sum(decode(stat_name, 'failed parse elapsed time', delta / 1000000, 0)) \""failed parse\"",
-        sum(decode(stat_name, 'failed parse (out of shared memory) elapsed time', delta / 1000000, 0)) \""failed parse(OutOfSM)\"",
-        sum(decode(stat_name, 'hard parse (sharing criteria) elapsed time', delta / 1000000, 0)) \""hard parse(SC)\"",
-        sum(decode(stat_name, 'hard parse (bind mismatch) elapsed time', delta / 1000000, 0)) \""hard parse(BM)\"",
-        sum(decode(stat_name, 'PL/SQL execution elapsed time', delta / 1000000, 0)) \""PL/SQL execution\"",
-        sum(decode(stat_name, 'inbound PL/SQL rpc elapsed time', delta / 1000000, 0)) \""inbound PL/SQL rpc\"",
-        sum(decode(stat_name, 'PL/SQL compilation elapsed time', delta / 1000000, 0)) \""PL/SQL compilation\"",
-        sum(decode(stat_name, 'Java execution elapsed time', delta / 1000000, 0)) \""Java execution\"",
-        sum(decode(stat_name, 'DB CPU', pct, 0)) \""%DB CPU\"",
-        sum(decode(stat_name, 'sequence load elapsed time', pct, 0)) \""%sequence load\"",
-        sum(decode(stat_name, 'parse time elapsed', pct, 0)) \""%parse\"",
-        sum(decode(stat_name, 'hard parse elapsed time', pct, 0)) \""%hard parse\"",
-        sum(decode(stat_name, 'sql execute elapsed time', pct, 0)) \""%sql execute\"",
-        sum(decode(stat_name, 'connection management call elapsed time', pct, 0)) \""%CM call\"",
-        sum(decode(stat_name, 'failed parse elapsed time', pct, 0)) \""%failed parse\"",
-        sum(decode(stat_name, 'failed parse (out of shared memory) elapsed time', pct, 0)) \""%failed parse(OutOfSM)\"",
-        sum(decode(stat_name, 'hard parse (sharing criteria) elapsed time', pct, 0)) \""%hard parse(SC)\"",
-        sum(decode(stat_name, 'hard parse (bind mismatch) elapsed time', pct, 0)) \""%hard parse(BM)\"",
-        sum(decode(stat_name, 'PL/SQL execution elapsed time', pct, 0)) \""%PL/SQL execution\"",
-        sum(decode(stat_name, 'inbound PL/SQL rpc elapsed time', pct, 0)) \""%inbound PL/SQL rpc\"",
-        sum(decode(stat_name, 'PL/SQL compilation elapsed time', pct, 0)) \""%PL/SQL compilation\"",
-        sum(decode(stat_name, 'Java execution elapsed time', pct, 0)) \""%Java execution\""
-  from(
+                tmpSql.Append("select  snap_id,");
+        tmpSql.Append(" end_interval_time \"Timestamp\",");
+                tmpSql.Append(" round(sum(decode(stat_name, 'DB time', delta / 1000000, 0)),6) \"DB time\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'DB CPU', delta / 1000000, 0)),6) \"DB CPU\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'background elapsed time', delta / 1000000, 0)),6) \"background\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'background cpu time', delta / 1000000, 0)),6) \"background cpu\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'sequence load elapsed time', delta / 1000000, 0)),6) \"sequence load\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'parse time elapsed', delta / 1000000, 0)),6) \"parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse elapsed time', delta / 1000000, 0)),6) \"hard parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'sql execute elapsed time', delta / 1000000, 0)),6) \"sql execute\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'connection management call elapsed time', delta / 1000000, 0)),6) \"CM call\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'failed parse elapsed time', delta / 1000000, 0)),6) \"failed parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'failed parse (out of shared memory) elapsed time', delta / 1000000, 0)),6) \"failed parse(OutOfSM)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse (sharing criteria) elapsed time', delta / 1000000, 0)),6) \"hard parse(SC)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse (bind mismatch) elapsed time', delta / 1000000, 0)),6) \"hard parse(BM)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'PL/SQL execution elapsed time', delta / 1000000, 0)),6) \"PL /SQL execution\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'inbound PL/SQL rpc elapsed time', delta / 1000000, 0)),6) \"inbound PL/SQL rpc\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'PL/SQL compilation elapsed time', delta / 1000000, 0)),6) \"PL /SQL compilation\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'Java execution elapsed time', delta / 1000000, 0)),6) \"Java execution\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'DB CPU', pct, 0)),6) \"%DB CPU\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'sequence load elapsed time', pct, 0)),6) \"%sequence load\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'parse time elapsed', pct, 0)),6) \"%parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse elapsed time', pct, 0)),6) \"%hard parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'sql execute elapsed time', pct, 0)),6) \"%sql execute\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'connection management call elapsed time', pct, 0)),6) \"%CM call\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'failed parse elapsed time', pct, 0)),6) \"%failed parse\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'failed parse (out of shared memory) elapsed time', pct, 0)),6) \"%failed parse(OutOfSM)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse (sharing criteria) elapsed time', pct, 0)),6) \"%hard parse(SC)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'hard parse (bind mismatch) elapsed time', pct, 0)),6) \"%hard parse(BM)\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'PL/SQL execution elapsed time', pct, 0)),6) \"%PL/SQL execution\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'inbound PL/SQL rpc elapsed time', pct, 0)),6) \"%inbound PL/SQL rpc\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'PL/SQL compilation elapsed time', pct, 0)),6) \"%PL/SQL compilation\", ");
+        tmpSql.Append(" round(sum(decode(stat_name, 'Java execution elapsed time', pct, 0)),6) \"%Java execution\" ");
+ tmpSql.AppendFormat(@"  from(
          select snap_id,
                 end_interval_time,
                 stat_name,
@@ -1042,15 +1047,20 @@ namespace ISIA.BIZ.TREND
                    and stm.dbid = sn.dbid", arguments.DbName);
                 //tmpSql.AppendFormat(" and sn.snap_id between {0} and {1} ", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
-                tmpSql.AppendFormat(" ) ) where snap_id >{0} ", arguments.SnapId);
-                tmpSql.Append("group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
+                tmpSql.AppendFormat(" ) ) where snap_id > ", arguments.SnapId);
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.Append("group by snap_id, end_interval_time order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -1065,7 +1075,7 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        public void GetOsstat(AwrCommonArgsPack arguments)
+        public void GetOsstat(AwrCommonArgsPack arguments) 
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -3073,9 +3083,9 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\"",
-                       to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",
-                       max(decode(r.resource_name, 'processes', current_utilization, 0)) processes_curr,
+                tmpSql.Append("select sn.snap_id \"SnapID\",");
+                tmpSql.Append(" end_interval_time \"Timestamp\",");
+                tmpSql.AppendFormat(@"max(decode(r.resource_name, 'processes', current_utilization, 0)) processes_curr,
                        max(decode(r.resource_name, 'processes', max_utilization, 0)) processes_max,
                        max(decode(r.resource_name, 'processes', limit_value, 0)) processes_limit,
                        max(decode(r.resource_name, 'sessions', current_utilization, 0)) sessions_curr,
@@ -3109,7 +3119,7 @@ namespace ISIA.BIZ.TREND
                                   from raw_dba_hist_active_sess_history_{0} ash ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3135,7 +3145,7 @@ namespace ISIA.BIZ.TREND
                                           'ges_procs') ");
                 //tmpSql.AppendFormat(" and r.snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               and r.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3143,7 +3153,7 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and r.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and r.dbid = {0} ", arguments.DbId);
 
-                tmpSql.AppendFormat("  group by sn.snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss')  order by sn.snap_id");
+                tmpSql.AppendFormat("  group by sn.snap_id, end_interval_time  order by sn.snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

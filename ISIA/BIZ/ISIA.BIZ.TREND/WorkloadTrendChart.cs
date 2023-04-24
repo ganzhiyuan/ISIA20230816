@@ -46,6 +46,14 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append(@"WITH t1_sysmetric_summary AS
+ ( SELECT a.* ,
+ ss.ELAPSED_TIME_DELTA,
+ ss.EXECUTIONS_DELTA,
+ss.CPU_TIME_DELTA,
+ss.BUFFER_GETS_DELTA,
+ss.DISK_READS_DELTA,
+ss.PARSE_CALLS_DELTA 
+from
  (SELECT /*+ MATERIALIZE */
    MIN(begin_interval_time) begin_time
   ,MAX(end_interval_time) end_time
@@ -77,7 +85,6 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.Append(@"  WHERE 1 = 1
      
-
                       AND sm.dbid = sn.dbid AND
                  sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND
                  sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER = 1 
@@ -85,9 +92,11 @@ namespace ISIA.BIZ.TREND
                  ");
 
                 tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
-                tmpSql.Append(@") s
-   WHERE 1 = 1
-   GROUP BY dbid, s.instance_number, snap_id),
+                tmpSql.AppendFormat(@") s
+    WHERE 1 = 1
+    GROUP BY dbid, s.instance_number, snap_id) a  left join raw_dba_hist_sqlstat_{0} ss on a.SNAP_ID  = ss.SNAP_ID  ), ", arguments.DBName);
+
+                    tmpSql.Append(@"
 t1_sysstat AS
  (SELECT 
    dbid
@@ -209,6 +218,15 @@ t2_sysmetric_summary AS
         ,ROUND(AVG(User_Commits_max_psec), 2) Commit_psec_max
         ,ROUND(AVG(Redo_Generated_psec / 1024 / 1024), 2) Redo_mb_psec_avg
         ,ROUND(AVG(Redo_Generated_max_psec / 1024 / 1024), 2) Redo_mb_psec_max
+
+        ,ROUND(AVG(ELAPSED_TIME_DELTA), 2) ELAPSED_TIME_DELTA
+        ,ROUND(AVG(EXECUTIONS_DELTA), 2) EXECUTIONS_DELTA
+        ,ROUND(AVG(CPU_TIME_DELTA), 2) CPU_TIME_DELTA
+        ,ROUND(AVG(BUFFER_GETS_DELTA), 2) BUFFER_GETS_DELTA
+        ,ROUND(AVG(DISK_READS_DELTA), 2) DISK_READS_DELTA
+        ,ROUND(AVG(PARSE_CALLS_DELTA), 2) PARSE_CALLS_DELTA
+
+
     FROM t1_sysmetric_summary s
    WHERE 1 = 1
    GROUP BY dbid, inst_id, snap_id),
@@ -248,6 +266,12 @@ SELECT sm.dbid
       ,sm.Commit_psec_max
       ,sm.Redo_mb_psec_avg
       ,sm.Redo_mb_psec_max
+      ,sm.ELAPSED_TIME_DELTA ELAPSED_TIME,
+      sm.EXECUTIONS_DELTA EXECUTIONS ,
+      sm.CPU_TIME_DELTA CPU_TIME,
+      sm.BUFFER_GETS_DELTA BUFFER_GETS,
+      sm.DISK_READS_DELTA DISK_READS,
+      sm.PARSE_CALLS_DELTA PARSE_CALLS
       ,ss.DLM_MB_psec
       ,ss.NET_MB_To_Client_psec
       ,ss.NET_MB_From_Client_psec
