@@ -566,7 +566,13 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_CLIENT_PSEC", "NET_MB_TO_CLIENT_PSEC"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_CLIENT_PSEC", "NET_MB_FROM_CLIENT_PSEC"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_DBLINK_PSEC", "NET_MB_FROM_DBLINK_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "NET_MB_TO_DBLINK_PSEC")});
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "NET_MB_TO_DBLINK_PSEC"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECUTIONS", "EXECUTIONS"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ELAPSED_TIME", "ELAPSED_TIME"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CPU_TIME", "CPU_TIME"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("BUFFER_GETS", "BUFFER_GETS"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DISK_READS", "DISK_READS"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PARSE_CALL", "PARSE_CALL")});
             this.cmbLinePara.Size = new System.Drawing.Size(109, 20);
             this.cmbLinePara.StyleController = this.lcSerachOptions;
             this.cmbLinePara.TabIndex = 29;
@@ -815,7 +821,10 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbCount.Properties.Items.AddRange(new object[] {
             "10",
-            "20"});
+            "20",
+            "30",
+            "40",
+            "50"});
             this.cmbCount.Size = new System.Drawing.Size(109, 20);
             this.cmbCount.StyleController = this.layoutControl1;
             this.cmbCount.TabIndex = 25;
