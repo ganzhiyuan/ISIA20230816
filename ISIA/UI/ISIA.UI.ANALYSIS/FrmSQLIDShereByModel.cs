@@ -32,11 +32,8 @@ namespace ISIA.UI.ANALYSIS
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbDbName.Text))
-            {
+            if (!base.ValidateUserInput(this.lcSerachOptions)) return;
 
-                return;
-            }
             try
             {
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);

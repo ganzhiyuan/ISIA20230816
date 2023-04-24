@@ -27,7 +27,7 @@ namespace ISIA.BIZ.ANALYSIS
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                       tmpSql.ToString(), false);
+                tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
@@ -61,6 +61,7 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
                        "stat.snap_id=snap.snap_id \r\n" +
                        "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id\r\n" +
                        "order by snap_id),\r\n" +
                        "workload as\r\n" +
@@ -96,13 +97,15 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
                        "and sn.INSTANCE_NUMBER IN (1)\r\n" +
-                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}') t\r\n" +
+                       " and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
+                       "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  " +
+                       " ) t\r\n" +
                        " where 1=1\r\n" +
                        "group by dbid, instance_number ,snap_id) s)\r\n" +
                        "\r\n" +
                        "select sql.* ,workload.\"{3}\"\r\n" +
                        "from sql left join workload on sql.SNAP_ID=workload.snap_id\r\n", arguments.StartTime, arguments.EndTime,
-                        arguments.DBName, arguments.WorkloadSqlParm);
+                        arguments.DBName, arguments.WorkloadSqlParm,arguments.DBID,arguments.INSTANCE_NUMBER);
                 }else if(AwrArgsPack.WorkloadBelonging[arguments.WorkloadSqlParm] == AwrArgsPack.METRIC)
                 {
                     tmpSql.AppendFormat(
@@ -117,6 +120,7 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
                        "stat.snap_id=snap.snap_id \r\n" +
                        "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id\r\n" +
                        "order by snap_id),\r\n" +
                        "workload as\r\n" +
@@ -138,13 +142,15 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.METRIC_NAME,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and METRIC_NAME='{3}' --configurable\r\n" +
                        "and sn.INSTANCE_NUMBER IN (1)\r\n" +
-                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}') t\r\n" +
+                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
+                       "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  "  +
+                       ") t\r\n" +
                        " where 1=1\r\n" +
                        "group by dbid, instance_number ,snap_id)\r\n" +
                        "\r\n" +
                        "select sql.* ,workload.\"{3}\"\r\n" +
                        "from sql left join workload on sql.SNAP_ID=workload.snap_id\r\n", arguments.StartTime, arguments.EndTime,
-                        arguments.DBName, arguments.WorkloadSqlParm);
+                        arguments.DBName, arguments.WorkloadSqlParm, arguments.DBID, arguments.INSTANCE_NUMBER);
                 }
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

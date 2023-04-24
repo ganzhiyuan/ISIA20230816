@@ -58,13 +58,14 @@
   <ItemGroup>
     <Compile Include="CorrelationAnalysis.cs" />
     <Compile Include="EquipmentAnalysis.cs" />
-    <Compile Include="ParameterClusteringBySqlIDAnalysis.cs" />
+    <Compile Include="SqlIDClusteringAnalysis.cs" />
     <Compile Include="ParameterClusteringAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLAnalysisBySQL_ID.cs" />
     <Compile Include="SQLAnalysisChart.cs" />
     <Compile Include="SqlInfluenceAnalysis.cs" />
     <Compile Include="WorkloadSqlCorrelationAnalysis.cs" />
+    <Compile Include="WorkloadSqlRelationAnalysis.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\COMMON\ISIA.COMMON\ISIA.COMMON.csproj">

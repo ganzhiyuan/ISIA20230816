@@ -23,6 +23,10 @@ namespace ISIA.UI.ANALYSIS
         //define bs
         BizDataClient bs = null;
 
+        DataSet DataSet = null;
+
+        DataSet dsPARADEF = null;
+
         #region getset
         public BizDataClient Bs { get => bs; set => bs = value; }
         #endregion
@@ -30,11 +34,15 @@ namespace ISIA.UI.ANALYSIS
         public FrmWorkloadSQLIDDataRatioAnalysis()
         {
             InitializeComponent();
-            Bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadSqlRelationAnalysis");
-            this.InitializeControls();
-            //initialize bs
+            Bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.WorkloadSqlRelationAnalysis");
+
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
+            tcmbday.Text = "D";
+            tcmbday.Items.Add("D");
+            tcmbday.Items.Add("W");
+            tcmbday.Items.Add("M");
+
         }
 
         #region event
@@ -54,6 +62,9 @@ namespace ISIA.UI.ANALYSIS
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
                     return;
                 }
+
+                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
+
                 this.AsyncGetWorkloadAndSqlComparisonData();
             }
             catch (Exception ex)
@@ -107,65 +118,22 @@ namespace ISIA.UI.ANALYSIS
         public static string TIME_SELECTION = "A";
 
 
-        private void InitializeControls()
-        {
-            //init date
-            InitializeDatePeriod();
-            //init dbname
-            InitializeDbName();
-           
-            //init workload
-            InitializeWorkloadParm();
-        }
+       
 
-        private void InitializeDatePeriod()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@".\ISIA.config");
-            XmlNodeList nodeList = doc.SelectNodes("configuration/TAP.ISIA.Configuration/WX/Shift");
-            this.dtpStartTime.DateTime = Convert.ToDateTime(DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["StartTime"].Value);
-            this.dtpEndTime.DateTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + nodeList[0][TIME_SELECTION].Attributes["EndTime"].Value);
-            this.dtpStartTime.EditValueChanged += new System.EventHandler(this.dateStart_EditValueChanged);
-            this.dtpEndTime.EditValueChanged += new System.EventHandler(this.dateEnd_EditValueChanged);
+       
 
-
-
-        }
-
-        private void InitializeDbName()
-        {
-            AwrArgsPack args = new AwrArgsPack();
-            //DataSet ds = Bs.ExecuteDataSet("GetDBName", args.getPack());
-            //DataTable dt = ds.Tables[0];
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    this.comboBoxDBName.Properties.Items.Add(dr["DbName"]);
-            //}
-        }
+        
 
         private void InitializeSqlId()
         {
             AwrArgsPack args = new AwrArgsPack();
-            args.StartTime = ((DateTime)dtpStartTime.EditValue).ToString("yyyyMMddHHmmss");
-            args.EndTime = ((DateTime)dtpEndTime.EditValue).ToString("yyyyMMddHHmmss");
-            if (string.IsNullOrEmpty(cmbDbName.Text))
-            {
-                string errMessage = "Please select DB_NAME";
-                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
-                return;
-            }
-            args.DBName = cmbDbName.Text.Split('(')[0];            
+            
+            
             sqlCollection=SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
 
         }
 
-        private void InitializeWorkloadParm()
-        {
-            foreach (KeyValuePair<string, string> pair in AwrArgsPack.WorkloadSqlRelationMapping)
-            {
-                this.cmbParameterName.Properties.Items.Add(pair.Key);
-            }
-        }
+        
 
         #endregion
 
@@ -184,30 +152,19 @@ namespace ISIA.UI.ANALYSIS
         {
             AwrArgsPack argument = new AwrArgsPack();
             //date period handling 
-            object startTime = dtpStartTime.EditValue;
-            object endTime = dtpEndTime.EditValue;
-            //if (startTime == null || endTime == null)
-            //{
-            //    string errMessage = "Please select StartTime or EndTime";
-            //    throw new Exception(errMessage);
-            //}
-            DateTime startDateTime = (DateTime)dtpStartTime.EditValue;
-            DateTime endDateTime = (DateTime)dtpEndTime.EditValue;
 
-            if (startDateTime > endDateTime)
-            {
-                argument.StartTime = endDateTime.ToString("yyyyMMddHHmmss");
-                argument.EndTime = startDateTime.ToString("yyyyMMddHHmmss");
-            }
-            argument.StartTime = startDateTime.ToString("yyyyMMddHHmmss");
-            argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
+
+
+
+
+            argument.StartTime = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            argument.EndTime = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
             //combobox edit db name 
             string dbName = cmbDbName.Text.Split('(')[0];
            
             argument.DBName = dbName;
-            argument.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
-
+            argument.DBID = cmbDbName.EditValue.ToString();
             //SQLID handling 
 
             //argument.SqlIdList = SLUEParamentName.PARAMETERNAME.Split(',').ToList<object>();
@@ -220,13 +177,41 @@ namespace ISIA.UI.ANALYSIS
                 string errMessage = "Please select Workload parm";
                 throw new Exception(errMessage);
             }
+
+
             argument.WorkloadSqlParm = workloadSql;
+
+
+            argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
+
+
+            if (SLUEParamentName.PARAMETERNAME != null)
+            {
+                argument.PARADEF = SLUEParamentName.PARAMETERNAME.ToString();
+            }
+            
 
             return argument;
         }
         public DataSet LoadWorkloadSqlData()
-        {
-            return Bs.ExecuteDataSet("GetWorkloadSqlRelationData", awrArgsPack.getPack());
+        { 
+            DataSet = Bs.ExecuteDataSet("GetWorkpara", awrArgsPack.getPack());
+
+            if (SLUEParamentName.PARAMETERNAME != null)
+            {
+                dsPARADEF = Bs.ExecuteDataSet("GetParmDEF", awrArgsPack.getPack());
+                dsPARADEF.Tables[0].TableName = "TABLE";
+            }
+            
+
+            if (DataSet.Tables[0].Rows.Count != null)
+            {
+                DataSet.Tables[0].TableName = DataSet.Tables[0].Rows[0]["PARAMETER"].ToString();
+            }
+            
+
+
+            return DataSet;
         }
 
         public void DisplayChart(DataSet ds)
@@ -239,11 +224,11 @@ namespace ISIA.UI.ANALYSIS
 
             chart.Dock = DockStyle.Fill;
             //Header set
-            chart.Header.Text = "WORKLOAD_SQL_RELATION";
+            chart.Header.Text = " ";
             //Legend set
             chart.Legend.LegendStyle = LegendStyles.Series;
             chart.Legend.Visible = true;
-            chart.Legend.CheckBoxes = true;
+            chart.Legend.CheckBoxes = false;
 
             //tool tip
             MarksTip marksTip = new MarksTip(chart.Chart);
@@ -251,90 +236,79 @@ namespace ISIA.UI.ANALYSIS
             marksTip.MouseDelay = 100;
             marksTip.MouseAction = MarksTipMouseAction.Move;
             marksTip.Style = MarksStyles.XY;
-            chart.MouseMove += new MouseEventHandler(tChart_MouseMove);
-            marksTip.GetText += new MarksTipGetTextEventHandler(marksTip_GetText);
+           
 
-            Color color = new Color();
-            int index = 0;
-            foreach (DataTable dt in ds.Tables)
+            
+            
+           
+            
+            Line line = CreateLine(ds.Tables[0]);
+            chart.Series.Add(line);
+
+
+
+            if (SLUEParamentName.PARAMETERNAME != null)
             {
-                color.getRandomColor();
-                Line line = CreateLine(dt, color);
-                if (index == 1)
+                IEnumerable<IGrouping<string, DataRow>> result = dsPARADEF.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMETER"].ToString());
+                if (result != null && result.Count() > 0)
                 {
-                    line.CustomVertAxis = chart.Axes.Right;
+                    foreach (IGrouping<string, DataRow> rows in result)
+                    {
+                        DataTable dataTable = rows.ToArray().CopyToDataTable();
+                        dataTable.TableName = rows.Key;
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            dsPARADEF.Tables.Add(dataTable);
+                        }
+                    }
                 }
-                chart.Series.Add(line);
-                chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
-                chart.Axes.Bottom.Labels.ExactDateTime = true;
-                chart.Axes.Bottom.Ticks.Width = 0;
-                index++;
+
+                if (dsPARADEF.Tables.Count > 1)
+                {
+                        foreach (DataTable dtPARAMETER in dsPARADEF.Tables)
+                        {
+                            if (dtPARAMETER.TableName != "TABLE")
+                            {
+                                Line lineSQL = CreateLine(dtPARAMETER);
+                                chart.Series.Add(lineSQL);
+                        }
+                        }
+                }
             }
+
+            
+
+            
+
+            chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
+            chart.Axes.Bottom.Labels.ExactDateTime = true;
+            chart.Axes.Bottom.Ticks.Width = 0;
+            
+            
             dpnlRight_Container.Controls.Add(chart);
         }
-        private class Color
-        {
-            int R;
-            int G;
-            int S;
-
-            Random r = new Random();
-
-            public int R1 { get => R; set => R = value; }
-            public int G1 { get => G; set => G = value; }
-            public int S1 { get => S; set => S = value; }
-
-            public static int MAX = 255;
-            public void getRandomColor()
-            {
-                R1 = r.Next(0, MAX);
-                G1 = r.Next(0, MAX);
-                S1 = r.Next(0, MAX);
-            }
-        }
-        private Line CreateLine(DataTable dt, Color color)
+        
+        private Line CreateLine(DataTable dt)
         {
             Line line = new Line();
             line.DataSource = dt;
-            line.YValues.DataMember = dt.TableName;
-            line.XValues.DataMember = "end_interval_time";
+            line.YValues.DataMember = "VALUE";
+            line.XValues.DataMember = "END_INTERVAL_TIME";
             line.ShowInLegend = true;
             line.Legend.Text = dt.TableName;
             line.Title = dt.TableName;
-            line.Color =
-                System.Drawing.Color.FromArgb(color.R1, color.G1, color.S1);
+            
             line.Legend.BorderRound = 20;
             line.XValues.DateTime = true;
+
+            line.GetSeriesMark += Line_GetSeriesMark;
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+            }
             return line;
         }
-        private int SeriesIndex = -1;
-
-        void tChart_MouseMove(object sender, MouseEventArgs e)
-        {
-            TChart tmpChart = sender as TChart;
-            for (int i = 0; i < tmpChart.Series.Count; i++)
-            {
-                if (tmpChart[i].Clicked(e.X, e.Y) != -1)
-                {
-                    SeriesIndex = i;
-                    break;
-                }
-                SeriesIndex = -1;
-            }
-        }
-        void marksTip_GetText(Steema.TeeChart.Tools.MarksTip sender, Steema.TeeChart.Tools.MarksTipGetTextEventArgs e)
-        {
-            MarksTip marks = sender as MarksTip;
-            if (e.Text.Contains("Date") || SeriesIndex == -1)
-            {
-                return;
-            }
-            var strPrmt = marks.Chart.Series[SeriesIndex].Legend.Text;
-            int indexPosition = e.Text.IndexOf(":") + 2;
-            e.Text = "Parm: " + strPrmt + "\n" +
-            "Date: " + e.Text.Substring(0, indexPosition) + "\n" + "Value:" +
-            e.Text.Substring(indexPosition + 1);
-        }
+        
 
         #endregion
 
@@ -353,6 +327,25 @@ namespace ISIA.UI.ANALYSIS
             currentChart = (sender as ContextMenuStrip).SourceControl as TChart;
         }
 
-      
+
+        private void tcmbday_EditValueChanged(object sender, EventArgs e)
+        {
+            if (tcmbday.Text == "D")
+            {
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "W")
+            {
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
+                this.dtpEndTime.DateTime = DateTime.Now;
+            }
+            else if (tcmbday.Text == "M")
+            {
+                this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
+                this.dtpEndTime.DateTime = DateTime.Now;
+            }
+        }
+
     }
 }

@@ -28,7 +28,7 @@ using TAP.UI;
 
 namespace ISIA.UI.ANALYSIS
 {
-    public partial class FrmParameterClusteringBySqlIDAnalysis : DockUIBase1T1
+    public partial class FrmSqlIDClusteringAnalysis : DockUIBase1T1
     {
 
         protected PointF _pStart;
@@ -49,7 +49,7 @@ namespace ISIA.UI.ANALYSIS
         public int colorI { get; set; } = 0;
         //List<SnapshotDto> snaplist = new List<SnapshotDto>();
 
-        public FrmParameterClusteringBySqlIDAnalysis()
+        public FrmSqlIDClusteringAnalysis()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.ParameterClusteringBySqlIDAnalysis");

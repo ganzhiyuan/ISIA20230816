@@ -11,7 +11,7 @@ using TAP;
 using TAP.Data.DataBase.Communicators;
 using TAP.Remoting;
 
-namespace ISIA.BIZ.TREND
+namespace ISIA.BIZ.ANALYSIS
 {
     class WorkloadSqlRelationAnalysis : TAP.Remoting.Server.Biz.BizComponentBase
     {
@@ -96,6 +96,71 @@ namespace ISIA.BIZ.TREND
             }
         }
 
+
+        public void GetParmDEF(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@"  SELECT A.SNAP_ID,A.DBID, A.METRIC_NAME PARAMETER, A.AVERAGE VALUE,
+                    B.end_interval_time FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} A LEFT JOIN RAW_DBA_HIST_SNAPSHOT_{0} B
+                    ON A.snap_id = b.snap_id", arguments.DBName);
+
+                tmpSql.AppendFormat(@" WHERE     1 = 1
+                    AND b.end_interval_time >
+                    TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
+                    AND b.end_interval_time <=
+                    TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
+
+                tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DBID);
+
+                tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER IN '{0}' ", arguments.INSTANCE_NUMBER);
+
+                tmpSql.AppendFormat(@" AND metric_name IN ( {0} ) order by a.metric_name ,B.end_interval_time", Utils.MakeSqlQueryIn2(arguments.PARADEF));
+
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+
+        public void GetParmNameByTypeAll()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append("select t.* from TAPCTPARAMETERDEF t where t.parametertype = 'METRIC'");
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
         public void GetSqlId(AwrArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -179,9 +244,8 @@ namespace ISIA.BIZ.TREND
                    "and sn.INSTANCE_NUMBER IN (1) \r\n" +
                    "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{1}' and '{2}') s \r\n" +
                    " where 1=1\r\n" +
-                   " and s.instance_number in ({4})"+
                    "group by dbid,s.instance_number ,snap_id\r\n", arguments.WorkloadSqlParm, arguments.StartTime, arguments.EndTime,
-                   arguments.DBName, Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                   arguments.DBName);
                 }
                 else
                 {
@@ -195,7 +259,6 @@ namespace ISIA.BIZ.TREND
                     getWorkloadDtaSql.AppendFormat(" and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' ", arguments.StartTime);
                     getWorkloadDtaSql.AppendFormat(" and '{0}') t", arguments.EndTime);
                     getWorkloadDtaSql.Append(" where 1=1");
-                    getWorkloadDtaSql.AppendFormat(" and INSTANCE_NUMBER in ({0})) t", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                     getWorkloadDtaSql.Append(" group by dbid, instance_number ,snap_id) s");
 
                 }
@@ -529,28 +592,7 @@ namespace ISIA.BIZ.TREND
         }
 
 
-        public void GetParmNameByTypeAll()
-        {
-            DBCommunicator db = new DBCommunicator();
-            try
-            {
-                StringBuilder tmpSql = new StringBuilder();
-
-                tmpSql.Append("select t.* from TAPCTPARAMETERDEF t where t.parametertype = 'METRIC'");
-
-
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                       tmpSql.ToString(), false);
-
-                this.ExecutingValue = db.Select(tmpSql.ToString());
-            }
-            catch (Exception ex)
-            {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
-                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
-                throw ex;
-            }
-        }
+        
 
     }
 }

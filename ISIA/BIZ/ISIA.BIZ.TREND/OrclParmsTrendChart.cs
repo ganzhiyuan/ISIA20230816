@@ -91,7 +91,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("select t.* from TAPCTPARAMETERDEF t");
+                tmpSql.Append("select t.* from TAPCTPARAMETERDEF t where t.parametertype = 'METRIC'");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

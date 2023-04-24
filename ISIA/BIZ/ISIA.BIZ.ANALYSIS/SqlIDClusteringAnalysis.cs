@@ -13,7 +13,7 @@ using TAP.Remoting;
 
 namespace ISIA.BIZ.ANALYSIS
 {
-    class ParameterClusteringBySqlIDAnalysis : TAP.Remoting.Server.Biz.BizComponentBase
+    class SqlIDClusteringAnalysis : TAP.Remoting.Server.Biz.BizComponentBase
     {
 
         public void GetSQLSTAT(AwrCommonArgsPack arguments)
