@@ -55,6 +55,8 @@ namespace ISIA.BIZ.TREND
                                  group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
 
                 tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T   left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id
+                                AND t.dbid = a.dbid
+                                AND t.INSTANCE_NUMBER = a.INSTANCE_NUMBER
                                 where t.snap_id in (SELECT T.Snap_Id FROM raw_dba_hist_snapshot_{0} T", arguments.DbName);
 
 
@@ -64,7 +66,7 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
-                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER in ('{0}')", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER  = {0} ", arguments.InstanceNumber);
 
                 tmpSql.Append(" group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");
 

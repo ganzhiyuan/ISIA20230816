@@ -98,7 +98,7 @@ namespace ISIA.BIZ.ANALYSIS
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
                        "and sn.INSTANCE_NUMBER IN (1)\r\n" +
                        " and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
-                       "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  " +
+                       "  AND ss.DBID IN  ('{4}')  AND ss.INSTANCE_NUMBER  = {5}  " +
                        " ) t\r\n" +
                        " where 1=1\r\n" +
                        "group by dbid, instance_number ,snap_id) s)\r\n" +

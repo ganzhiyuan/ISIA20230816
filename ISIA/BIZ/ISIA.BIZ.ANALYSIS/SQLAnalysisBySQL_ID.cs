@@ -25,10 +25,12 @@ namespace ISIA.BIZ.ANALYSIS
 
 
                 tmpSql.AppendFormat(" SELECT b.end_interval_time, a.command_type,T.{0},T.sql_id ", arguments.ParameterName);
-                tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T  left join raw_dba_hist_sqltext_{0} a on t.sql_id = a.sql_id and t.dbid = a.dbid left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id", arguments.DbName);
+                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T  left join raw_dba_hist_sqltext_{0} a on t.sql_id = a.sql_id and t.dbid = a.dbid left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id 
+                AND t.INSTANCE_NUMBER = b.INSTANCE_NUMBER
+                AND t.dbid = b.dbid", arguments.DbName);
                 tmpSql.AppendFormat(" where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
                 tmpSql.AppendFormat(" and    b.end_interval_time<=to_date('{0}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.EndTimeKey);
-                tmpSql.AppendFormat(" and    b.INSTANCE_NUMBER IN '{0}' ", arguments.InstanceNumber);
+                tmpSql.AppendFormat(" and    b.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and T.dbid in ('{0}') order by b.end_interval_time ", arguments.DbId);
 
 

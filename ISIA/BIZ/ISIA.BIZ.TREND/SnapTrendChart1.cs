@@ -170,14 +170,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.Append(", sum(PHYSICAL_WRITE_BYTES_TOTAL) PHYSICAL_WRITE_BYTES_TOTAL, sum(OPTIMIZED_PHYSICAL_READS_TOTAL) OPTIMIZED_PHYSICAL_READS_TOTAL ");
                 tmpSql.Append(", sum(CELL_UNCOMPRESSED_BYTES_TOTAL) CELL_UNCOMPRESSED_BYTES_TOTAL, sum(IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL ");
                 tmpSql.AppendFormat("FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
-                tmpSql.AppendFormat("left join raw_dba_hist_sqltext_{0} a   on t.sql_id = a.sql_id and t.dbid = a.dbid ", arguments.DbName);
+                tmpSql.AppendFormat("left join raw_dba_hist_sqltext_{0} a   on t.sql_id = a.sql_id and t.dbid = a.dbid  ", arguments.DbName);
                 tmpSql.AppendFormat("left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id ", arguments.DbName);
                 tmpSql.AppendFormat("where  b.end_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey); 
                 tmpSql.AppendFormat("  and b.end_interval_time <= to_date('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
 
 
                 tmpSql.AppendFormat("  AND T.DBID IN ('{0}')   ", arguments.DbId);
-                tmpSql.AppendFormat("  AND T.INSTANCE_NUMBER IN ('1')  ", arguments.InstanceNumber);
+                tmpSql.AppendFormat("  AND T.INSTANCE_NUMBER = {0}  ", arguments.InstanceNumber);
 
 
 
