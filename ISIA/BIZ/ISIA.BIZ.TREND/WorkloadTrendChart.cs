@@ -46,14 +46,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append(@"WITH t1_sysmetric_summary AS
- ( SELECT a.* ,
- ss.ELAPSED_TIME_DELTA,
- ss.EXECUTIONS_DELTA,
-ss.CPU_TIME_DELTA,
-ss.BUFFER_GETS_DELTA,
-ss.DISK_READS_DELTA,
-ss.PARSE_CALLS_DELTA 
-from
+ 
  (SELECT /*+ MATERIALIZE */
    MIN(begin_interval_time) begin_time
   ,MAX(end_interval_time) end_time
@@ -84,17 +77,17 @@ from
                 tmpSql.AppendFormat("  , RAW_DBA_HIST_SNAPSHOT_{0} sn ", arguments.DBName);
 
                 tmpSql.Append(@"  WHERE 1 = 1
-     
-                      AND sm.dbid = sn.dbid AND
-                 sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND ");
-                tmpSql.AppendFormat(" sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER in ({0})  ", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                AND sm.dbid = sn.dbid AND
+                sm.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND ");
+                tmpSql.AppendFormat(" sm.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER = {0}  ", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat("  AND sn.dbid = {0}  ", arguments.DBID);
                  tmpSql.Append(@"  AND TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD-HH24MI') BETWEEN
                  ");
 
                 tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
-                tmpSql.AppendFormat(@") s
-    WHERE 1 = 1
-    GROUP BY dbid, s.instance_number, snap_id) a  left join raw_dba_hist_sqlstat_{0} ss on a.SNAP_ID  = ss.SNAP_ID  ), ", arguments.DBName);
+                tmpSql.Append(@") s
+                WHERE 1 = 1
+                GROUP BY dbid, s.instance_number, snap_id), ");
 
                     tmpSql.Append(@"
 t1_sysstat AS
@@ -192,7 +185,8 @@ t1_sysstat AS
                 tmpSql.Append(@"    WHERE 1 = 1
                          AND ss.dbid = sn.dbid AND
                          ss.INSTANCE_NUMBER = sn.INSTANCE_NUMBER AND ");
-                tmpSql.AppendFormat("  ss.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                tmpSql.AppendFormat("  ss.snap_id = sn.snap_id AND sn.INSTANCE_NUMBER = {0}", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat("   AND sn.dbid = {0}", arguments.DBID);
                 tmpSql.Append(@"  AND TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'YYYYMMDD-HH24MI') BETWEEN ");
                 tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
                 tmpSql.Append(@")
@@ -219,13 +213,6 @@ t2_sysmetric_summary AS
         ,ROUND(AVG(Redo_Generated_psec / 1024 / 1024), 2) Redo_mb_psec_avg
         ,ROUND(AVG(Redo_Generated_max_psec / 1024 / 1024), 2) Redo_mb_psec_max
 
-        ,ROUND(AVG(ELAPSED_TIME_DELTA), 2) ELAPSED_TIME_DELTA
-        ,ROUND(AVG(EXECUTIONS_DELTA), 2) EXECUTIONS_DELTA
-        ,ROUND(AVG(CPU_TIME_DELTA), 2) CPU_TIME_DELTA
-        ,ROUND(AVG(BUFFER_GETS_DELTA), 2) BUFFER_GETS_DELTA
-        ,ROUND(AVG(DISK_READS_DELTA), 2) DISK_READS_DELTA
-        ,ROUND(AVG(PARSE_CALLS_DELTA), 2) PARSE_CALLS_DELTA
-
 
     FROM t1_sysmetric_summary s
    WHERE 1 = 1
@@ -245,7 +232,49 @@ t2_sysstat AS
         ,ROUND(AVG(NET_B_To_DBLink / 1024 / 1024 / SNAP_TIME), 3) NET_MB_To_DBLink_psec
     FROM t1_sysstat s
    WHERE 1 = 1
-   GROUP BY dbid, inst_id, snap_id)
+   GROUP BY dbid, inst_id, snap_id),");
+
+
+tmpSql.Append(@"t2_sqlstat as(
+ select dbid,inst_id,snap_id,
+round(sum(nvl(EXECUTIONS_DELTA,0)),2) EXECUTIONS,
+round(sum(nvl(ELAPSED_TIME_DELTA,0)/1000000),2) ELAPSED_TIME,
+round(sum(nvl(CPU_TIME_DELTA,0)/1000000),2) CPU_TIME,
+round(sum(nvl(BUFFER_GETS_DELTA,0)),2) BUFFER_GETS,
+round(sum(nvl(DISK_READS_DELTA,0)),2) DISK_READS,
+round(sum(nvl(PARSE_CALLS_DELTA,0)),2) PARSE_CALL
+from
+(
+select/*+leading(sn ss) use_hash(sn ss) use_hash(ss.sn ss.s  ss.nm) no_merge(ss)*/
+ss. dbid,
+ss.instance_number as inst_id,
+ss.snap_id,
+ss.ELAPSED_TIME_DELTA,
+ss.EXECUTIONS_DELTA,
+ss.CPU_TIME_DELTA,
+ss.BUFFER_GETS_DELTA,
+ss.DISK_READS_DELTA,
+ss.PARSE_CALLS_DELTA ,
+sn.begin_interval_time,
+sn.end_interval_time
+from ");
+                tmpSql.AppendFormat(@" isia.raw_dba_hist_sqlstat_{0} ss left join 
+isia.raw_dba_hist_snapshot_{0}  sn on  ", arguments.DBName);
+
+                tmpSql.AppendFormat(@" ss.dbid=sn.dbid
+and ss.instance_number = sn.instance_number
+and ss.snap_id = sn.snap_id
+
+where to_char(sn.begin_interval_time, 'yyyymmdd-hh24mi') between '{0}-0000' AND '{1}-2400' " ,arguments.StartTime, arguments.EndTime);
+
+                tmpSql.AppendFormat("   AND ss.INSTANCE_NUMBER = {0} ", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat("   AND ss.dbid in ('{0}') )", arguments.DBID);
+
+                tmpSql.Append(@" where 1=1
+group by dbid, inst_id,snap_id
+)  ");
+
+                tmpSql.Append(@"
 SELECT sm.dbid
       ,sm.inst_id as INSTANCE_NUMBER
       ,sm.snap_id
@@ -266,20 +295,26 @@ SELECT sm.dbid
       ,sm.Commit_psec_max
       ,sm.Redo_mb_psec_avg
       ,sm.Redo_mb_psec_max
-      ,sm.ELAPSED_TIME_DELTA ELAPSED_TIME,
-      sm.EXECUTIONS_DELTA EXECUTIONS ,
-      sm.CPU_TIME_DELTA CPU_TIME,
-      sm.BUFFER_GETS_DELTA BUFFER_GETS,
-      sm.DISK_READS_DELTA DISK_READS,
-      sm.PARSE_CALLS_DELTA PARSE_CALLS
+
+      ,st.EXECUTIONS
+,st.ELAPSED_TIME
+,st.CPU_TIME
+,st.BUFFER_GETS
+,st.DISK_READS
+,st.PARSE_CALL
+
       ,ss.DLM_MB_psec
       ,ss.NET_MB_To_Client_psec
       ,ss.NET_MB_From_Client_psec
       ,ss.NET_MB_From_DBLink_psec
       ,ss.NET_MB_To_DBLink_psec
-  FROM t2_sysmetric_summary sm, t2_sysstat ss
- WHERE sm.dbid = ss.dbid(+) AND sm.inst_id = ss.inst_id(+) AND
-       sm.snap_id = ss.snap_id(+)
+  FROM t2_sysmetric_summary sm, t2_sysstat ss , t2_sqlstat st
+ WHERE sm.dbid = ss.dbid(+) 
+ AND sm.dbid = st.dbid(+) 
+ AND sm.inst_id = ss.inst_id(+) 
+  AND sm.inst_id = st.inst_id(+) 
+ AND sm.snap_id = ss.snap_id(+)
+  AND sm.snap_id = st.snap_id(+)
  ORDER BY dbid, snap_id");
                 //if (!string.IsNullOrEmpty(arguments.INSTANCE_NUMBER))
                 //{

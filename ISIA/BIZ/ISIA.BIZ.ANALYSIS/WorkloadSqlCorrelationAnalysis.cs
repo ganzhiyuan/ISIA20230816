@@ -96,7 +96,7 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.VALUE,\r\n" +
                        "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
-                       "and sn.INSTANCE_NUMBER IN (1)\r\n" +
+                       
                        " and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
                        "  AND ss.DBID IN  ('{4}')  AND ss.INSTANCE_NUMBER  = {5}  " +
                        " ) t\r\n" +
@@ -141,7 +141,7 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.average,\r\n" +
                        "ss.METRIC_NAME,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and METRIC_NAME='{3}' --configurable\r\n" +
-                       "and sn.INSTANCE_NUMBER IN (1)\r\n" +
+                       
                        "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
                        "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  "  +
                        ") t\r\n" +
