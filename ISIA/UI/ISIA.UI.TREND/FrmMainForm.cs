@@ -35,23 +35,23 @@ namespace ISIA.UI.TREND
         }
 
 
-        public DataSet LoadData()
-        {            
+        //public DataSet LoadData()
+        //{            
 
-            return dataSet;
-        }
-        public void DisplayData(DataSet ds)
-        {
-            if (dataSet == null)
-            {
-                return;
-            }
-            //ConvertData(dataSet);
+        //    return dataSet;
+        //}
+        //public void DisplayData(DataSet ds)
+        //{
+        //    if (dataSet == null)
+        //    {
+        //        return;
+        //    }
+        //    //ConvertData(dataSet);
 
-            //CreateTeeChart(dataSet.Tables[0]);
-            dataSet.Tables.Clear();
+        //    //CreateTeeChart(dataSet.Tables[0]);
+        //    dataSet.Tables.Clear();
 
-        }
+        //}
 
 
 
@@ -61,7 +61,7 @@ namespace ISIA.UI.TREND
             int width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(comboBoxEdit1.EditValue);
             int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(comboBoxEdit1.EditValue);
 
-            foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>())
+            foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>().ToArray())
             {
                 chart.Width = width-10;
                 chart.Height = height-10;
@@ -71,13 +71,13 @@ namespace ISIA.UI.TREND
 
         private void FrmMainForm_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < list.Count(); i++)
             {
                 // 创建 TChart 控件
                 TChart tChart = new TChart();
                 tChart.Tag = i;
-                tChart.Width = 200;
-                tChart.Height = 150;
+                tChart.Width = 300;
+                tChart.Height = 200;
                 // 设置每个 TChart 控件的其他属性或数据
 
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
@@ -105,15 +105,10 @@ namespace ISIA.UI.TREND
                     return;
                 }
 
-                //ComboBoxControl.SetCrossLang(this._translator);
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
-                base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+                //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
-                //var charts1 = flowLayoutPanel1.Controls.OfType<TChart>();
-                //LoadChartDataAsync(charts1);
-
-
-                await QueryDataForAllTCharts();
+                await QueryDataForAllTChartsAsync();
 
             }
             catch (Exception ex)
@@ -121,11 +116,12 @@ namespace ISIA.UI.TREND
                 MessageBox.Show(ex.ToString());
             }
         }
-        private async Task QueryDataForAllTCharts()
+
+        private async Task QueryDataForAllTChartsAsync()
         {
             // 禁用查询按钮
             btnSelect.Enabled = false;
-            var charts1 = flowLayoutPanel1.Controls.OfType<TChart>();
+            var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             for (int i = 0; i < list.Count(); i++)
             {
                 ShowWaitIcon(charts1.ElementAt(i));
@@ -134,22 +130,8 @@ namespace ISIA.UI.TREND
                     // 查询每个TChart控件的数据
                     QueryDataForTChart(charts1.ElementAt(i),list[i]);
                 });
-                HideWaitIcon(charts1.ElementAt(i));
+                HideWaitIcon(charts1.ElementAt(i),list[i].HeaderText);
             }
-            //foreach (TChart chart in charts1)
-            //{
-            //    ShowWaitIcon(chart);
-            //    await Task.Run(() =>
-            //    {
-            //        // 查询每个TChart控件的数据
-            //        QueryDataForTChart(chart);
-            //    });
-            //    HideWaitIcon(chart);
-            //}
-
-            // 使用异步方法查询数据
-            
-
             // 启用查询按钮
             btnSelect.Enabled = true;
         }
@@ -201,62 +183,124 @@ namespace ISIA.UI.TREND
         }
         private void ShowWaitIcon(TChart chart)
         {
-            chart.Header.Text = "加载中...";
+            chart.Header.Text = "Loading...";
         }
 
-        private void HideWaitIcon(TChart chart)
+        private void HideWaitIcon(TChart chart,string s)
         {
-            chart.Header.Text = "";
+            chart.Header.Text = s;
         }
 
         private void Init()
         {
             //19
-            DPIDto dto = new DPIDto();
-            dto.DPIFileName = "GetOsstat";
-            dto.Xvalue = "TIMESTAMP";
-            dto.FileNameParament = new List<string>();
-            dto.FileNameParament.Add("%usr");
-            dto.FileNameParament.Add("%sys");
-            dto.FileNameParament.Add("%wio");
-            dto.FileNameParament.Add("%idle");
+            DPIDto dto = new DPIDto
+            {
+                DPIFileName = "GetOsstat",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "CP Usage(%)",
+                FileNameParament = new List<string>{"%usr","%sys","%wio","%idle"}
+            };
             list.Add(dto);
             //18
-            dto = new DPIDto();
-            dto.Xvalue = "TIMESTAMP";
-            dto.FileNameParament = new List<string>();
-            dto.DPIFileName = "GetTimeModel";
-            dto.FileNameParament.Add("DB time");
-            dto.FileNameParament.Add("DB CPU");
-            dto.FileNameParament.Add("background");
-            dto.FileNameParament.Add("background cpu");
-            list.Add(dto);
-            //1
-            dto = new DPIDto();
-            dto.Xvalue = "TIMESTAMP";
-            dto.FileNameParament = new List<string>();
-            dto.DPIFileName = "GetLoadSQL";
-            dto.FileNameParament.Add("Logical reads");
-            dto.FileNameParament.Add("Physical reads");
-            list.Add(dto);
-            //1
-            dto = new DPIDto();
-            dto.Xvalue = "TIMESTAMP";
-            dto.FileNameParament = new List<string>();
-            dto.DPIFileName = "GetLoadSQL";
-            dto.FileNameParament.Add("User calls");
-            dto.FileNameParament.Add("Executes");
+            //dto = new DPIDto
+            //{
+            //    DPIFileName = "GetTimeModel",
+            //    Xvalue = "TIMESTAMP",
+            //    HeaderText = "DB&Background Times(s)",
+            //    FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
+            //};
+            //list.Add(dto);
+            ////1
+            //dto = new DPIDto
+            //{
+            //    DPIFileName = "GetLoadSQL",
+            //    Xvalue = "TIMESTAMP",
+            //    HeaderText = "Lgical/Physical Reads",
+            //    FileNameParament = new List<string> { "Logical reads", "Physical reads" }
+            //};
+            //list.Add(dto);
+            ////1
+            //dto = new DPIDto
+            //{
+            //    DPIFileName = "GetLoadSQL",
+            //    Xvalue = "TIMESTAMP",
+            //    HeaderText = "User Call/Execute Count",
+            //    FileNameParament = new List<string> { "User calls", "Executes" }
+            //};
             list.Add(dto);
             //62
-            dto = new DPIDto();
-            dto.Xvalue = "TIMESTAMP";
-            dto.FileNameParament = new List<string>();
-            dto.DPIFileName = "GetResource";
-            dto.FileNameParament.Add("sessions_curr");
-            dto.FileNameParament.Add("sessions_max");
-            dto.FileNameParament.Add("active_session_cnt");
+            dto = new DPIDto
+            {
+                DPIFileName = "GetResource",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Session/Active Count",
+                FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
+            };
             list.Add(dto);
+            //12
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWait5_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top 5 Wait Events(time(s))",
+                FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
+            };
+            list.Add(dto);
+            //68
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWait5_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top 5 Wait Events(time(s))",
+                FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
+            };
+            list.Add(dto);
+            //66
+            dto = new DPIDto
+            {
+                DPIFileName = "GetEnq_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Avg.Top-5 En queue Wait Time(s)",
+                FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
+            };
+            list.Add(dto);
+            //61
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWaitstat",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Wait count by class",
+                FileNameParament = new List<string> { "data block", "segment header", "undo block", "undo header" }
+            };
+            list.Add(dto);
+            //64
+            dto = new DPIDto
+            {
+                DPIFileName = "GetBuffer_pool",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Cache Hit%",
+                FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+            };
+            list.Add(dto);
+            //74
+            dto = new DPIDto
+            {
+                DPIFileName = "GetBuffer_pool",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Session Cached cursor Statistics",
+                FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+            };
+            list.Add(dto);
+            //71
 
+            //71
+
+            //54
+
+            //55
+
+            //03
         }
 
         //------------------------------------------------

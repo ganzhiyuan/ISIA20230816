@@ -567,6 +567,15 @@ namespace ISIA.UI.TREND
                 SetCharts(chartLayout1, dataTable);
             }
         }
+
+        private void cmbDbName_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(cmbDbName.Text))
+            {
+                cmbInstance.EditValue = 1;
+                cmbInstance.Text = "1";
+            }
+        }
     }
 
     public class WorkLoadInfo

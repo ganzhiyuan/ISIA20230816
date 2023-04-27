@@ -435,7 +435,7 @@ SELECT sm.dbid
                 StringBuilder tmpSql = new StringBuilder();
                 if (arguments.ParamNamesString == "ELAPSED_TIME_DELTA" || arguments.ParamNamesString == "CPU_TIME_DELTA")
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(avg(d.{0})/1000000,0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0})/1000000,0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
@@ -447,7 +447,7 @@ SELECT sm.dbid
                 }
                 else
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(avg(d.{0}),0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0}),0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
