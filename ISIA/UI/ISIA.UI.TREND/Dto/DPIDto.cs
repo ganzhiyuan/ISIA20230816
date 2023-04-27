@@ -10,6 +10,7 @@ namespace ISIA.UI.TREND.Dto
     {
         public string DPIFileName { get; set; }
         public string Xvalue { get; set; }
+        public string HeaderText { get; set; }
         public List<string> FileNameParament { get; set; }
     }
 

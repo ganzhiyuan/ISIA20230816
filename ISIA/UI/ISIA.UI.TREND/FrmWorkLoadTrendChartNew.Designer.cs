@@ -660,6 +660,7 @@ namespace ISIA.UI.TREND
             this.cmbDbName.StyleController = this.lcSerachOptions;
             this.cmbDbName.TabIndex = 24;
             this.cmbDbName.ValueMember = "DBID";
+            this.cmbDbName.EditValueChanged += new System.EventHandler(this.cmbDbName_EditValueChanged);
             // 
             // tLabelDB
             // 
