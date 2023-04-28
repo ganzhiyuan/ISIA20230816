@@ -41,7 +41,7 @@ namespace ISIA.UI.TREND
         public FrmSQLTotalStatisticsTrend()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLTrendChart");
+            bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLTotalStatisticsTrend");
             
             
             /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
@@ -91,7 +91,7 @@ namespace ISIA.UI.TREND
 
 
                 List<string > itemList = cmbParameterName.Text.Split(',').ToArray().ToList();
-                dataSet = bs.ExecuteDataSet("GetSnap", args.getPack());
+                dataSet = bs.ExecuteDataSet("GetDeltaAndSnap", args.getPack());
                 if (dataSet.Tables[0].Rows.Count == 0)
                 {
                     return dataSet = null;
@@ -125,21 +125,21 @@ namespace ISIA.UI.TREND
 
         private DataTable ConvertDTToListRef(DataTable dt)
         {
-            List<SqlstatDto> list = DataTableExtend.GetList<SqlstatDto>(dt);
-            SqlstatDto dto = new SqlstatDto();
+            List<SqlDeltaDto> list = DataTableExtend.GetList<SqlDeltaDto>(dt);
+            SqlDeltaDto dto = new SqlDeltaDto();
             PropertyInfo[] fields = dto.GetType().GetProperties();
             List<string> listTotal = new List<string>();
             for (int i = 0; i < fields.Length; i++)
             {
                 string ss = fields[i].Name;
-                if (ss.Contains("TOTAL"))
+                if (ss.Contains("DELTA"))
                 {
                     listTotal.Add(ss);
                 }
             }
             returnList = new List<SqlStatRowDto>();
 
-            foreach (SqlstatDto item in list)
+            foreach (SqlDeltaDto item in list)
             {
                 PropertyInfo[] proInfo = item.GetType().GetProperties();
                 foreach (var s in listTotal)

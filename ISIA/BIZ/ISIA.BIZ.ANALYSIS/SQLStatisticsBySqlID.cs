@@ -11,7 +11,7 @@ using TAP.Remoting;
 
 namespace ISIA.BIZ.ANALYSIS
 {
-    public class SQLAnalysisBySQL_ID : TAP.Remoting.Server.Biz.BizComponentBase
+    public class SQLStatisticsBySqlID : TAP.Remoting.Server.Biz.BizComponentBase
     {
 
 

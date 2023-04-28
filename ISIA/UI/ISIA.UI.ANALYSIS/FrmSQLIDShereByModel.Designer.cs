@@ -305,8 +305,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 328;
-            this.navBarControl1.Size = new System.Drawing.Size(328, 603);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 410;
+            this.navBarControl1.Size = new System.Drawing.Size(410, 603);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -513,7 +513,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
             this.cmbInstance.DominantControl = "cmbDbName";
-            this.cmbInstance.EditValue = "";
+            this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(186, 33);
             this.cmbInstance.Margin = new System.Windows.Forms.Padding(5);
@@ -521,10 +521,12 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.NeedToTranslate = false;
             this.cmbInstance.ParameterID = "INSTANCE_NUMBER";
             this.cmbInstance.Properties.AllowMultiSelect = true;
+            this.cmbInstance.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.cmbInstance.Properties.Appearance.Options.UseBackColor = true;
             this.cmbInstance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbInstance.Properties.SelectAllItemVisible = false;
-            this.cmbInstance.RepresentativeValue = "";
+            this.cmbInstance.RepresentativeValue = "1";
             this.cmbInstance.ShowDescription = false;
             this.cmbInstance.Size = new System.Drawing.Size(135, 24);
             this.cmbInstance.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetInstanceNumber";

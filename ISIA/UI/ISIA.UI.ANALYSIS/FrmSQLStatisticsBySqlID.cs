@@ -51,7 +51,7 @@ namespace ISIA.UI.ANALYSIS
         public FrmSQLStatisticsBySqlID()
         {
             InitializeComponent();
-            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SQLAnalysisBySQL_ID");
+            bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SQLStatisticsBySqlID");
 
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
