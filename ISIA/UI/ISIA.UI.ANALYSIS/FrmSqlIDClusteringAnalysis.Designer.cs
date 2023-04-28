@@ -341,8 +341,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 386;
-            this.navBarControl1.Size = new System.Drawing.Size(386, 775);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 309;
+            this.navBarControl1.Size = new System.Drawing.Size(309, 620);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -598,7 +598,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
             this.cmbInstance.DominantControl = "cmbDbName";
-            this.cmbInstance.EditValue = "";
+            this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(159, 33);
             this.cmbInstance.Margin = new System.Windows.Forms.Padding(5);
@@ -606,10 +606,12 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.NeedToTranslate = false;
             this.cmbInstance.ParameterID = "INSTANCE_NUMBER";
             this.cmbInstance.Properties.AllowMultiSelect = true;
+            this.cmbInstance.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.cmbInstance.Properties.Appearance.Options.UseBackColor = true;
             this.cmbInstance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbInstance.Properties.SelectAllItemVisible = false;
-            this.cmbInstance.RepresentativeValue = "";
+            this.cmbInstance.RepresentativeValue = "1";
             this.cmbInstance.ShowDescription = false;
             this.cmbInstance.Size = new System.Drawing.Size(220, 24);
             this.cmbInstance.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetInstanceNumber";
@@ -986,7 +988,7 @@ namespace ISIA.UI.ANALYSIS
             this.tSplitContainerControl1.Panel2.Controls.Add(this.tPanel6);
             this.tSplitContainerControl1.Panel2.Text = "Panel2";
             this.tSplitContainerControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tSplitContainerControl1.Size = new System.Drawing.Size(1604, 328);
+            this.tSplitContainerControl1.Size = new System.Drawing.Size(1283, 262);
             this.tSplitContainerControl1.SplitterPosition = 1621;
             this.tSplitContainerControl1.TabIndex = 0;
             // 
@@ -1000,7 +1002,7 @@ namespace ISIA.UI.ANALYSIS
             this.tplychart.Name = "tplychart";
             this.tplychart.NeedToTranslate = true;
             this.tplychart.RepresentativeValue = "tplychart [TAP.UIControls.BasicControlsDEV.TPanel]";
-            this.tplychart.Size = new System.Drawing.Size(1589, 328);
+            this.tplychart.Size = new System.Drawing.Size(1981, 410);
             this.tplychart.TabIndex = 0;
             // 
             // layoutControl2
@@ -1010,7 +1012,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(1585, 324);
+            this.layoutControl2.Size = new System.Drawing.Size(1977, 406);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -1020,7 +1022,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1585, 324);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1977, 406);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tPanel6

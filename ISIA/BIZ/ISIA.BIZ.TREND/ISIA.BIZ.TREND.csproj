@@ -59,7 +59,7 @@
     <Compile Include="PerformaceEvaluationTrend.cs" />
     <Compile Include="SQLAnalysisBySQL_ID.cs" />
     <Compile Include="SQLAnalysisChart.cs" />
-    <Compile Include="SQLTrendChart.cs" />
+    <Compile Include="SQLTotalStatisticsTrend.cs" />
     <Compile Include="SnapTrendChart1.cs" />
     <Compile Include="WorkloadTrendChart.cs" />
     <Compile Include="WorkloadSqlRelationAnalysis.cs" />

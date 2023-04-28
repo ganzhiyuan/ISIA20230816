@@ -159,7 +159,7 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(739, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(778, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(987, 667);
@@ -354,8 +354,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 351;
-            this.navBarControl1.Size = new System.Drawing.Size(351, 559);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 439;
+            this.navBarControl1.Size = new System.Drawing.Size(439, 699);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -569,7 +569,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
             this.cmbInstance.DominantControl = "cmbDbName";
-            this.cmbInstance.EditValue = "";
+            this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(153, 32);
             this.cmbInstance.Margin = new System.Windows.Forms.Padding(5);
@@ -577,10 +577,12 @@ namespace ISIA.UI.ANALYSIS
             this.cmbInstance.NeedToTranslate = false;
             this.cmbInstance.ParameterID = "INSTANCE_NUMBER";
             this.cmbInstance.Properties.AllowMultiSelect = true;
+            this.cmbInstance.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.cmbInstance.Properties.Appearance.Options.UseBackColor = true;
             this.cmbInstance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbInstance.Properties.SelectAllItemVisible = false;
-            this.cmbInstance.RepresentativeValue = "";
+            this.cmbInstance.RepresentativeValue = "1";
             this.cmbInstance.ShowDescription = false;
             this.cmbInstance.Size = new System.Drawing.Size(194, 24);
             this.cmbInstance.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetInstanceNumber";
@@ -625,7 +627,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbParameterName.RepresentativeValue = "";
             this.cmbParameterName.ShowDescription = false;
             this.cmbParameterName.Size = new System.Drawing.Size(194, 24);
-            this.cmbParameterName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlstatParaName";
+            this.cmbParameterName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetSqlDeltaParaName";
             this.cmbParameterName.SqlDataBase = "";
             this.cmbParameterName.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.cmbParameterName.StyleController = this.lcSerachOptions;

@@ -104,4 +104,55 @@ namespace ISIA.UI.ANALYSIS.Dto
 
         #endregion
     }
+
+
+    public class SqlDeltaDto
+    {
+        public DateTime END_INTERVAL_TIME { get; set; }
+
+        public decimal SNAP_ID { get; set; }
+        public decimal DBID { get; set; }
+        public decimal INSTANCE_NUMBER { get; set; }
+        public string SQL_ID { get; set; }
+        public decimal PLAN_HASH_VALUE { get; set; }
+        public decimal OPTIMIZER_COST { get; set; }
+        public string OPTIMIZER_MODE { get; set; }
+        public decimal OPTIMIZER_ENV_HASH_VALUE { get; set; }
+        public decimal SHARABLE_MEM { get; set; }
+        public decimal LOADED_VERSIONS { get; set; }
+        public decimal VERSION_COUNT { get; set; }
+        public decimal PARSING_USER_ID { get; set; }
+        #region parament
+        public decimal FETCHES_DELTA { get; set; }
+        public decimal END_OF_FETCH_COUNT_DELTA { get; set; }
+        public decimal SORTS_DELTA { get; set; }
+        public decimal EXECUTIONS_DELTA { get; set; }
+        public decimal PX_SERVERS_EXECS_DELTA { get; set; }
+        public decimal LOADS_DELTA { get; set; }
+        public decimal INVALIDATIONS_DELTA { get; set; }
+        public decimal PARSE_CALLS_DELTA { get; set; }
+        public decimal DISK_READS_DELTA { get; set; }
+        public decimal BUFFER_GETS_DELTA { get; set; }
+        public decimal ROWS_PROCESSED_DELTA { get; set; }
+        public decimal CPU_TIME_DELTA { get; set; }
+        public decimal ELAPSED_TIME_DELTA { get; set; }
+        public decimal IOWAIT_DELTA { get; set; }
+        public decimal CLWAIT_DELTA { get; set; }
+        public decimal APWAIT_DELTA { get; set; }
+        public decimal CCWAIT_DELTA { get; set; }
+        public decimal DIRECT_WRITES_DELTA { get; set; }
+        public decimal PLSEXEC_TIME_DELTA { get; set; }
+        public decimal JAVEXEC_TIME_DELTA { get; set; }
+        public decimal IO_OFFLOAD_ELIG_BYTES_DELTA { get; set; }
+        public decimal IO_INTERCONNECT_BYTES_DELTA { get; set; }
+        public decimal PHYSICAL_READ_REQUESTS_DELTA { get; set; }
+        public decimal PHYSICAL_READ_BYTES_DELTA { get; set; }
+        public decimal PHYSICAL_WRITE_REQUESTS_DELTA { get; set; }
+        public decimal PHYSICAL_WRITE_BYTES_DELTA { get; set; }
+        public decimal OPTIMIZED_PHYSICAL_READS_DELTA { get; set; }
+        public decimal CELL_UNCOMPRESSED_BYTES_DELTA { get; set; }
+        public decimal IO_OFFLOAD_RETURN_BYTES_DELTA { get; set; }
+
+        #endregion
+    }
 }
