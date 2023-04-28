@@ -36,12 +36,14 @@ namespace ISIA.UI.TREND
         DataSet dataSet1 = new DataSet();
         List<Series> series = new List<Series>();
         List<SnapshotDto> snaplist = new List<SnapshotDto>();
+        List<string> listUI = null;
 
         public FrmSQLTotalStatisticsTrend()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.SQLTrendChart");
-
+            
+            
             /*this.dateStart.DateTime = DateTime.Now.AddDays(-1);
             this.dateEnd.DateTime = DateTime.Now;*/
             cmbTime.Text = "D";
@@ -50,6 +52,12 @@ namespace ISIA.UI.TREND
             cmbTime.Items.Add("M");         
 
         }
+
+        private void FrmSQLTotalStatisticsTrend_Load(object sender, EventArgs e)
+        {
+            listUI = LinkAgeHelper.Linkage(this.UIInformation.Name.ToString());
+        }
+
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
@@ -69,6 +77,8 @@ namespace ISIA.UI.TREND
         {
             try
             {
+                
+
                 dataSet1.Tables.Clear();
 
                 args.DbId = cmbDbName.EditValue.ToString();
@@ -238,14 +248,19 @@ namespace ISIA.UI.TREND
 
             this._DataTable = DataTableExtend.ConvertToDataSet<SnapshotDto>(snaplist).Tables[0];
 
-            PopupGrid popupGrid = new PopupGrid(this._DataTable);
+            PopupGrid popupGrid = new PopupGrid(this._DataTable , listUI);
             popupGrid.StartPosition = FormStartPosition.CenterScreen;
             popupGrid.ShowDialog();
             DataTable dt =  popupGrid._DataTable;
 
             if (popupGrid.linkage == true)
             {
-                base.OpenUI("SQLANALYSISCHART", "AWR", "SQLANALYSISCHART", dt);
+                //string linkUIname = popupGrid.linkUIname;
+
+                DataTable dtlinkui  = LinkAgeHelper.LinkUI(popupGrid.linkUIname);
+                base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString(), dt);
+                //base.OpenUI("SQLSTATISTICSANALYSIS", "AWR", "SQLSTATISTICSANALYSIS", dt);
+                popupGrid.Dispose();
             }
             
         }
@@ -467,5 +482,7 @@ namespace ISIA.UI.TREND
 
 
         }
+
+        
     }
 }
