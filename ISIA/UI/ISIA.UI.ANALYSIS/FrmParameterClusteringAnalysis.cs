@@ -73,7 +73,15 @@ namespace ISIA.UI.ANALYSIS
             {
                 
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
-                
+
+                Array parast =  cmbParameterName.Text.ToString().Split(',').ToArray();
+                if (parast.Length < Convert.ToInt32(seclusterin.Text.ToString()))
+                {
+                    TAPMsgBox.Instance.ShowMessage("Warning", EnumMsgType.WARNING, "Please select an appropriate Clustering Number");
+
+                    return;
+                }
+
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception)

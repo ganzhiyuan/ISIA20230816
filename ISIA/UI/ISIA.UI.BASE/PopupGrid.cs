@@ -22,6 +22,7 @@ namespace ISIA.UI.BASE
         string _SeleSeriesName;
         string _ValueName;
         public bool linkage  { get; set; }
+        public string linkUIname { get; set; }
 
         public PopupGrid()
         {
@@ -49,6 +50,28 @@ namespace ISIA.UI.BASE
             _DataTable = dt;
            
             this.gridView1.BestFitColumns();
+        }
+
+        public PopupGrid(DataTable dt , List<string> uilist)
+        {
+            InitializeComponent();
+            gridViewStyle();
+            gridControl1.DataSource = dt;
+            _DataTable = dt;
+
+            this.gridView1.BestFitColumns();
+
+            creatToolmenu(uilist);
+        }
+
+        private void creatToolmenu(List<string> uilist) {
+
+            foreach (string uiname in uilist)
+            {
+                ToolStripMenuItem uiMenuItem = new ToolStripMenuItem(uiname);
+                uiMenuItem.Click += linkageToolStripMenuItem_Click;
+                linkageStripMenuItem.DropDownItems.Add(uiMenuItem);
+            }
         }
 
         private void gridViewStyle()
@@ -89,13 +112,15 @@ namespace ISIA.UI.BASE
             pg.Dispose();*/
         }
 
-        private void defectMapAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void linkageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //????? ?? ???..
             //defectmapanalysis ??..
 
             //OpenUI("");
-
+            
+            
+            linkUIname = sender.ToString();
             linkage = true;
             this.Close();
             
@@ -225,5 +250,7 @@ namespace ISIA.UI.BASE
         {
             this.Close();
         }
+
+
     }
 }

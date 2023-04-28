@@ -42,7 +42,7 @@ namespace ISIA.UI.ADMINISTRATOE
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.LinkageManagement");
             UIListData();
             InitializeUIGroup();
-            base.SetPopupMenuItem(GetLinkAge("123"));
+            //base.SetPopupMenuItem(GetLinkAge("123"));
             int temp = Convert.ToInt32(panelControl1.Height * 0.48);
             flowLayoutPanel2.Height = temp;
         }

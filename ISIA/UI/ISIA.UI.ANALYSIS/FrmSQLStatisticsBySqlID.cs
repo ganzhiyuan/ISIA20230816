@@ -254,7 +254,7 @@ namespace ISIA.UI.ANALYSIS
 ;               void Chart_Click(object sender, EventArgs e)
                 {
                     DataClient tmpDataClient = new DataClient();
-                    string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_isfa T where t.sql_id='{0}' ", chart.Text); 
+                    string tmpMainMenuSql = string.Format("SELECT T.Sql_Text FROM raw_dba_hist_sqltext_{1} T where t.sql_id='{0}' ", chart.Text,args.DbName); 
                     DataTable tableMain1 = tmpDataClient.SelectData(tmpMainMenuSql, "raw_dba_hist_sqltext_isfa").Tables[0];
                     tableMain1.TableName = "sql";
 

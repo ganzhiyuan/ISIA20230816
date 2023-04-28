@@ -130,7 +130,18 @@ namespace ISIA.UI.ADMINISTRATOE
             {
                 //新增需加入groupid
                 DataTable dt = bs.ExecuteDataSet("GetCtLinkageByMaxID").Tables[0];
-                int groupId = Convert.ToInt32(dt.Rows[0][0]);
+                int groupId;
+                //int groupId = (dt.Rows[0][0] == null) ? 0 : Convert.ToInt32(dt.Rows[0][0]);
+                if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
+                {
+                    groupId = 0;
+                }
+                else
+                {
+                    groupId = Convert.ToInt32(dt.Rows[0][0].ToString());
+                }
+
+
                 args.EqpGroup = (groupId+1).ToString();
                 args.InsertUser = InfoBase._USER_INFO.UserName;
                 args.InsertTime = DateTime.Now.ToString("yyyyMMddHHmmss");
