@@ -35,89 +35,67 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
+                List<SqlShowCl> listCL = new List<SqlShowCl>();
                 DateTime dtNow = dtpStartTime.DateTime;
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 args.Days = "WEEK";
-                List<SqlShow> listReturn = new List<SqlShow>();
                 for (int i = 1; i <= 4; i++)//查询4周
-                {
-                    
-                    args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd HH:mm:ss");
-                    args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd HH:mm:ss");
-                    args.Days = i.ToString();
+                {                    
+                    args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd");
+                    args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd");
                     args.DbName = cmbDbName.Text.Split('(')[0];
-                    DataSet dataSet = bs.ExecuteDataSet("GetSqlstatByUnit", args.getPack());
+                    switch (i)
+                    {
+                        case 1:
+                            args.ParameterName = "day0";
+                            break;
+                        case 2:
+                            args.ParameterName = "day7";
+                            break;
+                        case 3:
+                            args.ParameterName = "day14";
+                            break;
+                        case 4:
+                            args.ParameterName = "day21";
+                            break;
+                    }
+                    DataSet dataSet = bs.ExecuteDataSet("GetSqlStatByWeek", args.getPack());
                     if (dataSet == null||dataSet.Tables[0]==null||dataSet.Tables[0].Rows.Count<1)
                     {
                         continue;
                     }
 
                     List<SqlStatNew> list = DataTableExtend.GetList<SqlStatNew>(dataSet.Tables[0]);
-                    var temp = list.Select(x => x.SQL_ID).Distinct().ToList();                  
 
-                    foreach (var item in temp)
+                    foreach (var item in list)
                     {
-                        SqlShow info = new SqlShow();
-                        info.SQL_ID = item;
-                        int countDay = 0;
-                        for (int m = 1; m <= 7; m++)
+                        SqlShowCl cl = listCL.FirstOrDefault(x => x.SQL_ID == item.SQL_ID);
+                        if (cl == null)
                         {
-                            var listDay= list.Where(x => x.END_INTERVAL_TIME > dtNow.AddDays((-1*(i-1)*7)-m)
-                                &&x.END_INTERVAL_TIME<=dtNow.AddDays((-1 * (i - 1) * 7) - m+1)
-                                &&x.SQL_ID==item);
-                            if (listDay!=null&&listDay.Any())
-                            {
-                                countDay++;
-                            }
+                            cl = new SqlShowCl();
                         }
                         switch (i)
                         {
                             case 1:
-                                info.PARAMENT_NAME = "0-7days";
+                                cl.week1 = item.day0;
                                 break;
                             case 2:
-                                info.PARAMENT_NAME = "7-14days";
+                                cl.week2 = item.day7;
                                 break;
                             case 3:
-                                info.PARAMENT_NAME = "14-21days";
+                                cl.week3 = item.day14;
                                 break;
                             case 4:
-                                info.PARAMENT_NAME = "21-28days";
+                                cl.week4 = item.day21;
                                 break;
                         }
-                        info.PARAMENT_VALUE = countDay;
-                        listReturn.Add(info);
+                        cl.SQL_ID = item.SQL_ID;
+                        listCL.Add(cl);
                     }
-
                 }
-                List<SqlShowCl> listCL = new List<SqlShowCl>();
 
-                var tempCount = listReturn.Select(x => x.SQL_ID).Distinct().ToList();
-                foreach (var item in tempCount)
-                {
-                    var resultList = listReturn.Where(x => x.SQL_ID == item).ToList();
-                    SqlShowCl cl = new SqlShowCl();
-                    cl.SQL_ID = item;
-                    foreach (var result in resultList)
-                    {
-                        switch (result.PARAMENT_NAME)
-                        {
-                            case "0-7days":
-                                cl.week1 = result.PARAMENT_VALUE;
-                                break;
-                            case "7-14days":
-                                cl.week2 = result.PARAMENT_VALUE;
-                                break;
-                            case "14-21days":
-                                cl.week3 = result.PARAMENT_VALUE;
-                                break;
-                            case "21-28days":
-                                cl.week4 = result.PARAMENT_VALUE;
-                                break;
-                        }
-                    }
-                    listCL.Add(cl);
-                }
+
+                
                 foreach (var item in listCL)
                 {
                     item.AVG=Math.Round((item.week1+item.week2+item.week3+item.week4)/4,1);

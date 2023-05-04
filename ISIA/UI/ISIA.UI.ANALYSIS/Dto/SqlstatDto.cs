@@ -13,6 +13,11 @@ namespace ISIA.UI.ANALYSIS.Dto
         public string SQL_ID { get; set; }
         public decimal typNum { get; set; }
         public decimal SQL_Count { get; set; }
+        public decimal day0 { get; set; }
+        public decimal day7 { get; set; }
+        public decimal day14 { get; set; }
+        public decimal day21 { get; set; }
+
     }
     public class SqlShow
     {
