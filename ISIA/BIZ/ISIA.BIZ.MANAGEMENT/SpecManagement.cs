@@ -184,7 +184,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.Append("  SELECT DISTINCT DBNAME ,DBID FROM TAPCTDATABASE");
                 tmpSql.Append("  WHERE 1=1");
 
-                
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
@@ -235,9 +235,9 @@ namespace ISIA.BIZ.MANAGEMENT
                 {
                     tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
                 }
-                
+
                 tmpSql.AppendFormat(" WHERE ROWID ='{0}'", arguments.ROWID);
-                
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
@@ -290,8 +290,8 @@ namespace ISIA.BIZ.MANAGEMENT
                     tmpSql.AppendFormat("  CUSTOM03 ,");
                 }
 
-                
-               
+
+
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
                 {
                     tmpSql = new StringBuilder(tmpSql.ToString().Substring(0, tmpSql.Length - 1));
@@ -327,7 +327,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 {
                     tmpSql.AppendFormat("'{1}'" + "{0}", " ,", arguments.ISALIVE);
                 }
-                
+
                 if (tmpSql.ToString().Substring(tmpSql.Length - 1, 1).Equals(","))
                 {
                     tmpSql = new StringBuilder(tmpSql.ToString().Substring(0, tmpSql.Length - 1));
@@ -362,9 +362,10 @@ namespace ISIA.BIZ.MANAGEMENT
 
                 if (!string.IsNullOrEmpty(arguments.ROWID))
                 {
-                    tmpSql.AppendFormat("ROWID =  '{0}'",  arguments.ROWID);
+                    tmpSql.AppendFormat("ROWID =  '{0}'", arguments.ROWID);
                 }
-                else {
+                else
+                {
                     return;
                 }
 
@@ -403,10 +404,10 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
-        
-        
 
-      
-       
+
+
+
+
     }
 }
