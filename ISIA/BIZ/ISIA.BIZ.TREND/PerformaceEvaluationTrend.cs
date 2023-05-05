@@ -536,7 +536,7 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and sn.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" and sn.instance_number = {0} ", arguments.InstanceNumber);
-                tmpSql.AppendFormat(@" ) select  snap_id,   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \""Timestamp\"",");
+                tmpSql.AppendFormat(" ) select  snap_id,   to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') \"Timestamp\",");
                 tmpSql.Append(@"decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
                  + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
                   round(100 * (1 -
@@ -544,22 +544,22 @@ namespace ISIA.BIZ.TREND
                                + max(decode(stat_name, 'gc cr blocks received', delta_val, 0))
                                + max(decode(stat_name, 'gc current blocks received', delta_val, 0)))
                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0))))), 2)
-                             ) \""Buffer access - local cache %\"",
-                       decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
+                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0))))), 2) ");
+                tmpSql.AppendFormat(" ) \"Buffer access - local cache%\", ");
+                      tmpSql.AppendFormat(@"  decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
                                  + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
                                   round(100 * ((max(decode(stat_name, 'gc cr blocks received', delta_val, 0))
                                                + max(decode(stat_name, 'gc current blocks received', delta_val, 0)))
                                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2)
-                             ) \""Buffer access - remote cache %\"",
-                       decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                 + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
+                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2) ");
+                          tmpSql.AppendFormat("    ) \"Buffer access - remote cache%\", ");
+                tmpSql.AppendFormat(@"  decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
+                           + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
                                   round(100 * (max(decode(stat_name, 'physical reads cache', delta_val, 0))
                                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2)
-                             ) \""Buffer access - disk %\""
-                 from load_rac_v ");
+                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2) ");
+                tmpSql.AppendFormat("   ) \"Buffer access - disk%\" ");
+               tmpSql.AppendFormat(@"   from load_rac_v ");
                 tmpSql.AppendFormat(@" where snap_id > {0} ", arguments.SnapId);
                 tmpSql.AppendFormat(@"group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
 
@@ -2619,36 +2619,35 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\"",
-                       sn.snap_time \""Timestamp\"",
-                       max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0))            \""PGA Aggr Target(M)\"",
-                       max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0))                 \""Auto PGA Target(M)\"",
-                       max(decode(pga.name, 'total PGA allocated', value / 1024 / 1024, 0))                       \""PGA Mem Alloc(M)\"",
-                       max(decode(pga.name, 'total PGA used for auto workareas', value / 1024 / 1024, 0))         \""Auto W/A(M)\"",
-                       max(decode(pga.name, 'total PGA used for manual workareas', value / 1024 / 1024, 0))       \""Manual W/A(M)\"",
-                       decode(max(decode(pga.name, 'total PGA allocated', value, 0)), 0, 0,
-                             (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))
-                             ) / max(decode(pga.name, 'total PGA allocated', value, 0)))                        \""%PGA W/A Mem\"",
-                       decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0,
-                              max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                              / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                               + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \""%Auto W/A Mem\"",
-                       decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                             + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0,
-                              max(decode(pga.name, 'total PGA used for manual workareas', value, 0))
-                              / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0))
-                               + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \""%Manual W/A Mem\"",
-                       max(decode(pga.name, 'global memory bound', value / 1024, 0))                             \""Global Mem Bound(K)\"",
-                       max(case when pga.name = 'maximum PGA used for auto workareas' then value else 0 end)/ 1048576   \""max. auto W/A(M)\"",
-                       max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576 \""max. manual W/A(M)\""
-                 from(
+                tmpSql.AppendFormat("select sn.snap_id \"SnapID\", ");
+                      tmpSql.AppendFormat(" sn.snap_time \"Timestamp\", ");
+                      tmpSql.AppendFormat(" max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0))            \"PGA Aggr Target(M)\", ");
+                      tmpSql.AppendFormat(" max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0))                 \"Auto PGA Target(M)\", ");
+                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA allocated', value / 1024 / 1024, 0))                       \"PGA Mem Alloc(M)\", ");
+                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA used for auto workareas', value / 1024 / 1024, 0))         \"Auto W/A(M)\", ");
+                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA used for manual workareas', value / 1024 / 1024, 0))       \"Manual W/A(M)\", ");
+                      tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA allocated', value, 0)), 0, 0,(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)) ");
+                tmpSql.AppendFormat("       ) / max(decode(pga.name, 'total PGA allocated', value, 0)))                        \"%PGA W/A Mem\", ");
+                      tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0, ");
+                tmpSql.AppendFormat("        max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("        / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \"%Auto W/A Mem\", ");
+                tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0, ");
+                tmpSql.AppendFormat("        max(decode(pga.name, 'total PGA used for manual workareas', value, 0)) ");
+                tmpSql.AppendFormat("        / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \"%Manual W/A Mem\", ");
+                tmpSql.AppendFormat(" max(decode(pga.name, 'global memory bound', value / 1024, 0))                             \"Global Mem Bound(K)\", ");
+                tmpSql.AppendFormat(" max(case when pga.name = 'maximum PGA used for auto workareas' then value else 0 end)/ 1048576   \"max. auto W/A(M)\", ");
+                      tmpSql.AppendFormat(" max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576 \"max. manual W/A(M)\" ");
+                tmpSql.AppendFormat(@" from(
                        select dbid, instance_number, snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
                          from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -2815,9 +2814,9 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select sn.snap_id \""SnapID\""
-                      , snap_time  \""Timestamp\""
-                      ,case when low_optimal_size >= 1024 * 1024 * 1024 * 1024
+                tmpSql.AppendFormat("select sn.snap_id \"SnapID\" ");
+                 tmpSql.AppendFormat("      , snap_time  \"Timestamp\" ");
+                tmpSql.AppendFormat(@"     ,case when low_optimal_size >= 1024 * 1024 * 1024 * 1024
                             then lpad(round(low_optimal_size / 1024 / 1024 / 1024 / 1024) || 'T', 7)
                             when low_optimal_size >= 1024 * 1024 * 1024
                             then lpad(round(low_optimal_size / 1024 / 1024 / 1024) || 'G', 7)
@@ -2825,9 +2824,9 @@ namespace ISIA.BIZ.TREND
                             then lpad(round(low_optimal_size / 1024 / 1024) || 'M', 7)
                             when low_optimal_size >= 1024
                             then lpad(round(low_optimal_size / 1024) || 'K', 7)
-                            else lpad(low_optimal_size || 'B', 7)
-                       end                    \""Low Optimal\""
-                      ,case when high_optimal_size >= 1024 * 1024 * 1024 * 1024
+                            else lpad(low_optimal_size || 'B', 7) ");
+                tmpSql.AppendFormat("    end                    \"Low Optimal\" ");
+                tmpSql.AppendFormat(@"   ,case when high_optimal_size >= 1024 * 1024 * 1024 * 1024
                             then lpad(round(high_optimal_size/ 1024 / 1024 / 1024 / 1024) || 'T',7)
                             when high_optimal_size >= 1024 * 1024 * 1024
                             then lpad(round(high_optimal_size/ 1024 / 1024 / 1024) || 'G',7)
@@ -2835,13 +2834,13 @@ namespace ISIA.BIZ.TREND
                             then lpad(round(high_optimal_size/ 1024 / 1024) || 'M',7)
                             when high_optimal_size >= 1024
                             then lpad(round(high_optimal_size/ 1024) || 'K',7)
-                            else high_optimal_size || 'B'
-                       end                           \""High Optimal\""
-                      ,nvl(total_executions, 0)       \""tot_exe\""
-                      ,nvl(optimal_executions, 0)     \""opt_exe\""
-                      ,nvl(onepass_executions, 0)     \""one_exe\""
-                      ,nvl(multipasses_executions, 0) \""mul_exe\""
-                  from(select  snap_id, low_optimal_size, high_optimal_size,
+                            else high_optimal_size || 'B' ");
+                tmpSql.AppendFormat("   end                           \"High Optimal\" ");
+                tmpSql.AppendFormat("  ,nvl(total_executions, 0)       \"tot_exe\" ");
+                tmpSql.AppendFormat("  ,nvl(optimal_executions, 0)     \"opt_exe\" ");
+                tmpSql.AppendFormat("  ,nvl(onepass_executions, 0)     \"one_exe\" ");
+                tmpSql.AppendFormat("  ,nvl(multipasses_executions, 0) \"mul_exe\" ");
+                tmpSql.AppendFormat(@" from(select  snap_id, low_optimal_size, high_optimal_size,
                             total_executions - lag(total_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) total_executions,
                             optimal_executions - lag(optimal_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) optimal_executions,
                             onepass_executions - lag(onepass_executions) over(partition by low_optimal_size, high_optimal_size order by snap_id) onepass_executions,
@@ -3744,11 +3743,11 @@ tmpSql.AppendFormat(@" from(
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("select  e.snap_id  \"SnapID\", ");
                 tmpSql.AppendFormat(" snap_time \"Timestamp\",");
-                          tmpSql.AppendFormat(@" max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1_wait_t,
-                           max(decode(rank, 2, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank2_wait_t,
-                           max(decode(rank, 3, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank3_wait_t,
-                           max(decode(rank, 4, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank4_wait_t,
-                           max(decode(rank, 5, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank5_wait_t,
+                          tmpSql.AppendFormat(@" max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1WaitT,
+                           max(decode(rank, 2, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank2WaitT,
+                           max(decode(rank, 3, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank3WaitT,
+                           max(decode(rank, 4, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank4WaitT,
+                           max(decode(rank, 5, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank5WaitT,
                            max(decode(rank, 1, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank1_missratio,
                            max(decode(rank, 2, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank2_missratio,
                            max(decode(rank, 3, decode((e.gets - b.gets), 0, 0, (e.misses - b.misses) / (e.gets - b.gets)), 0)) rank3_missratio,
@@ -3761,7 +3760,6 @@ tmpSql.AppendFormat(@" from(
                            max(decode(rank, 5, (e.misses - b.misses), 0)) rank5_misses
                     from raw_DBA_HIST_LATCH_{0} b
                        , raw_DBA_HIST_LATCH_{0} e
-                       , raw_DBA_HIST_LATCH_NAME_{0} n
                        , (
                            select instance_number, snap_id
                                   , to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
@@ -3782,15 +3780,15 @@ tmpSql.AppendFormat(@" from(
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
                                     from raw_DBA_HIST_LATCH_{0} b
                                        , raw_DBA_HIST_LATCH_{0} e ", arguments.DbName);
-                tmpSql.Append(" where b.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.Append(" where b.snap_id = ( ");
+                tmpSql.AppendFormat(" select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
-                tmpSql.Append(" and e.snap_id in ( ");
+                tmpSql.Append(" and e.snap_id = ( ");
 
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3821,7 +3819,7 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.AppendFormat(" and e.instance_number ={0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(@" and b.LATCH_HASH = e.LATCH_HASH
                    and e.LATCH_HASH = top_5.latch_hash
-                       and top_5.latch_hash = n.LATCH_HASH
+                       and top_5.latch_hash in (SELECT T.PARAMETERID FROM tapctparameterdef T WHERE t.parametertype='LATCH')
                        and b.LATCH_HASH = top_5.latch_hash
                        and e.snap_id = s.snap_id
                       Group by e.snap_id, snap_time
@@ -4387,13 +4385,13 @@ tmpSql.AppendFormat(@" from(
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select	b.snap_id     \""SnapID\"",
-                        b.snap_time   \""Timestamp\"",
-                        pool          \""Pool\"",
-                    name          \""Name\"",
-                    bytes / 1048576 \""Size(M)\"",
-                    (bytes - pre_bytes) / 1048576 \""A∑¨(M)\""
-                from(
+                tmpSql.AppendFormat("select	b.snap_id     \"SnapID\",");
+                tmpSql.AppendFormat(" b.snap_time   \"Timestamp\", ");
+                        tmpSql.AppendFormat(" pool          \"Pool\", ");
+                   tmpSql.AppendFormat("  name          \"Name\", ");
+                    tmpSql.AppendFormat(" bytes / 1048576 \"Size(M)\", ");
+                    tmpSql.AppendFormat(" (bytes - pre_bytes) / 1048576 \"A∑¨(M)\" ");
+                tmpSql.AppendFormat(@" from(
                     select  snap_id,
                             nvl(pool, 'null') pool,
                             name,
@@ -4404,7 +4402,7 @@ tmpSql.AppendFormat(@" from(
 
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd')  AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4418,7 +4416,7 @@ tmpSql.AppendFormat(@" from(
                             from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd')  AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd')  AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4468,7 +4466,7 @@ tmpSql.AppendFormat(@" from(
 
                 //tmpSql.AppendFormat("  where snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4483,7 +4481,7 @@ tmpSql.AppendFormat(@" from(
                             from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4516,26 +4514,25 @@ tmpSql.AppendFormat(@" from(
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select 
-                    b.snap_id     \""SnapID\"",
-                    b.snap_time   \""Timestamp\"",
-                    sum(case when pool = 'null' and name = 'buffer_cache' then bytes / 1048576 else 0 end) \""buf.cache(M)\"",
-                    sum(case when pool = 'null' and name = 'log_buffer'   then bytes / 1048576 else 0 end) \""log.buf(M)\"",
-                    sum(case when pool = 'shared pool'                  then bytes / 1048576 else 0 end) \""shared.pool(M)\"",
-                    sum(case when pool = 'java pool'                    then bytes / 1048576 else 0 end) \""java.pool(M)\"",
-                    sum(case when pool = 'large pool'                   then bytes / 1048576 else 0 end) \""large.pool(M)\"",
-                    sum(case when pool = 'streams pool'                 then bytes / 1048576 else 0 end) \""streams.pool(M)\"",
-                    sum(case when pool = 'shared pool'  and name = 'SQLA' then bytes / 1048576 else 0 end) \""sqlarea(M)\"",
-                    sum(case when pool = 'shared pool'  and name in ('library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS') then bytes / 1048576 else 0 end) \""lib.cache(M)\"",
-                    sum(case when pool = 'shared pool'  and name not in ('SQLA', 'library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS', 'free memory') then bytes / 1048576 else 0 end) \""others(M)\"",
-                    sum(case when pool = 'shared pool'  and name = 'free memory' then bytes / 1048576 else 0 end) \""free(M)\"",
-                    sum(case when pool = 'large pool'   and name <> 'free memory' then bytes / 1048576 else 0 end) \""largepool:used(M)\"",
-                    sum(case when pool = 'large pool'   and name = 'free memory' then bytes / 1048576 else 0 end) \""largepool:free(M)\"",
-                    sum(case when pool = 'java pool'    and name <> 'free memory' then bytes / 1048576 else 0 end) \""javapool:used(M)\"",
-                    sum(case when pool = 'java pool'    and name = 'free memory' then bytes / 1048576 else 0 end) \""javapool:free(M)\"",
-                    sum(case when pool = 'streams pool' and name <> 'free memory' then bytes / 1048576 else 0 end) \""streams:used(M)\"",
-                    sum(case when pool = 'streams pool' and name = 'free memory' then bytes / 1048576 else 0 end) \""streams:free(M)\""
-                from(
+                tmpSql.AppendFormat("select  b.snap_id     \"SnapID\", ");
+                tmpSql.AppendFormat("   b.snap_time   \"Timestamp\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'null' and name = 'buffer_cache' then bytes / 1048576 else 0 end) \"buf.cache(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'null' and name = 'log_buffer'   then bytes / 1048576 else 0 end) \"log.buf(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'shared pool'                  then bytes / 1048576 else 0 end) \"shared.pool(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'java pool'                    then bytes / 1048576 else 0 end) \"java.pool(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'large pool'                   then bytes / 1048576 else 0 end) \"large.pool(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'streams pool'                 then bytes / 1048576 else 0 end) \"streams.pool(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'shared pool'  and name = 'SQLA' then bytes / 1048576 else 0 end) \"sqlarea(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'shared pool'  and name in ('library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS') then bytes / 1048576 else 0 end) \"lib.cache(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'shared pool'  and name not in ('SQLA', 'library cache', 'KGLH0', 'KGLHD', 'KGLNA', 'KGLSG', 'KGLDA', 'KGLA', 'KGLS', 'free memory') then bytes / 1048576 else 0 end) \"others(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'shared pool'  and name = 'free memory' then bytes / 1048576 else 0 end) \"free(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'large pool'   and name <> 'free memory' then bytes / 1048576 else 0 end) \"largepool:used(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'large pool'   and name = 'free memory' then bytes / 1048576 else 0 end) \"largepool:free(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'java pool'    and name <> 'free memory' then bytes / 1048576 else 0 end) \"javapool:used(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'java pool'    and name = 'free memory' then bytes / 1048576 else 0 end) \"javapool:free(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'streams pool' and name <> 'free memory' then bytes / 1048576 else 0 end) \"streams:used(M)\", ");
+                tmpSql.AppendFormat("   sum(case when pool = 'streams pool' and name = 'free memory' then bytes / 1048576 else 0 end) \"streams:free(M)\"");
+               tmpSql.AppendFormat(@" from(
                     select  snap_id,
                             nvl(pool, 'null') pool,
                             name,
@@ -4543,7 +4540,7 @@ tmpSql.AppendFormat(@" from(
                     from raw_dba_hist_sgastat_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4556,7 +4553,7 @@ tmpSql.AppendFormat(@" from(
                             from raw_dba_hist_snapshot_{0}", arguments.DbName);
                 //tmpSql.AppendFormat("   where snap_id between 1 + &snap_fr and & snap_to");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,

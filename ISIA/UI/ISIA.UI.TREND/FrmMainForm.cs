@@ -25,6 +25,8 @@ namespace ISIA.UI.TREND
         DataSet dataSet = new DataSet();
         AwrCommonArgsPack args = new AwrCommonArgsPack();
         List<DPIDto> list = new List<DPIDto>();
+        List<DPIDto> list2 = new List<DPIDto>();
+        List<DPIDto> list3 = new List<DPIDto>();
         public FrmMainForm()
         {
             InitializeComponent();
@@ -108,7 +110,9 @@ namespace ISIA.UI.TREND
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
                 //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
-                await QueryDataForAllTChartsAsync();
+                await QueryDataForAllTChartsAsyncSheet1();
+                await QueryDataForAllTChartsAsyncSheet2();
+                await QueryDataForAllTChartsAsyncSheet3();
 
             }
             catch (Exception ex)
@@ -116,8 +120,44 @@ namespace ISIA.UI.TREND
                 MessageBox.Show(ex.ToString());
             }
         }
+        private async Task QueryDataForAllTChartsAsyncSheet2()
+        {
+            // 禁用查询按钮
+            btnSelect.Enabled = false;
+            var charts2 = flowLayoutPanel2.Controls.OfType<TChart>().ToArray();
+            for (int i = 0; i < list2.Count(); i++)
+            {
+                ShowWaitIcon(charts2.ElementAt(i));
+                await Task.Run(() =>
+                {
+                    // 查询每个TChart控件的数据
+                    QueryDataForTChart(charts2.ElementAt(i), list2[i]);
+                });
+                HideWaitIcon(charts2.ElementAt(i), list2[i].HeaderText);
+            }
+            // 启用查询按钮
+            btnSelect.Enabled = true;
+        }
+        private async Task QueryDataForAllTChartsAsyncSheet3()
+        {
+            // 禁用查询按钮
+            btnSelect.Enabled = false;
+            var charts3 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
+            for (int i = 0; i < list3.Count(); i++)
+            {
+                ShowWaitIcon(charts3.ElementAt(i));
+                await Task.Run(() =>
+                {
+                    // 查询每个TChart控件的数据
+                    QueryDataForTChart(charts3.ElementAt(i), list3[i]);
+                });
+                HideWaitIcon(charts3.ElementAt(i), list3[i].HeaderText);
+            }
+            // 启用查询按钮
+            btnSelect.Enabled = true;
+        }
 
-        private async Task QueryDataForAllTChartsAsync()
+        private async Task QueryDataForAllTChartsAsyncSheet1()
         {
             // 禁用查询按钮
             btnSelect.Enabled = false;
@@ -164,7 +204,8 @@ namespace ISIA.UI.TREND
             line.DataSource = dstable;
             line.XValues.DataMember = dto.Xvalue;
             line.Legend.Visible = false;
-            line.YValues.DataMember = dto.FileNameParament[i];
+            string str = dto.FileNameParament[i].ToString();
+            line.YValues.DataMember = str;
             line.Color = Color.OrangeRed;
 
             line.Pointer.HorizSize = 1;
@@ -253,7 +294,7 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLatch_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top wait time latch:Avg. wait time(ms)",
-                FileNameParament = new List<string> { "rank1_wait_t", "rank2_wait_t", "rank3_wait_t", "rank4_wait_t", "rank5_wait_t" }
+                FileNameParament = new List<string> { "rank1WaitT", "rank2WaitT", "rank3WaitT", "rank4WaitT", "rank5WaitT" }
             };
             list.Add(dto);
             //66
@@ -293,14 +334,56 @@ namespace ISIA.UI.TREND
             };
             list.Add(dto);
             //71
-
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "SGA",
+                FileNameParament = new List<string> { "buf.cache(M)", "shared.pool(M)", "java.pool(M)", "large.pool(M)", "streams.pool(M)" }
+            };
             //71
-
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "shared pool",
+                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+            };
             //54
+            dto = new DPIDto
+            {
+                DPIFileName = "GetPga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "PGA Statistics",
+                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+            };
 
             //55
-
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWorkarea_raw",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "PGA Memory/Disk sort",
+                FileNameParament = new List<string> { "one_exe", "mul_exe", "tot_exe", "opt_exe" }
+            };
             //03
+            dto = new DPIDto
+            {
+                DPIFileName = "GetRacGcEfficiency",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Buffer Access{local/remote/disk}%",
+                FileNameParament = new List<string> { "Buffer access - local cache%", "Buffer access - remote cache%", "Buffer access - disk%" }
+            };
+            //--sheet2
+            //01
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "transaction(per sec)",
+                FileNameParament = new List<string> { "Transactions" }
+            };
+            list2.Add(dto);
         }
 
         //------------------------------------------------
