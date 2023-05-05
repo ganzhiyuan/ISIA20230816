@@ -822,7 +822,7 @@ namespace ISIA.UI.TREND
             // 
             this.navBarSearch.Appearance.BackColor = System.Drawing.Color.MistyRose;
             this.navBarSearch.Appearance.Options.UseBackColor = true;
-            this.navBarSearch.Caption = "Serach options";
+            this.navBarSearch.Caption = "Search options";
             this.navBarSearch.ControlContainer = this.navBarGroupControlContainer2;
             this.navBarSearch.Expanded = true;
             this.navBarSearch.GroupClientHeight = 213;

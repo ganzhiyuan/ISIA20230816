@@ -595,11 +595,11 @@
             this.tLabel3.Location = new System.Drawing.Point(4, 28);
             this.tLabel3.Name = "tLabel3";
             this.tLabel3.NeedToTranslate = true;
-            this.tLabel3.RepresentativeValue = "ParamentName";
+            this.tLabel3.RepresentativeValue = "ParamenterName";
             this.tLabel3.Size = new System.Drawing.Size(83, 144);
             this.tLabel3.StyleController = this.layoutControl2;
             this.tLabel3.TabIndex = 119;
-            this.tLabel3.Text = "ParamentName";
+            this.tLabel3.Text = "ParamenterName";
             // 
             // SLUEParamentName
             // 
@@ -734,7 +734,7 @@
             // 
             this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.MistyRose;
             this.navBarGroup1.Appearance.Options.UseBackColor = true;
-            this.navBarGroup1.Caption = "Serach options";
+            this.navBarGroup1.Caption = "Search options";
             this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer2;
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.GroupClientHeight = 220;
