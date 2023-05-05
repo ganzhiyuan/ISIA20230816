@@ -3057,7 +3057,7 @@ tmpSql.AppendFormat(@" from(
                       )
             ) ");
                 tmpSql.Append(" where snap_id >  ");
-                tmpSql.AppendFormat(" (select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd')  AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd')  AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd')  AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd')  AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3742,10 +3742,9 @@ tmpSql.AppendFormat(@" from(
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select
-                           e.snap_id  \""SnapID\"",
-                           snap_time \""Timestamp\"",
-                           max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1_wait_t,
+                tmpSql.AppendFormat("select  e.snap_id  \"SnapID\", ");
+                tmpSql.AppendFormat(" snap_time \"Timestamp\",");
+                          tmpSql.AppendFormat(@" max(decode(rank, 1, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank1_wait_t,
                            max(decode(rank, 2, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank2_wait_t,
                            max(decode(rank, 3, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank3_wait_t,
                            max(decode(rank, 4, (e.WAIT_TIME - b.WAIT_TIME) / interval, 0)) / 1000 rank4_wait_t,
@@ -4798,7 +4797,7 @@ tmpSql.AppendFormat(@" from(
                           tmpSql.Append("   parse_req_total \"Parse requests\", ");
                                tmpSql.Append("  cursor_cache_hits   \"Cursor cache hits\", ");
                                 tmpSql.Append(" parse_req_total - cursor_cache_hits   \"ReParsed requests\", ");
-                            tmpSql.Append(" decode(parse_req_total, 0, 0, cursor_cache_hits / parse_req_total) \"Cursor cache hit %\" ");
+                            tmpSql.Append(" decode(parse_req_total, 0, 0, cursor_cache_hits / parse_req_total) \"Cursor cache hit%\" ");
                         tmpSql.Append(@" from
                             (
                             select  snap_id,
