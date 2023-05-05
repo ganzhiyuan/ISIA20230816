@@ -563,7 +563,7 @@
             // 
             this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.MistyRose;
             this.navBarGroup1.Appearance.Options.UseBackColor = true;
-            this.navBarGroup1.Caption = "Serach options";
+            this.navBarGroup1.Caption = "Search options";
             this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer2;
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.GroupClientHeight = 60;

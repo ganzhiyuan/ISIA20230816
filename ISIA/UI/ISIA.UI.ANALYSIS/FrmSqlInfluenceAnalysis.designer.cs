@@ -783,7 +783,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.navBarGroup3.Appearance.BackColor = System.Drawing.Color.MistyRose;
             this.navBarGroup3.Appearance.Options.UseBackColor = true;
-            this.navBarGroup3.Caption = "Serach Options";
+            this.navBarGroup3.Caption = "Search options";
             this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer2;
             this.navBarGroup3.Expanded = true;
             this.navBarGroup3.GroupClientHeight = 150;

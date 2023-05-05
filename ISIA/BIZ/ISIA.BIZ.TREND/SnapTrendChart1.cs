@@ -114,12 +114,14 @@ namespace ISIA.BIZ.TREND
                         (SELECT SUBSTR(a.end_interval_time,0,10) workDate, MAX(t.sql_id) sql_id ");
                  tmpSql.AppendFormat("     FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
                 tmpSql.AppendFormat("     LEFT JOIN raw_dba_hist_snapshot_{0} a ", arguments.DbName);
-                tmpSql.AppendFormat(@"   ON t.snap_id = a.snap_id
+                tmpSql.AppendFormat(@"   ON t.snap_id = a.snap_id and t.instance_number=a.instance_number and t.dbid=a.dbid
                      WHERE t.snap_id IN
                            (SELECT T.Snap_Id ");
                 tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T )",arguments.DbName);
+                tmpSql.AppendFormat(" AND a.end_interval_time>TO_DATE('{0}', 'yyyy-MM-dd') ",arguments.StartTimeKey);
+                tmpSql.AppendFormat("          AND a.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd')",arguments.EndTimeKey);
                 tmpSql.AppendFormat("  GROUP BY a.end_interval_time, t.sql_id  ORDER BY sql_id)) ");
-                tmpSql.AppendFormat("  WHERE workDate > TRUNC(TO_DATE('{0}', 'yyyy-MM-dd')) - 7 ", arguments.EndTimeKey);
+                tmpSql.AppendFormat("  WHERE workDate >= TRUNC(TO_DATE('{0}', 'yyyy-MM-dd')) - 7 ", arguments.EndTimeKey);
                 tmpSql.AppendFormat("  GROUP BY sql_id  ORDER BY {0} DESC", arguments.ParameterName);
                 //arguments.ParameterType 
 
