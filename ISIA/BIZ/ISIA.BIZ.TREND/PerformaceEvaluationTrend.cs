@@ -3629,13 +3629,13 @@ tmpSql.AppendFormat(@" from(
                                     from raw_DBA_HIST_ENQUEUE_STAT_{0} e
                                         ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.AppendFormat(" where b.snap_id         = {0}");
-                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                      arguments.DbName,
                      arguments.StartTimeKey,
                      arguments.EndTimeKey,
                      arguments.InstanceNumber);
                 tmpSql.AppendFormat("  and e.snap_id         = {0}");
-                tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" (select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3696,7 +3696,7 @@ tmpSql.AppendFormat(@" from(
                  where b.snap_id(+) = e.snap_id - 1 ", arguments.DbName);
                 //tmpSql.AppendFormat("   and e.snap_id    between & snap_fr + 1 and & snap_to ");
                 tmpSql.Append("               and e.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3716,7 +3716,7 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.AppendFormat("    and s.dbid ={0}", arguments.DbId);
                 //tmpSql.AppendFormat("   and s.snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               and s.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >=  to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3769,7 +3769,7 @@ tmpSql.AppendFormat(@" from(
                              from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat(" where snap_id between & snap_fr + 1 and & snap_to ");
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3782,8 +3782,19 @@ tmpSql.AppendFormat(@" from(
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
                                     from raw_DBA_HIST_LATCH_{0} b
                                        , raw_DBA_HIST_LATCH_{0} e ", arguments.DbName);
-                tmpSql.AppendFormat(" where b.snap_id = {0} ", arguments.SnapId);
-                tmpSql.AppendFormat(" and e.snap_id = {0} ", arguments.SnapId);
+                tmpSql.Append(" where b.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.Append(" and e.snap_id in ( ");
+
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and b.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("and e.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and b.dbid = {0} ", arguments.DbId);
@@ -3797,7 +3808,7 @@ tmpSql.AppendFormat(@" from(
                     where b.snap_id(+) = e.snap_id - 1 ");
                 //tmpSql.AppendFormat(" and e.snap_id between &snap_fr and & snap_to ");
                 tmpSql.Append("               and e.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <  to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -3841,8 +3852,18 @@ tmpSql.AppendFormat(@" from(
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
                                     from raw_DBA_HIST_LATCH_{0} b
                                        , raw_DBA_HIST_LATCH_{0} e ", arguments.DbName);
-                tmpSql.AppendFormat("    where b.snap_id         = {0} ", arguments.SnapId);
-                tmpSql.AppendFormat("  and e.snap_id         = {0} ", arguments.SnapId);
+                tmpSql.AppendFormat("    where b.snap_id  in ( ", arguments.SnapId);
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("  and e.snap_id  in ( ", arguments.SnapId);
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and b.instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and e.instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and b.dbid(+)         = {0} ", arguments.DbId);
@@ -3885,8 +3906,19 @@ tmpSql.AppendFormat(@" from(
                   from raw_DBA_HIST_LATCH_{0} b
                      , raw_DBA_HIST_LATCH_{0} e
                      , raw_dba_hist_snapshot_{0} S ", arguments.DbName);
-                tmpSql.AppendFormat(" where b.snap_id = {0} ", arguments.SnapId);
-                tmpSql.AppendFormat("   and e.snap_id = {0} ", arguments.SnapId);
+                tmpSql.Append(" where b.snap_id in ( ");
+
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
+                tmpSql.Append("   and e.snap_id in ( ");
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                    arguments.DbName,
+                    arguments.StartTimeKey,
+                    arguments.EndTimeKey,
+                    arguments.InstanceNumber);
                 tmpSql.AppendFormat("    and b.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("    and e.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("    and b.dbid = e.dbid");
@@ -3900,7 +3932,7 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.AppendFormat("    and s.dbid = {0} ", arguments.DbId);
                 //tmpSql.AppendFormat("    and s.snap_id between & snap_fr and & snap_to");
                 tmpSql.Append("               and s.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4812,7 +4844,7 @@ tmpSql.AppendFormat(@" from(
                                     nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  value ");
                                tmpSql.AppendFormat(" from raw_dba_hist_sysstat_{0} ", arguments.DbName);
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{1}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,

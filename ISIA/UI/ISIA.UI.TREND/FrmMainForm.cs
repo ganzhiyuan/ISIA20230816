@@ -203,95 +203,95 @@ namespace ISIA.UI.TREND
             };
             list.Add(dto);
             //18
-            dto = new DPIDto
-            {
-                DPIFileName = "GetTimeModel",
-                Xvalue = "TIMESTAMP",
-                HeaderText = "DB&Background Times(s)",
-                FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
-            };
-            list.Add(dto);
-            //1
-            dto = new DPIDto
-            {
-                DPIFileName = "GetLoadSQL",
-                Xvalue = "TIMESTAMP",
-                HeaderText = "Lgical/Physical Reads",
-                FileNameParament = new List<string> { "Logical reads", "Physical reads" }
-            };
-            list.Add(dto);
-            //1
-            dto = new DPIDto
-            {
-                DPIFileName = "GetLoadSQL",
-                Xvalue = "TIMESTAMP",
-                HeaderText = "User Call/Execute Count",
-                FileNameParament = new List<string> { "User calls", "Executes" }
-            };
-            list.Add(dto);
-            //62
-            dto = new DPIDto
-            {
-                DPIFileName = "GetResource",
-                Xvalue = "TIMESTAMP",
-                HeaderText = "Session/Active Count",
-                FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
-            };
-            list.Add(dto);
-            //12
-            dto = new DPIDto
-            {
-                DPIFileName = "GetWait5_01",
-                Xvalue = "TIMESTAMP",
-                HeaderText = "Top 5 Wait Events(time(s))",
-                FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
-            };
-            list.Add(dto);
-            ////68
             //dto = new DPIDto
             //{
-            //    DPIFileName = "GetLatch_01",
+            //    DPIFileName = "GetTimeModel",
             //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Top wait time latch:Avg. wait time(ms)",
-            //    FileNameParament = new List<string> { "rank1_wait_t", "rank2_wait_t", "rank3_wait_t", "rank4_wait_t", "rank5_wait_t" }
+            //    HeaderText = "DB&Background Times(s)",
+            //    FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
             //};
             //list.Add(dto);
-            ////66
+            ////1
             //dto = new DPIDto
             //{
-            //    DPIFileName = "GetEnq_01",
+            //    DPIFileName = "GetLoadSQL",
             //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Avg.Top-5 En queue Wait Time(s)",
-            //    FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
+            //    HeaderText = "Lgical/Physical Reads",
+            //    FileNameParament = new List<string> { "Logical reads", "Physical reads" }
             //};
             //list.Add(dto);
-            ////61
+            ////1
             //dto = new DPIDto
             //{
-            //    DPIFileName = "GetWaitstat",
+            //    DPIFileName = "GetLoadSQL",
             //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Wait count by class",
-            //    FileNameParament = new List<string> { "data block", "segment header", "undo block", "undo header" }
+            //    HeaderText = "User Call/Execute Count",
+            //    FileNameParament = new List<string> { "User calls", "Executes" }
             //};
             //list.Add(dto);
-            ////64
+            ////62
             //dto = new DPIDto
             //{
-            //    DPIFileName = "GetBuffer_pool",
+            //    DPIFileName = "GetResource",
             //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Cache Hit%",
-            //    FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+            //    HeaderText = "Session/Active Count",
+            //    FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
             //};
             //list.Add(dto);
-            ////74
+            ////12
             //dto = new DPIDto
             //{
-            //    DPIFileName = "GetSession_cache",
+            //    DPIFileName = "GetWait5_01",
             //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Session Cached cursor Statistics",
-            //    FileNameParament = new List<string> { "Parse requests", "Cursor cache hits", "ReParsed requests", "Cursor cache hit%" }
+            //    HeaderText = "Top 5 Wait Events(time(s))",
+            //    FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
             //};
             //list.Add(dto);
+            //68
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLatch_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top wait time latch:Avg. wait time(ms)",
+                FileNameParament = new List<string> { "rank1_wait_t", "rank2_wait_t", "rank3_wait_t", "rank4_wait_t", "rank5_wait_t" }
+            };
+            list.Add(dto);
+            //66
+            dto = new DPIDto
+            {
+                DPIFileName = "GetEnq_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Avg.Top-5 En queue Wait Time(s)",
+                FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
+            };
+            list.Add(dto);
+            //61
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWaitstat",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Wait count by class",
+                FileNameParament = new List<string> { "data block", "segment header", "undo block", "undo header" }
+            };
+            list.Add(dto);
+            //64
+            dto = new DPIDto
+            {
+                DPIFileName = "GetBuffer_pool",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Cache Hit%",
+                FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+            };
+            list.Add(dto);
+            //74
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSession_cache",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Session Cached cursor Statistics",
+                FileNameParament = new List<string> { "Parse requests", "Cursor cache hits", "ReParsed requests", "Cursor cache hit%" }
+            };
+            list.Add(dto);
             //71
 
             //71
