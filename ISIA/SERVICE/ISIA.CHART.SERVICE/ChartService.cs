@@ -404,7 +404,7 @@ namespace ISIA.CHART.SERVICE
                     #endregion
 
 
-                    string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
+                    string fileName = parameterInfo.DBNAME + "_"+ parameterInfo.INSTANCE_NUMBER + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
 
                     //IMAGE NAME 정의 해야 함. 저장.
                     _imageFileName = MakeFilePath(fileName);

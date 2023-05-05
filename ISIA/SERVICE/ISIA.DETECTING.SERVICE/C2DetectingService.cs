@@ -168,6 +168,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "MakeRawDataTableName", ex.ToString());
                 throw ex;
             }
         }
@@ -184,6 +185,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "MakeRawSnapTableName", ex.ToString());
                 throw ex;
             }
         }
@@ -233,15 +235,6 @@ namespace ISIA.DETECTING.SERVICE
                 // ISALIVE = 'YES'
                 dtRuleList = GetAvailableRuleList();
 
-                // 공통으로 사용할 INSERT 문 생성
-                _insertStatement += "INSERT INTO ISIA.TAPCTOUTOFCONTROLDATASUM ( ";
-                _insertStatement += "SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ";
-                _insertStatement += "MEASURE_VAL, STARTTIMEKEY, ENDTIMEKEY, ";
-                _insertStatement += "RULENAME, RULENO, MEASURE_TIMEKEY, ";
-                _insertStatement += "TARGET, STD_VALUE, PARAVAL1, ";
-                _insertStatement += "PARAVAL2, PARAVAL3, PARAVAL4, PARAVAL5, ";
-                _insertStatement += "INSERTTIME, INSERTUSER, ISALIVE) ";
-
                 //_mailAddress = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["MAIL_ADDRESS"].ToString();
                 _isDuplicatedAllow = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["ISDUPLICATEDALLOW"].ToString();
 
@@ -284,6 +277,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "DetetingServiceRun", ex.ToString());
                 Console.WriteLine(ex.ToString());
             }
 
@@ -306,6 +300,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "ExecAverageRuleOutDelete", ex.ToString());
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
@@ -334,6 +329,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "GetAvailableRuleList", ex.ToString());
                 throw ex;
             }
         }
@@ -375,6 +371,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "GetSpcRuleParaList", ex.ToString());
                 throw ex;
             }
         }
@@ -434,6 +431,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "GetAverageRuleTagetData", ex.ToString());
                 throw ex;
             }
         }
@@ -444,17 +442,28 @@ namespace ISIA.DETECTING.SERVICE
             DBCommunicator db = new DBCommunicator();
             StringBuilder finalSQL = new StringBuilder();
 
+            _insertStatement = string.Empty;
+
+            _insertStatement += "INSERT INTO ISIA.TAPCTOUTOFCONTROLDATASUM ( ";
+            _insertStatement += "SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ";
+            _insertStatement += "MEASURE_VAL, STARTTIMEKEY, ENDTIMEKEY, ";
+            _insertStatement += "RULENAME, RULENO, MEASURE_TIMEKEY, ";
+            _insertStatement += "INSERTTIME, INSERTUSER, ISALIVE) ";
+
+
+
             _tableName = MakeRawDataTableName(parameterInfo.PARAMETERTYPE, parameterInfo.DBNAME);
             _snapTableName = MakeRawSnapTableName(parameterInfo.DBNAME);
-            string startDate = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMdd");
-            _measureDate = DateTime.Now.ToString("yyyyMMdd");
-            _measureYesterDay = DateTime.Now.AddDays(0 - 1).ToString("yyyyMMdd");
-
+            string startDate = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
+            _measureDate = DateTime.Now.ToString("yyyyMMddHH");
+            _measureYesterDay = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
+            _measureHourAgo = DateTime.Now.AddHours(-1).ToString("yyyyMMddHH");
             string startShiftTime = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["STARTTIME"].ToString();
             string endShiftTime = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["ENDTIME"].ToString();
 
-            _startTimeKey = startDate + startShiftTime;
-            _endTimeKey = _measureDate + endShiftTime;
+
+            _startTimeKey = startDate + "0000" ;
+            _endTimeKey = _measureDate + "0000" ;
 
             // 공통으로 사용할 WITH 문 생성
             _rawDataWithStatement = makeRawDataWithStatement(parameterInfo);
@@ -505,6 +514,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "ExecSpcRuleOutDetect", ex.ToString());
                 throw ex;
             }
 
@@ -515,9 +525,20 @@ namespace ISIA.DETECTING.SERVICE
             DBCommunicator db = new DBCommunicator();
             StringBuilder finalSQL = new StringBuilder();
 
+            // 공통으로 사용할 INSERT 문 생성
+            _insertStatement = string.Empty;
+            _insertStatement += "INSERT INTO ISIA.TAPCTOUTOFCONTROLDATASUM ( ";
+            _insertStatement += "SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ";
+            _insertStatement += "MEASURE_VAL, STARTTIMEKEY, ENDTIMEKEY, ";
+            _insertStatement += "RULENAME, RULENO, MEASURE_TIMEKEY, ";
+            _insertStatement += "TARGET, STD_VALUE, PARAVAL1, ";
+            _insertStatement += "PARAVAL2, PARAVAL3, PARAVAL4, PARAVAL5, ";
+            _insertStatement += "INSERTTIME, INSERTUSER, ISALIVE) ";
+
+
             _tableName = MakeRawDataTableName(parameterInfo.PARAMETERTYPE, parameterInfo.DBNAME);
             _snapTableName = MakeRawSnapTableName(parameterInfo.DBNAME);
-            string startDate = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMdd");
+            string startDate = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
             _measureDate = DateTime.Now.ToString("yyyyMMddHH");
             _measureYesterDay = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
             _measureHourAgo = DateTime.Now.AddHours(-1).ToString("yyyyMMddHH");
@@ -552,6 +573,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "ExecAverageRuleOutDetect", ex.ToString());
                 throw ex;
             }
 
@@ -596,6 +618,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "makeRawDataWithStatementByHour", ex.ToString());
                 throw ex;
             }
 
@@ -644,6 +667,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "makeRawDataWithStatement", ex.ToString());
                 throw ex;
             }
 
@@ -676,6 +700,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "MakeSqlByAverageRuleNo1", ex.ToString());
                 throw ex;
             }
 
@@ -693,7 +718,7 @@ namespace ISIA.DETECTING.SERVICE
 
                 ruleNo1SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
                 ruleNo1SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-                ruleNo1SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
+                ruleNo1SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
                 ruleNo1SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
                 ruleNo1SQL.Append("FROM ");
                 ruleNo1SQL.Append("( ");
@@ -706,6 +731,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo1", ex.ToString());
                 throw ex;
             }
 
@@ -722,82 +748,91 @@ namespace ISIA.DETECTING.SERVICE
             StringBuilder targetToUCLSQL = new StringBuilder();
             StringBuilder LCLTotargetSQL = new StringBuilder();
 
-            ruleNo2SQL.Append(_insertStatement);
-            ruleNo2SQL.Append(_rawDataWithStatement);
-
-            ruleNo2SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
-            ruleNo2SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo2SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo2SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
-            ruleNo2SQL.Append("FROM ");
-            ruleNo2SQL.Append("( ");
-
-            tmpHeadSQL.Append("SELECT * ");
-            tmpHeadSQL.Append("FROM ");
-            tmpHeadSQL.Append("(");
-            tmpHeadSQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_N ORDER BY XX.END_INTERVAL_TIME DESC) CON_OOC_CNT ");
-            tmpHeadSQL.Append("FROM(");
-            tmpHeadSQL.Append("SELECT A.*, NVL(RN2, 0) RN2, (RN - RN2) DIFF_N ");
-            tmpHeadSQL.Append("FROM ");
-            tmpHeadSQL.Append("         (SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME DESC) RN ");
-            tmpHeadSQL.Append("FROM RAW_TABLE R ");
-            tmpHeadSQL.Append(") A, ");
-            tmpHeadSQL.Append("(SELECT F.*, ROW_NUMBER() OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME DESC) RN2 ");
-            tmpHeadSQL.Append("FROM RAW_TABLE F ");
-
-            targetToUCLSQL.Append(tmpHeadSQL.ToString());
-            LCLTotargetSQL.Append(tmpHeadSQL.ToString());
-
-            // +3 SIGMA에 존재  TARGET 보다 크고, UCL 보다 작다
-            if (parameterInfo.PARAVAL1.Equals("2"))
+            try
             {
-                tmpBodySQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.TARGET, parameterInfo.CONTROLUPPERLIMIT);
+
+                ruleNo2SQL.Append(_insertStatement);
+                ruleNo2SQL.Append(_rawDataWithStatement);
+
+                ruleNo2SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
+                ruleNo2SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
+                ruleNo2SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo2SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo2SQL.Append("FROM ");
+                ruleNo2SQL.Append("( ");
+
+                tmpHeadSQL.Append("SELECT * ");
+                tmpHeadSQL.Append("FROM ");
+                tmpHeadSQL.Append("(");
+                tmpHeadSQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_N ORDER BY XX.END_INTERVAL_TIME DESC) CON_OOC_CNT ");
+                tmpHeadSQL.Append("FROM(");
+                tmpHeadSQL.Append("SELECT A.*, NVL(RN2, 0) RN2, (RN - RN2) DIFF_N ");
+                tmpHeadSQL.Append("FROM ");
+                tmpHeadSQL.Append("         (SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME DESC) RN ");
+                tmpHeadSQL.Append("FROM RAW_TABLE R ");
+                tmpHeadSQL.Append(") A, ");
+                tmpHeadSQL.Append("(SELECT F.*, ROW_NUMBER() OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME DESC) RN2 ");
+                tmpHeadSQL.Append("FROM RAW_TABLE F ");
+
+                targetToUCLSQL.Append(tmpHeadSQL.ToString());
+                LCLTotargetSQL.Append(tmpHeadSQL.ToString());
+
+                // +3 SIGMA에 존재  TARGET 보다 크고, UCL 보다 작다
+                if (parameterInfo.PARAVAL1.Equals("2"))
+                {
+                    tmpBodySQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.TARGET, parameterInfo.CONTROLUPPERLIMIT);
+                }
+                // -3 SIGMA에 존재  TARGET 보다 작고, LCL 보다 크다 
+                else if (parameterInfo.PARAVAL1.Equals("3"))
+                {
+                    tmpBodySQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.CONTROLLOWERLIMIT, parameterInfo.TARGET);
+                }
+
+                targetToUCLSQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.TARGET, parameterInfo.CONTROLUPPERLIMIT);
+                LCLTotargetSQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.CONTROLLOWERLIMIT, parameterInfo.TARGET);
+
+                tmpTailSQL.Append(") B ");
+                tmpTailSQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
+                tmpTailSQL.Append("AND A.DBID = B.DBID(+) ");
+                tmpTailSQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
+                tmpTailSQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
+                tmpTailSQL.Append(") XX ");
+                tmpTailSQL.Append("WHERE DIFF_N IS NOT NULL ");
+                tmpTailSQL.Append(") ");
+                // 연속 OutOfCount 갯수
+                tmpTailSQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
+
+                targetToUCLSQL.Append(tmpTailSQL.ToString());
+                LCLTotargetSQL.Append(tmpTailSQL.ToString());
+
+
+                // ALL
+                // +3 SIGMA에 존재  TARGET 보다 크고, UCL 보다 작다
+                // -3 SIGMA에 존재  TARGET 보다 작고, LCL 보다 크다 
+                if (parameterInfo.PARAVAL1.Equals("1"))
+                {
+                    ruleNo2SQL.Append(targetToUCLSQL);
+
+                    ruleNo2SQL.Append("UNION ALL ");
+
+                    ruleNo2SQL.Append(LCLTotargetSQL);
+                }
+                else
+                {
+                    ruleNo2SQL.Append(tmpHeadSQL.ToString());
+                    ruleNo2SQL.Append(tmpBodySQL.ToString());
+                    ruleNo2SQL.Append(tmpTailSQL.ToString());
+                }
+
+                ruleNo2SQL.Append(" ) ");
+
+                return ruleNo2SQL;
             }
-            // -3 SIGMA에 존재  TARGET 보다 작고, LCL 보다 크다 
-            else if (parameterInfo.PARAVAL1.Equals("3"))
+            catch(System.Exception ex)
             {
-                tmpBodySQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.CONTROLLOWERLIMIT, parameterInfo.TARGET);
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo2", ex.ToString());
+                throw ex;
             }
-
-            targetToUCLSQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.TARGET, parameterInfo.CONTROLUPPERLIMIT);
-            LCLTotargetSQL.AppendFormat("WHERE {0} < F.MEASURE_VALUE AND F.MEASURE_VALUE < {1} ", parameterInfo.CONTROLLOWERLIMIT, parameterInfo.TARGET);
-
-            tmpTailSQL.Append(") B ");
-            tmpTailSQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
-            tmpTailSQL.Append("AND A.DBID = B.DBID(+) ");
-            tmpTailSQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
-            tmpTailSQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
-            tmpTailSQL.Append(") XX ");
-            tmpTailSQL.Append("WHERE DIFF_N IS NOT NULL ");
-            tmpTailSQL.Append(") ");
-            // 연속 OutOfCount 갯수
-            tmpTailSQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
-
-            targetToUCLSQL.Append(tmpTailSQL.ToString());
-            LCLTotargetSQL.Append(tmpTailSQL.ToString());
-
-
-            // ALL
-            // +3 SIGMA에 존재  TARGET 보다 크고, UCL 보다 작다
-            // -3 SIGMA에 존재  TARGET 보다 작고, LCL 보다 크다 
-            if (parameterInfo.PARAVAL1.Equals("1"))
-            {
-                ruleNo2SQL.Append(targetToUCLSQL);
-
-                ruleNo2SQL.Append("UNION ALL ");
-
-                ruleNo2SQL.Append(LCLTotargetSQL);
-            }
-            else
-            {
-                ruleNo2SQL.Append(tmpHeadSQL.ToString());
-                ruleNo2SQL.Append(tmpBodySQL.ToString());
-                ruleNo2SQL.Append(tmpTailSQL.ToString());
-            }
-
-            ruleNo2SQL.Append(" ) ");
-
-            return ruleNo2SQL;
         }
 
         private StringBuilder MakeSqlByRuleNo3(string ruleNo, ParameterInfo parameterInfo)
@@ -810,157 +845,175 @@ namespace ISIA.DETECTING.SERVICE
             StringBuilder increaseSQL = new StringBuilder();
             StringBuilder decreaseSQL = new StringBuilder();
 
-            ruleNo3SQL.Append(_insertStatement);
-            ruleNo3SQL.Append(_rawDataWithStatement);
-
-            ruleNo3SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
-            ruleNo3SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo3SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo3SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
-            ruleNo3SQL.Append("FROM ");
-            ruleNo3SQL.Append("( ");
-
-            tmpHeadSQL.Append("SELECT * ");
-            tmpHeadSQL.Append("FROM ");
-            tmpHeadSQL.Append("( ");
-            tmpHeadSQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_VAL ORDER BY XX.END_INTERVAL_TIME) CON_OOC_CNT ");
-            tmpHeadSQL.Append("FROM( ");
-            tmpHeadSQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL ");
-            tmpHeadSQL.Append("FROM ");
-            tmpHeadSQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
-            tmpHeadSQL.Append("FROM RAW_TABLE R ");
-            tmpHeadSQL.Append(") A, ");
-            tmpHeadSQL.Append("( ");
-            tmpHeadSQL.Append("SELECT T.*, ROW_NUMBER() OVER(ORDER BY T.END_INTERVAL_TIME) RN2 ");
-            tmpHeadSQL.Append("FROM( ");
-            tmpHeadSQL.Append("SELECT S.*, (MEASURE_VALUE - PREV_MEASURE_VALUE) DIFF_MEASURE_VALUE, CASE WHEN(MEASURE_VALUE - PREV_MEASURE_VALUE) > 0 THEN 1 ELSE 0 END OOC_CHK ");
-            tmpHeadSQL.Append("FROM( ");
-            tmpHeadSQL.Append("SELECT F.*, LAG(MEASURE_VALUE) OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME) PREV_MEASURE_VALUE ");
-            tmpHeadSQL.Append("FROM RAW_TABLE F ");
-            tmpHeadSQL.Append(") S ");
-            tmpHeadSQL.Append(") T ");
-
-            increaseSQL.Append(tmpHeadSQL.ToString());
-            decreaseSQL.Append(tmpHeadSQL.ToString());
-
-            // 연속 증가
-            if (parameterInfo.PARAVAL1.Equals("2"))
+            try
             {
-                tmpBodySQL.Append("WHERE OOC_CHK = 1 ");
+
+                ruleNo3SQL.Append(_insertStatement);
+                ruleNo3SQL.Append(_rawDataWithStatement);
+
+                ruleNo3SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
+                ruleNo3SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
+                ruleNo3SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo3SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo3SQL.Append("FROM ");
+                ruleNo3SQL.Append("( ");
+
+                tmpHeadSQL.Append("SELECT * ");
+                tmpHeadSQL.Append("FROM ");
+                tmpHeadSQL.Append("( ");
+                tmpHeadSQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_VAL ORDER BY XX.END_INTERVAL_TIME) CON_OOC_CNT ");
+                tmpHeadSQL.Append("FROM( ");
+                tmpHeadSQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL ");
+                tmpHeadSQL.Append("FROM ");
+                tmpHeadSQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
+                tmpHeadSQL.Append("FROM RAW_TABLE R ");
+                tmpHeadSQL.Append(") A, ");
+                tmpHeadSQL.Append("( ");
+                tmpHeadSQL.Append("SELECT T.*, ROW_NUMBER() OVER(ORDER BY T.END_INTERVAL_TIME) RN2 ");
+                tmpHeadSQL.Append("FROM( ");
+                tmpHeadSQL.Append("SELECT S.*, (MEASURE_VALUE - PREV_MEASURE_VALUE) DIFF_MEASURE_VALUE, CASE WHEN(MEASURE_VALUE - PREV_MEASURE_VALUE) > 0 THEN 1 ELSE 0 END OOC_CHK ");
+                tmpHeadSQL.Append("FROM( ");
+                tmpHeadSQL.Append("SELECT F.*, LAG(MEASURE_VALUE) OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME) PREV_MEASURE_VALUE ");
+                tmpHeadSQL.Append("FROM RAW_TABLE F ");
+                tmpHeadSQL.Append(") S ");
+                tmpHeadSQL.Append(") T ");
+
+                increaseSQL.Append(tmpHeadSQL.ToString());
+                decreaseSQL.Append(tmpHeadSQL.ToString());
+
+                // 연속 증가
+                if (parameterInfo.PARAVAL1.Equals("2"))
+                {
+                    tmpBodySQL.Append("WHERE OOC_CHK = 1 ");
+                }
+                // 연속 감소
+                else if (parameterInfo.PARAVAL1.Equals("3"))
+                {
+                    tmpBodySQL.Append("WHERE OOC_CHK = 0 ");
+                }
+
+                increaseSQL.Append("WHERE OOC_CHK = 1 ");
+                decreaseSQL.Append("WHERE OOC_CHK = 0 ");
+
+
+                tmpTailSQL.Append(") B ");
+                tmpTailSQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
+                tmpTailSQL.Append("AND A.DBID = B.DBID(+) ");
+                tmpTailSQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
+                tmpTailSQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
+                tmpTailSQL.Append(") XX ");
+                tmpTailSQL.Append("WHERE RN2 IS NOT NULL ");
+                tmpTailSQL.Append(") ");
+                tmpTailSQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
+
+                increaseSQL.Append(tmpTailSQL.ToString());
+                decreaseSQL.Append(tmpTailSQL.ToString());
+
+                // ALL
+                // 연속 증가
+                // 연속 감소
+                if (parameterInfo.PARAVAL1.Equals("1"))
+                {
+                    ruleNo3SQL.Append(increaseSQL);
+
+                    ruleNo3SQL.Append("UNION ALL ");
+
+                    ruleNo3SQL.Append(decreaseSQL);
+                }
+                else
+                {
+                    ruleNo3SQL.Append(tmpHeadSQL.ToString());
+                    ruleNo3SQL.Append(tmpBodySQL.ToString());
+                    ruleNo3SQL.Append(tmpTailSQL.ToString());
+                }
+
+                ruleNo3SQL.Append(" ) ");
+
+
+                return ruleNo3SQL;
             }
-            // 연속 감소
-            else if (parameterInfo.PARAVAL1.Equals("3"))
+            catch(System.Exception ex)
             {
-                tmpBodySQL.Append("WHERE OOC_CHK = 0 ");
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo3", ex.ToString());
+                throw ex;
             }
-
-            increaseSQL.Append("WHERE OOC_CHK = 1 ");
-            decreaseSQL.Append("WHERE OOC_CHK = 0 ");
-
-
-            tmpTailSQL.Append(") B ");
-            tmpTailSQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
-            tmpTailSQL.Append("AND A.DBID = B.DBID(+) ");
-            tmpTailSQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
-            tmpTailSQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
-            tmpTailSQL.Append(") XX ");
-            tmpTailSQL.Append("WHERE RN2 IS NOT NULL ");
-            tmpTailSQL.Append(") ");
-            tmpTailSQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
-
-            increaseSQL.Append(tmpTailSQL.ToString());
-            decreaseSQL.Append(tmpTailSQL.ToString());
-
-            // ALL
-            // 연속 증가
-            // 연속 감소
-            if (parameterInfo.PARAVAL1.Equals("1"))
-            {
-                ruleNo3SQL.Append(increaseSQL);
-
-                ruleNo3SQL.Append("UNION ALL ");
-
-                ruleNo3SQL.Append(decreaseSQL);
-            }
-            else
-            {
-                ruleNo3SQL.Append(tmpHeadSQL.ToString());
-                ruleNo3SQL.Append(tmpBodySQL.ToString());
-                ruleNo3SQL.Append(tmpTailSQL.ToString());
-            }
-
-            ruleNo3SQL.Append(" ) ");
-
-
-            return ruleNo3SQL;
         }
 
         private StringBuilder MakeSqlByRuleNo4(string ruleNo, ParameterInfo parameterInfo)
         {
             StringBuilder ruleNo4SQL = new StringBuilder();
 
-            ruleNo4SQL.Append(_insertStatement);
-            ruleNo4SQL.Append(_rawDataWithStatement);
+            try
+            {
 
-            ruleNo4SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
-            ruleNo4SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo4SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo4SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append(_insertStatement);
+                ruleNo4SQL.Append(_rawDataWithStatement);
 
-            ruleNo4SQL.Append("SELECT * ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT F_C.*, ROW_NUMBER() OVER(PARTITION BY F_C.DBID, F_C.INSTANCE_NUMBER, F_C.PARAMETERID, DIFF_VAL ORDER BY F_C.END_INTERVAL_TIME) CON_OOC_CNT ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT F_A.*, RN3, (F_A.RN - RN3) AS DIFF_VAL ");
-            ruleNo4SQL.Append("FROM(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
-            ruleNo4SQL.Append("FROM RAW_TABLE R ");
-            ruleNo4SQL.Append(") F_A, ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT BB.*, ROW_NUMBER() OVER(PARTITION BY BB.DBID, BB.INSTANCE_NUMBER, BB.PARAMETERID, BB.OOC_CHK2 ORDER BY BB.END_INTERVAL_TIME) RN3 ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT AA.*, CASE WHEN AA.OOC_CHK = AA.OOC_VAL THEN 1 ELSE 0 END OOC_CHK2 ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL, CASE WHEN MOD(RN, 2) = 0 THEN 0 ELSE 1 END OOC_VAL, B.OOC_CHK ");
-            ruleNo4SQL.Append("FROM ");
-            ruleNo4SQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
-            ruleNo4SQL.Append("FROM RAW_TABLE R ");
-            ruleNo4SQL.Append(") A, ");
-            ruleNo4SQL.Append("( ");
-            ruleNo4SQL.Append("SELECT T.*, ROW_NUMBER() OVER(PARTITION BY T.DBID, T.INSTANCE_NUMBER, T.PARAMETERID ORDER BY T.END_INTERVAL_TIME) RN2 ");
-            ruleNo4SQL.Append("FROM( ");
-            ruleNo4SQL.Append("SELECT S.*, (MEASURE_VALUE - PREV_MEASURE_VALUE) DIFF_MEASURE_VALUE, CASE WHEN(MEASURE_VALUE - PREV_MEASURE_VALUE) > 0 THEN 1 ELSE 0 END OOC_CHK ");
-            ruleNo4SQL.Append("FROM( ");
-            ruleNo4SQL.Append("SELECT F.*, LAG(MEASURE_VALUE) OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME) PREV_MEASURE_VALUE ");
-            ruleNo4SQL.Append("FROM RAW_TABLE F ");
-            ruleNo4SQL.Append(") S ");
-            ruleNo4SQL.Append(") T ");
-            ruleNo4SQL.Append(") B ");
-            ruleNo4SQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
-            ruleNo4SQL.Append("AND A.DBID = B.DBID(+) ");
-            ruleNo4SQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
-            ruleNo4SQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
-            ruleNo4SQL.Append(") AA ");
-            ruleNo4SQL.Append(") BB ");
-            ruleNo4SQL.Append("WHERE OOC_CHK2 = 1 ");
-            ruleNo4SQL.Append(") F_B ");
-            ruleNo4SQL.Append("WHERE F_A.SNAP_ID = F_B.SNAP_ID(+) ");
-            ruleNo4SQL.Append("AND F_A.DBID = F_B.DBID(+) ");
-            ruleNo4SQL.Append("AND F_A.INSTANCE_NUMBER = F_B.INSTANCE_NUMBER(+) ");
-            ruleNo4SQL.Append("AND F_A.PARAMETERID = F_B.PARAMETERID(+) ");
-            ruleNo4SQL.Append(") F_C ");
-            ruleNo4SQL.Append("WHERE F_C.RN3 IS NOT NULL ");
-            ruleNo4SQL.Append(") ");
-            ruleNo4SQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
-            ruleNo4SQL.Append(") ");
+                ruleNo4SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
+                ruleNo4SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
+                ruleNo4SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo4SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("( ");
+
+                ruleNo4SQL.Append("SELECT * ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT F_C.*, ROW_NUMBER() OVER(PARTITION BY F_C.DBID, F_C.INSTANCE_NUMBER, F_C.PARAMETERID, DIFF_VAL ORDER BY F_C.END_INTERVAL_TIME) CON_OOC_CNT ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT F_A.*, RN3, (F_A.RN - RN3) AS DIFF_VAL ");
+                ruleNo4SQL.Append("FROM(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
+                ruleNo4SQL.Append("FROM RAW_TABLE R ");
+                ruleNo4SQL.Append(") F_A, ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT BB.*, ROW_NUMBER() OVER(PARTITION BY BB.DBID, BB.INSTANCE_NUMBER, BB.PARAMETERID, BB.OOC_CHK2 ORDER BY BB.END_INTERVAL_TIME) RN3 ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT AA.*, CASE WHEN AA.OOC_CHK = AA.OOC_VAL THEN 1 ELSE 0 END OOC_CHK2 ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL, CASE WHEN MOD(RN, 2) = 0 THEN 0 ELSE 1 END OOC_VAL, B.OOC_CHK ");
+                ruleNo4SQL.Append("FROM ");
+                ruleNo4SQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
+                ruleNo4SQL.Append("FROM RAW_TABLE R ");
+                ruleNo4SQL.Append(") A, ");
+                ruleNo4SQL.Append("( ");
+                ruleNo4SQL.Append("SELECT T.*, ROW_NUMBER() OVER(PARTITION BY T.DBID, T.INSTANCE_NUMBER, T.PARAMETERID ORDER BY T.END_INTERVAL_TIME) RN2 ");
+                ruleNo4SQL.Append("FROM( ");
+                ruleNo4SQL.Append("SELECT S.*, (MEASURE_VALUE - PREV_MEASURE_VALUE) DIFF_MEASURE_VALUE, CASE WHEN(MEASURE_VALUE - PREV_MEASURE_VALUE) > 0 THEN 1 ELSE 0 END OOC_CHK ");
+                ruleNo4SQL.Append("FROM( ");
+                ruleNo4SQL.Append("SELECT F.*, LAG(MEASURE_VALUE) OVER(PARTITION BY F.DBID, F.INSTANCE_NUMBER, F.PARAMETERID ORDER BY F.END_INTERVAL_TIME) PREV_MEASURE_VALUE ");
+                ruleNo4SQL.Append("FROM RAW_TABLE F ");
+                ruleNo4SQL.Append(") S ");
+                ruleNo4SQL.Append(") T ");
+                ruleNo4SQL.Append(") B ");
+                ruleNo4SQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
+                ruleNo4SQL.Append("AND A.DBID = B.DBID(+) ");
+                ruleNo4SQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
+                ruleNo4SQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
+                ruleNo4SQL.Append(") AA ");
+                ruleNo4SQL.Append(") BB ");
+                ruleNo4SQL.Append("WHERE OOC_CHK2 = 1 ");
+                ruleNo4SQL.Append(") F_B ");
+                ruleNo4SQL.Append("WHERE F_A.SNAP_ID = F_B.SNAP_ID(+) ");
+                ruleNo4SQL.Append("AND F_A.DBID = F_B.DBID(+) ");
+                ruleNo4SQL.Append("AND F_A.INSTANCE_NUMBER = F_B.INSTANCE_NUMBER(+) ");
+                ruleNo4SQL.Append("AND F_A.PARAMETERID = F_B.PARAMETERID(+) ");
+                ruleNo4SQL.Append(") F_C ");
+                ruleNo4SQL.Append("WHERE F_C.RN3 IS NOT NULL ");
+                ruleNo4SQL.Append(") ");
+                ruleNo4SQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
+                ruleNo4SQL.Append(") ");
 
 
-            return ruleNo4SQL;
+                return ruleNo4SQL;
+            }
+            catch(System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo4", ex.ToString());
+                throw ex;
+            }
         }
 
         private StringBuilder MakeSqlByRuleNo5(string ruleNo, ParameterInfo parameterInfo)
@@ -968,6 +1021,8 @@ namespace ISIA.DETECTING.SERVICE
             StringBuilder ruleNo5SQL = new StringBuilder();
             StringBuilder ucl2lcl2SQL = new StringBuilder();
             StringBuilder oocCHKSQL = new StringBuilder();
+
+            try { 
 
             ucl2lcl2SQL.Append("SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN, ");
             ucl2lcl2SQL.AppendFormat("({0} - ({1} * {2})) AS LCL2,", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
@@ -1006,8 +1061,8 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo5SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo5SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo5SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo5SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo5SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo5SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo5SQL.Append("FROM ");
             ruleNo5SQL.Append("( ");
 
@@ -1035,6 +1090,13 @@ namespace ISIA.DETECTING.SERVICE
 
 
             return ruleNo5SQL;
+
+            }
+            catch (System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo5", ex.ToString());
+                throw ex;
+            }
         }
 
         private StringBuilder MakeSqlByRuleNo6(string ruleNo, ParameterInfo parameterInfo)
@@ -1042,6 +1104,9 @@ namespace ISIA.DETECTING.SERVICE
             StringBuilder ruleNo6SQL = new StringBuilder();
             StringBuilder ucl2lcl2SQL = new StringBuilder();
             StringBuilder oocCHKSQL = new StringBuilder();
+
+            try
+            { 
 
             ucl2lcl2SQL.Append("SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN, ");
             ucl2lcl2SQL.AppendFormat("({0} - ({1} * {2})) AS LCL2,", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
@@ -1080,8 +1145,8 @@ namespace ISIA.DETECTING.SERVICE
 
             ruleNo6SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo6SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo6SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo6SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo6SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo6SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo6SQL.Append("FROM ");
             ruleNo6SQL.Append("( ");
 
@@ -1109,67 +1174,87 @@ namespace ISIA.DETECTING.SERVICE
 
 
             return ruleNo6SQL;
+
+            }
+            catch (System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo6", ex.ToString());
+                throw ex;
+            }
         }
 
         private StringBuilder MakeSqlByRuleNo7(string ruleNo, ParameterInfo parameterInfo)
         {
             StringBuilder ruleNo7SQL = new StringBuilder();
 
-            ruleNo7SQL.Append(_insertStatement);
-            ruleNo7SQL.Append(_rawDataWithStatement);
+            try
+            {
 
-            ruleNo7SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
-            ruleNo7SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo7SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo7SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
-            ruleNo7SQL.Append("FROM ");
-            ruleNo7SQL.Append("( ");
+                ruleNo7SQL.Append(_insertStatement);
+                ruleNo7SQL.Append(_rawDataWithStatement);
 
-            ruleNo7SQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_VAL ORDER BY XX.END_INTERVAL_TIME) CON_OOC_CNT ");
-            ruleNo7SQL.Append("FROM ( ");
-            ruleNo7SQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL ");
-            ruleNo7SQL.Append("FROM ");
-            ruleNo7SQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
-            ruleNo7SQL.Append("FROM RAW_TABLE R ");
-            ruleNo7SQL.Append(") A, ");
-            ruleNo7SQL.Append("( ");
-            ruleNo7SQL.Append("SELECT AA.*, ROW_NUMBER() OVER(PARTITION BY AA.DBID, AA.INSTANCE_NUMBER, AA.PARAMETERID ORDER BY AA.END_INTERVAL_TIME) RN2 ");
-            ruleNo7SQL.Append("FROM ");
-            ruleNo7SQL.Append("( ");
-            ruleNo7SQL.Append("SELECT R.*, ");
+                ruleNo7SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
+                ruleNo7SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
+                ruleNo7SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo7SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo7SQL.Append("FROM ");
+                ruleNo7SQL.Append("( ");
 
-            ruleNo7SQL.AppendFormat("({0} - ({1} * {2})) AS LCL2,", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
-            ruleNo7SQL.AppendFormat("({0} + ({1} * {2})) AS UCL2 ", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
+                ruleNo7SQL.Append("SELECT XX.*, ROW_NUMBER() OVER(PARTITION BY XX.DBID, XX.INSTANCE_NUMBER, XX.PARAMETERID, XX.DIFF_VAL ORDER BY XX.END_INTERVAL_TIME) CON_OOC_CNT ");
+                ruleNo7SQL.Append("FROM ( ");
+                ruleNo7SQL.Append("SELECT A.*, RN2, (RN - RN2) AS DIFF_VAL ");
+                ruleNo7SQL.Append("FROM ");
+                ruleNo7SQL.Append("(SELECT R.*, ROW_NUMBER() OVER(PARTITION BY R.DBID, R.INSTANCE_NUMBER, R.PARAMETERID ORDER BY R.END_INTERVAL_TIME) RN ");
+                ruleNo7SQL.Append("FROM RAW_TABLE R ");
+                ruleNo7SQL.Append(") A, ");
+                ruleNo7SQL.Append("( ");
+                ruleNo7SQL.Append("SELECT AA.*, ROW_NUMBER() OVER(PARTITION BY AA.DBID, AA.INSTANCE_NUMBER, AA.PARAMETERID ORDER BY AA.END_INTERVAL_TIME) RN2 ");
+                ruleNo7SQL.Append("FROM ");
+                ruleNo7SQL.Append("( ");
+                ruleNo7SQL.Append("SELECT R.*, ");
 
-            ruleNo7SQL.Append("FROM RAW_TABLE R ");
-            ruleNo7SQL.Append(") AA ");
-            // M sigma 내에 위치
-            ruleNo7SQL.Append("WHERE AA.MEASURE_VALUE > LCL2 AND AA.MEASURE_VALUE < UCL2 ");
-            ruleNo7SQL.Append(") B ");
-            ruleNo7SQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
-            ruleNo7SQL.Append("AND A.DBID = B.DBID(+) ");
-            ruleNo7SQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
-            ruleNo7SQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
-            ruleNo7SQL.Append(") XX ");
-            ruleNo7SQL.Append("WHERE RN2 IS NOT NULL ");
-            ruleNo7SQL.Append(") ");
-            ruleNo7SQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
+                ruleNo7SQL.AppendFormat("({0} - ({1} * {2})) AS LCL2,", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
+                ruleNo7SQL.AppendFormat("({0} + ({1} * {2})) AS UCL2 ", parameterInfo.TARGET, parameterInfo.STDVALUE, parameterInfo.MVALUE);
+
+                ruleNo7SQL.Append("FROM RAW_TABLE R ");
+                ruleNo7SQL.Append(") AA ");
+                // M sigma 내에 위치
+                ruleNo7SQL.Append("WHERE AA.MEASURE_VALUE > LCL2 AND AA.MEASURE_VALUE < UCL2 ");
+                ruleNo7SQL.Append(") B ");
+                ruleNo7SQL.Append("WHERE A.SNAP_ID = B.SNAP_ID(+) ");
+                ruleNo7SQL.Append("AND A.DBID = B.DBID(+) ");
+                ruleNo7SQL.Append("AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER(+) ");
+                ruleNo7SQL.Append("AND A.PARAMETERID = B.PARAMETERID(+) ");
+                ruleNo7SQL.Append(") XX ");
+                ruleNo7SQL.Append("WHERE RN2 IS NOT NULL ");
+                ruleNo7SQL.Append(") ");
+                ruleNo7SQL.AppendFormat("WHERE CON_OOC_CNT >= {0} ", parameterInfo.NVALUE);
 
 
-            return ruleNo7SQL;
-        }
+                return ruleNo7SQL;
+
+            
+            }
+            catch(System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo7", ex.ToString());
+                throw ex;
+            }
+}
 
         private StringBuilder MakeSqlByRuleNo8(string ruleNo, ParameterInfo parameterInfo)
         {
             StringBuilder ruleNo8SQL = new StringBuilder();
+
+            try { 
 
             ruleNo8SQL.Append(_insertStatement);
             ruleNo8SQL.Append(_rawDataWithStatement);
 
             ruleNo8SQL.Append(" SELECT SNAP_ID, DBID, INSTANCE_NUMBER, PARAMETERID, ");
             ruleNo8SQL.Append(" MEASURE_VALUE, TO_CHAR(BEGIN_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') STARTTIMEKEY, TO_CHAR(END_INTERVAL_TIME, 'YYYYMMDDHH24MISSFF3') ENDTIMEKEY, ");
-            ruleNo8SQL.AppendFormat("'{0}' RULENO, '{1}' MEASURE_TIMEKEY, ", ruleNo, _measureDate);
-            ruleNo8SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
+                ruleNo8SQL.AppendFormat("'{0}' RULENAME, '{1}' RULENO, '{2}' MEASURE_TIMEKEY, ", parameterInfo.RULENAME, ruleNo, _measureDate);
+                ruleNo8SQL.Append("TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') INSERTTIME, 'DETECTING_BATCH' INSERTUSER, 'YES' ISALIVE ");
             ruleNo8SQL.Append("FROM ");
             ruleNo8SQL.Append("( ");
 
@@ -1205,6 +1290,13 @@ namespace ISIA.DETECTING.SERVICE
 
 
             return ruleNo8SQL;
+
+            }
+            catch (System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "MakeSqlByRuleNo8", ex.ToString());
+                throw ex;
+            }
         }
 
         // 금일 Summary(RuleOut) 데이타 중에서
@@ -1246,6 +1338,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "DeleteForDuplicatedSummaryRows", ex.ToString());
                 throw ex;
             }
         }
@@ -1337,6 +1430,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "GetmailData", ex.ToString());
                 throw ex;
             }
         }
@@ -1400,6 +1494,7 @@ namespace ISIA.DETECTING.SERVICE
             }
             catch (System.Exception ex)
             {
+                base.SaveLog(ERROR_LOG, "GetmailDataForEliminateDuplicatedRows", ex.ToString());
                 throw ex;
             }
         }
