@@ -25,12 +25,19 @@ namespace ISIA.UI.MANAGEMENT
         ParameterSpecManagementArgsPack args =null;
 
         DataSet ds = new DataSet();
+        DataTable dtparameterid = null;
 
         #endregion
         public FrmParameterSpecManagement()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.ParameterSpecManagement");
+            dtparameterid = bs.ExecuteDataTable("GetIdName");
+            searchid.Properties.DataSource = dtparameterid;
+            searchid.Properties.DisplayMember = "PARAMETERNAME";
+            searchid.Properties.ValueMember = "PARAMETERID";
+            
+
             //dateStart.DateTime = DateTime.Now.AddDays(-1);
             //dateEnd.DateTime = DateTime.Now;
         }
@@ -137,17 +144,12 @@ namespace ISIA.UI.MANAGEMENT
 
         private void txtSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtAddParaId.Text))
+            if (string.IsNullOrEmpty(searchid.Text))
             {
-                txtAddParaId.BackColor = Color.Orange;
+                searchid.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtAddParaName.Text))
-            {
-
-                txtAddParaName.BackColor = Color.Orange;
-                return;
-            }
+            
             if (string.IsNullOrEmpty(txtAddDays.Text))
             {
                 txtAddDays.BackColor = Color.Orange;
@@ -176,8 +178,9 @@ namespace ISIA.UI.MANAGEMENT
             }
             args = new ParameterSpecManagementArgsPack();
             args.DBID = cmbAddDbName.EditValue.ToString();
-            args.PARAMETERID = txtAddParaId.Text;
-            args.PARAMETERNAME = txtAddParaName.Text;
+            args.INSTANCE_NUMBER = cmbInstance.Text.ToString();
+            args.PARAMETERID = searchid.EditValue.ToString();
+            args.PARAMETERNAME = searchid.Text.ToString();
             args.RULENAME = cmbRuleName.Text.Split('(')[0];
             args.RULENO = cmbRuleName.EditValue.ToString();
             args.DAYS = txtAddDays.Text;
@@ -186,6 +189,12 @@ namespace ISIA.UI.MANAGEMENT
             args.CONTROLLOWERLIMIT = txtControlLow.EditValue.ToString();
             args.CONTROLUPPERLIMIT = txtControlUpper.EditValue.ToString();
             args.TARGET = sptarget.EditValue.ToString();
+            args.STD_VALUE = spstdvalue.Text.ToString();
+            args.PARAVAL1 = spparaval1.Text.ToString();
+            args.PARAVAL2 = spparaval2.Text.ToString();
+            args.PARAVAL3 = spparaval3.Text.ToString();
+            args.PARAVAL4 = spparaval4.Text.ToString();
+            args.PARAVAL5 = spparaval5.Text.ToString();
             args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
             args.CHARTUSED = rdoIsalive.Properties.Items[rdoChartused.SelectedIndex].Value.ToString();
             args.MAILUSED = rdoIsalive.Properties.Items[rdoIlused.SelectedIndex].Value.ToString();
@@ -214,16 +223,22 @@ namespace ISIA.UI.MANAGEMENT
             if (dr!=null)
             {
                 tabPane1.SelectedPage = tabNavigationPage2;
+                cmbInstance.Text = dr["INSTANCE_NUMBER"].ToString();
                 cmbAddDbName.EditValue = dr["DBID"];
-                txtAddParaId.Text = dr["PARAMETERID"].ToString();
-                txtAddParaName.Text = dr["PARAMETERNAME"].ToString();
-                cmbRuleName.Text= dr["RULENAME"].ToString();
+                searchid.EditValue = dr["PARAMETERID"].ToString();
+                //cmbRuleName.Text= dr["RULENAME"].ToString();
                 cmbRuleName.EditValue= dr["RULENO"].ToString();
                 txtAddDays.Text = dr["DAYS"].ToString();
                 txtSpecUpper.Text = dr["SPECUPPERLIMIT"].ToString();
                 txtSpecLow.Text = dr["SPECLOWERLIMIT"].ToString();
                 txtControlLow.Text = dr["CONTROLLOWERLIMIT"].ToString();
                 txtControlUpper.Text = dr["CONTROLUPPERLIMIT"].ToString();
+                spstdvalue.Text = dr["STD_VALUE"].ToString();
+                spparaval1.Text = dr["PARAVAL1"].ToString();
+                spparaval2.Text = dr["PARAVAL2"].ToString();
+                spparaval3.Text = dr["PARAVAL3"].ToString();
+                spparaval4.Text = dr["PARAVAL4"].ToString();
+                spparaval5.Text = dr["PARAVAL5"].ToString();
                 if (dr["ISALIVE"].ToString() == "YES")
                 {
                     rdoIsalive.SelectedIndex = 0;

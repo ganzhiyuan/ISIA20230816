@@ -3823,7 +3823,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();// parametertype in ('STATISTIC','METRIC') 
-                tmpSql.Append("SELECT a.PARAMETERID,a.PARAMETERNAME FROM TAPCTPARAMETERDEF a where  parametertype in ('STATISTIC','METRIC')  ORDER BY a.parametername");
+                tmpSql.Append("SELECT TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME FROM TAPCTPARAMETERDEF where  parametertype in ('STATISTIC','METRIC')  ORDER BY parametername");
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                     tmpSql.ToString(), false);
 
