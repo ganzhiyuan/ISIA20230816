@@ -61,7 +61,7 @@ namespace ISIA.UI.MANAGEMENT
         {
             foreach (GridColumn item in gridView1.Columns)
             {
-                if (item.FieldName == "N_VALUE"|| item.FieldName == "M_VALUE"||item.FieldName == "ROWID")
+                if (item.FieldName == "ROWID")
                     item.Visible = false;
             }
         }
@@ -143,11 +143,14 @@ namespace ISIA.UI.MANAGEMENT
                 txtAddRULETEXT.BackColor = Color.Orange;
                 return;
             }
+            
             args = new SpecManagementArgsPack();
             args.RULENAME = txtAddRULENAME.Text;
             args.RULENO = txtAddRuleNo.Text;
             args.SEQUENCES = txtAddSequences.Text;
             args.RULETEXT = txtAddRULETEXT.Text;
+            args.M_VALUE = spmvalue.Text.ToString();
+            args.N_VALUE = spnvalue.Text.ToString();
             args.ISALIVE= rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
             if (dst==null||dst.Tables==null||dst.Tables[0].Rows.Count==0)
@@ -177,6 +180,8 @@ namespace ISIA.UI.MANAGEMENT
                 txtAddRuleNo.Text = dr["RULENO"].ToString();
                 txtAddRULETEXT.Text= dr["RULETEXT"].ToString();
                 txtAddSequences.Text= dr["SEQUENCES"].ToString();
+                spnvalue.Text= dr["N_VALUE"].ToString();
+                spmvalue.Text= dr["M_VALUE"].ToString();
                 if (dr["ISALIVE"].ToString() == "YES")
                 {
                     rdoIsalive.SelectedIndex = 0;

@@ -17,6 +17,28 @@ namespace ISIA.BIZ.MANAGEMENT
     {
 
 
+        public void GetIdName()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(" SELECT TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME FROM TAPCTPARAMETERDEF  ORDER BY PARAMETERNAME  ");
+               
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void GetDB(ParameterSpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -24,8 +46,8 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("  SELECT ROWID, ROWNUM ID, DBID, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS,TARGET, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
-                tmpSql.Append("  CONTROLLOWERLIMIT , DETECTINGUSED, CHARTUSED , MAILUSED ,MMSUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
+                tmpSql.Append("  SELECT ROWID, ROWNUM ID, DBID,INSTANCE_NUMBER, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS,TARGET,STD_VALUE, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
+                tmpSql.Append("  CONTROLLOWERLIMIT ,PARAVAL1,PARAVAL2,PARAVAL3,PARAVAL4,PARAVAL5, DETECTINGUSED, CHARTUSED , MAILUSED ,MMSUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
                 if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
                 {
                     tmpSql.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
@@ -86,6 +108,8 @@ namespace ISIA.BIZ.MANAGEMENT
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append("UPDATE TAPCTPARAMETERRULESPEC SET ");
                 tmpSql.AppendFormat("  DBID = '{0}' ,", arguments.DBID);
+                tmpSql.AppendFormat("  INSTANCE_NUMBER = '{0}' ,", arguments.INSTANCE_NUMBER);
+
                 tmpSql.AppendFormat("  PARAMETERID = '{0}' ,", arguments.PARAMETERID);
                 tmpSql.AppendFormat("  PARAMETERNAME = '{0}' ,", arguments.PARAMETERNAME);
                 tmpSql.AppendFormat("  RULENAME = '{0}' ,", arguments.RULENAME);
@@ -96,6 +120,12 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  CONTROLUPPERLIMIT = '{0}'  ,", arguments.CONTROLUPPERLIMIT);
                 tmpSql.AppendFormat("  CONTROLLOWERLIMIT = '{0}'  ,", arguments.CONTROLLOWERLIMIT);
                 tmpSql.AppendFormat("  TARGET = {0}  ,", Convert.ToDecimal(arguments.TARGET));
+                tmpSql.AppendFormat("  STD_VALUE = '{0}'  ,", arguments.STD_VALUE);
+                tmpSql.AppendFormat("  PARAVAL1 = '{0}'  ,", arguments.PARAVAL1);
+                tmpSql.AppendFormat("  PARAVAL2 = '{0}'  ,", arguments.PARAVAL2);
+                tmpSql.AppendFormat("  PARAVAL3 = '{0}'  ,", arguments.PARAVAL3);
+                tmpSql.AppendFormat("  PARAVAL4 = '{0}'  ,", arguments.PARAVAL4);
+                tmpSql.AppendFormat("  PARAVAL5 = '{0}'  ,", arguments.PARAVAL5);
 
                 tmpSql.AppendFormat("  CHARTUSED = '{0}'  ,", arguments.CHARTUSED);
                 tmpSql.AppendFormat("  DETECTINGUSED = '{0}'  ,", arguments.DETECTINGUSED);
@@ -127,9 +157,9 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.Append("Insert INTO TAPCTPARAMETERRULESPEC (DBID,INSTANCE_NUMBER,PARAMETERID,PARAMETERNAME,RULENAME,RULENO,DAYS,TARGET,SPECUPPERLIMIT,SPECLOWERLIMIT,");
-                tmpSql.Append("CONTROLUPPERLIMIT,CONTROLLOWERLIMIT,DETECTINGUSED,CHARTUSED,MAILUSED,MMSUSED,SPECLIMITUSED,ISALIVE) values (  ");
+                tmpSql.Append("CONTROLUPPERLIMIT,CONTROLLOWERLIMIT,STD_VALUE,PARAVAL1,PARAVAL2,PARAVAL3,PARAVAL4,PARAVAL5,DETECTINGUSED,CHARTUSED,MAILUSED,MMSUSED,SPECLIMITUSED,ISALIVE) values (  ");
                 tmpSql.AppendFormat(" '{0}',", arguments.DBID);
-                tmpSql.AppendFormat(" '{0}',", "1");
+                tmpSql.AppendFormat(" '{0}',", arguments.INSTANCE_NUMBER);
                 tmpSql.AppendFormat(" '{0}',", arguments.PARAMETERID);
                 tmpSql.AppendFormat(" '{0}',", arguments.PARAMETERNAME);
                 tmpSql.AppendFormat(" '{0}',", arguments.RULENAME);
@@ -142,6 +172,12 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat(" '{0}',", arguments.SPECLOWERLIMIT);
                 tmpSql.AppendFormat(" '{0}',", arguments.CONTROLUPPERLIMIT);
                 tmpSql.AppendFormat(" '{0}',", arguments.CONTROLLOWERLIMIT);
+                tmpSql.AppendFormat(" '{0}',", arguments.STD_VALUE);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAVAL1);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAVAL2);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAVAL3);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAVAL4);
+                tmpSql.AppendFormat(" '{0}',", arguments.PARAVAL5);
                 tmpSql.AppendFormat(" '{0}',", arguments.DETECTINGUSED);
                 tmpSql.AppendFormat(" '{0}',", arguments.CHARTUSED);
                 tmpSql.AppendFormat(" '{0}',", arguments.MAILUSED);

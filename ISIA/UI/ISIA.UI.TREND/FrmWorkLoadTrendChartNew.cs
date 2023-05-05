@@ -333,7 +333,7 @@ namespace ISIA.UI.TREND
 
                     if (dataSet != null)
                     {
-                        WaitDialogForm wdf = new WaitDialogForm("Tip", "Please wait for a litter.");
+                        WaitDialogForm wdf = new WaitDialogForm("Tip", "PLEASE WAIT FOR A MOMENT");
                         try
                         {
                             // Access the data set associated with the clicked series here.
