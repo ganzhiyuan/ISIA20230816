@@ -2680,21 +2680,23 @@ namespace ISIA.BIZ.TREND
         /// 54
         /// </summary>
         /// <param name="arguments"></param>
+        /// 
         public void GetPga_hit(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select  sn.snap_id \""SnapID\"",
-                        sn.snap_time \""Timestamp\"",
-                        sum(decode(name, 'bytes processed', delta, 0))
-                            / (sum(decode(name, 'bytes processed', delta, 0))
-                               + sum(decode(name, 'extra bytes read/written', delta, 0))
-                              ) \""PGA Cache Hit %\"",
-                        sum(decode(name, 'bytes processed', round(delta / 1024 / 1024), 0)) \""W/A MB Processed\"",
-                        sum(decode(name, 'extra bytes read/written', round(delta / 1024 / 1024), 0)) \""Extra W/A MB Read/Write\""
-                  from(
+                tmpSql.Append(" select  sn.snap_id \"SnapID\", ");
+
+
+                tmpSql.Append("  sn.snap_time \"Timestamp\", ");
+                //PGA Cache Hit %改名为PGA Cache Hit
+                tmpSql.Append("    sum(decode(name, 'bytes processed', delta, 0)) / (sum(decode(name, 'bytes processed', delta, 0)) + sum(decode(name, 'extra bytes read/written', delta, 0)) ) \"PGA Cache Hit %\", ");
+                tmpSql.Append("  sum(decode(name, 'bytes processed', round(delta / 1024 / 1024), 0)) \"W /A MB Processed\", ");
+                tmpSql.Append("       sum(decode(name, 'extra bytes read/written', round(delta / 1024 / 1024), 0)) \"Extra W/A MB Read/Write\" ");
+
+                tmpSql.AppendFormat( @" from(
                          select snap_id,
                                 name,
                                 value - lag(value) over(partition by name order by snap_id) delta
@@ -2702,7 +2704,9 @@ namespace ISIA.BIZ.TREND
                           where name in ('bytes processed', 'extra bytes read/written') ", arguments.DbName);
                 //tmpSql.AppendFormat("  and snap_id between {0} and {1} ");
                 tmpSql.Append("               and snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(@" select snap_id from raw_dba_hist_snapshot_{0} where 
+                BEGIN_INTERVAL_TIME >= TO_DATE ('{1}', 'yyyy-MM-dd ') 
+                AND BEGIN_INTERVAL_TIME < TO_DATE ('{2}', 'yyyy-MM-dd ') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -2714,8 +2718,10 @@ namespace ISIA.BIZ.TREND
                        select snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
                          from raw_dba_hist_snapshot_{0} ", arguments.DbName);
                 //tmpSql.AppendFormat("  where snap_id between 1 + &snap_fr and & snap_to ");
-                tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= '{1}' AND BEGIN_INTERVAL_TIME < '{2}' AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.Append("       where snap_id in ( ");
+                tmpSql.AppendFormat(@" select snap_id from raw_dba_hist_snapshot_{0} where 
+                BEGIN_INTERVAL_TIME >= TO_DATE ('{1}', 'yyyy-MM-dd  ')  
+                AND BEGIN_INTERVAL_TIME < TO_DATE ('{2}', 'yyyy-MM-dd  ') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4686,15 +4692,15 @@ tmpSql.AppendFormat(@" from(
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append(@"select	thread#,
-	                        sum(less5)	\""Log Switch interval <= 5 min\"",
+                tmpSql.Append("select	thread#,  sum(less5)	\"Log Switch interval <= 5 min\", ");
 
-                            sum(bet5_10)    \""5 ~ 10 min\"",
-                            sum(bet10_30)   \""10 ~ 30 min\"",
-                            sum(over30) \"" > 30 min\"",
-                            count(*)    \""7 -day Total\""
-                        from(
-                                select
+                tmpSql.Append(" sum(bet5_10)    \"5 ~ 10 min\",");
+                tmpSql.Append("  sum(bet10_30)   \"10 ~ 30 min\", ");
+                tmpSql.Append(" sum(over30) \" > 30 min\", ");
+                tmpSql.Append("        count(*)    \"7 -day Total\" ");
+                tmpSql.Append(@"     from(
+
+                             select
                                  thread#,
                                  case when(first_time - lag(first_time) over(partition by thread# order by first_time))*24*60 <=  5 then 1
                                       when(first_time - lag(first_time) over(partition by thread# order by first_time)) is null then null else 0 end less5,

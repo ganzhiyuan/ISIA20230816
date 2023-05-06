@@ -39,6 +39,8 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+
+
         public void GetDB(ParameterSpecManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
