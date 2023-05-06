@@ -207,7 +207,7 @@ namespace ISIA.UI.MANAGEMENT
             {
                 foreach (var item in i)
                 {
-                    DataRow dr = gridView1.GetDataRow(i[0]) as DataRow;
+                    DataRow dr = gridView1.GetDataRow(item) as DataRow;
                     if (dr != null)
                     {
                         args = new SpecManagementArgsPack();

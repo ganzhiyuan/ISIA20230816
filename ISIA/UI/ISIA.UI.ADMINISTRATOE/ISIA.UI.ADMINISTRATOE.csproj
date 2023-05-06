@@ -351,6 +351,12 @@
     <Compile Include="FrmCodeManagement.Designer.cs">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLanguageManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLanguageManagement.Designer.cs">
+      <DependentUpon>FrmLanguageManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMailGroupEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCodeManagement.resx">
       <DependentUpon>FrmCodeManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLanguageManagement.resx">
+      <DependentUpon>FrmLanguageManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMailGroupEdit.resx">
       <DependentUpon>FrmMailGroupEdit.cs</DependentUpon>
@@ -613,6 +622,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
