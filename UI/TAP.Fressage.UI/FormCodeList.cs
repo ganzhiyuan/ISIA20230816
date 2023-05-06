@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
 using TAP;
 using TAP.Base.Configuration;
 using TAP.Fressage;
+using TAP.Data.DataBase;
 
 namespace TAP.Fressage.UI
 {
@@ -95,17 +98,29 @@ namespace TAP.Fressage.UI
 
             string tmpSql = string.Empty;
             DataSet tmpDs = null;
+            
+
+            string tmpConnString = "Data Source={0};Version =3;";
+
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            string tmpExecutablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
+
+            string codeCollectionPath = Path.Combine(tmpExecutablePath, "mnls", TAP.Base.Configuration.ConfigurationManager.Instance.CorssLanguageSection.LocalFile);
+
+            tmpConnString = string.Format(tmpConnString, codeCollectionPath);
+
+            Sqlite database = new Sqlite(tmpConnString, EnumConnectionMethod.CONNECTION_STRING);
 
             try
             {
-                tmpSql = " SELECT ID, CODE, POS, " + UICommon.Instance.SupportedLanguage + ", CC FROM [CODECOLLECTION] ";
+                tmpSql = " SELECT * FROM [CODECOLLECTION] ";
 
-                if (! this.comboBoxPartOfSpeech.SelectedItem.ToString().Equals("ALL"))
-                {
-                    tmpSql += string.Format(" WHERE [POS] = '{0}' ", this.comboBoxPartOfSpeech.SelectedItem.ToString());
-                }
 
-                //tmpDs = UICommon.Instance.DataBase._dbAccessor.Select(tmpSql);
+                database.Select(tmpSql, "data", ref tmpDs, new ArgumentPack(), CommandType.Text);
+
+                string updateSql = " UPDATE .....SQL TYPE...";
+
+                database.ExecuteNonQuery(new string[] { updateSql });
             }
             catch (System.Exception ex)
             {
