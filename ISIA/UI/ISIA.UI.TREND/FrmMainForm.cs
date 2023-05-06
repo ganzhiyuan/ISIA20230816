@@ -27,6 +27,7 @@ namespace ISIA.UI.TREND
         List<DPIDto> list = new List<DPIDto>();
         List<DPIDto> list2 = new List<DPIDto>();
         List<DPIDto> list3 = new List<DPIDto>();
+
         public FrmMainForm()
         {
             InitializeComponent();
@@ -84,6 +85,30 @@ namespace ISIA.UI.TREND
 
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
                 flowLayoutPanel1.Controls.Add(tChart);
+            }
+            for (int i = 0; i < list2.Count(); i++)
+            {
+                // 创建 TChart 控件
+                TChart tChart = new TChart();
+                tChart.Tag = i;
+                tChart.Width = 300;
+                tChart.Height = 200;
+                // 设置每个 TChart 控件的其他属性或数据
+
+                // 将 TChart 控件添加到 FlowLayoutPanel 中
+                flowLayoutPanel2.Controls.Add(tChart);
+            }
+            for (int i = 0; i < list3.Count(); i++)
+            {
+                // 创建 TChart 控件
+                TChart tChart = new TChart();
+                tChart.Tag = i;
+                tChart.Width = 300;
+                tChart.Height = 200;
+                // 设置每个 TChart 控件的其他属性或数据
+
+                // 将 TChart 控件添加到 FlowLayoutPanel 中
+                flowLayoutPanel3.Controls.Add(tChart);
             }
             //comboBoxEdit1_SelectedIndexChanged(null, null);
             //CreateCharts();
@@ -289,7 +314,7 @@ namespace ISIA.UI.TREND
             //};
             //list.Add(dto);
             //68
-            dto = new DPIDto
+            /*dto = new DPIDto
             {
                 DPIFileName = "GetLatch_01",
                 Xvalue = "TIMESTAMP",
@@ -373,10 +398,10 @@ namespace ISIA.UI.TREND
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Buffer Access{local/remote/disk}%",
                 FileNameParament = new List<string> { "Buffer access - local cache%", "Buffer access - remote cache%", "Buffer access - disk%" }
-            };
+            };*/
             //--sheet2
             //01
-            dto = new DPIDto
+            /*dto = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
@@ -384,6 +409,61 @@ namespace ISIA.UI.TREND
                 FileNameParament = new List<string> { "Transactions" }
             };
             list2.Add(dto);
+            //01
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Redo Size(Bytes)",
+                FileNameParament = new List<string> { "Redo size" }
+            };
+            list2.Add(dto);
+            //01
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Parse Count(Per Sec)",
+                FileNameParament = new List<string> { "Parses(total)" }
+            };
+            list2.Add(dto);
+            //01
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Hard Parse Count(per sec)",
+                FileNameParament = new List<string> { "Parses(hard)" }
+            };
+            list2.Add(dto);
+            //18
+            dto = new DPIDto
+            {
+                DPIFileName = "GetTimeModel",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "DB Time(s)",
+                FileNameParament = new List<string> { "DB time" }
+            };
+            list2.Add(dto);
+            //72
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLog_switch_f",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Log Switches",
+                FileNameParament = new List<string> { "Log Switch interval <= 5 min" }
+            };
+            list2.Add(dto);*/
+
+            //54
+            /*dto = new DPIDto
+            {
+                DPIFileName = "GetPga_hit",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "PGA Cache Hit(%)",
+                FileNameParament = new List<string> { "PGA Cache Hit %" }
+            };
+            list2.Add(dto);*/
         }
 
         //------------------------------------------------

@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Columns;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
@@ -15,6 +16,7 @@ using System.Windows.Forms;
 using TAP.Data.Client;
 using TAP.Fressage;
 using TAP.UI;
+using TAP.UIControls.BasicControlsDEV;
 
 namespace ISIA.UI.MANAGEMENT
 {
@@ -26,6 +28,7 @@ namespace ISIA.UI.MANAGEMENT
 
         DataSet ds = new DataSet();
         DataTable dtparameterid = null;
+        DataTable dtruleid = null;
 
         #endregion
         public FrmParameterSpecManagement()
@@ -36,7 +39,9 @@ namespace ISIA.UI.MANAGEMENT
             searchid.Properties.DataSource = dtparameterid;
             searchid.Properties.DisplayMember = "PARAMETERNAME";
             searchid.Properties.ValueMember = "PARAMETERID";
-            
+
+            cmbRuleName.Setting();
+            cmbAddDbName.Setting();
 
             //dateStart.DateTime = DateTime.Now.AddDays(-1);
             //dateEnd.DateTime = DateTime.Now;
@@ -224,10 +229,13 @@ namespace ISIA.UI.MANAGEMENT
             {
                 tabPane1.SelectedPage = tabNavigationPage2;
                 cmbInstance.Text = dr["INSTANCE_NUMBER"].ToString();
-                cmbAddDbName.EditValue = dr["DBID"];
+                //cmbAddDbName.EditValue = dr["DBID"];
+                SelectedDBComboBox(cmbAddDbName, dr["DBID"].ToString());
                 searchid.EditValue = dr["PARAMETERID"].ToString();
                 //cmbRuleName.Text= dr["RULENAME"].ToString();
-                cmbRuleName.EditValue= dr["RULENO"].ToString();
+                //cmbRuleName.EditValue= dr["RULENO"].ToString();
+                SelectedDBComboBox(cmbRuleName, dr["RULENO"].ToString());
+
                 txtAddDays.Text = dr["DAYS"].ToString();
                 txtSpecUpper.Text = dr["SPECUPPERLIMIT"].ToString();
                 txtSpecLow.Text = dr["SPECLOWERLIMIT"].ToString();
@@ -336,6 +344,23 @@ namespace ISIA.UI.MANAGEMENT
             }
         }
 
+
+        public void SelectedDBComboBox(TCheckComboBox ComboBox, string str)
+        {
+            
+            
+            foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
+            {
+
+                if (item.Value.ToString().Contains(str))
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+                else {
+                    item.CheckState = CheckState.Unchecked;
+                }
+            }
+        }
 
     }
 }

@@ -2393,6 +2393,7 @@ namespace ISIA.UI.MANAGEMENT
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmParameterSpecManagement";
             this.Text = "FrmDataBaseManagement";
+            
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
