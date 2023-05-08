@@ -234,7 +234,7 @@ namespace ISIA.UI.MANAGEMENT
                 searchid.EditValue = dr["PARAMETERID"].ToString();
                 //cmbRuleName.Text= dr["RULENAME"].ToString();
                 //cmbRuleName.EditValue= dr["RULENO"].ToString();
-                SelectedDBComboBox(cmbRuleName, dr["RULENO"].ToString());
+                SelectedRuleNOComboBox(cmbRuleName, dr["RULENO"].ToString(), dr["RULENAME"].ToString());
 
                 txtAddDays.Text = dr["DAYS"].ToString();
                 txtSpecUpper.Text = dr["SPECUPPERLIMIT"].ToString();
@@ -361,6 +361,26 @@ namespace ISIA.UI.MANAGEMENT
                 }
             }
         }
+
+
+        public void SelectedRuleNOComboBox(TCheckComboBox ComboBox, string ruleno , string rulename)
+        {
+
+
+            foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
+            {
+
+                if (item.Description.ToString().Contains(ruleno) && item.Description.ToString().Contains(rulename))
+                {
+                    item.CheckState = CheckState.Checked;
+                }
+                else
+                {
+                    item.CheckState = CheckState.Unchecked;
+                }
+            }
+        }
+
 
     }
 }
