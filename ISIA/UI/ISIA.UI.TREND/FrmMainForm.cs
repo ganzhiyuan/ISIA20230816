@@ -27,6 +27,8 @@ namespace ISIA.UI.TREND
         List<DPIDto> list = new List<DPIDto>();
         List<DPIDto> list2 = new List<DPIDto>();
         List<DPIDto> list3 = new List<DPIDto>();
+        List<Color> colors = new List<Color> { Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
+            Color.FromArgb(125,96,160), Color.FromArgb(70,170,197), Color.FromArgb(218,129,55)  };
 
         public FrmMainForm()
         {
@@ -231,10 +233,8 @@ namespace ISIA.UI.TREND
             line.Legend.Visible = false;
             string str = dto.FileNameParament[i].ToString();
             line.YValues.DataMember = str;
-            line.Color = Color.OrangeRed;
+            line.Color = colors[i];
 
-            line.Pointer.HorizSize = 1;
-            line.Pointer.VertSize = 1;
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
             //line.ColorEachLine = true;
@@ -265,7 +265,7 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetOsstat",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "CP Usage(%)",
-                FileNameParament = new List<string>{"%usr","%sys","%wio","%idle"}
+                FileNameParament = new List<string> { "%usr", "%sys", "%wio", "%idle" },
             };
             list.Add(dto);
             //18
