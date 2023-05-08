@@ -2621,27 +2621,27 @@ namespace ISIA.BIZ.TREND
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("select sn.snap_id \"SnapID\", ");
                       tmpSql.AppendFormat(" sn.snap_time \"Timestamp\", ");
-                      tmpSql.AppendFormat(" max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0))            \"PGA Aggr Target(M)\", ");
-                      tmpSql.AppendFormat(" max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0))                 \"Auto PGA Target(M)\", ");
-                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA allocated', value / 1024 / 1024, 0))                       \"PGA Mem Alloc(M)\", ");
-                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA used for auto workareas', value / 1024 / 1024, 0))         \"Auto W/A(M)\", ");
-                      tmpSql.AppendFormat(" max(decode(pga.name, 'total PGA used for manual workareas', value / 1024 / 1024, 0))       \"Manual W/A(M)\", ");
-                      tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA allocated', value, 0)), 0, 0,(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                      tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'aggregate PGA target parameter', value / 1024 / 1024, 0)),6)            \"PGA Aggr Target(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'aggregate PGA auto target', value / 1024 / 1024, 0)) ,6)                \"Auto PGA Target(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'total PGA allocated', value / 1024 / 1024, 0)),6)                       \"PGA Mem Alloc(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'total PGA used for auto workareas', value / 1024 / 1024, 0)),6)         \"Auto W/A(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'total PGA used for manual workareas', value / 1024 / 1024, 0)) ,6)      \"Manual W/A(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(decode(max(decode(pga.name, 'total PGA allocated', value, 0)), 0, 0,(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
                 tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)) ");
-                tmpSql.AppendFormat("       ) / max(decode(pga.name, 'total PGA allocated', value, 0)))                        \"%PGA W/A Mem\", ");
-                      tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("       ) / max(decode(pga.name, 'total PGA allocated', value, 0))),6)                        \"%PGA W/A Mem\", ");
+                      tmpSql.AppendFormat(" ROUND(decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
                 tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0, ");
                 tmpSql.AppendFormat("        max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
                 tmpSql.AppendFormat("        / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
-                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \"%Auto W/A Mem\", ");
-                tmpSql.AppendFormat(" decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
+                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)))),6)       \"%Auto W/A Mem\", ");
+                tmpSql.AppendFormat(" ROUND(decode(max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
                 tmpSql.AppendFormat("       + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)), 0, 0, ");
                 tmpSql.AppendFormat("        max(decode(pga.name, 'total PGA used for manual workareas', value, 0)) ");
                 tmpSql.AppendFormat("        / (max(decode(pga.name, 'total PGA used for auto workareas', value, 0)) ");
-                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0))))       \"%Manual W/A Mem\", ");
-                tmpSql.AppendFormat(" max(decode(pga.name, 'global memory bound', value / 1024, 0))                             \"Global Mem Bound(K)\", ");
-                tmpSql.AppendFormat(" max(case when pga.name = 'maximum PGA used for auto workareas' then value else 0 end)/ 1048576   \"max. auto W/A(M)\", ");
-                      tmpSql.AppendFormat(" max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576 \"max. manual W/A(M)\" ");
+                tmpSql.AppendFormat("         + max(decode(pga.name, 'total PGA used for manual workareas', value, 0)))),6)       \"%Manual W/A Mem\", ");
+                tmpSql.AppendFormat(" ROUND(max(decode(pga.name, 'global memory bound', value / 1024, 0)),6)                             \"Global Mem Bound(K)\", ");
+                tmpSql.AppendFormat(" ROUND(max(case when pga.name = 'maximum PGA used for auto workareas' then value else 0 end)/ 1048576,6)   \"max. auto W/A(M)\", ");
+                      tmpSql.AppendFormat(" ROUND(max(case when pga.name = 'maximum PGA used for manual workareas' then value else 0 end)/ 1048576,6) \"max. manual W/A(M)\" ");
                 tmpSql.AppendFormat(@" from(
                        select dbid, instance_number, snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') snap_time
                          from raw_dba_hist_snapshot_{0} ", arguments.DbName);
@@ -2983,40 +2983,23 @@ namespace ISIA.BIZ.TREND
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("select snap_id \"SnapID\",");
        tmpSql.Append(" snap_time \"Timestamp\",");
-                tmpSql.Append(" max(decode(class, '1st level bmb'        , delta, 0)) \"1st level bmb\", ");
-      tmpSql.Append(" max(decode(class, '2nd level bmb'        , delta, 0)) \"2nd level bmb\", ");
-      tmpSql.Append(" max(decode(class, '3rd level bmb'        , delta, 0)) \"3rd level bmb\", ");
-      tmpSql.Append(" max(decode(class, 'bitmap block'         , delta, 0)) \"bitmap block\", ");
-      tmpSql.Append(" max(decode(class, 'bitmap index block'   , delta, 0)) \"bitmap index block\", ");
-      tmpSql.Append(" max(decode(class, 'data block'           , delta, 0)) \"data block\", ");
-      tmpSql.Append(" max(decode(class, 'extent map'           , delta, 0)) \"extent map\", ");
-      tmpSql.Append(" max(decode(class, 'file header block'    , delta, 0)) \"file header block\", ");
-      tmpSql.Append(" max(decode(class, 'free list'            , delta, 0)) \"free list\", ");
-      tmpSql.Append(" max(decode(class, 'save undo block'      , delta, 0)) \"save undo block\", ");
-      tmpSql.Append(" max(decode(class, 'save undo header'     , delta, 0)) \"save undo header\", ");
-      tmpSql.Append(" max(decode(class, 'segment header'       , delta, 0)) \"segment header\", ");
-      tmpSql.Append(" max(decode(class, 'sort block'           , delta, 0)) \"sort block\", ");
-      tmpSql.Append(" max(decode(class, 'system undo block'    , delta, 0)) \"system undo block\", ");
-      tmpSql.Append(" max(decode(class, 'system undo header'   , delta, 0)) \"system undo header\", ");
-      tmpSql.Append(" max(decode(class, 'undo block'           , delta, 0)) \"undo block\", ");
-      tmpSql.Append(" max(decode(class, 'undo header'          , delta, 0)) \"undo header\", ");
       tmpSql.Append(" max(decode(class, '1st level bmb'        , delta_cnt, 0)) \"1st level bmb\", ");
       tmpSql.Append(" max(decode(class, '2nd level bmb'        , delta_cnt, 0)) \"2nd level bmb\", ");
       tmpSql.Append(" max(decode(class, '3rd level bmb'        , delta_cnt, 0)) \"3rd level bmb\", ");
       tmpSql.Append(" max(decode(class, 'bitmap block'         , delta_cnt, 0)) \"bitmap block\", ");
       tmpSql.Append(" max(decode(class, 'bitmap index block'   , delta_cnt, 0)) \"bitmap index block\", ");
-      tmpSql.Append(" max(decode(class, 'data block'           , delta_cnt, 0)) \"data block\", ");
+      tmpSql.Append(" to_number( max(decode(class, 'data block'           , delta_cnt, 0))) \"DataBlock\", ");
       tmpSql.Append(" max(decode(class, 'extent map'           , delta_cnt, 0)) \"extent map\", ");
       tmpSql.Append(" max(decode(class, 'file header block'    , delta_cnt, 0)) \"file header block\", ");
       tmpSql.Append(" max(decode(class, 'free list'            , delta_cnt, 0)) \"free list\", ");
       tmpSql.Append(" max(decode(class, 'save undo block'      , delta_cnt, 0)) \"save undo block\", ");
       tmpSql.Append(" max(decode(class, 'save undo header'     , delta_cnt, 0)) \"save undo header\", ");
-      tmpSql.Append(" max(decode(class, 'segment header'       , delta_cnt, 0)) \"segment header\", ");
+      tmpSql.Append(" max(decode(class, 'segment header'       , delta_cnt, 0)) \"SegmentHeader\", ");
       tmpSql.Append(" max(decode(class, 'sort block'           , delta_cnt, 0)) \"sort block\", ");
       tmpSql.Append(" max(decode(class, 'system undo block'    , delta_cnt, 0)) \"system undo block\", ");
       tmpSql.Append(" max(decode(class, 'system undo header'   , delta_cnt, 0)) \"system undo header\", ");
-      tmpSql.Append(" max(decode(class, 'undo block'           , delta_cnt, 0)) \"undo block\", ");
-      tmpSql.Append(" max(decode(class, 'undo header'          , delta_cnt, 0)) \"undo header\" ");
+      tmpSql.Append(" max(decode(class, 'undo block'           , delta_cnt, 0)) \"UndoBlock\", ");
+      tmpSql.Append(" max(decode(class, 'undo header'          , delta_cnt, 0)) \"UndoHeader\" ");
 tmpSql.AppendFormat(@" from(
       select class,snap_id,snap_time,delta_cnt,delta_time,decode(delta_cnt,0,0, delta_time/delta_cnt)*10 delta
          from(
@@ -3067,7 +3050,7 @@ tmpSql.AppendFormat(@" from(
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
-                tmpSql.Append(@" ) group by snap_id, snap_time order by snap_id");
+                tmpSql.Append("  AND delta_cnt IS NOT NULL AND delta_time IS NOT NULL ) group by snap_id, snap_time order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -3202,7 +3185,7 @@ tmpSql.AppendFormat(@" from(
                               when trunc((set_msize) / 1000000000000) <= 9999
                                    then to_char(trunc((set_msize) / 1000000000000)) || 'T'");
                 tmpSql.Append("  else substr(to_char(trunc((set_msize) / 1000000000000000)) || 'P', 1, 5) end , 7, ' ') \"numbufs\" ");
-                    tmpSql.Append("  , decode(db_block_gets + consistent_gets, 0, 0, 1 - (physical_reads / (db_block_gets + consistent_gets))) \" %Hit\" ");
+                    tmpSql.Append("  ,round( decode(db_block_gets + consistent_gets, 0, 0, 1 - (physical_reads / (db_block_gets + consistent_gets))),6) \"%Hit\" ");
                         tmpSql.Append("  , db_block_gets + consistent_gets \"logical reads\" ");
                          tmpSql.Append(" , physical_reads        \"ph.read\" ");
                          tmpSql.Append(" , physical_writes       \"ph.write\" ");
