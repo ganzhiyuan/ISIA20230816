@@ -421,12 +421,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnSelect);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 807);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 995);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel2.MinimumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(312, 42);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(390, 53);
             this.flowLayoutPanel2.TabIndex = 112;
             // 
             // btnSelect
@@ -505,7 +505,7 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer2.Controls.Add(this.layoutControl3);
             this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(5);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(310, 218);
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(388, 218);
             this.navBarGroupControlContainer2.TabIndex = 1;
             // 
             // layoutControl3
@@ -522,7 +522,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(310, 218);
+            this.layoutControl3.Size = new System.Drawing.Size(388, 218);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl2";
             // 
@@ -589,7 +589,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbRuleMain.Properties.SelectAllItemVisible = false;
             this.cmbRuleMain.RepresentativeValue = "";
             this.cmbRuleMain.ShowDescription = true;
-            this.cmbRuleMain.Size = new System.Drawing.Size(151, 24);
+            this.cmbRuleMain.Size = new System.Drawing.Size(229, 24);
             this.cmbRuleMain.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetRule";
             this.cmbRuleMain.SqlDataBase = "";
             this.cmbRuleMain.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -618,7 +618,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbDbName.Properties.SelectAllItemVisible = false;
             this.cmbDbName.RepresentativeValue = "";
             this.cmbDbName.ShowDescription = true;
-            this.cmbDbName.Size = new System.Drawing.Size(151, 24);
+            this.cmbDbName.Size = new System.Drawing.Size(229, 24);
             this.cmbDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
             this.cmbDbName.SqlDataBase = "";
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -632,7 +632,7 @@ namespace ISIA.UI.MANAGEMENT
             this.txtParam.Location = new System.Drawing.Point(154, 33);
             this.txtParam.Margin = new System.Windows.Forms.Padding(4);
             this.txtParam.Name = "txtParam";
-            this.txtParam.Size = new System.Drawing.Size(151, 24);
+            this.txtParam.Size = new System.Drawing.Size(229, 24);
             this.txtParam.StyleController = this.layoutControl3;
             this.txtParam.TabIndex = 23;
             // 
@@ -650,7 +650,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem14});
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(310, 218);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(388, 218);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -659,7 +659,7 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 84);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(304, 128);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(382, 128);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -668,7 +668,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem31.Control = this.txtParam;
             this.layoutControlItem31.Location = new System.Drawing.Point(149, 28);
             this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(155, 28);
+            this.layoutControlItem31.Size = new System.Drawing.Size(233, 28);
             this.layoutControlItem31.Text = "PARAMETERNAME";
             this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem31.TextVisible = false;
@@ -679,7 +679,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem3.CustomizationFormText = "DB NAME";
             this.layoutControlItem3.Location = new System.Drawing.Point(149, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(155, 28);
+            this.layoutControlItem3.Size = new System.Drawing.Size(233, 28);
             this.layoutControlItem3.Text = "DB NAME";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -689,7 +689,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem6.Control = this.cmbRuleMain;
             this.layoutControlItem6.Location = new System.Drawing.Point(149, 56);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(155, 28);
+            this.layoutControlItem6.Size = new System.Drawing.Size(233, 28);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -747,12 +747,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnSave);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 807);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 995);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.MaximumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel3.MinimumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(312, 42);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(390, 53);
             this.flowLayoutPanel3.TabIndex = 113;
             // 
             // btnSave
@@ -808,8 +808,8 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 312;
-            this.navBarControl2.Size = new System.Drawing.Size(312, 849);
+            this.navBarControl2.OptionsNavPane.ExpandedWidth = 390;
+            this.navBarControl2.Size = new System.Drawing.Size(390, 1061);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -903,7 +903,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
-            this.cmbInstance.DominantControl = "cmbDbName";
+            this.cmbInstance.DominantControl = "cmbAddDbName";
             this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(165, 36);
@@ -2393,7 +2393,6 @@ namespace ISIA.UI.MANAGEMENT
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmParameterSpecManagement";
             this.Text = "FrmDataBaseManagement";
-            
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);

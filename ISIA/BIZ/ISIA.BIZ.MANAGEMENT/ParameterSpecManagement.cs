@@ -86,9 +86,10 @@ namespace ISIA.BIZ.MANAGEMENT
                 sbSel.Append("select * from TAPCTPARAMETERRULESPEC");
                 sbSel.Append(" where 1=1 ");
                 sbSel.AppendFormat(" and DBID='{0}' ", arguments.DBID);
+                sbSel.AppendFormat(" and INSTANCE_NUMBER = '{0}' ", arguments.INSTANCE_NUMBER);
                 sbSel.AppendFormat(" and PARAMETERID='{0}' ", arguments.PARAMETERID);
-                sbSel.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
                 sbSel.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                sbSel.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                       sbSel.ToString(), false);
 
@@ -137,9 +138,10 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
                 tmpSql.Append(" where 1=1 ");
                 tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);
+                tmpSql.AppendFormat(" and INSTANCE_NUMBER = '{0}' ", arguments.INSTANCE_NUMBER);
                 tmpSql.AppendFormat(" and PARAMETERID='{0}' ", arguments.PARAMETERID);
-                tmpSql.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
                 tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
+                tmpSql.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
