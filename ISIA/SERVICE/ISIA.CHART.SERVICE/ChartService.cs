@@ -357,7 +357,7 @@ namespace ISIA.CHART.SERVICE
 
                         if (parameterInfo.SPECUPPERLIMIT != null)
                         {
-                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") > double.Parse(parameterInfo.SPECUPPERLIMIT)).Count();
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") > decimal.Parse(parameterInfo.SPECUPPERLIMIT)).Count();
 
                             detectCount = detectCount + temp;
 
@@ -365,7 +365,7 @@ namespace ISIA.CHART.SERVICE
                         }
                         if (parameterInfo.SPECLOWERLIMIT != null)
                         {
-                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") < double.Parse(parameterInfo.SPECLOWERLIMIT)).Count();
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") < decimal.Parse(parameterInfo.SPECLOWERLIMIT)).Count();
 
                             detectCount = detectCount + temp;
 
@@ -382,7 +382,7 @@ namespace ISIA.CHART.SERVICE
 
                         if (parameterInfo.CONTROLUPPERLIMIT != null)
                         {
-                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") > double.Parse(parameterInfo.CONTROLUPPERLIMIT)).Count();
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") > decimal.Parse(parameterInfo.CONTROLUPPERLIMIT)).Count();
 
                             detectCount = detectCount + temp;
 
@@ -390,7 +390,7 @@ namespace ISIA.CHART.SERVICE
                         }
                         if (parameterInfo.CONTROLLOWERLIMIT != null)
                         {
-                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<double>("MEASURE_VALUE") < double.Parse(parameterInfo.CONTROLLOWERLIMIT)).Count();
+                            var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") < decimal.Parse(parameterInfo.CONTROLLOWERLIMIT)).Count();
 
                             detectCount = detectCount + temp;
 
