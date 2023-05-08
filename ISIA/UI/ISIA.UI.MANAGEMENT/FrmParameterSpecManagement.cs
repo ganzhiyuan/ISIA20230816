@@ -39,9 +39,15 @@ namespace ISIA.UI.MANAGEMENT
             searchid.Properties.DataSource = dtparameterid;
             searchid.Properties.DisplayMember = "PARAMETERNAME";
             searchid.Properties.ValueMember = "PARAMETERID";
-
+            
+            //setting触发控件
             cmbRuleName.Setting();
             cmbAddDbName.Setting();
+            //将cmbRuleName中value的值改变为description
+            foreach (CheckedListBoxItem items in cmbRuleName.Properties.Items)
+            {
+                items.Value = items.Description.ToString();
+            }
 
             //dateStart.DateTime = DateTime.Now.AddDays(-1);
             //dateEnd.DateTime = DateTime.Now;
@@ -187,7 +193,7 @@ namespace ISIA.UI.MANAGEMENT
             args.PARAMETERID = searchid.EditValue.ToString();
             args.PARAMETERNAME = searchid.Text.ToString();
             args.RULENAME = cmbRuleName.Text.Split('(')[0];
-            args.RULENO = cmbRuleName.EditValue.ToString();
+            args.RULENO = (cmbRuleName.Text.Split('(')[1]).Substring(0, cmbRuleName.Text.Split('(')[1].Length - 1);
             args.DAYS = txtAddDays.Text;
             args.SPECUPPERLIMIT = txtSpecUpper.EditValue.ToString();
             args.SPECLOWERLIMIT = txtSpecLow.EditValue.ToString();
@@ -370,7 +376,7 @@ namespace ISIA.UI.MANAGEMENT
             foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
             {
 
-                if (item.Description.ToString().Contains(ruleno) && item.Description.ToString().Contains(rulename))
+                if (item.Value.ToString().Contains(ruleno) && item.Value.ToString().Contains(rulename))
                 {
                     item.CheckState = CheckState.Checked;
                 }
