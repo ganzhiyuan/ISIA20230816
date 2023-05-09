@@ -55,7 +55,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string DBID { get; set; }
         public string INSTANCE_NUMBER { get; set; }
 
-        private string _PARADEF ;
+        private string _PARADEF;
 
         private string _SQLID;
 
