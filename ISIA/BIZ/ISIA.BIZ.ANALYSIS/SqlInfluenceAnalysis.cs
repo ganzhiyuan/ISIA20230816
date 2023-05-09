@@ -111,7 +111,7 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
 
-                tmpSql.AppendFormat("select * from RAW_DBA_HIST_SQLTEXT_ISFA where sql_id = '{0}'", arguments.SQLID);
+                tmpSql.AppendFormat("select * from RAW_DBA_HIST_SQLTEXT_{1} where sql_id = '{0}'", arguments.SQLID , arguments.DBName);
                 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

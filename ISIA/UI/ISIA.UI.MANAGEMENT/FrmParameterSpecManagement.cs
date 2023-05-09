@@ -167,7 +167,7 @@ namespace ISIA.UI.MANAGEMENT
 
                 return;
             }
-            if (string.IsNullOrEmpty(txtControlLow.Text))
+            /*if (string.IsNullOrEmpty(txtControlLow.Text))
             {
                 txtControlLow.BackColor = Color.Orange;
                 return;
@@ -186,7 +186,7 @@ namespace ISIA.UI.MANAGEMENT
             {
                 txtSpecUpper.BackColor = Color.Orange;
                 return;
-            }
+            }*/
             args = new ParameterSpecManagementArgsPack();
             args.DBID = cmbAddDbName.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.Text.ToString();
@@ -195,11 +195,11 @@ namespace ISIA.UI.MANAGEMENT
             args.RULENAME = cmbRuleName.Text.Split('(')[0];
             args.RULENO = (cmbRuleName.Text.Split('(')[1]).Substring(0, cmbRuleName.Text.Split('(')[1].Length - 1);
             args.DAYS = txtAddDays.Text;
-            args.SPECUPPERLIMIT = txtSpecUpper.EditValue.ToString();
-            args.SPECLOWERLIMIT = txtSpecLow.EditValue.ToString();
-            args.CONTROLLOWERLIMIT = txtControlLow.EditValue.ToString();
-            args.CONTROLUPPERLIMIT = txtControlUpper.EditValue.ToString();
-            args.TARGET = sptarget.EditValue.ToString();
+            args.SPECUPPERLIMIT = txtSpecUpper.Text.ToString();
+            args.SPECLOWERLIMIT = txtSpecLow.Text.ToString();
+            args.CONTROLLOWERLIMIT = txtControlLow.Text.ToString();
+            args.CONTROLUPPERLIMIT = txtControlUpper.Text.ToString();
+            args.TARGET = sptarget.Text.ToString();
             args.STD_VALUE = spstdvalue.Text.ToString();
             args.PARAVAL1 = spparaval1.Text.ToString();
             args.PARAVAL2 = spparaval2.Text.ToString();
@@ -243,16 +243,18 @@ namespace ISIA.UI.MANAGEMENT
                 SelectedRuleNOComboBox(cmbRuleName, dr["RULENO"].ToString(), dr["RULENAME"].ToString());
 
                 txtAddDays.Text = dr["DAYS"].ToString();
-                txtSpecUpper.Text = dr["SPECUPPERLIMIT"].ToString();
-                txtSpecLow.Text = dr["SPECLOWERLIMIT"].ToString();
-                txtControlLow.Text = dr["CONTROLLOWERLIMIT"].ToString();
-                txtControlUpper.Text = dr["CONTROLUPPERLIMIT"].ToString();
-                spstdvalue.Text = dr["STD_VALUE"].ToString();
-                spparaval1.Text = dr["PARAVAL1"].ToString();
-                spparaval2.Text = dr["PARAVAL2"].ToString();
-                spparaval3.Text = dr["PARAVAL3"].ToString();
-                spparaval4.Text = dr["PARAVAL4"].ToString();
-                spparaval5.Text = dr["PARAVAL5"].ToString();
+                txtSpecUpper.EditValue = dr["SPECUPPERLIMIT"];
+                txtSpecLow.EditValue = dr["SPECLOWERLIMIT"];
+                txtControlLow.EditValue = dr["CONTROLLOWERLIMIT"];
+                txtControlUpper.EditValue = dr["CONTROLUPPERLIMIT"];
+                spstdvalue.EditValue = dr["STD_VALUE"];
+                sptarget.EditValue = dr["TARGET"];
+                
+                spparaval1.EditValue = dr["PARAVAL1"];
+                spparaval2.EditValue = dr["PARAVAL2"];
+                spparaval3.EditValue = dr["PARAVAL3"];
+                spparaval4.EditValue = dr["PARAVAL4"];
+                spparaval5.EditValue = dr["PARAVAL5"];
                 if (dr["ISALIVE"].ToString() == "YES")
                 {
                     rdoIsalive.SelectedIndex = 0;
