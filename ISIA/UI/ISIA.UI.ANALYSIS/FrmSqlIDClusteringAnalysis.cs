@@ -76,13 +76,13 @@ namespace ISIA.UI.ANALYSIS
                 
                 if (!base.ValidateUserInput(this.lcSerachOptions)) return;
 
-                Array parast = cmbParameterName.Text.ToString().Split(',').ToArray();
+               /* Array parast = cmbParameterName.Text.ToString().Split(',').ToArray();
                 if (parast.Length < Convert.ToInt32(seclusterin.Text.ToString()))
                 {
                     TAPMsgBox.Instance.ShowMessage("Warning", EnumMsgType.WARNING, "Please select an appropriate Clustering Number");
 
                     return;
-                }
+                }*/
 
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
@@ -345,6 +345,14 @@ namespace ISIA.UI.ANALYSIS
                         dataSet.Tables.Add(dataTable);
                     }
                 }
+            }
+
+            
+            if (dataSet.Tables.Count - 1 <= Convert.ToInt32(seclusterin.Text.ToString()) )
+            {
+                TAPMsgBox.Instance.ShowMessage("Warning", EnumMsgType.WARNING, "Please select an appropriate Clustering Number");
+
+                return;
             }
 
             //绘制主chart
