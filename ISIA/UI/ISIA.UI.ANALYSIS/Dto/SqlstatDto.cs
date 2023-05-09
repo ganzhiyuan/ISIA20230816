@@ -17,6 +17,11 @@ namespace ISIA.UI.ANALYSIS.Dto
         public decimal day7 { get; set; }
         public decimal day14 { get; set; }
         public decimal day21 { get; set; }
+        public string module { get; set; }
+        public string parsing_schema_name { get; set; }
+        public string action { get; set; }
+        public decimal instance_number { get; set; }
+
 
     }
     public class SqlShow
@@ -39,6 +44,10 @@ namespace ISIA.UI.ANALYSIS.Dto
         public decimal week4 { get; set; }
         public decimal AVG { get; set; }
         public string SqlType { get; set; }
+        public string module { get; set; }
+        public string parsing_schema_name { get; set; }
+        public string action { get; set; }
+        public decimal instance_number { get; set; }
 
     }
 

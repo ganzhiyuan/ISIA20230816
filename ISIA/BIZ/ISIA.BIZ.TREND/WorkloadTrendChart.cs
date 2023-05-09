@@ -474,7 +474,7 @@ SELECT sm.dbid
                     tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
-                    tmpSql.AppendFormat(" WHERE a.begin_interval_time > TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime);
+                    tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime);
                     tmpSql.AppendFormat("AND t.sql_id = '{0}' ", arguments.ParamType);
                     tmpSql.Append(" ORDER BY a.begin_interval_time) d ");
                     tmpSql.AppendFormat("where d.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);
@@ -486,7 +486,7 @@ SELECT sm.dbid
                     tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
-                    tmpSql.AppendFormat(" WHERE a.begin_interval_time > TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime);
+                    tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime);
                     tmpSql.AppendFormat("AND t.sql_id = '{0}' ", arguments.ParamType);
                     tmpSql.Append(" ORDER BY a.begin_interval_time) d ");
                     tmpSql.AppendFormat("where d.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);

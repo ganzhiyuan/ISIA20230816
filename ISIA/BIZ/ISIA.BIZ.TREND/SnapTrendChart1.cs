@@ -69,6 +69,29 @@ namespace ISIA.BIZ.TREND
             }
         }
 
+        public void GetSqltext(AwrCommonArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqltext_{0} T where t.dbid='{1}' and t.sql_id='{2}' ",arguments.DbName, arguments.DbId, arguments.SqlId);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void GetSqlstatByUnit(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -107,11 +130,11 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("SELECT  sql_id,  COUNT(*) AS {0} ",arguments.ParameterName);
-                tmpSql.Append(@"FROM(
-                        SELECT DISTINCT  workDate, sql_id
+                tmpSql.AppendFormat("SELECT  sql_id,  COUNT(*) AS {0} ,d.module,parsing_schema_name,action,instance_number ", arguments.ParameterName);
+                tmpSql.Append(@" FROM(
+                        SELECT DISTINCT  workDate, sql_id,c.module,parsing_schema_name,action,instance_number
                         FROM
-                        (SELECT SUBSTR(a.end_interval_time,0,10) workDate, MAX(t.sql_id) sql_id ");
+                        (SELECT SUBSTR(a.end_interval_time,0,10) workDate, MAX(t.sql_id) sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number ");
                  tmpSql.AppendFormat("     FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
                 tmpSql.AppendFormat("     LEFT JOIN raw_dba_hist_snapshot_{0} a ", arguments.DbName);
                 tmpSql.AppendFormat(@"   ON t.snap_id = a.snap_id and t.instance_number=a.instance_number and t.dbid=a.dbid
@@ -120,9 +143,9 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T )",arguments.DbName);
                 tmpSql.AppendFormat(" AND a.end_interval_time>TO_DATE('{0}', 'yyyy-MM-dd') ",arguments.StartTimeKey);
                 tmpSql.AppendFormat("          AND a.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd')",arguments.EndTimeKey);
-                tmpSql.AppendFormat("  GROUP BY a.end_interval_time, t.sql_id  ORDER BY sql_id)) ");
+                tmpSql.AppendFormat("  GROUP BY a.end_interval_time, t.sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number  ORDER BY sql_id) c) d ");
                 tmpSql.AppendFormat("  WHERE workDate >= TRUNC(TO_DATE('{0}', 'yyyy-MM-dd')) - 7 ", arguments.EndTimeKey);
-                tmpSql.AppendFormat("  GROUP BY sql_id  ORDER BY {0} DESC", arguments.ParameterName);
+                tmpSql.AppendFormat("  GROUP BY sql_id,d.module,parsing_schema_name,action,instance_number  ORDER BY {0} DESC", arguments.ParameterName);
                 //arguments.ParameterType 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
