@@ -55,7 +55,9 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string DBID { get; set; }
         public string INSTANCE_NUMBER { get; set; }
 
-        private string _PARADEF;
+        private string _PARADEF ;
+
+        private string _SQLID;
 
         static AwrArgsPack()
         {
@@ -418,6 +420,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _PARADEF = value;
+            }
+        }
+
+        public string SQLID
+        {
+            get
+            {
+                return _SQLID;
+            }
+
+            set
+            {
+                _SQLID = value;
             }
         }
 

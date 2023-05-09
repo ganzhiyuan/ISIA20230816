@@ -45,7 +45,7 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.lcPeriod = new DevExpress.XtraLayout.LayoutControl();
             this.dtpStartTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
             this.dtpEndTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
             this.tLabel6 = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -76,7 +76,7 @@ namespace ISIA.UI.ANALYSIS
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcPeriod = new Steema.TeeChart.TChart();
+            this.chart1 = new Steema.TeeChart.TChart();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -94,8 +94,8 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.navBarControl1.SuspendLayout();
             this.navBarGroupControlContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
-            this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lcPeriod)).BeginInit();
+            this.lcPeriod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).BeginInit();
@@ -166,7 +166,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             // dpnlRight_Container
             // 
-            this.dpnlRight_Container.Controls.Add(this.lcPeriod);
+            this.dpnlRight_Container.Controls.Add(this.chart1);
             this.dpnlRight_Container.Location = new System.Drawing.Point(4, 29);
             this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(4);
             this.dpnlRight_Container.Size = new System.Drawing.Size(979, 634);
@@ -354,8 +354,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 439;
-            this.navBarControl1.Size = new System.Drawing.Size(439, 699);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 351;
+            this.navBarControl1.Size = new System.Drawing.Size(351, 559);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -382,7 +382,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.navBarGroupControlContainer1.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer1.Controls.Add(this.layoutControl2);
+            this.navBarGroupControlContainer1.Controls.Add(this.lcPeriod);
             this.navBarGroupControlContainer1.LookAndFeel.SkinName = "Office 2013";
             this.navBarGroupControlContainer1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -391,21 +391,21 @@ namespace ISIA.UI.ANALYSIS
             this.navBarGroupControlContainer1.Size = new System.Drawing.Size(349, 63);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
-            // layoutControl2
+            // lcPeriod
             // 
-            this.layoutControl2.Controls.Add(this.dtpStartTime);
-            this.layoutControl2.Controls.Add(this.dtpEndTime);
-            this.layoutControl2.Controls.Add(this.tLabel6);
-            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.layoutControl2.Name = "layoutControl2";
-            this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1236, -1122, 812, 500);
-            this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(349, 63);
-            this.layoutControl2.TabIndex = 83;
-            this.layoutControl2.Text = "layoutControl2";
+            this.lcPeriod.Controls.Add(this.dtpStartTime);
+            this.lcPeriod.Controls.Add(this.dtpEndTime);
+            this.lcPeriod.Controls.Add(this.tLabel6);
+            this.lcPeriod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcPeriod.Location = new System.Drawing.Point(0, 0);
+            this.lcPeriod.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.lcPeriod.Margin = new System.Windows.Forms.Padding(4);
+            this.lcPeriod.Name = "lcPeriod";
+            this.lcPeriod.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1236, -1122, 812, 500);
+            this.lcPeriod.Root = this.layoutControlGroup1;
+            this.lcPeriod.Size = new System.Drawing.Size(349, 63);
+            this.lcPeriod.TabIndex = 83;
+            this.lcPeriod.Text = "layoutControl2";
             // 
             // dtpStartTime
             // 
@@ -428,11 +428,10 @@ namespace ISIA.UI.ANALYSIS
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 95);
             this.dtpStartTime.Size = new System.Drawing.Size(162, 24);
-            this.dtpStartTime.StyleController = this.layoutControl2;
+            this.dtpStartTime.StyleController = this.lcPeriod;
             this.dtpStartTime.TabIndex = 18;
             // 
             // dtpEndTime
@@ -459,7 +458,7 @@ namespace ISIA.UI.ANALYSIS
             this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 105);
             this.dtpEndTime.Size = new System.Drawing.Size(162, 24);
-            this.dtpEndTime.StyleController = this.layoutControl2;
+            this.dtpEndTime.StyleController = this.lcPeriod;
             this.dtpEndTime.TabIndex = 19;
             // 
             // tLabel6
@@ -472,7 +471,7 @@ namespace ISIA.UI.ANALYSIS
             this.tLabel6.NeedToTranslate = true;
             this.tLabel6.RepresentativeValue = "~";
             this.tLabel6.Size = new System.Drawing.Size(11, 18);
-            this.tLabel6.StyleController = this.layoutControl2;
+            this.tLabel6.StyleController = this.lcPeriod;
             this.tLabel6.TabIndex = 15;
             this.tLabel6.Text = "~";
             // 
@@ -827,7 +826,7 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // lcPeriod
+            // chart1
             // 
             // 
             // 
@@ -841,105 +840,105 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Bottom.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.Bottom.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Labels.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.Bottom.Labels.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Font.Bold = false;
+            this.chart1.Axes.Bottom.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.Bottom.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.Bottom.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Bottom.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Bottom.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.Bottom.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.Bottom.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Bottom.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Labels.Font.Size = 9;
+            this.chart1.Axes.Bottom.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Bottom.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Bottom.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Bottom.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Angle = 0;
+            this.chart1.Axes.Bottom.Title.Angle = 0;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Bottom.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.Bottom.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Title.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.Bottom.Title.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Font.Bold = false;
+            this.chart1.Axes.Bottom.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.Bottom.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.Bottom.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Bottom.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Bottom.Title.Font.Size = 11;
-            this.lcPeriod.Axes.Bottom.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.Bottom.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Bottom.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Title.Font.Size = 11;
+            this.chart1.Axes.Bottom.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Bottom.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Bottom.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Bottom.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Bottom.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Bottom.Title.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Bottom.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Bottom.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Bottom.Title.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -949,105 +948,105 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Depth.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.Depth.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Labels.Brush.Visible = true;
+            this.chart1.Axes.Depth.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.Depth.Labels.Brush.Solid = true;
+            this.chart1.Axes.Depth.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Font.Bold = false;
+            this.chart1.Axes.Depth.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.Depth.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.Depth.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.Depth.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.Depth.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Depth.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Depth.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.Depth.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.Depth.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Depth.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Depth.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Depth.Labels.Font.Size = 9;
+            this.chart1.Axes.Depth.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Depth.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Depth.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Depth.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Depth.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Depth.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Depth.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Depth.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Depth.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Angle = 0;
+            this.chart1.Axes.Depth.Title.Angle = 0;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Depth.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.Depth.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Title.Brush.Visible = true;
+            this.chart1.Axes.Depth.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.Depth.Title.Brush.Solid = true;
+            this.chart1.Axes.Depth.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Font.Bold = false;
+            this.chart1.Axes.Depth.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.Depth.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.Depth.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.Depth.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.Depth.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Depth.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Depth.Title.Font.Size = 11;
-            this.lcPeriod.Axes.Depth.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.Depth.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Depth.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Depth.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Depth.Title.Font.Size = 11;
+            this.chart1.Axes.Depth.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Depth.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Depth.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Depth.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Depth.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Depth.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Depth.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Depth.Title.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Depth.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Depth.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Depth.Title.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1057,105 +1056,105 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.DepthTop.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.DepthTop.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Labels.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.DepthTop.Labels.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Bold = false;
+            this.chart1.Axes.DepthTop.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.DepthTop.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.DepthTop.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.DepthTop.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.DepthTop.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.DepthTop.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Labels.Font.Size = 9;
+            this.chart1.Axes.DepthTop.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.DepthTop.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.DepthTop.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.DepthTop.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.DepthTop.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Angle = 0;
+            this.chart1.Axes.DepthTop.Title.Angle = 0;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.DepthTop.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.DepthTop.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Title.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.DepthTop.Title.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Font.Bold = false;
+            this.chart1.Axes.DepthTop.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.DepthTop.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.DepthTop.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.DepthTop.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.DepthTop.Title.Font.Size = 11;
-            this.lcPeriod.Axes.DepthTop.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.DepthTop.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.DepthTop.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Title.Font.Size = 11;
+            this.chart1.Axes.DepthTop.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.DepthTop.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.DepthTop.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.DepthTop.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.DepthTop.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.DepthTop.Title.Shadow.Brush.Visible = true;
+            this.chart1.Axes.DepthTop.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.DepthTop.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.DepthTop.Title.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1165,105 +1164,105 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Left.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.Left.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Labels.Brush.Visible = true;
+            this.chart1.Axes.Left.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.Left.Labels.Brush.Solid = true;
+            this.chart1.Axes.Left.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Font.Bold = false;
+            this.chart1.Axes.Left.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.Left.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.Left.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.Left.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.Left.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Left.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Left.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.Left.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.Left.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Left.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Left.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Left.Labels.Font.Size = 9;
+            this.chart1.Axes.Left.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Left.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Left.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Left.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Left.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Left.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Left.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Left.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Left.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Angle = 90;
+            this.chart1.Axes.Left.Title.Angle = 90;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Left.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.Left.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Title.Brush.Visible = true;
+            this.chart1.Axes.Left.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.Left.Title.Brush.Solid = true;
+            this.chart1.Axes.Left.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Font.Bold = false;
+            this.chart1.Axes.Left.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.Left.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.Left.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.Left.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.Left.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Left.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Left.Title.Font.Size = 11;
-            this.lcPeriod.Axes.Left.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.Left.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Left.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Left.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Left.Title.Font.Size = 11;
+            this.chart1.Axes.Left.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Left.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Left.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Left.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Left.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Left.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Left.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Left.Title.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Left.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Left.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Left.Title.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1273,105 +1272,105 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Right.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.Right.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Labels.Brush.Visible = true;
+            this.chart1.Axes.Right.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.Right.Labels.Brush.Solid = true;
+            this.chart1.Axes.Right.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Font.Bold = false;
+            this.chart1.Axes.Right.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.Right.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.Right.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.Right.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.Right.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Right.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Right.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.Right.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.Right.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Right.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Right.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Right.Labels.Font.Size = 9;
+            this.chart1.Axes.Right.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Right.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Right.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Right.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Right.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Right.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Right.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Right.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Right.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Angle = 270;
+            this.chart1.Axes.Right.Title.Angle = 270;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Right.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.Right.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Title.Brush.Visible = true;
+            this.chart1.Axes.Right.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.Right.Title.Brush.Solid = true;
+            this.chart1.Axes.Right.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Font.Bold = false;
+            this.chart1.Axes.Right.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.Right.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.Right.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.Right.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.Right.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Right.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Right.Title.Font.Size = 11;
-            this.lcPeriod.Axes.Right.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.Right.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Right.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Right.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Right.Title.Font.Size = 11;
+            this.chart1.Axes.Right.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Right.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Right.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Right.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Right.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Right.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Right.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Right.Title.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Right.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Right.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Right.Title.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1381,264 +1380,262 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Top.Labels.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Axes.Top.Labels.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Labels.Brush.Visible = true;
+            this.chart1.Axes.Top.Labels.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Axes.Top.Labels.Brush.Solid = true;
+            this.chart1.Axes.Top.Labels.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Font.Bold = false;
+            this.chart1.Axes.Top.Labels.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Axes.Top.Labels.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Labels.Font.Brush.Visible = true;
+            this.chart1.Axes.Top.Labels.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Axes.Top.Labels.Font.Brush.Solid = true;
+            this.chart1.Axes.Top.Labels.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Top.Labels.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Labels.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Top.Labels.Font.Size = 9;
-            this.lcPeriod.Axes.Top.Labels.Font.SizeFloat = 9F;
+            this.chart1.Axes.Top.Labels.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Top.Labels.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Top.Labels.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Top.Labels.Font.Size = 9;
+            this.chart1.Axes.Top.Labels.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Top.Labels.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Labels.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Top.Labels.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Top.Labels.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Top.Labels.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Top.Labels.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Labels.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Top.Labels.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Top.Labels.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Top.Labels.Shadow.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Angle = 0;
+            this.chart1.Axes.Top.Title.Angle = 0;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Axes.Top.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Axes.Top.Title.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Title.Brush.Visible = true;
+            this.chart1.Axes.Top.Title.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Axes.Top.Title.Brush.Solid = true;
+            this.chart1.Axes.Top.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Font.Bold = false;
+            this.chart1.Axes.Top.Title.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Axes.Top.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Title.Font.Brush.Visible = true;
+            this.chart1.Axes.Top.Title.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Axes.Top.Title.Font.Brush.Solid = true;
+            this.chart1.Axes.Top.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Top.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Axes.Top.Title.Font.Size = 11;
-            this.lcPeriod.Axes.Top.Title.Font.SizeFloat = 11F;
+            this.chart1.Axes.Top.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Top.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Top.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Axes.Top.Title.Font.Size = 11;
+            this.chart1.Axes.Top.Title.Font.SizeFloat = 11F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Axes.Top.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Axes.Top.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Axes.Top.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Axes.Top.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Axes.Top.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Axes.Top.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Axes.Top.Title.Shadow.Brush.Visible = true;
-            this.lcPeriod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart1.Axes.Top.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Axes.Top.Title.Shadow.Brush.Solid = true;
+            this.chart1.Axes.Top.Title.Shadow.Brush.Visible = true;
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Footer.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Footer.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Footer.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Footer.Brush.Solid = true;
-            this.lcPeriod.Footer.Brush.Visible = true;
+            this.chart1.Footer.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Footer.Brush.Solid = true;
+            this.chart1.Footer.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Footer.Font.Bold = false;
+            this.chart1.Footer.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Footer.Font.Brush.Color = System.Drawing.Color.Red;
-            this.lcPeriod.Footer.Font.Brush.Solid = true;
-            this.lcPeriod.Footer.Font.Brush.Visible = true;
+            this.chart1.Footer.Font.Brush.Color = System.Drawing.Color.Red;
+            this.chart1.Footer.Font.Brush.Solid = true;
+            this.chart1.Footer.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Footer.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Footer.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Footer.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Footer.Font.Size = 8;
-            this.lcPeriod.Footer.Font.SizeFloat = 8F;
+            this.chart1.Footer.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Footer.Font.Shadow.Brush.Solid = true;
+            this.chart1.Footer.Font.Shadow.Brush.Visible = true;
+            this.chart1.Footer.Font.Size = 8;
+            this.chart1.Footer.Font.SizeFloat = 8F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Footer.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Footer.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Footer.ImageBevel.Brush.Visible = true;
+            this.chart1.Footer.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Footer.ImageBevel.Brush.Solid = true;
+            this.chart1.Footer.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Footer.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Footer.Shadow.Brush.Solid = true;
-            this.lcPeriod.Footer.Shadow.Brush.Visible = true;
+            this.chart1.Footer.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Footer.Shadow.Brush.Solid = true;
+            this.chart1.Footer.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Header.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Header.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Header.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lcPeriod.Header.Brush.Solid = true;
-            this.lcPeriod.Header.Brush.Visible = true;
+            this.chart1.Header.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.chart1.Header.Brush.Solid = true;
+            this.chart1.Header.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Header.Font.Bold = false;
+            this.chart1.Header.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Header.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.Header.Font.Brush.Solid = true;
-            this.lcPeriod.Header.Font.Brush.Visible = true;
+            this.chart1.Header.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.Header.Font.Brush.Solid = true;
+            this.chart1.Header.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Header.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Header.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Header.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Header.Font.Size = 12;
-            this.lcPeriod.Header.Font.SizeFloat = 12F;
+            this.chart1.Header.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Header.Font.Shadow.Brush.Solid = true;
+            this.chart1.Header.Font.Shadow.Brush.Visible = true;
+            this.chart1.Header.Font.Size = 12;
+            this.chart1.Header.Font.SizeFloat = 12F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Header.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Header.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Header.ImageBevel.Brush.Visible = true;
-            this.lcPeriod.Header.Lines = new string[] {
-        ""};
+            this.chart1.Header.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Header.ImageBevel.Brush.Solid = true;
+            this.chart1.Header.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Header.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.lcPeriod.Header.Shadow.Brush.Solid = true;
-            this.lcPeriod.Header.Shadow.Brush.Visible = true;
+            this.chart1.Header.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.chart1.Header.Shadow.Brush.Solid = true;
+            this.chart1.Header.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Legend.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Legend.Brush.Solid = true;
-            this.lcPeriod.Legend.Brush.Visible = true;
+            this.chart1.Legend.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Legend.Brush.Solid = true;
+            this.chart1.Legend.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Font.Bold = false;
+            this.chart1.Legend.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcPeriod.Legend.Font.Brush.Solid = true;
-            this.lcPeriod.Legend.Font.Brush.Visible = true;
+            this.chart1.Legend.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chart1.Legend.Font.Brush.Solid = true;
+            this.chart1.Legend.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Legend.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Legend.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Legend.Font.Size = 9;
-            this.lcPeriod.Legend.Font.SizeFloat = 9F;
+            this.chart1.Legend.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Legend.Font.Shadow.Brush.Solid = true;
+            this.chart1.Legend.Font.Shadow.Brush.Visible = true;
+            this.chart1.Legend.Font.Size = 9;
+            this.chart1.Legend.Font.SizeFloat = 9F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Legend.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Legend.ImageBevel.Brush.Visible = true;
+            this.chart1.Legend.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Legend.ImageBevel.Brush.Solid = true;
+            this.chart1.Legend.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lcPeriod.Legend.Shadow.Brush.Solid = true;
-            this.lcPeriod.Legend.Shadow.Brush.Visible = true;
+            this.chart1.Legend.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.chart1.Legend.Shadow.Brush.Solid = true;
+            this.chart1.Legend.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1648,95 +1645,94 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Legend.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Legend.Symbol.Shadow.Brush.Solid = true;
-            this.lcPeriod.Legend.Symbol.Shadow.Brush.Visible = true;
+            this.chart1.Legend.Symbol.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Legend.Symbol.Shadow.Brush.Solid = true;
+            this.chart1.Legend.Symbol.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Legend.Title.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Legend.Title.Brush.Solid = true;
-            this.lcPeriod.Legend.Title.Brush.Visible = true;
+            this.chart1.Legend.Title.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Legend.Title.Brush.Solid = true;
+            this.chart1.Legend.Title.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Font.Bold = true;
+            this.chart1.Legend.Title.Font.Bold = true;
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Font.Brush.Color = System.Drawing.Color.Black;
-            this.lcPeriod.Legend.Title.Font.Brush.Solid = true;
-            this.lcPeriod.Legend.Title.Font.Brush.Visible = true;
+            this.chart1.Legend.Title.Font.Brush.Color = System.Drawing.Color.Black;
+            this.chart1.Legend.Title.Font.Brush.Solid = true;
+            this.chart1.Legend.Title.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Legend.Title.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.Legend.Title.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.Legend.Title.Font.Size = 8;
-            this.lcPeriod.Legend.Title.Font.SizeFloat = 8F;
+            this.chart1.Legend.Title.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Legend.Title.Font.Shadow.Brush.Solid = true;
+            this.chart1.Legend.Title.Font.Shadow.Brush.Visible = true;
+            this.chart1.Legend.Title.Font.Size = 8;
+            this.chart1.Legend.Title.Font.SizeFloat = 8F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Legend.Title.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Legend.Title.ImageBevel.Brush.Visible = true;
+            this.chart1.Legend.Title.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Legend.Title.ImageBevel.Brush.Solid = true;
+            this.chart1.Legend.Title.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Legend.Title.Shadow.Brush.Solid = true;
-            this.lcPeriod.Legend.Title.Shadow.Brush.Visible = true;
-            this.lcPeriod.Location = new System.Drawing.Point(0, 0);
-            this.lcPeriod.Margin = new System.Windows.Forms.Padding(5);
-            this.lcPeriod.Name = "lcPeriod";
+            this.chart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Legend.Title.Shadow.Brush.Solid = true;
+            this.chart1.Legend.Title.Shadow.Brush.Visible = true;
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Panel.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Panel.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Panel.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.lcPeriod.Panel.Brush.Solid = true;
-            this.lcPeriod.Panel.Brush.Visible = true;
+            this.chart1.Panel.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.chart1.Panel.Brush.Solid = true;
+            this.chart1.Panel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Panel.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Panel.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Panel.ImageBevel.Brush.Visible = true;
+            this.chart1.Panel.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Panel.ImageBevel.Brush.Solid = true;
+            this.chart1.Panel.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Panel.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Panel.Shadow.Brush.Solid = true;
-            this.lcPeriod.Panel.Shadow.Brush.Visible = true;
+            this.chart1.Panel.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Panel.Shadow.Brush.Solid = true;
+            this.chart1.Panel.Shadow.Brush.Visible = true;
             // 
             // 
             // 
@@ -1744,113 +1740,113 @@ namespace ISIA.UI.ANALYSIS
             margins1.Left = 100;
             margins1.Right = 100;
             margins1.Top = 100;
-            this.lcPeriod.Printer.Margins = margins1;
-            this.lcPeriod.Size = new System.Drawing.Size(979, 634);
+            this.chart1.Printer.Margins = margins1;
+            this.chart1.Size = new System.Drawing.Size(979, 634);
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.SubFooter.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.SubFooter.Brush.Solid = true;
-            this.lcPeriod.SubFooter.Brush.Visible = true;
+            this.chart1.SubFooter.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.SubFooter.Brush.Solid = true;
+            this.chart1.SubFooter.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Font.Bold = false;
+            this.chart1.SubFooter.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Font.Brush.Color = System.Drawing.Color.Red;
-            this.lcPeriod.SubFooter.Font.Brush.Solid = true;
-            this.lcPeriod.SubFooter.Font.Brush.Visible = true;
+            this.chart1.SubFooter.Font.Brush.Color = System.Drawing.Color.Red;
+            this.chart1.SubFooter.Font.Brush.Solid = true;
+            this.chart1.SubFooter.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.SubFooter.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.SubFooter.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.SubFooter.Font.Size = 8;
-            this.lcPeriod.SubFooter.Font.SizeFloat = 8F;
+            this.chart1.SubFooter.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.SubFooter.Font.Shadow.Brush.Solid = true;
+            this.chart1.SubFooter.Font.Shadow.Brush.Visible = true;
+            this.chart1.SubFooter.Font.Size = 8;
+            this.chart1.SubFooter.Font.SizeFloat = 8F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.SubFooter.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.SubFooter.ImageBevel.Brush.Visible = true;
+            this.chart1.SubFooter.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.SubFooter.ImageBevel.Brush.Solid = true;
+            this.chart1.SubFooter.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubFooter.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.SubFooter.Shadow.Brush.Solid = true;
-            this.lcPeriod.SubFooter.Shadow.Brush.Visible = true;
+            this.chart1.SubFooter.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.SubFooter.Shadow.Brush.Solid = true;
+            this.chart1.SubFooter.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.SubHeader.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lcPeriod.SubHeader.Brush.Solid = true;
-            this.lcPeriod.SubHeader.Brush.Visible = true;
+            this.chart1.SubHeader.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.chart1.SubHeader.Brush.Solid = true;
+            this.chart1.SubHeader.Brush.Visible = true;
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Font.Bold = false;
+            this.chart1.SubHeader.Font.Bold = false;
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.lcPeriod.SubHeader.Font.Brush.Solid = true;
-            this.lcPeriod.SubHeader.Font.Brush.Visible = true;
+            this.chart1.SubHeader.Font.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.chart1.SubHeader.Font.Brush.Solid = true;
+            this.chart1.SubHeader.Font.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.SubHeader.Font.Shadow.Brush.Solid = true;
-            this.lcPeriod.SubHeader.Font.Shadow.Brush.Visible = true;
-            this.lcPeriod.SubHeader.Font.Size = 12;
-            this.lcPeriod.SubHeader.Font.SizeFloat = 12F;
+            this.chart1.SubHeader.Font.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.SubHeader.Font.Shadow.Brush.Solid = true;
+            this.chart1.SubHeader.Font.Shadow.Brush.Visible = true;
+            this.chart1.SubHeader.Font.Size = 12;
+            this.chart1.SubHeader.Font.SizeFloat = 12F;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.SubHeader.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.SubHeader.ImageBevel.Brush.Visible = true;
+            this.chart1.SubHeader.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.SubHeader.ImageBevel.Brush.Solid = true;
+            this.chart1.SubHeader.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.SubHeader.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.lcPeriod.SubHeader.Shadow.Brush.Solid = true;
-            this.lcPeriod.SubHeader.Shadow.Brush.Visible = true;
-            this.lcPeriod.TabIndex = 3;
+            this.chart1.SubHeader.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.chart1.SubHeader.Shadow.Brush.Solid = true;
+            this.chart1.SubHeader.Shadow.Brush.Visible = true;
+            this.chart1.TabIndex = 0;
             // 
             // 
             // 
@@ -1860,133 +1856,133 @@ namespace ISIA.UI.ANALYSIS
             // 
             // 
             // 
-            this.lcPeriod.Walls.Back.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Walls.Back.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Walls.Back.Brush.Color = System.Drawing.Color.Silver;
-            this.lcPeriod.Walls.Back.Brush.Solid = true;
-            this.lcPeriod.Walls.Back.Brush.Visible = false;
+            this.chart1.Walls.Back.Brush.Color = System.Drawing.Color.Silver;
+            this.chart1.Walls.Back.Brush.Solid = true;
+            this.chart1.Walls.Back.Brush.Visible = false;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Back.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Walls.Back.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Walls.Back.ImageBevel.Brush.Visible = true;
+            this.chart1.Walls.Back.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Walls.Back.ImageBevel.Brush.Solid = true;
+            this.chart1.Walls.Back.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Back.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Walls.Back.Shadow.Brush.Solid = true;
-            this.lcPeriod.Walls.Back.Shadow.Brush.Visible = true;
+            this.chart1.Walls.Back.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Walls.Back.Shadow.Brush.Solid = true;
+            this.chart1.Walls.Back.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Bottom.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Walls.Bottom.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Walls.Bottom.Brush.Color = System.Drawing.Color.White;
-            this.lcPeriod.Walls.Bottom.Brush.Solid = true;
-            this.lcPeriod.Walls.Bottom.Brush.Visible = true;
+            this.chart1.Walls.Bottom.Brush.Color = System.Drawing.Color.White;
+            this.chart1.Walls.Bottom.Brush.Solid = true;
+            this.chart1.Walls.Bottom.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Bottom.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Walls.Bottom.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Walls.Bottom.ImageBevel.Brush.Visible = true;
+            this.chart1.Walls.Bottom.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Walls.Bottom.ImageBevel.Brush.Solid = true;
+            this.chart1.Walls.Bottom.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Bottom.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Walls.Bottom.Shadow.Brush.Solid = true;
-            this.lcPeriod.Walls.Bottom.Shadow.Brush.Visible = true;
+            this.chart1.Walls.Bottom.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Walls.Bottom.Shadow.Brush.Solid = true;
+            this.chart1.Walls.Bottom.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Left.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Walls.Left.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Walls.Left.Brush.Color = System.Drawing.Color.LightYellow;
-            this.lcPeriod.Walls.Left.Brush.Solid = true;
-            this.lcPeriod.Walls.Left.Brush.Visible = true;
+            this.chart1.Walls.Left.Brush.Color = System.Drawing.Color.LightYellow;
+            this.chart1.Walls.Left.Brush.Solid = true;
+            this.chart1.Walls.Left.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Left.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Walls.Left.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Walls.Left.ImageBevel.Brush.Visible = true;
+            this.chart1.Walls.Left.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Walls.Left.ImageBevel.Brush.Solid = true;
+            this.chart1.Walls.Left.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Left.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Walls.Left.Shadow.Brush.Solid = true;
-            this.lcPeriod.Walls.Left.Shadow.Brush.Visible = true;
+            this.chart1.Walls.Left.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Walls.Left.Shadow.Brush.Solid = true;
+            this.chart1.Walls.Left.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Right.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
+            this.chart1.Walls.Right.Bevel.Outer = Steema.TeeChart.Drawing.BevelStyles.None;
             // 
             // 
             // 
-            this.lcPeriod.Walls.Right.Brush.Color = System.Drawing.Color.LightYellow;
-            this.lcPeriod.Walls.Right.Brush.Solid = true;
-            this.lcPeriod.Walls.Right.Brush.Visible = true;
+            this.chart1.Walls.Right.Brush.Color = System.Drawing.Color.LightYellow;
+            this.chart1.Walls.Right.Brush.Solid = true;
+            this.chart1.Walls.Right.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Right.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
-            this.lcPeriod.Walls.Right.ImageBevel.Brush.Solid = true;
-            this.lcPeriod.Walls.Right.ImageBevel.Brush.Visible = true;
+            this.chart1.Walls.Right.ImageBevel.Brush.Color = System.Drawing.Color.LightGray;
+            this.chart1.Walls.Right.ImageBevel.Brush.Solid = true;
+            this.chart1.Walls.Right.ImageBevel.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Walls.Right.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
-            this.lcPeriod.Walls.Right.Shadow.Brush.Solid = true;
-            this.lcPeriod.Walls.Right.Shadow.Brush.Visible = true;
+            this.chart1.Walls.Right.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
+            this.chart1.Walls.Right.Shadow.Brush.Solid = true;
+            this.chart1.Walls.Right.Shadow.Brush.Visible = true;
             // 
             // 
             // 
             // 
             // 
             // 
-            this.lcPeriod.Zoom.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.lcPeriod.Zoom.Brush.Solid = true;
-            this.lcPeriod.Zoom.Brush.Visible = false;
+            this.chart1.Zoom.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.chart1.Zoom.Brush.Solid = true;
+            this.chart1.Zoom.Brush.Visible = false;
             // 
             // FrmSqlInfluenceAnalysis
             // 
@@ -2017,8 +2013,8 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
             this.navBarGroupControlContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
-            this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lcPeriod)).EndInit();
+            this.lcPeriod.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).EndInit();
@@ -2063,7 +2059,7 @@ namespace ISIA.UI.ANALYSIS
         public DevExpress.XtraNavBar.NavBarControl navBarControl1;
         public DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
-        public DevExpress.XtraLayout.LayoutControl layoutControl2;
+        public DevExpress.XtraLayout.LayoutControl lcPeriod;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel6;
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
@@ -2083,7 +2079,6 @@ namespace ISIA.UI.ANALYSIS
         public TAP.UIControls.BasicControlsDEV.TButton btnSelect;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        public Steema.TeeChart.TChart lcPeriod;
         private TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpStartTime;
         private TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpEndTime;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
@@ -2096,5 +2091,6 @@ namespace ISIA.UI.ANALYSIS
         public TAP.UIControls.BasicControlsDEV.TLabel lblInstance;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private Steema.TeeChart.TChart chart1;
     }
 }

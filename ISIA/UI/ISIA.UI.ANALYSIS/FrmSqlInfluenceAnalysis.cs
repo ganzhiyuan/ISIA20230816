@@ -170,14 +170,14 @@ namespace ISIA.UI.ANALYSIS
         {
 
             DataTable dt=ConvertDs(ds);
-            this.lcPeriod.Series.Clear();
-            this.lcPeriod.ContextMenuStrip = this.contextMenuStrip1;
-            this.lcPeriod.Legend.LegendStyle = LegendStyles.Series;
-            this.lcPeriod.Header.Text = "SQL Influence TOP10";
-            Steema.TeeChart.Styles.Bar bar1 = new Steema.TeeChart.Styles.Bar(lcPeriod.Chart);
-            this.lcPeriod.Axes.Bottom.Title.Text = "SQL ID";  //设置X轴标题
-            this.lcPeriod.Axes.Left.Title.Text = "Parm Value";//设置Y轴标题
-            var markstip = new MarksTip(lcPeriod.Chart);
+            this.chart1.Series.Clear();
+            this.chart1.ContextMenuStrip = this.contextMenuStrip1;
+            this.chart1.Legend.LegendStyle = LegendStyles.Series;
+            this.chart1.Header.Text = "SQL Influence TOP10";
+            Steema.TeeChart.Styles.Bar bar1 = new Steema.TeeChart.Styles.Bar(chart1.Chart);
+            this.chart1.Axes.Bottom.Title.Text = "SQL ID";  //设置X轴标题
+            this.chart1.Axes.Left.Title.Text = "Parm Value";//设置Y轴标题
+            var markstip = new MarksTip(chart1.Chart);
 
             //tChart1.Chart.Panning.Allow = ScrollModes.None;
             //tChart1.Chart.Panel.Gradient.Visible = false;
@@ -199,6 +199,10 @@ namespace ISIA.UI.ANALYSIS
             bar1.DataSource = dt;
             bar1.GetSeriesMark += Bar_GetSeriesMark;//提示信息事件
 
+
+
+            chart1.ClickSeries += Chart1_ClickSeries;//数据点击事件
+
             //this.tChart1.Series[0].DataSource = ds.Tables[0];
             //foreach(DataRow dr in dt.Rows)
             //{
@@ -208,7 +212,24 @@ namespace ISIA.UI.ANALYSIS
             //this.tChart1.Legend.Shadow.Color = Color.Cyan;//图例
             //this.tChart1.Legend.Shadow.Width = 4;
         }
-      
+
+        private void Chart1_ClickSeries(object sender, Series s, int valueIndex, MouseEventArgs e)
+        {
+            DataTable dt = (DataTable)s.DataSource;//获取序列数据
+            //valueIndex.ToString();//获取点下标,从0开始
+            awrArgsPack.SQLID = dt.Rows[valueIndex]["SQL_ID"].ToString();
+            awrArgsPack.StartTime = DateTime.Now.AddDays(-59).ToString();
+            DataTable dtsqlid =  Bs.ExecuteDataTable("Getsqlid", awrArgsPack.getPack());
+
+            DataTable sqlidtext =  Bs.ExecuteDataTable("Getsqlidtext", awrArgsPack.getPack());
+
+            FrmRankingofSQLShowSqlText frmsql = new FrmRankingofSQLShowSqlText(dtsqlid , awrArgsPack.SQLID , sqlidtext.Rows[0]["SQL_TEXT"].ToString() ,awrArgsPack.WorkloadSqlParm);
+            frmsql.Show();
+
+        }
+
+
+
         private DataTable ConvertDs(DataSet ds)
         {
             //DataTable dtResult = new DataTable();
