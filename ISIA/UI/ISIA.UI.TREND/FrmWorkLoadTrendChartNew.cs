@@ -34,8 +34,8 @@ namespace ISIA.UI.TREND
         object[] result = new object[2];
         DataSet ParamentRelationDS = new DataSet();
         public string groupUnit { get; set; }
-        List<Color> colors = new List<Color> {Color.Red, Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
-            Color.FromArgb(125,96,160), Color.FromArgb(70,170,197), Color.FromArgb(218,129,55)  };
+        List<Color> colors = new List<Color> { Color.FromArgb(218,129,55),Color.Red, Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
+            Color.FromArgb(125,96,160), Color.FromArgb(70,170,197)  };
 
 
         public FrmWorkLoadTrendChartNew()
