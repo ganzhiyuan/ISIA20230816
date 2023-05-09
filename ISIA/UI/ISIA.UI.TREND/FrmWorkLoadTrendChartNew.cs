@@ -34,6 +34,8 @@ namespace ISIA.UI.TREND
         object[] result = new object[2];
         DataSet ParamentRelationDS = new DataSet();
         public string groupUnit { get; set; }
+        List<Color> colors = new List<Color> {Color.Red, Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
+            Color.FromArgb(125,96,160), Color.FromArgb(70,170,197), Color.FromArgb(218,129,55)  };
 
 
         public FrmWorkLoadTrendChartNew()
@@ -127,7 +129,7 @@ namespace ISIA.UI.TREND
         }
         public void DisplayData(DataSet ds)
         {
-            if (dataSet == null)
+            if (dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0] == null)
             {
                 return;
             }
@@ -197,25 +199,25 @@ namespace ISIA.UI.TREND
             {
                 return;
             }
-            panelControl1.Controls.Clear();
-
-            ChartLayout chartLayout1 = new ChartLayout();
-
-
-            panelControl1.Controls.Add(chartLayout1);
-
-            chartLayout1.Dock = DockStyle.Fill;
-
-            chartLayout1.Charts.Clear();
-            chartLayout1.Refresh();
+            List<string> arrayStr = cmbLinePara.EditValue.ToString().Replace(", ", ",").Split(',').ToList();
             dataSetTB = new DataSet();
             DataTable dataTable = ConvertDTToListRef(workLoadList);
-            SetCharts(chartLayout1, dataTable);
+            List<SqlStatRowDto> list = DataTableExtend.GetList<SqlStatRowDto>(dataTable);
+            list = list.Where(x => arrayStr.Contains(x.PARAMENT_NAME)).ToList();
+            if (list.Any())
+            {
 
-            return;
+                DataTable dt = DataTableExtend.ConvertToDataSet<SqlStatRowDto>(list).Tables[0];
+                SetCharts( dt);
+            }
+            else
+            {
+                SetCharts(dataTable);
+            }
+            //SetCharts(chartLayout1, dataTable);
         }
 
-        private void SetCharts(ChartLayout chartLayout1, DataTable dataTable)
+        private void SetCharts(DataTable dataTable)
         {
             List<SqlShow> list = DataTableExtend.GetList<SqlShow>(dataTable);
             DataTable dtKeyValue = DataTableExtend.ConvertToDataSet(list).Tables[0];
@@ -234,72 +236,71 @@ namespace ISIA.UI.TREND
             }
             if (dataSetTB.Tables.Count > 0)
             {
-
-                foreach (DataTable dt in dataSetTB.Tables)
+                flowLayoutPanel1.Controls.Clear();
+                int width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(4);
+                int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(4);
+                for (int i = 0; i < dataSetTB.Tables.Count; i++)
                 {
-                    if (dt.TableName != "TABLE")
-                    {
-                        List<SqlShow> listSqlShows = DataTableExtend.GetList<SqlShow>(dt);
-                        var listNum = listSqlShows.Select(x => x.INSTANCE_NUMBER).Distinct().ToList();
-                        chartLayout1.Add(dt.TableName);
-                        foreach (var item in listNum)
-                        {
-                            var listTem = listSqlShows.Where(x => x.INSTANCE_NUMBER == item).ToList();
-                            DataTable dtTem = DataTableExtend.ConvertToDataSet(listTem).Tables[0];
-                            Line line = CreateLine(dtTem,item);
-                            foreach (TChart chart in chartLayout1.Charts)
-                            {
-                                if (chart.Text==dt.TableName)
-                                {
-                                    chart.Series.Add(line);
-                                }
-                            }
-                        }
+                    TChart tChart = CreateCharts(dataSetTB.Tables[i].TableName,width, height, i);
 
+                    // 将 TChart 控件添加到 FlowLayoutPanel 中
+                    flowLayoutPanel1.Controls.Add(tChart);
+
+                    List<SqlShow> listSqlShows = DataTableExtend.GetList<SqlShow>(dataSetTB.Tables[i]);
+                    var listNum = listSqlShows.Select(x => x.INSTANCE_NUMBER).Distinct().ToList();
+                    foreach (var item in listNum)
+                    {
+                        var listTem = listSqlShows.Where(x => x.INSTANCE_NUMBER == item).ToList();
+                        DataTable dtTem = DataTableExtend.ConvertToDataSet(listTem).Tables[0];
+                        Line line = CreateLine(dtTem, item);
+
+                        tChart.Series.Add(line);
                     }
                 }
             }
+        }
 
-            foreach (TChart chart in chartLayout1.Charts)
-            {
-                //chart.Legend.Visible = true;
-                //chart.Legend.LegendStyle = LegendStyles.Series;
-                chart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
-                chart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
-                chart.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
-                chart.Axes.Left.AutomaticMinimum = false;
-                chart.Axes.Right.Minimum = 0; //设置右侧轴的最小值为0
-                chart.MouseDown += tChart1_MouseDown;
-                chart.MouseUp += tChart1_MouseUp;
-                chart.ClickSeries += Chart_ClickSeries;
-                //chart.Panning.Allow = ScrollModes.None;
-                //chart.Zoom.Direction = ZoomDirections.None;
-                chart.Panning.Allow = ScrollModes.None;
-            }
+        private TChart CreateCharts(string strName,int width, int height, int i)
+        {
+            // 创建 TChart 控件
+            TChart tChart = new TChart();
+            tChart.Text = strName;
+            tChart.Tag = i;
+            tChart.Width = width - 10;
+            tChart.Height = height - 10;
+            tChart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
+            tChart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+            tChart.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
+            tChart.Axes.Left.AutomaticMinimum = false;
+            tChart.Axes.Right.Minimum = 0; //设置右侧轴的最小值为0
+            tChart.MouseDown += tChart1_MouseDown;
+            tChart.MouseUp += tChart1_MouseUp;
+            tChart.ClickSeries += Chart_ClickSeries;
+            //chart.Panning.Allow = ScrollModes.None;
+            //chart.Zoom.Direction = ZoomDirections.None;
+            tChart.Panning.Allow = ScrollModes.None;
+            return tChart;
         }
 
         private Line CreateLine(DataTable dstable,decimal d)
         {
+            int i = Convert.ToInt32(d);
+
+            if (d>6)
+            {
+                i = Convert.ToInt32(d) % 6;
+            }
             Line line = new Line();
 
             line.DataSource = dstable;
             line.YValues.DataMember = "PARAMENT_VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.Legend.Visible = false;
-            if (d==1)
-            {
-                line.Color = Color.OrangeRed;
+            line.Color = colors[i];
 
-                line.Pointer.HorizSize = 1;
-                line.Pointer.VertSize = 1;
-            }
-            else
-            {
 
-                line.Pointer.HorizSize = 1;
-                line.Pointer.VertSize = 1;
-                line.Color = Color.Red;
-            }
+            line.Pointer.HorizSize = 1;
+            line.Pointer.VertSize = 1;
             //line.ColorEachLine = true;
             //line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10; 
@@ -377,7 +378,14 @@ namespace ISIA.UI.TREND
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
                                 AwrArgsPack args = new AwrArgsPack();
-                                args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
+                                if (cmbGroupUnit.Text == "DAY")
+                                {
+                                    args.StartTime = DateTime.Now.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
+                                }
+                                else
+                                {
+                                    args.StartTime = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
+                                }
                                 args.DBName = argsSel.DBName;
                                 args.ParamNamesString = result;
                                 args.ParamType = row["SQL_ID"].ToString();
@@ -387,7 +395,6 @@ namespace ISIA.UI.TREND
                             }
                             FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
 
-                            wdf.Close();
                             frm.ShowDialog();
                         }
                         finally
@@ -530,42 +537,11 @@ namespace ISIA.UI.TREND
 
         private void cmbLinePara_EditValueChanged(object sender, EventArgs e)
         {
-            if (dataSet==null||dataSet.Tables.Count==0||dataSet.Tables[0]==null)
+            if (dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0] == null)
             {
                 return;
             }
-            List<string> arrayStr = cmbLinePara.EditValue.ToString().Replace(", ",",").Split(',').ToList();
-
-            List<WorkLoadInfo> workLoadList = DataTableExtend.GetList<WorkLoadInfo>(dataSet.Tables[0]);
-            if (workLoadList == null || !workLoadList.Any())
-            {
-                return;
-            }
-            panelControl1.Controls.Clear();
-
-            ChartLayout chartLayout1 = new ChartLayout();
-
-
-            panelControl1.Controls.Add(chartLayout1);
-
-            chartLayout1.Dock = DockStyle.Fill;
-
-            chartLayout1.Charts.Clear();
-            chartLayout1.Refresh();
-            dataSetTB = new DataSet();
-            DataTable dataTable = ConvertDTToListRef(workLoadList);
-            List<SqlStatRowDto> list = DataTableExtend.GetList<SqlStatRowDto>(dataTable);
-            list = list.Where(x => arrayStr.Contains(x.PARAMENT_NAME)).ToList();
-            if (list.Any())
-            {
-
-                DataTable dt = DataTableExtend.ConvertToDataSet<SqlStatRowDto>(list).Tables[0];
-                SetCharts(chartLayout1, dt);
-            }
-            else
-            {
-                SetCharts(chartLayout1, dataTable);
-            }
+            CreateTeeChart(dataSet.Tables[0]);
         }
 
         private void cmbDbName_EditValueChanged(object sender, EventArgs e)
