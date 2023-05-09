@@ -380,11 +380,11 @@ namespace ISIA.UI.TREND
                                 AwrArgsPack args = new AwrArgsPack();
                                 if (cmbGroupUnit.Text == "DAY")
                                 {
-                                    args.StartTime = DateTime.Now.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.StartTime = dtpEndTime.DateTime.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
                                 }
                                 else
                                 {
-                                    args.StartTime = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.StartTime = dtpEndTime.DateTime.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
                                 }
                                 args.DBName = argsSel.DBName;
                                 args.ParamNamesString = result;
@@ -395,6 +395,7 @@ namespace ISIA.UI.TREND
                             }
                             FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
 
+                            wdf.Close();
                             frm.ShowDialog();
                         }
                         finally
