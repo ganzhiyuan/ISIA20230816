@@ -386,6 +386,7 @@ namespace ISIA.UI.TREND
                                 {
                                     args.StartTime = dtpEndTime.DateTime.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
                                 }
+                                args.EndTime = dtpEndTime.DateTime.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
                                 args.DBName = argsSel.DBName;
                                 args.ParamNamesString = result;
                                 args.ParamType = row["SQL_ID"].ToString();
