@@ -421,12 +421,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnSelect);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 995);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 807);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel2.MinimumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(390, 53);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel2.TabIndex = 112;
             // 
             // btnSelect
@@ -480,8 +480,8 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 420;
-            this.navBarControl1.Size = new System.Drawing.Size(420, 824);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 336;
+            this.navBarControl1.Size = new System.Drawing.Size(336, 824);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -747,12 +747,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnSave);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 995);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 807);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.MaximumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel3.MinimumSize = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(390, 53);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(312, 42);
             this.flowLayoutPanel3.TabIndex = 113;
             // 
             // btnSave
@@ -808,8 +808,8 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 420;
-            this.navBarControl2.Size = new System.Drawing.Size(420, 1061);
+            this.navBarControl2.OptionsNavPane.ExpandedWidth = 336;
+            this.navBarControl2.Size = new System.Drawing.Size(336, 849);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
             // 

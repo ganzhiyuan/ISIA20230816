@@ -48,6 +48,19 @@ namespace ISIA.UI.MANAGEMENT
             {
                 items.Value = items.Description.ToString();
             }
+            //控件值为空
+            txtSpecUpper.EditValue = null;
+            txtSpecLow.EditValue = null;
+            txtControlLow.EditValue = null;
+            txtControlUpper.EditValue = null;
+            spstdvalue.EditValue = null;
+            sptarget.EditValue = null;
+
+            spparaval1.EditValue = null;
+            spparaval2.EditValue = null;
+            spparaval3.EditValue = null;
+            spparaval4.EditValue = null;
+            spparaval5.EditValue = null;
 
             //dateStart.DateTime = DateTime.Now.AddDays(-1);
             //dateEnd.DateTime = DateTime.Now;

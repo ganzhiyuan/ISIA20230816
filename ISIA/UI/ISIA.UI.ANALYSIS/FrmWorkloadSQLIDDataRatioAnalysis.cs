@@ -27,6 +27,8 @@ namespace ISIA.UI.ANALYSIS
 
         DataSet dsPARADEF = null;
 
+        DataTable dtparameterid = null;
+
         #region getset
         public BizDataClient Bs { get => bs; set => bs = value; }
         #endregion
@@ -35,6 +37,12 @@ namespace ISIA.UI.ANALYSIS
         {
             InitializeComponent();
             Bs = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.WorkloadSqlRelationAnalysis");
+
+
+            dtparameterid = Bs.ExecuteDataTable("GetIdName");
+            searchid.Properties.DataSource = dtparameterid;
+            searchid.Properties.DisplayMember = "PARAMETERNAME";
+            searchid.Properties.ValueMember = "PARAMETERID";
 
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
@@ -127,10 +135,10 @@ namespace ISIA.UI.ANALYSIS
 
         private void InitializeSqlId()
         {
-            AwrArgsPack args = new AwrArgsPack();
+            /*AwrArgsPack args = new AwrArgsPack();
 
 
-            sqlCollection = SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();
+            sqlCollection = SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();*/
 
         }
 
@@ -185,10 +193,10 @@ namespace ISIA.UI.ANALYSIS
 
             argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
 
-
-            if (SLUEParamentName.PARAMETERNAME != null)
+            //
+            if (searchid.Text != null)
             {
-                argument.PARADEF = SLUEParamentName.PARAMETERNAME.ToString();
+                argument.PARADEF = searchid.Text.ToString();
             }
 
 
@@ -198,7 +206,7 @@ namespace ISIA.UI.ANALYSIS
         {
             DataSet = Bs.ExecuteDataSet("GetWorkpara", awrArgsPack.getPack());
 
-            if (SLUEParamentName.PARAMETERNAME != null)
+            if (searchid.Text != null)
             {
                 dsPARADEF = Bs.ExecuteDataSet("GetParmDEF", awrArgsPack.getPack());
                 dsPARADEF.Tables[0].TableName = "TABLE";
@@ -241,14 +249,12 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-
-
             Line line = CreateLine(ds.Tables[0]);
             chart.Series.Add(line);
 
 
 
-            if (SLUEParamentName.PARAMETERNAME != null)
+            if (searchid.Text != null)
             {
                 IEnumerable<IGrouping<string, DataRow>> result = dsPARADEF.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["PARAMETER"].ToString());
                 if (result != null && result.Count() > 0)
@@ -270,7 +276,7 @@ namespace ISIA.UI.ANALYSIS
                     {
                         if (dtPARAMETER.TableName != "TABLE")
                         {
-                            Line lineSQL = CreateLine(dtPARAMETER);
+                            Line lineSQL = CreateYLine(dtPARAMETER);
                             chart.Series.Add(lineSQL);
                         }
                     }
@@ -284,6 +290,8 @@ namespace ISIA.UI.ANALYSIS
             chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
             chart.Axes.Bottom.Labels.ExactDateTime = true;
             chart.Axes.Bottom.Ticks.Width = 0;
+            chart.Axes.Left.Visible = true;
+            chart.Axes.Right.Visible = true;
 
 
             dpnlRight_Container.Controls.Add(chart);
@@ -293,6 +301,28 @@ namespace ISIA.UI.ANALYSIS
         {
             Line line = new Line();
             line.DataSource = dt;
+            line.YValues.DataMember = "VALUE";
+            line.XValues.DataMember = "END_INTERVAL_TIME";
+            line.ShowInLegend = true;
+            line.Legend.Text = dt.TableName;
+            line.Title = dt.TableName;
+
+            line.Legend.BorderRound = 20;
+            line.XValues.DateTime = true;
+
+            line.GetSeriesMark += Line_GetSeriesMark;
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+            }
+            return line;
+        }
+
+        private Line CreateYLine(DataTable dt)
+        {
+            Line line = new Line();
+            line.DataSource = dt;
+            line.VertAxis = VerticalAxis.Right;
             line.YValues.DataMember = "VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.ShowInLegend = true;

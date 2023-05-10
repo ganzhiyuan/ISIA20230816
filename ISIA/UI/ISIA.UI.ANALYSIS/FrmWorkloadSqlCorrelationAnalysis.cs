@@ -18,6 +18,8 @@ using DevExpress.XtraGrid.Views.Printing;
 using System.Drawing;
 using TAP;
 using System.Collections;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -374,6 +376,19 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.BestFitColumns();
+
+            //创建一个格式化规则
+            FormatConditionRuleValue formatRule = new FormatConditionRuleValue();
+            GridFormatRule gridFormatRule = new GridFormatRule();
+            gridFormatRule.Column = this.gridView1.Columns["R"];
+            gridFormatRule.Rule = formatRule;
+            //设置格式化规则的条件和值
+            formatRule.Condition = FormatCondition.Greater;
+            formatRule.Value1 = "0.5";
+            //设置格式化规则的外观选项
+            formatRule.Appearance.ForeColor = Color.White;
+            //将规则添加到GridView中的格式化规则集合中
+            gridView1.FormatRules.Add(gridFormatRule);
         }
 
         //R column show color
@@ -391,6 +406,10 @@ namespace ISIA.UI.ANALYSIS
 
                 }
             }
+
+
+            
+
         }
 
         private Color GetCorrelationColor(double value)

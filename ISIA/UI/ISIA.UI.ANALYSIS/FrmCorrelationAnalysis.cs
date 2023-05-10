@@ -159,6 +159,8 @@ namespace ISIA.UI.ANALYSIS
             colorProvider.RangeStops.Add(new HeatmapRangeStop(0.9, HeatmapRangeStopType.Absolute));
             colorProvider.RangeStops.Add(new HeatmapRangeStop(1, HeatmapRangeStopType.Absolute));
 
+            
+
             heatmap.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
             heatmap.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
             heatmap.Label.Visible = true;
