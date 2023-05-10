@@ -17,7 +17,27 @@ namespace ISIA.BIZ.ANALYSIS
     {
 
 
-        
+        public void GetIdName()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(" SELECT TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE = 'METRIC'  ORDER BY PARAMETERNAME  ");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
 
 
         public void GetWorkpara(AwrArgsPack arguments)
