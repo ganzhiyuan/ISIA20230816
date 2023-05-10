@@ -259,6 +259,13 @@ namespace ISIA.UI.ANALYSIS
                     tableMain1.TableName = "sql";
 
                     SqlView.TextChangeBindSQLType(tableMain1.Rows[0][0].ToString());
+
+
+                    textaction.Text =  dataSet1.Tables[chart.Text].Rows[0]["ACTION"]== null?"": dataSet1.Tables[chart.Text].Rows[0]["ACTION"].ToString();
+                    textmodule.Text =  dataSet1.Tables[chart.Text].Rows[0]["MODULE"]== null?"": dataSet1.Tables[chart.Text].Rows[0]["MODULE"].ToString();
+                    textINSTANCE_NUMBER.Text =  dataSet1.Tables[chart.Text].Rows[0]["INSTANCE_NUMBER"] == null?"": dataSet1.Tables[chart.Text].Rows[0]["INSTANCE_NUMBER"].ToString();
+                    textPSName.Text =  dataSet1.Tables[chart.Text].Rows[0]["PARSING_SCHEMA_NAME"] == null?"": dataSet1.Tables[chart.Text].Rows[0]["PARSING_SCHEMA_NAME"].ToString();
+
                 }
             }
 
