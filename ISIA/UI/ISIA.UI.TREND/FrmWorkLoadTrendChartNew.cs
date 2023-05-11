@@ -42,22 +42,22 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
-            dtpStartTime.DateTime = DateTime.Now.AddYears(-1).AddDays(-1);
-            dtpEndTime.DateTime = DateTime.Now.AddDays(-1);
+            this.dtpStartTime.DateTime = DateTime.Now.AddDays(-59);
+            this.dtpEndTime.DateTime = DateTime.Now;
         }
 
         private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
         {
-            //if (comboBoxEditGroupUnit.Text == "DAY")
-            //{
-            //    this.dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
-            //    this.dtpEndTime.DateTime = DateTime.Now;
-            //}
-            //else if (comboBoxEditGroupUnit.Text == "WEEK")
-            //{
-            //    this.dtpStartTime.DateTime = DateTime.Now.AddDays(-7);
-            //    this.dtpEndTime.DateTime = DateTime.Now;
-            //}
+            if (cmbGroupUnit.Text == "DAY")
+            {
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-59);
+                this.dtpEndTime.DateTime = DateTime.Now;
+            }
+            else if (cmbGroupUnit.Text == "INTERVAL")
+            {
+                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-6);
+                this.dtpEndTime.DateTime = DateTime.Now;
+            }
             //else if (comboBoxEditGroupUnit.Text == "MONTH")
             //{
             //    this.dtpStartTime.DateTime = DateTime.Now.AddMonths(-1);
@@ -351,8 +351,16 @@ namespace ISIA.UI.TREND
                                 return;
                             }
                             AwrArgsPack argsSel = new AwrArgsPack();
-                            argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
-                            argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                            if (cmbGroupUnit.Text == "DAY")
+                            {
+                                argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
+                                argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                            }
+                            else
+                            {
+                                argsSel.StartTime = minTime.AddMinutes(-10).ToString("yyyy-MM-dd HH:mm:ss");
+                                argsSel.EndTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
+                            }
                             argsSel.ParamNamesString = result;
                             argsSel.ParamType = string.Join(",", snapId);
                             argsSel.DBName = args.DBName;
@@ -375,6 +383,7 @@ namespace ISIA.UI.TREND
 
 
                             List<DataSet> listDs = new List<DataSet>();
+                            int errorCount = 0;
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
                                 AwrArgsPack args = new AwrArgsPack();
@@ -394,14 +403,24 @@ namespace ISIA.UI.TREND
                                 DataSet dataSet1 = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
                                 if (dataSet1 == null || dataSet1.Tables == null || dataSet1.Tables[0].Rows.Count == 0)
                                 {
+                                    errorCount++;
                                     continue;
                                 }
                                 listDs.Add(dataSet1);
                             }
-                            FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
+                            FrmWorkLoadTreadShowSqlText frm = null;
+                            if (errorCount != dsRelation.Tables[0].Rows.Count)
+                            {
+                                wdf.Close();
+                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
+                                frm.ShowDialog();
+                            }
+                            else
+                            {
+                                string errMessage = "Data is null.";
+                                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                            }
 
-                            wdf.Close();
-                            frm.ShowDialog();
                         }
                         finally
                         {
