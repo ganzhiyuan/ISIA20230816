@@ -136,6 +136,10 @@ namespace ISIA.UI.TREND
             List<Line> list = new List<Line>();
             foreach (var dstable in listDs)
             {
+                if (dstable==null||dstable.Tables==null|| dstable.Tables[0].Rows.Count==0)
+                {
+                    continue;
+                }
                 Line line = new Line();
 
                 line.DataSource = dstable.Tables[0];
