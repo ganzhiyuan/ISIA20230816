@@ -353,8 +353,8 @@ namespace ISIA.UI.TREND
                             AwrArgsPack argsSel = new AwrArgsPack();
                             if (cmbGroupUnit.Text == "DAY")
                             {
-                                argsSel.StartTime = minTime.AddDays(-1).ToString("yyyy-MM-dd");
-                                argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+2).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                                argsSel.StartTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
+                                argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
                             }
                             else
                             {
