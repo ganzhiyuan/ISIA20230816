@@ -392,6 +392,10 @@ namespace ISIA.UI.TREND
                                 args.ParamType = row["SQL_ID"].ToString();
                                 args.INSTANCE_NUMBER = instance_num;
                                 DataSet dataSet1 = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
+                                if (dataSet1 == null || dataSet1.Tables == null || dataSet1.Tables[0].Rows.Count == 0)
+                                {
+                                    continue;
+                                }
                                 listDs.Add(dataSet1);
                             }
                             FrmWorkLoadTreadShowSqlText frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
