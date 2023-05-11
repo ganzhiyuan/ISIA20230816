@@ -551,6 +551,7 @@ namespace ISIA.UI.TREND
             this.cmbGroupUnit.Size = new System.Drawing.Size(108, 20);
             this.cmbGroupUnit.StyleController = this.lcSerachOptions;
             this.cmbGroupUnit.TabIndex = 30;
+            this.cmbGroupUnit.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditGroupUnit_SelectedValueChanged);
             // 
             // cmbLinePara
             // 
