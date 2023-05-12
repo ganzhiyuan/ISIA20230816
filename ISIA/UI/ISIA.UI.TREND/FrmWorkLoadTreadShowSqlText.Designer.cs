@@ -29,10 +29,10 @@ namespace ISIA.UI.TREND
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkLoadTreadShowSqlText));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnCopy = new TAP.UIControls.BasicControlsDEV.TButton();
             this.SqlView = new TAP.UIControls.BasicControlsDEV.THtmlView();
@@ -45,7 +45,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -55,6 +54,20 @@ namespace ISIA.UI.TREND
             this.tChartSqlText = new Steema.TeeChart.TChart();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtAction = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtMOdule = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtParsing = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btParsing = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btAction = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btModule = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.tButton2 = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSqlId.Properties)).BeginInit();
@@ -65,7 +78,6 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -76,20 +88,37 @@ namespace ISIA.UI.TREND
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAction.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMOdule.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParsing.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.BackColor = System.Drawing.Color.White;
+            this.layoutControl1.Controls.Add(this.tButton2);
+            this.layoutControl1.Controls.Add(this.btModule);
+            this.layoutControl1.Controls.Add(this.btAction);
+            this.layoutControl1.Controls.Add(this.btParsing);
+            this.layoutControl1.Controls.Add(this.txtParsing);
+            this.layoutControl1.Controls.Add(this.txtMOdule);
+            this.layoutControl1.Controls.Add(this.txtAction);
             this.layoutControl1.Controls.Add(this.btnCopy);
             this.layoutControl1.Controls.Add(this.SqlView);
             this.layoutControl1.Controls.Add(this.tButton1);
             this.layoutControl1.Controls.Add(this.txtSqlId);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 530);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 549);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1140, 192);
+            this.layoutControl1.Size = new System.Drawing.Size(1140, 213);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -112,7 +141,7 @@ namespace ISIA.UI.TREND
             this.btnCopy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.ImageOptions.Image")));
             this.btnCopy.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnCopy.IsRequired = false;
-            this.btnCopy.Location = new System.Drawing.Point(1019, 12);
+            this.btnCopy.Location = new System.Drawing.Point(570, 12);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(2);
             this.btnCopy.MaximumSize = new System.Drawing.Size(70, 25);
             this.btnCopy.MinimumSize = new System.Drawing.Size(70, 25);
@@ -136,13 +165,13 @@ namespace ISIA.UI.TREND
             this.SqlView.DragDropMode = DevExpress.XtraRichEdit.DragDropMode.Manual;
             this.SqlView.IsRequired = false;
             this.SqlView.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.SqlView.Location = new System.Drawing.Point(83, 41);
+            this.SqlView.Location = new System.Drawing.Point(165, 70);
             this.SqlView.Name = "SqlView";
             this.SqlView.NeedToTranslate = false;
             this.SqlView.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
             this.SqlView.ReadOnly = true;
             this.SqlView.RepresentativeValue = "";
-            this.SqlView.Size = new System.Drawing.Size(1045, 100);
+            this.SqlView.Size = new System.Drawing.Size(889, 102);
             this.SqlView.TabIndex = 113;
             // 
             // tButton1
@@ -164,7 +193,7 @@ namespace ISIA.UI.TREND
             this.tButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
             this.tButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tButton1.IsRequired = false;
-            this.tButton1.Location = new System.Drawing.Point(1058, 155);
+            this.tButton1.Location = new System.Drawing.Point(1058, 176);
             this.tButton1.Margin = new System.Windows.Forms.Padding(2);
             this.tButton1.MaximumSize = new System.Drawing.Size(70, 25);
             this.tButton1.MinimumSize = new System.Drawing.Size(70, 25);
@@ -180,12 +209,12 @@ namespace ISIA.UI.TREND
             // 
             // txtSqlId
             // 
-            this.txtSqlId.Location = new System.Drawing.Point(83, 12);
+            this.txtSqlId.Location = new System.Drawing.Point(165, 12);
             this.txtSqlId.Name = "txtSqlId";
             this.txtSqlId.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtSqlId.Properties.Appearance.Options.UseBackColor = true;
             this.txtSqlId.Properties.ReadOnly = true;
-            this.txtSqlId.Size = new System.Drawing.Size(932, 20);
+            this.txtSqlId.Size = new System.Drawing.Size(401, 20);
             this.txtSqlId.StyleController = this.layoutControl1;
             this.txtSqlId.TabIndex = 4;
             // 
@@ -195,14 +224,20 @@ namespace ISIA.UI.TREND
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.emptySpaceItem1,
             this.emptySpaceItem2,
             this.layoutControlItem3,
             this.layoutControlItem2,
             this.layoutControlItem5,
-            this.emptySpaceItem3});
+            this.layoutControlItem7,
+            this.layoutControlItem9,
+            this.layoutControlItem11,
+            this.layoutControlItem10,
+            this.layoutControlItem8,
+            this.layoutControlItem12,
+            this.layoutControlItem13,
+            this.emptySpaceItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1140, 192);
+            this.Root.Size = new System.Drawing.Size(1140, 213);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -210,22 +245,22 @@ namespace ISIA.UI.TREND
             this.layoutControlItem1.Control = this.txtSqlId;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1007, 29);
+            this.layoutControlItem1.Size = new System.Drawing.Size(558, 29);
             this.layoutControlItem1.Text = "SQL_ID";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(59, 14);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(141, 14);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 133);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(1046, 87);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1120, 10);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(74, 77);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 143);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 164);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(1046, 29);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -233,7 +268,7 @@ namespace ISIA.UI.TREND
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.tButton1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(1046, 143);
+            this.layoutControlItem3.Location = new System.Drawing.Point(1046, 164);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(74, 29);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -242,28 +277,20 @@ namespace ISIA.UI.TREND
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.SqlView;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 29);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 58);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1120, 104);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1046, 106);
             this.layoutControlItem2.Text = "SQL_TEXT";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(59, 14);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(141, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnCopy;
-            this.layoutControlItem5.Location = new System.Drawing.Point(1007, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(558, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(74, 29);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(1081, 0);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(39, 29);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControl2
             // 
@@ -288,17 +315,18 @@ namespace ISIA.UI.TREND
             // 
             // gridView1
             // 
-            gridFormatRule1.Name = "Format2";
-            formatConditionRuleValue1.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
-            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
-            formatConditionRuleValue1.Value1 = 1;
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            this.gridView1.FormatRules.Add(gridFormatRule1);
+            gridFormatRule2.Name = "Format2";
+            formatConditionRuleValue2.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
+            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue2.Value1 = 1;
+            gridFormatRule2.Rule = formatConditionRuleValue2;
+            this.gridView1.FormatRules.Add(gridFormatRule2);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsCustomization.AllowGroup = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
@@ -333,7 +361,7 @@ namespace ISIA.UI.TREND
             this.layoutControl3.Location = new System.Drawing.Point(0, 265);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(1140, 265);
+            this.layoutControl3.Size = new System.Drawing.Size(1140, 284);
             this.layoutControl3.TabIndex = 2;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -1248,12 +1276,12 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins1.Bottom = 100;
-            margins1.Left = 100;
-            margins1.Right = 100;
-            margins1.Top = 100;
-            this.tChartSqlText.Printer.Margins = margins1;
-            this.tChartSqlText.Size = new System.Drawing.Size(1116, 241);
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChartSqlText.Printer.Margins = margins2;
+            this.tChartSqlText.Size = new System.Drawing.Size(1116, 260);
             // 
             // 
             // 
@@ -1503,7 +1531,7 @@ namespace ISIA.UI.TREND
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem6});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1140, 265);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1140, 284);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem6
@@ -1511,15 +1539,243 @@ namespace ISIA.UI.TREND
             this.layoutControlItem6.Control = this.tChartSqlText;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(1120, 245);
+            this.layoutControlItem6.Size = new System.Drawing.Size(1120, 264);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // txtAction
+            // 
+            this.txtAction.Location = new System.Drawing.Point(165, 41);
+            this.txtAction.Name = "txtAction";
+            this.txtAction.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtAction.Properties.Appearance.Options.UseBackColor = true;
+            this.txtAction.Properties.ReadOnly = true;
+            this.txtAction.Size = new System.Drawing.Size(401, 20);
+            this.txtAction.StyleController = this.layoutControl1;
+            this.txtAction.TabIndex = 116;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.txtAction;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 29);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(558, 29);
+            this.layoutControlItem7.Text = "ACTION";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(141, 14);
+            // 
+            // txtMOdule
+            // 
+            this.txtMOdule.Location = new System.Drawing.Point(797, 12);
+            this.txtMOdule.Name = "txtMOdule";
+            this.txtMOdule.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtMOdule.Properties.Appearance.Options.UseBackColor = true;
+            this.txtMOdule.Properties.ReadOnly = true;
+            this.txtMOdule.Size = new System.Drawing.Size(257, 20);
+            this.txtMOdule.StyleController = this.layoutControl1;
+            this.txtMOdule.TabIndex = 117;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.txtMOdule;
+            this.layoutControlItem8.Location = new System.Drawing.Point(632, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(414, 29);
+            this.layoutControlItem8.Text = "MODULE";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(141, 14);
+            // 
+            // txtParsing
+            // 
+            this.txtParsing.Location = new System.Drawing.Point(797, 41);
+            this.txtParsing.Name = "txtParsing";
+            this.txtParsing.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtParsing.Properties.Appearance.Options.UseBackColor = true;
+            this.txtParsing.Properties.ReadOnly = true;
+            this.txtParsing.Size = new System.Drawing.Size(257, 20);
+            this.txtParsing.StyleController = this.layoutControl1;
+            this.txtParsing.TabIndex = 118;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.txtParsing;
+            this.layoutControlItem9.Location = new System.Drawing.Point(632, 29);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(414, 29);
+            this.layoutControlItem9.Text = "PARSING_SCHEMA_NAME";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(141, 14);
+            // 
+            // btParsing
+            // 
+            this.btParsing.Appearance.BackColor = System.Drawing.Color.White;
+            this.btParsing.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btParsing.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btParsing.Appearance.Options.UseBackColor = true;
+            this.btParsing.Appearance.Options.UseBorderColor = true;
+            this.btParsing.Appearance.Options.UseFont = true;
+            this.btParsing.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btParsing.AppearanceHovered.Options.UseBackColor = true;
+            this.btParsing.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btParsing.AppearancePressed.Options.UseBackColor = true;
+            this.btParsing.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btParsing.ControlID = "btnSelect";
+            this.btParsing.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btParsing.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btParsing.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image1")));
+            this.btParsing.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btParsing.IsRequired = false;
+            this.btParsing.Location = new System.Drawing.Point(1058, 41);
+            this.btParsing.Margin = new System.Windows.Forms.Padding(2);
+            this.btParsing.MaximumSize = new System.Drawing.Size(70, 25);
+            this.btParsing.MinimumSize = new System.Drawing.Size(70, 25);
+            this.btParsing.Name = "btParsing";
+            this.btParsing.NeedToTranslate = true;
+            this.btParsing.RepresentativeValue = "Copy";
+            this.btParsing.Size = new System.Drawing.Size(70, 25);
+            this.btParsing.StyleController = this.layoutControl1;
+            this.btParsing.TabIndex = 119;
+            this.btParsing.Text = "Copy";
+            this.btParsing.UseVisualStyleBackColor = true;
+            this.btParsing.Click += new System.EventHandler(this.btParsing_Click);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.btParsing;
+            this.layoutControlItem10.Location = new System.Drawing.Point(1046, 29);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(74, 29);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
+            // btAction
+            // 
+            this.btAction.Appearance.BackColor = System.Drawing.Color.White;
+            this.btAction.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btAction.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btAction.Appearance.Options.UseBackColor = true;
+            this.btAction.Appearance.Options.UseBorderColor = true;
+            this.btAction.Appearance.Options.UseFont = true;
+            this.btAction.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btAction.AppearanceHovered.Options.UseBackColor = true;
+            this.btAction.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btAction.AppearancePressed.Options.UseBackColor = true;
+            this.btAction.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btAction.ControlID = "btnSelect";
+            this.btAction.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btAction.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btAction.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton3.ImageOptions.Image")));
+            this.btAction.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btAction.IsRequired = false;
+            this.btAction.Location = new System.Drawing.Point(570, 41);
+            this.btAction.Margin = new System.Windows.Forms.Padding(2);
+            this.btAction.MaximumSize = new System.Drawing.Size(70, 25);
+            this.btAction.MinimumSize = new System.Drawing.Size(70, 25);
+            this.btAction.Name = "btAction";
+            this.btAction.NeedToTranslate = true;
+            this.btAction.RepresentativeValue = "Copy";
+            this.btAction.Size = new System.Drawing.Size(70, 25);
+            this.btAction.StyleController = this.layoutControl1;
+            this.btAction.TabIndex = 120;
+            this.btAction.Text = "Copy";
+            this.btAction.UseVisualStyleBackColor = true;
+            this.btAction.Click += new System.EventHandler(this.btAction_Click);
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.btAction;
+            this.layoutControlItem11.Location = new System.Drawing.Point(558, 29);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(74, 29);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
+            // 
+            // btModule
+            // 
+            this.btModule.Appearance.BackColor = System.Drawing.Color.White;
+            this.btModule.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btModule.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btModule.Appearance.Options.UseBackColor = true;
+            this.btModule.Appearance.Options.UseBorderColor = true;
+            this.btModule.Appearance.Options.UseFont = true;
+            this.btModule.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btModule.AppearanceHovered.Options.UseBackColor = true;
+            this.btModule.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btModule.AppearancePressed.Options.UseBackColor = true;
+            this.btModule.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btModule.ControlID = "btnSelect";
+            this.btModule.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btModule.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btModule.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton4.ImageOptions.Image")));
+            this.btModule.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btModule.IsRequired = false;
+            this.btModule.Location = new System.Drawing.Point(1058, 12);
+            this.btModule.Margin = new System.Windows.Forms.Padding(2);
+            this.btModule.MaximumSize = new System.Drawing.Size(70, 25);
+            this.btModule.MinimumSize = new System.Drawing.Size(70, 25);
+            this.btModule.Name = "btModule";
+            this.btModule.NeedToTranslate = true;
+            this.btModule.RepresentativeValue = "Copy";
+            this.btModule.Size = new System.Drawing.Size(70, 25);
+            this.btModule.StyleController = this.layoutControl1;
+            this.btModule.TabIndex = 121;
+            this.btModule.Text = "Copy";
+            this.btModule.UseVisualStyleBackColor = true;
+            this.btModule.Click += new System.EventHandler(this.btModule_Click);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.btModule;
+            this.layoutControlItem12.Location = new System.Drawing.Point(1046, 0);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(74, 29);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
+            // 
+            // tButton2
+            // 
+            this.tButton2.Appearance.BackColor = System.Drawing.Color.White;
+            this.tButton2.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.tButton2.Appearance.Options.UseBackColor = true;
+            this.tButton2.Appearance.Options.UseBorderColor = true;
+            this.tButton2.Appearance.Options.UseFont = true;
+            this.tButton2.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton2.AppearanceHovered.Options.UseBackColor = true;
+            this.tButton2.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tButton2.AppearancePressed.Options.UseBackColor = true;
+            this.tButton2.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.tButton2.ControlID = "btnSelect";
+            this.tButton2.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tButton2.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.tButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton2.ImageOptions.Image")));
+            this.tButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.tButton2.IsRequired = false;
+            this.tButton2.Location = new System.Drawing.Point(1058, 70);
+            this.tButton2.Margin = new System.Windows.Forms.Padding(2);
+            this.tButton2.MaximumSize = new System.Drawing.Size(70, 25);
+            this.tButton2.MinimumSize = new System.Drawing.Size(70, 25);
+            this.tButton2.Name = "tButton2";
+            this.tButton2.NeedToTranslate = true;
+            this.tButton2.RepresentativeValue = "Copy";
+            this.tButton2.Size = new System.Drawing.Size(70, 25);
+            this.tButton2.StyleController = this.layoutControl1;
+            this.tButton2.TabIndex = 122;
+            this.tButton2.Text = "Copy";
+            this.tButton2.UseVisualStyleBackColor = true;
+            this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.tButton2;
+            this.layoutControlItem13.Location = new System.Drawing.Point(1046, 58);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(74, 29);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // FrmWorkLoadTreadShowSqlText
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 722);
+            this.ClientSize = new System.Drawing.Size(1140, 762);
             this.Controls.Add(this.layoutControl3);
             this.Controls.Add(this.layoutControl2);
             this.Controls.Add(this.layoutControl1);
@@ -1537,7 +1793,6 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -1548,6 +1803,16 @@ namespace ISIA.UI.TREND
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAction.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMOdule.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtParsing.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1566,7 +1831,6 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         public TAP.UIControls.BasicControlsDEV.TButton btnCopy;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -1576,5 +1840,19 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private Steema.TeeChart.TChart tChartSqlText;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        public TAP.UIControls.BasicControlsDEV.TButton btAction;
+        public TAP.UIControls.BasicControlsDEV.TButton btParsing;
+        private DevExpress.XtraEditors.TextEdit txtParsing;
+        private DevExpress.XtraEditors.TextEdit txtMOdule;
+        private DevExpress.XtraEditors.TextEdit txtAction;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        public TAP.UIControls.BasicControlsDEV.TButton btModule;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        public TAP.UIControls.BasicControlsDEV.TButton tButton2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }

@@ -71,6 +71,16 @@ namespace ISIA.UI.TREND
                 chart.Width = width-10;
                 chart.Height = height-10;
             }
+            foreach (var chart in flowLayoutPanel2.Controls.OfType<TChart>().ToArray())
+            {
+                chart.Width = width - 10;
+                chart.Height = height - 10;
+            }
+            foreach (var chart in flowLayoutPanel3.Controls.OfType<TChart>().ToArray())
+            {
+                chart.Width = width - 10;
+                chart.Height = height - 10;
+            }
 
         }
 

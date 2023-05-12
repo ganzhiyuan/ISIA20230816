@@ -428,9 +428,9 @@ SELECT sm.dbid
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("SELECT ROWNUM,e.* FROM ( ");
-                tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,d.sql_text FROM (", arguments.ParamNamesString);
-                tmpSql.AppendFormat("select sql_id,ROUND(avg({0}),0) {0},instance_number from (", arguments.ParamNamesString);
-                tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0},t.instance_number", arguments.ParamNamesString);
+                tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,c.module,c.action,c.parsing_schema_name,d.sql_text FROM (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("select sql_id,ROUND(avg({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0},t.instance_number, t.module, t.action, t.parsing_schema_name", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                 tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
                 tmpSql.Append(" where t.snap_id in ");
@@ -442,7 +442,7 @@ SELECT sm.dbid
                 tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTime);
                 tmpSql.AppendFormat("          )) b ");
                 tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);
-                tmpSql.AppendFormat("            group by   sql_id,instance_number order by {0} desc", arguments.ParamNamesString);
+                tmpSql.AppendFormat("            group by   sql_id,instance_number,b.module,b.action,b.parsing_schema_name order by {0} desc", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  ) c LEFT JOIN raw_dba_hist_sqltext_{0} d ON c.sql_id=d.sql_id", arguments.DBName);
                 tmpSql.AppendFormat("                where c.instance_number in ({0}) ", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
                 tmpSql.AppendFormat("   ORDER BY c.{0} DESC) e", arguments.ParamNamesString);
@@ -470,27 +470,27 @@ SELECT sm.dbid
                 StringBuilder tmpSql = new StringBuilder();
                 if (arguments.ParamNamesString == "ELAPSED_TIME_DELTA" || arguments.ParamNamesString == "CPU_TIME_DELTA")
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0})/1000000,0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
-                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0})/1000000,0) {0},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.ParamNamesString);
+                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
                     tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  and  a.begin_interval_time <= TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime, arguments.EndTime);
                     tmpSql.AppendFormat("AND t.sql_id = '{0}' ", arguments.ParamType);
                     tmpSql.Append(" ORDER BY a.begin_interval_time) d ");
                     tmpSql.AppendFormat("where d.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);
-                    tmpSql.Append(" GROUP BY d.workdate,d.sql_id,d.instance_number ORDER BY d.workdate");
+                    tmpSql.Append(" GROUP BY d.workdate,d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name ORDER BY d.workdate");
                 }
                 else
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0}),0) {0},d.sql_id,d.instance_number  FROM ( ", arguments.ParamNamesString);
-                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd') workdate,ROUND(sum(d.{0}),0) {0},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.ParamNamesString);
+                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd') workDate, T.{0},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
                     tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') and  a.begin_interval_time <= TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
                     tmpSql.AppendFormat("AND t.sql_id = '{0}' ", arguments.ParamType);
                     tmpSql.Append(" ORDER BY a.begin_interval_time) d ");
                     tmpSql.AppendFormat("where d.instance_number = '{0}' ", arguments.INSTANCE_NUMBER);
-                    tmpSql.Append(" GROUP BY d.workdate,d.sql_id,d.instance_number ORDER BY d.workdate");
+                    tmpSql.Append(" GROUP BY d.workdate,d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name ORDER BY d.workdate");
                 }
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

@@ -50,10 +50,35 @@ namespace ISIA.UI.TREND
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+            Clipboard.SetDataObject(txtSqlId.Text);
+            TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+        }
+        private void tButton2_Click(object sender, EventArgs e)
+        {
             Clipboard.SetDataObject(SqlView.Text);
             TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
         }
 
+        private void btModule_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(txtMOdule.Text);
+            TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+
+        }
+
+        private void btAction_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(txtAction.Text);
+            TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+
+        }
+
+        private void btParsing_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(txtParsing.Text);
+            TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Success copied.");
+
+        }
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             DataRow dr = gridView1.GetDataRow(e.FocusedRowHandle) as DataRow;
@@ -63,6 +88,9 @@ namespace ISIA.UI.TREND
             }
             this.txtSqlId.Text = dr["SQL_ID"].ToString();
             SqlView.TextChangeBindSQLType(dr["SQL_TEXT"].ToString());
+            this.txtMOdule.Text = dr["module"].ToString();
+            this.txtAction.Text = dr["action"].ToString();
+            this.txtParsing.Text = dr["parsing_schema_name"].ToString();
 
         }
 
@@ -77,6 +105,7 @@ namespace ISIA.UI.TREND
                 {
                     item.Fixed = FixedStyle.Left;
                 }
+                //item.OptionsColumn.AllowEdit = false;
             }
 
             tChartSqlText.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
@@ -85,7 +114,7 @@ namespace ISIA.UI.TREND
             tChartSqlText.Axes.Left.AutomaticMinimum = false;
             tChartSqlText.Axes.Right.Minimum = 0; //设置右
             tChartSqlText.Panning.Allow = ScrollModes.None;
-            
+
         }
         Dictionary<int, DataSet> dic = new Dictionary<int, DataSet>();
 
@@ -164,5 +193,6 @@ namespace ISIA.UI.TREND
             
             return list;
         }
+
     }
 }

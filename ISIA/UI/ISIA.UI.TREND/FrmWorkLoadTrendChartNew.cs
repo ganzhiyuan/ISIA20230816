@@ -42,7 +42,7 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
-            this.dtpStartTime.DateTime = DateTime.Now.AddDays(-59);
+            this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
             this.dtpEndTime.DateTime = DateTime.Now;
         }
 
@@ -50,7 +50,7 @@ namespace ISIA.UI.TREND
         {
             if (cmbGroupUnit.Text == "DAY")
             {
-                this.dtpStartTime.DateTime = DateTime.Now.AddDays(-59);
+                this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
                 this.dtpEndTime.DateTime = DateTime.Now;
             }
             else if (cmbGroupUnit.Text == "INTERVAL")
