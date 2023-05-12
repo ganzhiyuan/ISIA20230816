@@ -64,6 +64,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Development documents", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAP.Fressage.UI", "UI\TAP.Fressage.UI\TAP.Fressage.UI.csproj", "{FEF7B8F8-6F1A-4A45-9918-196253A0F563}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ISIASetup", "ISIASetup\ISIASetup.vdproj", "{A464F401-44F1-4A47-A660-2D663D35B983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -888,6 +890,26 @@ Global
 		{FEF7B8F8-6F1A-4A45-9918-196253A0F563}.SingleImage|x64.Build.0 = Debug|Any CPU
 		{FEF7B8F8-6F1A-4A45-9918-196253A0F563}.SingleImage|x86.ActiveCfg = Debug|Any CPU
 		{FEF7B8F8-6F1A-4A45-9918-196253A0F563}.SingleImage|x86.Build.0 = Debug|Any CPU
+		{A464F401-44F1-4A47-A660-2D663D35B983}.CD_ROM|Any CPU.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.CD_ROM|Mixed Platforms.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.CD_ROM|x64.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.CD_ROM|x86.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Debug|Any CPU.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Debug|x64.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Debug|x86.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.DVD-5|Any CPU.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.DVD-5|Mixed Platforms.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.DVD-5|x64.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.DVD-5|x86.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Release|Any CPU.ActiveCfg = Release
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Release|Mixed Platforms.ActiveCfg = Release
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Release|x64.ActiveCfg = Release
+		{A464F401-44F1-4A47-A660-2D663D35B983}.Release|x86.ActiveCfg = Release
+		{A464F401-44F1-4A47-A660-2D663D35B983}.SingleImage|Any CPU.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.SingleImage|Mixed Platforms.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.SingleImage|x64.ActiveCfg = Debug
+		{A464F401-44F1-4A47-A660-2D663D35B983}.SingleImage|x86.ActiveCfg = Debug
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
