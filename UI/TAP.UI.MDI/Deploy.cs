@@ -8,6 +8,11 @@ using System.Text;
 using TAP.Base;
 using TAP.Base.Configuration;
 using TAP.FTP;
+using Newtonsoft.Json;
+using System.Net;
+using DevExpress.XtraPrinting.Native;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace TAP.UI.MDI
 {
@@ -26,6 +31,12 @@ namespace TAP.UI.MDI
         private string _localDir;
         private string _appName;
         private string _appDirectory;
+
+        private string _deployMethod;
+        private string _webAddress;
+        private string _webAPIAddress;
+        private string _serverFilePath;
+
 
         private FTPclient _ftpClient;
 
@@ -66,18 +77,74 @@ namespace TAP.UI.MDI
                 _password = ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.Password;
                 _appName = ConfigurationManager.Instance.AppSection.MDIName;
                 _appDirectory = TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.AppDirectory;
+                                                
+                _deployMethod = ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.DeployMethod;
 
-                _ftpClient = new FTPclient(_ftpHost, _userName, _password);
-                bool flag = this.CheckFXVersion(_appDirectory);
-                if (flag)
+                if (_deployMethod == "FTP")
                 {
-                    //this.DownloadFXFiles();
-                    this.DownloadApplicationFiles();
+                    _ftpClient = new FTPclient(_ftpHost, _userName, _password);
+                    bool flag = this.CheckFXVersion(_appDirectory);
+                    if (flag)
+                    {
+                        //this.DownloadFXFiles();
+                        this.DownloadApplicationFiles();
+                    }
+                    else
+                    {
+                        this.DownloadApplicationFiles();
+                    }
                 }
                 else
                 {
-                    this.DownloadApplicationFiles();
+                    //webApi /api/Files/GetFileDetails
+
+                    _webAddress = ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.WebAddress;
+                    _webAPIAddress = _webAddress + "/api/Files/GetFileDetails";
+                    _serverFilePath = ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.PhysicalFilePath;
+                    // https://localhost:44324  + /ISIA_Patch
+
+                    if (_ftpRoot.Substring(_ftpRoot.Length - 1) != "/" )
+                    {
+                        _ftpRoot = _ftpRoot + "/";
+                    }
+
+                    string fileBaseUrl = _webAddress + _ftpRoot;
+                    string serverDirectoryPath = _serverFilePath;  // The server's directory path
+
+                    WebClient client = new WebClient();
+
+                    try
+                    {
+                        // Call the API to get the file list
+                        string apiResponse = client.DownloadString(_webAPIAddress);
+                        var files = JsonConvert.DeserializeObject<ServerFile[]>(apiResponse);
+
+                        foreach (var file in files)
+                        {
+                            string relativePath = file.FullFileName.Replace(serverDirectoryPath, "");  // Get the file's relative path
+                            string localFilePath = Path.Combine(_localDir, relativePath);  // Generate the local file path
+                            DateTime lastModifiedLocal = File.Exists(localFilePath)
+                                ? File.GetLastWriteTime(localFilePath)
+                                : DateTime.MinValue;
+
+                            if (file.LastModified > lastModifiedLocal)
+                            {
+                                // The server's file is newer, download it
+                                string serverFileUrl = fileBaseUrl + relativePath;
+                                Directory.CreateDirectory(Path.GetDirectoryName(localFilePath));  // Ensure the directory exists
+                                client.DownloadFile(serverFileUrl, localFilePath);
+                                Console.WriteLine($"File {file.FileName} downloaded and replaced successfully.");
+                            }
+                        }
+                    }
+                    catch (WebException ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                        throw ex;
+                    }
+
                 }
+
                 return;
             }
             catch (System.Exception ex)
@@ -311,5 +378,11 @@ namespace TAP.UI.MDI
 
             #endregion
         }
+    }
+    public class ServerFile
+    {
+        public string FullFileName { get; set; }
+        public string FileName { get; set; }
+        public DateTime LastModified { get; set; }
     }
 }

@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3092992">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3094528">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2SyuoFa6tkqIpX1PDgBuF58kdNZrqLeXBBP7xlQLMxo=</dsig:DigestValue>
+        <dsig:DigestValue>NCMCZMSlLyAM5LEsEtxyF3nM1Ph++SP+cGCMALqjywU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -350,7 +350,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wm3+BK/OLGuucpsUhzlVv3aHv/Hs6IWt5fXiMt+4B9w=</dsig:DigestValue>
+        <dsig:DigestValue>W5io0+t+jVt10ekQs82gC1/mAKGVGvUxcMNNli8mbLE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
