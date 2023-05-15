@@ -159,6 +159,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmParameterspecdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParameterspecdata.Designer.cs">
+      <DependentUpon>FrmParameterspecdata.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDataBaseManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDataBaseManagement.resx">
       <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParameterspecdata.resx">
+      <DependentUpon>FrmParameterspecdata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSpecManagement.resx">
       <DependentUpon>FrmSpecManagement.cs</DependentUpon>

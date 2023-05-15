@@ -24,7 +24,7 @@ namespace ISIA.UI.MANAGEMENT
     {
         #region Feild
         BizDataClient bs = null;
-        ParameterSpecManagementArgsPack args =null;
+        ParameterSpecManagementArgsPack args = null;
 
         DataSet ds = new DataSet();
         DataTable dtparameterid = null;
@@ -39,7 +39,7 @@ namespace ISIA.UI.MANAGEMENT
             searchid.Properties.DataSource = dtparameterid;
             searchid.Properties.DisplayMember = "PARAMETERNAME";
             searchid.Properties.ValueMember = "PARAMETERID";
-            
+
             //setting触发控件
             cmbRuleName.Setting();
             cmbAddDbName.Setting();
@@ -92,7 +92,7 @@ namespace ISIA.UI.MANAGEMENT
         {
             foreach (GridColumn item in gridView1.Columns)
             {
-                if (item.FieldName == "ID"  || item.FieldName == "ROWID")
+                if (item.FieldName == "ID" || item.FieldName == "ROWID")
                     item.Visible = false;
             }
         }
@@ -173,7 +173,7 @@ namespace ISIA.UI.MANAGEMENT
                 searchid.BackColor = Color.Orange;
                 return;
             }
-            
+
             if (string.IsNullOrEmpty(txtAddDays.Text))
             {
                 txtAddDays.BackColor = Color.Orange;
@@ -225,10 +225,10 @@ namespace ISIA.UI.MANAGEMENT
             args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
             args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
             args.DETECTINGUSED = rdodetecting.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
-            
+
 
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
-            if (dst==null||dst.Tables==null||dst.Tables[0].Rows.Count==0)
+            if (dst == null || dst.Tables == null || dst.Tables[0].Rows.Count == 0)
             {
                 int i = bs.ExecuteModify("SaveTCode", args.getPack());
             }
@@ -244,7 +244,7 @@ namespace ISIA.UI.MANAGEMENT
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) as DataRow;
-            if (dr!=null)
+            if (dr != null)
             {
                 tabPane1.SelectedPage = tabNavigationPage2;
                 cmbInstance.Text = dr["INSTANCE_NUMBER"].ToString();
@@ -262,7 +262,7 @@ namespace ISIA.UI.MANAGEMENT
                 txtControlUpper.EditValue = dr["CONTROLUPPERLIMIT"];
                 spstdvalue.EditValue = dr["STD_VALUE"];
                 sptarget.EditValue = dr["TARGET"];
-                
+
                 spparaval1.EditValue = dr["PARAVAL1"];
                 spparaval2.EditValue = dr["PARAVAL2"];
                 spparaval3.EditValue = dr["PARAVAL3"];
@@ -303,7 +303,7 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     rdoMMsused.SelectedIndex = 1;
                 }
-                if (dr["SPECLIMITUSED"].ToString()=="YES")
+                if (dr["SPECLIMITUSED"].ToString() == "YES")
                 {
                     rdoSpec.SelectedIndex = 0;
                 }
@@ -311,7 +311,7 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     rdoSpec.SelectedIndex = 1;
                 }
-                
+
 
             }
         }
@@ -319,7 +319,7 @@ namespace ISIA.UI.MANAGEMENT
         private void btnDel_Click(object sender, EventArgs e)
         {
             int[] i = gridView1.GetSelectedRows();
-            if (i==null&&i.Count()<1)
+            if (i == null && i.Count() < 1)
             {
                 return;
             }
@@ -368,8 +368,8 @@ namespace ISIA.UI.MANAGEMENT
 
         public void SelectedDBComboBox(TCheckComboBox ComboBox, string str)
         {
-            
-            
+
+
             foreach (CheckedListBoxItem item in ComboBox.Properties.Items)
             {
 
@@ -377,14 +377,15 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     item.CheckState = CheckState.Checked;
                 }
-                else {
+                else
+                {
                     item.CheckState = CheckState.Unchecked;
                 }
             }
         }
 
 
-        public void SelectedRuleNOComboBox(TCheckComboBox ComboBox, string ruleno , string rulename)
+        public void SelectedRuleNOComboBox(TCheckComboBox ComboBox, string ruleno, string rulename)
         {
 
 
@@ -401,6 +402,75 @@ namespace ISIA.UI.MANAGEMENT
                 }
             }
         }
+
+        private void txtControlUpper_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(cmbAddDbName.Text))
+            {
+                cmbAddDbName.BackColor = Color.Orange;
+                return;
+            }
+            if (string.IsNullOrEmpty(cmbRuleName.Text))
+            {
+                cmbRuleName.BackColor = Color.Orange;
+                return;
+            }
+            if (string.IsNullOrEmpty(searchid.Text))
+            {
+                searchid.BackColor = Color.Orange;
+                return;
+            }
+            
+
+            Spec spec = new Spec();
+            spec.DBID = cmbAddDbName.EditValue.ToString();
+            spec.DBNAME = cmbAddDbName.Text.Split('(')[0];
+            spec.INSTANCE_NUMBER = cmbInstance.Text.ToString();
+            spec.PARAMETERID = searchid.EditValue.ToString();
+            spec.PARAMETERNAME = searchid.Text.ToString();
+            spec.RULENAME = cmbRuleName.Text.Split('(')[0];
+            spec.RULENO = (cmbRuleName.Text.Split('(')[1]).Substring(0, cmbRuleName.Text.Split('(')[1].Length - 1);
+            spec.CONTROLLOWERLIMIT = txtControlLow.Text.ToString();
+            spec.CONTROLUPPERLIMIT = txtControlUpper.Text.ToString();
+            spec.TARGET = sptarget.Text.ToString();
+            spec.STD_VALUE = spstdvalue.Text.ToString();
+            FrmParameterspecdata frm = new FrmParameterspecdata(spec);
+            frm.MYDELE += new SPECdele(setFormTextValue);
+            frm.ShowDialog();
+
+
+        }
+
+
+        public void setFormTextValue(Spec spec)
+        {
+            txtControlLow.EditValue = string.IsNullOrEmpty(spec.CONTROLUPPERLIMIT) == true ? null : spec.CONTROLUPPERLIMIT;
+            txtControlUpper.EditValue = string.IsNullOrEmpty(spec.CONTROLLOWERLIMIT) == true ? null : spec.CONTROLLOWERLIMIT;
+            spstdvalue.EditValue = string.IsNullOrEmpty(spec.STD_VALUE) == true ? null : spec.STD_VALUE;
+            sptarget.EditValue = string.IsNullOrEmpty(spec.TARGET) == true ? null : spec.TARGET;
+
+        }
+
+    }
+
+    public class Spec {
+
+        public string DBNAME { get; set; } = string.Empty;
+        public string DBID { get; set; } = string.Empty;
+        public string INSTANCE_NUMBER { get; set; } = string.Empty;
+        public string PARAMETERID { get; set; } = string.Empty;
+        public string PARAMETERNAME { get; set; } = string.Empty;
+        public string PARAMETERTYPE { get; set; } = string.Empty;
+        public string RULENAME { get; set; } = string.Empty;
+        public string RULENO { get; set; } = string.Empty;
+        public string CONTROLLOWERLIMIT { get; set; } = string.Empty;
+        public string CONTROLUPPERLIMIT { get; set; } = string.Empty;
+        public string TARGET { get; set; } = string.Empty;
+        public string STD_VALUE { get; set; } = string.Empty;
+
+
+
 
 
     }
