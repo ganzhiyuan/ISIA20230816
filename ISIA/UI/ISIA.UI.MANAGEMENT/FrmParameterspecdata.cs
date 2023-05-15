@@ -21,7 +21,6 @@ namespace ISIA.UI.MANAGEMENT
         public Spec getspec = new Spec();
         BizDataClient bs = null;
         AwrCommonArgsPack args = null;
-        ParameterSpecManagementArgsPack argspara = null;
 
         public FrmParameterspecdata()
         {
