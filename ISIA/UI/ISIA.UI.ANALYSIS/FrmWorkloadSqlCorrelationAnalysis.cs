@@ -384,7 +384,7 @@ namespace ISIA.UI.ANALYSIS
             gridFormatRule.Rule = formatRule;
             //设置格式化规则的条件和值
             formatRule.Condition = FormatCondition.Greater;
-            formatRule.Value1 = "0.5";
+            formatRule.Value1 = "0.8";
             //设置格式化规则的外观选项
             formatRule.Appearance.ForeColor = Color.White;
             //将规则添加到GridView中的格式化规则集合中
