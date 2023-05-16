@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using ISIA.COMMON;
 using System.IO;
 using System.Runtime.InteropServices.ComTypes;
+using System.Globalization;
 
 namespace ISIA.DETECTING.SERVICE
 {
@@ -1631,9 +1632,18 @@ namespace ISIA.DETECTING.SERVICE
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENAME"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULETEXT"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_TIMEKEY"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["STARTTIMEKEY"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["ENDTIMEKEY"]);
+                
+                string measureTimeKey = drTemp["MEASURE_TIMEKEY"].ToString();
+                DateTime measureDateTime = DateTime.ParseExact(measureTimeKey, "yyyyMMddHH", CultureInfo.InvariantCulture);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", measureDateTime.ToString("yyyy/MM/dd HH"));
+
+                string startTimeKey = drTemp["STARTTIMEKEY"].ToString();
+                DateTime startDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", startDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
+
+                string endTimeKey = drTemp["STARTTIMEKEY"].ToString();
+                DateTime endDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", endDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_VAL"]);
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["COMMENTS"]);
                
