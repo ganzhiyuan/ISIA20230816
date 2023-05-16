@@ -106,6 +106,8 @@ namespace ISIA.CHART.SERVICE
                 string instance_number = parameterInfo.INSTANCE_NUMBER; //
                 string parameterId = parameterInfo.PARAMETERID; //
                 string days = parameterInfo.DAYS;
+                string ruleno = parameterInfo.RULENO;
+                string rulenm = parameterInfo.RULENAME;
 
                 string tableName = MakeRawDataTableName(parameterInfo.PARAMETERTYPE, parameterInfo.DBNAME);
                 string snapTableName = MakeRawSnapTableName(parameterInfo.DBNAME);
@@ -174,29 +176,29 @@ namespace ISIA.CHART.SERVICE
             try
             {
 
-                //Find OverLimit 
-                if (parameterInfo.SPECLIMITUSED.Contains(_YES))
-                {
-                    if (parameterInfo.SPECUPPERLIMIT != null)
-                    {
-                        chartHelper.ChartYLimitLine(chart, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
-                    }
-                    if (parameterInfo.SPECLOWERLIMIT != null)
-                    {
-                        chartHelper.ChartYLimitLine(chart, _SPECLOWER, Color.Red, double.Parse(parameterInfo.SPECLOWERLIMIT), 2);
-                    }
-                }
-                else
-                {
-                    if (parameterInfo.CONTROLUPPERLIMIT != null)
-                    {
-                        chartHelper.ChartYLimitLine(chart, _CONTROLUPPER, Color.Red, double.Parse(parameterInfo.CONTROLUPPERLIMIT), 2);
-                    }
-                    if (parameterInfo.CONTROLLOWERLIMIT != null)
-                    {
-                        chartHelper.ChartYLimitLine(chart, _CONTROLLOWER, Color.Red, double.Parse(parameterInfo.CONTROLLOWERLIMIT), 2);
-                    }
-                }
+                //Find OverLimit 2
+                //if (parameterInfo.SPECLIMITUSED.Contains(_YES))
+                //{
+                //    if (parameterInfo.SPECUPPERLIMIT != null)
+                //    {
+                //        chartHelper.ChartYLimitLine(chart, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
+                //    }
+                //    if (parameterInfo.SPECLOWERLIMIT != null)
+                //    {
+                //        chartHelper.ChartYLimitLine(chart, _SPECLOWER, Color.Red, double.Parse(parameterInfo.SPECLOWERLIMIT), 2);
+                //    }
+                //}
+                //else
+                //{
+                //    if (parameterInfo.CONTROLUPPERLIMIT != null)
+                //    {
+                //        chartHelper.ChartYLimitLine(chart, _CONTROLUPPER, Color.Red, double.Parse(parameterInfo.CONTROLUPPERLIMIT), 2);
+                //    }
+                //    if (parameterInfo.CONTROLLOWERLIMIT != null)
+                //    {
+                //        chartHelper.ChartYLimitLine(chart, _CONTROLLOWER, Color.Red, double.Parse(parameterInfo.CONTROLLOWERLIMIT), 2);
+                //    }
+                //}
 
                 selectSQL.Append("INSERT INTO ISIA.TAPAWRCHARTSERVICE(");
                 selectSQL.Append("DBID, INSTANCE_NUMBER, REPORTDATE, ");
@@ -341,7 +343,7 @@ namespace ISIA.CHART.SERVICE
                     ParameterInfo parameterInfo = new ParameterInfo(dataRow);
 
                     DataTable rawDatatable = GetRawData(parameterInfo);
-
+                    chart = new TChart();
                     //초기화 및 디자인
                     chartHelper.ChartDesign(chart);
 
@@ -355,7 +357,7 @@ namespace ISIA.CHART.SERVICE
                     {
                         int detectCount = 0;
 
-                        if (parameterInfo.SPECUPPERLIMIT != null)
+                        if (!string.IsNullOrEmpty(parameterInfo.SPECUPPERLIMIT))
                         {
                             var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") > decimal.Parse(parameterInfo.SPECUPPERLIMIT)).Count();
 
@@ -363,7 +365,7 @@ namespace ISIA.CHART.SERVICE
 
                             chartHelper.ChartYLimitLine(chart, _SPECUPPER, Color.Red, double.Parse(parameterInfo.SPECUPPERLIMIT), 2);
                         }
-                        if (parameterInfo.SPECLOWERLIMIT != null)
+                        if (!string.IsNullOrEmpty(parameterInfo.SPECLOWERLIMIT))
                         {
                             var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") < decimal.Parse(parameterInfo.SPECLOWERLIMIT)).Count();
 
@@ -380,7 +382,7 @@ namespace ISIA.CHART.SERVICE
                     {
                         int detectCount = 0;
 
-                        if (parameterInfo.CONTROLUPPERLIMIT != null)
+                        if (!string.IsNullOrEmpty(parameterInfo.CONTROLUPPERLIMIT))
                         {
                             var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") > decimal.Parse(parameterInfo.CONTROLUPPERLIMIT)).Count();
 
@@ -388,7 +390,7 @@ namespace ISIA.CHART.SERVICE
 
                             chartHelper.ChartYLimitLine(chart, _CONTROLUPPER, Color.Red, double.Parse(parameterInfo.CONTROLUPPERLIMIT), 2);
                         }
-                        if (parameterInfo.CONTROLLOWERLIMIT != null)
+                        if (!string.IsNullOrEmpty(parameterInfo.CONTROLLOWERLIMIT))
                         {
                             var temp = rawDatatable.AsEnumerable().Where(it => it.Field<decimal>("MEASURE_VALUE") < decimal.Parse(parameterInfo.CONTROLLOWERLIMIT)).Count();
 
@@ -404,7 +406,7 @@ namespace ISIA.CHART.SERVICE
                     #endregion
 
 
-                    string fileName = parameterInfo.DBNAME + "_"+ parameterInfo.INSTANCE_NUMBER + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
+                    string fileName = parameterInfo.DBNAME + "_"+ parameterInfo.INSTANCE_NUMBER + "_" +parameterInfo.RULENO+"_"+parameterInfo.RULENAME+"_" + DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + parameterInfo.PARAMETERNAME + ".png";
 
                     //IMAGE NAME 정의 해야 함. 저장.
                     _imageFileName = MakeFilePath(fileName);
