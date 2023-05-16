@@ -160,6 +160,7 @@ namespace ISIA.UI.TREND
 
             QueryDataSheet1();
             QueryDataSheet2();
+            QueryDataSheet3();
             btnSelect.Enabled = true;
             btnSelect.Enabled = false;
 
@@ -259,17 +260,19 @@ namespace ISIA.UI.TREND
         {
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             int count = list.Count();
-            Thread[] threads = new Thread[count];
+            //Thread[] threads = new Thread[count];
             for (int i = 0; i < count; i++)
             {
                 int chartIndex = i;
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
                 //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
-                var threadToJoin = threads[chartIndex];
-                threadToJoin.Start();
+                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
+                //var threadToJoin = threads[chartIndex];
+                thread.Start();
+
+                //threadToJoin.Start();
                 //threads[chartIndex].Join();
-                threadToJoin.Join();
+                //threadToJoin.Join();
             }
         }
 
@@ -277,37 +280,48 @@ namespace ISIA.UI.TREND
         {
             var charts1 = flowLayoutPanel2.Controls.OfType<TChart>().ToArray();
             int count = list2.Count();
-            Thread[] threads = new Thread[count];
-            for (int i = 0; i < list2.Count(); i++)
+            //Thread[] threads = new Thread[count];
+            for (int i = 0; i < count; i++)
             {
                 int chartIndex = i;
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]);
-                threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
-                threads[chartIndex].Start();
-                threads[chartIndex].Join();
+                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
+                //var threadToJoin = threads[chartIndex];
+                thread.Start();
+
+                //threadToJoin.Start();
+                //threads[chartIndex].Join();
+                //threadToJoin.Join();
             }
         }
         private void QueryDataSheet3()
         {
             var charts1 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
             int count = list3.Count();
-            Thread[] threads = new Thread[count];
-            for (int i = 0; i < list3.Count(); i++)
+            //Thread[] threads = new Thread[count];
+            for (int i = 0; i < count; i++)
             {
                 int chartIndex = i;
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]);
-                //threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
-                //threads[chartIndex].Start();
+                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
+                //var threadToJoin = threads[chartIndex];
+                thread.Start();
+
+                //threadToJoin.Start();
                 //threads[chartIndex].Join();
+                //threadToJoin.Join();
             }
         }
 
 
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
-            tChart.Series.Clear();
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                tChart.Series.Clear();
+            });
             AwrCommonArgsPack args = new AwrCommonArgsPack();
             // 实际的查询逻辑
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
@@ -316,15 +330,21 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
-            
+            Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             for (int i = 0; i < dto.FileNameParament.Count(); i++)
             {
                 Line line = CreateLine(dst.Tables[0], dto,i);
-                tChart.Series.Add(line);
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    tChart.Series.Add(line);
+                });
             }
             // 将查询到的数据设置到TChart控件中
-            HideWaitIcon(tChart, dto.HeaderText);
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                HideWaitIcon(tChart, dto.HeaderText);
+            });
         }
         private void QueryDataForTChart2(TChart tChart, DPIDto dto)
         {
