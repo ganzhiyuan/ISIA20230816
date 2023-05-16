@@ -1582,10 +1582,10 @@ namespace ISIA.DETECTING.SERVICE
 
                 switch (ruleName) // Replace with actual rule name
                 {
-                    case "Rule1":
+                    case "NelsonRules":
                         rowStyle = "style='background-color: #FFE0E0;'"; // Light Red
                         break;
-                    case "Rule2":
+                    case "AverageRules":
                         rowStyle = "style='background-color: #E0FFE0;'"; // Light Green
                         break;
                     case "Rule3":
@@ -1620,14 +1620,47 @@ namespace ISIA.DETECTING.SERVICE
                 if (dtIdx % 2 == 0)
                     sbMailList.AppendFormat("	<tr {0} style='border-top:1px solid gray;'>", rowStyle);
                 else
-                    sbMailList.AppendFormat("	<tr {0}>", rowStyle);
+                    sbMailList.AppendFormat("	<tr class=\"alt\" {0}>", rowStyle);
 
                 sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", dtIdx);
-                // ...
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["DBID"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["INSTANCE_NUMBER"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["PARAMETERID"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["PARAMETERNAME"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENO"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENAME"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULETEXT"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_TIMEKEY"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["STARTTIMEKEY"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["ENDTIMEKEY"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_VAL"]);
+                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["COMMENTS"]);
+               
                 sbMailList.AppendFormat("	</tr>");
                 #endregion
             }
             #region -------mail form
+            sbMailBody.AppendFormat("<center><font size=\"2\"><b><u>SPC Rule Out Report</u></b></font></center>");
+            sbMailBody.AppendFormat("<br>");
+            sbMailBody.AppendFormat("<font size=\"2\"><b>&lt;Rule Out Summary List&gt;</b></font>");
+            sbMailBody.AppendFormat("<table>");
+            sbMailBody.AppendFormat("	<tr>");
+            sbMailBody.AppendFormat("		<th style=\"width:40px;\">No</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:60px;\">DBID</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">INSTANCE_NUMBER</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">PARAMETERID</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:140px;\">PARAMETERNAME</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:40px;\">RULENO</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">RULENAME</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:140px;\">RULETEXT</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">SNAP_ID</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_TIMEKEY</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">STARTTIMEKEY</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">ENDTIMEKEY</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_VAL</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:200px;\">COMMENTS</th>");
+            sbMailBody.AppendFormat("	</tr>");
             // ...
             sbMailBody.Append(sbMailList);
             sbMailBody.AppendFormat("</table>");
