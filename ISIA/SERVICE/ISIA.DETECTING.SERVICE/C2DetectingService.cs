@@ -272,7 +272,7 @@ namespace ISIA.DETECTING.SERVICE
                 // 중복 허용 Flag가 False이면 작업 진행
                 if (_isDuplicatedAllow.Equals("FALSE"))
                 {
-                    this.DeleteForDuplicatedSummaryRows();
+                    //this.DeleteForDuplicatedSummaryRows();
                 }
 
             }
@@ -1324,6 +1324,8 @@ namespace ISIA.DETECTING.SERVICE
                 deleteSQL.Append("AND B.PARAMETERID = A.PARAMETERID ");
                 deleteSQL.Append("AND B.RULENO = A.RULENO ");
                 deleteSQL.Append("AND B.RULENAME = A.RULENAME ");
+                deleteSQL.Append("AND A.ISALIVE = 'YES' ");
+                deleteSQL.Append("AND B.RULENAME = 'NelsonRules' ");
                 deleteSQL.Append(") ");
                 deleteSQL.Append("WHERE 1=1 ");
                 deleteSQL.Append("AND DBID = TD.DBID ");
@@ -1448,13 +1450,15 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("SELECT B.* ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC A, ");
                 selectSQL.Append("TAPCTOUTOFCONTROLDATASUM B ");
-                selectSQL.AppendFormat("WHERE B.MEASURE_TIMEKEY >= '{0}' ", _measureYesterDay);
-                selectSQL.AppendFormat("AND B.MEASURE_TIMEKEY <= '{0}' ", _measureHourAgo);
+                selectSQL.AppendFormat("WHERE B.ENDTIMEKEY >= TO_CHAR(TO_DATE( '{0}', ‘YYYYMMDDHH24’) - A.DAYS, ‘YYYYMMDDHH24’)", _measureYesterDay);
+                selectSQL.AppendFormat("AND B.ENDTIMEKEY <= '{0}' ", _measureHourAgo);
                 selectSQL.Append("AND B.DBID = A.DBID ");
                 selectSQL.Append("AND B.INSTANCE_NUMBER = A.INSTANCE_NUMBER ");
                 selectSQL.Append("AND B.PARAMETERID = A.PARAMETERID ");
                 selectSQL.Append("AND B.RULENO = A.RULENO ");
                 selectSQL.Append("AND B.RULENAME = A.RULENAME ");
+                selectSQL.Append("AND A.ISALIVE = 'YES' ");
+                selectSQL.Append("AND A.RULENAME = 'NelsonRules' ");
                 selectSQL.Append(") ");
                 //selectSQL.Append("SELECT ROWNUM RN, ");
                 selectSQL.Append("SELECT ");
