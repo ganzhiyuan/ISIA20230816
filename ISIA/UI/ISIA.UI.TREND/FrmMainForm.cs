@@ -4,6 +4,7 @@ using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,6 @@ namespace ISIA.UI.TREND
 
         BizDataClient bs;
         DataSet dataSet = new DataSet();
-        AwrCommonArgsPack args = new AwrCommonArgsPack();
         List<DPIDto> list = new List<DPIDto>();
         List<DPIDto> list2 = new List<DPIDto>();
         List<DPIDto> list3 = new List<DPIDto>();
@@ -86,6 +86,16 @@ namespace ISIA.UI.TREND
 
         private void FrmMainForm_Load(object sender, EventArgs e)
         {
+            //CreateChart();
+            //comboBoxEdit1_SelectedIndexChanged(null, null);
+            //CreateCharts();
+        }
+
+        private void CreateChart()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
+            flowLayoutPanel3.Controls.Clear();
             for (int i = 0; i < list.Count(); i++)
             {
                 // 创建 TChart 控件
@@ -122,15 +132,13 @@ namespace ISIA.UI.TREND
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
                 flowLayoutPanel3.Controls.Add(tChart);
             }
-            //comboBoxEdit1_SelectedIndexChanged(null, null);
-            //CreateCharts();
         }
 
-
-        private void btnSelect_Click(object sender, EventArgs e)
+        private async void btnSelect_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
+            CreateChart();
                 if (string.IsNullOrEmpty(cmbDbName.Text))
                 {
                     string errMessage = "Please select DB_NAME";
@@ -144,47 +152,125 @@ namespace ISIA.UI.TREND
                     return;
                 }
 
-                if (!base.ValidateUserInput(this.lcSerachOptions)) return;
+            if (!base.ValidateUserInput(this.lcSerachOptions)) return;
 
-                //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
+            //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
-                //btnSelect.Enabled = false;
-                //Thread td = new Thread(QueryDataSheet1);
-                //td.Start();
-                //Thread td2 = new Thread(QueryDataSheet2);
-                //td2.Start();
-                //Thread td3 = new Thread(QueryDataSheet3);
-                //td3.Start();
-                //// 启用查询按钮
-                //btnSelect.Enabled = true;
+            btnSelect.Enabled = false;
+
+            QueryDataSheet1();
+            QueryDataSheet2();
+            btnSelect.Enabled = true;
+            btnSelect.Enabled = false;
+
+            // 创建一组任务
+            //Task[] tasks = new Task[3];
+            //tasks[0] = Task.Run(() => QueryDataSheet1());
+            //tasks[1] = Task.Run(() => QueryDataSheet2());
+            //tasks[2] = Task.Run(() => QueryDataSheet3());
+
+            //// 等待所有任务完成
+            //await Task.WhenAll(tasks);
+
+            ConcurrentBag<int> bag = new ConcurrentBag<int>();
+
+            // 添加元素到ConcurrentBag中
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    bag.Add(i);
+            //}
+
+            //// 创建10个任务来消费ConcurrentBag中的元素
+            //Task[] tasks = new Task[3];
+
+            //tasks[0] = Task.Run(() =>
+            //QueryDataSheet1());
+            //tasks[1] = Task.Run(() =>
+            //QueryDataSheet2());
+            //tasks[2] = Task.Run(() =>
+            //QueryDataSheet3());
+
+            //await Task.WhenAll(tasks); // 等待所有任务完成
+
+            //QueryDataSheet1();
+
+            //QueryDataSheet2();
+            //QueryDataSheet3();
+            //Thread[] threadArray = new Thread[3];
+            //for (int i = 0; i < 1; i++)
+            //{
+            //    threadArray[i] = new Thread(() => QueryDataSheet(i));
+            //    threadArray[i].Start();
+            //}
+
+            // Wait for all threads to complete
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    threadArray[i].Join();
+            //}
+            //Thread td = new Thread(QueryDataSheet1);
+            //td.Start();
+            //Thread td2 = new Thread(QueryDataSheet2);
+            //td2.Start();
+            //Thread td3 = new Thread(QueryDataSheet3);
+            //td3.Start();
+            // 启用查询按钮
+            btnSelect.Enabled = true;
 
                 //测试
-                var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
-                for (int i = 0; i < list.Count(); i++)
-                {
-                    ShowWaitIcon(charts1.ElementAt(i));
-                    int chartIndex = i;
-                    QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+                //var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
+                //for (int i = 0; i < list.Count(); i++)
+                //{
+                //    ShowWaitIcon(charts1.ElementAt(i));
+                //    int chartIndex = i;
+                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+                //}
+
+                //var charts1 = flowLayoutPanel2.Controls.OfType<TChart>().ToArray();
+                //for (int i = 0; i < list2.Count(); i++)
+                //{
+                //    ShowWaitIcon(charts1.ElementAt(i));
+                //    int chartIndex = i;
+                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]);
+                //}
+
+                //var charts1 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
+                //for (int i = 0; i < list3.Count(); i++)
+                //{
+                //    ShowWaitIcon(charts1.ElementAt(i));
+                //    int chartIndex = i;
+                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]);
+                //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+        }
+        public DataSet LoadData()
+        {
+
+            return null;
+        }
+        public void DisplayData(DataSet ds)
+        {
         }
         private void QueryDataSheet1()
         {
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             int count = list.Count();
             Thread[] threads = new Thread[count];
-            for (int i = 0; i < list.Count(); i++)
+            for (int i = 0; i < count; i++)
             {
-                ShowWaitIcon(charts1.ElementAt(i));
                 int chartIndex = i;
-                threads[i]=(new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
-                threads[i].Start();               
+                ShowWaitIcon(charts1.ElementAt(chartIndex));
+                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+                threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
+                var threadToJoin = threads[chartIndex];
+                threadToJoin.Start();
+                //threads[chartIndex].Join();
+                threadToJoin.Join();
             }
-
         }
 
         private void QueryDataSheet2()
@@ -194,10 +280,12 @@ namespace ISIA.UI.TREND
             Thread[] threads = new Thread[count];
             for (int i = 0; i < list2.Count(); i++)
             {
-                ShowWaitIcon(charts1.ElementAt(i));
                 int chartIndex = i;
-                threads[i] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
-                threads[i].Start();
+                ShowWaitIcon(charts1.ElementAt(chartIndex));
+                QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]);
+                threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
+                threads[chartIndex].Start();
+                threads[chartIndex].Join();
             }
         }
         private void QueryDataSheet3()
@@ -207,10 +295,12 @@ namespace ISIA.UI.TREND
             Thread[] threads = new Thread[count];
             for (int i = 0; i < list3.Count(); i++)
             {
-                ShowWaitIcon(charts1.ElementAt(i));
                 int chartIndex = i;
-                threads[i] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
-                threads[i].Start();
+                ShowWaitIcon(charts1.ElementAt(chartIndex));
+                QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]);
+                //threads[chartIndex] = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
+                //threads[chartIndex].Start();
+                //threads[chartIndex].Join();
             }
         }
 
@@ -218,6 +308,7 @@ namespace ISIA.UI.TREND
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
             tChart.Series.Clear();
+            AwrCommonArgsPack args = new AwrCommonArgsPack();
             // 实际的查询逻辑
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
             args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
@@ -226,10 +317,52 @@ namespace ISIA.UI.TREND
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
             
-            dataSet = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             for (int i = 0; i < dto.FileNameParament.Count(); i++)
             {
-                Line line = CreateLine(dataSet.Tables[0], dto,i);
+                Line line = CreateLine(dst.Tables[0], dto,i);
+                tChart.Series.Add(line);
+            }
+            // 将查询到的数据设置到TChart控件中
+            HideWaitIcon(tChart, dto.HeaderText);
+        }
+        private void QueryDataForTChart2(TChart tChart, DPIDto dto)
+        {
+            tChart.Series.Clear();
+            AwrCommonArgsPack args = new AwrCommonArgsPack();
+            // 实际的查询逻辑
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.InstanceNumber = cmbInstance.EditValue.ToString();
+            args.SnapId = "";
+
+            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            for (int i = 0; i < dto.FileNameParament.Count(); i++)
+            {
+                Line line = CreateLine(dst.Tables[0], dto, i);
+                tChart.Series.Add(line);
+            }
+            // 将查询到的数据设置到TChart控件中
+            HideWaitIcon(tChart, dto.HeaderText);
+        }
+        private void QueryDataForTChart3(TChart tChart, DPIDto dto)
+        {
+            tChart.Series.Clear();
+            AwrCommonArgsPack args = new AwrCommonArgsPack();
+            // 实际的查询逻辑
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.InstanceNumber = cmbInstance.EditValue.ToString();
+            args.SnapId = "";
+
+            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            for (int i = 0; i < dto.FileNameParament.Count(); i++)
+            {
+                Line line = CreateLine(dst.Tables[0], dto, i);
                 tChart.Series.Add(line);
             }
             // 将查询到的数据设置到TChart控件中
@@ -240,7 +373,8 @@ namespace ISIA.UI.TREND
             Line line = new Line();
 
             line.DataSource = dstable;
-            line.XValues.DataMember = dto.Xvalue;
+            //line.XValues.DataMember = dto.Xvalue;
+            line.LabelMember = dto.Xvalue;
             line.Legend.Visible = false;
             string str = dto.FileNameParament[i].ToString();
             line.YValues.DataMember = str;
@@ -280,287 +414,379 @@ namespace ISIA.UI.TREND
             };
             list.Add(dto);
             //18
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetTimeModel",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "DB&Background Times(s)",
-            //    FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
-            //};
-            //list.Add(dto);
-            ////1
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetLoadSQL",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Lgical/Physical Reads",
-            //    FileNameParament = new List<string> { "Logical reads", "Physical reads" }
-            //};
-            //list.Add(dto);
-            ////1
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetLoadSQL",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "User Call/Execute Count",
-            //    FileNameParament = new List<string> { "User calls", "Executes" }
-            //};
-            //list.Add(dto);
-            ////62
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetResource",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Session/Active Count",
-            //    FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
-            //};
-            //list.Add(dto);
-            ////12
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetWait5_01",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Top 5 Wait Events(time(s))",
-            //    FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
-            //};
-            //list.Add(dto);
-            //68 --无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetLatch_01",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Top wait time latch:Avg. wait time(ms)",
-            //    FileNameParament = new List<string> { "rank1WaitT", "rank2WaitT", "rank3WaitT", "rank4WaitT", "rank5WaitT" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetTimeModel",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "DB&Background Times(s)",
+                FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
+            };
+            list.Add(dto);
+            //1
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Lgical/Physical Reads",
+                FileNameParament = new List<string> { "Logical reads", "Physical reads" }
+            };
+            list.Add(dto);
+            //1
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLoadSQL",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "User Call/Execute Count",
+                FileNameParament = new List<string> { "User calls", "Executes" }
+            };
+            list.Add(dto);
+            //62
+            dto = new DPIDto
+            {
+                DPIFileName = "GetResource",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Session/Active Count",
+                FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
+            };
+            list.Add(dto);
+            //12
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWait5_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top 5 Wait Events(time(s))",
+                FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
+            };
+            list.Add(dto);
+            //68--无法查询
+            dto = new DPIDto
+            {
+                DPIFileName = "GetLatch_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top wait time latch:Avg. wait time(ms)",
+                FileNameParament = new List<string> { "rank1WaitT", "rank2WaitT", "rank3WaitT", "rank4WaitT", "rank5WaitT" }
+            };
+            list.Add(dto);
             //66
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetEnq_01",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Avg.Top-5 En queue Wait Time(s)",
-            //    FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetEnq_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Avg.Top-5 En queue Wait Time(s)",
+                FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
+            };
+            list.Add(dto);
             //61 --无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetWaitstat",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Wait count by class",
-            //    FileNameParament = new List<string> { "DataBlock", "SegmentHeader", "UndoBlock", "UndoHeader" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWaitstat",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Wait count by class",
+                FileNameParament = new List<string> { "DataBlock", "SegmentHeader", "UndoBlock", "UndoHeader" }
+            };
+            list.Add(dto);
             //64 --无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetBuffer_pool",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Cache Hit%",
-            //    FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetBuffer_pool",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Cache Hit%",
+                FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+            };
+            list.Add(dto);
             //74
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetSession_cache",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Session Cached cursor Statistics",
-            //    FileNameParament = new List<string> { "Parse requests", "Cursor cache hits", "ReParsed requests", "Cursor cache hit%" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSession_cache",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Session Cached cursor Statistics",
+                FileNameParament = new List<string> { "Parse requests", "Cursor cache hits", "ReParsed requests", "Cursor cache hit%" }
+            };
+            list.Add(dto);
             //71--无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetSga",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "SGA",
-            //    FileNameParament = new List<string> { "buf.cache(M)", "shared.pool(M)", "java.pool(M)", "large.pool(M)", "streams.pool(M)" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "SGA",
+                FileNameParament = new List<string> { "buf.cache(M)", "shared.pool(M)", "java.pool(M)", "large.pool(M)", "streams.pool(M)" }
+            };
+            list.Add(dto);
             //71--无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetSga",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "shared pool",
-            //    FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetSga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "shared pool",
+                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+            };
+            list.Add(dto);
             //54--无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetPga",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "PGA Statistics",
-            //    FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetPga",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "PGA Statistics",
+                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+            };
+            list.Add(dto);
 
             //55--无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetWorkarea_raw",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "PGA Memory/Disk sort",
-            //    FileNameParament = new List<string> { "one_exe", "mul_exe", "tot_exe", "opt_exe" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetWorkarea_raw",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "PGA Memory/Disk sort",
+                FileNameParament = new List<string> { "one_exe", "mul_exe", "tot_exe", "opt_exe" }
+            };
+            list.Add(dto);
             //03--无法查询
-            //dto = new DPIDto
-            //{
-            //    DPIFileName = "GetRacGcEfficiency",
-            //    Xvalue = "TIMESTAMP",
-            //    HeaderText = "Buffer Access{local/remote/disk}%",
-            //    FileNameParament = new List<string> { "Buffer access - local cache%", "Buffer access - remote cache%", "Buffer access - disk%" }
-            //};
-            //list.Add(dto);
+            dto = new DPIDto
+            {
+                DPIFileName = "GetRacGcEfficiency",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Buffer Access{local/remote/disk}%",
+                FileNameParament = new List<string> { "Buffer access - local cache%", "Buffer access - remote cache%", "Buffer access - disk%" }
+            };
+            list.Add(dto);
             //--sheet2
             //01
-            dto = new DPIDto
+            DPIDto dto1 = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "transaction(per sec)",
                 FileNameParament = new List<string> { "Transactions" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
             //01
-            dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Redo Size(Bytes)",
                 FileNameParament = new List<string> { "Redo size" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
             //01
-            dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Parse Count(Per Sec)",
                 FileNameParament = new List<string> { "Parses(total)" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
             //01
-            dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Hard Parse Count(per sec)",
                 FileNameParament = new List<string> { "Parses(hard)" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
             //18
-            dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetTimeModel",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "DB Time(s)",
                 FileNameParament = new List<string> { "DB time" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
             //72
-            dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetLog_switch_f",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Log Switches",
                 FileNameParament = new List<string> { "Log Switch interval <= 5 min" }
             };
-            list2.Add(dto);
+            list2.Add(dto1);
 
             //54
-            /*dto = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetPga_hit",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "PGA Cache Hit(%)",
-                FileNameParament = new List<string> { "PGA Cache Hit %" }
+                FileNameParament = new List<string> { "PGA Cache Hit%" }
             };
-            list2.Add(dto);*/
+            list2.Add(dto1);
+
+            //04
+            dto1 = new DPIDto
+            {
+                DPIFileName = "GetRacChar",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Avg Global Cache cr block receive time(ms)",
+                FileNameParament = new List<string> { "Avg GC cr blk rcv time(ms)" }
+            };
+            list2.Add(dto1);
+
+            //04
+            dto1 = new DPIDto
+            {
+                DPIFileName = "GetRacChar",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Avg Global Cache current block receive time(ms)",
+                FileNameParament = new List<string> { "Avg GC cur blk rcv time(ms)" }
+            };
+            list2.Add(dto1);
+
+            //02
+            dto1 = new DPIDto
+            {
+                DPIFileName = "GetRacLoadSql",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Estimated interconnect traffic(mbytes/s)",
+                FileNameParament = new List<string> { "Interconnect traffic(Mb)" }
+            };
+            list2.Add(dto1);
+
+            //02
+            dto1 = new DPIDto
+            {
+                DPIFileName = "GetRacLoadSql",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "global cache blocks lost",
+                FileNameParament = new List<string> { "gc lost" }
+            };
+            list2.Add(dto1);
+
+            //sheet3
+            //29
+            DPIDto dto3 = new DPIDto
+            {
+                DPIFileName = "GetSqlElap_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Elapsed Time SQL:Elapsed Time per exec",
+                FileNameParament = new List<string> { "rank1_elap_per_exec", "rank2_elap_per_exec" }
+            };
+            list3.Add(dto3);
+            //29
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSqlElap_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Elapsed Time SQL:elaped time per DBTime(%)",
+                FileNameParament = new List<string> { "rank1_elap_per_dbtim", "rank2_elap_per_dbtim", "rank3_elap_per_dbtim", "rank4_elap_per_dbtim", "rank5_elap_per_dbtim" }
+            };
+            list3.Add(dto3);
+            //31
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_cpu_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top CPU Time SQL:cpu Time per exec",
+                FileNameParament = new List<string> { "rank1_cput_per_exec", "rank2_cput_per_exec", "rank3_cput_per_exec", "rank4_cput_per_exec", "rank5_cput_per_exec" }
+            };
+            list3.Add(dto3);
+            //31
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_cpu_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top CPU Time SQL:cpu time per DBTime(%)",
+                FileNameParament = new List<string> { "RANK1_ELAP_PER_DBTIM", "rank2_elap_per_dbtim", "rank3_elap_per_dbtim", "rank4_elap_per_dbtim", "rank5_elap_per_dbtim" }
+            };
+            list3.Add(dto3);
+
+            //33
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_get_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Buffer Get SQL:buffer gets per exec",
+                FileNameParament = new List<string> { "rank1_bufget_per_exec", "rank2_bufget_per_exec", "rank3_bufget_per_exec", "rank4_bufget_per_exec", "rank5_bufget_per_exec" }
+            };
+            list3.Add(dto3);
+
+            //33
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_get_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Buffer Get SQL",
+                FileNameParament = new List<string> { "rank1_bufget", "rank2_bufget", "rank3_bufget", "rank4_bufget", "rank5_bufget" }
+            };
+            list3.Add(dto3);
+
+            //33
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_get_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Buffer Get SQL:buffer gets per Total(%)",
+                FileNameParament = new List<string> { "rank1_bufget_per_tot", "rank2_bufget_per_tot", "rank3_bufget_per_tot", "rank4_bufget_per_tot", "rank5_bufget_per_tot" }
+            };
+            list3.Add(dto3);
+            //35
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_read_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Disk Read SQL:disk read per exec",
+                FileNameParament = new List<string> { "rank1_phyrds_per_exec", "rank2_phyrds_per_exec", "rank3_phyrds_per_exec", "rank4_phyrds_per_exec", "rank5_phyrds_per_exec" }
+            };
+            list3.Add(dto3);
+            //35
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_read_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Disk Read SQL",
+                FileNameParament = new List<string> { "rank1_phyrds", "rank2_phyrds", "rank3_phyrds", "rank4_phyrds", "rank5_phyrds" }
+            };
+            list3.Add(dto3);
+            //35
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_read_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Disk Read Sql:disk read per Total(%)",
+                FileNameParament = new List<string> { "rank1_phyrds_per_tot", "rank2_phyrds_per_tot", "rank3_phyrds_per_tot", "rank4_phyrds_per_tot", "rank5_phyrds_per_tot" }
+            };
+            list3.Add(dto3);
+            //39
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_parse_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Parse SQL:parse count per Total(%)",
+                FileNameParament = new List<string> { "rank1_parse_per_tot", "rank2_parse_per_tot", "rank3_parse_per_tot", "rank4_parse_per_tot", "rank5_parse_per_tot" }
+            };
+            list3.Add(dto3);
+            //41
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSql_clu_wait_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Cluster Wait SQL:cluster wait time per elaped time(%)",
+                FileNameParament = new List<string> { "rank1_cput", "rank2_cput", "rank3_cput", "rank4_cput", "rank5_cput" }
+            };
+            list3.Add(dto3);
+            //80
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSQL_literal_get_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Literal SQL: buffer gets",
+                FileNameParament = new List<string> { "rank1_bufget", "rank2_bufget", "rank3_bufget", "rank4_bufget", "rank5_bufget" }
+            };
+            list3.Add(dto3);
+            //80
+            dto3 = new DPIDto
+            {
+                DPIFileName = "GetSQL_literal_get_01",
+                Xvalue = "TIMESTAMP",
+                HeaderText = "Top Literal SQL: buffer gets per Total(%)",
+                FileNameParament = new List<string> { "rank1_bufget_per_tot", "rank2_bufget_per_tot", "rank3_bufget_per_tot", "rank4_bufget_per_tot", "rank5_bufget_per_tot" }
+            };
+            list3.Add(dto3);
         }
 
-        //------------------------------------------------
-
-        //private async void LoadChartDataAsync(IEnumerable<TChart> charts)
-        //{
-        //    if (!charts.Any())
-        //    {
-        //        MessageBox.Show("No charts found");
-        //        return;
-        //    }
-
-        //    // Show wait icon on each TChart control
-        //    foreach (var chart in charts)
-        //    {
-        //        ShowWaitIcon(chart);
-        //    }
-
-        //    try
-        //    {
-        //        // Load data for each TChart control asynchronously
-        //        var tasks = new List<Task>();
-        //        foreach (var chart in charts)
-        //        {
-        //            tasks.Add(LoadDataAsync(chart));
-        //        }
-        //        await Task.WhenAll(tasks); // Wait for all tasks to complete
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        // Hide wait icon on each TChart control
-        //        foreach (var chart in charts)
-        //        {
-        //            HideWaitIcon(chart);
-        //        }
-        //    }
-        //}
-
-        //private async Task LoadDataAsync(TChart chart)
-        //{
-        //    // Show wait icon on TChart control
-        //    ShowWaitIcon(chart);
-
-        //    try
-        //    {
-        //        // Simulate data loading by waiting for a random time
-        //        var rnd = new Random();
-        //        await Task.Delay(rnd.Next(1000, 3000));
-
-        //        // Bind data to TChart control
-        //        var data = new double[10];
-        //        for (int i = 0; i < data.Length; i++)
-        //        {
-        //            data[i] = rnd.NextDouble() * 100;
-        //        }
-        //        //chart.Series[0].Add(data);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        // Hide wait icon on TChart control
-        //        HideWaitIcon(chart);
-        //    }
-        //}
-        //private void ShowWaitIcon(TChart chart)
-        //{
-        //    chart.Header.Text = "加载中...";
-        //}
-
-        //private void HideWaitIcon(TChart chart)
-        //{
-        //    chart.Header.Text = "";
-        //}
-
-
+       
     }
 }
