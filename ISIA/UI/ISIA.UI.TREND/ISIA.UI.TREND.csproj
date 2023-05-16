@@ -183,11 +183,11 @@
     <Compile Include="FrmChartServiceTrend.Designer.cs">
       <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMainForm.cs">
+    <Compile Include="FrmDPITrend.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMainForm.Designer.cs">
-      <DependentUpon>FrmMainForm.cs</DependentUpon>
+    <Compile Include="FrmDPITrend.Designer.cs">
+      <DependentUpon>FrmDPITrend.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmWorkloadDataGridView.cs">
       <SubType>Form</SubType>
@@ -229,8 +229,8 @@
     <EmbeddedResource Include="FrmChartServiceTrend.resx">
       <DependentUpon>FrmChartServiceTrend.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMainForm.resx">
-      <DependentUpon>FrmMainForm.cs</DependentUpon>
+    <EmbeddedResource Include="FrmDPITrend.resx">
+      <DependentUpon>FrmDPITrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSQLTotalStatisticsTrend.resx">
       <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>

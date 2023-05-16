@@ -1,7 +1,7 @@
 ﻿
 namespace ISIA.UI.TREND
 {
-    partial class FrmMainForm
+    partial class FrmDPITrend
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace ISIA.UI.TREND
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDPITrend));
             this.LeftPaneLayout = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();

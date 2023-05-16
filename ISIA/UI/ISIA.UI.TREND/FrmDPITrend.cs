@@ -19,7 +19,7 @@ using TAP.UI;
 
 namespace ISIA.UI.TREND
 {
-    public partial class FrmMainForm : DockUIBase1T1
+    public partial class FrmDPITrend : DockUIBase1T1
     {
 
         BizDataClient bs;
@@ -30,7 +30,7 @@ namespace ISIA.UI.TREND
         List<Color> colors = new List<Color> { Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
             Color.FromArgb(125,96,160), Color.FromArgb(70,170,197), Color.FromArgb(218,129,55)  };
 
-        public FrmMainForm()
+        public FrmDPITrend()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.PerformaceEvaluationTrend");
@@ -162,86 +162,8 @@ namespace ISIA.UI.TREND
             QueryDataSheet2();
             QueryDataSheet3();
             btnSelect.Enabled = true;
-            btnSelect.Enabled = false;
 
-            // 创建一组任务
-            //Task[] tasks = new Task[3];
-            //tasks[0] = Task.Run(() => QueryDataSheet1());
-            //tasks[1] = Task.Run(() => QueryDataSheet2());
-            //tasks[2] = Task.Run(() => QueryDataSheet3());
-
-            //// 等待所有任务完成
-            //await Task.WhenAll(tasks);
-
-            ConcurrentBag<int> bag = new ConcurrentBag<int>();
-
-            // 添加元素到ConcurrentBag中
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    bag.Add(i);
-            //}
-
-            //// 创建10个任务来消费ConcurrentBag中的元素
-            //Task[] tasks = new Task[3];
-
-            //tasks[0] = Task.Run(() =>
-            //QueryDataSheet1());
-            //tasks[1] = Task.Run(() =>
-            //QueryDataSheet2());
-            //tasks[2] = Task.Run(() =>
-            //QueryDataSheet3());
-
-            //await Task.WhenAll(tasks); // 等待所有任务完成
-
-            //QueryDataSheet1();
-
-            //QueryDataSheet2();
-            //QueryDataSheet3();
-            //Thread[] threadArray = new Thread[3];
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    threadArray[i] = new Thread(() => QueryDataSheet(i));
-            //    threadArray[i].Start();
-            //}
-
-            // Wait for all threads to complete
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    threadArray[i].Join();
-            //}
-            //Thread td = new Thread(QueryDataSheet1);
-            //td.Start();
-            //Thread td2 = new Thread(QueryDataSheet2);
-            //td2.Start();
-            //Thread td3 = new Thread(QueryDataSheet3);
-            //td3.Start();
-            // 启用查询按钮
-            btnSelect.Enabled = true;
-
-                //测试
-                //var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
-                //for (int i = 0; i < list.Count(); i++)
-                //{
-                //    ShowWaitIcon(charts1.ElementAt(i));
-                //    int chartIndex = i;
-                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                //}
-
-                //var charts1 = flowLayoutPanel2.Controls.OfType<TChart>().ToArray();
-                //for (int i = 0; i < list2.Count(); i++)
-                //{
-                //    ShowWaitIcon(charts1.ElementAt(i));
-                //    int chartIndex = i;
-                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]);
-                //}
-
-                //var charts1 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
-                //for (int i = 0; i < list3.Count(); i++)
-                //{
-                //    ShowWaitIcon(charts1.ElementAt(i));
-                //    int chartIndex = i;
-                //    QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]);
-                //}
+           
             //}
             //catch (Exception ex)
             //{
