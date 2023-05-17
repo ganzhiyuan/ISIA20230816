@@ -134,7 +134,7 @@ namespace ISIA.UI.TREND
             }
         }
 
-        private async void btnSelect_Click(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
             //try
             //{
@@ -157,10 +157,12 @@ namespace ISIA.UI.TREND
             //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
             btnSelect.Enabled = false;
-
-            QueryDataSheet1();
-            QueryDataSheet2();
-            QueryDataSheet3();
+            Task.Factory.StartNew(() => QueryDataSheet1());
+            Task.Factory.StartNew(() => QueryDataSheet2());
+            Task.Factory.StartNew(() => QueryDataSheet3());
+            //QueryDataSheet1();
+            //QueryDataSheet2();
+            //QueryDataSheet3();
             btnSelect.Enabled = true;
 
            
@@ -183,19 +185,25 @@ namespace ISIA.UI.TREND
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             int count = list.Count();
             //Thread[] threads = new Thread[count];
-            for (int i = 0; i < count; i++)
-            {
-                int chartIndex = i;
+            for (int i = 0; i < count; i++) 
+            { 
+                int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
-                //var threadToJoin = threads[chartIndex];
-                thread.Start();
-
-                //threadToJoin.Start();
-                //threads[chartIndex].Join();
-                //threadToJoin.Join();
+                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])); 
             }
+            //for (int i = 0; i < count; i++)
+            //{
+            //    int chartIndex = i;
+            //    ShowWaitIcon(charts1.ElementAt(chartIndex));
+            //    //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+            //    var thread = (new Task(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
+            //    //var threadToJoin = threads[chartIndex];
+            //    thread.Start();
+
+            //    //threadToJoin.Start();
+            //    //threads[chartIndex].Join();
+            //    //threadToJoin.Join();
+            //}
         }
 
         private void QueryDataSheet2()
@@ -205,17 +213,23 @@ namespace ISIA.UI.TREND
             //Thread[] threads = new Thread[count];
             for (int i = 0; i < count; i++)
             {
-                int chartIndex = i;
+                int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
-                //var threadToJoin = threads[chartIndex];
-                thread.Start();
-
-                //threadToJoin.Start();
-                //threads[chartIndex].Join();
-                //threadToJoin.Join();
+                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]));
             }
+            //for (int i = 0; i < count; i++)
+            //{
+            //    int chartIndex = i;
+            //    ShowWaitIcon(charts1.ElementAt(chartIndex));
+            //    //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+            //    var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex])));
+            //    //var threadToJoin = threads[chartIndex];
+            //    thread.Start();
+
+            //    //threadToJoin.Start();
+            //    //threads[chartIndex].Join();
+            //    //threadToJoin.Join();
+            //}
         }
         private void QueryDataSheet3()
         {
@@ -224,17 +238,23 @@ namespace ISIA.UI.TREND
             //Thread[] threads = new Thread[count];
             for (int i = 0; i < count; i++)
             {
-                int chartIndex = i;
+                int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-                var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
-                //var threadToJoin = threads[chartIndex];
-                thread.Start();
-
-                //threadToJoin.Start();
-                //threads[chartIndex].Join();
-                //threadToJoin.Join();
+                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]));
             }
+            //for (int i = 0; i < count; i++)
+            //{
+            //    int chartIndex = i;
+            //    ShowWaitIcon(charts1.ElementAt(chartIndex));
+            //    //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
+            //    var thread = (new Thread(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex])));
+            //    //var threadToJoin = threads[chartIndex];
+            //    thread.Start();
+
+            //    //threadToJoin.Start();
+            //    //threads[chartIndex].Join();
+            //    //threadToJoin.Join();
+            //}
         }
 
 
