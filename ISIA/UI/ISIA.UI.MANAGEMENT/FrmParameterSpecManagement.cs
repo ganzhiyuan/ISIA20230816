@@ -168,7 +168,7 @@ namespace ISIA.UI.MANAGEMENT
 
         private void txtSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(searchid.Text))
+            if (searchid.EditValue == null)
             {
                 searchid.BackColor = Color.Orange;
                 return;
@@ -180,6 +180,7 @@ namespace ISIA.UI.MANAGEMENT
 
                 return;
             }
+            
             /*if (string.IsNullOrEmpty(txtControlLow.Text))
             {
                 txtControlLow.BackColor = Color.Orange;
@@ -416,7 +417,7 @@ namespace ISIA.UI.MANAGEMENT
                 cmbRuleName.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(searchid.Text))
+            if (searchid.EditValue == null)
             {
                 searchid.BackColor = Color.Orange;
                 return;
