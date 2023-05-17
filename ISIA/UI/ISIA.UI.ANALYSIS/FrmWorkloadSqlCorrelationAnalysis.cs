@@ -20,6 +20,7 @@ using TAP;
 using System.Collections;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using ISIA.COMMON;
 
 namespace ISIA.UI.ANALYSIS
 {
@@ -33,7 +34,7 @@ namespace ISIA.UI.ANALYSIS
         BizDataClient BsForGettingSqlInfluence = new BizDataClient("ISIA.BIZ.ANALYSIS.DLL", "ISIA.BIZ.ANALYSIS.SqlInfluenceAnalysis");
 
         AwrArgsPack argument = null;
-
+        List<string> listUI = null;
 
         #region getset
         public BizDataClient Bs { get => bs; set => bs = value; }
@@ -48,6 +49,11 @@ namespace ISIA.UI.ANALYSIS
             //initialize bs
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
+        }
+
+        private void FrmWorkloadSqlCorrelationAnalysis_Load(object sender, EventArgs e)
+        {
+            listUI = LinkAgeHelper.Linkage(this.UIInformation.Name.ToString());
         }
 
         #region event
@@ -362,7 +368,7 @@ namespace ISIA.UI.ANALYSIS
 
             resultDt.Columns.Add("WORKLOAD_PARM", typeof(string));
             resultDt.Columns.Add("SQL_PARM", typeof(string));
-            resultDt.Columns.Add("R", typeof(string));
+            resultDt.Columns.Add("R", typeof(double));
 
             foreach (SqlCorrelationValue ele in result)
             {
@@ -384,11 +390,24 @@ namespace ISIA.UI.ANALYSIS
             gridFormatRule.Rule = formatRule;
             //设置格式化规则的条件和值
             formatRule.Condition = FormatCondition.Greater;
-            formatRule.Value1 = "0.8";
+            formatRule.Value1 = 0.8;
             //设置格式化规则的外观选项
             formatRule.Appearance.ForeColor = Color.White;
             //将规则添加到GridView中的格式化规则集合中
             gridView1.FormatRules.Add(gridFormatRule);
+
+
+            FormatConditionRuleValue formatRule2 = new FormatConditionRuleValue();
+            GridFormatRule gridFormatRule2 = new GridFormatRule();
+            gridFormatRule2.Column = this.gridView1.Columns["R"];
+            gridFormatRule2.Rule = formatRule2;
+            //设置格式化规则的条件和值
+            formatRule2.Condition = FormatCondition.Less;
+            formatRule2.Value1 = -0.8;
+            //设置格式化规则的外观选项
+            formatRule2.Appearance.ForeColor = Color.White;
+            //将规则添加到GridView中的格式化规则集合中
+            gridView1.FormatRules.Add(gridFormatRule2);
         }
 
         //R column show color
@@ -489,6 +508,6 @@ namespace ISIA.UI.ANALYSIS
             #endregion
         }
 
-
+        
     }
 }

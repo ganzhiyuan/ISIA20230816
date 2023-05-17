@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using TAP.Data.Client;
 using TAP.UIControls.BasicControlsDEV;
 
+
 namespace ISIA.UI.MANAGEMENT
 {
     public delegate void SPECdele(Spec delespec);
@@ -110,25 +111,37 @@ namespace ISIA.UI.MANAGEMENT
             var min =  dtclac.Tables[0].AsEnumerable().Min(x => Convert.ToDouble(x["N_VALUE"]));
             var avg = dtclac.Tables[0].AsEnumerable().Average(x => Convert.ToDouble(x["N_VALUE"]));
             var sum = dtclac.Tables[0].AsEnumerable().Sum(x => Convert.ToDouble(x["N_VALUE"]));
-
-            double stdDev = 0;
+            double sumOfSquaredDifferences = 0;
+            /*double stdDev = 0;
             double sqrSum = 0;
-            int count = dtclac.Tables[0].Rows.Count;
+            int count = dtclac.Tables[0].Rows.Count;*/
 
 
-            // 计算每个值与平均值之差的平方和
+            /*// 计算每个值与平均值之差的平方和
             foreach (DataRow row in dtclac.Tables[0].Rows)
             {
                 double value = Convert.ToDouble(row["N_VALUE"]);
                 sqrSum += Math.Pow(value - avg, 2);
             }
 
+
+
             // 计算标准偏差
             if (count > 1)
             {
                 stdDev = Math.Sqrt(sqrSum / (count - 1));
                 stdDev = stdDev / Math.Sqrt(count);
+            }*/
+
+            foreach (DataRow row in dtclac.Tables[0].Rows)
+            {
+                double value = Convert.ToDouble(row["N_VALUE"]);
+                double difference = value - avg;
+                sumOfSquaredDifferences += difference * difference;
             }
+
+            double stdDev =  Math.Sqrt(sumOfSquaredDifferences / (dtclac.Tables[0].Rows.Count - 1));
+             
 
             spCONTROLUPPERLIMIT.EditValue = Math.Round(max, 2);
             spCONTROLLOWERLIMIT.EditValue = Math.Round(min, 2);
