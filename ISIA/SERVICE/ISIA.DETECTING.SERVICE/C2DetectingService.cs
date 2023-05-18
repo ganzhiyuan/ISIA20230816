@@ -1420,7 +1420,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND INSTANCE_NUMBER = TD.INSTANCE_NUMBER ");
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
-                selectSQL.Append("AND RULENO = TD.RULENO) ");
+                selectSQL.Append("AND RULENO = TD.RULENO) ORDER BY rulename,ruleno,dbid,instance_number,snap_id ");
 
                 base.SaveLog(SQL_LOG, "GetmailData", selectSQL.ToString());
 
@@ -1484,7 +1484,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 selectSQL.Append("AND RULENO = TD.RULENO ");
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
-                selectSQL.Append("AND SNAP_ID = TD.SNAP_ID) ");
+                selectSQL.Append("AND SNAP_ID = TD.SNAP_ID) ORDER BY  rulename,ruleno,dbid,instance_number,snap_id ");
 
                 base.SaveLog(SQL_LOG, "GetmailDataForEliminateDuplicatedRows", selectSQL.ToString());
 
