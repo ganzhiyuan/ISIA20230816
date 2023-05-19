@@ -36,7 +36,7 @@ namespace ISIA.UI.ANALYSIS
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkageStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -78,13 +78,6 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridControlWorkloadSqlCorrelation = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.barButtonItemSqlInfluence = new DevExpress.XtraBars.BarButtonItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -134,8 +127,6 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWorkloadSqlCorrelation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -172,7 +163,7 @@ namespace ISIA.UI.ANALYSIS
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(725, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(763, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(967, 670);
@@ -251,15 +242,15 @@ namespace ISIA.UI.ANALYSIS
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editChartToolStripMenuItem});
+            this.linkageStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(138, 28);
             // 
-            // editChartToolStripMenuItem
+            // linkageStripMenuItem
             // 
-            this.editChartToolStripMenuItem.Name = "editChartToolStripMenuItem";
-            this.editChartToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
-            this.editChartToolStripMenuItem.Text = "EditChart";
+            this.linkageStripMenuItem.Name = "linkageStripMenuItem";
+            this.linkageStripMenuItem.Size = new System.Drawing.Size(137, 24);
+            this.linkageStripMenuItem.Text = "LinkAge";
             // 
             // layoutControl1
             // 
@@ -365,8 +356,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 464;
-            this.navBarControl1.Size = new System.Drawing.Size(464, 703);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 371;
+            this.navBarControl1.Size = new System.Drawing.Size(371, 562);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -843,83 +834,17 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.GridControl = this.gridControlWorkloadSqlCorrelation;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
-            this.gridView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseUp);
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemSqlInfluence)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
-            // barButtonItemSqlInfluence
-            // 
-            this.barButtonItemSqlInfluence.Caption = "Sql Influence Analysis";
-            this.barButtonItemSqlInfluence.Id = 0;
-            this.barButtonItemSqlInfluence.Name = "barButtonItemSqlInfluence";
-            this.barButtonItemSqlInfluence.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1SqlInfluence_ItemClick);
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControl1);
-            this.barManager1.DockControls.Add(this.barDockControl2);
-            this.barManager1.DockControls.Add(this.barDockControl3);
-            this.barManager1.DockControls.Add(this.barDockControl4);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItemSqlInfluence});
-            this.barManager1.MaxItemId = 1;
-            // 
-            // barDockControl1
-            // 
-            this.barDockControl1.CausesValidation = false;
-            this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControl1.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl1.Manager = this.barManager1;
-            this.barDockControl1.Size = new System.Drawing.Size(1352, 0);
-            // 
-            // barDockControl2
-            // 
-            this.barDockControl2.CausesValidation = false;
-            this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 728);
-            this.barDockControl2.Manager = this.barManager1;
-            this.barDockControl2.Size = new System.Drawing.Size(1352, 0);
-            // 
-            // barDockControl3
-            // 
-            this.barDockControl3.CausesValidation = false;
-            this.barDockControl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControl3.Location = new System.Drawing.Point(0, 0);
-            this.barDockControl3.Manager = this.barManager1;
-            this.barDockControl3.Size = new System.Drawing.Size(0, 728);
-            // 
-            // barDockControl4
-            // 
-            this.barDockControl4.CausesValidation = false;
-            this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(1352, 0);
-            this.barDockControl4.Manager = this.barManager1;
-            this.barDockControl4.Size = new System.Drawing.Size(0, 728);
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             // 
             // FrmWorkloadSqlCorrelationAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1352, 728);
-            this.Controls.Add(this.barDockControl3);
-            this.Controls.Add(this.barDockControl4);
-            this.Controls.Add(this.barDockControl2);
-            this.Controls.Add(this.barDockControl1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmWorkloadSqlCorrelationAnalysis";
             this.Text = "FrmWorkloadSqlCorrelationAnalysis";
             this.Load += new System.EventHandler(this.FrmWorkloadSqlCorrelationAnalysis_Load);
-            this.Controls.SetChildIndex(this.barDockControl1, 0);
-            this.Controls.SetChildIndex(this.barDockControl2, 0);
-            this.Controls.SetChildIndex(this.barDockControl4, 0);
-            this.Controls.SetChildIndex(this.barDockControl3, 0);
             this.Controls.SetChildIndex(this.tPanelBottomBase, 0);
             this.Controls.SetChildIndex(this.tPanelTop, 0);
             this.Controls.SetChildIndex(this.tPanelMain, 0);
@@ -973,8 +898,6 @@ namespace ISIA.UI.ANALYSIS
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlWorkloadSqlCorrelation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -985,7 +908,7 @@ namespace ISIA.UI.ANALYSIS
         public DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         public DevExpress.XtraNavBar.NavBarItem navBarItem1;
         public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        public System.Windows.Forms.ToolStripMenuItem editChartToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem linkageStripMenuItem;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         public DevExpress.XtraBars.Navigation.TabPane tabPane1;
         public DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
@@ -1021,13 +944,6 @@ namespace ISIA.UI.ANALYSIS
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.GridControl gridControlWorkloadSqlCorrelation;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraBars.PopupMenu popupMenu1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemSqlInfluence;
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.BarDockControl barDockControl1;
-        private DevExpress.XtraBars.BarDockControl barDockControl2;
-        private DevExpress.XtraBars.BarDockControl barDockControl3;
-        private DevExpress.XtraBars.BarDockControl barDockControl4;
         public TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         public TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbInstance;
