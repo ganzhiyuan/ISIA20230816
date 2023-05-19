@@ -242,7 +242,7 @@ namespace ISIA.UI.TREND
                 for (int i = 0; i < dataSetTB.Tables.Count; i++)
                 {
                     var maxValue = dataSetTB.Tables[i].AsEnumerable().Max(x => x.Field<decimal>("PARAMENT_VALUE"));
-                    TChart tChart = CreateCharts(dataSetTB.Tables[i].TableName,width, height, i, maxValue);
+                    TChart tChart = CreateCharts(AwrArgsPack.WorkloadNewParmMapping[dataSetTB.Tables[i].TableName],width, height, i, maxValue);
 
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
                     flowLayoutPanel1.Controls.Add(tChart);
