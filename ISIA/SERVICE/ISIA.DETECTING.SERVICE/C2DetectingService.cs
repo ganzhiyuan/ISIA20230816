@@ -1422,7 +1422,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND INSTANCE_NUMBER = TD.INSTANCE_NUMBER ");
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
-                selectSQL.Append("AND RULENO = TD.RULENO) ");
+                selectSQL.Append("AND RULENO = TD.RULENO) ORDER BY rulename,ruleno,dbid,instance_number,snap_id ");
 
                 base.SaveLog(SQL_LOG, "GetmailData", selectSQL.ToString());
 
@@ -1488,7 +1488,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
                 selectSQL.Append("AND RULENO = TD.RULENO ");
                 selectSQL.Append("AND RULENAME = TD.RULENAME ");
-                selectSQL.Append("AND SNAP_ID = TD.SNAP_ID) ");
+                selectSQL.Append("AND SNAP_ID = TD.SNAP_ID) ORDER BY  rulename,ruleno,dbid,instance_number,snap_id ");
 
                 base.SaveLog(SQL_LOG, "GetmailDataForEliminateDuplicatedRows", selectSQL.ToString());
 
@@ -1588,68 +1588,75 @@ namespace ISIA.DETECTING.SERVICE
                 switch (ruleName) // Replace with actual rule name
                 {
                     case "NelsonRules":
-                        rowStyle = "style='background-color: #FFE0E0;'"; // Light Red
+                        rowStyle = "style='background-color: #FFE0E0;"; // Light Red
                         break;
                     case "AverageRules":
-                        rowStyle = "style='background-color: #E0FFE0;'"; // Light Green
+                        rowStyle = "style='background-color: #E0FFE0;"; // Light Green
                         break;
                     case "Rule3":
-                        rowStyle = "style='background-color: #E0E0FF;'"; // Light Blue
+                        rowStyle = "style='background-color: #E0E0FF;"; // Light Blue
                         break;
                     case "Rule4":
-                        rowStyle = "style='background-color: #FFFFE0;'"; // Light Yellow
+                        rowStyle = "style='background-color: #FFFFE0;"; // Light Yellow
                         break;
                     case "Rule5":
-                        rowStyle = "style='background-color: #FFE0FF;'"; // Light Pink
+                        rowStyle = "style='background-color: #FFE0FF;"; // Light Pink
                         break;
                     case "Rule6":
-                        rowStyle = "style='background-color: #E0FFFF;'"; // Light Cyan
+                        rowStyle = "style='background-color: #E0FFFF;"; // Light Cyan
                         break;
                     case "Rule7":
-                        rowStyle = "style='background-color: #FFF0E0;'"; // Light Orange
+                        rowStyle = "style='background-color: #FFF0E0;"; // Light Orange
                         break;
                     case "Rule8":
-                        rowStyle = "style='background-color: #E0FFF0;'"; // Light Mint
+                        rowStyle = "style='background-color: #E0FFF0;"; // Light Mint
                         break;
                     case "Rule9":
-                        rowStyle = "style='background-color: #F0E0FF;'"; // Light Purple
+                        rowStyle = "style='background-color: #F0E0FF;"; // Light Purple
                         break;
                     case "Rule10":
-                        rowStyle = "style='background-color: #E0F0FF;'"; // Light Sky blue
+                        rowStyle = "style='background-color: #E0F0FF;"; // Light Sky blue
                         break;
                     default:
-                        rowStyle = "style='background-color: #FFFFFF;'"; // White
+                        rowStyle = "style='background-color: #FFFFFF;"; // White
                         break;
                 }
-
+                string temp = rowStyle;
                 if (dtIdx % 2 == 0)
-                    sbMailList.AppendFormat("	<tr {0} style='border-top:1px solid gray;'>", rowStyle);
+                {
+                    rowStyle = rowStyle += "border-bottom:2px solid gray;'";
+                    sbMailList.AppendFormat("	<tr {0} >", rowStyle);
+                }
                 else
-                    sbMailList.AppendFormat("	<tr class=\"alt\" {0}>", rowStyle);
+                {
 
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", dtIdx);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["DBID"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["INSTANCE_NUMBER"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["PARAMETERID"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["PARAMETERNAME"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENO"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULENAME"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["RULETEXT"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
+                    rowStyle = rowStyle += "'";
+                    sbMailList.AppendFormat("	<tr class=\"alt\" {0}>", rowStyle);
+                }
+
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", dtIdx);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["DBID"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["INSTANCE_NUMBER"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAMETERID"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAMETERNAME"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENO"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENAME"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULETEXT"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
                 
                 string measureTimeKey = drTemp["MEASURE_TIMEKEY"].ToString();
                 DateTime measureDateTime = DateTime.ParseExact(measureTimeKey, "yyyyMMddHH", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", measureDateTime.ToString("yyyy/MM/dd HH"));
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", measureDateTime.ToString("yyyy/MM/dd HH"));
 
                 string startTimeKey = drTemp["STARTTIMEKEY"].ToString();
                 DateTime startDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", startDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", startDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
 
                 string endTimeKey = drTemp["STARTTIMEKEY"].ToString();
                 DateTime endDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", endDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["MEASURE_VAL"]);
-                sbMailList.AppendFormat("		<td align=\"center\">{0}</td>", drTemp["COMMENTS"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", endDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["MEASURE_VAL"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["COMMENTS"]);
                
                 sbMailList.AppendFormat("	</tr>");
                 #endregion
@@ -1697,7 +1704,7 @@ namespace ISIA.DETECTING.SERVICE
             mailBody.AppendLine("table ");
             mailBody.AppendLine("{ ");
             mailBody.AppendLine("    border-collapse:collapse; ");
-            mailBody.AppendLine("    border: 1px black solid; ");
+            mailBody.AppendLine("    border: 2px black solid; ");
             mailBody.AppendLine("    font-size: 11px; ");
             mailBody.AppendLine("} ");
             mailBody.AppendLine(" ");
@@ -1709,10 +1716,10 @@ namespace ISIA.DETECTING.SERVICE
             mailBody.AppendLine("    font-size: 11px; ");
             mailBody.AppendLine("} ");
             mailBody.AppendLine(" ");
-            mailBody.AppendLine("td ");
+            mailBody.AppendLine(".td ");
             mailBody.AppendLine("{ ");
-            mailBody.AppendLine("    border-right: 1px gray solid; ");
-            mailBody.AppendLine("    border-bottom: 1px gray solid; ");
+            mailBody.AppendLine("    border-right: 1px white solid; ");
+            mailBody.AppendLine("    border-bottom: 1px white solid; ");
             mailBody.AppendLine("}  ");
             mailBody.AppendLine(" ");
             mailBody.AppendLine(".alt ");

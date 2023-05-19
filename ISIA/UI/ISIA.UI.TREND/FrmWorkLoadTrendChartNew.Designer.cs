@@ -561,30 +561,24 @@ namespace ISIA.UI.TREND
             this.cmbLinePara.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbLinePara.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CPU_UTIL_PCT", "CPU_UTIL_PCT"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CPU_UTIL_PCT_MAX", "CPU_UTIL_PCT_MAX"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("LOGICAL_READS_PSEC", "LOGICAL_READS_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PHYSICAL_READS_PSEC", "PHYSICAL_READS_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PHYSICAL_WRITES_PSEC", "PHYSICAL_WRITES_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECS_PSEC_AVG", "EXECS_PSEC_AVG"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECS_PSEC_MAX", "EXECS_PSEC_MAX"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("USER_CALLS_PSEC", "USER_CALLS_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("HARD_PARSE_CNT_PSEC", "HARD_PARSE_CNT_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DB_BLOCK_CHANGES_PSEC", "DB_BLOCK_CHANGES_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("SQL_SERVICE_RESPONSE_TIME", "SQL_SERVICE_RESPONSE_TIME"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("COMMIT_PSEC_AVG", "COMMIT_PSEC_AVG"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("REDO_MB_PSEC_AVG", "REDO_MB_PSEC_AVG"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DLM_MB_PSEC", "DLM_MB_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_CLIENT_PSEC", "NET_MB_TO_CLIENT_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_CLIENT_PSEC", "NET_MB_FROM_CLIENT_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_DBLINK_PSEC", "NET_MB_FROM_DBLINK_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "NET_MB_TO_DBLINK_PSEC"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECUTIONS", "EXECUTIONS"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ELAPSED_TIME", "ELAPSED_TIME"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CPU_TIME", "CPU_TIME"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("BUFFER_GETS", "BUFFER_GETS"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DISK_READS", "DISK_READS"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PARSE_CALL", "PARSE_CALL")});
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CPU_UTIL_PCT", "CPU(%)"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("LOGICAL_READS_PSEC", "Logical Reads Blocks"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PHYSICAL_READS_PSEC", "Physical Reads Blocks"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PHYSICAL_WRITES_PSEC", "Physical Writes Blocks"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECS_PSEC_AVG", "Execution Count"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("USER_CALLS_PSEC", "User Calls Count"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("HARD_PARSE_CNT_PSEC", "Hard Parse Count"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DB_BLOCK_CHANGES_PSEC", "DB Block Changes PSEC"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("SQL_SERVICE_RESPONSE_TIME", "SQL Service Response Time"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("COMMIT_PSEC_AVG", "Commit Count"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("REDO_MB_PSEC_AVG", "Redo MB"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DLM_MB_PSEC", "DML MB"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_CLIENT_PSEC", "Net MB To Client"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_CLIENT_PSEC", "Net MB From Client"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_DBLINK_PSEC", "Net MB From DB Link"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "Net MB To DB Link"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECUTIONS", "Executions"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ELAPSED_TIME", "Elapsed_Time")});
             this.cmbLinePara.Size = new System.Drawing.Size(108, 20);
             this.cmbLinePara.StyleController = this.lcSerachOptions;
             this.cmbLinePara.TabIndex = 29;
