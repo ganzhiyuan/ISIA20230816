@@ -1450,7 +1450,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("SELECT B.* ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC A, ");
                 selectSQL.Append("TAPCTOUTOFCONTROLDATASUM B ");
-                selectSQL.AppendFormat("WHERE B.ENDTIMEKEY >= TO_CHAR(TO_DATE( '{0}', ‘YYYYMMDDHH24’) - A.DAYS, ‘YYYYMMDDHH24’)", _measureYesterDay);
+                selectSQL.AppendFormat("WHERE B.ENDTIMEKEY >= TO_CHAR(TO_DATE( '{0}', 'YYYYMMDDHH24') - A.DAYS, 'YYYYMMDDHH24')", _measureHourAgo);
                 selectSQL.AppendFormat("AND B.ENDTIMEKEY <= '{0}' ", _measureHourAgo);
                 selectSQL.Append("AND B.DBID = A.DBID ");
                 selectSQL.Append("AND B.INSTANCE_NUMBER = A.INSTANCE_NUMBER ");
