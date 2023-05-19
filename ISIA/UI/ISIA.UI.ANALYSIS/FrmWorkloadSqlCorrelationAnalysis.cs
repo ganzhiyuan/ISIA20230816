@@ -54,6 +54,64 @@ namespace ISIA.UI.ANALYSIS
         private void FrmWorkloadSqlCorrelationAnalysis_Load(object sender, EventArgs e)
         {
             listUI = LinkAgeHelper.Linkage(this.UIInformation.Name.ToString());
+            creatToolmenu(listUI);
+        }
+
+        private void creatToolmenu(List<string> uilist)
+        {
+
+            foreach (string uiname in uilist)
+            {
+                ToolStripMenuItem uiMenuItem = new ToolStripMenuItem(uiname);
+                uiMenuItem.Click += linkageToolStripMenuItem_Click;
+                linkageStripMenuItem.DropDownItems.Add(uiMenuItem);
+            }
+        }
+
+        private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                gridView1.FocusedRowHandle = e.RowHandle;
+                
+                contextMenuStrip1.Show(gridView1.GridControl, e.Location);
+            }
+        }
+
+        private void linkageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            // 假设你的GridView控件名为gridView1
+            // 获取当前选中行
+
+            DataRowView selectedIndex = (DataRowView)(gridView1.GetFocusedRow());
+
+            Hashtable myHashtable = new Hashtable();
+
+
+            if (selectedIndex != null)
+            {
+                // 处理当前选中行
+                string parametername =  selectedIndex["SQL_PARM"].ToString();
+                myHashtable.Add("PARAMETERNAME", parametername);
+                myHashtable.Add("DBID", argument.DBID);
+                myHashtable.Add("INSTANCE_NUMBER", argument.INSTANCE_NUMBER);
+                //myHashtable.Add("WorkloadSqlParm", argument.WorkloadSqlParm);
+                myHashtable.Add("StartTime", argument.StartTime);
+                myHashtable.Add("EndTime", argument.EndTime);
+
+
+            }
+            else
+            {
+                return;
+            }
+
+            string linkUIname = sender.ToString();
+            DataTable dtlinkui = LinkAgeHelper.LinkUI(linkUIname);
+            base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString() , myHashtable);
+            //base.OpenUI("SQLSTATISTICSANALYSIS", "AWR", "SQLSTATISTICSANALYSIS", dt);
         }
 
         #region event
@@ -97,42 +155,6 @@ namespace ISIA.UI.ANALYSIS
                     DisplayChart(tmpdt.DataSet);
                 }
             }
-        }
-        private void gridView1_MouseUp(object sender, MouseEventArgs e)
-        {
-            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = this.gridView1.CalcHitInfo(e.Location);
-            if (hi.InRow && e.Button == MouseButtons.Right)
-            {
-                this.popupMenu1.ShowPopup(Control.MousePosition);
-            }
-        }
-
-
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            FocusedRowDr = this.gridView1.GetDataRow(e.FocusedRowHandle) as DataRow;
-        }
-
-        /*
-         *  use when jump to sql influence frm.
-         */
-        private void barButtonItem1SqlInfluence_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            try
-            {
-                argument.WorkloadSqlParm = (string)FocusedRowDr["SQL_PARM"];
-                DataSet resultDs = BsForGettingSqlInfluence.ExecuteDataSet("GetSqlInfluenceData", argument.getPack());
-
-                Hashtable ht = new Hashtable();
-                ht.Add("DS", resultDs);
-                ht.Add("SQL_PARM", argument.WorkloadSqlParm);
-                base.OpenUI("SQLINFLUENCEANALYSIS", "AWR", "Ranking of SQL Statistics by Impact", null, ht);
-            }
-            catch (Exception ex)
-            {
-                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
-            }
-
         }
 
         #endregion

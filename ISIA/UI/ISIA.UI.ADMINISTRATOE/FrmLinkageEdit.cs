@@ -72,7 +72,7 @@ namespace ISIA.UI.ADMINISTRATOE
         {
             InitializeComponent();
             isUpdate = 0;
-            this.txtGroupName.Enabled = false;
+            //this.txtGroupName.Enabled = false;
             bs = new BizDataClient("ISIA.BIZ.ADMINISTRATOE.DLL", "ISIA.BIZ.ADMINISTRATOE.LinkageManagement");
             //CommonArgsPack arguments = new CommonArgsPack();
             //arguments.GroupName = groupName;
@@ -89,8 +89,8 @@ namespace ISIA.UI.ADMINISTRATOE
             DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "tapctlinkage").Tables[0];
             List<LinkInfo> linkList = GetList<LinkInfo>(retVal1);
             this._groupID = linkList[0].GROUPID;
-            this.txtGroupName.Text = linkList[0].GROUPNAME;
-            txtTagetuiName.Text = linkList[0].TAGETUINAME;
+            this.cmbUIname.Text = linkList[0].GROUPNAME;
+            cmblinkui.Text = linkList[0].TAGETUINAME;
             txtParamentList.Text = linkList[0].PARAMETERLIST;
             txtDESCRIPTION.Text = linkList[0].DESCRIPTION;
             if (linkList[0].ISALIVE == "YES")
@@ -108,11 +108,13 @@ namespace ISIA.UI.ADMINISTRATOE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //List<CommonArgsPack> ArgsPacks = new List<CommonArgsPack>();
-            args.GroupName = txtGroupName.Text;
-            args.MessageName = txtTagetuiName.Text;
+            args.GroupName = cmbUIname.Text;
+            args.MessageName = cmblinkui.Text;
             args.PartName = txtParamentList.Text;
             args.UpdateUser = InfoBase._USER_INFO.UserName;
             args.UpdateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            args.Custom02 = cmblinkui.Text;
+
             if (tRadISALIVEyes.Checked)
             {
                 args.IsAlive = "YES";

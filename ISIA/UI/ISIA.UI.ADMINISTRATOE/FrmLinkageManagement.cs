@@ -221,7 +221,7 @@ namespace ISIA.UI.ADMINISTRATOE
         private List<LinkInfo> GetBindSourceUI(string groupName)
         {
             DataClient tmpDataClient = new DataClient();
-            string UserUISql = string.Format("select GROUPNAME,UI,TAGETUI,TAGETUINAME,PARAMETERLIST,GROUPID  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' and TAGETUI!='0'", groupName);
+            string UserUISql = string.Format("select GROUPNAME,UI,TAGETUI,TAGETUINAME,PARAMETERLIST,GROUPID  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' ", groupName);
             DataTable UserUIList = tmpDataClient.SelectData(UserUISql, "tapctlinkage").Tables[0];
             List<LinkInfo> linkList = DataTableExtend.GetList<LinkInfo>(UserUIList);
             if (linkList == null)
@@ -229,8 +229,9 @@ namespace ISIA.UI.ADMINISTRATOE
                 return null;
             }
 
-            List<string> listTm = linkList.Select(x => x.TAGETUI).ToList();
-            List<LinkInfo> list = linkList.Where(x => listTm.Contains(x.TAGETUI) || x.TAGETUI != "0").ToList();
+            List<string> listTm = linkList.Select(x => x.UI).ToList();
+            //List<LinkInfo> list = linkList.Where(x => listTm.Contains(x.UI) || x.UI != "0").ToList();
+            List<LinkInfo> list = linkList.Where(x => listTm.Contains(x.UI) ).ToList();
             return list;
         }
         private void GetCheckNodeID(TreeListNode parentNode, TreeList treeList)
@@ -264,7 +265,7 @@ namespace ISIA.UI.ADMINISTRATOE
 
                 return;
             }
-            List<string> listTm = list.Select(x => x.TAGETUINAME).ToList();
+            List<string> listTm = list.Select(x => x.UI).ToList();
             foreach (TreeListNode node in treeList.Nodes)
             {
                 foreach (TreeListNode item in node.Nodes)
@@ -274,7 +275,7 @@ namespace ISIA.UI.ADMINISTRATOE
                         var drRow = treeList.GetDataRecordByNode(child);
                         if (drRow != null)
                         {
-                            string menuName = ((treeListInfo)drRow).DISPLAYNAME;
+                            string menuName = ((treeListInfo)drRow).MAINMENU;
                             if (listTm.Contains(menuName))
                             {
                                 child.CheckState = CheckState.Checked;
@@ -353,9 +354,9 @@ namespace ISIA.UI.ADMINISTRATOE
                     {
                         treeList2.Columns[0].Visible = false;
                         treeList2.Columns[1].Visible = false;
-                        treeList2.Columns[2].Visible = false;
+                        //treeList2.Columns[2].Visible = false;
                         treeList2.Columns[3].Visible = false;
-                        //treeList2.Columns[4].Visible = false;
+                        treeList2.Columns[4].Visible = false;
                         treeList2.Columns[5].Visible = false;
                         treeList2.Columns[6].Visible = false;
                         treeList2.Columns[7].Visible = false;
@@ -385,6 +386,9 @@ namespace ISIA.UI.ADMINISTRATOE
             {
                 return;
             }
+            
+
+
 
             if (dt1.Rows.Count == 0)
             {
@@ -425,7 +429,7 @@ namespace ISIA.UI.ADMINISTRATOE
                 var list = listDataAll.Where(x => listCID.Contains(x.CID.ToString()) && x.UI == "0").ToList();
 
                 DataClient tmpDataClient = new DataClient();
-                string tmpMainMenuSql = string.Format("select GROUPID,GROUPNAME,TAGETUINAME,PARAMETERLIST,DESCRIPTION,ISALIVE  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' and TAGETUI='0'", groupName);
+                string tmpMainMenuSql = string.Format("select GROUPID,GROUPNAME,TAGETUINAME,PARAMETERLIST,DESCRIPTION,ISALIVE  from tapctlinkage where GROUPNAME='{0}' and isalive = 'YES' ", groupName);
                 DataTable retVal1 = tmpDataClient.SelectData(tmpMainMenuSql, "tapctlinkage").Tables[0];
                 foreach (var item in list)
                 {
@@ -459,9 +463,9 @@ namespace ISIA.UI.ADMINISTRATOE
                 {
                     treeList2.Columns[0].Visible = false;
                     treeList2.Columns[1].Visible = false;
-                    treeList2.Columns[2].Visible = false;
+                    //treeList2.Columns[2].Visible = false;
                     treeList2.Columns[3].Visible = false;
-                    //treeList2.Columns[4].Visible = false;
+                    treeList2.Columns[4].Visible = false;
                     treeList2.Columns[5].Visible = false;
                     treeList2.Columns[6].Visible = false;
                     treeList2.Columns[7].Visible = false;
@@ -526,9 +530,9 @@ namespace ISIA.UI.ADMINISTRATOE
                 {
                     treeList2.Columns[0].Visible = false;
                     treeList2.Columns[1].Visible = false;
-                    treeList2.Columns[2].Visible = false;
+                    //treeList2.Columns[2].Visible = false;
                     treeList2.Columns[3].Visible = false;
-                    //treeList2.Columns[4].Visible = false;
+                    treeList2.Columns[4].Visible = false;
                     treeList2.Columns[5].Visible = false;
                     treeList2.Columns[6].Visible = false;
                     treeList2.Columns[7].Visible = false;

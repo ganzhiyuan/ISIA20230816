@@ -76,6 +76,16 @@ namespace ISIA.UI.MANAGEMENT
         private void tbcalc_Click(object sender, EventArgs e)
         {
             DataTable dtparatype = bs.ExecuteDataTable("GetParameterType", args.getPack());
+
+            if (dtparatype.Rows.Count == 0)
+            {
+                spCONTROLUPPERLIMIT.EditValue = null;
+                spCONTROLLOWERLIMIT.EditValue = null;
+                sptarget.EditValue = null;
+                spstdvalue.EditValue = null;
+                return;
+            }
+
             args.ParameterType = dtparatype.Rows[0]["PARAMETERTYPE"].ToString();
 
             if (string.IsNullOrEmpty(spMeasurementDay.Text))

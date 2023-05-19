@@ -5594,7 +5594,7 @@ namespace TAP.UI
         #region PopupMenu
 
         #region Methods
-        public void OpenUI(string menu, string mainMenu, string displayName, DataTable _dataTable = null, Hashtable _hashTable = null)
+        public void OpenUI(string menu, string mainMenu, string displayName, DataTable _dataTable = null)
         {
             MainMenuBasicModel tmpMainMenu = null;
             UIBasicModel tmpUI = null;
@@ -5661,6 +5661,91 @@ namespace TAP.UI
 
                 ArgumentPack tmpPack = new ArgumentPack();
                 tmpPack.AddArgument("_dataTable", typeof(DataTable), _dataTable==null?this._DataTable: _dataTable);
+                
+                ((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
+
+                //AgumentPack Data ??? ??
+                //ArgumentPack tmpPack = new ArgumentPack();
+                //tmpPack.AddArgument("TEST", typeof(string), "Hello");
+                //((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
+
+
+                return;
+            }
+            catch (System.Exception ex)
+            {
+                string tmpMessage = _translator.ConvertGeneralTemplate(EnumVerbs.OPEN, EnumGeneralTemplateType.FAIL, "menu");
+                TAPMsgBox.Instance.ShowMessage(this.Text, EnumMsgType.ERROR, tmpMessage, ex.ToString());
+            }
+        }
+
+        public void OpenUI(string menu, string mainMenu, string displayName, Hashtable _hashTable )
+        {
+            MainMenuBasicModel tmpMainMenu = null;
+            UIBasicModel tmpUI = null;
+
+            try
+            {
+                string mdiName = this.UIInformation.MDI;
+
+                tmpMainMenu = InfoBase._MDI_INFO[this.UIInformation.MDI].MainMenus[mainMenu];
+
+                if (object.Equals(tmpMainMenu, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Main menu '{0}'>", mainMenu));
+                    throw new Exception(tmpMsg);
+                }
+
+                tmpUI = tmpMainMenu.UIs[menu];
+
+                if (object.Equals(tmpMainMenu, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("<User Interface model '{0}'>", menu));
+                    throw new Exception(tmpMsg);
+                }
+
+                Assembly a = null;
+                Type tmpType = null;
+                object tmpObject = null;
+                Form tmpNewForm = null;
+
+                a = Assembly.LoadFile(Path.Combine(TapBase.Instance.ApplicationPath, tmpUI.AssemblyFileName));
+
+                if (object.Equals(a, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Assembly file '{0}'>", tmpUI.AssemblyFileName));
+                    throw new Exception(tmpMsg);
+                }
+
+                tmpType = a.GetType(tmpUI.AssemblyName);
+
+                if (object.Equals(tmpType, null))
+                {
+                    string tmpMsg = _translator.ConvertGeneralTemplate(EnumVerbs.EXIST, EnumGeneralTemplateType.NORMALNOT, string.Format("Assembly '{0}'>", tmpUI.AssemblyName));
+                    throw new Exception(tmpMsg);
+                }
+
+                //??
+                tmpObject = Activator.CreateInstance(tmpType);
+
+                //??
+                tmpNewForm = (Form)tmpObject;
+                tmpNewForm.MdiParent = this.ParentForm;
+                tmpNewForm.FormBorderStyle = FormBorderStyle.None;
+                tmpNewForm.Dock = DockStyle.Fill;
+
+                tmpNewForm.Name = menu;
+                ((TAP.UI.UIBase)tmpNewForm).UIInformation = tmpUI;
+                //((TAP.UI.UIBase)tmpNewForm).TabControl = form.tabMDIList;
+                //((TAP.UI.UIBase)tmpNewForm).UITitle = form.MakeUITitle(InfoBase._MDI_INFO[form._mdiName].MainMenus[mainMenu].DisplayName, tmpUI.DisplayName);
+                ((TAP.UI.UIBase)tmpNewForm).UITitle = "<" + mainMenu + ">_<" + displayName + ">";
+                tmpNewForm.Text = displayName;
+
+                tmpNewForm.Show();
+
+
+                ArgumentPack tmpPack = new ArgumentPack();
+                
                 tmpPack.AddArgument("_hashTable", typeof(Hashtable), _hashTable);
                 ((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
 
