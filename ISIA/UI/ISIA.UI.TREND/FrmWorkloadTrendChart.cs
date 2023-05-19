@@ -334,7 +334,7 @@ namespace ISIA.UI.TREND
             ht.Add("endTime", frm.args.EndTime);
             ht.Add("workloadParm", frm.args.WorkloadSqlParm);
             ht.Add("DbName", frm.args.DBName);
-            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "AWR", "Correlation between Workload and SQL", null, ht);
+            base.OpenUI("WORKLOADSQLCORRELATIONANALYSIS", "AWR", "Correlation between Workload and SQL", ht);
 
 
 
