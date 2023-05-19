@@ -41,6 +41,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private static Dictionary<string, string> _WorkloadRealParmMapping = new Dictionary<string, string>();
 
+        private static Dictionary<string, string> _WorkloadNewParmMapping = new Dictionary<string, string>();
 
         private static Dictionary<string, string> _WorkloadBelonging = new Dictionary<string, string>();
 
@@ -145,7 +146,27 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             //WorkloadRealParmMapping.Add("NET_MB_From_DBLink_psec", "");
             //WorkloadRealParmMapping.Add("NET_MB_To_DBLink_psec", "");
 
-
+            WorkloadNewParmMapping.Add("CPU_UTIL_PCT", "CPU(%)");
+            WorkloadNewParmMapping.Add("LOGICAL_READS_PSEC", "Logical Reads Blocks");
+            WorkloadNewParmMapping.Add("PHYSICAL_READS_PSEC", "Physical Reads Blocks");
+            WorkloadNewParmMapping.Add("PHYSICAL_WRITES_PSEC", " Physical Writes Blocks");
+            WorkloadNewParmMapping.Add("EXECS_PSEC_AVG", "Execution Count");
+            WorkloadNewParmMapping.Add("HARD_PARSE_CNT_PSEC", "Hard Parse Count");
+            WorkloadNewParmMapping.Add("SQL_SERVICE_RESPONSE_TIME", "SQL Service Response Time");
+            WorkloadNewParmMapping.Add("COMMIT_PSEC_AVG", "Commit Count");
+            WorkloadNewParmMapping.Add("REDO_MB_PSEC_AVG", "Redo MB");
+            WorkloadNewParmMapping.Add("USER_CALLS_PSEC", "User Calls Count");
+            WorkloadNewParmMapping.Add("DB_BLOCK_CHANGE_PSEC", "DB Block Change Blocks");
+            WorkloadNewParmMapping.Add("NET_MB_FROM_DBLINK_PSEC", "Net MB From DB Link");
+            WorkloadNewParmMapping.Add("NET_MB_TO_DBLINK_PSEC", "Net MB To DB Link");
+            WorkloadNewParmMapping.Add("DML_MB_PSEC", "DML MB");
+            WorkloadNewParmMapping.Add("NET_MB_FROM_CLIENT_PSEC", "Net MB From Client");
+            WorkloadNewParmMapping.Add("NET_MB_TO_CLIENT_PSEC", "Net MB To Client");
+            WorkloadNewParmMapping.Add("DB_BLOCK_CHANGES_PSEC", "DB Block Changes PSEC");
+            WorkloadNewParmMapping.Add("USER_COMMITS_PSEC", "User Commits PSEC");
+            WorkloadNewParmMapping.Add("EXECUTIONS", "Executions");
+            WorkloadNewParmMapping.Add("ELAPSED_TIME", "Elapsed Time");
+            WorkloadNewParmMapping.Add("DLM_MB_PSEC", "Dlm MB PSEC");
 
 
             //SqlParmList
@@ -406,6 +427,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _WorkloadRealParmMapping = value;
+            }
+        }
+
+        public static Dictionary<string, string> WorkloadNewParmMapping
+        {
+            get
+            {
+                return _WorkloadNewParmMapping;
+            }
+
+            set
+            {
+                _WorkloadNewParmMapping = value;
             }
         }
 
