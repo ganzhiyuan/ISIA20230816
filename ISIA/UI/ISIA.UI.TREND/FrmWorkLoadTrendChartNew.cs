@@ -44,16 +44,17 @@ namespace ISIA.UI.TREND
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.WorkloadTrendChart");
             this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
             this.dtpEndTime.DateTime = DateTime.Now;
+            cmbGroupUnit.EditValue = "DAY";
         }
 
         private void comboBoxEditGroupUnit_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cmbGroupUnit.Text == "DAY")
+            if (cmbGroupUnit.EditValue.ToString() == "DAY")
             {
                 this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
                 this.dtpEndTime.DateTime = DateTime.Now;
             }
-            else if (cmbGroupUnit.Text == "INTERVAL")
+            else if (cmbGroupUnit.EditValue.ToString() == "INTERVAL")
             {
                 this.dtpStartTime.DateTime = DateTime.Now.AddDays(-6);
                 this.dtpEndTime.DateTime = DateTime.Now;
@@ -109,12 +110,12 @@ namespace ISIA.UI.TREND
             args.DBName = cmbDbName.Text.Split('(')[0];
             args.DBID = cmbDbName.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
-            if (cmbGroupUnit.Text=="DAY")
+            if (cmbGroupUnit.EditValue.ToString()=="DAY")
             {
                 dataSet = bs.ExecuteDataSet("GetWorkLoadTrend", args.getPack());
 
             }
-            else if (cmbGroupUnit.Text == "INTERVAL")
+            else if (cmbGroupUnit.EditValue.ToString() == "INTERVAL")
             {
                 dataSet = bs.ExecuteDataSet("GetWorkLoadTrendForInterval", args.getPack());
 
@@ -122,7 +123,7 @@ namespace ISIA.UI.TREND
 
 
             ParamentRelationDS = bs.ExecuteDataSet("GetParamentRelation");
-            groupUnit = cmbGroupUnit.Text;
+            groupUnit = cmbGroupUnit.EditValue.ToString();
             //cmbLinePara.EditValue = null;
             //cmbLinePara.Text = "";
             return dataSet;
@@ -362,13 +363,18 @@ namespace ISIA.UI.TREND
                             var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
                             string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
                             string instance_num= dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
-                            var result = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper()).Field<string>("CONFIG_VALUE");
+                            var temp = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper());
+                            if (temp==null)
+                            {
+                                return;
+                            }
+                            var result = temp.Field<string>("CONFIG_VALUE");
                             if (result == null)
                             {
                                 return;
                             }
                             AwrArgsPack argsSel = new AwrArgsPack();
-                            if (cmbGroupUnit.Text == "DAY")
+                            if (cmbGroupUnit.EditValue.ToString() == "DAY")
                             {
                                 argsSel.StartTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
                                 argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
@@ -404,7 +410,7 @@ namespace ISIA.UI.TREND
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
                                 AwrArgsPack args = new AwrArgsPack();
-                                if (cmbGroupUnit.Text == "DAY")
+                                if (cmbGroupUnit.EditValue.ToString() == "DAY")
                                 {
                                     args.StartTime = dtpEndTime.DateTime.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
                                 }
