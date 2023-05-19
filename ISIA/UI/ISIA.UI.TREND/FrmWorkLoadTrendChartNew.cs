@@ -241,7 +241,8 @@ namespace ISIA.UI.TREND
                 int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(4);
                 for (int i = 0; i < dataSetTB.Tables.Count; i++)
                 {
-                    TChart tChart = CreateCharts(dataSetTB.Tables[i].TableName,width, height, i);
+                    var maxValue = dataSetTB.Tables[i].AsEnumerable().Max(x => x.Field<decimal>("PARAMENT_VALUE"));
+                    TChart tChart = CreateCharts(dataSetTB.Tables[i].TableName,width, height, i, maxValue);
 
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
                     flowLayoutPanel1.Controls.Add(tChart);
@@ -260,7 +261,7 @@ namespace ISIA.UI.TREND
             }
         }
 
-        private TChart CreateCharts(string strName,int width, int height, int i)
+        private TChart CreateCharts(string strName,int width, int height, int i,decimal maxValue)
         {
             // 创建 TChart 控件
             TChart tChart = new TChart();
@@ -271,8 +272,12 @@ namespace ISIA.UI.TREND
             tChart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
             tChart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             tChart.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
-            tChart.Axes.Left.AutomaticMinimum = false;
-            tChart.Axes.Right.Minimum = 0; //设置右侧轴的最小值为0
+            tChart.Axes.Left.Maximum = Convert.ToDouble(maxValue);
+            tChart.Axes.Left.Automatic = false; // 禁用自动计算
+            tChart.Axes.Left.Increment = CalculateIncrement(Convert.ToDouble(maxValue)); // 设置刻度增量
+            tChart.Axes.Left.Maximum = Math.Round(Convert.ToDouble(maxValue)+ tChart.Axes.Left.Increment*2,2);
+            //tChart.Axes.Left.AutomaticMinimum = false;
+            //tChart.Axes.Right.Minimum = 0; //设置右侧轴的最小值为0
             tChart.MouseDown += tChart1_MouseDown;
             tChart.MouseUp += tChart1_MouseUp;
             tChart.ClickSeries += Chart_ClickSeries;
@@ -280,6 +285,18 @@ namespace ISIA.UI.TREND
             //chart.Zoom.Direction = ZoomDirections.None;
             tChart.Panning.Allow = ScrollModes.None;
             return tChart;
+        }
+        private double CalculateIncrement(double maxValue)
+        {
+            double increment = 0.1;
+            double range = maxValue - 0;
+
+            while ((range / increment) > 10)
+            {
+                increment *= 2;
+            }
+
+            return increment;
         }
 
         private Line CreateLine(DataTable dstable,decimal d)
