@@ -71,6 +71,7 @@ namespace ISIA.BIZ.TREND
   ,SUM(DECODE(metric_name, 'User Commits Per Sec', maxval, 0)) User_Commits_max_psec
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', average, 0)) Redo_Generated_psec
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', maxval, 0)) Redo_Generated_max_psec
+  ,SUM(DECODE(metric_name, 'Hard Parse Count Per Sec', maxval, 0)) HardParseCountPerSec
     FROM (SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */
            sm.*, sn.begin_interval_time, sn.end_interval_time ");
                 tmpSql.AppendFormat(" FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm ", arguments.DBName);
@@ -212,6 +213,7 @@ t2_sysmetric_summary AS
         ,ROUND(AVG(User_Commits_max_psec), 2) Commit_psec_max
         ,ROUND(AVG(Redo_Generated_psec / 1024 / 1024), 2) Redo_mb_psec_avg
         ,ROUND(AVG(Redo_Generated_max_psec / 1024 / 1024), 2) Redo_mb_psec_max
+        ,ROUND(AVG(HardParseCountPerSec),2) Hard_Parse_Cnt_psec 
 
 
     FROM t1_sysmetric_summary s
@@ -295,6 +297,7 @@ SELECT sm.dbid
       ,sm.Commit_psec_max
       ,sm.Redo_mb_psec_avg
       ,sm.Redo_mb_psec_max
+      ,sm.Hard_Parse_Cnt_psec
 
       ,st.EXECUTIONS
 ,st.ELAPSED_TIME
