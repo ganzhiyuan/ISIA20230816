@@ -122,26 +122,7 @@ namespace ISIA.UI.MANAGEMENT
             var avg = dtclac.Tables[0].AsEnumerable().Average(x => Convert.ToDouble(x["N_VALUE"]));
             var sum = dtclac.Tables[0].AsEnumerable().Sum(x => Convert.ToDouble(x["N_VALUE"]));
             double sumOfSquaredDifferences = 0;
-            /*double stdDev = 0;
-            double sqrSum = 0;
-            int count = dtclac.Tables[0].Rows.Count;*/
-
-
-            /*// 计算每个值与平均值之差的平方和
-            foreach (DataRow row in dtclac.Tables[0].Rows)
-            {
-                double value = Convert.ToDouble(row["N_VALUE"]);
-                sqrSum += Math.Pow(value - avg, 2);
-            }
-
-
-
-            // 计算标准偏差
-            if (count > 1)
-            {
-                stdDev = Math.Sqrt(sqrSum / (count - 1));
-                stdDev = stdDev / Math.Sqrt(count);
-            }*/
+            
 
             foreach (DataRow row in dtclac.Tables[0].Rows)
             {
@@ -151,12 +132,29 @@ namespace ISIA.UI.MANAGEMENT
             }
 
             double stdDev =  Math.Sqrt(sumOfSquaredDifferences / (dtclac.Tables[0].Rows.Count - 1));
-             
 
-            spCONTROLUPPERLIMIT.EditValue = Math.Round(max, 2);
-            spCONTROLLOWERLIMIT.EditValue = Math.Round(min, 2);
-            sptarget.EditValue = Math.Round(avg, 2);
-            spstdvalue.EditValue = Math.Round(stdDev, 2);
+
+            if (tcbup.Checked == true)
+            {
+                spCONTROLUPPERLIMIT.EditValue = Math.Round(max, 2);
+            }
+
+            if (tcblow.Checked == true)
+            {
+                spCONTROLLOWERLIMIT.EditValue = Math.Round(min, 2);
+            }
+
+            if (tcbstdvalue.Checked == true)
+            {
+                spstdvalue.EditValue = Math.Round(stdDev, 2);
+            }
+
+            if (tcbtarget.Checked == true)
+            {
+                sptarget.EditValue = Math.Round(avg, 2);
+            }
+            
+            
 
         }
 
