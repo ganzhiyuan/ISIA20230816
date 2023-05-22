@@ -42,6 +42,14 @@ namespace ISIA.DETECTING.SERVICE
         /// </summary>
         protected string _endTimeKey;
         /// <summary>
+        /// SQL serch Search duration to obtain settings start timekey
+        /// </summary>
+        protected string _oldStartTimeKey;
+        /// <summary>
+        /// SQL serch Search duration to obtain settings end timekey
+        /// </summary>
+        protected string _oldEndTimeKey;
+        /// <summary>
         /// ImageFile FullPath
         /// </summary>
         protected string _FileName;
@@ -256,6 +264,7 @@ namespace ISIA.DETECTING.SERVICE
                             }
                             else
                             {
+                                continue;
                                 ExecSpcRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
                             }
                         }
@@ -399,7 +408,7 @@ namespace ISIA.DETECTING.SERVICE
                     selectSQL.AppendFormat(" FROM {0} D, {1} T ", _tableName, _snapTableName);
                     selectSQL.Append("WHERE D.SNAP_ID = T.SNAP_ID AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
                     //아래부터 조건들
-                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _startTimeKey, _endTimeKey);
+                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _oldStartTimeKey, _oldEndTimeKey);
                     selectSQL.AppendFormat("AND D.STAT_ID = {0} ", parameterInfo.PARAMETERID);
                     selectSQL.Append(") ");
                     selectSQL.Append(" WHERE PREV_VAL IS NOT NULL ");
@@ -411,7 +420,7 @@ namespace ISIA.DETECTING.SERVICE
                     selectSQL.AppendFormat("SELECT D.SNAP_ID, D.DBID, D.INSTANCE_NUMBER, D.METRIC_ID AS PARAMETERID, D.METRIC_NAME AS PARAMETERNAME, AVERAGE AS MEASURE_VALUE, BEGIN_INTERVAL_TIME, END_INTERVAL_TIME FROM {0} D, {1} T WHERE D.SNAP_ID = T.SNAP_ID ", _tableName, _snapTableName);
                     selectSQL.Append("AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
                     //아래부터 조건들
-                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _startTimeKey, _endTimeKey);
+                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.END_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _oldStartTimeKey, _oldEndTimeKey);
                     selectSQL.AppendFormat("AND D.METRIC_ID = {0} ", parameterInfo.PARAMETERID);
                 }
                 selectSQL.Append(") ");
@@ -541,7 +550,7 @@ namespace ISIA.DETECTING.SERVICE
             _snapTableName = MakeRawSnapTableName(parameterInfo.DBNAME);
             string startDate = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
             _measureDate = DateTime.Now.ToString("yyyyMMddHH");
-            _measureYesterDay = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMddHH");
+            _measureYesterDay = DateTime.Now.AddDays(0 - 1).ToString("yyyyMMddHH");
             _measureHourAgo = DateTime.Now.AddHours(-1).ToString("yyyyMMddHH");
             string startShiftTime = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["STARTTIME"].ToString();
             string endShiftTime = TAP.App.Base.AppConfig.ConfigManager.DefinedCollection["ENDTIME"].ToString();
@@ -550,11 +559,16 @@ namespace ISIA.DETECTING.SERVICE
             // 기본적으로 00분 으로 우선 처리함. 1시간 간격으로 변함에 따라 Shift 부분이 필요 없어짐. seoil
             _endTimeKey = _measureDate + "0000";
 
+            _oldStartTimeKey = DateTime.Now.AddDays(0 - int.Parse(parameterInfo.DAYS)).ToString("yyyyMMdd") + "000000";
+            _oldEndTimeKey = DateTime.Now.ToString("yyyyMMdd") + "000000";
+
+
+
             //DAYS 설정의 값을 통해 해당 기간동안의 평균값을 구해 TARGET 에 데이터를 저장한다.
             GetAverageRuleTagetData(parameterInfo);
 
             // 공통으로 사용할 WITH 문 생성
-            _rawDataWithStatement = makeRawDataWithStatementByHour(parameterInfo);
+            _rawDataWithStatement = makeAverageRawDataWithStatementByHour(parameterInfo);
 
             try
             {
@@ -625,6 +639,56 @@ namespace ISIA.DETECTING.SERVICE
 
             return selectSQL.ToString();
         }
+
+        private string makeAverageRawDataWithStatementByHour(ParameterInfo parameterInfo)
+        {
+            StringBuilder selectSQL = new StringBuilder();
+
+            try
+            {
+                selectSQL.Append(" WITH RAW_TABLE AS (");
+
+                if (parameterInfo.PARAMETERTYPE.Contains(_STATISTIC))
+                {
+                    // DBA_HIST_SYSSTAT 테이블 집계 값들은 누적치 이기 때문에
+                    // 이전 SNAPSHOT 집계 값과의 차이를 기준으로 계산
+                    selectSQL.Append("SELECT MAX(SNAP_ID) SNAP_ID , DBID, INSTANCE_NUMBER, PARAMETERID, PARAMETERNAME, ROUND(AVG(MEASURE_VALUE),2) AS MEASURE_VALUE, MIN(BEGIN_INTERVAL_TIME) AS BEGIN_INTERVAL_TIME, MAX(END_INTERVAL_TIME) AS END_INTERVAL_TIME FROM ( ");
+                    selectSQL.Append("SELECT SNAP_ID, DBID, INSTANCE_NUMBER, STAT_ID AS PARAMETERID, STAT_NAME AS PARAMETERNAME, (VALUE - PREV_VAL) AS MEASURE_VALUE, BEGIN_INTERVAL_TIME, END_INTERVAL_TIME ");
+                    selectSQL.Append("FROM ");
+                    selectSQL.Append("( ");
+                    selectSQL.Append(" SELECT LAG (VALUE) OVER (PARTITION BY T.DBID, T.INSTANCE_NUMBER, D.STAT_ID, T.STARTUP_TIME ORDER BY END_INTERVAL_TIME) PREV_VAL, ");
+                    selectSQL.Append("        D.*, T.BEGIN_INTERVAL_TIME, T.END_INTERVAL_TIME ");
+                    selectSQL.AppendFormat(" FROM {0} D, {1} T ", _tableName, _snapTableName);
+                    selectSQL.Append("WHERE D.SNAP_ID = T.SNAP_ID AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
+                    //아래부터 조건들
+                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.BEGIN_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _oldEndTimeKey, _measureDate + "0000");
+                    selectSQL.AppendFormat("AND D.STAT_ID = {0} ", parameterInfo.PARAMETERID);
+                    selectSQL.Append(") ");
+                    selectSQL.Append(" WHERE PREV_VAL IS NOT NULL ");
+                    selectSQL.Append(") GROUP BY DBID, INSTANCE_NUMBER, PARAMETERID, PARAMETERNAME ");
+                }
+                else if (parameterInfo.PARAMETERTYPE.Contains(_METRIC))
+                {
+                    // DBA_HIST_SYSMETRIC_SUMMARY 테이블 집계 값들은 MIN, MAX, AVG, STD_VAL중에서 AVG기준으로 계산
+                    selectSQL.AppendFormat("SELECT MAX(D.SNAP_ID) SNAP_ID, D.DBID, D.INSTANCE_NUMBER, D.METRIC_ID AS PARAMETERID, D.METRIC_NAME AS PARAMETERNAME, ROUND(AVG(AVERAGE),2) AS MEASURE_VALUE, MIN(BEGIN_INTERVAL_TIME) AS BEGIN_INTERVAL_TIME, MAX(END_INTERVAL_TIME) AS END_INTERVAL_TIME FROM {0} D, {1} T WHERE D.SNAP_ID = T.SNAP_ID ", _tableName, _snapTableName);
+                    selectSQL.Append("AND D.DBID = T.DBID AND D.INSTANCE_NUMBER = T.INSTANCE_NUMBER ");
+                    //아래부터 조건들
+                    selectSQL.AppendFormat("AND T.DBID = {0} AND T.INSTANCE_NUMBER = {1} AND T.BEGIN_INTERVAL_TIME >= TO_DATE('{2}', 'YYYYMMDDHH24MISS') AND T.END_INTERVAL_TIME < TO_DATE('{3}', 'YYYYMMDDHH24MISS') ", parameterInfo.DBID, parameterInfo.INSTANCE_NUMBER, _oldEndTimeKey, _measureDate + "0000");
+                    selectSQL.AppendFormat("AND D.METRIC_ID = {0} ", parameterInfo.PARAMETERID);
+                    selectSQL.Append(" GROUP BY D.DBID, D.INSTANCE_NUMBER, D.METRIC_ID , D.METRIC_NAME");
+                }
+
+                selectSQL.Append(") ");
+            }
+            catch (System.Exception ex)
+            {
+                base.SaveLog(ERROR_LOG, "makeRawDataWithStatementByHour", ex.ToString());
+                throw ex;
+            }
+
+            return selectSQL.ToString();
+        }
+
 
 
         private string makeRawDataWithStatement(ParameterInfo parameterInfo)
