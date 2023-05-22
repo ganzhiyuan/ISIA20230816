@@ -21,3 +21,5 @@
 /_bin/FX/log/ISIA
 /.cr/personal/FeatureAdvisor
 /_bin/DetectingService/log/DetectingService
+/_bin/ChartService/log
+/_bin/Service/log/Service_Oracle
