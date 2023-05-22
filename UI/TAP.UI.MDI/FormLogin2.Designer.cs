@@ -55,6 +55,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.comboBoxRegion = new TAP.UIControls.BasicControls.TComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxLanguage = new TAP.UIControls.BasicControls.TComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -124,6 +126,8 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.Transparent;
+            this.panel10.Controls.Add(this.comboBoxLanguage);
+            this.panel10.Controls.Add(this.label6);
             this.panel10.Controls.Add(this.buttonLogIn);
             this.panel10.Controls.Add(this.buttonCancel);
             this.panel10.Controls.Add(this.panel12);
@@ -236,7 +240,7 @@
             this.textBoxPassword.NeedToTranslate = false;
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.RepresentativeValue = "";
-            this.textBoxPassword.Size = new System.Drawing.Size(240, 24);
+            this.textBoxPassword.Size = new System.Drawing.Size(240, 21);
             this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.Enter_Downed += new TAP.UIControls.BasicControls.TTextBox.Enter_Down(this.textBoxPassword_Enter_Downed);
             // 
@@ -247,7 +251,7 @@
             this.label4.ForeColor = System.Drawing.Color.Lavender;
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Password";
             // 
@@ -273,7 +277,7 @@
             this.textBoxUserID.Name = "textBoxUserID";
             this.textBoxUserID.NeedToTranslate = false;
             this.textBoxUserID.RepresentativeValue = "";
-            this.textBoxUserID.Size = new System.Drawing.Size(240, 24);
+            this.textBoxUserID.Size = new System.Drawing.Size(240, 21);
             this.textBoxUserID.TabIndex = 2;
             this.textBoxUserID.Enter_Downed += new TAP.UIControls.BasicControls.TTextBox.Enter_Down(this.textBoxUserID_Enter_Downed);
             // 
@@ -284,7 +288,7 @@
             this.label3.ForeColor = System.Drawing.Color.Lavender;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "User ID";
             // 
@@ -314,7 +318,7 @@
             this.comboBoxFacility.Name = "comboBoxFacility";
             this.comboBoxFacility.NeedToTranslate = true;
             this.comboBoxFacility.RepresentativeValue = null;
-            this.comboBoxFacility.Size = new System.Drawing.Size(240, 25);
+            this.comboBoxFacility.Size = new System.Drawing.Size(240, 21);
             this.comboBoxFacility.TabIndex = 2;
             // 
             // label2
@@ -324,7 +328,7 @@
             this.label2.ForeColor = System.Drawing.Color.Lavender;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 17);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Factory";
             // 
@@ -354,7 +358,7 @@
             this.comboBoxRegion.Name = "comboBoxRegion";
             this.comboBoxRegion.NeedToTranslate = true;
             this.comboBoxRegion.RepresentativeValue = null;
-            this.comboBoxRegion.Size = new System.Drawing.Size(240, 25);
+            this.comboBoxRegion.Size = new System.Drawing.Size(240, 21);
             this.comboBoxRegion.TabIndex = 1;
             this.comboBoxRegion.Visible = false;
             this.comboBoxRegion.SelectedIndexChanged += new System.EventHandler(this.comboBoxRegion_SelectedIndexChanged);
@@ -367,14 +371,45 @@
             this.label1.ForeColor = System.Drawing.Color.Lavender;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 17);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Region";
             this.label1.Visible = false;
             // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.comboBoxLanguage.BuiltInCategory = "";
+            this.comboBoxLanguage.BuiltInDispay = TAP.UIControls.EnumBuitInDispay.NONE;
+            this.comboBoxLanguage.BuiltInIncludeAll = false;
+            this.comboBoxLanguage.BuiltInSubCategory = "";
+            this.comboBoxLanguage.ControlID = "comboBoxFacility";
+            this.comboBoxLanguage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.IsRequired = false;
+            this.comboBoxLanguage.Location = new System.Drawing.Point(64, 0);
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.NeedToTranslate = true;
+            this.comboBoxLanguage.RepresentativeValue = null;
+            this.comboBoxLanguage.Size = new System.Drawing.Size(73, 21);
+            this.comboBoxLanguage.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.ForeColor = System.Drawing.Color.Lavender;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
+            this.label6.Size = new System.Drawing.Size(64, 18);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Language";
+            // 
             // FormLogin2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(64)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(404, 200);
@@ -395,6 +430,7 @@
             this.panel2.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -438,6 +474,7 @@
         private UIControls.BasicControls.TComboBox comboBoxFacility;
         private UIControls.BasicControls.TComboBox comboBoxRegion;
         private System.Windows.Forms.PictureBox pictureBox2;
-
+        private UIControls.BasicControls.TComboBox comboBoxLanguage;
+        private System.Windows.Forms.Label label6;
     }
 }

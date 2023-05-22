@@ -53,10 +53,11 @@ namespace TAP.UI.MDI
 #if MODELER
                 this.Text = "TAP Modeler::Login";
 #endif
-                this.BindRegion();
+                this.BindRegion();                
                 this.textBoxUserID.Select();
                 this.LoadUserHistory();
                 this.textBoxUserID.Text = _UserHistory.Count > 0 ? _UserHistory[0].UserID : string.Empty;
+                this.BindLanguage();
             }
             catch (System.Exception ex)
             {
@@ -115,6 +116,32 @@ namespace TAP.UI.MDI
             #endregion
         }
 
+        private void BindLanguage()
+        {
+            #region Bind Language
+
+            try
+            {
+
+                this.comboBoxLanguage.BeginUpdate();
+                this.comboBoxLanguage.Items.Add("EN");
+                this.comboBoxLanguage.Items.Add("CN");
+                this.comboBoxLanguage.Items.Add("KR");
+                this.comboBoxLanguage.EndUpdate();
+                //seoil 실수 같아 바꿈.
+                //this.comboBoxRegion.SelectedItem = TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.Facility;
+                this.comboBoxLanguage.SelectedItem = _UserHistory.Count > 0 ? _UserHistory[0].Language : TAP.Base.Configuration.ConfigurationManager.Instance.AppSection.UserLanguage;
+
+                return;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
+            #endregion
+        }
+
         #endregion
 
         #region Log in
@@ -135,6 +162,11 @@ namespace TAP.UI.MDI
                 if (this.textBoxPassword.Text == string.Empty)
                 {
                     throw new Exception("Insert password please");
+                }
+
+                if (this.comboBoxLanguage.Text == string.Empty)
+                {
+                    throw new Exception("Select Language please");
                 }
 
                 this.SetControlEnable(false);
@@ -173,6 +205,10 @@ namespace TAP.UI.MDI
                 #endregion
 
                 InfoBase._USER_INFO = tmpUser;
+                InfoBase._USER_INFO.Language = this.comboBoxLanguage.Text;
+
+                InfoBase._USER_INFO.Save("TAPAPP");
+
                 this.DialogResult = DialogResult.OK;
 
                 RememberUserID();
@@ -332,10 +368,11 @@ namespace TAP.UI.MDI
                 if (_UserHistory.Find(u => u.UserID == tmpUserID) != null)
                 {
                     _UserHistory.Find(u => u.UserID == tmpUserID).LoginTime = DateTime.Now;
+                    _UserHistory.Find(u => u.UserID == tmpUserID).Language = this.comboBoxLanguage.Text;
                 }
                 else
                 {
-                    _UserHistory.Add(new TmpUser { UserID = tmpUserID, LoginTime= DateTime.Now });
+                    _UserHistory.Add(new TmpUser { UserID = tmpUserID, LoginTime= DateTime.Now, Language = this.comboBoxLanguage.Text });
                 }
                 using (StreamWriter sw = new StreamWriter(Path.Combine(Directory.GetCurrentDirectory(), _UserHistoryFileName), false))
                 {
@@ -368,12 +405,15 @@ namespace TAP.UI.MDI
         {
             public string  UserID { get; set; }
             public DateTime LoginTime { get; set; }
+            public string Language { get; set; }
 
             public override string ToString()
             {
                 return UserID;
             }
         }
+
+        
     }
 
 
