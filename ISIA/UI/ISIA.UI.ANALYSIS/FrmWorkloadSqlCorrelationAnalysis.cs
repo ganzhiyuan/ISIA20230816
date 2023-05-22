@@ -110,7 +110,7 @@ namespace ISIA.UI.ANALYSIS
 
             string linkUIname = sender.ToString();
             DataTable dtlinkui = LinkAgeHelper.LinkUI(linkUIname);
-            base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString() , myHashtable);
+            base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString() ,null, myHashtable);
             //base.OpenUI("SQLSTATISTICSANALYSIS", "AWR", "SQLSTATISTICSANALYSIS", dt);
         }
 

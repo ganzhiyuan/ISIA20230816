@@ -338,7 +338,7 @@ namespace ISIA.UI.ANALYSIS
 
                 if (popupGrid.linkage == true)
                 {
-                    base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", "SQLANALYSISBYSQL_ID", dt);
+                    base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", "SQLANALYSISBYSQL_ID", dt , null);
                 }
             }
             catch 

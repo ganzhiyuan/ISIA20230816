@@ -449,7 +449,7 @@ namespace ISIA.UI.ANALYSIS
             popupGrid.ShowDialog();
             DataTable dt = popupGrid._DataTable;
 
-            base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", " SQLANALYSISBYSQL_ID", dt);
+            base.OpenUI("SQLANALYSISBYSQL_ID", "AWR", " SQLANALYSISBYSQL_ID", dt , null);
         }
 
         public override void ExecuteCommand(ArgumentPack arguments)

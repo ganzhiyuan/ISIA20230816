@@ -258,7 +258,7 @@ namespace ISIA.UI.TREND
                 //string linkUIname = popupGrid.linkUIname;
 
                 DataTable dtlinkui  = LinkAgeHelper.LinkUI(popupGrid.linkUIname);
-                base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString(), dt);
+                base.OpenUI(dtlinkui.Rows[0]["NAME"].ToString(), dtlinkui.Rows[0]["MAINMENU"].ToString(), dtlinkui.Rows[0]["DISPLAYNAME"].ToString(), dt ,null);
                 //base.OpenUI("SQLSTATISTICSANALYSIS", "AWR", "SQLSTATISTICSANALYSIS", dt);
                 popupGrid.Dispose();
             }
