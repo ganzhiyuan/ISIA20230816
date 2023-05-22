@@ -24,7 +24,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append(" SELECT  PARAMETERTYPE, TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME  FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE IN ('STATISTIC','METRIC')   ORDER BY PARAMETERNAME  ");
+                tmpSql.Append(" SELECT  PARAMETERTYPE, TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME  FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE IN ('STATISTIC','METRIC')   ORDER BY PARAMETERTYPE , PARAMETERNAME  ");
                
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

@@ -296,21 +296,21 @@ namespace ISIA.UI.MANAGEMENT
             this.xtraUserControl1.Appearance.Options.UseForeColor = true;
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(3);
-            this.xtraUserControl1.Size = new System.Drawing.Size(1059, 691);
+            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.xtraUserControl1.Size = new System.Drawing.Size(1371, 667);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.layoutControl1);
-            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(3);
-            this.dpnlLeft_Container.Size = new System.Drawing.Size(248, 663);
+            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlLeft_Container.Size = new System.Drawing.Size(269, 639);
             // 
             // dpnlRight
             // 
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
-            this.dpnlRight.Location = new System.Drawing.Point(255, 0);
-            this.dpnlRight.Margin = new System.Windows.Forms.Padding(3);
+            this.dpnlRight.Location = new System.Drawing.Point(276, 0);
+            this.dpnlRight.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -319,17 +319,17 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(797, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(1452, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
-            this.dpnlRight.Size = new System.Drawing.Size(804, 691);
+            this.dpnlRight.Size = new System.Drawing.Size(1095, 667);
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.gridControl1);
             this.dpnlRight_Container.Controls.Add(this.flowLayoutPanel1);
-            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3);
-            this.dpnlRight_Container.Size = new System.Drawing.Size(798, 663);
+            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(1089, 639);
             // 
             // dpnlLeft
             // 
@@ -339,39 +339,39 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
-            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(3);
+            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(255, 153);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(368, 153);
             this.dpnlLeft.SavedSizeFactor = 1D;
-            this.dpnlLeft.Size = new System.Drawing.Size(255, 691);
+            this.dpnlLeft.Size = new System.Drawing.Size(276, 667);
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 715);
-            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1059, 24);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 691);
+            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1371, 24);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelTop.Size = new System.Drawing.Size(1059, 24);
+            this.tPanelTop.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelTop.Size = new System.Drawing.Size(1371, 24);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Location = new System.Drawing.Point(0, 24);
-            this.tPanelMain.Margin = new System.Windows.Forms.Padding(3);
-            this.tPanelMain.Size = new System.Drawing.Size(1059, 691);
+            this.tPanelMain.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelMain.Size = new System.Drawing.Size(1371, 667);
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.tabPane1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(248, 663);
+            this.layoutControl1.Size = new System.Drawing.Size(269, 639);
             this.layoutControl1.TabIndex = 3;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -389,18 +389,18 @@ namespace ISIA.UI.MANAGEMENT
             this.tabPane1.AppearanceButton.Pressed.Options.UseFont = true;
             this.tabPane1.Controls.Add(this.tabNavigationPage1);
             this.tabPane1.Controls.Add(this.tabNavigationPage2);
-            this.tabPane1.Location = new System.Drawing.Point(4, 4);
+            this.tabPane1.Location = new System.Drawing.Point(3, 4);
             this.tabPane1.LookAndFeel.SkinName = "Office 2013";
             this.tabPane1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tabPane1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tabPane1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPane1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1,
             this.tabNavigationPage2});
-            this.tabPane1.RegularSize = new System.Drawing.Size(240, 655);
+            this.tabPane1.RegularSize = new System.Drawing.Size(263, 631);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(240, 655);
+            this.tabPane1.Size = new System.Drawing.Size(263, 631);
             this.tabPane1.TabIndex = 6;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -413,19 +413,17 @@ namespace ISIA.UI.MANAGEMENT
             this.tabNavigationPage1.Caption = "Condition";
             this.tabNavigationPage1.Controls.Add(this.flowLayoutPanel2);
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
-            this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(240, 628);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(193, 598);
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnSelect);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 596);
-            this.flowLayoutPanel2.MaximumSize = new System.Drawing.Size(234, 32);
-            this.flowLayoutPanel2.MinimumSize = new System.Drawing.Size(234, 32);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 566);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(234, 32);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(193, 32);
             this.flowLayoutPanel2.TabIndex = 112;
             // 
             // btnSelect
@@ -449,7 +447,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnSelect.IsRequired = false;
             this.btnSelect.Location = new System.Drawing.Point(2, 2);
             this.btnSelect.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSelect.MaximumSize = new System.Drawing.Size(70, 25);
             this.btnSelect.MinimumSize = new System.Drawing.Size(70, 25);
             this.btnSelect.Name = "btnSelect";
@@ -477,11 +475,11 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 240;
-            this.navBarControl1.Size = new System.Drawing.Size(240, 788);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 193;
+            this.navBarControl1.Size = new System.Drawing.Size(193, 788);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -503,9 +501,9 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer2.Controls.Add(this.layoutControl3);
-            this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(4);
+            this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(238, 167);
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(191, 167);
             this.navBarGroupControlContainer2.TabIndex = 1;
             // 
             // layoutControl3
@@ -519,11 +517,11 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl3.Margin = new System.Windows.Forms.Padding(2);
+            this.layoutControl3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(238, 167);
+            this.layoutControl3.Size = new System.Drawing.Size(191, 167);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl2";
             // 
@@ -531,12 +529,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel4.ControlID = "tLabelParmNames";
             this.tLabel4.IsRequired = false;
-            this.tLabel4.Location = new System.Drawing.Point(4, 4);
-            this.tLabel4.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel4.Location = new System.Drawing.Point(3, 4);
+            this.tLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel4.Name = "tLabel4";
             this.tLabel4.NeedToTranslate = true;
             this.tLabel4.RepresentativeValue = "DB NAME";
-            this.tLabel4.Size = new System.Drawing.Size(108, 17);
+            this.tLabel4.Size = new System.Drawing.Size(110, 17);
             this.tLabel4.StyleController = this.layoutControl3;
             this.tLabel4.TabIndex = 43;
             this.tLabel4.Text = "DB NAME";
@@ -545,12 +543,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel3.ControlID = "tLabelParmNames";
             this.tLabel3.IsRequired = false;
-            this.tLabel3.Location = new System.Drawing.Point(4, 28);
-            this.tLabel3.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel3.Location = new System.Drawing.Point(3, 28);
+            this.tLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel3.Name = "tLabel3";
             this.tLabel3.NeedToTranslate = true;
             this.tLabel3.RepresentativeValue = "PARAMETERNAME";
-            this.tLabel3.Size = new System.Drawing.Size(108, 17);
+            this.tLabel3.Size = new System.Drawing.Size(110, 17);
             this.tLabel3.StyleController = this.layoutControl3;
             this.tLabel3.TabIndex = 42;
             this.tLabel3.Text = "PARAMETERNAME";
@@ -559,12 +557,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel2.ControlID = "tLabelParmNames";
             this.tLabel2.IsRequired = false;
-            this.tLabel2.Location = new System.Drawing.Point(4, 52);
-            this.tLabel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel2.Location = new System.Drawing.Point(3, 52);
+            this.tLabel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel2.Name = "tLabel2";
             this.tLabel2.NeedToTranslate = true;
             this.tLabel2.RepresentativeValue = "RULENAME";
-            this.tLabel2.Size = new System.Drawing.Size(108, 17);
+            this.tLabel2.Size = new System.Drawing.Size(110, 17);
             this.tLabel2.StyleController = this.layoutControl3;
             this.tLabel2.TabIndex = 41;
             this.tLabel2.Text = "RULENAME";
@@ -578,7 +576,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbRuleMain.DominantControl = "";
             this.cmbRuleMain.EditValue = "";
             this.cmbRuleMain.IsRequired = false;
-            this.cmbRuleMain.Location = new System.Drawing.Point(116, 52);
+            this.cmbRuleMain.Location = new System.Drawing.Point(115, 52);
             this.cmbRuleMain.Name = "cmbRuleMain";
             this.cmbRuleMain.NeedToTranslate = false;
             this.cmbRuleMain.ParameterID = "RULENO";
@@ -589,7 +587,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbRuleMain.Properties.SelectAllItemVisible = false;
             this.cmbRuleMain.RepresentativeValue = "";
             this.cmbRuleMain.ShowDescription = true;
-            this.cmbRuleMain.Size = new System.Drawing.Size(118, 20);
+            this.cmbRuleMain.Size = new System.Drawing.Size(73, 20);
             this.cmbRuleMain.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetRule";
             this.cmbRuleMain.SqlDataBase = "";
             this.cmbRuleMain.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -606,7 +604,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
             this.cmbDbName.IsRequired = true;
-            this.cmbDbName.Location = new System.Drawing.Point(116, 4);
+            this.cmbDbName.Location = new System.Drawing.Point(115, 4);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;
             this.cmbDbName.ParameterID = "DBID";
@@ -617,7 +615,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbDbName.Properties.SelectAllItemVisible = false;
             this.cmbDbName.RepresentativeValue = "";
             this.cmbDbName.ShowDescription = true;
-            this.cmbDbName.Size = new System.Drawing.Size(118, 20);
+            this.cmbDbName.Size = new System.Drawing.Size(73, 20);
             this.cmbDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
             this.cmbDbName.SqlDataBase = "";
             this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -628,9 +626,9 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // txtParam
             // 
-            this.txtParam.Location = new System.Drawing.Point(116, 28);
+            this.txtParam.Location = new System.Drawing.Point(115, 28);
             this.txtParam.Name = "txtParam";
-            this.txtParam.Size = new System.Drawing.Size(118, 20);
+            this.txtParam.Size = new System.Drawing.Size(73, 20);
             this.txtParam.StyleController = this.layoutControl3;
             this.txtParam.TabIndex = 23;
             // 
@@ -648,7 +646,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem14});
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(238, 167);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(191, 167);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -657,7 +655,7 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 72);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(78, 18);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(234, 91);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(187, 91);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -666,7 +664,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem31.Control = this.txtParam;
             this.layoutControlItem31.Location = new System.Drawing.Point(112, 24);
             this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(122, 24);
+            this.layoutControlItem31.Size = new System.Drawing.Size(75, 24);
             this.layoutControlItem31.Text = "PARAMETERNAME";
             this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem31.TextVisible = false;
@@ -677,7 +675,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem3.CustomizationFormText = "DB NAME";
             this.layoutControlItem3.Location = new System.Drawing.Point(112, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(122, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(75, 24);
             this.layoutControlItem3.Text = "DB NAME";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -687,7 +685,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem6.Control = this.cmbRuleMain;
             this.layoutControlItem6.Location = new System.Drawing.Point(112, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(122, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(75, 24);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -738,18 +736,16 @@ namespace ISIA.UI.MANAGEMENT
             this.tabNavigationPage2.Controls.Add(this.flowLayoutPanel3);
             this.tabNavigationPage2.Controls.Add(this.navBarControl2);
             this.tabNavigationPage2.Name = "tabNavigationPage2";
-            this.tabNavigationPage2.Size = new System.Drawing.Size(240, 628);
+            this.tabNavigationPage2.Size = new System.Drawing.Size(263, 604);
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel3.Controls.Add(this.btnSave);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 596);
-            this.flowLayoutPanel3.MaximumSize = new System.Drawing.Size(234, 32);
-            this.flowLayoutPanel3.MinimumSize = new System.Drawing.Size(234, 32);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 572);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(234, 32);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(263, 32);
             this.flowLayoutPanel3.TabIndex = 113;
             // 
             // btnSave
@@ -773,7 +769,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnSave.Location = new System.Drawing.Point(2, 2);
             this.btnSave.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSave.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnSave.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnSave.Name = "btnSave";
@@ -803,11 +799,11 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.navBarControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 240;
-            this.navBarControl2.Size = new System.Drawing.Size(240, 628);
+            this.navBarControl2.OptionsNavPane.ExpandedWidth = 263;
+            this.navBarControl2.Size = new System.Drawing.Size(263, 604);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -826,7 +822,7 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroup7.Caption = "options";
             this.navBarGroup7.ControlContainer = this.navBarGroupControlContainer3;
             this.navBarGroup7.Expanded = true;
-            this.navBarGroup7.GroupClientHeight = 375;
+            this.navBarGroup7.GroupClientHeight = 367;
             this.navBarGroup7.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup7.Name = "navBarGroup7";
             // 
@@ -838,9 +834,9 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer3.LookAndFeel.SkinName = "Office 2013";
             this.navBarGroupControlContainer3.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarGroupControlContainer3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarGroupControlContainer3.Margin = new System.Windows.Forms.Padding(4);
+            this.navBarGroupControlContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarGroupControlContainer3.Name = "navBarGroupControlContainer3";
-            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(221, 374);
+            this.navBarGroupControlContainer3.Size = new System.Drawing.Size(244, 366);
             this.navBarGroupControlContainer3.TabIndex = 0;
             // 
             // layoutControl5
@@ -870,23 +866,23 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl5.Margin = new System.Windows.Forms.Padding(2);
+            this.layoutControl5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.layoutControl5.Name = "layoutControl5";
             this.layoutControl5.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
             this.layoutControl5.Root = this.layoutControlGroup4;
-            this.layoutControl5.Size = new System.Drawing.Size(221, 374);
+            this.layoutControl5.Size = new System.Drawing.Size(244, 366);
             this.layoutControl5.TabIndex = 0;
             this.layoutControl5.Text = "layoutControl2";
             // 
             // searchid
             // 
-            this.searchid.Location = new System.Drawing.Point(124, 52);
-            this.searchid.Margin = new System.Windows.Forms.Padding(2);
+            this.searchid.Location = new System.Drawing.Point(123, 52);
+            this.searchid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchid.Name = "searchid";
             this.searchid.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchid.Properties.PopupView = this.searchLookUpEdit1View;
-            this.searchid.Size = new System.Drawing.Size(93, 20);
+            this.searchid.Size = new System.Drawing.Size(118, 20);
             this.searchid.StyleController = this.layoutControl5;
             this.searchid.TabIndex = 3;
             // 
@@ -907,8 +903,8 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbInstance.DominantControl = "cmbAddDbName";
             this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
-            this.cmbInstance.Location = new System.Drawing.Point(124, 28);
-            this.cmbInstance.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbInstance.Location = new System.Drawing.Point(123, 28);
+            this.cmbInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbInstance.Name = "cmbInstance";
             this.cmbInstance.NeedToTranslate = false;
             this.cmbInstance.ParameterID = "INSTANCE_NUMBER";
@@ -920,7 +916,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbInstance.Properties.SelectAllItemVisible = false;
             this.cmbInstance.RepresentativeValue = "1";
             this.cmbInstance.ShowDescription = false;
-            this.cmbInstance.Size = new System.Drawing.Size(93, 20);
+            this.cmbInstance.Size = new System.Drawing.Size(118, 20);
             this.cmbInstance.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetInstanceNumber";
             this.cmbInstance.SqlDataBase = "";
             this.cmbInstance.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -932,12 +928,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lblInstance.ControlID = "lblInstance";
             this.lblInstance.IsRequired = false;
-            this.lblInstance.Location = new System.Drawing.Point(4, 28);
-            this.lblInstance.Margin = new System.Windows.Forms.Padding(4);
+            this.lblInstance.Location = new System.Drawing.Point(3, 28);
+            this.lblInstance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblInstance.Name = "lblInstance";
             this.lblInstance.NeedToTranslate = true;
             this.lblInstance.RepresentativeValue = "*Instance Number";
-            this.lblInstance.Size = new System.Drawing.Size(116, 17);
+            this.lblInstance.Size = new System.Drawing.Size(118, 17);
             this.lblInstance.StyleController = this.layoutControl5;
             this.lblInstance.TabIndex = 52;
             this.lblInstance.Text = "*Instance Number";
@@ -946,12 +942,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel19.ControlID = "tLabelParmNames";
             this.tLabel19.IsRequired = false;
-            this.tLabel19.Location = new System.Drawing.Point(4, 314);
-            this.tLabel19.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel19.Location = new System.Drawing.Point(3, 314);
+            this.tLabel19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel19.Name = "tLabel19";
             this.tLabel19.NeedToTranslate = true;
             this.tLabel19.RepresentativeValue = "DETECTINGUSED";
-            this.tLabel19.Size = new System.Drawing.Size(116, 34);
+            this.tLabel19.Size = new System.Drawing.Size(118, 34);
             this.tLabel19.StyleController = this.layoutControl5;
             this.tLabel19.TabIndex = 51;
             this.tLabel19.Text = "DETECTINGUSED";
@@ -959,12 +955,12 @@ namespace ISIA.UI.MANAGEMENT
             // rdodetecting
             // 
             this.rdodetecting.EditValue = "YES";
-            this.rdodetecting.Location = new System.Drawing.Point(124, 314);
+            this.rdodetecting.Location = new System.Drawing.Point(123, 314);
             this.rdodetecting.Name = "rdodetecting";
             this.rdodetecting.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdodetecting.Size = new System.Drawing.Size(93, 34);
+            this.rdodetecting.Size = new System.Drawing.Size(118, 34);
             this.rdodetecting.StyleController = this.layoutControl5;
             this.rdodetecting.TabIndex = 50;
             // 
@@ -972,12 +968,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel14.ControlID = "tLabelParmNames";
             this.tLabel14.IsRequired = false;
-            this.tLabel14.Location = new System.Drawing.Point(4, 276);
-            this.tLabel14.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel14.Location = new System.Drawing.Point(3, 276);
+            this.tLabel14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel14.Name = "tLabel14";
             this.tLabel14.NeedToTranslate = true;
             this.tLabel14.RepresentativeValue = "SPECLIMITUSED";
-            this.tLabel14.Size = new System.Drawing.Size(116, 34);
+            this.tLabel14.Size = new System.Drawing.Size(118, 34);
             this.tLabel14.StyleController = this.layoutControl5;
             this.tLabel14.TabIndex = 49;
             this.tLabel14.Text = "SPECLIMITUSED";
@@ -986,12 +982,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel13.ControlID = "tLabelParmNames";
             this.tLabel13.IsRequired = false;
-            this.tLabel13.Location = new System.Drawing.Point(4, 238);
-            this.tLabel13.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel13.Location = new System.Drawing.Point(3, 238);
+            this.tLabel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel13.Name = "tLabel13";
             this.tLabel13.NeedToTranslate = true;
             this.tLabel13.RepresentativeValue = "MMSUSED";
-            this.tLabel13.Size = new System.Drawing.Size(116, 34);
+            this.tLabel13.Size = new System.Drawing.Size(118, 34);
             this.tLabel13.StyleController = this.layoutControl5;
             this.tLabel13.TabIndex = 48;
             this.tLabel13.Text = "MMSUSED";
@@ -1000,12 +996,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel12.ControlID = "tLabelParmNames";
             this.tLabel12.IsRequired = false;
-            this.tLabel12.Location = new System.Drawing.Point(4, 200);
-            this.tLabel12.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel12.Location = new System.Drawing.Point(3, 200);
+            this.tLabel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel12.Name = "tLabel12";
             this.tLabel12.NeedToTranslate = true;
             this.tLabel12.RepresentativeValue = "MAILUSED";
-            this.tLabel12.Size = new System.Drawing.Size(116, 34);
+            this.tLabel12.Size = new System.Drawing.Size(118, 34);
             this.tLabel12.StyleController = this.layoutControl5;
             this.tLabel12.TabIndex = 47;
             this.tLabel12.Text = "MAILUSED";
@@ -1014,12 +1010,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel11.ControlID = "tLabelParmNames";
             this.tLabel11.IsRequired = false;
-            this.tLabel11.Location = new System.Drawing.Point(4, 162);
-            this.tLabel11.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel11.Location = new System.Drawing.Point(3, 162);
+            this.tLabel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel11.Name = "tLabel11";
             this.tLabel11.NeedToTranslate = true;
             this.tLabel11.RepresentativeValue = "CHARTUSED";
-            this.tLabel11.Size = new System.Drawing.Size(116, 34);
+            this.tLabel11.Size = new System.Drawing.Size(118, 34);
             this.tLabel11.StyleController = this.layoutControl5;
             this.tLabel11.TabIndex = 46;
             this.tLabel11.Text = "CHARTUSED";
@@ -1028,12 +1024,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel9.ControlID = "tLabelParmNames";
             this.tLabel9.IsRequired = false;
-            this.tLabel9.Location = new System.Drawing.Point(4, 124);
-            this.tLabel9.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel9.Location = new System.Drawing.Point(3, 124);
+            this.tLabel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel9.Name = "tLabel9";
             this.tLabel9.NeedToTranslate = true;
             this.tLabel9.RepresentativeValue = "ISALIVE";
-            this.tLabel9.Size = new System.Drawing.Size(116, 34);
+            this.tLabel9.Size = new System.Drawing.Size(118, 34);
             this.tLabel9.StyleController = this.layoutControl5;
             this.tLabel9.TabIndex = 45;
             this.tLabel9.Text = "ISALIVE";
@@ -1042,12 +1038,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel8.ControlID = "tLabelParmNames";
             this.tLabel8.IsRequired = false;
-            this.tLabel8.Location = new System.Drawing.Point(4, 100);
-            this.tLabel8.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel8.Location = new System.Drawing.Point(3, 100);
+            this.tLabel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel8.Name = "tLabel8";
             this.tLabel8.NeedToTranslate = true;
             this.tLabel8.RepresentativeValue = "*DAYS";
-            this.tLabel8.Size = new System.Drawing.Size(116, 20);
+            this.tLabel8.Size = new System.Drawing.Size(118, 20);
             this.tLabel8.StyleController = this.layoutControl5;
             this.tLabel8.TabIndex = 44;
             this.tLabel8.Text = "*DAYS";
@@ -1056,12 +1052,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel6.ControlID = "tLabelParmNames";
             this.tLabel6.IsRequired = false;
-            this.tLabel6.Location = new System.Drawing.Point(4, 52);
-            this.tLabel6.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel6.Location = new System.Drawing.Point(3, 52);
+            this.tLabel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel6.Name = "tLabel6";
             this.tLabel6.NeedToTranslate = true;
             this.tLabel6.RepresentativeValue = "*PARAMETERNAME";
-            this.tLabel6.Size = new System.Drawing.Size(116, 20);
+            this.tLabel6.Size = new System.Drawing.Size(118, 20);
             this.tLabel6.StyleController = this.layoutControl5;
             this.tLabel6.TabIndex = 42;
             this.tLabel6.Text = "*PARAMETERNAME";
@@ -1070,12 +1066,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel5.ControlID = "tLabelParmNames";
             this.tLabel5.IsRequired = false;
-            this.tLabel5.Location = new System.Drawing.Point(4, 4);
-            this.tLabel5.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel5.Location = new System.Drawing.Point(3, 4);
+            this.tLabel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel5.Name = "tLabel5";
             this.tLabel5.NeedToTranslate = true;
             this.tLabel5.RepresentativeValue = "*DB NAME";
-            this.tLabel5.Size = new System.Drawing.Size(116, 20);
+            this.tLabel5.Size = new System.Drawing.Size(118, 20);
             this.tLabel5.StyleController = this.layoutControl5;
             this.tLabel5.TabIndex = 41;
             this.tLabel5.Text = "*DB NAME";
@@ -1084,12 +1080,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel10.ControlID = "tLabelParmNames";
             this.tLabel10.IsRequired = false;
-            this.tLabel10.Location = new System.Drawing.Point(4, 76);
-            this.tLabel10.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel10.Location = new System.Drawing.Point(3, 76);
+            this.tLabel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel10.Name = "tLabel10";
             this.tLabel10.NeedToTranslate = true;
             this.tLabel10.RepresentativeValue = "RULENAME";
-            this.tLabel10.Size = new System.Drawing.Size(116, 20);
+            this.tLabel10.Size = new System.Drawing.Size(118, 20);
             this.tLabel10.StyleController = this.layoutControl5;
             this.tLabel10.TabIndex = 40;
             this.tLabel10.Text = "RULENAME";
@@ -1103,7 +1099,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbRuleName.DominantControl = "";
             this.cmbRuleName.EditValue = "";
             this.cmbRuleName.IsRequired = false;
-            this.cmbRuleName.Location = new System.Drawing.Point(124, 76);
+            this.cmbRuleName.Location = new System.Drawing.Point(123, 76);
             this.cmbRuleName.Name = "cmbRuleName";
             this.cmbRuleName.NeedToTranslate = false;
             this.cmbRuleName.ParameterID = "RULENO";
@@ -1114,7 +1110,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbRuleName.Properties.SelectAllItemVisible = false;
             this.cmbRuleName.RepresentativeValue = "";
             this.cmbRuleName.ShowDescription = true;
-            this.cmbRuleName.Size = new System.Drawing.Size(93, 20);
+            this.cmbRuleName.Size = new System.Drawing.Size(118, 20);
             this.cmbRuleName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetRule";
             this.cmbRuleName.SqlDataBase = "";
             this.cmbRuleName.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -1125,24 +1121,24 @@ namespace ISIA.UI.MANAGEMENT
             // rdoSpec
             // 
             this.rdoSpec.EditValue = "YES";
-            this.rdoSpec.Location = new System.Drawing.Point(124, 276);
+            this.rdoSpec.Location = new System.Drawing.Point(123, 276);
             this.rdoSpec.Name = "rdoSpec";
             this.rdoSpec.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoSpec.Size = new System.Drawing.Size(93, 34);
+            this.rdoSpec.Size = new System.Drawing.Size(118, 34);
             this.rdoSpec.StyleController = this.layoutControl5;
             this.rdoSpec.TabIndex = 38;
             // 
             // rdoMMsused
             // 
             this.rdoMMsused.EditValue = "YES";
-            this.rdoMMsused.Location = new System.Drawing.Point(124, 238);
+            this.rdoMMsused.Location = new System.Drawing.Point(123, 238);
             this.rdoMMsused.Name = "rdoMMsused";
             this.rdoMMsused.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoMMsused.Size = new System.Drawing.Size(93, 34);
+            this.rdoMMsused.Size = new System.Drawing.Size(118, 34);
             this.rdoMMsused.StyleController = this.layoutControl5;
             this.rdoMMsused.TabIndex = 35;
             // 
@@ -1155,7 +1151,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbAddDbName.DominantControl = "";
             this.cmbAddDbName.EditValue = "";
             this.cmbAddDbName.IsRequired = true;
-            this.cmbAddDbName.Location = new System.Drawing.Point(124, 4);
+            this.cmbAddDbName.Location = new System.Drawing.Point(123, 4);
             this.cmbAddDbName.Name = "cmbAddDbName";
             this.cmbAddDbName.NeedToTranslate = false;
             this.cmbAddDbName.ParameterID = "DBID";
@@ -1166,7 +1162,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbAddDbName.Properties.SelectAllItemVisible = false;
             this.cmbAddDbName.RepresentativeValue = "";
             this.cmbAddDbName.ShowDescription = true;
-            this.cmbAddDbName.Size = new System.Drawing.Size(93, 20);
+            this.cmbAddDbName.Size = new System.Drawing.Size(118, 20);
             this.cmbAddDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
             this.cmbAddDbName.SqlDataBase = "";
             this.cmbAddDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
@@ -1178,20 +1174,20 @@ namespace ISIA.UI.MANAGEMENT
             // rdoIsalive
             // 
             this.rdoIsalive.EditValue = "YES";
-            this.rdoIsalive.Location = new System.Drawing.Point(124, 124);
+            this.rdoIsalive.Location = new System.Drawing.Point(123, 124);
             this.rdoIsalive.Name = "rdoIsalive";
             this.rdoIsalive.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoIsalive.Size = new System.Drawing.Size(93, 34);
+            this.rdoIsalive.Size = new System.Drawing.Size(118, 34);
             this.rdoIsalive.StyleController = this.layoutControl5;
             this.rdoIsalive.TabIndex = 33;
             // 
             // txtAddDays
             // 
-            this.txtAddDays.Location = new System.Drawing.Point(124, 100);
+            this.txtAddDays.Location = new System.Drawing.Point(123, 100);
             this.txtAddDays.Name = "txtAddDays";
-            this.txtAddDays.Size = new System.Drawing.Size(93, 20);
+            this.txtAddDays.Size = new System.Drawing.Size(118, 20);
             this.txtAddDays.StyleController = this.layoutControl5;
             this.txtAddDays.TabIndex = 31;
             this.txtAddDays.TextChanged += new System.EventHandler(this.txtCATEGORY_TextChanged);
@@ -1199,24 +1195,24 @@ namespace ISIA.UI.MANAGEMENT
             // rdoChartused
             // 
             this.rdoChartused.EditValue = "YES";
-            this.rdoChartused.Location = new System.Drawing.Point(124, 162);
+            this.rdoChartused.Location = new System.Drawing.Point(123, 162);
             this.rdoChartused.Name = "rdoChartused";
             this.rdoChartused.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoChartused.Size = new System.Drawing.Size(93, 34);
+            this.rdoChartused.Size = new System.Drawing.Size(118, 34);
             this.rdoChartused.StyleController = this.layoutControl5;
             this.rdoChartused.TabIndex = 33;
             // 
             // rdoIlused
             // 
             this.rdoIlused.EditValue = "YES";
-            this.rdoIlused.Location = new System.Drawing.Point(124, 200);
+            this.rdoIlused.Location = new System.Drawing.Point(123, 200);
             this.rdoIlused.Name = "rdoIlused";
             this.rdoIlused.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoIlused.Size = new System.Drawing.Size(93, 34);
+            this.rdoIlused.Size = new System.Drawing.Size(118, 34);
             this.rdoIlused.StyleController = this.layoutControl5;
             this.rdoIlused.TabIndex = 33;
             // 
@@ -1250,7 +1246,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem23});
             this.layoutControlGroup4.Name = "Root";
             this.layoutControlGroup4.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup4.Size = new System.Drawing.Size(221, 374);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(244, 366);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem28
@@ -1258,7 +1254,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem28.Control = this.txtAddDays;
             this.layoutControlItem28.Location = new System.Drawing.Point(120, 96);
             this.layoutControlItem28.Name = "layoutControlItem22";
-            this.layoutControlItem28.Size = new System.Drawing.Size(97, 24);
+            this.layoutControlItem28.Size = new System.Drawing.Size(120, 24);
             this.layoutControlItem28.Text = "*DAYS";
             this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem28.TextVisible = false;
@@ -1269,7 +1265,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem30.CustomizationFormText = "ISALIVE";
             this.layoutControlItem30.Location = new System.Drawing.Point(120, 120);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem30.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem30.Text = "ISALIVE";
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
@@ -1279,7 +1275,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem1.Control = this.cmbAddDbName;
             this.layoutControlItem1.Location = new System.Drawing.Point(120, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(97, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(120, 24);
             this.layoutControlItem1.Text = "*DB NAME";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -1291,7 +1287,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem18.CustomizationFormText = "layoutControlItem30";
             this.layoutControlItem18.Location = new System.Drawing.Point(120, 196);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem18.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem18.Text = "MAILUSED";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
@@ -1303,7 +1299,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem13.CustomizationFormText = "layoutControlItem30";
             this.layoutControlItem13.Location = new System.Drawing.Point(120, 158);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem13.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem13.Text = "CHARTUSED";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
@@ -1313,7 +1309,7 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 348);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(217, 22);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(240, 14);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem24
@@ -1321,7 +1317,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem24.Control = this.rdoMMsused;
             this.layoutControlItem24.Location = new System.Drawing.Point(120, 234);
             this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem24.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem24.Text = "MMSUSED";
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
@@ -1331,7 +1327,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem35.Control = this.rdoSpec;
             this.layoutControlItem35.Location = new System.Drawing.Point(120, 272);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem35.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem35.Text = "SPECLIMITUSED";
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
@@ -1341,7 +1337,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem2.Control = this.cmbRuleName;
             this.layoutControlItem2.Location = new System.Drawing.Point(120, 72);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(97, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(120, 24);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -1470,7 +1466,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem37.Control = this.rdodetecting;
             this.layoutControlItem37.Location = new System.Drawing.Point(120, 310);
             this.layoutControlItem37.Name = "layoutControlItem37";
-            this.layoutControlItem37.Size = new System.Drawing.Size(97, 38);
+            this.layoutControlItem37.Size = new System.Drawing.Size(120, 38);
             this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem37.TextVisible = false;
             // 
@@ -1491,7 +1487,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem40.Control = this.cmbInstance;
             this.layoutControlItem40.Location = new System.Drawing.Point(120, 24);
             this.layoutControlItem40.Name = "layoutControlItem40";
-            this.layoutControlItem40.Size = new System.Drawing.Size(97, 24);
+            this.layoutControlItem40.Size = new System.Drawing.Size(120, 24);
             this.layoutControlItem40.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem40.TextVisible = false;
             // 
@@ -1500,7 +1496,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem23.Control = this.searchid;
             this.layoutControlItem23.Location = new System.Drawing.Point(120, 48);
             this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(97, 24);
+            this.layoutControlItem23.Size = new System.Drawing.Size(120, 24);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
             // 
@@ -1509,9 +1505,9 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer4.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer4.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer4.Controls.Add(this.layoutControl4);
-            this.navBarGroupControlContainer4.Margin = new System.Windows.Forms.Padding(4);
+            this.navBarGroupControlContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarGroupControlContainer4.Name = "navBarGroupControlContainer4";
-            this.navBarGroupControlContainer4.Size = new System.Drawing.Size(221, 286);
+            this.navBarGroupControlContainer4.Size = new System.Drawing.Size(244, 303);
             this.navBarGroupControlContainer4.TabIndex = 1;
             // 
             // layoutControl4
@@ -1541,11 +1537,11 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl4.Location = new System.Drawing.Point(0, 0);
             this.layoutControl4.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.layoutControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1236, -1122, 812, 500);
             this.layoutControl4.Root = this.layoutControlGroup3;
-            this.layoutControl4.Size = new System.Drawing.Size(221, 286);
+            this.layoutControl4.Size = new System.Drawing.Size(244, 303);
             this.layoutControl4.TabIndex = 83;
             this.layoutControl4.Text = "layoutControl4";
             // 
@@ -1553,12 +1549,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbparaval5.ControlID = "tLabelParmNames";
             this.lbparaval5.IsRequired = false;
-            this.lbparaval5.Location = new System.Drawing.Point(3, 231);
-            this.lbparaval5.Margin = new System.Windows.Forms.Padding(4);
+            this.lbparaval5.Location = new System.Drawing.Point(2, 243);
+            this.lbparaval5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbparaval5.Name = "lbparaval5";
             this.lbparaval5.NeedToTranslate = true;
             this.lbparaval5.RepresentativeValue = "PARAVAL5";
-            this.lbparaval5.Size = new System.Drawing.Size(126, 17);
+            this.lbparaval5.Size = new System.Drawing.Size(133, 20);
             this.lbparaval5.StyleController = this.layoutControl4;
             this.lbparaval5.TabIndex = 67;
             this.lbparaval5.Text = "PARAVAL5";
@@ -1570,12 +1566,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spparaval5.Location = new System.Drawing.Point(133, 231);
+            this.spparaval5.Location = new System.Drawing.Point(137, 243);
             this.spparaval5.Name = "spparaval5";
             this.spparaval5.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spparaval5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spparaval5.Size = new System.Drawing.Size(85, 20);
+            this.spparaval5.Size = new System.Drawing.Size(105, 20);
             this.spparaval5.StyleController = this.layoutControl4;
             this.spparaval5.TabIndex = 66;
             // 
@@ -1583,12 +1579,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbparaval4.ControlID = "tLabelParmNames";
             this.lbparaval4.IsRequired = false;
-            this.lbparaval4.Location = new System.Drawing.Point(3, 210);
-            this.lbparaval4.Margin = new System.Windows.Forms.Padding(4);
+            this.lbparaval4.Location = new System.Drawing.Point(2, 219);
+            this.lbparaval4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbparaval4.Name = "lbparaval4";
             this.lbparaval4.NeedToTranslate = true;
             this.lbparaval4.RepresentativeValue = "PARAVAL4";
-            this.lbparaval4.Size = new System.Drawing.Size(126, 17);
+            this.lbparaval4.Size = new System.Drawing.Size(133, 20);
             this.lbparaval4.StyleController = this.layoutControl4;
             this.lbparaval4.TabIndex = 65;
             this.lbparaval4.Text = "PARAVAL4";
@@ -1600,12 +1596,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spparaval4.Location = new System.Drawing.Point(133, 210);
+            this.spparaval4.Location = new System.Drawing.Point(137, 219);
             this.spparaval4.Name = "spparaval4";
             this.spparaval4.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spparaval4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spparaval4.Size = new System.Drawing.Size(85, 20);
+            this.spparaval4.Size = new System.Drawing.Size(105, 20);
             this.spparaval4.StyleController = this.layoutControl4;
             this.spparaval4.TabIndex = 64;
             // 
@@ -1613,12 +1609,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbparaval3.ControlID = "tLabelParmNames";
             this.lbparaval3.IsRequired = false;
-            this.lbparaval3.Location = new System.Drawing.Point(3, 189);
-            this.lbparaval3.Margin = new System.Windows.Forms.Padding(4);
+            this.lbparaval3.Location = new System.Drawing.Point(2, 195);
+            this.lbparaval3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbparaval3.Name = "lbparaval3";
             this.lbparaval3.NeedToTranslate = true;
             this.lbparaval3.RepresentativeValue = "PARAVAL3";
-            this.lbparaval3.Size = new System.Drawing.Size(126, 17);
+            this.lbparaval3.Size = new System.Drawing.Size(133, 20);
             this.lbparaval3.StyleController = this.layoutControl4;
             this.lbparaval3.TabIndex = 63;
             this.lbparaval3.Text = "PARAVAL3";
@@ -1630,12 +1626,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spparaval3.Location = new System.Drawing.Point(133, 189);
+            this.spparaval3.Location = new System.Drawing.Point(137, 195);
             this.spparaval3.Name = "spparaval3";
             this.spparaval3.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spparaval3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spparaval3.Size = new System.Drawing.Size(85, 20);
+            this.spparaval3.Size = new System.Drawing.Size(105, 20);
             this.spparaval3.StyleController = this.layoutControl4;
             this.spparaval3.TabIndex = 62;
             // 
@@ -1643,12 +1639,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbparaval2.ControlID = "tLabelParmNames";
             this.lbparaval2.IsRequired = false;
-            this.lbparaval2.Location = new System.Drawing.Point(3, 168);
-            this.lbparaval2.Margin = new System.Windows.Forms.Padding(4);
+            this.lbparaval2.Location = new System.Drawing.Point(2, 171);
+            this.lbparaval2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbparaval2.Name = "lbparaval2";
             this.lbparaval2.NeedToTranslate = true;
             this.lbparaval2.RepresentativeValue = "PARAVAL2";
-            this.lbparaval2.Size = new System.Drawing.Size(126, 17);
+            this.lbparaval2.Size = new System.Drawing.Size(133, 20);
             this.lbparaval2.StyleController = this.layoutControl4;
             this.lbparaval2.TabIndex = 61;
             this.lbparaval2.Text = "PARAVAL2";
@@ -1660,12 +1656,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spparaval2.Location = new System.Drawing.Point(133, 168);
+            this.spparaval2.Location = new System.Drawing.Point(137, 171);
             this.spparaval2.Name = "spparaval2";
             this.spparaval2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spparaval2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spparaval2.Size = new System.Drawing.Size(85, 20);
+            this.spparaval2.Size = new System.Drawing.Size(105, 20);
             this.spparaval2.StyleController = this.layoutControl4;
             this.spparaval2.TabIndex = 60;
             // 
@@ -1673,12 +1669,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbparaval1.ControlID = "tLabelParmNames";
             this.lbparaval1.IsRequired = false;
-            this.lbparaval1.Location = new System.Drawing.Point(3, 144);
-            this.lbparaval1.Margin = new System.Windows.Forms.Padding(4);
+            this.lbparaval1.Location = new System.Drawing.Point(2, 147);
+            this.lbparaval1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbparaval1.Name = "lbparaval1";
             this.lbparaval1.NeedToTranslate = true;
             this.lbparaval1.RepresentativeValue = "PARAVAL1";
-            this.lbparaval1.Size = new System.Drawing.Size(126, 17);
+            this.lbparaval1.Size = new System.Drawing.Size(133, 20);
             this.lbparaval1.StyleController = this.layoutControl4;
             this.lbparaval1.TabIndex = 59;
             this.lbparaval1.Text = "PARAVAL1";
@@ -1690,12 +1686,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spparaval1.Location = new System.Drawing.Point(133, 144);
+            this.spparaval1.Location = new System.Drawing.Point(137, 147);
             this.spparaval1.Name = "spparaval1";
             this.spparaval1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spparaval1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spparaval1.Size = new System.Drawing.Size(85, 20);
+            this.spparaval1.Size = new System.Drawing.Size(105, 20);
             this.spparaval1.StyleController = this.layoutControl4;
             this.spparaval1.TabIndex = 58;
             // 
@@ -1703,12 +1699,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbstbvalue.ControlID = "tLabelParmNames";
             this.lbstbvalue.IsRequired = false;
-            this.lbstbvalue.Location = new System.Drawing.Point(3, 120);
-            this.lbstbvalue.Margin = new System.Windows.Forms.Padding(4);
+            this.lbstbvalue.Location = new System.Drawing.Point(2, 123);
+            this.lbstbvalue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbstbvalue.Name = "lbstbvalue";
             this.lbstbvalue.NeedToTranslate = true;
             this.lbstbvalue.RepresentativeValue = "STD_VALUE";
-            this.lbstbvalue.Size = new System.Drawing.Size(126, 17);
+            this.lbstbvalue.Size = new System.Drawing.Size(133, 20);
             this.lbstbvalue.StyleController = this.layoutControl4;
             this.lbstbvalue.TabIndex = 57;
             this.lbstbvalue.Text = "STD_VALUE";
@@ -1720,12 +1716,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spstdvalue.Location = new System.Drawing.Point(133, 120);
+            this.spstdvalue.Location = new System.Drawing.Point(137, 123);
             this.spstdvalue.Name = "spstdvalue";
             this.spstdvalue.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.spstdvalue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spstdvalue.Size = new System.Drawing.Size(85, 20);
+            this.spstdvalue.Size = new System.Drawing.Size(105, 20);
             this.spstdvalue.StyleController = this.layoutControl4;
             this.spstdvalue.TabIndex = 56;
             this.spstdvalue.DoubleClick += new System.EventHandler(this.txtControlUpper_DoubleClick);
@@ -1734,12 +1730,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.lbtarget.ControlID = "tLabelParmNames";
             this.lbtarget.IsRequired = false;
-            this.lbtarget.Location = new System.Drawing.Point(3, 96);
-            this.lbtarget.Margin = new System.Windows.Forms.Padding(4);
+            this.lbtarget.Location = new System.Drawing.Point(2, 99);
+            this.lbtarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbtarget.Name = "lbtarget";
             this.lbtarget.NeedToTranslate = true;
             this.lbtarget.RepresentativeValue = "TARGET";
-            this.lbtarget.Size = new System.Drawing.Size(126, 17);
+            this.lbtarget.Size = new System.Drawing.Size(133, 20);
             this.lbtarget.StyleController = this.layoutControl4;
             this.lbtarget.TabIndex = 55;
             this.lbtarget.Text = "TARGET";
@@ -1751,12 +1747,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.sptarget.Location = new System.Drawing.Point(133, 96);
+            this.sptarget.Location = new System.Drawing.Point(137, 99);
             this.sptarget.Name = "sptarget";
             this.sptarget.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.sptarget.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sptarget.Size = new System.Drawing.Size(85, 20);
+            this.sptarget.Size = new System.Drawing.Size(105, 20);
             this.sptarget.StyleController = this.layoutControl4;
             this.sptarget.TabIndex = 54;
             this.sptarget.DoubleClick += new System.EventHandler(this.txtControlUpper_DoubleClick);
@@ -1765,12 +1761,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel18.ControlID = "tLabelParmNames";
             this.tLabel18.IsRequired = false;
-            this.tLabel18.Location = new System.Drawing.Point(3, 75);
-            this.tLabel18.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel18.Location = new System.Drawing.Point(2, 75);
+            this.tLabel18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel18.Name = "tLabel18";
             this.tLabel18.NeedToTranslate = true;
             this.tLabel18.RepresentativeValue = "CONTROLLOWERLIMIT";
-            this.tLabel18.Size = new System.Drawing.Size(126, 17);
+            this.tLabel18.Size = new System.Drawing.Size(133, 20);
             this.tLabel18.StyleController = this.layoutControl4;
             this.tLabel18.TabIndex = 53;
             this.tLabel18.Text = "CONTROLLOWERLIMIT";
@@ -1779,12 +1775,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel17.ControlID = "tLabelParmNames";
             this.tLabel17.IsRequired = false;
-            this.tLabel17.Location = new System.Drawing.Point(3, 51);
-            this.tLabel17.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel17.Location = new System.Drawing.Point(2, 51);
+            this.tLabel17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel17.Name = "tLabel17";
             this.tLabel17.NeedToTranslate = true;
             this.tLabel17.RepresentativeValue = "CONTROLUPPERLIMIT";
-            this.tLabel17.Size = new System.Drawing.Size(126, 20);
+            this.tLabel17.Size = new System.Drawing.Size(133, 20);
             this.tLabel17.StyleController = this.layoutControl4;
             this.tLabel17.TabIndex = 52;
             this.tLabel17.Text = "CONTROLUPPERLIMIT";
@@ -1793,12 +1789,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel16.ControlID = "tLabelParmNames";
             this.tLabel16.IsRequired = false;
-            this.tLabel16.Location = new System.Drawing.Point(3, 27);
-            this.tLabel16.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel16.Location = new System.Drawing.Point(2, 27);
+            this.tLabel16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel16.Name = "tLabel16";
             this.tLabel16.NeedToTranslate = true;
             this.tLabel16.RepresentativeValue = "SPECLOWERLIMIT";
-            this.tLabel16.Size = new System.Drawing.Size(126, 20);
+            this.tLabel16.Size = new System.Drawing.Size(133, 20);
             this.tLabel16.StyleController = this.layoutControl4;
             this.tLabel16.TabIndex = 51;
             this.tLabel16.Text = "SPECLOWERLIMIT";
@@ -1807,12 +1803,12 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.tLabel15.ControlID = "tLabelParmNames";
             this.tLabel15.IsRequired = false;
-            this.tLabel15.Location = new System.Drawing.Point(3, 3);
-            this.tLabel15.Margin = new System.Windows.Forms.Padding(4);
+            this.tLabel15.Location = new System.Drawing.Point(2, 3);
+            this.tLabel15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tLabel15.Name = "tLabel15";
             this.tLabel15.NeedToTranslate = true;
             this.tLabel15.RepresentativeValue = "SPECUPPERLIMIT";
-            this.tLabel15.Size = new System.Drawing.Size(126, 20);
+            this.tLabel15.Size = new System.Drawing.Size(133, 20);
             this.tLabel15.StyleController = this.layoutControl4;
             this.tLabel15.TabIndex = 50;
             this.tLabel15.Text = "SPECUPPERLIMIT";
@@ -1824,12 +1820,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.txtControlLow.Location = new System.Drawing.Point(133, 75);
+            this.txtControlLow.Location = new System.Drawing.Point(137, 75);
             this.txtControlLow.Name = "txtControlLow";
             this.txtControlLow.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txtControlLow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtControlLow.Size = new System.Drawing.Size(85, 20);
+            this.txtControlLow.Size = new System.Drawing.Size(105, 20);
             this.txtControlLow.StyleController = this.layoutControl4;
             this.txtControlLow.TabIndex = 31;
             this.txtControlLow.DoubleClick += new System.EventHandler(this.txtControlUpper_DoubleClick);
@@ -1841,12 +1837,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.txtControlUpper.Location = new System.Drawing.Point(133, 51);
+            this.txtControlUpper.Location = new System.Drawing.Point(137, 51);
             this.txtControlUpper.Name = "txtControlUpper";
             this.txtControlUpper.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txtControlUpper.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtControlUpper.Size = new System.Drawing.Size(85, 20);
+            this.txtControlUpper.Size = new System.Drawing.Size(105, 20);
             this.txtControlUpper.StyleController = this.layoutControl4;
             this.txtControlUpper.TabIndex = 30;
             this.txtControlUpper.DoubleClick += new System.EventHandler(this.txtControlUpper_DoubleClick);
@@ -1858,12 +1854,12 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.txtSpecLow.Location = new System.Drawing.Point(133, 27);
+            this.txtSpecLow.Location = new System.Drawing.Point(137, 27);
             this.txtSpecLow.Name = "txtSpecLow";
             this.txtSpecLow.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txtSpecLow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtSpecLow.Size = new System.Drawing.Size(85, 20);
+            this.txtSpecLow.Size = new System.Drawing.Size(105, 20);
             this.txtSpecLow.StyleController = this.layoutControl4;
             this.txtSpecLow.TabIndex = 29;
             // 
@@ -1874,14 +1870,14 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.txtSpecUpper.Location = new System.Drawing.Point(133, 3);
+            this.txtSpecUpper.Location = new System.Drawing.Point(137, 3);
             this.txtSpecUpper.Name = "txtSpecUpper";
             this.txtSpecUpper.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txtSpecUpper.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtSpecUpper.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)(((DevExpress.XtraEditors.ShowNullValuePromptOptions.EmptyValue | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused) 
             | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
-            this.txtSpecUpper.Size = new System.Drawing.Size(85, 20);
+            this.txtSpecUpper.Size = new System.Drawing.Size(105, 20);
             this.txtSpecUpper.StyleController = this.layoutControl4;
             this.txtSpecUpper.TabIndex = 28;
             // 
@@ -1915,15 +1911,17 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem52});
             this.layoutControlGroup3.Name = "Root";
             this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(221, 286);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(244, 303);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtSpecUpper;
-            this.layoutControlItem7.Location = new System.Drawing.Point(130, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(135, 0);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "SPECUPPERLIMIT";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
@@ -1932,9 +1930,11 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.layoutControlItem4.Control = this.txtSpecLow;
             this.layoutControlItem4.CustomizationFormText = "SPECLOWERLIMIT";
-            this.layoutControlItem4.Location = new System.Drawing.Point(130, 24);
+            this.layoutControlItem4.Location = new System.Drawing.Point(135, 24);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.Text = "SPECLOWERLIMIT";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
@@ -1942,9 +1942,9 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtControlUpper;
-            this.layoutControlItem8.Location = new System.Drawing.Point(130, 48);
+            this.layoutControlItem8.Location = new System.Drawing.Point(135, 48);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem8.Text = "CONTROLUPPERLIMIT";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -1952,10 +1952,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.txtControlLow;
-            this.layoutControlItem9.Location = new System.Drawing.Point(130, 72);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(49, 21);
+            this.layoutControlItem9.Location = new System.Drawing.Point(135, 72);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(89, 21);
+            this.layoutControlItem9.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.Text = "CONTROLLOWERLIMIT";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
@@ -1965,10 +1965,10 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.layoutControlItem29.Control = this.tLabel15;
             this.layoutControlItem29.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem29.MaxSize = new System.Drawing.Size(130, 24);
-            this.layoutControlItem29.MinSize = new System.Drawing.Size(130, 24);
+            this.layoutControlItem29.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem29.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(130, 24);
+            this.layoutControlItem29.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem29.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
@@ -1977,10 +1977,10 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.layoutControlItem32.Control = this.tLabel16;
             this.layoutControlItem32.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem32.MaxSize = new System.Drawing.Size(130, 24);
-            this.layoutControlItem32.MinSize = new System.Drawing.Size(130, 24);
+            this.layoutControlItem32.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem32.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem32.Name = "layoutControlItem32";
-            this.layoutControlItem32.Size = new System.Drawing.Size(130, 24);
+            this.layoutControlItem32.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem32.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem32.TextVisible = false;
@@ -1989,10 +1989,10 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.layoutControlItem33.Control = this.tLabel17;
             this.layoutControlItem33.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem33.MaxSize = new System.Drawing.Size(130, 24);
-            this.layoutControlItem33.MinSize = new System.Drawing.Size(130, 24);
+            this.layoutControlItem33.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem33.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(130, 24);
+            this.layoutControlItem33.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem33.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem33.TextVisible = false;
@@ -2001,10 +2001,10 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.layoutControlItem34.Control = this.tLabel18;
             this.layoutControlItem34.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem34.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem34.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem34.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem34.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(130, 21);
+            this.layoutControlItem34.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem34.TextVisible = false;
@@ -2012,11 +2012,11 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem38
             // 
             this.layoutControlItem38.Control = this.lbtarget;
-            this.layoutControlItem38.Location = new System.Drawing.Point(0, 93);
-            this.layoutControlItem38.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem38.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem38.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem38.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem38.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem38.Name = "layoutControlItem38";
-            this.layoutControlItem38.Size = new System.Drawing.Size(130, 24);
+            this.layoutControlItem38.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem38.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem38.TextVisible = false;
@@ -2024,20 +2024,22 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem39
             // 
             this.layoutControlItem39.Control = this.sptarget;
-            this.layoutControlItem39.Location = new System.Drawing.Point(130, 93);
+            this.layoutControlItem39.Location = new System.Drawing.Point(135, 96);
+            this.layoutControlItem39.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem39.Name = "layoutControlItem39";
-            this.layoutControlItem39.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem39.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem39.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem39.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem39.TextVisible = false;
             // 
             // lbSTD_VALUE
             // 
             this.lbSTD_VALUE.Control = this.lbstbvalue;
-            this.lbSTD_VALUE.Location = new System.Drawing.Point(0, 117);
-            this.lbSTD_VALUE.MaxSize = new System.Drawing.Size(130, 21);
-            this.lbSTD_VALUE.MinSize = new System.Drawing.Size(130, 21);
+            this.lbSTD_VALUE.Location = new System.Drawing.Point(0, 120);
+            this.lbSTD_VALUE.MaxSize = new System.Drawing.Size(135, 24);
+            this.lbSTD_VALUE.MinSize = new System.Drawing.Size(135, 24);
             this.lbSTD_VALUE.Name = "lbSTD_VALUE";
-            this.lbSTD_VALUE.Size = new System.Drawing.Size(130, 24);
+            this.lbSTD_VALUE.Size = new System.Drawing.Size(135, 24);
             this.lbSTD_VALUE.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lbSTD_VALUE.TextSize = new System.Drawing.Size(0, 0);
             this.lbSTD_VALUE.TextVisible = false;
@@ -2045,20 +2047,22 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem43
             // 
             this.layoutControlItem43.Control = this.spstdvalue;
-            this.layoutControlItem43.Location = new System.Drawing.Point(130, 117);
+            this.layoutControlItem43.Location = new System.Drawing.Point(135, 120);
+            this.layoutControlItem43.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem43.Name = "layoutControlItem43";
-            this.layoutControlItem43.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem43.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem43.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem43.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem43.TextVisible = false;
             // 
             // layoutControlItem42
             // 
             this.layoutControlItem42.Control = this.lbparaval1;
-            this.layoutControlItem42.Location = new System.Drawing.Point(0, 141);
-            this.layoutControlItem42.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem42.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem42.Location = new System.Drawing.Point(0, 144);
+            this.layoutControlItem42.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem42.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem42.Name = "layoutControlItem42";
-            this.layoutControlItem42.Size = new System.Drawing.Size(130, 24);
+            this.layoutControlItem42.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem42.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem42.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem42.TextVisible = false;
@@ -2066,20 +2070,22 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem44
             // 
             this.layoutControlItem44.Control = this.spparaval1;
-            this.layoutControlItem44.Location = new System.Drawing.Point(130, 141);
+            this.layoutControlItem44.Location = new System.Drawing.Point(135, 144);
+            this.layoutControlItem44.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem44.Name = "layoutControlItem44";
-            this.layoutControlItem44.Size = new System.Drawing.Size(89, 24);
+            this.layoutControlItem44.Size = new System.Drawing.Size(107, 24);
+            this.layoutControlItem44.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem44.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem44.TextVisible = false;
             // 
             // layoutControlItem45
             // 
             this.layoutControlItem45.Control = this.lbparaval2;
-            this.layoutControlItem45.Location = new System.Drawing.Point(0, 165);
-            this.layoutControlItem45.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem45.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem45.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem45.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem45.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem45.Name = "layoutControlItem45";
-            this.layoutControlItem45.Size = new System.Drawing.Size(130, 21);
+            this.layoutControlItem45.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem45.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem45.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem45.TextVisible = false;
@@ -2087,10 +2093,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem46
             // 
             this.layoutControlItem46.Control = this.spparaval2;
-            this.layoutControlItem46.Location = new System.Drawing.Point(130, 165);
-            this.layoutControlItem46.MinSize = new System.Drawing.Size(49, 21);
+            this.layoutControlItem46.Location = new System.Drawing.Point(135, 168);
+            this.layoutControlItem46.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem46.Name = "layoutControlItem46";
-            this.layoutControlItem46.Size = new System.Drawing.Size(89, 21);
+            this.layoutControlItem46.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem46.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem46.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem46.TextVisible = false;
@@ -2098,19 +2104,19 @@ namespace ISIA.UI.MANAGEMENT
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 249);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 264);
             this.emptySpaceItem3.Name = "emptySpaceItem2";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(219, 35);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(242, 37);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem47
             // 
             this.layoutControlItem47.Control = this.lbparaval3;
-            this.layoutControlItem47.Location = new System.Drawing.Point(0, 186);
-            this.layoutControlItem47.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem47.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem47.Location = new System.Drawing.Point(0, 192);
+            this.layoutControlItem47.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem47.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem47.Name = "layoutControlItem47";
-            this.layoutControlItem47.Size = new System.Drawing.Size(130, 21);
+            this.layoutControlItem47.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem47.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem47.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem47.TextVisible = false;
@@ -2118,10 +2124,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem48
             // 
             this.layoutControlItem48.Control = this.spparaval3;
-            this.layoutControlItem48.Location = new System.Drawing.Point(130, 186);
-            this.layoutControlItem48.MinSize = new System.Drawing.Size(49, 21);
+            this.layoutControlItem48.Location = new System.Drawing.Point(135, 192);
+            this.layoutControlItem48.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem48.Name = "layoutControlItem48";
-            this.layoutControlItem48.Size = new System.Drawing.Size(89, 21);
+            this.layoutControlItem48.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem48.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem48.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem48.TextVisible = false;
@@ -2129,11 +2135,11 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem49
             // 
             this.layoutControlItem49.Control = this.lbparaval4;
-            this.layoutControlItem49.Location = new System.Drawing.Point(0, 207);
-            this.layoutControlItem49.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem49.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem49.Location = new System.Drawing.Point(0, 216);
+            this.layoutControlItem49.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem49.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem49.Name = "layoutControlItem49";
-            this.layoutControlItem49.Size = new System.Drawing.Size(130, 21);
+            this.layoutControlItem49.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem49.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem49.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem49.TextVisible = false;
@@ -2141,10 +2147,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem50
             // 
             this.layoutControlItem50.Control = this.spparaval4;
-            this.layoutControlItem50.Location = new System.Drawing.Point(130, 207);
-            this.layoutControlItem50.MinSize = new System.Drawing.Size(49, 21);
+            this.layoutControlItem50.Location = new System.Drawing.Point(135, 216);
+            this.layoutControlItem50.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem50.Name = "layoutControlItem50";
-            this.layoutControlItem50.Size = new System.Drawing.Size(89, 21);
+            this.layoutControlItem50.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem50.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem50.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem50.TextVisible = false;
@@ -2152,11 +2158,11 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem51
             // 
             this.layoutControlItem51.Control = this.lbparaval5;
-            this.layoutControlItem51.Location = new System.Drawing.Point(0, 228);
-            this.layoutControlItem51.MaxSize = new System.Drawing.Size(130, 21);
-            this.layoutControlItem51.MinSize = new System.Drawing.Size(130, 21);
+            this.layoutControlItem51.Location = new System.Drawing.Point(0, 240);
+            this.layoutControlItem51.MaxSize = new System.Drawing.Size(135, 24);
+            this.layoutControlItem51.MinSize = new System.Drawing.Size(135, 24);
             this.layoutControlItem51.Name = "layoutControlItem51";
-            this.layoutControlItem51.Size = new System.Drawing.Size(130, 21);
+            this.layoutControlItem51.Size = new System.Drawing.Size(135, 24);
             this.layoutControlItem51.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem51.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem51.TextVisible = false;
@@ -2164,10 +2170,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem52
             // 
             this.layoutControlItem52.Control = this.spparaval5;
-            this.layoutControlItem52.Location = new System.Drawing.Point(130, 228);
-            this.layoutControlItem52.MinSize = new System.Drawing.Size(49, 21);
+            this.layoutControlItem52.Location = new System.Drawing.Point(135, 240);
+            this.layoutControlItem52.MinSize = new System.Drawing.Size(52, 24);
             this.layoutControlItem52.Name = "layoutControlItem52";
-            this.layoutControlItem52.Size = new System.Drawing.Size(89, 21);
+            this.layoutControlItem52.Size = new System.Drawing.Size(107, 24);
             this.layoutControlItem52.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem52.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem52.TextVisible = false;
@@ -2179,7 +2185,7 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroup8.Caption = "Limit";
             this.navBarGroup8.ControlContainer = this.navBarGroupControlContainer4;
             this.navBarGroup8.Expanded = true;
-            this.navBarGroup8.GroupClientHeight = 287;
+            this.navBarGroup8.GroupClientHeight = 304;
             this.navBarGroup8.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
@@ -2198,7 +2204,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem11});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.Root.Size = new System.Drawing.Size(248, 663);
+            this.Root.Size = new System.Drawing.Size(269, 639);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem11
@@ -2206,7 +2212,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem11.Control = this.tabPane1;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(244, 659);
+            this.layoutControlItem11.Size = new System.Drawing.Size(265, 635);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -2219,8 +2225,10 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.MaximumSize = new System.Drawing.Size(0, 30);
+            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(0, 30);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(798, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1089, 30);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // btnDel
@@ -2241,10 +2249,10 @@ namespace ISIA.UI.MANAGEMENT
             this.btnDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.ImageOptions.Image")));
             this.btnDel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnDel.IsRequired = false;
-            this.btnDel.Location = new System.Drawing.Point(726, 2);
+            this.btnDel.Location = new System.Drawing.Point(1017, 2);
             this.btnDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnDel.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDel.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnDel.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnDel.Name = "btnDel";
@@ -2274,10 +2282,10 @@ namespace ISIA.UI.MANAGEMENT
             this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
             this.btnUpdate.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnUpdate.IsRequired = false;
-            this.btnUpdate.Location = new System.Drawing.Point(652, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(943, 2);
             this.btnUpdate.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnUpdate.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnUpdate.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnUpdate.Name = "btnUpdate";
@@ -2307,10 +2315,10 @@ namespace ISIA.UI.MANAGEMENT
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
             this.btnImport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnImport.IsRequired = false;
-            this.btnImport.Location = new System.Drawing.Point(578, 2);
+            this.btnImport.Location = new System.Drawing.Point(869, 2);
             this.btnImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnImport.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnImport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImport.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnImport.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnImport.Name = "btnImport";
@@ -2340,10 +2348,10 @@ namespace ISIA.UI.MANAGEMENT
             this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
             this.btnExport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnExport.IsRequired = false;
-            this.btnExport.Location = new System.Drawing.Point(504, 2);
+            this.btnExport.Location = new System.Drawing.Point(795, 2);
             this.btnExport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnExport.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExport.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnExport.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnExport.Name = "btnExport";
@@ -2358,10 +2366,10 @@ namespace ISIA.UI.MANAGEMENT
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 35);
+            this.gridControl1.Location = new System.Drawing.Point(0, 30);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(798, 628);
+            this.gridControl1.Size = new System.Drawing.Size(1089, 609);
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -2387,8 +2395,8 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 739);
-            this.Margin = new System.Windows.Forms.Padding(3);
+            this.ClientSize = new System.Drawing.Size(1371, 715);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "FrmParameterSpecManagement";
             this.Text = "FrmDataBaseManagement";
             this.xtraUserControl1.ResumeLayout(false);
