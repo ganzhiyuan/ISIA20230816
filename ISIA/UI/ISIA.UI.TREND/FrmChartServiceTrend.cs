@@ -9,6 +9,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,7 +19,6 @@ using TAP.Data.Client;
 using TAP.Fressage;
 using TAP.FTP;
 using TAP.UI;
-using static DevExpress.XtraBars.Docking2010.Views.BaseRegistrator;
 
 namespace ISIA.UI.TREND
 {
@@ -28,17 +29,11 @@ namespace ISIA.UI.TREND
 
         #region Field
 
-        private string _ftpHost;
-        private string _ftpRoot;
-        private string _userName;
-        private string _password;
+        private string _uRL;
 
         private string _localDir;
         private string _appName;
         private string _appDirectory;
-
-        private FTPclient _ftpClient;
-
 
         List<Image> _imageList = new List<Image>();
         public delegate void DownLoadFileHandler(string[] fileNames);
@@ -64,7 +59,7 @@ namespace ISIA.UI.TREND
         public FrmChartServiceTrend()
         {
             InitializeComponent();
-            InitializeFTP();
+            InitializeURL();
             InitializeBizDataClient();
             InitializeControl();
         }
@@ -83,7 +78,7 @@ namespace ISIA.UI.TREND
             this.bgDownload.ProgressChanged += new ProgressChangedEventHandler(this.bgDownload_ProressChanged);
         }
 
-        private void InitializeFTP()
+        private void InitializeURL()
         {
             #region Code
 
@@ -92,12 +87,7 @@ namespace ISIA.UI.TREND
 
                 //_localDir = Directory.GetParent(FormRibbon_ISEM._ExecutableDirectory.Trim('\\')).FullName;
                 _localDir = Directory.GetCurrentDirectory();
-                _ftpHost = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["HostName"];
-                _ftpRoot = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["RootDirectory"];
-                _userName = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["UserName"];
-                _password = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["Password"]; 
-                
-                _ftpClient = new FTPclient(_ftpHost, _userName, _password);
+                _uRL = TAP.App.Base.AppConfig.ConfigManager.HostCollection["ChartService"]["URL"];
                 
                 return;
             }
@@ -200,9 +190,10 @@ namespace ISIA.UI.TREND
             _reserveData = e.ReserveResult;
             bgDownload.CancelAsync();
         }
-        private List<Image> GetImages(DataTable imageData)
+        private async Task<List<Image>> GetImagesAsync(DataTable imageData)
         {
             List<Image> images = new List<Image>();
+            HttpClient client = new HttpClient();
 
             foreach (DataRow row in imageData.Rows)
             {
@@ -210,9 +201,20 @@ namespace ISIA.UI.TREND
                 {
                     string imageFileName = row["IMAGEPATH"].ToString();
 
-                    string path = _ftpRoot + '/' + imageFileName;
+                    string url = _uRL + '/' + imageFileName;
 
-                    images.Add(_ftpClient.GetImage(path));
+
+                    // Download the image and convert it to an Image object
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    // Ensure the request was successful
+                    response.EnsureSuccessStatusCode();
+
+                    using (Stream stream = await response.Content.ReadAsStreamAsync())
+                    {
+                        Image image = Image.FromStream(stream);
+                        images.Add(image);
+                    }
                 }
                 catch (System.Exception ex)
                 {
@@ -255,14 +257,14 @@ namespace ISIA.UI.TREND
 
             _imageList.Clear();
 
-            _imageList = GetImages(ds.Tables[0]);
-
             return ds;
 
         }
 
-        public void DisplayData(DataSet dataSet)
+        public async void DisplayData(DataSet dataSet)
         {
+            _imageList = await GetImagesAsync(dataSet.Tables[0]);
+
             if (_imageList.Count < 1)
             {
                 ShowNoData();
