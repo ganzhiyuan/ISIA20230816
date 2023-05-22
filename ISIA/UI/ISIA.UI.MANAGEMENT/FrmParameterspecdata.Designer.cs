@@ -85,6 +85,14 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.tcbup = new TAP.UIControls.BasicControlsDEV.TCheckBox();
+            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.tcblow = new TAP.UIControls.BasicControlsDEV.TCheckBox();
+            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.tcbstdvalue = new TAP.UIControls.BasicControlsDEV.TCheckBox();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.tcbtarget = new TAP.UIControls.BasicControlsDEV.TCheckBox();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spstdvalue.Properties)).BeginInit();
@@ -129,10 +137,22 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbup.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcblow.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbstdvalue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbtarget.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.tcbtarget);
+            this.layoutControl1.Controls.Add(this.tcbstdvalue);
+            this.layoutControl1.Controls.Add(this.tcblow);
+            this.layoutControl1.Controls.Add(this.tcbup);
             this.layoutControl1.Controls.Add(this.tbcalc);
             this.layoutControl1.Controls.Add(this.tbOK);
             this.layoutControl1.Controls.Add(this.tbclose);
@@ -245,7 +265,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tbclose.ControlID = "btnSelect";
             this.tbclose.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tbclose.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.tbclose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tButton1.ImageOptions.Image")));
+            this.tbclose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tbclose.ImageOptions.Image")));
             this.tbclose.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.tbclose.IsRequired = false;
             this.tbclose.Location = new System.Drawing.Point(437, 341);
@@ -567,7 +587,11 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem8,
             this.emptySpaceItem9,
             this.emptySpaceItem10,
-            this.emptySpaceItem11});
+            this.emptySpaceItem11,
+            this.layoutControlItem22,
+            this.layoutControlItem23,
+            this.layoutControlItem24,
+            this.layoutControlItem25});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(542, 384);
             this.Root.TextVisible = false;
@@ -846,34 +870,126 @@ namespace ISIA.UI.MANAGEMENT
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(434, 140);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(478, 140);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(88, 28);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(44, 28);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(434, 168);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(478, 168);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(88, 28);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(44, 28);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(434, 196);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(478, 196);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(88, 28);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(44, 28);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem11
             // 
             this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(434, 224);
+            this.emptySpaceItem11.Location = new System.Drawing.Point(478, 224);
             this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(88, 28);
+            this.emptySpaceItem11.Size = new System.Drawing.Size(44, 28);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // tcbup
+            // 
+            this.tcbup.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tcbup.ControlID = "tcbup";
+            this.tcbup.IsRequired = false;
+            this.tcbup.Location = new System.Drawing.Point(446, 152);
+            this.tcbup.Name = "tcbup";
+            this.tcbup.NeedToTranslate = true;
+            this.tcbup.Properties.Caption = "";
+            this.tcbup.RepresentativeValue = "";
+            this.tcbup.Size = new System.Drawing.Size(40, 24);
+            this.tcbup.StyleController = this.layoutControl1;
+            this.tcbup.TabIndex = 116;
+            // 
+            // layoutControlItem22
+            // 
+            this.layoutControlItem22.Control = this.tcbup;
+            this.layoutControlItem22.Location = new System.Drawing.Point(434, 140);
+            this.layoutControlItem22.Name = "layoutControlItem22";
+            this.layoutControlItem22.Size = new System.Drawing.Size(44, 28);
+            this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem22.TextVisible = false;
+            // 
+            // tcblow
+            // 
+            this.tcblow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tcblow.ControlID = "tCheckBox1";
+            this.tcblow.IsRequired = false;
+            this.tcblow.Location = new System.Drawing.Point(446, 180);
+            this.tcblow.Name = "tcblow";
+            this.tcblow.NeedToTranslate = true;
+            this.tcblow.Properties.Caption = "";
+            this.tcblow.RepresentativeValue = "";
+            this.tcblow.Size = new System.Drawing.Size(40, 24);
+            this.tcblow.StyleController = this.layoutControl1;
+            this.tcblow.TabIndex = 117;
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.tcblow;
+            this.layoutControlItem23.Location = new System.Drawing.Point(434, 168);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(44, 28);
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem23.TextVisible = false;
+            // 
+            // tcbstdvalue
+            // 
+            this.tcbstdvalue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tcbstdvalue.ControlID = "tCheckBox1";
+            this.tcbstdvalue.IsRequired = false;
+            this.tcbstdvalue.Location = new System.Drawing.Point(446, 208);
+            this.tcbstdvalue.Name = "tcbstdvalue";
+            this.tcbstdvalue.NeedToTranslate = true;
+            this.tcbstdvalue.Properties.Caption = "";
+            this.tcbstdvalue.RepresentativeValue = "";
+            this.tcbstdvalue.Size = new System.Drawing.Size(40, 24);
+            this.tcbstdvalue.StyleController = this.layoutControl1;
+            this.tcbstdvalue.TabIndex = 118;
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.tcbstdvalue;
+            this.layoutControlItem24.Location = new System.Drawing.Point(434, 196);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(44, 28);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
+            // tcbtarget
+            // 
+            this.tcbtarget.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tcbtarget.ControlID = "tCheckBox1";
+            this.tcbtarget.IsRequired = false;
+            this.tcbtarget.Location = new System.Drawing.Point(446, 236);
+            this.tcbtarget.Name = "tcbtarget";
+            this.tcbtarget.NeedToTranslate = true;
+            this.tcbtarget.Properties.Caption = "";
+            this.tcbtarget.RepresentativeValue = "";
+            this.tcbtarget.Size = new System.Drawing.Size(40, 24);
+            this.tcbtarget.StyleController = this.layoutControl1;
+            this.tcbtarget.TabIndex = 119;
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.tcbtarget;
+            this.layoutControlItem25.Location = new System.Drawing.Point(434, 224);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(44, 28);
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
             // 
             // FrmParameterspecdata
             // 
@@ -929,6 +1045,14 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbup.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcblow.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbstdvalue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tcbtarget.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -990,5 +1114,13 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
+        private TAP.UIControls.BasicControlsDEV.TCheckBox tcbtarget;
+        private TAP.UIControls.BasicControlsDEV.TCheckBox tcbstdvalue;
+        private TAP.UIControls.BasicControlsDEV.TCheckBox tcblow;
+        private TAP.UIControls.BasicControlsDEV.TCheckBox tcbup;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
     }
 }

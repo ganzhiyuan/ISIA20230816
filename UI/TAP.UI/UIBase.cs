@@ -5660,9 +5660,16 @@ namespace TAP.UI
 
 
                 ArgumentPack tmpPack = new ArgumentPack();
-                tmpPack.AddArgument("_dataTable", typeof(DataTable), _dataTable==null?this._DataTable: _dataTable);
-                tmpPack.AddArgument("_hashTable", typeof(DataTable), _hashTable == null?this._Hashtable : _hashTable);
-                
+                if (_dataTable != null)
+                {
+                    tmpPack.AddArgument("_dataTable", typeof(DataTable), _dataTable == null ? this._DataTable : _dataTable);
+                }
+
+                if (_hashTable != null)
+                {
+                    tmpPack.AddArgument("_hashTable", typeof(DataTable), _hashTable == null ? this._Hashtable : _hashTable);
+                }
+
                 ((TAP.UI.UIBase)tmpNewForm).ExecuteCommand(tmpPack);
 
                 //AgumentPack Data ??? ??
