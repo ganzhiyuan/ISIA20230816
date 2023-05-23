@@ -71,6 +71,7 @@ namespace ISIA.BIZ.TREND
   ,SUM(DECODE(metric_name, 'User Commits Per Sec', maxval, 0)) User_Commits_max_psec
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', average, 0)) Redo_Generated_psec
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', maxval, 0)) Redo_Generated_max_psec
+  ,SUM(DECODE(metric_name, 'Hard Parse Count Per Sec', maxval, 0)) HardParseCountPerSec
     FROM (SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */
            sm.*, sn.begin_interval_time, sn.end_interval_time ");
                 tmpSql.AppendFormat(" FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm ", arguments.DBName);
@@ -212,6 +213,7 @@ t2_sysmetric_summary AS
         ,ROUND(AVG(User_Commits_max_psec), 2) Commit_psec_max
         ,ROUND(AVG(Redo_Generated_psec / 1024 / 1024), 2) Redo_mb_psec_avg
         ,ROUND(AVG(Redo_Generated_max_psec / 1024 / 1024), 2) Redo_mb_psec_max
+        ,ROUND(AVG(HardParseCountPerSec),2) Hard_Parse_Cnt_psec 
 
 
     FROM t1_sysmetric_summary s
@@ -295,6 +297,7 @@ SELECT sm.dbid
       ,sm.Commit_psec_max
       ,sm.Redo_mb_psec_avg
       ,sm.Redo_mb_psec_max
+      ,sm.Hard_Parse_Cnt_psec
 
       ,st.EXECUTIONS
 ,st.ELAPSED_TIME
@@ -470,8 +473,8 @@ SELECT sm.dbid
                 StringBuilder tmpSql = new StringBuilder();
                 if (arguments.ParamNamesString == "ELAPSED_TIME_DELTA" || arguments.ParamNamesString == "CPU_TIME_DELTA")
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd HH:mi') workdate,ROUND(sum(d.{0})/1000000,0) {0},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.ParamNamesString);
-                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd HH:mi') workDate, T.{0},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'{0}') workdate,ROUND(sum(d.{1})/1000000,0) {1},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.PARADEF,arguments.ParamNamesString);
+                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, '{0}') workDate, T.{1},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.PARADEF, arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
                     tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')  and  a.begin_interval_time <= TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')  ", arguments.StartTime, arguments.EndTime);
@@ -482,8 +485,8 @@ SELECT sm.dbid
                 }
                 else
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'yyyy-MM-dd HH:mi') workdate,ROUND(sum(d.{0}),0) {0},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.ParamNamesString);
-                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, 'yyyy-MM-dd HH:mi') workDate, T.{0},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'{0}') workdate,ROUND(sum(d.{1}),0) {1},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.PARADEF, arguments.ParamNamesString);
+                    tmpSql.AppendFormat(" SELECT t.sql_id, TO_CHAR(a.begin_interval_time, '{0}') workDate, T.{1},t.instance_number,t.module,t.action,t.parsing_schema_name", arguments.PARADEF, arguments.ParamNamesString);
                     tmpSql.AppendFormat(" FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                     tmpSql.AppendFormat("  LEFT JOIN raw_dba_hist_snapshot_{0} a ON t.snap_id = a.snap_id  and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
                     tmpSql.AppendFormat(" WHERE a.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') and  a.begin_interval_time <= TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
