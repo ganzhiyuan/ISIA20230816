@@ -414,10 +414,12 @@ namespace ISIA.UI.TREND
                                 if (cmbGroupUnit.EditValue.ToString() == "DAY")
                                 {
                                     args.StartTime = dtpEndTime.DateTime.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.PARADEF = "yyyy-MM-dd";
                                 }
                                 else
                                 {
                                     args.StartTime = dtpEndTime.DateTime.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.PARADEF = "yyyy-MM-dd HH24:mi";
                                 }
                                 args.EndTime = dtpEndTime.DateTime.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
                                 args.DBName = argsSel.DBName;
