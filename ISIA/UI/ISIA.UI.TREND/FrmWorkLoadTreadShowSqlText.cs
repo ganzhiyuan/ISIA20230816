@@ -29,7 +29,14 @@ namespace ISIA.UI.TREND
             gridView1.BestFitColumns();
             this.colName = colName;
             this.DbName = DBName;
-            tChartSqlText.Header.Text = colName;
+            string[] str = colName.Split('_');
+            string colNm = string.Empty;
+            for (int i = 0; i < str.Length-1; i++)
+            {
+                colNm += str[i];
+                colNm += "_";
+            }
+            tChartSqlText.Header.Text = colNm.TrimEnd('_');
             List<Line> list = CreateLine(listDs);
             foreach (var item in list)
             {
