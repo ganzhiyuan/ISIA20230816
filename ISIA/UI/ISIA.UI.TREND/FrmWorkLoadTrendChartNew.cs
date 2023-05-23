@@ -74,6 +74,7 @@ namespace ISIA.UI.TREND
             //    this.dtpStartTime.DateTime = DateTime.Now.AddYears(-1);
             //    this.dtpEndTime.DateTime = DateTime.Now;
             //}
+            groupUnit = cmbGroupUnit.EditValue.ToString();
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -375,7 +376,7 @@ namespace ISIA.UI.TREND
                                 return;
                             }
                             AwrArgsPack argsSel = new AwrArgsPack();
-                            if (cmbGroupUnit.EditValue.ToString() == "DAY")
+                            if (groupUnit == "DAY")
                             {
                                 argsSel.StartTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
                                 argsSel.EndTime = Convert.ToDateTime(argsSel.StartTime).AddDays(+1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
@@ -411,7 +412,7 @@ namespace ISIA.UI.TREND
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
                                 AwrArgsPack args = new AwrArgsPack();
-                                if (cmbGroupUnit.EditValue.ToString() == "DAY")
+                                if (groupUnit == "DAY")
                                 {
                                     args.StartTime = dtpEndTime.DateTime.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
                                     args.PARADEF = "yyyy-MM-dd";
@@ -438,7 +439,7 @@ namespace ISIA.UI.TREND
                             if (errorCount != dsRelation.Tables[0].Rows.Count)
                             {
                                 wdf.Close();
-                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs);
+                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs, groupUnit);
                                 frm.ShowDialog();
                             }
                             else
