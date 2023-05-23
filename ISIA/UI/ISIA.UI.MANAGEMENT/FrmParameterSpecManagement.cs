@@ -223,7 +223,7 @@ namespace ISIA.UI.MANAGEMENT
             args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
             args.CHARTUSED = rdoIsalive.Properties.Items[rdoChartused.SelectedIndex].Value.ToString();
             args.MAILUSED = rdoIsalive.Properties.Items[rdoIlused.SelectedIndex].Value.ToString();
-            args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
+            //args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
             args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
             args.DETECTINGUSED = rdodetecting.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
 
@@ -296,14 +296,14 @@ namespace ISIA.UI.MANAGEMENT
                     rdoIlused.SelectedIndex = 1;
                 }
 
-                if (dr["MMSUSED"].ToString() == "YES")
+                /*if (dr["MMSUSED"].ToString() == "YES")
                 {
                     rdoMMsused.SelectedIndex = 0;
                 }
                 else
                 {
                     rdoMMsused.SelectedIndex = 1;
-                }
+                }*/
                 if (dr["SPECLIMITUSED"].ToString() == "YES")
                 {
                     rdoSpec.SelectedIndex = 0;

@@ -71,7 +71,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.Append("  SELECT ROWID, ROWNUM ID, DBID,INSTANCE_NUMBER, PARAMETERID, PARAMETERNAME, RULENAME, RULENO, DAYS,TARGET,STD_VALUE, SPECUPPERLIMIT, SPECLOWERLIMIT, CONTROLUPPERLIMIT, ");
-                tmpSql.Append("  CONTROLLOWERLIMIT ,PARAVAL1,PARAVAL2,PARAVAL3,PARAVAL4,PARAVAL5, DETECTINGUSED, CHARTUSED , MAILUSED ,MMSUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
+                tmpSql.Append("  CONTROLLOWERLIMIT ,PARAVAL1,PARAVAL2,PARAVAL3,PARAVAL4,PARAVAL5, DETECTINGUSED, CHARTUSED , MAILUSED , SPECLIMITUSED , ISALIVE FROM  TAPCTPARAMETERRULESPEC WHERE 1=1 ");
                 if (!string.IsNullOrEmpty(arguments.PARAMETERNAME))
                 {
                     tmpSql.AppendFormat(" and PARAMETERNAME='{0}' ", arguments.PARAMETERNAME);
@@ -155,7 +155,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  CHARTUSED = '{0}'  ,", arguments.CHARTUSED);
                 tmpSql.AppendFormat("  DETECTINGUSED = '{0}'  ,", arguments.DETECTINGUSED);
                 tmpSql.AppendFormat("  MAILUSED = '{0}'  ,", arguments.MAILUSED);
-                tmpSql.AppendFormat("  MMSUSED = '{0}'  ,", arguments.MMSUSED);
+                /*tmpSql.AppendFormat("  MMSUSED = '{0}'  ,", arguments.MMSUSED);*/
                 tmpSql.AppendFormat("  SPECLIMITUSED = '{0}'  ,", arguments.SPECLIMITUSED);
                 tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
                 tmpSql.Append(" where 1=1 ");
