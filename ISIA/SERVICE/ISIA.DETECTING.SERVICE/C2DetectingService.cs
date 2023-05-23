@@ -263,8 +263,7 @@ namespace ISIA.DETECTING.SERVICE
                                 ExecAverageRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
                             }
                             else
-                            {
-                                continue;
+                            {                                
                                 ExecSpcRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
                             }
                         }

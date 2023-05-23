@@ -35,6 +35,8 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.comboBoxLanguage = new TAP.UIControls.BasicControls.TComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.buttonLogIn = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -55,8 +57,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.comboBoxRegion = new TAP.UIControls.BasicControls.TComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxLanguage = new TAP.UIControls.BasicControls.TComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -136,6 +136,37 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(404, 25);
             this.panel10.TabIndex = 0;
+            // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.comboBoxLanguage.BuiltInCategory = "";
+            this.comboBoxLanguage.BuiltInDispay = TAP.UIControls.EnumBuitInDispay.NONE;
+            this.comboBoxLanguage.BuiltInIncludeAll = false;
+            this.comboBoxLanguage.BuiltInSubCategory = "";
+            this.comboBoxLanguage.ControlID = "comboBoxFacility";
+            this.comboBoxLanguage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.IsRequired = false;
+            this.comboBoxLanguage.Location = new System.Drawing.Point(64, 0);
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.NeedToTranslate = true;
+            this.comboBoxLanguage.RepresentativeValue = null;
+            this.comboBoxLanguage.Size = new System.Drawing.Size(73, 21);
+            this.comboBoxLanguage.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.ForeColor = System.Drawing.Color.Lavender;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
+            this.label6.Size = new System.Drawing.Size(64, 18);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Language";
             // 
             // buttonLogIn
             // 
@@ -375,37 +406,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Region";
             this.label1.Visible = false;
-            // 
-            // comboBoxLanguage
-            // 
-            this.comboBoxLanguage.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.comboBoxLanguage.BuiltInCategory = "";
-            this.comboBoxLanguage.BuiltInDispay = TAP.UIControls.EnumBuitInDispay.NONE;
-            this.comboBoxLanguage.BuiltInIncludeAll = false;
-            this.comboBoxLanguage.BuiltInSubCategory = "";
-            this.comboBoxLanguage.ControlID = "comboBoxFacility";
-            this.comboBoxLanguage.Dock = System.Windows.Forms.DockStyle.Left;
-            this.comboBoxLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxLanguage.FormattingEnabled = true;
-            this.comboBoxLanguage.IsRequired = false;
-            this.comboBoxLanguage.Location = new System.Drawing.Point(64, 0);
-            this.comboBoxLanguage.Name = "comboBoxLanguage";
-            this.comboBoxLanguage.NeedToTranslate = true;
-            this.comboBoxLanguage.RepresentativeValue = null;
-            this.comboBoxLanguage.Size = new System.Drawing.Size(73, 21);
-            this.comboBoxLanguage.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label6.ForeColor = System.Drawing.Color.Lavender;
-            this.label6.Location = new System.Drawing.Point(0, 0);
-            this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(10, 5, 0, 0);
-            this.label6.Size = new System.Drawing.Size(64, 18);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Language";
             // 
             // FormLogin2
             // 
