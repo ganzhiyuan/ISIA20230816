@@ -215,7 +215,7 @@ namespace ISIA.UI.TREND
             {
                 int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list2[chartIndex]));
+                Task.Factory.StartNew(() => QueryDataForTChart2(charts1.ElementAt(chartIndex), list2[chartIndex]));
             }
             //for (int i = 0; i < count; i++)
             //{
@@ -274,11 +274,28 @@ namespace ISIA.UI.TREND
             args.SnapId = "";
             Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            for (int i = 0; i < dto.FileNameParament.Count(); i++)
+            for (int i = 0; i < dto.FileNameList.Count(); i++)
             {
                 Line line = CreateLine(dst.Tables[0], dto,i);
                 tChart.Invoke((MethodInvoker)delegate
                 {
+                    if (dto.YRValueType==1)
+                    {
+                        Axis yAxis = tChart.Axes.Right;
+
+                        // 设置Y轴标签的显示格式为百分比（保留两位小数）
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    if (dto.YLValueType==1)
+                    {
+                        Axis yAxis = tChart.Axes.Left;
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    tChart.Axes.Right.Visible = true;
+                    tChart.Axes.Left.Visible = true;
+                    tChart.Legend.Visible = true;
+                    tChart.Legend.LegendStyle = LegendStyles.Series;
+                    tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
                     tChart.Series.Add(line);
                 });
             }
@@ -290,7 +307,10 @@ namespace ISIA.UI.TREND
         }
         private void QueryDataForTChart2(TChart tChart, DPIDto dto)
         {
-            tChart.Series.Clear();
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                tChart.Series.Clear();
+            });
             AwrCommonArgsPack args = new AwrCommonArgsPack();
             // 实际的查询逻辑
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
@@ -299,15 +319,38 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
-
+            Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            for (int i = 0; i < dto.FileNameParament.Count(); i++)
+            for (int i = 0; i < dto.FileNameList.Count(); i++)
             {
                 Line line = CreateLine(dst.Tables[0], dto, i);
-                tChart.Series.Add(line);
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    if (dto.YRValueType == 1)
+                    {
+                        Axis yAxis = tChart.Axes.Right;
+
+                        // 设置Y轴标签的显示格式为百分比（保留两位小数）
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    if (dto.YLValueType == 1)
+                    {
+                        Axis yAxis = tChart.Axes.Left;
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    tChart.Axes.Right.Visible = true;
+                    tChart.Axes.Left.Visible = true;
+                    tChart.Legend.Visible = true;
+                    tChart.Legend.LegendStyle = LegendStyles.Series;
+                    tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
+                    tChart.Series.Add(line);
+                });
             }
             // 将查询到的数据设置到TChart控件中
-            HideWaitIcon(tChart, dto.HeaderText);
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                HideWaitIcon(tChart, dto.HeaderText);
+            });
         }
         private void QueryDataForTChart3(TChart tChart, DPIDto dto)
         {
@@ -322,7 +365,7 @@ namespace ISIA.UI.TREND
             args.SnapId = "";
 
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            for (int i = 0; i < dto.FileNameParament.Count(); i++)
+            for (int i = 0; i < dto.FileNameList.Count(); i++)
             {
                 Line line = CreateLine(dst.Tables[0], dto, i);
                 tChart.Series.Add(line);
@@ -338,19 +381,24 @@ namespace ISIA.UI.TREND
             //line.XValues.DataMember = dto.Xvalue;
             line.LabelMember = dto.Xvalue;
             line.Legend.Visible = false;
-            string str = dto.FileNameParament[i].ToString();
+            string str = dto.FileNameList[i].FileNameParament;
+            if (dto.FileNameList[i].IsLeftY)
+            {
+                line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Left;
+            }
+            else
+            {
+                line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
+            }
             line.YValues.DataMember = str;
             line.Color = colors[i];
-
+            line.Legend.Visible = true;
+            line.Legend.Text = dto.FileNameList[i].FileNameParament;
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
-            //line.ColorEachLine = true;
-            //line.Legend.Text = dstable.TableName;
             line.Legend.BorderRound = 10;
             line.Pointer.Style = PointerStyles.Circle;
             line.Pointer.Visible = true;
-            //line.Pointer.Color = Color.OrangeRed;
-            //line.Pointer.SizeDouble = 1;
             line.XValues.DateTime = true;
             return line;
         }
@@ -372,7 +420,14 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetOsstat",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "CP Usage(%)",
-                FileNameParament = new List<string> { "%usr", "%sys", "%wio", "%idle" },
+                YLValueType = 1,
+                YRValueType=1,
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "%usr", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "%sys", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "%wio", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "%idle", IsLeftY = false,  }
+                }
             };
             list.Add(dto);
             //18
@@ -381,7 +436,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetTimeModel",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "DB&Background Times(s)",
-                FileNameParament = new List<string> { "DB time", "DB CPU", "background", "background cpu" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "DB time", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "DB CPU", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "background", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "background cpu", IsLeftY = true  }
+                }
             };
             list.Add(dto);
             //1
@@ -390,7 +450,10 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Lgical/Physical Reads",
-                FileNameParament = new List<string> { "Logical reads", "Physical reads" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Logical reads", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Physical reads", IsLeftY = false },
+                }
             };
             list.Add(dto);
             //1
@@ -399,7 +462,10 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "User Call/Execute Count",
-                FileNameParament = new List<string> { "User calls", "Executes" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "User calls", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Executes", IsLeftY = false },
+                }
             };
             list.Add(dto);
             //62
@@ -408,7 +474,11 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetResource",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Session/Active Count",
-                FileNameParament = new List<string> { "sessions_curr", "sessions_max", "active_session_cnt" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "sessions_curr", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "sessions_max", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "active_session_cnt", IsLeftY = false },
+                }
             };
             list.Add(dto);
             //12
@@ -417,7 +487,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetWait5_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top 5 Wait Events(time(s))",
-                FileNameParament = new List<string> { "time_1", "time_2", "time_3", "time_4", "time_5" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "time_1", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "time_2", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "time_3", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "time_4", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "time_5", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //68--无法查询
@@ -426,7 +502,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLatch_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top wait time latch:Avg. wait time(ms)",
-                FileNameParament = new List<string> { "rank1WaitT", "rank2WaitT", "rank3WaitT", "rank4WaitT", "rank5WaitT" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1WaitT", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2WaitT", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3WaitT", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4WaitT", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5WaitT", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //66
@@ -435,7 +517,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetEnq_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Avg.Top-5 En queue Wait Time(s)",
-                FileNameParament = new List<string> { "rank1_wait_tm", "rank2_wait_tm", "rank3_wait_tm", "rank4_wait_tm", "rank5_wait_tm" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_wait_tm", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_wait_tm", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_wait_tm", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_wait_tm", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_wait_tm", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //61 --无法查询
@@ -444,7 +532,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetWaitstat",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Wait count by class",
-                FileNameParament = new List<string> { "DataBlock", "SegmentHeader", "UndoBlock", "UndoHeader" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "DataBlock", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "SegmentHeader", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "UndoBlock", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "UndoHeader", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //64 --无法查询
@@ -453,7 +546,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetBuffer_pool",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Cache Hit%",
-                FileNameParament = new List<string> { "free buffer wait", "%Hit", "buffer busy wait" }
+                YLValueType = 1,
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "free buffer wait", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "%Hit", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "buffer busy wait", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //74
@@ -461,8 +559,14 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSession_cache",
                 Xvalue = "TIMESTAMP",
+                YRValueType=1,
                 HeaderText = "Session Cached cursor Statistics",
-                FileNameParament = new List<string> { "Parse requests", "Cursor cache hits", "ReParsed requests", "Cursor cache hit%" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Parse requests", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Cursor cache hits", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "ReParsed requests", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Cursor cache hit%", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //71--无法查询
@@ -471,7 +575,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSga",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "SGA",
-                FileNameParament = new List<string> { "buf.cache(M)", "shared.pool(M)", "java.pool(M)", "large.pool(M)", "streams.pool(M)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "buf.cache(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "shared.pool(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "java.pool(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "large.pool(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "streams.pool(M)", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //71--无法查询
@@ -480,7 +590,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSga",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "shared pool",
-                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "sqlarea(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "lib.cache(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "others(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "free(M)", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //54--无法查询
@@ -489,7 +604,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetPga",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "PGA Statistics",
-                FileNameParament = new List<string> { "sqlarea(M)", "lib.cache(M)", "others(M)", "free(M)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "sqlarea(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "lib.cache(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "others(M)", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "free(M)", IsLeftY = false },
+                }
             };
             list.Add(dto);
 
@@ -499,7 +619,12 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetWorkarea_raw",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "PGA Memory/Disk sort",
-                FileNameParament = new List<string> { "one_exe", "mul_exe", "tot_exe", "opt_exe" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "one_exe", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "mul_exe", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "tot_exe", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "opt_exe", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //03--无法查询
@@ -507,8 +632,13 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetRacGcEfficiency",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Buffer Access{local/remote/disk}%",
-                FileNameParament = new List<string> { "Buffer access - local cache%", "Buffer access - remote cache%", "Buffer access - disk%" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Buffer access - local cache%", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Buffer access - remote cache%", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "Buffer access - disk%", IsLeftY = true },
+                }
             };
             list.Add(dto);
             //--sheet2
@@ -518,7 +648,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "transaction(per sec)",
-                FileNameParament = new List<string> { "Transactions" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Transactions", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
             //01
@@ -527,7 +659,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Redo Size(Bytes)",
-                FileNameParament = new List<string> { "Redo size" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Redo size", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
             //01
@@ -536,7 +670,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Parse Count(Per Sec)",
-                FileNameParament = new List<string> { "Parses(total)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Parses(total)", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
             //01
@@ -545,7 +681,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Hard Parse Count(per sec)",
-                FileNameParament = new List<string> { "Parses(hard)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Parses(hard)", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
             //18
@@ -554,7 +692,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetTimeModel",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "DB Time(s)",
-                FileNameParament = new List<string> { "DB time" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "DB time", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
             //72
@@ -563,7 +703,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetLog_switch_f",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Log Switches",
-                FileNameParament = new List<string> { "Log Switch interval <= 5 min" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Log Switch interval <= 5 min", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -573,7 +715,10 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetPga_hit",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "PGA Cache Hit(%)",
-                FileNameParament = new List<string> { "PGA Cache Hit%" }
+                YLValueType = 1,
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "PGA Cache Hit%", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -583,7 +728,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetRacChar",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Avg Global Cache cr block receive time(ms)",
-                FileNameParament = new List<string> { "Avg GC cr blk rcv time(ms)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Avg GC cr blk rcv time(ms)", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -593,7 +740,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetRacChar",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Avg Global Cache current block receive time(ms)",
-                FileNameParament = new List<string> { "Avg GC cur blk rcv time(ms)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Avg GC cur blk rcv time(ms)", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -603,7 +752,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetRacLoadSql",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Estimated interconnect traffic(mbytes/s)",
-                FileNameParament = new List<string> { "Interconnect traffic(Mb)" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "Interconnect traffic(Mb)", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -613,7 +764,9 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetRacLoadSql",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "global cache blocks lost",
-                FileNameParament = new List<string> { "gc lost" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "gc lost", IsLeftY = true },
+                }
             };
             list2.Add(dto1);
 
@@ -624,7 +777,10 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSqlElap_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Elapsed Time SQL:Elapsed Time per exec",
-                FileNameParament = new List<string> { "rank1_elap_per_exec", "rank2_elap_per_exec" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_elap_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_elap_per_exec", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //29
@@ -632,8 +788,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSqlElap_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top Elapsed Time SQL:elaped time per DBTime(%)",
-                FileNameParament = new List<string> { "rank1_elap_per_dbtim", "rank2_elap_per_dbtim", "rank3_elap_per_dbtim", "rank4_elap_per_dbtim", "rank5_elap_per_dbtim" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_elap_per_dbtim", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //31
@@ -642,7 +805,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSql_cpu_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top CPU Time SQL:cpu Time per exec",
-                FileNameParament = new List<string> { "rank1_cput_per_exec", "rank2_cput_per_exec", "rank3_cput_per_exec", "rank4_cput_per_exec", "rank5_cput_per_exec" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_cput_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_cput_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_cput_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_cput_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_cput_per_exec", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //31
@@ -650,8 +819,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSql_cpu_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top CPU Time SQL:cpu time per DBTime(%)",
-                FileNameParament = new List<string> { "RANK1_ELAP_PER_DBTIM", "rank2_elap_per_dbtim", "rank3_elap_per_dbtim", "rank4_elap_per_dbtim", "rank5_elap_per_dbtim" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "RANK1_ELAP_PER_DBTIM", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_elap_per_dbtim", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_elap_per_dbtim", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
 
@@ -661,7 +837,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSql_get_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Buffer Get SQL:buffer gets per exec",
-                FileNameParament = new List<string> { "rank1_bufget_per_exec", "rank2_bufget_per_exec", "rank3_bufget_per_exec", "rank4_bufget_per_exec", "rank5_bufget_per_exec" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_bufget_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_bufget_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_bufget_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_bufget_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_bufget_per_exec", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
 
@@ -671,7 +853,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSql_get_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Buffer Get SQL",
-                FileNameParament = new List<string> { "rank1_bufget", "rank2_bufget", "rank3_bufget", "rank4_bufget", "rank5_bufget" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_bufget", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
 
@@ -680,8 +868,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSql_get_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top Buffer Get SQL:buffer gets per Total(%)",
-                FileNameParament = new List<string> { "rank1_bufget_per_tot", "rank2_bufget_per_tot", "rank3_bufget_per_tot", "rank4_bufget_per_tot", "rank5_bufget_per_tot" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_bufget_per_tot", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //35
@@ -690,7 +885,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSql_read_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Disk Read SQL:disk read per exec",
-                FileNameParament = new List<string> { "rank1_phyrds_per_exec", "rank2_phyrds_per_exec", "rank3_phyrds_per_exec", "rank4_phyrds_per_exec", "rank5_phyrds_per_exec" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_phyrds_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_phyrds_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_phyrds_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_phyrds_per_exec", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_phyrds_per_exec", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //35
@@ -699,7 +900,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSql_read_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Disk Read SQL",
-                FileNameParament = new List<string> { "rank1_phyrds", "rank2_phyrds", "rank3_phyrds", "rank4_phyrds", "rank5_phyrds" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_phyrds", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_phyrds", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_phyrds", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_phyrds", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_phyrds", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //35
@@ -707,8 +914,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSql_read_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top Disk Read Sql:disk read per Total(%)",
-                FileNameParament = new List<string> { "rank1_phyrds_per_tot", "rank2_phyrds_per_tot", "rank3_phyrds_per_tot", "rank4_phyrds_per_tot", "rank5_phyrds_per_tot" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_phyrds_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_phyrds_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_phyrds_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_phyrds_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_phyrds_per_tot", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //39
@@ -716,8 +930,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSql_parse_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType = 1,
                 HeaderText = "Top Parse SQL:parse count per Total(%)",
-                FileNameParament = new List<string> { "rank1_parse_per_tot", "rank2_parse_per_tot", "rank3_parse_per_tot", "rank4_parse_per_tot", "rank5_parse_per_tot" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_parse_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_parse_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_parse_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_parse_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_parse_per_tot", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //41
@@ -725,8 +946,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSql_clu_wait_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top Cluster Wait SQL:cluster wait time per elaped time(%)",
-                FileNameParament = new List<string> { "rank1_cput", "rank2_cput", "rank3_cput", "rank4_cput", "rank5_cput" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_cput", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_cput", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_cput", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_cput", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_cput", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //80
@@ -735,7 +963,13 @@ namespace ISIA.UI.TREND
                 DPIFileName = "GetSQL_literal_get_01",
                 Xvalue = "TIMESTAMP",
                 HeaderText = "Top Literal SQL: buffer gets",
-                FileNameParament = new List<string> { "rank1_bufget", "rank2_bufget", "rank3_bufget", "rank4_bufget", "rank5_bufget" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_bufget", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_bufget", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
             //80
@@ -743,8 +977,15 @@ namespace ISIA.UI.TREND
             {
                 DPIFileName = "GetSQL_literal_get_01",
                 Xvalue = "TIMESTAMP",
+                YLValueType=1,
                 HeaderText = "Top Literal SQL: buffer gets per Total(%)",
-                FileNameParament = new List<string> { "rank1_bufget_per_tot", "rank2_bufget_per_tot", "rank3_bufget_per_tot", "rank4_bufget_per_tot", "rank5_bufget_per_tot" }
+                FileNameList = new List<DPIAboutY> {
+                    new DPIAboutY { FileNameParament = "rank1_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank2_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank3_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank4_bufget_per_tot", IsLeftY = true },
+                    new DPIAboutY { FileNameParament = "rank5_bufget_per_tot", IsLeftY = true },
+                }
             };
             list3.Add(dto3);
         }

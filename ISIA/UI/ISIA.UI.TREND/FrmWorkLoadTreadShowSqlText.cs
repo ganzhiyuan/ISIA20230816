@@ -21,7 +21,7 @@ namespace ISIA.UI.TREND
         public string colName { get; set; }
         public string DbName { get; set; }
         public DataTable dt { get; set; }
-        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs)
+        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit)
         {
             InitializeComponent();
             this.dt = dt;
@@ -29,14 +29,21 @@ namespace ISIA.UI.TREND
             gridView1.BestFitColumns();
             this.colName = colName;
             this.DbName = DBName;
-            string[] str = colName.Split('_');
-            string colNm = string.Empty;
-            for (int i = 0; i < str.Length-1; i++)
+            if (groupUnit == "DAY")
             {
-                colNm += str[i];
-                colNm += "_";
+                string[] str = colName.Split('_');
+                string colNm = string.Empty;
+                for (int i = 0; i < str.Length - 1; i++)
+                {
+                    colNm += str[i];
+                    colNm += "_";
+                }
+                tChartSqlText.Header.Text = colNm.TrimEnd('_');
             }
-            tChartSqlText.Header.Text = colNm.TrimEnd('_');
+            else
+            {
+                tChartSqlText.Header.Text = colName;
+            }
             List<Line> list = CreateLine(listDs);
             foreach (var item in list)
             {
