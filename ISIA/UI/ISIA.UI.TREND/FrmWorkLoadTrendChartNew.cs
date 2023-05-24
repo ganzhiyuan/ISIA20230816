@@ -170,9 +170,11 @@ namespace ISIA.UI.TREND
                     //rowDto.SQL_ID = item.SQL_ID;
                     rowDto.PARAMENT_NAME = s;
                     string ss = item.WORKDATE;
+                    //string ss = item.BEGIN_TIME.ToString();
                     if (groupUnit == "INTERVAL")
                     {
-                        rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss, "yyyyMMddHHmm", System.Globalization.CultureInfo.CurrentCulture);
+                        //rowDto.END_INTERVAL_TIME = DateTime.ParseExact(ss, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+                        rowDto.END_INTERVAL_TIME = item.BEGIN_TIME;
 
                     }
                     else
@@ -363,7 +365,7 @@ namespace ISIA.UI.TREND
                             var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
                             string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
                             string instance_num= dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
-
+                            //string beingtime = dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
                             var temp = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper());
                             if (temp==null)
                             {
@@ -382,7 +384,8 @@ namespace ISIA.UI.TREND
                             }
                             else
                             {
-                                argsSel.StartTime = minTime.AddMinutes(-10).ToString("yyyy-MM-dd HH:mm:ss");
+                                //argsSel.StartTime = minTime.AddMinutes(-10).ToString("yyyy-MM-dd HH:mm:ss");
+                                argsSel.StartTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
                                 argsSel.EndTime = minTime.ToString("yyyy-MM-dd HH:mm:ss");
                             }
                             argsSel.ParamNamesString = result;
@@ -390,7 +393,17 @@ namespace ISIA.UI.TREND
                             argsSel.DBName = args.DBName;
                             argsSel.INSTANCE_NUMBER = instance_num;
                             argsSel.ClustersNumber = Convert.ToInt32(cmbCount.Text);
-                            DataSet dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+
+                            DataSet dsRelation = null;
+                            if (cmbGroupUnit.EditValue.ToString() == "DAY")
+                            {
+                                 dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestDaySql", argsSel.getPack());
+                            }
+                            else
+                            {
+                                 dsRelation = bs.ExecuteDataSet("GetWorkLoadLagestSql", argsSel.getPack());
+                            }
+                            
                             if (dsRelation == null || dsRelation.Tables.Count == 0 || dsRelation.Tables[0].Rows.Count == 0)
                             {
                                 return;
@@ -634,5 +647,6 @@ namespace ISIA.UI.TREND
         public decimal PARSE_CALL { get; set; }
 
         public decimal INSTANCE_NUMBER { get; set; }
+        public DateTime  BEGIN_TIME { get; set; }
     }
 }

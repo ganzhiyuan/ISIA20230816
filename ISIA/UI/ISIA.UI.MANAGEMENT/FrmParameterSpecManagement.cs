@@ -221,11 +221,11 @@ namespace ISIA.UI.MANAGEMENT
             args.PARAVAL4 = spparaval4.Text.ToString();
             args.PARAVAL5 = spparaval5.Text.ToString();
             args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
-            args.CHARTUSED = rdoIsalive.Properties.Items[rdoChartused.SelectedIndex].Value.ToString();
-            args.MAILUSED = rdoIsalive.Properties.Items[rdoIlused.SelectedIndex].Value.ToString();
+            args.CHARTUSED = rdoChartused.Properties.Items[rdoChartused.SelectedIndex].Value.ToString();
+            args.MAILUSED = rdoIlused.Properties.Items[rdoIlused.SelectedIndex].Value.ToString();
             //args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
-            args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
-            args.DETECTINGUSED = rdodetecting.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
+            //args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
+            args.DETECTINGUSED = rdodetecting.Properties.Items[rdodetecting.SelectedIndex].Value.ToString();
 
 
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
@@ -295,6 +295,14 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     rdoIlused.SelectedIndex = 1;
                 }
+                if (dr["DETECTINGUSED"].ToString() == "YES")
+                {
+                    rdodetecting.SelectedIndex = 0;
+                }
+                else
+                {
+                    rdodetecting.SelectedIndex = 1;
+                }
 
                 /*if (dr["MMSUSED"].ToString() == "YES")
                 {
@@ -304,14 +312,14 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     rdoMMsused.SelectedIndex = 1;
                 }*/
-                if (dr["SPECLIMITUSED"].ToString() == "YES")
+                /*if (dr["SPECLIMITUSED"].ToString() == "YES")
                 {
                     rdoSpec.SelectedIndex = 0;
                 }
                 else
                 {
                     rdoSpec.SelectedIndex = 1;
-                }
+                }*/
 
 
             }

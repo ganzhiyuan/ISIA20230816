@@ -24,7 +24,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append(" SELECT T.*,T.ROWID FROM TAPCTSPCRULESPEC T  where 1=1  ");
+                tmpSql.Append(" SELECT T.*,T.ROWID FROM TAPCTSPCRULESPEC T  where 1=1  AND isalive = 'YES' ");
                 //tmpSql.AppendFormat(" and INSERTTIME >'{0}'  ", arguments.INSERTTIME);
                 //tmpSql.AppendFormat(" and INSERTTIME<= '{0}'   ", arguments.UPDATETIME);
                 if (!string.IsNullOrEmpty(arguments.RULENO))
@@ -86,7 +86,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  RULENO = '{0}' ,", arguments.RULENO);
                 tmpSql.AppendFormat("  RULENAME = '{0}' ,", arguments.RULENAME);
                 tmpSql.AppendFormat("  RULETEXT = '{0}' ,", arguments.RULETEXT);
-                tmpSql.AppendFormat("  SEQUENCES = '{0}' ,", arguments.SEQUENCES);
+                //tmpSql.AppendFormat("  SEQUENCES = '{0}' ,", arguments.SEQUENCES);
                 tmpSql.AppendFormat("  UPDATEUSER = '{0}' ,", arguments.UPDATEUSER);
                 tmpSql.AppendFormat("  UPDATETIME = '{0}' ,", arguments.UPDATETIME);
                 tmpSql.AppendFormat("  ISALIVE = '{0}' ,", arguments.ISALIVE);
@@ -120,11 +120,11 @@ namespace ISIA.BIZ.MANAGEMENT
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO TAPCTSPCRULESPEC (RULENO,RULENAME,RULETEXT,SEQUENCES,N_VALUE,M_VALUE,ISALIVE,INSERTTIME,INSERTUSER) values (  ");
+                tmpSql.Append("Insert INTO TAPCTSPCRULESPEC (RULENO,RULENAME,RULETEXT,N_VALUE,M_VALUE,ISALIVE,INSERTTIME,INSERTUSER) values (  ");
                 tmpSql.AppendFormat(" '{0}',", arguments.RULENO);
                 tmpSql.AppendFormat(" '{0}',", arguments.RULENAME);
                 tmpSql.AppendFormat(" '{0}',", arguments.RULETEXT);
-                tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
+                //tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
                 tmpSql.AppendFormat(" '{0}',", arguments.N_VALUE);
                 tmpSql.AppendFormat(" '{0}',", arguments.M_VALUE);
                 tmpSql.AppendFormat(" '{0}',", arguments.ISALIVE);
