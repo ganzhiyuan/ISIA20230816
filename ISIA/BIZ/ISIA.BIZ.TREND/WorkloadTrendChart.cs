@@ -439,6 +439,49 @@ SELECT sm.dbid
                 tmpSql.Append(" where t.snap_id in ");
                 tmpSql.Append("       (SELECT T.Snap_Id ");
                 tmpSql.AppendFormat("          FROM raw_dba_hist_snapshot_{0} T ", arguments.DBName);
+                tmpSql.AppendFormat("  where to_char ( t.begin_interval_time , 'yyyy-MM-dd HH24:mi:ss') = '{0}' ", arguments.StartTime);
+                /*tmpSql.Append("         WHERE T.END_INTERVAL_TIME > ");
+                tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime);
+                tmpSql.Append("           and t.end_interval_time <= ");
+                tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTime);*/
+                tmpSql.AppendFormat("          )) b ");
+                tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);
+                tmpSql.AppendFormat("            group by   sql_id,instance_number,b.module,b.action,b.parsing_schema_name order by {0} desc", arguments.ParamNamesString);
+                tmpSql.AppendFormat("  ) c LEFT JOIN raw_dba_hist_sqltext_{0} d ON c.sql_id=d.sql_id", arguments.DBName);
+                tmpSql.AppendFormat("                where c.instance_number in ({0}) ", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));
+                tmpSql.AppendFormat("   ORDER BY c.{0} DESC) e", arguments.ParamNamesString);
+                tmpSql.AppendFormat("    where ROWNUM<={0}", arguments.ClustersNumber);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetWorkLoadLagestDaySql(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat("SELECT ROWNUM,e.* FROM ( ");
+                tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,c.module,c.action,c.parsing_schema_name,d.sql_text FROM (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("select sql_id,ROUND(avg({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0},t.instance_number, t.module, t.action, t.parsing_schema_name", arguments.ParamNamesString);
+                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
+                tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
+                tmpSql.Append(" where t.snap_id in ");
+                tmpSql.Append("       (SELECT T.Snap_Id ");
+                tmpSql.AppendFormat("          FROM raw_dba_hist_snapshot_{0} T ", arguments.DBName);
+                //tmpSql.AppendFormat("  where to_char ( t.begin_interval_time , 'yyyy-MM-dd HH24:mi:ss') = '{0}' ", arguments.StartTime);
                 tmpSql.Append("         WHERE T.END_INTERVAL_TIME > ");
                 tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime);
                 tmpSql.Append("           and t.end_interval_time <= ");

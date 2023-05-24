@@ -133,11 +133,11 @@ namespace ISIA.UI.MANAGEMENT
                 txtAddRuleNo.BackColor = Color.Orange;
                 return;
             }
-            if (string.IsNullOrEmpty(txtAddSequences.Text))
+            /*if (string.IsNullOrEmpty(txtAddSequences.Text))
             {
                 txtAddSequences.BackColor = Color.Orange;
                 return;
-            }
+            }*/
             if (string.IsNullOrEmpty(txtAddRULETEXT.Text))
             {
                 txtAddRULETEXT.BackColor = Color.Orange;
@@ -147,7 +147,7 @@ namespace ISIA.UI.MANAGEMENT
             args = new SpecManagementArgsPack();
             args.RULENAME = txtAddRULENAME.Text;
             args.RULENO = txtAddRuleNo.Text;
-            args.SEQUENCES = txtAddSequences.Text;
+            //args.SEQUENCES = txtAddSequences.Text;
             args.RULETEXT = txtAddRULETEXT.Text;
             args.M_VALUE = spmvalue.Text.ToString();
             args.N_VALUE = spnvalue.Text.ToString();
@@ -179,7 +179,7 @@ namespace ISIA.UI.MANAGEMENT
                 txtAddRULENAME.Text = dr["RULENAME"].ToString();
                 txtAddRuleNo.Text = dr["RULENO"].ToString();
                 txtAddRULETEXT.Text= dr["RULETEXT"].ToString();
-                txtAddSequences.Text= dr["SEQUENCES"].ToString();
+                //txtAddSequences.Text= dr["SEQUENCES"].ToString();
                 spnvalue.Text= dr["N_VALUE"].ToString();
                 spmvalue.Text= dr["M_VALUE"].ToString();
                 if (dr["ISALIVE"].ToString() == "YES")

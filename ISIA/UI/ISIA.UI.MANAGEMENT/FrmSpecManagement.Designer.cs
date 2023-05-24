@@ -57,7 +57,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
             this.spmvalue = new DevExpress.XtraEditors.SpinEdit();
             this.spnvalue = new DevExpress.XtraEditors.SpinEdit();
-            this.txtAddSequences = new DevExpress.XtraEditors.TextEdit();
             this.txtAddRuleNo = new DevExpress.XtraEditors.TextEdit();
             this.txtAddRULETEXT = new DevExpress.XtraEditors.MemoEdit();
             this.rdoIsalive = new DevExpress.XtraEditors.RadioGroup();
@@ -68,7 +67,6 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
@@ -117,7 +115,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spmvalue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnvalue.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddSequences.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddRuleNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddRULETEXT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdoIsalive.Properties)).BeginInit();
@@ -128,7 +125,6 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -148,13 +144,13 @@ namespace ISIA.UI.MANAGEMENT
             this.xtraUserControl1.Appearance.Options.UseForeColor = true;
             this.xtraUserControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.xtraUserControl1.Margin = new System.Windows.Forms.Padding(3);
             this.xtraUserControl1.Size = new System.Drawing.Size(1049, 641);
             // 
             // dpnlLeft_Container
             // 
             this.dpnlLeft_Container.Controls.Add(this.layoutControl1);
-            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlLeft_Container.Margin = new System.Windows.Forms.Padding(3);
             this.dpnlLeft_Container.Size = new System.Drawing.Size(233, 613);
             // 
             // dpnlRight
@@ -162,7 +158,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlRight.Appearance.BackColor = System.Drawing.Color.White;
             this.dpnlRight.Appearance.Options.UseBackColor = true;
             this.dpnlRight.Location = new System.Drawing.Point(240, 0);
-            this.dpnlRight.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlRight.Margin = new System.Windows.Forms.Padding(3);
             this.dpnlRight.Options.AllowDockAsTabbedDocument = false;
             this.dpnlRight.Options.AllowDockBottom = false;
             this.dpnlRight.Options.AllowDockLeft = false;
@@ -171,7 +167,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(1079, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(812, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(809, 641);
@@ -180,7 +176,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.dpnlRight_Container.Controls.Add(this.gridControl1);
             this.dpnlRight_Container.Controls.Add(this.flowLayoutPanel1);
-            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlRight_Container.Margin = new System.Windows.Forms.Padding(3);
             this.dpnlRight_Container.Size = new System.Drawing.Size(803, 613);
             // 
             // dpnlLeft
@@ -191,27 +187,27 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlLeft.Appearance.Options.UseBackColor = true;
             this.dpnlLeft.Appearance.Options.UseFont = true;
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
-            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dpnlLeft.Margin = new System.Windows.Forms.Padding(3);
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
-            this.dpnlLeft.OriginalSize = new System.Drawing.Size(320, 153);
+            this.dpnlLeft.OriginalSize = new System.Drawing.Size(240, 153);
             this.dpnlLeft.SavedSizeFactor = 1D;
             this.dpnlLeft.Size = new System.Drawing.Size(240, 641);
             // 
             // tPanelBottomBase
             // 
             this.tPanelBottomBase.Location = new System.Drawing.Point(0, 656);
-            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelBottomBase.Margin = new System.Windows.Forms.Padding(3);
             this.tPanelBottomBase.Size = new System.Drawing.Size(1049, 15);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelTop.Margin = new System.Windows.Forms.Padding(3);
             this.tPanelTop.Size = new System.Drawing.Size(1049, 15);
             // 
             // tPanelMain
             // 
-            this.tPanelMain.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tPanelMain.Margin = new System.Windows.Forms.Padding(3);
             this.tPanelMain.Size = new System.Drawing.Size(1049, 641);
             // 
             // layoutControl1
@@ -219,7 +215,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl1.Controls.Add(this.tabPane1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(233, 613);
@@ -240,18 +236,18 @@ namespace ISIA.UI.MANAGEMENT
             this.tabPane1.AppearanceButton.Pressed.Options.UseFont = true;
             this.tabPane1.Controls.Add(this.tabNavigationPage1);
             this.tabPane1.Controls.Add(this.tabNavigationPage2);
-            this.tabPane1.Location = new System.Drawing.Point(3, 4);
+            this.tabPane1.Location = new System.Drawing.Point(4, 4);
             this.tabPane1.LookAndFeel.SkinName = "Office 2013";
             this.tabPane1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.tabPane1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.tabPane1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPane1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1,
             this.tabNavigationPage2});
-            this.tabPane1.RegularSize = new System.Drawing.Size(227, 605);
+            this.tabPane1.RegularSize = new System.Drawing.Size(225, 605);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(227, 605);
+            this.tabPane1.Size = new System.Drawing.Size(225, 605);
             this.tabPane1.TabIndex = 6;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -264,9 +260,9 @@ namespace ISIA.UI.MANAGEMENT
             this.tabNavigationPage1.Caption = "Condition";
             this.tabNavigationPage1.Controls.Add(this.flowLayoutPanel2);
             this.tabNavigationPage1.Controls.Add(this.navBarControl1);
-            this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNavigationPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(209, 578);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(225, 578);
             // 
             // flowLayoutPanel2
             // 
@@ -274,7 +270,7 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 540);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(209, 38);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(225, 38);
             this.flowLayoutPanel2.TabIndex = 112;
             // 
             // btnSelect
@@ -298,7 +294,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnSelect.IsRequired = false;
             this.btnSelect.Location = new System.Drawing.Point(2, 2);
             this.btnSelect.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelect.MaximumSize = new System.Drawing.Size(70, 25);
             this.btnSelect.MinimumSize = new System.Drawing.Size(70, 25);
             this.btnSelect.Name = "btnSelect";
@@ -326,11 +322,11 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 209;
-            this.navBarControl1.Size = new System.Drawing.Size(209, 461);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 225;
+            this.navBarControl1.Size = new System.Drawing.Size(225, 461);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -352,9 +348,9 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer2.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer2.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer2.Controls.Add(this.layoutControl3);
-            this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(207, 167);
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(223, 167);
             this.navBarGroupControlContainer2.TabIndex = 1;
             // 
             // layoutControl3
@@ -365,35 +361,35 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.layoutControl3.Margin = new System.Windows.Forms.Padding(2);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(207, 167);
+            this.layoutControl3.Size = new System.Drawing.Size(223, 167);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl2";
             // 
             // txtMainRULENO
             // 
-            this.txtMainRULENO.Location = new System.Drawing.Point(72, 4);
+            this.txtMainRULENO.Location = new System.Drawing.Point(103, 4);
             this.txtMainRULENO.Name = "txtMainRULENO";
-            this.txtMainRULENO.Size = new System.Drawing.Size(132, 20);
+            this.txtMainRULENO.Size = new System.Drawing.Size(116, 20);
             this.txtMainRULENO.StyleController = this.layoutControl3;
             this.txtMainRULENO.TabIndex = 29;
             // 
             // txtMainRULETEXT
             // 
-            this.txtMainRULETEXT.Location = new System.Drawing.Point(72, 52);
+            this.txtMainRULETEXT.Location = new System.Drawing.Point(103, 52);
             this.txtMainRULETEXT.Name = "txtMainRULETEXT";
-            this.txtMainRULETEXT.Size = new System.Drawing.Size(132, 20);
+            this.txtMainRULETEXT.Size = new System.Drawing.Size(116, 20);
             this.txtMainRULETEXT.StyleController = this.layoutControl3;
             this.txtMainRULETEXT.TabIndex = 28;
             // 
             // txtMainRULENAME
             // 
-            this.txtMainRULENAME.Location = new System.Drawing.Point(72, 28);
+            this.txtMainRULENAME.Location = new System.Drawing.Point(103, 28);
             this.txtMainRULENAME.Name = "txtMainRULENAME";
-            this.txtMainRULENAME.Size = new System.Drawing.Size(132, 20);
+            this.txtMainRULENAME.Size = new System.Drawing.Size(116, 20);
             this.txtMainRULENAME.StyleController = this.layoutControl3;
             this.txtMainRULENAME.TabIndex = 23;
             // 
@@ -408,7 +404,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem2});
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(207, 167);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(223, 167);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -417,7 +413,7 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 72);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(78, 18);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(203, 91);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(219, 91);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -426,27 +422,27 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem31.Control = this.txtMainRULENAME;
             this.layoutControlItem31.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem31.Name = "layoutControlItem31";
-            this.layoutControlItem31.Size = new System.Drawing.Size(203, 24);
-            this.layoutControlItem31.Text = "RULENAME";
-            this.layoutControlItem31.TextSize = new System.Drawing.Size(60, 14);
+            this.layoutControlItem31.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem31.Text = "Rule Name";
+            this.layoutControlItem31.TextSize = new System.Drawing.Size(87, 14);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.txtMainRULETEXT;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(203, 24);
-            this.layoutControlItem1.Text = "RULETEXT";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(60, 14);
+            this.layoutControlItem1.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem1.Text = "Rule Description";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(87, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtMainRULENO;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(203, 24);
-            this.layoutControlItem2.Text = "RULENO";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(60, 14);
+            this.layoutControlItem2.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem2.Text = "Rule Number";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(87, 14);
             // 
             // navBarItem2
             // 
@@ -459,7 +455,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tabNavigationPage2.Controls.Add(this.flowLayoutPanel3);
             this.tabNavigationPage2.Controls.Add(this.navBarControl2);
             this.tabNavigationPage2.Name = "tabNavigationPage2";
-            this.tabNavigationPage2.Size = new System.Drawing.Size(227, 578);
+            this.tabNavigationPage2.Size = new System.Drawing.Size(225, 578);
             // 
             // flowLayoutPanel3
             // 
@@ -468,7 +464,7 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 541);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(227, 37);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(225, 37);
             this.flowLayoutPanel3.TabIndex = 113;
             // 
             // btnSave
@@ -492,7 +488,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnSave.Location = new System.Drawing.Point(2, 2);
             this.btnSave.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnSave.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnSave.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnSave.Name = "btnSave";
@@ -520,11 +516,11 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.navBarControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.navBarControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navBarControl2.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 227;
-            this.navBarControl2.Size = new System.Drawing.Size(227, 578);
+            this.navBarControl2.OptionsNavPane.ExpandedWidth = 225;
+            this.navBarControl2.Size = new System.Drawing.Size(225, 578);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -546,16 +542,15 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarGroupControlContainer4.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.navBarGroupControlContainer4.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer4.Controls.Add(this.layoutControl5);
-            this.navBarGroupControlContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navBarGroupControlContainer4.Margin = new System.Windows.Forms.Padding(4);
             this.navBarGroupControlContainer4.Name = "navBarGroupControlContainer4";
-            this.navBarGroupControlContainer4.Size = new System.Drawing.Size(225, 415);
+            this.navBarGroupControlContainer4.Size = new System.Drawing.Size(223, 415);
             this.navBarGroupControlContainer4.TabIndex = 1;
             // 
             // layoutControl5
             // 
             this.layoutControl5.Controls.Add(this.spmvalue);
             this.layoutControl5.Controls.Add(this.spnvalue);
-            this.layoutControl5.Controls.Add(this.txtAddSequences);
             this.layoutControl5.Controls.Add(this.txtAddRuleNo);
             this.layoutControl5.Controls.Add(this.txtAddRULETEXT);
             this.layoutControl5.Controls.Add(this.rdoIsalive);
@@ -563,11 +558,11 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.layoutControl5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.layoutControl5.Margin = new System.Windows.Forms.Padding(2);
             this.layoutControl5.Name = "layoutControl5";
             this.layoutControl5.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, -1350, 812, 500);
             this.layoutControl5.Root = this.layoutControlGroup4;
-            this.layoutControl5.Size = new System.Drawing.Size(225, 415);
+            this.layoutControl5.Size = new System.Drawing.Size(223, 415);
             this.layoutControl5.TabIndex = 0;
             this.layoutControl5.Text = "layoutControl2";
             // 
@@ -578,11 +573,11 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spmvalue.Location = new System.Drawing.Point(86, 215);
+            this.spmvalue.Location = new System.Drawing.Point(110, 221);
             this.spmvalue.Name = "spmvalue";
             this.spmvalue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spmvalue.Size = new System.Drawing.Size(136, 20);
+            this.spmvalue.Size = new System.Drawing.Size(109, 20);
             this.spmvalue.StyleController = this.layoutControl5;
             this.spmvalue.TabIndex = 70;
             // 
@@ -593,37 +588,28 @@ namespace ISIA.UI.MANAGEMENT
             0,
             0,
             0});
-            this.spnvalue.Location = new System.Drawing.Point(86, 191);
+            this.spnvalue.Location = new System.Drawing.Point(110, 197);
             this.spnvalue.Name = "spnvalue";
             this.spnvalue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnvalue.Size = new System.Drawing.Size(136, 20);
+            this.spnvalue.Size = new System.Drawing.Size(109, 20);
             this.spnvalue.StyleController = this.layoutControl5;
             this.spnvalue.TabIndex = 68;
             // 
-            // txtAddSequences
-            // 
-            this.txtAddSequences.Location = new System.Drawing.Point(86, 52);
-            this.txtAddSequences.Name = "txtAddSequences";
-            this.txtAddSequences.Size = new System.Drawing.Size(136, 20);
-            this.txtAddSequences.StyleController = this.layoutControl5;
-            this.txtAddSequences.TabIndex = 37;
-            this.txtAddSequences.TextChanged += new System.EventHandler(this.txtCATEGORY_TextChanged);
-            // 
             // txtAddRuleNo
             // 
-            this.txtAddRuleNo.Location = new System.Drawing.Point(86, 4);
+            this.txtAddRuleNo.Location = new System.Drawing.Point(110, 4);
             this.txtAddRuleNo.Name = "txtAddRuleNo";
-            this.txtAddRuleNo.Size = new System.Drawing.Size(136, 20);
+            this.txtAddRuleNo.Size = new System.Drawing.Size(109, 20);
             this.txtAddRuleNo.StyleController = this.layoutControl5;
             this.txtAddRuleNo.TabIndex = 36;
             this.txtAddRuleNo.TextChanged += new System.EventHandler(this.txtCATEGORY_TextChanged);
             // 
             // txtAddRULETEXT
             // 
-            this.txtAddRULETEXT.Location = new System.Drawing.Point(86, 114);
+            this.txtAddRULETEXT.Location = new System.Drawing.Point(110, 90);
             this.txtAddRULETEXT.Name = "txtAddRULETEXT";
-            this.txtAddRULETEXT.Size = new System.Drawing.Size(136, 73);
+            this.txtAddRULETEXT.Size = new System.Drawing.Size(109, 103);
             this.txtAddRULETEXT.StyleController = this.layoutControl5;
             this.txtAddRULETEXT.TabIndex = 35;
             this.txtAddRULETEXT.TextChanged += new System.EventHandler(this.txtCATEGORY_TextChanged);
@@ -631,20 +617,20 @@ namespace ISIA.UI.MANAGEMENT
             // rdoIsalive
             // 
             this.rdoIsalive.EditValue = "YES";
-            this.rdoIsalive.Location = new System.Drawing.Point(86, 76);
+            this.rdoIsalive.Location = new System.Drawing.Point(110, 52);
             this.rdoIsalive.Name = "rdoIsalive";
             this.rdoIsalive.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("YES", "YES"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("NO", "NO")});
-            this.rdoIsalive.Size = new System.Drawing.Size(136, 34);
+            this.rdoIsalive.Size = new System.Drawing.Size(109, 34);
             this.rdoIsalive.StyleController = this.layoutControl5;
             this.rdoIsalive.TabIndex = 33;
             // 
             // txtAddRULENAME
             // 
-            this.txtAddRULENAME.Location = new System.Drawing.Point(86, 28);
+            this.txtAddRULENAME.Location = new System.Drawing.Point(110, 28);
             this.txtAddRULENAME.Name = "txtAddRULENAME";
-            this.txtAddRULENAME.Size = new System.Drawing.Size(136, 20);
+            this.txtAddRULENAME.Size = new System.Drawing.Size(109, 20);
             this.txtAddRULENAME.StyleController = this.layoutControl5;
             this.txtAddRULENAME.TabIndex = 22;
             this.txtAddRULENAME.TextChanged += new System.EventHandler(this.txtCATEGORY_TextChanged);
@@ -659,12 +645,11 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem4,
             this.layoutControlItem3,
             this.layoutControlItem7,
-            this.layoutControlItem8,
             this.layoutControlItem5,
             this.layoutControlItem9});
             this.layoutControlGroup4.Name = "Root";
             this.layoutControlGroup4.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            this.layoutControlGroup4.Size = new System.Drawing.Size(225, 415);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(223, 415);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem18
@@ -672,73 +657,64 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem18.Control = this.txtAddRULENAME;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem18.Name = "layoutControlItem14";
-            this.layoutControlItem18.Size = new System.Drawing.Size(221, 24);
-            this.layoutControlItem18.Text = "*RULENAME";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem18.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem18.Text = "*Rule Name";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(94, 14);
             // 
             // layoutControlItem30
             // 
             this.layoutControlItem30.Control = this.rdoIsalive;
-            this.layoutControlItem30.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem30.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(221, 38);
+            this.layoutControlItem30.Size = new System.Drawing.Size(219, 38);
             this.layoutControlItem30.Text = "ISALIVE";
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(94, 14);
             // 
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 235);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 241);
             this.emptySpaceItem4.MinSize = new System.Drawing.Size(78, 18);
             this.emptySpaceItem4.Name = "emptySpaceItem1";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(221, 176);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(219, 170);
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtAddRULETEXT;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 110);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 86);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(221, 77);
-            this.layoutControlItem3.Text = "*RULETEXT";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem3.Size = new System.Drawing.Size(219, 107);
+            this.layoutControlItem3.Text = "*Rule Description";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(94, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtAddRuleNo;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(221, 24);
-            this.layoutControlItem7.Text = "*RULENO";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(74, 14);
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.txtAddSequences;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(221, 24);
-            this.layoutControlItem8.Text = "*SEQUENCES";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem7.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem7.Text = "*Rule Number";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(94, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.spnvalue;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 187);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 193);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(221, 24);
-            this.layoutControlItem5.Text = "N_VALUE";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem5.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem5.Text = "Point Count";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(94, 14);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.spmvalue;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 211);
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 217);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(221, 24);
-            this.layoutControlItem9.Text = "M_VALUE";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(74, 14);
+            this.layoutControlItem9.Size = new System.Drawing.Size(219, 24);
+            this.layoutControlItem9.Text = "Sigma Value";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(94, 14);
             // 
             // navBarItem1
             // 
@@ -801,7 +777,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnDel.Location = new System.Drawing.Point(731, 2);
             this.btnDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnDel.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnDel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
             this.btnDel.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnDel.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnDel.Name = "btnDel";
@@ -834,7 +810,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnUpdate.Location = new System.Drawing.Point(657, 2);
             this.btnUpdate.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnUpdate.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnUpdate.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnUpdate.Name = "btnUpdate";
@@ -867,7 +843,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnImport.Location = new System.Drawing.Point(583, 2);
             this.btnImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnImport.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnImport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(2);
             this.btnImport.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnImport.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnImport.Name = "btnImport";
@@ -900,7 +876,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnExport.Location = new System.Drawing.Point(509, 2);
             this.btnExport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnExport.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnExport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.MaximumSize = new System.Drawing.Size(70, 27);
             this.btnExport.MinimumSize = new System.Drawing.Size(70, 27);
             this.btnExport.Name = "btnExport";
@@ -940,9 +916,9 @@ namespace ISIA.UI.MANAGEMENT
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 671);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmSpecManagement";
-            this.Text = "FrmDataBaseManagement";
+            this.Text = "FrmRULESPECManagement";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
@@ -980,7 +956,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spmvalue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnvalue.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddSequences.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddRuleNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddRULETEXT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdoIsalive.Properties)).EndInit();
@@ -991,7 +966,6 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -1047,10 +1021,8 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.TextEdit txtMainRULENO;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraEditors.TextEdit txtAddSequences;
         private DevExpress.XtraEditors.TextEdit txtAddRuleNo;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SpinEdit spmvalue;
