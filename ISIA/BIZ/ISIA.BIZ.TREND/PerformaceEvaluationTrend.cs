@@ -20,7 +20,7 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"with load_v as (select sy.stat_name, sy.snap_id, sn.end_interval_time, nvl(sy.value, 0) - nvl(lag(sy.value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_val,
+                tmpSql.AppendFormat(@"with load_v as (select sy.instance_number, sy.stat_name, sy.snap_id, sn.end_interval_time, nvl(sy.value, 0) - nvl(lag(sy.value) over(partition by sy.stat_name order by sy.snap_id), 0) delta_val,
                          case
                            when(extract(day from
                                         sn.end_interval_time -lag(sn.end_interval_time) over(partition by sy.stat_name order by sy.snap_id)) * 86400 + extract(hour from
@@ -106,17 +106,17 @@ namespace ISIA.BIZ.TREND
                                           'physical reads cache',
                                           'parse time cpu',
                                           'parse time elapsed',
-                                          'CPU used by this session')",arguments.DbName);
+                                          'CPU used by this session')", arguments.DbName);
                 //tmpSql.AppendFormat("and sn.snap_id between {0} and {1}", arguments.SnapId, arguments.SnapId);
                 tmpSql.AppendFormat(" and sn.snap_id in( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER in ( {3}) ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
-                    arguments.InstanceNumber);
+                    Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
                 tmpSql.AppendFormat("     and sn.dbid = {0}", arguments.DbId);
-                tmpSql.AppendFormat("      and sn.instance_number = {0})", arguments.InstanceNumber);
-                tmpSql.Append(@"select snap_id, ");
+                tmpSql.AppendFormat("      and sn.instance_number in ({0}))", Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
+                tmpSql.Append(@"select INSTANCE_NUMBER , snap_id, ");
                        tmpSql.Append(" end_interval_time \"Timestamp\", ");
                        tmpSql.Append(" max(decode(stat_name, 'redo size', delta, 0)) \"Redo size\", ");
                        tmpSql.Append(" max(decode(stat_name, 'session logical reads', delta, 0)) \"Logical reads\", ");
@@ -243,12 +243,12 @@ namespace ISIA.BIZ.TREND
                       tmpSql.Append("  max(decode(stat_name, 'parse time elapsed', delta, 0)) / 100 \"Parse ela\" ");
                  tmpSql.Append("  from load_v");
                 tmpSql.Append(" where snap_id >  "); 
-                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                tmpSql.AppendFormat(" (select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME <to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER in  ({3}) ) ",
                      arguments.DbName,
                      arguments.StartTimeKey,
                      arguments.EndTimeKey,
-                     arguments.InstanceNumber);
-                tmpSql.Append(" group by snap_id, end_interval_time  order by snap_id");
+                     Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
+                tmpSql.Append(" group by snap_id, end_interval_time,INSTANCE_NUMBER  order by snap_id");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
