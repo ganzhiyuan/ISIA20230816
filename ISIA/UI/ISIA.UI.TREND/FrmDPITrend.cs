@@ -93,21 +93,43 @@ namespace ISIA.UI.TREND
 
         private void CreateChart()
         {
+            if (string.IsNullOrEmpty(cmbInstance.Text))
+            {
+                return;
+            }
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel2.Controls.Clear();
             flowLayoutPanel3.Controls.Clear();
-            for (int i = 0; i < list.Count(); i++)
+            //Instancenumber多选时，每个Instancenumber生成不同chart
+            string[] instanceNum = cmbInstance.Text.Split(',');
+            foreach (var item in instanceNum)
             {
-                // 创建 TChart 控件
-                TChart tChart = new TChart();
-                tChart.Tag = i;
-                tChart.Width = 300;
-                tChart.Height = 200;
-                // 设置每个 TChart 控件的其他属性或数据
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    // 创建 TChart 控件
+                    TChart tChart = new TChart();
+                    tChart.Tag = i;
+                    tChart.Width = 300;
+                    tChart.Height = 200;
+                    // 设置每个 TChart 控件的其他属性或数据
 
-                // 将 TChart 控件添加到 FlowLayoutPanel 中
-                flowLayoutPanel1.Controls.Add(tChart);
+                    // 将 TChart 控件添加到 FlowLayoutPanel 中
+                    flowLayoutPanel1.Controls.Add(tChart);
+                }
+                for (int i = 0; i < list3.Count(); i++)
+                {
+                    // 创建 TChart 控件
+                    TChart tChart = new TChart();
+                    tChart.Tag = i;
+                    tChart.Width = 300;
+                    tChart.Height = 200;
+                    // 设置每个 TChart 控件的其他属性或数据
+
+                    // 将 TChart 控件添加到 FlowLayoutPanel 中
+                    flowLayoutPanel3.Controls.Add(tChart);
+                }
             }
+            
             for (int i = 0; i < list2.Count(); i++)
             {
                 // 创建 TChart 控件
@@ -120,18 +142,7 @@ namespace ISIA.UI.TREND
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
                 flowLayoutPanel2.Controls.Add(tChart);
             }
-            for (int i = 0; i < list3.Count(); i++)
-            {
-                // 创建 TChart 控件
-                TChart tChart = new TChart();
-                tChart.Tag = i;
-                tChart.Width = 300;
-                tChart.Height = 200;
-                // 设置每个 TChart 控件的其他属性或数据
-
-                // 将 TChart 控件添加到 FlowLayoutPanel 中
-                flowLayoutPanel3.Controls.Add(tChart);
-            }
+           
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -157,8 +168,8 @@ namespace ISIA.UI.TREND
             //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
             btnSelect.Enabled = false;
-            //Task.Factory.StartNew(() => QueryDataSheet1());
-            Task.Factory.StartNew(() => QueryDataSheet2());
+            Task.Factory.StartNew(() => QueryDataSheet1());
+            //Task.Factory.StartNew(() => QueryDataSheet2());
             //Task.Factory.StartNew(() => QueryDataSheet3());
             //QueryDataSheet1();
             //QueryDataSheet2();
@@ -183,27 +194,21 @@ namespace ISIA.UI.TREND
         private void QueryDataSheet1()
         {
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
+            string[] instanceNum = cmbInstance.Text.Split(',');
             int count = list.Count();
             //Thread[] threads = new Thread[count];
-            for (int i = 0; i < count; i++) 
-            { 
-                int chartIndex = i; 
+            for (int i = 0; i < count; i++)
+            {
+                int chartIndex = i;
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])); 
-            }
-            //for (int i = 0; i < count; i++)
-            //{
-            //    int chartIndex = i;
-            //    ShowWaitIcon(charts1.ElementAt(chartIndex));
-            //    //QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex]);
-            //    var thread = (new Task(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list[chartIndex])));
-            //    //var threadToJoin = threads[chartIndex];
-            //    thread.Start();
+                foreach (string item in instanceNum)
+                {
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list[chartIndex], item));
+                }
 
-            //    //threadToJoin.Start();
-            //    //threads[chartIndex].Join();
-            //    //threadToJoin.Join();
-            //}
+
+            }
+
         }
 
         private void QueryDataSheet2()
@@ -257,7 +262,53 @@ namespace ISIA.UI.TREND
             //}
         }
 
+        private void QueryDataForTChart1(TChart tChart, DPIDto dto,string insNum)
+        {
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                tChart.Series.Clear();
+            });
+            AwrCommonArgsPack args = new AwrCommonArgsPack();
+            // 实际的查询逻辑
+            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = cmbDbName.EditValue.ToString();
+            args.InstanceNumber = insNum;
+            args.SnapId = "";
+            Thread.Sleep(10);
+            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            for (int i = 0; i < dto.FileNameList.Count(); i++)
+            {
+                Line line = CreateLine(dst.Tables[0], dto, i);
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    if (dto.YRValueType == 1)
+                    {
+                        Axis yAxis = tChart.Axes.Right;
 
+                        // 设置Y轴标签的显示格式为百分比（保留两位小数）
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    if (dto.YLValueType == 1)
+                    {
+                        Axis yAxis = tChart.Axes.Left;
+                        yAxis.Labels.ValueFormat = "0.00%";
+                    }
+                    tChart.Axes.Right.Visible = true;
+                    tChart.Axes.Left.Visible = true;
+                    tChart.Legend.Visible = true;
+                    tChart.Legend.LegendStyle = LegendStyles.Series;
+                    tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
+                    tChart.Series.Add(line);
+                });
+            }
+            // 将查询到的数据设置到TChart控件中
+            tChart.Invoke((MethodInvoker)delegate
+            {
+                HideWaitIcon(tChart, dto.HeaderText);
+            });
+        }
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
             tChart.Invoke((MethodInvoker)delegate
