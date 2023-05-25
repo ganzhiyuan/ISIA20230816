@@ -462,7 +462,7 @@ namespace ISIA.UI.TREND
         private void Init()
         {
             //19
-            /* DPIDto dto = new DPIDto
+             DPIDto dto = new DPIDto
              {
                  DPIFileName = "GetOsstat",
                  Xvalue = "TIMESTAMP",
@@ -687,7 +687,7 @@ namespace ISIA.UI.TREND
                      new DPIAboutY { FileNameParament = "Buffer access - disk%", IsLeftY = true },
                  }
              };
-             list.Add(dto);*/
+             list.Add(dto);
             //--sheet2
             //01
             DPIDto dto1 = new DPIDto
@@ -701,7 +701,7 @@ namespace ISIA.UI.TREND
             };
             list2.Add(dto1);
             //01
-            /*dto1 = new DPIDto
+            dto1 = new DPIDto
             {
                 DPIFileName = "GetLoadSQL",
                 Xvalue = "TIMESTAMP",
@@ -815,11 +815,11 @@ namespace ISIA.UI.TREND
                     new DPIAboutY { FileNameParament = "gc lost", IsLeftY = true },
                 }
             };
-            list2.Add(dto1);*/
+            list2.Add(dto1);
 
             //sheet3
             //29
-            /* DPIDto dto3 = new DPIDto
+             DPIDto dto3 = new DPIDto
              {
                  DPIFileName = "GetSqlElap_01",
                  Xvalue = "TIMESTAMP",
@@ -1034,7 +1034,7 @@ namespace ISIA.UI.TREND
                      new DPIAboutY { FileNameParament = "rank5_bufget_per_tot", IsLeftY = true },
                  }
              };
-             list3.Add(dto3);*/
+             list3.Add(dto3);
         }
 
 
