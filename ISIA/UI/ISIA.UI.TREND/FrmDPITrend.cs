@@ -168,8 +168,8 @@ namespace ISIA.UI.TREND
             //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
             btnSelect.Enabled = false;
-            //Task.Factory.StartNew(() => QueryDataSheet1());
-            //Task.Factory.StartNew(() => QueryDataSheet2());
+            Task.Factory.StartNew(() => QueryDataSheet1());
+            Task.Factory.StartNew(() => QueryDataSheet2());
             Task.Factory.StartNew(() => QueryDataSheet3());
             //QueryDataSheet1();
             //QueryDataSheet2();
