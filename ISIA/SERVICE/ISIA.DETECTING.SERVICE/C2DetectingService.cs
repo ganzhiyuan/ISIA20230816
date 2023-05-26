@@ -301,7 +301,7 @@ namespace ISIA.DETECTING.SERVICE
             try
             {
                 deleteSQL.Append("DELETE ISIA.TAPCTOUTOFCONTROLDATASUM ");
-                deleteSQL.Append("WHERE 1=1 ");
+                deleteSQL.Append("WHERE 1=1 AND RULENAME='AverageRules' ");
                 deleteSQL.AppendFormat("AND MEASURE_TIMEKEY LIKE '{0}%' ", DateTime.Now.ToString("yyyyMMddHH"));
 
                 base.SaveLog(SQL_LOG, "ExecAverageRuleOutDelete", deleteSQL.ToString());
