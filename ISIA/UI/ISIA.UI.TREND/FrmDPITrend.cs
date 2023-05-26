@@ -169,8 +169,8 @@ namespace ISIA.UI.TREND
 
             btnSelect.Enabled = false;
             Task.Factory.StartNew(() => QueryDataSheet1());
-            //Task.Factory.StartNew(() => QueryDataSheet2());
-            //Task.Factory.StartNew(() => QueryDataSheet3());
+            Task.Factory.StartNew(() => QueryDataSheet2());
+            Task.Factory.StartNew(() => QueryDataSheet3());
             //QueryDataSheet1();
             //QueryDataSheet2();
             //QueryDataSheet3();
@@ -240,12 +240,16 @@ namespace ISIA.UI.TREND
         {
             var charts1 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
             int count = list3.Count();
+            string[] instanceNum = cmbInstance.Text.Split(',');
             //Thread[] threads = new Thread[count];
             for (int i = 0; i < count; i++)
             {
                 int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                Task.Factory.StartNew(() => QueryDataForTChart(charts1.ElementAt(chartIndex), list3[chartIndex]));
+                foreach (string item in instanceNum)
+                {
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list[chartIndex], item));
+                }
             }
             //for (int i = 0; i < count; i++)
             //{
