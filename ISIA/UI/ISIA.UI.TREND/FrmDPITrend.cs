@@ -248,7 +248,7 @@ namespace ISIA.UI.TREND
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
                 foreach (string item in instanceNum)
                 {
-                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list[chartIndex], item));
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list3[chartIndex], item));
                 }
             }
             //for (int i = 0; i < count; i++)
