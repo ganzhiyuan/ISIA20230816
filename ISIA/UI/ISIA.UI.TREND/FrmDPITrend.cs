@@ -387,9 +387,18 @@ namespace ISIA.UI.TREND
 
             for (int i = 0; i < ins.Length; i++)
             {
+                Line line;
+
+                if ( dst.Tables[ins[i].ToString()] == null)
+                {
+                     line = CreateLine2(dst.Tables[0], dto);
+                     i = ins.Length;
+                }
+                else { 
+                     line = CreateLine2(dst.Tables[ins[i].ToString()], dto); }
                 
-                
-                Line line = CreateLine2(dst.Tables[ins[i].ToString()], dto);
+
+
                 tChart.Invoke((MethodInvoker)delegate
                 {
                     if (dto.YRValueType == 1)
@@ -796,7 +805,7 @@ namespace ISIA.UI.TREND
             };
             list2.Add(dto1);
             //72
-            dto1 = new DPIDto
+            /*dto1 = new DPIDto
             {
                 DPIFileName = "GetLog_switch_f",
                 Xvalue = "TIMESTAMP",
@@ -805,7 +814,7 @@ namespace ISIA.UI.TREND
                     new DPIAboutY { FileNameParament = "Log Switch interval <= 5 min", IsLeftY = true },
                 }
             };
-            list2.Add(dto1);
+            list2.Add(dto1);*/
 
             //54
             dto1 = new DPIDto
