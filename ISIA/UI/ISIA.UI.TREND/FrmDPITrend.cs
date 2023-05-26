@@ -168,8 +168,8 @@ namespace ISIA.UI.TREND
             //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
 
             btnSelect.Enabled = false;
-            Task.Factory.StartNew(() => QueryDataSheet1());
-            Task.Factory.StartNew(() => QueryDataSheet2());
+            //Task.Factory.StartNew(() => QueryDataSheet1());
+            //Task.Factory.StartNew(() => QueryDataSheet2());
             Task.Factory.StartNew(() => QueryDataSheet3());
             //QueryDataSheet1();
             //QueryDataSheet2();
@@ -311,7 +311,7 @@ namespace ISIA.UI.TREND
             // 将查询到的数据设置到TChart控件中
             tChart.Invoke((MethodInvoker)delegate
             {
-                HideWaitIcon(tChart, dto.HeaderText);
+                HideWaitIcon(tChart, dto.HeaderText+"-"+args.DbName+"-"+insNum);
             });
         }
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
@@ -454,7 +454,7 @@ namespace ISIA.UI.TREND
                 tChart.Series.Add(line);
             }
             // 将查询到的数据设置到TChart控件中
-            HideWaitIcon(tChart, dto.HeaderText);
+            HideWaitIcon(tChart, dto.HeaderText + "-" + args.DbName + "-" + args.InstanceNumber);
         }
 
         private Line CreateLine2(DataTable dstable, DPIDto dto)
@@ -1105,6 +1105,17 @@ namespace ISIA.UI.TREND
              list3.Add(dto3);
         }
 
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            //if(xtraTabControl1.SelectedTabPageIndex==1)
+            //{
+            //    Task.Factory.StartNew(() => QueryDataSheet2());
+            //}
 
+            //if (xtraTabControl1.SelectedTabPageIndex == 2)
+            //{
+            //    Task.Factory.StartNew(() => QueryDataSheet3());
+            //}
+        }
     }
 }

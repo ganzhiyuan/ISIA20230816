@@ -799,6 +799,7 @@ namespace ISIA.UI.TREND
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3});
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             // 
             // xtraTabPage1
             // 
@@ -859,13 +860,13 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel3.Size = new System.Drawing.Size(795, 459);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
-            // FrmMainForm
+            // FrmDPITrend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 675);
             this.Margin = new System.Windows.Forms.Padding(3);
-            this.Name = "FrmMainForm";
+            this.Name = "FrmDPITrend";
             this.Text = "FrmMainForm";
             this.Load += new System.EventHandler(this.FrmMainForm_Load);
             this.xtraUserControl1.ResumeLayout(false);
