@@ -276,6 +276,7 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = insNum;
             args.SnapId = "";
+            args.ChartName = dto.HeaderText;
             Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             for (int i = 0; i < dto.FileNameList.Count(); i++)
@@ -323,6 +324,7 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
+            args.ChartName = dto.HeaderText;
             Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             for (int i = 0; i < dto.FileNameList.Count(); i++)
@@ -370,6 +372,7 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.Text;
             args.SnapId = "";
+            args.ChartName = dto.HeaderText;
             Thread.Sleep(10);
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             dst.Tables[0].TableName = "TABLE";
@@ -429,6 +432,7 @@ namespace ISIA.UI.TREND
             args.DbId = cmbDbName.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
+            args.ChartName = dto.HeaderText;
 
             DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
             for (int i = 0; i < dto.FileNameList.Count(); i++)
