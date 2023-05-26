@@ -11,7 +11,15 @@ namespace ISIA.UI.TREND.Dto
         public string DPIFileName { get; set; }
         public string Xvalue { get; set; }
         public string HeaderText { get; set; }
-        public List<string> FileNameParament { get; set; }
+        public int YRValueType { get; set; }
+        public int YLValueType { get; set; }
+        public List<DPIAboutY> FileNameList { get; set; }
+    }
+
+    public class DPIAboutY
+    {
+        public string FileNameParament { get; set; }
+        public bool IsLeftY { get; set; }
     }
 
 }

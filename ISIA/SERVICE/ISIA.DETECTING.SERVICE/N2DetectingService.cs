@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace ISIA.DETECTING.SERVICE
 {
-    class C2DetectingService : TAP.WinService.ServiceBase
+    class N2DetectingService : TAP.WinService.ServiceBase
     {
         #region Const
 
@@ -261,11 +261,11 @@ namespace ISIA.DETECTING.SERVICE
                         {
                             if (parameterInfo.RULENAME == "AverageRules")
                             {
-                                ExecAverageRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
+                                //ExecAverageRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
                             }
                             else
                             {
-                                //ExecSpcRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
+                                ExecSpcRuleOutDetect(drRule["RULENO"].ToString(), parameterInfo);
                             }
                         }
                     }
@@ -301,7 +301,7 @@ namespace ISIA.DETECTING.SERVICE
             try
             {
                 deleteSQL.Append("DELETE ISIA.TAPCTOUTOFCONTROLDATASUM ");
-                deleteSQL.Append("WHERE 1=1 AND RULENAME='AverageRules' ");
+                deleteSQL.Append("WHERE 1=1 AND RULENAME<>'AverageRules' ");
                 deleteSQL.AppendFormat("AND MEASURE_TIMEKEY LIKE '{0}%' ", DateTime.Now.ToString("yyyyMMddHH"));
 
                 base.SaveLog(SQL_LOG, "ExecAverageRuleOutDelete", deleteSQL.ToString());
@@ -568,7 +568,7 @@ namespace ISIA.DETECTING.SERVICE
             GetAverageRuleTagetData(parameterInfo);
 
             // 공통으로 사용할 WITH 문 생성
-          _rawDataWithStatement = makeAverageRawDataWithStatementByHour(parameterInfo);
+            _rawDataWithStatement = makeAverageRawDataWithStatementByHour(parameterInfo);
 
             try
             {
@@ -1481,7 +1481,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("COMMENTS ");
                 selectSQL.Append("FROM ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
                 selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
-                selectSQL.Append("AND RULENAME = 'AverageRules' ");
+                selectSQL.Append("AND RULENAME <> 'AverageRules' ");
                 selectSQL.Append("AND EXISTS (SELECT 1 ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC ");
                 selectSQL.Append("WHERE MAILUSED = 'YES' ");
@@ -1525,7 +1525,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND B.RULENO = A.RULENO ");
                 selectSQL.Append("AND B.RULENAME = A.RULENAME ");
                 selectSQL.Append("AND A.ISALIVE = 'YES' ");
-                selectSQL.Append("AND A.RULENAME = 'AverageRules' ");
+                selectSQL.Append("AND A.RULENAME <> 'AverageRules' ");
                 selectSQL.Append(") ");
                 //selectSQL.Append("SELECT ROWNUM RN, ");
                 selectSQL.Append("SELECT ");
@@ -1648,14 +1648,135 @@ namespace ISIA.DETECTING.SERVICE
             return mailGroupDt;
         }
 
+        //private StringBuilder SetMailForm(DataTable mailData)
+        //{
+        //    StringBuilder sbMailBody = new StringBuilder();
+        //    StringBuilder sbMailList = new StringBuilder();
+
+        //    int dtIdx = 0;
+
+        //    //You need to add a summary above the mail.
+
+        //    foreach (DataRow drTemp in mailData.Rows)
+        //    {
+        //        dtIdx++;
+
+        //        #region -------- dataList 셋팅
+        //        string ruleName = drTemp["RULENAME"].ToString();
+        //        string rowStyle = "";
+
+        //        switch (ruleName) // Replace with actual rule name
+        //        {
+        //            case "NelsonRules":
+        //                rowStyle = "style='background-color: #FFE0E0;"; // Light Red
+        //                break;
+        //            case "AverageRules":
+        //                rowStyle = "style='background-color: #E0FFE0;"; // Light Green
+        //                break;
+        //            case "Rule3":
+        //                rowStyle = "style='background-color: #E0E0FF;"; // Light Blue
+        //                break;
+        //            case "Rule4":
+        //                rowStyle = "style='background-color: #FFFFE0;"; // Light Yellow
+        //                break;
+        //            case "Rule5":
+        //                rowStyle = "style='background-color: #FFE0FF;"; // Light Pink
+        //                break;
+        //            case "Rule6":
+        //                rowStyle = "style='background-color: #E0FFFF;"; // Light Cyan
+        //                break;
+        //            case "Rule7":
+        //                rowStyle = "style='background-color: #FFF0E0;"; // Light Orange
+        //                break;
+        //            case "Rule8":
+        //                rowStyle = "style='background-color: #E0FFF0;"; // Light Mint
+        //                break;
+        //            case "Rule9":
+        //                rowStyle = "style='background-color: #F0E0FF;"; // Light Purple
+        //                break;
+        //            case "Rule10":
+        //                rowStyle = "style='background-color: #E0F0FF;"; // Light Sky blue
+        //                break;
+        //            default:
+        //                rowStyle = "style='background-color: #FFFFFF;"; // White
+        //                break;
+        //        }
+        //        string temp = rowStyle;
+        //        if (dtIdx % 2 == 0)
+        //        {
+        //            rowStyle = rowStyle += "border-bottom:2px solid gray;'";
+        //            sbMailList.AppendFormat("	<tr {0} >", rowStyle);
+        //        }
+        //        else
+        //        {
+
+        //            rowStyle = rowStyle += "'";
+        //            sbMailList.AppendFormat("	<tr class=\"alt\" {0}>", rowStyle);
+        //        }
+
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", dtIdx);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["DBID"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["INSTANCE_NUMBER"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAMETERID"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAMETERNAME"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENO"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENAME"]);
+        //        sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAVAL2"]);
+        //        double targetValue = 0;
+        //        if (string.IsNullOrEmpty(drTemp["TARGET"].ToString()))
+        //        {
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", "");
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", "");
+        //        }
+        //        else
+        //        {
+
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><strong>{0}</strong></td>", (Convert.ToDecimal(drTemp["TARGET"]) / 100).ToString("%"));
+        //            double avgValue = Convert.ToDouble(drTemp["PARAVAL2"]);
+        //            targetValue = Math.Round(avgValue + ((Convert.ToDouble(drTemp["TARGET"]) / 100) * avgValue),2);
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><strong>{0}</strong></td>", targetValue);
+        //        }
+        //        if (string.IsNullOrEmpty(drTemp["MEASURE_VAL"].ToString()))
+        //        {
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><font color=\"red\">{0}</font></td>", "");
+        //        }
+        //        else
+        //        {
+        //            sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><font color=\"red\">{0}</font></td></td>", Math.Round(Convert.ToDecimal(drTemp["MEASURE_VAL"]), 2));
+        //        }
+        //        sbMailList.AppendFormat("	</tr>");
+        //        #endregion
+        //    }
+        //    #region -------mail form
+        //    sbMailBody.AppendFormat("<font size=\"2\"><b>&lt;Rule Out Detail List&gt;</b></font>");
+        //    sbMailBody.AppendFormat("<table>");
+        //    sbMailBody.AppendFormat("	<tr>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:40px;\">No</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:60px;\">DBID</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:90px;\">INSTANCE_NUMBER</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:90px;\">PARAMETERID</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:140px;\">PARAMETERNAME</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:40px;\">RULENO</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:90px;\">RULENAME</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:140px;\">Target Average Value</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:60px;\">Target(%)</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:90px;\">Target Value</th>");
+        //    sbMailBody.AppendFormat("		<th style=\"width:140px;\">Daily Average Value</th>");
+        //    sbMailBody.AppendFormat("	</tr>");
+        //    // ...
+        //    sbMailBody.Append(sbMailList);
+        //    sbMailBody.AppendFormat("</table>");
+        //    #endregion
+
+        //    return sbMailBody;
+        //}
+
         private StringBuilder SetMailForm(DataTable mailData)
         {
             StringBuilder sbMailBody = new StringBuilder();
             StringBuilder sbMailList = new StringBuilder();
 
             int dtIdx = 0;
-
-            //You need to add a summary above the mail.
 
             foreach (DataRow drTemp in mailData.Rows)
             {
@@ -1721,31 +1842,39 @@ namespace ISIA.DETECTING.SERVICE
                 sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["PARAMETERNAME"]);
                 sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENO"]);
                 sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULENAME"]);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["RULETEXT"]);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["SNAP_ID"]);
+                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", !string.IsNullOrEmpty(drTemp["PARAVAL2"].ToString())?ConvertInt(Convert.ToInt32(drTemp["PARAVAL2"])): drTemp["PARAVAL2"]);
+                double targetValue = 0;
+                if (string.IsNullOrEmpty(drTemp["TARGET"].ToString()))
+                {
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", "");
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", "");
+                }
+                else
+                {
 
-                string measureTimeKey = drTemp["MEASURE_TIMEKEY"].ToString();
-                DateTime measureDateTime = DateTime.ParseExact(measureTimeKey, "yyyyMMddHH", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", measureDateTime.ToString("yyyy/MM/dd HH"));
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><strong>{0}%</strong></td>", (Convert.ToDecimal(drTemp["TARGET"]) / 100).ToString());
+                    double avgValue = Convert.ToDouble(drTemp["PARAVAL2"]);
+                    targetValue = Math.Round(avgValue + ((Convert.ToDouble(drTemp["TARGET"]) / 100) * avgValue), 0);
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><strong>{0}</strong></td>", ConvertInt(Convert.ToInt32(targetValue)));
+                }
+                if (string.IsNullOrEmpty(drTemp["MEASURE_VAL"].ToString()))
+                {
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><font color=\"red\">{0}</font></td>", "");
+                }
+                else
+                {
+                    int i = Convert.ToInt32(Math.Round(Convert.ToDecimal(drTemp["MEASURE_VAL"]),0));
 
-                string startTimeKey = drTemp["STARTTIMEKEY"].ToString();
-                DateTime startDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", startDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
-
-                string endTimeKey = drTemp["STARTTIMEKEY"].ToString();
-                DateTime endDateTime = DateTime.ParseExact(startTimeKey, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", endDateTime.ToString("yyyy/MM/dd HH:mm:ss fff"));
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><font color=\"red\">{0}</font></td>", 
-                    !string.IsNullOrEmpty(drTemp["MEASURE_VAL"].ToString())? ConvertInt(Convert.ToInt32(drTemp["MEASURE_VAL"])):drTemp["MEASURE_VAL"]);
-                sbMailList.AppendFormat("		<td class=\"td\" align=\"center\">{0}</td>", drTemp["COMMENTS"]);
-
+                    sbMailList.AppendFormat("		<td class=\"td\" align=\"center\"><font color=\"red\">{0}</font></td></td>", ConvertInt(i));
+                }
                 sbMailList.AppendFormat("	</tr>");
                 #endregion
             }
+
             #region -------mail form
             sbMailBody.AppendFormat("<center><font size=\"2\"><b><u>SPC Rule Out Report</u></b></font></center>");
             sbMailBody.AppendFormat("<br>");
-            sbMailBody.AppendFormat("<font size=\"2\"><b>&lt;Rule Out Detail List&gt;</b></font>");
+            sbMailBody.AppendFormat("<font size=\"2\"><b>&lt;Rule Out Summary List&gt;</b></font>");
             sbMailBody.AppendFormat("<table>");
             sbMailBody.AppendFormat("	<tr>");
             sbMailBody.AppendFormat("		<th style=\"width:40px;\">No</th>");
@@ -1755,17 +1884,13 @@ namespace ISIA.DETECTING.SERVICE
             sbMailBody.AppendFormat("		<th style=\"width:140px;\">PARAMETERNAME</th>");
             sbMailBody.AppendFormat("		<th style=\"width:40px;\">RULENO</th>");
             sbMailBody.AppendFormat("		<th style=\"width:90px;\">RULENAME</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:140px;\">RULETEXT</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:90px;\">SNAP_ID</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_TIMEKEY</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:90px;\">STARTTIMEKEY</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:90px;\">ENDTIMEKEY</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:60px;\">MEASURE_VAL</th>");
-            sbMailBody.AppendFormat("		<th style=\"width:200px;\">COMMENTS</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:140px;\">Target Average Value</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">Target(%)</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:60px;\">Target Value</th>");
+            sbMailBody.AppendFormat("		<th style=\"width:90px;\">Daily Average Value</th>");
             sbMailBody.AppendFormat("	</tr>");
             // ...
             sbMailBody.Append(sbMailList);
-            sbMailBody.AppendFormat("</table>");
             #endregion
 
             return sbMailBody;
