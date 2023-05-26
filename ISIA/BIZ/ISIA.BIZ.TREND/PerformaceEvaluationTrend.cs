@@ -250,14 +250,14 @@ namespace ISIA.BIZ.TREND
                      Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
                 tmpSql.Append(" group by snap_id, end_interval_time,INSTANCE_NUMBER  order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -421,14 +421,14 @@ namespace ISIA.BIZ.TREND
                     Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
                 tmpSql.Append("group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss'),INSTANCE_NUMBER order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -578,14 +578,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(@"group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -764,14 +764,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.Append(" group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss'),instance_number order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -939,14 +939,14 @@ namespace ISIA.BIZ.TREND
        v_dbtime.delta
  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -993,14 +993,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" )   group by event_name, wait_class order by sum(delta) desc )  where rownum <= 5 order by rank; ");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1084,14 +1084,14 @@ namespace ISIA.BIZ.TREND
                    Utils.MakeSqlQueryIn2(arguments.InstanceNumber));
                 tmpSql.Append("group by snap_id, end_interval_time ,INSTANCE_NUMBER order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1159,14 +1159,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.Append("group by snap_id, end_interval_time order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1225,14 +1225,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("and sn.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(") group by snap_id, to_char(end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1346,14 +1346,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.Append(" group by sn.snap_id, to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1380,14 +1380,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("         group by sql_id order by sum(nvl(elapsed_time_delta, 0)) desc) ");
                 tmpSql.AppendFormat(" where rownum <= 5 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1432,14 +1432,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                 and st.dbid(+) = v1.dbid ");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1556,14 +1556,14 @@ namespace ISIA.BIZ.TREND
                        to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
                  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1590,14 +1590,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("and dbid = {0}", arguments.DbId);
                 tmpSql.Append(" group by sql_id order by sum(nvl(cpu_time_delta,0)) desc) where rownum <= 5 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1635,14 +1635,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1763,14 +1763,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  group by sn.snap_id,  to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss') order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1797,14 +1797,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
                 tmpSql.Append("   group by sql_id order by sum(nvl(buffer_gets_delta,0)) desc)  where rownum <= 5 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1841,14 +1841,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -1973,14 +1973,14 @@ namespace ISIA.BIZ.TREND
                       to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
                  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2007,14 +2007,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("   and dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(@" group by sql_id order by sum(nvl(disk_reads_delta,0)) desc) where rownum <= 5 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2051,14 +2051,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2174,14 +2174,14 @@ namespace ISIA.BIZ.TREND
           to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2210,14 +2210,14 @@ namespace ISIA.BIZ.TREND
                     where rownum <= 5
                     order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2255,14 +2255,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2369,14 +2369,14 @@ namespace ISIA.BIZ.TREND
                       to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
                  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2405,14 +2405,14 @@ namespace ISIA.BIZ.TREND
                     where rownum <= 5
                 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2450,14 +2450,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2573,14 +2573,14 @@ namespace ISIA.BIZ.TREND
                           to_char(sn.end_interval_time, 'yyyy-mm-dd hh24:mi:ss')
                  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2609,14 +2609,14 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.AppendFormat(@"  group by sql_id order by sum(nvl(clwait_delta,0)) desc) where rownum <= 5 order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2654,14 +2654,14 @@ namespace ISIA.BIZ.TREND
                 where st.sql_id(+) = v1.sql_id
                   and st.dbid(+) = v1.dbid");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2720,14 +2720,14 @@ namespace ISIA.BIZ.TREND
                  group by sn.snap_id, sn.snap_time
                  order by sn.snap_id", arguments.DbName);
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2791,14 +2791,14 @@ namespace ISIA.BIZ.TREND
                 group by sn.snap_id, sn.snap_time, v1.INSTANCE_NUMBER
                 order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2854,14 +2854,14 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat(" and dbid = {0}) b ", arguments.DbId);
                 tmpSql.AppendFormat(" where a.snap_id=b.snap_id  order by b.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -2939,14 +2939,14 @@ namespace ISIA.BIZ.TREND
                        where v1.snap_id = sn.snap_id
                  order by low_optimal_size");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3024,14 +3024,14 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.Append("order by e.low_optimal_size");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3118,14 +3118,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.Append("  AND delta_cnt IS NOT NULL AND delta_time IS NOT NULL ) group by snap_id, snap_time order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3213,14 +3213,14 @@ tmpSql.AppendFormat(@" from(
 
                 tmpSql.AppendFormat("  group by sn.snap_id, end_interval_time  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3302,14 +3302,14 @@ tmpSql.AppendFormat(@" from(
                  where v1.snap_id = sn.snap_id
                  order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3386,14 +3386,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and substr(e.name,1,1) <> 'D'     order by e.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3488,14 +3488,14 @@ tmpSql.AppendFormat(@" from(
                        Group by snap_id ,Time_stamp
                     order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3547,14 +3547,14 @@ tmpSql.AppendFormat(@" from(
                     where l.type(+) = top_5.ety
                     order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3650,14 +3650,14 @@ tmpSql.AppendFormat(@" from(
                      Group by snap_id ,Time_stamp
                     order by snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3708,14 +3708,14 @@ tmpSql.AppendFormat(@" from(
                     where l.type(+) = top_5.ety
                     order by rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3777,14 +3777,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  order by e.snap_id, 8 desc, 7 desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3880,14 +3880,14 @@ tmpSql.AppendFormat(@" from(
                       Group by e.snap_id, snap_time
                       Order by e.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3931,14 +3931,14 @@ tmpSql.AppendFormat(@" from(
 
                 tmpSql.Append(" order by top_5.rank");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -3992,14 +3992,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  order by e.snap_id, 5 desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4053,14 +4053,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  order by e.snap_id, e.parent_name, sleeps desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4130,14 +4130,14 @@ tmpSql.AppendFormat(@" from(
                    where   a.snap_id = b.snap_id
                 order by 1, 4 desc, 5 desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4208,14 +4208,14 @@ tmpSql.AppendFormat(@" from(
                 where   a.snap_id = b.snap_id
                 order by 1, 4 desc, 5 desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4276,14 +4276,14 @@ tmpSql.AppendFormat(@" from(
                     where   a.snap_id=b.snap_id
                     order by snap_time", arguments.DbId);
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4348,14 +4348,14 @@ tmpSql.AppendFormat(@" from(
                         group by b.snap_id, b.snap_time
                         order by b.snap_time");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4427,14 +4427,14 @@ tmpSql.AppendFormat(@" from(
                 where   a.snap_id=b.snap_id
                 order by 1, 4 desc, 5 desc");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4491,14 +4491,14 @@ tmpSql.AppendFormat(@" from(
                 where   a.snap_id = b.snap_id
                 order by pool,name,snap_time");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4556,14 +4556,14 @@ tmpSql.AppendFormat(@" from(
                 where   a.snap_id = b.snap_id
                 order by pool,name,snap_time");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4629,14 +4629,14 @@ tmpSql.AppendFormat(@" from(
                 group by b.snap_id, b.snap_time
                 order by b.snap_time");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4660,14 +4660,14 @@ tmpSql.AppendFormat(@" from(
                     where a.group#=b.group#
                     order by 1, 2, 3");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4697,14 +4697,14 @@ tmpSql.AppendFormat(@" from(
                                 and     a.thread# = b.thread#
                                 group by a.thread#");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4727,14 +4727,14 @@ tmpSql.AppendFormat(@" from(
                                 group by to_char(first_time, 'yyyy-mm-dd hh24')
                                 order by 1");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4774,14 +4774,14 @@ tmpSql.AppendFormat(@" from(
                         group by thread#
                         order by thread#");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4831,14 +4831,14 @@ tmpSql.AppendFormat(@" from(
                                 group by thread#,substr(to_char(first_time,'yyyy/mm/dd'),1,10)
                                 order by 1, substr(to_char(first_time, 'yyyy/mm/dd'), 1, 10) desc, thread#");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4863,14 +4863,14 @@ tmpSql.AppendFormat(@" from(
                                 group by to_char(first_time, 'yyyy/mm/dd')
                                 order by 1");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4932,14 +4932,14 @@ tmpSql.AppendFormat(@" from(
                          where v1.snap_id = sn.snap_id
                          order by sn.snap_id");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -4970,14 +4970,14 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.AppendFormat(" and     dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat(" order by parameter_name");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5014,14 +5014,14 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.AppendFormat(" order by parameter_name");
 
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5093,14 +5093,14 @@ tmpSql.AppendFormat(@" from(
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("  order by parameter_name");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5221,14 +5221,14 @@ tmpSql.AppendFormat(@" from(
                    arguments.InstanceNumber);
                 tmpSql.AppendFormat(" ) group by aa.instance_number, hostname, db_name, aa.dbid,platform_name, instance_name order by 1");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5273,14 +5273,14 @@ tmpSql.AppendFormat(@" from(
                          order by cnt desc, sharable_mem desc)
                 where rownum <= 123");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5325,14 +5325,14 @@ tmpSql.AppendFormat(@" from(
                          order by cnt desc, sharable_mem desc)
                 where rownum <= 123");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5393,14 +5393,14 @@ tmpSql.AppendFormat(@" from(
                          order by cnt desc, sharable_mem desc)
                 where rownum <= 123");
 
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
             {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
                        string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
                 throw ex;
             }
@@ -5515,7 +5515,7 @@ tmpSql.AppendFormat(@" from(
 
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_INFO,
                         this.Requester.IP,
                         tmpSql.ToString(),
@@ -5527,7 +5527,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -5642,7 +5642,7 @@ tmpSql.AppendFormat(@" from(
 
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_INFO,
                         this.Requester.IP,
                         tmpSql.ToString(),
@@ -5654,7 +5654,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -5813,7 +5813,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -5866,7 +5866,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -5920,7 +5920,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -6094,7 +6094,7 @@ tmpSql.AppendFormat(@" from(
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -6143,7 +6143,7 @@ where rownum <= 5 ");
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -6202,7 +6202,7 @@ where st.sql_id(+) = v1.sql
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
@@ -6297,7 +6297,7 @@ where st.sql_id(+) = v1.sql
             {
                 RemotingLog.Instance
                     .WriteServerLog(
-                        MethodInfo.GetCurrentMethod().Name,
+                        arguments.ChartName,
                         LogBase._LOGTYPE_TRACE_ERROR,
                         this.Requester.IP,
                         string.Format(" Biz Component Exception occured: {0}", ex.ToString()),
