@@ -144,7 +144,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  SPECLOWERLIMIT = '{0}' , ", arguments.SPECLOWERLIMIT);
                 tmpSql.AppendFormat("  CONTROLUPPERLIMIT = '{0}'  ,", arguments.CONTROLUPPERLIMIT);
                 tmpSql.AppendFormat("  CONTROLLOWERLIMIT = '{0}'  ,", arguments.CONTROLLOWERLIMIT);
-                tmpSql.AppendFormat("  TARGET = {0}  ,", arguments.TARGET);
+                tmpSql.AppendFormat("  TARGET = '{0}'  ,", arguments.TARGET);
                 tmpSql.AppendFormat("  STD_VALUE = '{0}'  ,", arguments.STD_VALUE);
                 tmpSql.AppendFormat("  PARAVAL1 = '{0}'  ,", arguments.PARAVAL1);
                 tmpSql.AppendFormat("  PARAVAL2 = '{0}'  ,", arguments.PARAVAL2);
