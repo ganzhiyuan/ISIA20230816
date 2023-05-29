@@ -102,6 +102,7 @@ namespace ISIA.UI.TREND
             flowLayoutPanel3.Controls.Clear();
             //Instancenumber多选时，每个Instancenumber生成不同chart
             string[] instanceNum = cmbInstance.Text.Split(',');
+            //instanceNum = new string[] { "1", "1" };
             foreach (var item in instanceNum)
             {
                 for (int i = 0; i < list.Count(); i++)
@@ -195,15 +196,21 @@ namespace ISIA.UI.TREND
         {
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             string[] instanceNum = cmbInstance.Text.Split(',');
+            //instanceNum = new string[] { "1", "1" };
             int count = list.Count();
+            int temp = 0;
             //Thread[] threads = new Thread[count];
             for (int i = 0; i < count; i++)
             {
                 int chartIndex = i;
-                ShowWaitIcon(charts1.ElementAt(chartIndex));
                 foreach (string item in instanceNum)
                 {
-                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list[chartIndex], item));
+                    int tempi = temp;
+                    ShowWaitIcon(charts1.ElementAt(tempi));
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(tempi), list[chartIndex], item));
+
+                    temp++;
+                    
                 }
 
 

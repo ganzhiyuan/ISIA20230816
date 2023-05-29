@@ -3410,11 +3410,11 @@ tmpSql.AppendFormat(@" from(
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat(@"select snap_id
                           ,Time_stamp
-                          ,max(decode(rank, 1,wait_tm, 0))/1000  rank1_wait_tm
-                          ,max(decode(rank, 2,wait_tm, 0))/1000  rank2_wait_tm
-                          ,max(decode(rank, 3,wait_tm, 0))/1000  rank3_wait_tm
-                          ,max(decode(rank, 4,wait_tm, 0))/1000  rank4_wait_tm
-                          ,max(decode(rank, 5,wait_tm, 0))/1000  rank5_wait_tm
+                          ,round(max(decode(rank, 1,wait_tm, 0))/1000,6)  rank1_wait_tm
+                          ,round(max(decode(rank, 2,wait_tm, 0))/1000,6)  rank2_wait_tm
+                          ,round(max(decode(rank, 3,wait_tm, 0))/1000,6)  rank3_wait_tm
+                          ,round(max(decode(rank, 4,wait_tm, 0))/1000,6)  rank4_wait_tm
+                          ,round(max(decode(rank, 5,wait_tm, 0))/1000,6)  rank5_wait_tm
                     from (
                     select e.snap_id
                           ,to_char(s.end_interval_time,'yyyy-mm-dd hh24:mi:ss') Time_stamp
@@ -3572,11 +3572,11 @@ tmpSql.AppendFormat(@" from(
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat(@"select snap_id
                           ,Time_stamp
-                          ,max(decode(rank, 1,av_wait_tm, 0))/1000  rank1_wait_tm
-                          ,max(decode(rank, 2,av_wait_tm, 0))/1000  rank2_wait_tm
-                          ,max(decode(rank, 3,av_wait_tm, 0))/1000  rank3_wait_tm
-                          ,max(decode(rank, 4,av_wait_tm, 0))/1000  rank4_wait_tm
-                          ,max(decode(rank, 5,av_wait_tm, 0))/1000  rank5_wait_tm
+                          ,round(max(decode(rank, 1,av_wait_tm, 0))/1000,6)  rank1_wait_tm
+                          ,round(max(decode(rank, 2,av_wait_tm, 0))/1000,6)  rank2_wait_tm
+                          ,round(max(decode(rank, 3,av_wait_tm, 0))/1000,6)  rank3_wait_tm
+                          ,round(max(decode(rank, 4,av_wait_tm, 0))/1000,6)  rank4_wait_tm
+                          ,round(max(decode(rank, 5,av_wait_tm, 0))/1000,6)  rank5_wait_tm
                     from ( select e.snap_id Snap_ID
                           ,to_char(s.end_interval_time,'yyyy-mm-dd hh24:mi:ss') Time_stamp
                           ,rank
