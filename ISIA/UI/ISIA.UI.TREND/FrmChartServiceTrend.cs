@@ -233,11 +233,11 @@ namespace ISIA.UI.TREND
             {
                 Label Maglabel = new Label();
                 Maglabel.Text = _translator.ConvertGeneralTemplate(EnumVerbs.FIND, EnumGeneralTemplateType.CANNOT, "image");
-                int with = (this.pnlImage.Width - Maglabel.Width) / 2;
-                int height = (this.pnlImage.Height - Maglabel.Height) / 2;
+                int with = ((this.flowLayoutPanel.Width - Maglabel.Width) / 2)-10;
+                int height = ((this.flowLayoutPanel.Height - Maglabel.Height) / 2)-10;
                 Maglabel.Location = new System.Drawing.Point(with, height);
                 Maglabel.AutoSize = true;
-                this.pnlImage.Controls.Add(Maglabel);
+                this.flowLayoutPanel.Controls.Add(Maglabel);
             }));
         }
 
@@ -278,20 +278,20 @@ namespace ISIA.UI.TREND
         {
             try
             {                
-                if (int.Parse(txtShowCol.Text) <= 0)
-                {
-                    showCol = 1;
-                    txtShowCol.Text = "1";
-                }
-                else if (int.Parse(txtShowCol.Text) > 4)
-                {
-                    showCol = 4;
-                    txtShowCol.Text = "4";
-                }
-                else
-                {
-                    showCol = int.Parse(txtShowCol.Text);
-                }                
+                //if (int.Parse(txtShowCol.Text) <= 0)
+                //{
+                //    showCol = 1;
+                //    txtShowCol.Text = "1";
+                //}
+                //else if (int.Parse(txtShowCol.Text) > 4)
+                //{
+                //    showCol = 4;
+                //    txtShowCol.Text = "4";
+                //}
+                //else
+                //{
+                //    showCol = int.Parse(txtShowCol.Text);
+                //}                
             }
             catch (Exception ex)
             {
@@ -307,11 +307,11 @@ namespace ISIA.UI.TREND
             CheckLayout();
             int chartCount = _imageList.Count;
 
-            int panelwidth = pnlImage.Width - 20;
+            int panelwidth = flowLayoutPanel.Width - 20;
             int Pointwidth = 0;
             int Pointheight = 0;
 
-            int widthsize = (panelwidth - (4 + 1) * Convert.ToInt32(5.3)) / 4;
+            int widthsize = (panelwidth - (Convert.ToInt32(cmbCount.EditValue) + 1) * Convert.ToInt32(5.3)) / Convert.ToInt32(cmbCount.EditValue);
             int sizeheight = widthsize - 40;
             int rowCount = _imageList.Count;
             int tmpMin = Math.Min(rowCount, showCol);
@@ -432,14 +432,14 @@ namespace ISIA.UI.TREND
         {
             this.Invoke(new EventHandler(delegate
             {
-                this.pnlImage.Controls.Add(allChartList[i]);
+                this.flowLayoutPanel.Controls.Add(allChartList[i]);
 
             }));
         }
 
         private void ClearChart()
         {
-            this.pnlImage.Controls.Clear();
+            this.flowLayoutPanel.Controls.Clear();
             allChartList.Clear();
         }
 
@@ -514,6 +514,19 @@ namespace ISIA.UI.TREND
             }
 
             #endregion
+        }
+
+        private void cmbCount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //// 设置子控件的宽度和高度
+            //int width = flowLayoutPanel.ClientSize.Width / Convert.ToInt32(cmbCount.EditValue);
+            //int height = flowLayoutPanel.ClientSize.Height / Convert.ToInt32(cmbCount.EditValue);
+
+            //foreach (var chart in flowLayoutPanel.Controls.OfType<TChart>().ToArray())
+            //{
+            //    chart.Width = width - 10;
+            //    chart.Height = height - 10;
+            //}
         }
     }
 }

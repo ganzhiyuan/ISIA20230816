@@ -89,6 +89,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string SqlId { get { return _sqlId; } set { _sqlId = value; } }
         public string ChartName { get; set; }
 
+
+
         #endregion
 
         #region Method

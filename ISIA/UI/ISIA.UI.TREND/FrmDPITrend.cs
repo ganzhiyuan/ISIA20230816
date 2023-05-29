@@ -618,11 +618,11 @@ namespace ISIA.UI.TREND
                  Xvalue = "TIMESTAMP",
                  HeaderText = "Top wait time latch:Avg. wait time(ms)",
                  FileNameList = new List<DPIAboutY> {
-                     new DPIAboutY { FileNameParament = "rank1WaitT", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "rank2WaitT", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "rank3WaitT", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "rank4WaitT", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "rank5WaitT", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "rank1_wait_t", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "rank2_wait_t", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "rank3_wait_t", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "rank4_wait_t", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "rank5_wait_t", IsLeftY = true },
                  }
              };
              list.Add(dto);

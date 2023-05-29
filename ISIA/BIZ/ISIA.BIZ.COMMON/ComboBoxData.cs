@@ -3515,7 +3515,7 @@ namespace ISIA.BIZ.COMMON
             {
                 //Return to default value of 1 if no selection is made
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT 1 as INSTANCE_NUMBER FROM DUAL");
+                tmpSql.Append("SELECT 1 as INSTANCE_NUMBER FROM DUAL UNION ALL SELECT 2 AS instance_number FROM dual");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
