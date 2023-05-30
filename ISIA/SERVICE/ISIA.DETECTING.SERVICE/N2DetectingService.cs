@@ -1484,7 +1484,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("AND RULENAME <> 'AverageRules' ");
                 selectSQL.Append("AND EXISTS (SELECT 1 ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC ");
-                selectSQL.Append("WHERE MAILUSED = 'YES' ");
+                selectSQL.Append("WHERE MAILUSED = 'YES' AND RULENAME <> 'AverageRules'  ");
                 selectSQL.Append("AND DBID = TD.DBID ");
                 selectSQL.Append("AND INSTANCE_NUMBER = TD.INSTANCE_NUMBER ");
                 selectSQL.Append("AND PARAMETERID = TD.PARAMETERID ");
@@ -1538,7 +1538,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("STARTTIMEKEY, ENDTIMEKEY, MEASURE_VAL,  ");
                 selectSQL.Append("COMMENTS, round(PARAVAL2,2) PARAVAL2, TARGET ");
                 selectSQL.Append("FROM ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
-                selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
+                selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' AND RULENAME <> 'AverageRules' ", _measureDate);
                 selectSQL.Append("AND EXISTS (SELECT 1 ");
                 selectSQL.Append("FROM TAPCTPARAMETERRULESPEC ");
                 selectSQL.Append("WHERE MAILUSED = 'YES' ");
