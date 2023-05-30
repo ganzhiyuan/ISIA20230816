@@ -276,7 +276,11 @@ namespace ISIA.UI.TREND
         {
             // 创建 TChart 控件
             TChart tChart = new TChart();
-            tChart.Text = strName;
+            if (strName.Contains("PSEC"))
+            {
+                strName = strName.Substring(0, strName.Length - 5);
+            }
+            tChart.Text = strName ;
             tChart.Tag = i;
             tChart.Width = width - 10;
             tChart.Height = height - 10;
