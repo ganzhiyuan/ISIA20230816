@@ -1477,7 +1477,7 @@ namespace ISIA.DETECTING.SERVICE
                 selectSQL.Append("(SELECT RULENAME FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO AND RULENAME = TD.RULENAME) RULENAME,  ");
                 selectSQL.Append("(SELECT RULETEXT FROM TAPCTSPCRULESPEC WHERE RULENO = TD.RULENO AND RULENAME = TD.RULENAME) RULETEXT, ");
                 selectSQL.Append("SNAP_ID, MEASURE_TIMEKEY,  ");
-                selectSQL.Append("STARTTIMEKEY, ENDTIMEKEY, MEASURE_VAL,  ");
+                selectSQL.Append("STARTTIMEKEY, ENDTIMEKEY, MEASURE_VAL, round(PARAVAL2,2) PARAVAL2, TARGET, ");
                 selectSQL.Append("COMMENTS ");
                 selectSQL.Append("FROM ISIA.TAPCTOUTOFCONTROLDATASUM TD ");
                 selectSQL.AppendFormat("WHERE MEASURE_TIMEKEY = '{0}' ", _measureDate);
