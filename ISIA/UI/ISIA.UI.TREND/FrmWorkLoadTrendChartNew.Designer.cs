@@ -573,14 +573,12 @@ namespace ISIA.UI.TREND
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("COMMIT_PSEC_AVG", "Commit Count", System.Windows.Forms.CheckState.Checked),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("REDO_MB_PSEC_AVG", "Redo MB", System.Windows.Forms.CheckState.Checked),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("USER_CALLS_PSEC", "User Calls Count"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DB_BLOCK_CHANGES_PSEC", "DB Block Changes PSEC"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DB_BLOCK_CHANGES_PSEC", "DB Block Changes"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("DLM_MB_PSEC", "DML MB"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_CLIENT_PSEC", "Net MB To Client"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_CLIENT_PSEC", "Net MB From Client"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_FROM_DBLINK_PSEC", "Net MB From DB Link"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "Net MB To DB Link"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("EXECUTIONS", "Executions"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("ELAPSED_TIME", "Elapsed_Time")});
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("NET_MB_TO_DBLINK_PSEC", "Net MB To DB Link")});
             this.cmbLinePara.Size = new System.Drawing.Size(108, 20);
             this.cmbLinePara.StyleController = this.lcSerachOptions;
             this.cmbLinePara.TabIndex = 29;

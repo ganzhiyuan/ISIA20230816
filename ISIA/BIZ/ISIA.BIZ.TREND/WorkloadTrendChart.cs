@@ -353,7 +353,7 @@ SELECT sm.dbid
                                    round(avg(t.cpu_util_pct_max), 2) CPU_UTIL_PCT_MAX,
                                    round(avg(LOGICAL_READS_PSEC), 2) LOGICAL_READS_PSEC,
                                    round(avg(PHYSICAL_READS_PSEC), 2) PHYSICAL_READS_PSEC,
-                                   round(avg(PHYSICAL_WRITES_PSEC), 2) PHYSICAL_WRITES_PSEC,
+                                   round(sum(PHYSICAL_WRITES_PSEC), 2) PHYSICAL_WRITES_PSEC,
                                    round(avg(EXECS_PSEC_AVG), 2) EXECS_PSEC_AVG,
                                    round(avg(EXECS_PSEC_MAX), 2) EXECS_PSEC_MAX,
                                    round(avg(USER_CALLS_PSEC), 2) USER_CALLS_PSEC,
@@ -432,7 +432,7 @@ SELECT sm.dbid
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("SELECT ROWNUM,e.* FROM ( ");
                 tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,c.module,c.action,c.parsing_schema_name,d.sql_text FROM (", arguments.ParamNamesString);
-                tmpSql.AppendFormat("select sql_id,ROUND(avg({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("select sql_id,ROUND(sum({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
                 tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0},t.instance_number, t.module, t.action, t.parsing_schema_name", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                 tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);
@@ -474,7 +474,7 @@ SELECT sm.dbid
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("SELECT ROWNUM,e.* FROM ( ");
                 tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,c.module,c.action,c.parsing_schema_name,d.sql_text FROM (", arguments.ParamNamesString);
-                tmpSql.AppendFormat("select sql_id,ROUND(avg({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
+                tmpSql.AppendFormat("select sql_id,ROUND(sum({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
                 tmpSql.AppendFormat("SELECT  t.snap_id, t.dbid, t.sql_id, t.{0},t.instance_number, t.module, t.action, t.parsing_schema_name", arguments.ParamNamesString);
                 tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T ", arguments.DBName);
                 tmpSql.AppendFormat("    left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id and t.dbid＝a.dbid and t.instance_number=a.instance_number ", arguments.DBName);

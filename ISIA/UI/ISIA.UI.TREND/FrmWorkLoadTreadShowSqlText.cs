@@ -24,13 +24,22 @@ namespace ISIA.UI.TREND
         public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit)
         {
             InitializeComponent();
-            this.dt = dt;
-            gridControl1.DataSource = dt;
-            gridView1.BestFitColumns();
+            
             this.colName = colName;
             this.DbName = DBName;
             if (groupUnit == "DAY")
             {
+                foreach (DataColumn item in dt.Columns)
+                {
+                    if (item.ColumnName.ToUpper().Contains("_DELTA"))
+                    {
+                        item.ColumnName = item.ColumnName.Substring(0, item.ColumnName.Length - 6);
+                    }
+                    if (item.ColumnName.ToUpper().Contains("_TOTAL"))
+                    {
+                        item.ColumnName = item.ColumnName.Substring(0, item.ColumnName.Length - 6);
+                    }
+                }
                 string[] str = colName.Split('_');
                 string colNm = string.Empty;
                 for (int i = 0; i < str.Length - 1; i++)
@@ -44,6 +53,9 @@ namespace ISIA.UI.TREND
             {
                 tChartSqlText.Header.Text = colName;
             }
+            this.dt = dt;
+            gridControl1.DataSource = dt;
+            gridView1.BestFitColumns();
             List<Line> list = CreateLine(listDs);
             foreach (var item in list)
             {
