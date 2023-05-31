@@ -30,7 +30,7 @@ namespace ISIA.UI.TREND
 
             foreach (DataColumn item in dt.Columns)
             {
-                if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA ")
+                if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
                 {
                     item.ColumnName = "PHYSICAL_WRITE_BLOCK_DELTA";
                 }
