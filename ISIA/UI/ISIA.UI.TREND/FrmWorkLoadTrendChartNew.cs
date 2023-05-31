@@ -231,13 +231,13 @@ namespace ISIA.UI.TREND
                 foreach (IGrouping<string, DataRow> rows in result)
                 {
                     DataTable dataTable1 = rows.ToArray().CopyToDataTable();
-                    if (rows.Key== "PHYSICAL_WRITES_PSEC")
-                    {
-                        foreach (DataRow dataRow in dataTable1.Rows)
-                        {
-                            dataRow["PARAMENT_VALUE"] = Math.Round(Convert.ToDecimal(dataRow["PARAMENT_VALUE"]) / 8192,6);
-                        }
-                    }
+                    //if (rows.Key== "PHYSICAL_WRITES_PSEC")
+                    //{
+                    //    foreach (DataRow dataRow in dataTable1.Rows)
+                    //    {
+                    //        dataRow["PARAMENT_VALUE"] = Math.Round(Convert.ToDecimal(dataRow["PARAMENT_VALUE"]) / 8192,6);
+                    //    }
+                    //}
                     dataTable1.TableName = rows.Key;
                     if (dataTable1.Rows.Count > 0)
                     {
@@ -627,6 +627,13 @@ namespace ISIA.UI.TREND
                 cmbInstance.EditValue = 1;
                 cmbInstance.Text = "1";
             }
+        }
+
+        private void FrmWorkLoadTrendChartNew_Load(object sender, EventArgs e)
+        {
+            cmbDbName.Setting();
+            cmbDbName.Properties.Items[0].CheckState = CheckState.Checked;
+            btnSelect_Click(null,null);
         }
     }
 

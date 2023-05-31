@@ -48,11 +48,24 @@ namespace ISIA.UI.TREND
                     colNm += "_";
                 }
                 tChartSqlText.Header.Text = colNm.TrimEnd('_');
+                
             }
             else
             {
                 tChartSqlText.Header.Text = colName;
             }
+            //foreach (DataRow dataRow in dt.Rows)
+            //{
+            //    if (dataRow["PARAMENT_NAME"].ToString() == "PHYSICAL_WRITES_PSEC")
+            //    {
+            //        dataRow["PARAMENT_VALUE"] = Math.Round(Convert.ToDecimal(dataRow["PARAMENT_VALUE"]) / 8192, 6);
+            //    }
+            //    if (dataRow["PARAMENT_NAME"].ToString() == "CPU_UTIL_PCT" || dataRow["PARAMENT_NAME"].ToString() == "SQL Service Response Time")
+            //    {
+            //        dataRow["PARAMENT_VALUE"] = Math.Round(Convert.ToDecimal(dataRow["PARAMENT_VALUE"]) / 1000000, 6);
+
+            //    }
+            //}
             this.dt = dt;
             gridControl1.DataSource = dt;
             gridView1.BestFitColumns();

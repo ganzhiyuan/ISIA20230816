@@ -985,6 +985,7 @@ namespace ISIA.UI.TREND
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmWorkLoadTrendChartNew";
             this.Text = "FrmWorkLoadTrendChartNew";
+            this.Load += new System.EventHandler(this.FrmWorkLoadTrendChartNew_Load);
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
             this.dpnlRight.ResumeLayout(false);
