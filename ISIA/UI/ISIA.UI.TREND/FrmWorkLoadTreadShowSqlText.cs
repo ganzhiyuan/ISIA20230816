@@ -27,6 +27,14 @@ namespace ISIA.UI.TREND
             
             this.colName = colName;
             this.DbName = DBName;
+
+            foreach (DataColumn item in dt.Columns)
+            {
+                if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA ")
+                {
+                    item.ColumnName = "PHYSICAL_WRITE_BLOCK_DELTA";
+                }
+            }
             if (groupUnit == "DAY")
             {
                 foreach (DataColumn item in dt.Columns)

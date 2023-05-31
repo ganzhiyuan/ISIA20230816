@@ -434,7 +434,7 @@ SELECT sm.dbid
                 tmpSql.AppendFormat("SELECT c.sql_id,c.{0}, c.instance_number,c.module,c.action,c.parsing_schema_name,d.sql_text FROM (", arguments.ParamNamesString);
                 if (arguments.ParamNamesString == "CPU_TIME_DELTA" || arguments.ParamNamesString == "ELAPSED_TIME_DELTA")
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/1000000,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
-                else if(arguments.ParamNamesString == "PHYSICAL_WRITE_BYTES_TOTAL")
+                else if(arguments.ParamNamesString == "PHYSICAL_WRITE_BYTES_DELTA")
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/8192,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
                 else
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0}),0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
@@ -484,7 +484,7 @@ SELECT sm.dbid
                 {
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/1000000,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);                    
                 }
-                else if (arguments.ParamNamesString== "PHYSICAL_WRITE_BYTES_TOTAL")
+                else if (arguments.ParamNamesString== "PHYSICAL_WRITE_BYTES_DELTA")
                 {
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/8192,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
                 }
