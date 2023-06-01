@@ -30,6 +30,8 @@ namespace ISIA.UI.TREND
         List<Color> colors = new List<Color> { Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
             Color.FromArgb(125,96,160), Color.FromArgb(70,170,197), Color.FromArgb(218,129,55)  };
 
+        CancellationTokenSource cts = new CancellationTokenSource();
+
         public FrmDPITrend()
         {
             InitializeComponent();
@@ -167,11 +169,11 @@ namespace ISIA.UI.TREND
             if (!base.ValidateUserInput(this.lcSerachOptions)) return;
 
             //base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
-
+            cts = new CancellationTokenSource();
             btnSelect.Enabled = false;
-            Task.Factory.StartNew(() => QueryDataSheet1());
-            Task.Factory.StartNew(() => QueryDataSheet2());
-            Task.Factory.StartNew(() => QueryDataSheet3());
+            Task.Factory.StartNew(() => QueryDataSheet1(cts.Token), cts.Token);
+            Task.Factory.StartNew(() => QueryDataSheet2(cts.Token), cts.Token);
+            Task.Factory.StartNew(() => QueryDataSheet3(cts.Token), cts.Token);
             //QueryDataSheet1();
             //QueryDataSheet2();
             //QueryDataSheet3();
@@ -192,7 +194,7 @@ namespace ISIA.UI.TREND
         public void DisplayData(DataSet ds)
         {
         }
-        private void QueryDataSheet1()
+        private void QueryDataSheet1(CancellationToken token)
         {
             var charts1 = flowLayoutPanel1.Controls.OfType<TChart>().ToArray();
             string[] instanceNum = cmbInstance.Text.Split(',');
@@ -207,7 +209,7 @@ namespace ISIA.UI.TREND
                 {
                     int tempi = temp;
                     ShowWaitIcon(charts1.ElementAt(tempi));
-                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(tempi), list[chartIndex], item));
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(tempi), list[chartIndex], item, token), token);
 
                     temp++;
                     
@@ -218,7 +220,7 @@ namespace ISIA.UI.TREND
 
         }
 
-        private void QueryDataSheet2()
+        private void QueryDataSheet2(CancellationToken token)
         {
             var charts1 = flowLayoutPanel2.Controls.OfType<TChart>().ToArray();
             int count = list2.Count();
@@ -227,7 +229,7 @@ namespace ISIA.UI.TREND
             {
                 int chartIndex = i; 
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
-                Task.Factory.StartNew(() => QueryDataForTChart2(charts1.ElementAt(chartIndex), list2[chartIndex]));
+                Task.Factory.StartNew(() => QueryDataForTChart2(charts1.ElementAt(chartIndex), list2[chartIndex], token), token);
             }
             //for (int i = 0; i < count; i++)
             //{
@@ -243,7 +245,7 @@ namespace ISIA.UI.TREND
             //    //threadToJoin.Join();
             //}
         }
-        private void QueryDataSheet3()
+        private void QueryDataSheet3(CancellationToken token)
         {
             var charts1 = flowLayoutPanel3.Controls.OfType<TChart>().ToArray();
             int count = list3.Count();
@@ -255,7 +257,7 @@ namespace ISIA.UI.TREND
                 ShowWaitIcon(charts1.ElementAt(chartIndex));
                 foreach (string item in instanceNum)
                 {
-                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list3[chartIndex], item));
+                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list3[chartIndex], item, token));
                 }
             }
             //for (int i = 0; i < count; i++)
@@ -273,53 +275,66 @@ namespace ISIA.UI.TREND
             //}
         }
 
-        private void QueryDataForTChart1(TChart tChart, DPIDto dto,string insNum)
+        private void QueryDataForTChart1(TChart tChart, DPIDto dto,string insNum, CancellationToken token)
         {
-            tChart.Invoke((MethodInvoker)delegate
+            try
             {
-                tChart.Series.Clear();
-            });
-            AwrCommonArgsPack args = new AwrCommonArgsPack();
-            // 实际的查询逻辑
-            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = cmbDbName.Text.Split('(')[0];
-            args.DbId = cmbDbName.EditValue.ToString();
-            args.InstanceNumber = insNum;
-            args.SnapId = "";
-            args.ChartName = dto.HeaderText;
-            Thread.Sleep(10);
-            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            for (int i = 0; i < dto.FileNameList.Count(); i++)
-            {
-                Line line = CreateLine(dst.Tables[0], dto, i);
                 tChart.Invoke((MethodInvoker)delegate
                 {
-                    if (dto.YRValueType == 1)
+                    tChart.Series.Clear();
+                });
+
+                token.ThrowIfCancellationRequested();
+
+                AwrCommonArgsPack args = new AwrCommonArgsPack();
+                // 实际的查询逻辑
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.DbName = cmbDbName.Text.Split('(')[0];
+                args.DbId = cmbDbName.EditValue.ToString();
+                args.InstanceNumber = insNum;
+                args.SnapId = "";
+                args.ChartName = dto.HeaderText;
+                Thread.Sleep(10);
+                DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+                for (int i = 0; i < dto.FileNameList.Count(); i++)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    Line line = CreateLine(dst.Tables[0], dto, i);
+                    tChart.Invoke((MethodInvoker)delegate
                     {
-                        Axis yAxis = tChart.Axes.Right;
+                        if (dto.YRValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Right;
 
                         // 设置Y轴标签的显示格式为百分比（保留两位小数）
                         yAxis.Labels.ValueFormat = "0.00%";
-                    }
-                    if (dto.YLValueType == 1)
-                    {
-                        Axis yAxis = tChart.Axes.Left;
-                        yAxis.Labels.ValueFormat = "0.00%";
-                    }
-                    tChart.Axes.Right.Visible = true;
-                    tChart.Axes.Left.Visible = true;
-                    tChart.Legend.Visible = true;
-                    tChart.Legend.LegendStyle = LegendStyles.Series;
-                    tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
-                    tChart.Series.Add(line);
+                        }
+                        if (dto.YLValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Left;
+                            yAxis.Labels.ValueFormat = "0.00%";
+                        }
+                        tChart.Axes.Right.Visible = true;
+                        tChart.Axes.Left.Visible = true;
+                        tChart.Legend.Visible = true;
+                        tChart.Legend.LegendStyle = LegendStyles.Series;
+                        tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
+                        tChart.Series.Add(line);
+                    });
+                }
+                // 将查询到的数据设置到TChart控件中
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    HideWaitIcon(tChart, dto.HeaderText + "-" + args.DbName + "-" + insNum);
                 });
+                token.ThrowIfCancellationRequested();
             }
-            // 将查询到的数据设置到TChart控件中
-            tChart.Invoke((MethodInvoker)delegate
+            catch (OperationCanceledException)
             {
-                HideWaitIcon(tChart, dto.HeaderText+"-"+args.DbName+"-"+insNum);
-            });
+                // Ignore the exception
+            }
         }
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
@@ -369,77 +384,92 @@ namespace ISIA.UI.TREND
                 HideWaitIcon(tChart, dto.HeaderText);
             });
         }
-        private void QueryDataForTChart2(TChart tChart, DPIDto dto)
+        private void QueryDataForTChart2(TChart tChart, DPIDto dto, CancellationToken token)
         {
-            tChart.Invoke((MethodInvoker)delegate
+            try
             {
-                tChart.Series.Clear();
-            });
-            AwrCommonArgsPack args = new AwrCommonArgsPack();
-            // 实际的查询逻辑
-            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = cmbDbName.Text.Split('(')[0];
-            args.DbId = cmbDbName.EditValue.ToString();
-            args.InstanceNumber = cmbInstance.Text;
-            args.SnapId = "";
-            args.ChartName = dto.HeaderText;
-            Thread.Sleep(10);
-            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            dst.Tables[0].TableName = "TABLE";
-            IEnumerable<IGrouping<string, DataRow>> res = dst.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["INSTANCE_NUMBER"].ToString());
-            foreach (IGrouping<string, DataRow> data in res)
-            {
-                DataTable dataTable = data.ToArray().CopyToDataTable();
-                dataTable.TableName = data.Key;
-                if (dataTable.Rows.Count > 0)
-                {
-                    dst.Tables.Add(dataTable);
-                }
-            }
-            string[] ins =  cmbInstance.Text.Split(',').ToArray();
-
-            for (int i = 0; i < ins.Length; i++)
-            {
-                Line line;
-
-                if ( dst.Tables[ins[i].ToString()] == null)
-                {
-                     line = CreateLine2(dst.Tables[0], dto);
-                     i = ins.Length;
-                }
-                else { 
-                     line = CreateLine2(dst.Tables[ins[i].ToString()], dto); }
-                
-
-
                 tChart.Invoke((MethodInvoker)delegate
                 {
-                    if (dto.YRValueType == 1)
+                    tChart.Series.Clear();
+                });
+
+                token.ThrowIfCancellationRequested();
+
+                AwrCommonArgsPack args = new AwrCommonArgsPack();
+                // 实际的查询逻辑
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.DbName = cmbDbName.Text.Split('(')[0];
+                args.DbId = cmbDbName.EditValue.ToString();
+                args.InstanceNumber = cmbInstance.Text;
+                args.SnapId = "";
+                args.ChartName = dto.HeaderText;
+                Thread.Sleep(10);
+                DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+                dst.Tables[0].TableName = "TABLE";
+                IEnumerable<IGrouping<string, DataRow>> res = dst.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["INSTANCE_NUMBER"].ToString());
+                foreach (IGrouping<string, DataRow> data in res)
+                {
+                    DataTable dataTable = data.ToArray().CopyToDataTable();
+                    dataTable.TableName = data.Key;
+                    if (dataTable.Rows.Count > 0)
                     {
-                        Axis yAxis = tChart.Axes.Right;
+                        dst.Tables.Add(dataTable);
+                    }
+                }
+                string[] ins = cmbInstance.Text.Split(',').ToArray();
+
+                for (int i = 0; i < ins.Length; i++)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    Line line;
+
+                    if (dst.Tables[ins[i].ToString()] == null)
+                    {
+                        line = CreateLine2(dst.Tables[0], dto);
+                        i = ins.Length;
+                    }
+                    else
+                    {
+                        line = CreateLine2(dst.Tables[ins[i].ToString()], dto);
+                    }
+
+
+
+                    tChart.Invoke((MethodInvoker)delegate
+                    {
+                        if (dto.YRValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Right;
 
                         // 设置Y轴标签的显示格式为百分比（保留两位小数）
                         yAxis.Labels.ValueFormat = "0.00%";
-                    }
-                    if (dto.YLValueType == 1)
-                    {
-                        Axis yAxis = tChart.Axes.Left;
-                        yAxis.Labels.ValueFormat = "0.00%";
-                    }
-                    tChart.Axes.Right.Visible = true;
-                    tChart.Axes.Left.Visible = true;
-                    tChart.Legend.Visible = true;
-                    tChart.Legend.LegendStyle = LegendStyles.Series;
-                    tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
-                    tChart.Series.Add(line);
+                        }
+                        if (dto.YLValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Left;
+                            yAxis.Labels.ValueFormat = "0.00%";
+                        }
+                        tChart.Axes.Right.Visible = true;
+                        tChart.Axes.Left.Visible = true;
+                        tChart.Legend.Visible = true;
+                        tChart.Legend.LegendStyle = LegendStyles.Series;
+                        tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
+                        tChart.Series.Add(line);
+                    });
+                }
+                // 将查询到的数据设置到TChart控件中
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    HideWaitIcon(tChart, dto.HeaderText);
                 });
+                token.ThrowIfCancellationRequested();
             }
-            // 将查询到的数据设置到TChart控件中
-            tChart.Invoke((MethodInvoker)delegate
+            catch (OperationCanceledException)
             {
-                HideWaitIcon(tChart, dto.HeaderText);
-            });
+                // Ignore the exception
+            }
         }
         private void QueryDataForTChart3(TChart tChart, DPIDto dto)
         {
@@ -1123,6 +1153,16 @@ namespace ISIA.UI.TREND
             //{
             //    Task.Factory.StartNew(() => QueryDataSheet3());
             //}
+        }
+
+        private void xtraTabControl1_CustomHeaderButtonClick(object sender, DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventArgs e)
+        {
+            cts.Cancel();
+        }
+
+        private void FrmDPITrend_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cts.Cancel();
         }
     }
 }

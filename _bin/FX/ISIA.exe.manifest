@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>chr9jEuF81UMiXRPBRGd2aFsCidzJkCX58FEeQ4kdFQ=</dsig:DigestValue>
+        <dsig:DigestValue>esA2NLmfTaHCv76UkXHd8wiPNrOgW2U4V+wjy6PSSkY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -573,13 +573,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11525">
+  <file name="ISIA.exe.config" size="11530">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>iSoTOfIz9IJ+VkpP/dPwRjMaFzQiy8bjzv+pkHwDAHI=</dsig:DigestValue>
+      <dsig:DigestValue>9j0erROeoX0AWI7Sz/643k03qEEtWfv4Mk0j/K/YR4k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">
