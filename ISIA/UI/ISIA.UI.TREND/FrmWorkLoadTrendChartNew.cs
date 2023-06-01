@@ -248,8 +248,8 @@ namespace ISIA.UI.TREND
             if (dataSetTB.Tables.Count > 0)
             {
                 flowLayoutPanel1.Controls.Clear();
-                int width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(4);
-                int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(4);
+                int width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3);
+                int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(3);
                 for (int i = 0; i < dataSetTB.Tables.Count; i++)
                 {
                     var maxValue = dataSetTB.Tables[i].AsEnumerable().Max(x => x.Field<decimal>("PARAMENT_VALUE"));
@@ -435,18 +435,19 @@ namespace ISIA.UI.TREND
                             int errorCount = 0;
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
+                                DateTime dtNow = DateTime.Now;
                                 AwrArgsPack args = new AwrArgsPack();
                                 if (groupUnit == "DAY")
                                 {
-                                    args.StartTime = dtpEndTime.DateTime.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.StartTime = dtNow.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
                                     args.PARADEF = "yyyy-MM-dd";
                                 }
                                 else
                                 {
-                                    args.StartTime = dtpEndTime.DateTime.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
+                                    args.StartTime = dtNow.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
                                     args.PARADEF = "yyyy-MM-dd HH24:mi";
                                 }
-                                args.EndTime = dtpEndTime.DateTime.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                                args.EndTime = dtNow.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
                                 args.DBName = argsSel.DBName;
                                 args.ParamNamesString = result;
                                 args.ParamType = row["SQL_ID"].ToString();

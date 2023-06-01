@@ -27,7 +27,6 @@ namespace ISIA.UI.TREND
             
             this.colName = colName;
             this.DbName = DBName;
-
             foreach (DataColumn item in dt.Columns)
             {
                 if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
@@ -76,7 +75,6 @@ namespace ISIA.UI.TREND
             //}
             this.dt = dt;
             gridControl1.DataSource = dt;
-            gridView1.BestFitColumns();
             List<Line> list = CreateLine(listDs);
             foreach (var item in list)
             {
@@ -161,6 +159,10 @@ namespace ISIA.UI.TREND
             tChartSqlText.Axes.Left.AutomaticMinimum = false;
             tChartSqlText.Axes.Right.Minimum = 0; //设置右
             tChartSqlText.Panning.Allow = ScrollModes.None;
+
+            gridView1.Columns[2].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            gridView1.Columns[2].DisplayFormat.FormatString = "N0";
+            gridView1.BestFitColumns();
 
         }
         Dictionary<int, DataSet> dic = new Dictionary<int, DataSet>();
