@@ -229,6 +229,7 @@ namespace ISIA.UI.TREND
         }
         private void ShowNoData()
         {
+            this.flowLayoutPanel.Controls.Clear();
             this.Invoke(new EventHandler(delegate
             {
                 Label Maglabel = new Label();
@@ -421,15 +422,55 @@ namespace ISIA.UI.TREND
 
                 }
             }
-
+            List<PanelControl> listPC = new List<PanelControl>();
             for (int i = 0; i < allChartList.Count; i++)
             {
-                AddChartToPanel(i);
+                PanelControl pc = new PanelControl();
+                Label lblIns = new Label();
+                lblIns.Text = "INSTANCE_NUMBER:  " + dataSet.Tables[0].Rows[i]["INSTANCE_NUMBER"].ToString();
+                //lblIns.ForeColor = Color.MediumBlue;
+                lblIns.Dock = DockStyle.Top;
+                LabelControl lbl2 = new LabelControl();
+                lbl2.Text = "PARAMETERNAME:  " + dataSet.Tables[0].Rows[i]["PARAMETERNAME"].ToString();
+                lbl2.Dock = DockStyle.Top;
+                lbl2.Padding = new Padding(1);
+                LabelControl lbl3 = new LabelControl();
+                lbl3.Text = "RULENO:  " + dataSet.Tables[0].Rows[i]["RULENO"].ToString();
+                lbl3.Dock = DockStyle.Top;
+                lbl3.Padding = new Padding(1);
+                LabelControl lbl4 = new LabelControl();
+                lbl4.Text = "RULENAME:  " + dataSet.Tables[0].Rows[i]["RULENAME"].ToString();
+                lbl4.Dock = DockStyle.Top;
+                lbl4.Padding = new Padding(1);
+
+                allChartList[i].Dock = DockStyle.Bottom;
+                pc.Controls.Add(lblIns);
+                pc.Controls.Add(lbl2);
+                pc.Controls.Add(lbl3);
+                pc.Controls.Add(lbl4);
+                pc.Controls.Add(allChartList[i]);
+                listPC.Add(pc);
+                pc.Size = new System.Drawing.Size(widthsize, sizeheight+4);
+                if (dataSet.Tables[0].Rows[i]["DETECTIONFLAG"].ToString()=="YES")
+                {
+                    pc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    pc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    pc.LookAndFeel.UseDefaultLookAndFeel = false;
+                    pc.Appearance.BorderColor = Color.Blue;
+                    pc.Padding = new Padding(0);
+                }
+            }
+            for (int i = 0; i < allChartList.Count; i++)
+            {
+                //AddChartToPanel(i);
+                this.flowLayoutPanel.Controls.Add(listPC[i]);
             }
         }
 
         private void AddChartToPanel(int i)
         {
+            
+
             this.Invoke(new EventHandler(delegate
             {
                 this.flowLayoutPanel.Controls.Add(allChartList[i]);
@@ -455,14 +496,15 @@ namespace ISIA.UI.TREND
             chartImage.Image = image;
             chartImage.Tag = i.ToString();
 
-            if (Isexc.Equals("YES"))
-            {
-                chartImage.Properties.Appearance.BorderColor = Color.Blue;
-                chartImage.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            //if (Isexc.Equals("YES"))
+            //{
+            //    chartImage.Properties.Appearance.BorderColor = Color.Blue;
+            //    chartImage.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
 
-            }
+            //}
             chartImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-           // chartImage.Properties.ContextMenuStrip = this.MenuStrip1;
+            // chartImage.Properties.ContextMenuStrip = this.MenuStrip1;
+            chartImage.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             return chartImage;
         }
 
