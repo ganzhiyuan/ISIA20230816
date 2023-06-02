@@ -433,6 +433,7 @@ namespace ISIA.UI.TREND
 
                             List<DataSet> listDs = new List<DataSet>();
                             int errorCount = 0;
+                            string tempDt = string.Empty;
                             foreach (DataRow row in dsRelation.Tables[0].Rows)
                             {
                                 DateTime dtNow = DateTime.Now;
@@ -441,11 +442,13 @@ namespace ISIA.UI.TREND
                                 {
                                     args.StartTime = dtNow.AddDays(-59).ToString("yyyy-MM-dd HH:mm:ss");
                                     args.PARADEF = "yyyy-MM-dd";
+                                    tempDt = args.StartTime;
                                 }
                                 else
                                 {
                                     args.StartTime = dtNow.AddDays(-6).ToString("yyyy-MM-dd HH:mm:ss");
                                     args.PARADEF = "yyyy-MM-dd HH24:mi";
+                                    tempDt = args.StartTime;
                                 }
                                 args.EndTime = dtNow.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
                                 args.DBName = argsSel.DBName;
@@ -464,7 +467,7 @@ namespace ISIA.UI.TREND
                             if (errorCount != dsRelation.Tables[0].Rows.Count)
                             {
                                 wdf.Close();
-                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs, groupUnit);
+                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs, groupUnit, tempDt);
                                 frm.ShowDialog();
                             }
                             else

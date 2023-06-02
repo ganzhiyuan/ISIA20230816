@@ -21,10 +21,12 @@ namespace ISIA.UI.TREND
         public string colName { get; set; }
         public string DbName { get; set; }
         public DataTable dt { get; set; }
-        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit)
+        public List<DataSet> listDs { get; set; }
+        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit,string thisDate)
         {
             InitializeComponent();
-            
+            dtpStartTime.DateTime = Convert.ToDateTime(thisDate);
+            //dtpStartTime.DateTime = DateTime.ParseExact(thisDate, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
             this.colName = colName;
             this.DbName = DBName;
             foreach (DataColumn item in dt.Columns)
@@ -74,6 +76,7 @@ namespace ISIA.UI.TREND
             //    }
             //}
             this.dt = dt;
+            this.listDs = listDs;
             gridControl1.DataSource = dt;
             List<Line> list = CreateLine(listDs);
             foreach (var item in list)
@@ -169,6 +172,29 @@ namespace ISIA.UI.TREND
 
         private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
+            SelectionChanged();
+
+            // 遍历选中多行数据，并获取相应的数据
+            //foreach (int rowHandle in selectedRows)
+            //{
+            //    DataRow row = gridView1.GetDataRow(rowHandle);
+            //    AwrArgsPack args = new AwrArgsPack();
+            //    args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
+            //    args.DBName = DbName;
+            //    args.ParamNamesString = this.colName;
+            //    args.ParamType = row["SQL_ID"].ToString();
+            //    DataSet dataSet = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
+            //    dic.Add(rowHandle, dataSet);
+            //}
+            //List<Line> list = CreateLine(dic);
+            //foreach (var item in list)
+            //{
+            //    tChartSqlText.Series.Add(item);
+            //}
+        }
+
+        private void SelectionChanged()
+        {
             dic = new Dictionary<int, DataSet>();
             int[] selectedRows = gridView1.GetSelectedRows();
             List<string> listStr = new List<string>();
@@ -189,24 +215,31 @@ namespace ISIA.UI.TREND
                     item.Visible = false;
                 }
             }
+        }
 
-            // 遍历选中多行数据，并获取相应的数据
-            //foreach (int rowHandle in selectedRows)
-            //{
-            //    DataRow row = gridView1.GetDataRow(rowHandle);
-            //    AwrArgsPack args = new AwrArgsPack();
-            //    args.StartTime = DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd HH:mm:ss");
-            //    args.DBName = DbName;
-            //    args.ParamNamesString = this.colName;
-            //    args.ParamType = row["SQL_ID"].ToString();
-            //    DataSet dataSet = bs.ExecuteDataSet("GetWorkloadNaerTwoM", args.getPack());
-            //    dic.Add(rowHandle, dataSet);
-            //}
-            //List<Line> list = CreateLine(dic);
-            //foreach (var item in list)
-            //{
-            //    tChartSqlText.Series.Add(item);
-            //}
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            tChartSqlText.Series.Clear();
+            List<DataSet> list = new List<DataSet>();
+            foreach (var item in this.listDs)
+            {
+                DataTable dt = item.Tables[0].AsEnumerable().Where(x => Convert.ToDateTime(x.Field<DateTime>("workDate")) >= dtpStartTime.DateTime).AsDataView().ToTable();
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dt);
+                list.Add(ds);
+            }
+            tChartSqlText.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
+            tChartSqlText.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
+            tChartSqlText.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
+            tChartSqlText.Axes.Left.AutomaticMinimum = false;
+            tChartSqlText.Axes.Right.Minimum = 0; //设置右
+            tChartSqlText.Panning.Allow = ScrollModes.None; 
+            List<Line> list1 = CreateLine(list);
+            foreach (var item in list1)
+            {
+                tChartSqlText.Series.Add(item);
+            }
+            SelectionChanged();
         }
 
         private List<Line> CreateLine(List<DataSet> listDs)
@@ -242,6 +275,5 @@ namespace ISIA.UI.TREND
             
             return list;
         }
-
     }
 }
