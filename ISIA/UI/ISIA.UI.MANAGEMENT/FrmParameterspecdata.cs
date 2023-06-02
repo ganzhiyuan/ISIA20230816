@@ -52,8 +52,13 @@ namespace ISIA.UI.MANAGEMENT
             args.DbId = spec.DBID;
             args.DbName = spec.DBNAME;
             args.InstanceNumber = spec.INSTANCE_NUMBER;
-            args.ParameterName = spec.PARAMETERNAME;
-            
+
+            tcbup.Checked = true;
+            tcblow.Checked = true;
+            tcbstdvalue.Checked = true;
+            tcbtarget.Checked = true;
+
+
         }
 
         private void tbOK_Click(object sender, EventArgs e)

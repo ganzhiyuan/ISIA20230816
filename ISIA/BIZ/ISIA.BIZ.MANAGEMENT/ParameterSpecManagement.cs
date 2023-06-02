@@ -80,6 +80,10 @@ namespace ISIA.BIZ.MANAGEMENT
                 {
                     tmpSql.AppendFormat(" and RULENAME='{0}' ", arguments.RULENAME);
                 }
+                if (!string.IsNullOrEmpty(arguments.RULENO))
+                {
+                    tmpSql.AppendFormat(" and RULENO='{0}' ", arguments.RULENO);
+                }
                 if (!string.IsNullOrEmpty(arguments.DBID))
                 {
                     tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);

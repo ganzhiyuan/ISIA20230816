@@ -154,7 +154,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDel = new TAP.UIControls.BasicControlsDEV.TButton();
-            this.btnUpdate = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnImport = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnExport = new TAP.UIControls.BasicControlsDEV.TButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -305,7 +304,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dpnlRight.Options.ShowAutoHideButton = false;
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
-            this.dpnlRight.OriginalSize = new System.Drawing.Size(1072, 673);
+            this.dpnlRight.OriginalSize = new System.Drawing.Size(753, 673);
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.dpnlRight.SavedSizeFactor = 1D;
             this.dpnlRight.Size = new System.Drawing.Size(1072, 667);
@@ -2105,7 +2104,6 @@ namespace ISIA.UI.MANAGEMENT
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnDel);
-            this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btnImport);
             this.flowLayoutPanel1.Controls.Add(this.btnExport);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -2150,39 +2148,6 @@ namespace ISIA.UI.MANAGEMENT
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.btnUpdate.Appearance.Options.UseBackColor = true;
-            this.btnUpdate.Appearance.Options.UseBorderColor = true;
-            this.btnUpdate.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnUpdate.AppearanceHovered.Options.UseBackColor = true;
-            this.btnUpdate.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnUpdate.AppearancePressed.Options.UseBackColor = true;
-            this.btnUpdate.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
-            this.btnUpdate.ControlID = "btnSave";
-            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnUpdate.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnUpdate.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
-            this.btnUpdate.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnUpdate.IsRequired = false;
-            this.btnUpdate.Location = new System.Drawing.Point(920, 2);
-            this.btnUpdate.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnUpdate.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUpdate.MaximumSize = new System.Drawing.Size(70, 27);
-            this.btnUpdate.MinimumSize = new System.Drawing.Size(70, 27);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.NeedToTranslate = true;
-            this.btnUpdate.RepresentativeValue = "Update";
-            this.btnUpdate.Size = new System.Drawing.Size(70, 27);
-            this.btnUpdate.TabIndex = 125;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // btnImport
             // 
             this.btnImport.Appearance.BackColor = System.Drawing.Color.White;
@@ -2201,7 +2166,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
             this.btnImport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnImport.IsRequired = false;
-            this.btnImport.Location = new System.Drawing.Point(846, 2);
+            this.btnImport.Location = new System.Drawing.Point(920, 2);
             this.btnImport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnImport.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnImport.Margin = new System.Windows.Forms.Padding(2);
@@ -2234,7 +2199,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
             this.btnExport.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnExport.IsRequired = false;
-            this.btnExport.Location = new System.Drawing.Point(772, 2);
+            this.btnExport.Location = new System.Drawing.Point(846, 2);
             this.btnExport.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.btnExport.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnExport.Margin = new System.Windows.Forms.Padding(2);
@@ -2432,7 +2397,6 @@ namespace ISIA.UI.MANAGEMENT
         public DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private TAP.UIControls.BasicControlsDEV.TButton btnDel;
-        private TAP.UIControls.BasicControlsDEV.TButton btnUpdate;
         private TAP.UIControls.BasicControlsDEV.TButton btnImport;
         private TAP.UIControls.BasicControlsDEV.TButton btnExport;
         private DevExpress.XtraGrid.GridControl gridControl1;
