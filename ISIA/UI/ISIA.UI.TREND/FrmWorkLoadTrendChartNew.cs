@@ -6,6 +6,7 @@ using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
 using Steema.TeeChart.Components;
 using Steema.TeeChart.Styles;
+using Steema.TeeChart.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -268,6 +269,20 @@ namespace ISIA.UI.TREND
 
                         tChart.Series.Add(line);
                     }
+
+                    var cuTool = new Steema.TeeChart.Tools.CursorTool(tChart.Chart)
+                    {
+                        Style = CursorToolStyles.Vertical,
+                        FollowMouse = false,
+                    };
+                    cuTool.Pen.Color = Color.Red;
+                    cuTool.Pen.Visible = true;
+                    
+                    double dateTime = DateTime.Now.AddDays(-60).ToOADate();
+                    cuTool.YValue = dateTime;
+
+                   
+
                 }
             }
         }
@@ -276,6 +291,7 @@ namespace ISIA.UI.TREND
         {
             // 创建 TChart 控件
             TChart tChart = new TChart();
+            var markstip = new MarksTip(tChart.Chart);
             if (strName.Contains("PSEC"))
             {
                 strName = strName.Substring(0, strName.Length - 5);
@@ -299,8 +315,46 @@ namespace ISIA.UI.TREND
             //chart.Panning.Allow = ScrollModes.None;
             //chart.Zoom.Direction = ZoomDirections.None;
             tChart.Panning.Allow = ScrollModes.None;
+            tChart.DoubleClick += TChart_DoubleClick;
+
             return tChart;
         }
+
+        private void TChart_DoubleClick(object sender, EventArgs e)
+        {
+            TChart tchart = sender as TChart;
+            string a =  tchart.Text;
+            int width = flowLayoutPanel1.ClientSize.Width ;
+            int height = flowLayoutPanel1.ClientSize.Height ;
+            if (tchart.Width == width - 10 && tchart.Height == height - 10)
+            {
+
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>().ToArray())
+                {
+                    chart.Width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) - 10;
+                    chart.Height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(3) - 10;
+                    chart.Visible = true;
+                }
+            }
+            else
+            {
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>().ToArray())
+                {
+                    if (chart.Text == tchart.Text)
+                    {
+                        chart.Width = width - 10;
+                        chart.Height = height - 10;
+                    }
+                    else
+                    {
+                        chart.Visible = false;
+                    }
+
+                }
+            }
+            
+        }
+
         private double CalculateIncrement(double maxValue)
         {
             double increment = 0.1;
@@ -330,7 +384,7 @@ namespace ISIA.UI.TREND
             line.Legend.Visible = false;
             line.Color = colors[i];
 
-
+            
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
             //line.ColorEachLine = true;
@@ -341,6 +395,11 @@ namespace ISIA.UI.TREND
             //line.Pointer.Color = Color.OrangeRed;
             //line.Pointer.SizeDouble = 1;
             line.XValues.DateTime = true;
+            line.GetSeriesMark += Line_GetSeriesMark;
+            void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+            {
+                e.MarkText = "PARAMETER_NAME :" + $"{dstable.Rows[e.ValueIndex]["PARAMENT_NAME"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex]["PARAMENT_VALUE"]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+            }
             return line;
         }
 
