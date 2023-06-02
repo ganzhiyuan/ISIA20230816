@@ -72,7 +72,8 @@ namespace ISIA.UI.MANAGEMENT
             args = new ParameterSpecManagementArgsPack();
             args.DBID = cmbDbName.EditValue.ToString();
             args.PARAMETERNAME = txtParam.Text;
-            args.RULENAME = cmbRuleMain.Text;
+            args.RULENAME = cmbRuleMain.Text.Split('(')[0];
+            args.RULENO = (cmbRuleMain.Text.Split('(')[1]).Substring(0, cmbRuleMain.Text.Split('(')[1].Length - 1);
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
 
             return ds;
