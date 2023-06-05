@@ -72,8 +72,18 @@ namespace ISIA.UI.MANAGEMENT
             args = new ParameterSpecManagementArgsPack();
             args.DBID = cmbDbName.EditValue.ToString();
             args.PARAMETERNAME = txtParam.Text;
-            args.RULENAME = cmbRuleMain.Text.Split('(')[0];
-            args.RULENO = (cmbRuleMain.Text.Split('(')[1]).Substring(0, cmbRuleMain.Text.Split('(')[1].Length - 1);
+
+            if (string.IsNullOrEmpty(cmbRuleMain.Text))
+            {
+
+            }
+            else
+            {
+                args.RULENAME = cmbRuleMain.Text.Split('(')[0];
+                args.RULENO = (cmbRuleMain.Text.Split('(')[1]).Substring(0, cmbRuleMain.Text.Split('(')[1].Length - 1);
+            }
+
+            
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
 
             return ds;
@@ -109,6 +119,7 @@ namespace ISIA.UI.MANAGEMENT
             try
             {
                 if (!base.ValidateUserInput(this.layoutControl1)) return;
+                if (!base.ValidateUserInput(this.layoutControl3)) return;
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception ex)
