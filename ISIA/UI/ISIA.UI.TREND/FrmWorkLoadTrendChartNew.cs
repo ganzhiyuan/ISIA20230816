@@ -270,7 +270,7 @@ namespace ISIA.UI.TREND
                         tChart.Series.Add(line);
                     }
 
-                    var cuTool = new Steema.TeeChart.Tools.CursorTool(tChart.Chart)
+                    /*var cuTool = new Steema.TeeChart.Tools.CursorTool(tChart.Chart)
                     {
                         Style = CursorToolStyles.Vertical,
                         FollowMouse = false,
@@ -279,7 +279,7 @@ namespace ISIA.UI.TREND
                     cuTool.Pen.Visible = true;
                     
                     double dateTime = DateTime.Now.AddDays(-60).ToOADate();
-                    cuTool.YValue = dateTime;
+                    cuTool.YValue = dateTime;*/
 
                    
 
