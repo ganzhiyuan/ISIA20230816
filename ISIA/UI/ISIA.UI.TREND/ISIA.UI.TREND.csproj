@@ -190,6 +190,12 @@
     <Compile Include="FrmDPITrend.Designer.cs">
       <DependentUpon>FrmDPITrend.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSQLTotalStatisticsTrend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSQLTotalStatisticsTrend.Designer.cs">
+      <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkloadDataGridView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDPITrend.resx">
       <DependentUpon>FrmDPITrend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSQLTotalStatisticsTrend.resx">
+      <DependentUpon>FrmSQLTotalStatisticsTrend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkloadDataGridView.resx">
       <DependentUpon>FrmWorkloadDataGridView.cs</DependentUpon>
