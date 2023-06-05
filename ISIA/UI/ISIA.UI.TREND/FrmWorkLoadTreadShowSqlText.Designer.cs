@@ -30,9 +30,9 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkLoadTreadShowSqlText));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.tButton2 = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btModule = new TAP.UIControls.BasicControlsDEV.TButton();
@@ -65,14 +65,16 @@ namespace ISIA.UI.TREND
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.tChartSqlText = new Steema.TeeChart.TChart();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.dtpStartTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
-            this.tChartSqlText = new Steema.TeeChart.TChart();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.dtpEndTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtParsing.Properties)).BeginInit();
@@ -108,6 +110,9 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -553,14 +558,14 @@ namespace ISIA.UI.TREND
             // 
             // gridView1
             // 
-            gridFormatRule2.Name = "Format2";
-            formatConditionRuleValue2.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
-            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
-            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Less;
-            formatConditionRuleValue2.Value1 = 1;
-            gridFormatRule2.Rule = formatConditionRuleValue2;
-            this.gridView1.FormatRules.Add(gridFormatRule2);
+            gridFormatRule1.Name = "Format2";
+            formatConditionRuleValue1.AllowAnimation = DevExpress.Utils.DefaultBoolean.True;
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.MediumSeaGreen;
+            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue1.Value1 = 1;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -597,6 +602,7 @@ namespace ISIA.UI.TREND
             this.layoutControl3.Controls.Add(this.tChartSqlText);
             this.layoutControl3.Controls.Add(this.btnSelect);
             this.layoutControl3.Controls.Add(this.dtpStartTime);
+            this.layoutControl3.Controls.Add(this.dtpEndTime);
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(0, 246);
             this.layoutControl3.Name = "layoutControl3";
@@ -604,67 +610,6 @@ namespace ISIA.UI.TREND
             this.layoutControl3.Size = new System.Drawing.Size(1140, 303);
             this.layoutControl3.TabIndex = 2;
             this.layoutControl3.Text = "layoutControl3";
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnSelect.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.btnSelect.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.btnSelect.Appearance.Options.UseBackColor = true;
-            this.btnSelect.Appearance.Options.UseBorderColor = true;
-            this.btnSelect.Appearance.Options.UseFont = true;
-            this.btnSelect.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnSelect.AppearanceHovered.Options.UseBackColor = true;
-            this.btnSelect.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnSelect.AppearancePressed.Options.UseBackColor = true;
-            this.btnSelect.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
-            this.btnSelect.ControlID = "btnSelect";
-            this.btnSelect.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
-            this.btnSelect.ImageOptions.Image = global::ISIA.UI.TREND.Properties.Resources.apply_16x16;
-            this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSelect.IsRequired = false;
-            this.btnSelect.Location = new System.Drawing.Point(1058, 12);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSelect.MaximumSize = new System.Drawing.Size(70, 25);
-            this.btnSelect.MinimumSize = new System.Drawing.Size(70, 25);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.NeedToTranslate = true;
-            this.btnSelect.RepresentativeValue = "  OK";
-            this.btnSelect.Size = new System.Drawing.Size(70, 25);
-            this.btnSelect.StyleController = this.layoutControl3;
-            this.btnSelect.TabIndex = 111;
-            this.btnSelect.Text = "  OK";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // dtpStartTime
-            // 
-            this.dtpStartTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.dtpStartTime.Checked = false;
-            this.dtpStartTime.ControlID = "dtpStartTime";
-            this.dtpStartTime.CustomFormat = "yyyy-MM-dd";
-            this.dtpStartTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
-            this.dtpStartTime.Format = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.IsRequired = false;
-            this.dtpStartTime.Location = new System.Drawing.Point(913, 12);
-            this.dtpStartTime.Margin = new System.Windows.Forms.Padding(2);
-            this.dtpStartTime.Name = "dtpStartTime";
-            this.dtpStartTime.NeedToTranslate = true;
-            this.dtpStartTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.dtpStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpStartTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpStartTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
-            this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
-            this.dtpStartTime.Size = new System.Drawing.Size(141, 20);
-            this.dtpStartTime.StyleController = this.layoutControl3;
-            this.dtpStartTime.TabIndex = 5;
             // 
             // tChartSqlText
             // 
@@ -1577,11 +1522,11 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins2.Bottom = 100;
-            margins2.Left = 100;
-            margins2.Right = 100;
-            margins2.Top = 100;
-            this.tChartSqlText.Printer.Margins = margins2;
+            margins1.Bottom = 100;
+            margins1.Left = 100;
+            margins1.Right = 100;
+            margins1.Top = 100;
+            this.tChartSqlText.Printer.Margins = margins1;
             this.tChartSqlText.Size = new System.Drawing.Size(1116, 250);
             // 
             // 
@@ -1825,6 +1770,67 @@ namespace ISIA.UI.TREND
             this.tChartSqlText.Zoom.Brush.Solid = true;
             this.tChartSqlText.Zoom.Brush.Visible = false;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnSelect.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btnSelect.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btnSelect.Appearance.Options.UseBackColor = true;
+            this.btnSelect.Appearance.Options.UseBorderColor = true;
+            this.btnSelect.Appearance.Options.UseFont = true;
+            this.btnSelect.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSelect.AppearanceHovered.Options.UseBackColor = true;
+            this.btnSelect.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSelect.AppearancePressed.Options.UseBackColor = true;
+            this.btnSelect.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btnSelect.ControlID = "btnSelect";
+            this.btnSelect.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btnSelect.ImageOptions.Image = global::ISIA.UI.TREND.Properties.Resources.apply_16x16;
+            this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSelect.IsRequired = false;
+            this.btnSelect.Location = new System.Drawing.Point(1058, 12);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelect.MaximumSize = new System.Drawing.Size(70, 25);
+            this.btnSelect.MinimumSize = new System.Drawing.Size(70, 25);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.NeedToTranslate = true;
+            this.btnSelect.RepresentativeValue = "  OK";
+            this.btnSelect.Size = new System.Drawing.Size(70, 25);
+            this.btnSelect.StyleController = this.layoutControl3;
+            this.btnSelect.TabIndex = 111;
+            this.btnSelect.Text = "  OK";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // dtpStartTime
+            // 
+            this.dtpStartTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.dtpStartTime.Checked = false;
+            this.dtpStartTime.ControlID = "dtpStartTime";
+            this.dtpStartTime.CustomFormat = "yyyy-MM-dd";
+            this.dtpStartTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpStartTime.Format = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.IsRequired = false;
+            this.dtpStartTime.Location = new System.Drawing.Point(789, 12);
+            this.dtpStartTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpStartTime.Name = "dtpStartTime";
+            this.dtpStartTime.NeedToTranslate = true;
+            this.dtpStartTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.dtpStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpStartTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpStartTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
+            this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpStartTime.Size = new System.Drawing.Size(99, 20);
+            this.dtpStartTime.StyleController = this.layoutControl3;
+            this.dtpStartTime.TabIndex = 5;
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -1833,8 +1839,9 @@ namespace ISIA.UI.TREND
             this.layoutControlItem6,
             this.layoutControlItem14,
             this.layoutControlItem15,
-            this.emptySpaceItem3});
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.emptySpaceItem3,
+            this.layoutControlItem16});
+            this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Size = new System.Drawing.Size(1140, 303);
             this.layoutControlGroup2.TextVisible = false;
             // 
@@ -1850,9 +1857,9 @@ namespace ISIA.UI.TREND
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.dtpStartTime;
-            this.layoutControlItem14.Location = new System.Drawing.Point(835, 0);
+            this.layoutControlItem14.Location = new System.Drawing.Point(711, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(211, 29);
+            this.layoutControlItem14.Size = new System.Drawing.Size(169, 29);
             this.layoutControlItem14.Text = "StartTime";
             this.layoutControlItem14.TextSize = new System.Drawing.Size(54, 14);
             // 
@@ -1870,8 +1877,47 @@ namespace ISIA.UI.TREND
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(835, 29);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(711, 29);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // dtpEndTime
+            // 
+            this.dtpEndTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.dtpEndTime.Checked = false;
+            this.dtpEndTime.ControlID = "dtpStartTime1";
+            this.dtpEndTime.CustomFormat = "yyyy-MM-dd";
+            this.dtpEndTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpEndTime.Format = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.IsRequired = false;
+            this.dtpEndTime.Location = new System.Drawing.Point(958, 12);
+            this.dtpEndTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.NeedToTranslate = true;
+            this.dtpEndTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.dtpEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpEndTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpEndTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
+            this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpEndTime.Size = new System.Drawing.Size(96, 20);
+            this.dtpEndTime.StyleController = this.layoutControl3;
+            this.dtpEndTime.TabIndex = 5;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.dtpEndTime;
+            this.layoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.layoutControlItem16.CustomizationFormText = "StartTime";
+            this.layoutControlItem16.Location = new System.Drawing.Point(880, 0);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(166, 29);
+            this.layoutControlItem16.Text = "EndTime";
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(54, 14);
             // 
             // FrmWorkLoadTreadShowSqlText
             // 
@@ -1920,6 +1966,9 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1966,5 +2015,7 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         public TAP.UIControls.BasicControlsDEV.TButton btnSelect;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpEndTime;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
     }
 }

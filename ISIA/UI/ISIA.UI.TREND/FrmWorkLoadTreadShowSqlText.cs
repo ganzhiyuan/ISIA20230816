@@ -36,6 +36,7 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             dtpStartTime.DateTime = Convert.ToDateTime(thisDate);
+            dtpEndTime.DateTime = DateTime.Now;
             //dtpStartTime.DateTime = DateTime.ParseExact(thisDate, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
             this.colName = colName;
             this.DbName = DBName;
@@ -250,7 +251,8 @@ namespace ISIA.UI.TREND
             List<DataSet> list = new List<DataSet>();
             foreach (var item in this.listDs)
             {
-                DataTable dt = item.Tables[0].AsEnumerable().Where(x => Convert.ToDateTime(x.Field<DateTime>("workDate")) >= dtpStartTime.DateTime).AsDataView().ToTable();
+                DataTable dt = item.Tables[0].AsEnumerable().Where(x => Convert.ToDateTime(x.Field<DateTime>("workDate")) >= dtpStartTime.DateTime
+                    &&Convert.ToDateTime(x.Field<DateTime>("workDate")) <= dtpEndTime.DateTime).AsDataView().ToTable();
                 DataSet ds = new DataSet();
                 ds.Tables.Add(dt);
                 list.Add(ds);

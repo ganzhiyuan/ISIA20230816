@@ -1158,11 +1158,29 @@ namespace ISIA.UI.TREND
         private void xtraTabControl1_CustomHeaderButtonClick(object sender, DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventArgs e)
         {
             cts.Cancel();
+            var charts1 = GetTchartList(flowLayoutPanel1);
+            SetTchartList(charts1);
+            var charts2 = GetTchartList(flowLayoutPanel2);
+            SetTchartList(charts2);
+            var charts3 = GetTchartList(flowLayoutPanel3);
+            SetTchartList(charts3);
         }
 
         private void FrmDPITrend_FormClosed(object sender, FormClosedEventArgs e)
         {
             cts.Cancel();
+        }
+
+        private TChart[] GetTchartList(FlowLayoutPanel flp)
+        {
+            return flp.Controls.OfType<TChart>().ToArray();
+        }
+        private void SetTchartList(TChart[] charts)
+        {
+            foreach (var item in charts)
+            {
+                item.Header.Text = "Cessation.";
+            }
         }
     }
 }

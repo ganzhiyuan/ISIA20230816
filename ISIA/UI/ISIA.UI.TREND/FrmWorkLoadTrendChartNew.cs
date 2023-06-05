@@ -511,7 +511,7 @@ namespace ISIA.UI.TREND
                                     args.PARADEF = "yyyy-MM-dd HH24:mi";
                                     tempDt = args.StartTime;
                                 }
-                                args.EndTime = dtNow.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                                args.EndTime = dtNow.ToString("yyyy-MM-dd HH:mm:ss");
                                 args.DBName = argsSel.DBName;
                                 args.ParamNamesString = result;
                                 args.ParamType = row["SQL_ID"].ToString();
