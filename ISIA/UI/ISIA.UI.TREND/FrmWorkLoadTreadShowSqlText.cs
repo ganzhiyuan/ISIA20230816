@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using Steema.TeeChart;
 using Steema.TeeChart.Styles;
+using Steema.TeeChart.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,16 @@ namespace ISIA.UI.TREND
         public string DbName { get; set; }
         public DataTable dt { get; set; }
         public List<DataSet> listDs { get; set; }
-        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit,string thisDate)
+        DataTable linetable = new DataTable
+        {
+        Columns = {
+        new DataColumn("datetime", typeof(DateTime)),
+        new DataColumn("value", typeof(double))
+        }
+        };
+
+        DateTime linetime;
+        public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit,string thisDate , DateTime dateTime)
         {
             InitializeComponent();
             dtpStartTime.DateTime = Convert.ToDateTime(thisDate);
@@ -30,6 +40,13 @@ namespace ISIA.UI.TREND
             //dtpStartTime.DateTime = DateTime.ParseExact(thisDate, "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture);
             this.colName = colName;
             this.DbName = DBName;
+
+
+            var markstip = new MarksTip(tChartSqlText.Chart);
+            //ver line添加数据
+            linetime = dateTime;
+            linetable.Rows.Add(linetime, 0);
+            CreateTimeLine(linetable);
             foreach (DataColumn item in dt.Columns)
             {
                 if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
@@ -85,11 +102,15 @@ namespace ISIA.UI.TREND
                 tChartSqlText.Series.Add(item);
             }
 
+
+
             foreach (Line series in tChartSqlText.Series)
             {
                 series.Visible = false;
 
             }
+
+            tChartSqlText.Series[0].Visible = false;
         }
 
         private void tButton1_Click(object sender, EventArgs e)
@@ -194,6 +215,8 @@ namespace ISIA.UI.TREND
             //}
         }
 
+
+
         private void SelectionChanged()
         {
             dic = new Dictionary<int, DataSet>();
@@ -207,9 +230,11 @@ namespace ISIA.UI.TREND
 
             foreach (Line item in tChartSqlText.Series)
             {
+                
                 if (listStr.Contains(item.Title))
                 {
                     item.Visible = true;
+                    tChartSqlText.Series[0].Visible = true;
                 }
                 else
                 {
@@ -217,6 +242,8 @@ namespace ISIA.UI.TREND
                 }
             }
         }
+
+
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
@@ -272,10 +299,44 @@ namespace ISIA.UI.TREND
                 //line.Pointer.Color = Color.OrangeRed;
                 //line.Pointer.SizeDouble = 1;
                 line.XValues.DateTime = true;
+                line.GetSeriesMark += Line_GetSeriesMark;
+
+                void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
+                {
+                    e.MarkText = "PARAMETER_NAME :" + $"{colName}" + "\r\n" + "VALUE :" + $"{dstable.Tables[0].Rows[e.ValueIndex][colName]}" + "\r\n" + "TIME :" + $"{ dstable.Tables[0].Rows[e.ValueIndex]["WORKDATE"]}";
+                }
                 list.Add(line);
             }
             
             return list;
+        }
+
+
+        private void CreateTimeLine(DataTable dataTable)
+        {
+            
+                Line line = new Line();
+
+                line.DataSource = dataTable;
+                line.YValues.DataMember = "value";
+                line.XValues.DataMember = "datetime";
+                line.Legend.Visible = false;
+                line.Color = Color.OrangeRed;
+                //line.Title = dstable.Tables[0].Rows[0]["SQL_ID"].ToString();
+                line.Pointer.HorizSize = 4;
+                line.Pointer.VertSize = 4;
+
+                //line.ColorEachLine = true;
+                //line.Legend.Text = dstable.TableName;
+                line.Legend.BorderRound = 10;
+                line.Pointer.Style = PointerStyles.Circle;
+                line.Pointer.Visible = true;
+                //line.Pointer.Color = Color.OrangeRed;
+                //line.Pointer.SizeDouble = 1;
+                line.XValues.DateTime = true;
+                tChartSqlText.Series.Add(line);
+
+
         }
     }
 }

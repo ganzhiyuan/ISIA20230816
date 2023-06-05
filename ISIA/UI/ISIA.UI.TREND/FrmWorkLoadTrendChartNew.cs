@@ -436,6 +436,8 @@ namespace ISIA.UI.TREND
                             var snapId = dataSet.Rows[valueIndex]["SNAP_ID"].ToString();
                             string tbNm = dataSet.Rows[valueIndex]["PARAMENT_NAME"].ToString();
                             string instance_num= dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
+                            DateTime datetime = Convert.ToDateTime(dataSet.Rows[valueIndex]["END_INTERVAL_TIME"]);
+
                             //string beingtime = dataSet.Rows[valueIndex]["INSTANCE_NUMBER"].ToString();
                             var temp = ParamentRelationDS.Tables[0].AsEnumerable().FirstOrDefault(x => x.Field<string>("CONFIG_ID").ToUpper() == tbNm.ToUpper());
                             if (temp==null)
@@ -526,7 +528,7 @@ namespace ISIA.UI.TREND
                             if (errorCount != dsRelation.Tables[0].Rows.Count)
                             {
                                 wdf.Close();
-                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs, groupUnit, tempDt);
+                                frm = new FrmWorkLoadTreadShowSqlText(dsRelation.Tables[0], result, argsSel.DBName, listDs, groupUnit, tempDt , datetime);
                                 frm.ShowDialog();
                             }
                             else
