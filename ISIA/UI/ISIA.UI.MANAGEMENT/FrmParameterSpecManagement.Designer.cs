@@ -588,7 +588,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbDbName.DisplayMember = "DBNAME";
             this.cmbDbName.DominantControl = "";
             this.cmbDbName.EditValue = "";
-            this.cmbDbName.IsRequired = true;
+            this.cmbDbName.IsRequired = false;
             this.cmbDbName.Location = new System.Drawing.Point(116, 4);
             this.cmbDbName.Name = "cmbDbName";
             this.cmbDbName.NeedToTranslate = false;

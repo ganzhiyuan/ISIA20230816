@@ -32,6 +32,13 @@ namespace ISIA.UI.TREND
         };
 
         DateTime linetime;
+
+        CursorTool cuTool = new Steema.TeeChart.Tools.CursorTool()
+        {
+            Style = CursorToolStyles.Vertical,
+            FollowMouse = false,
+        };
+
         public FrmWorkLoadTreadShowSqlText(DataTable dt,string colName,string DBName, List<DataSet> listDs,string groupUnit,string thisDate , DateTime dateTime)
         {
             InitializeComponent();
@@ -45,8 +52,7 @@ namespace ISIA.UI.TREND
             var markstip = new MarksTip(tChartSqlText.Chart);
             //ver line添加数据
             linetime = dateTime;
-            linetable.Rows.Add(linetime, 0);
-            CreateTimeLine(linetable);
+           
             foreach (DataColumn item in dt.Columns)
             {
                 if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
@@ -111,6 +117,14 @@ namespace ISIA.UI.TREND
             }
 
             tChartSqlText.Series[0].Visible = false;
+
+
+            tChartSqlText.Tools.Add(cuTool);
+            cuTool.Pen.Color = Color.Red;
+            cuTool.Pen.Visible = false;
+            tChartSqlText.Draw();
+            cuTool.XValue = linetime.ToOADate();
+            
         }
 
         private void tButton1_Click(object sender, EventArgs e)
@@ -234,12 +248,21 @@ namespace ISIA.UI.TREND
                 if (listStr.Contains(item.Title))
                 {
                     item.Visible = true;
-                    tChartSqlText.Series[0].Visible = true;
+                    
                 }
                 else
                 {
                     item.Visible = false;
                 }
+            }
+
+            if (listStr.Count == 0 )
+            {
+                cuTool.Pen.Visible = false;
+            }
+            else
+            {
+                cuTool.Pen.Visible = true;
             }
         }
 
@@ -268,6 +291,13 @@ namespace ISIA.UI.TREND
             {
                 tChartSqlText.Series.Add(item);
             }
+
+
+            //
+
+
+
+
             SelectionChanged();
         }
 
@@ -312,31 +342,6 @@ namespace ISIA.UI.TREND
         }
 
 
-        private void CreateTimeLine(DataTable dataTable)
-        {
-            
-                Line line = new Line();
-
-                line.DataSource = dataTable;
-                line.YValues.DataMember = "value";
-                line.XValues.DataMember = "datetime";
-                line.Legend.Visible = false;
-                line.Color = Color.OrangeRed;
-                //line.Title = dstable.Tables[0].Rows[0]["SQL_ID"].ToString();
-                line.Pointer.HorizSize = 4;
-                line.Pointer.VertSize = 4;
-
-                //line.ColorEachLine = true;
-                //line.Legend.Text = dstable.TableName;
-                line.Legend.BorderRound = 10;
-                line.Pointer.Style = PointerStyles.Circle;
-                line.Pointer.Visible = true;
-                //line.Pointer.Color = Color.OrangeRed;
-                //line.Pointer.SizeDouble = 1;
-                line.XValues.DateTime = true;
-                tChartSqlText.Series.Add(line);
-
-
-        }
+        
     }
 }
