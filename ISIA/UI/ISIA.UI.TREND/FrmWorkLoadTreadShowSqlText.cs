@@ -120,7 +120,7 @@ namespace ISIA.UI.TREND
 
 
             tChartSqlText.Tools.Add(cuTool);
-            cuTool.Pen.Color = Color.Red;
+            cuTool.Pen.Color = Color.Blue;
             cuTool.Pen.Visible = false;
             tChartSqlText.Draw();
             cuTool.XValue = linetime.ToOADate();
