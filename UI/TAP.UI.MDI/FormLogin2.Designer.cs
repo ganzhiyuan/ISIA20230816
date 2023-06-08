@@ -120,7 +120,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(404, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "©iSET-DA 2011-2020";
+            this.label5.Text = "©iSET-DA 2011-2023";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // panel10
