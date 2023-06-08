@@ -1,4 +1,5 @@
 ﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using ISIA.COMMON;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
@@ -257,7 +258,11 @@ namespace ISIA.UI.TREND
                     TChart tChart = CreateCharts(AwrArgsPack.WorkloadNewParmMapping[dataSetTB.Tables[i].TableName],width, height, i, maxValue);
 
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
-                    flowLayoutPanel1.Controls.Add(tChart);
+                    //flowLayoutPanel1.Controls.Add(tChart);
+
+
+                    
+
 
                     List<SqlShow> listSqlShows = DataTableExtend.GetList<SqlShow>(dataSetTB.Tables[i]);
                     var listNum = listSqlShows.Select(x => x.INSTANCE_NUMBER).Distinct().ToList();
@@ -281,10 +286,12 @@ namespace ISIA.UI.TREND
                     double dateTime = DateTime.Now.AddDays(-60).ToOADate();
                     cuTool.YValue = dateTime;*/
 
-                   
-
+                    
+                    
                 }
             }
+
+            
         }
 
         private TChart CreateCharts(string strName,int width, int height, int i,decimal maxValue)
@@ -296,10 +303,25 @@ namespace ISIA.UI.TREND
             {
                 strName = strName.Substring(0, strName.Length - 5);
             }
+
+
+            PanelControl pc = new PanelControl();
+            pc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            pc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            pc.LookAndFeel.UseDefaultLookAndFeel = false;
+            pc.Appearance.BorderColor = Color.Blue;
+            pc.Padding = new Padding(0);
+            pc.Controls.Add(tChart);
+            flowLayoutPanel1.Controls.Add(pc);
+            pc.Width = width - 10;
+            pc.Height = height - 10;
+            pc.Name = strName;
+
+            tChart.Dock = DockStyle.Fill;
             tChart.Text = strName ;
             tChart.Tag = i;
-            tChart.Width = width - 10;
-            tChart.Height = height - 10;
+            //tChart.Width = width - 10;
+            //tChart.Height = height - 10;
             tChart.Axes.Bottom.Labels.DateTimeFormat = "MM-dd";
             tChart.Axes.Bottom.Labels.ExactDateTime = true;//x轴显示横坐标为时间
             tChart.Axes.Left.Minimum = 0; //设置左侧轴的最小值为0
@@ -323,27 +345,34 @@ namespace ISIA.UI.TREND
         private void TChart_DoubleClick(object sender, EventArgs e)
         {
             TChart tchart = sender as TChart;
-            string a =  tchart.Text;
+            string chartname =  tchart.Text;
             int width = flowLayoutPanel1.ClientSize.Width ;
             int height = flowLayoutPanel1.ClientSize.Height ;
-            if (tchart.Width == width - 10 && tchart.Height == height - 10)
+            if (tchart.Width > flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) )
             {
 
-                foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>().ToArray())
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<PanelControl>().ToArray())
                 {
                     chart.Width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) - 10;
                     chart.Height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(3) - 10;
                     chart.Visible = true;
+                    /*chart.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    chart.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    chart.LookAndFeel.UseDefaultLookAndFeel = false;
+                    chart.Appearance.BorderColor = Color.Blue;
+                    chart.Padding = new Padding(0);*/
+                    chart.Appearance.BorderColor = Color.Blue;
                 }
             }
             else
             {
-                foreach (var chart in flowLayoutPanel1.Controls.OfType<TChart>().ToArray())
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<PanelControl>().ToArray())
                 {
-                    if (chart.Text == tchart.Text)
+                    if (chart.Name == tchart.Text)
                     {
                         chart.Width = width - 10;
                         chart.Height = height - 10;
+                        chart.Appearance.BorderColor = Color.White;
                     }
                     else
                     {

@@ -381,10 +381,19 @@ namespace ISIA.UI.ADMINISTRATOE
             DataClient tmpDataClient = new DataClient();
             string tmpSql = string.Format("select *  from tapctlinkage where GROUPNAME='{0}'  and TAGETUI='0'",
             frm.args.GroupName);
-            DataTable dt1 = tmpDataClient.SelectData(tmpSql, "tapctlinkage").Tables[0];
-            if (dt1 == null)
+            if (string.IsNullOrEmpty(frm.args.GroupName) || string.IsNullOrEmpty(frm.args.MessageName))
             {
+                
                 return;
+            }
+
+            DataTable dt1 = tmpDataClient.SelectData(tmpSql, "tapctlinkage").Tables[0];
+            if (dt1.Rows.Count > 0)
+            {
+                string errMessage = "Parameter already exists";
+                TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
+                return;
+                
             }
             
 
