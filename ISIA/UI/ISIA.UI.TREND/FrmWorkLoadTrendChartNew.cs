@@ -319,7 +319,7 @@ namespace ISIA.UI.TREND
             pc.Padding = new Padding(0);
             pc.Controls.Add(tChart);
             flowLayoutPanel1.Controls.Add(pc);
-            pc.Width = width - 10;
+            pc.Width = width - 20;
             pc.Height = height - 10;
             pc.Name = strName;
 
@@ -354,12 +354,13 @@ namespace ISIA.UI.TREND
             string chartname =  tchart.Text;
             int width = flowLayoutPanel1.ClientSize.Width ;
             int height = flowLayoutPanel1.ClientSize.Height ;
+            flowLayoutPanel1.AutoScroll = false;
             if (tchart.Width > flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) )
             {
 
                 foreach (var chart in flowLayoutPanel1.Controls.OfType<PanelControl>().ToArray())
                 {
-                    chart.Width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) - 10;
+                    chart.Width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) - 20;
                     chart.Height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(3) - 10;
                     chart.Visible = true;
                     /*chart.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
@@ -376,8 +377,8 @@ namespace ISIA.UI.TREND
                 {
                     if (chart.Name == tchart.Text)
                     {
-                        chart.Width = width - 10;
-                        chart.Height = height - 10;
+                        chart.Width = width - 20;
+                        chart.Height = height - 20;
                         chart.Appearance.BorderColor = Color.White;
                     }
                     else
