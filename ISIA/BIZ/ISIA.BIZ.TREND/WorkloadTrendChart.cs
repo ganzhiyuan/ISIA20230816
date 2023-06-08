@@ -500,9 +500,9 @@ SELECT sm.dbid
                 tmpSql.Append("       (SELECT T.Snap_Id ");
                 tmpSql.AppendFormat("          FROM raw_dba_hist_snapshot_{0} T ", arguments.DBName);
                 //tmpSql.AppendFormat("  where to_char ( t.begin_interval_time , 'yyyy-MM-dd HH24:mi:ss') = '{0}' ", arguments.StartTime);
-                tmpSql.Append("         WHERE T.END_INTERVAL_TIME > ");
+                tmpSql.Append("         WHERE T.begin_interval_time > ");
                 tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime);
-                tmpSql.Append("           and t.end_interval_time <= ");
+                tmpSql.Append("           and t.begin_interval_time <= ");
                 tmpSql.AppendFormat("               TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTime);
                 tmpSql.AppendFormat("          )) b ");
                 tmpSql.AppendFormat("          where {0} is not null", arguments.ParamNamesString);

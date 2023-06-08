@@ -261,7 +261,7 @@ namespace ISIA.UI.TREND
                     pc.Height = height - 10;
                     pc.Width = width - 10;
                     pc.Appearance.BorderColor = Color.Blue;
-                    tChart.Dock = DockStyle.Fill;
+                    tChart.Dock=DockStyle.Fill;
                     pc.Controls.Add(tChart);
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
                     flowLayoutPanel1.Controls.Add(pc);
