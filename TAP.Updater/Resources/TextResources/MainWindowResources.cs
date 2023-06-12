@@ -1,4 +1,6 @@
-﻿namespace TAP.UPDATER.Resources.TextResources {
+﻿using System.Configuration;
+
+namespace TAP.UPDATER.Resources.TextResources {
     /// <summary>
     /// The class with the text resources of all main window's textual fields.
     /// </summary>
@@ -26,7 +28,7 @@
         /// <summary>
         /// Your client's launcher.
         /// </summary>
-        public static readonly string STARTER = "ISIA.exe";
+        public static readonly string STARTER = ConfigurationManager.AppSettings["STARTER"];
 
         /// <summary>
         /// The text description of the window triggered whenever there is already another instance of the Auto-Updater running.

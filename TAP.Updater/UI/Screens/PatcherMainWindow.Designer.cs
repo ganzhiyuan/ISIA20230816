@@ -34,12 +34,11 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.speed = new System.Windows.Forms.Label();
             this.filecount = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.wholeProgressBar = new DevExpress.XtraEditors.ProgressBarControl();
             this.fileProgressBar = new DevExpress.XtraEditors.ProgressBarControl();
             this.starter = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.wholeProgressBar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileProgressBar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -89,15 +88,6 @@
             this.filecount.TabIndex = 11;
             this.filecount.Text = "filecount";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(169, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(85, 79);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // wholeProgressBar
             // 
             this.wholeProgressBar.Location = new System.Drawing.Point(14, 109);
@@ -140,17 +130,29 @@
             this.groupControl1.Size = new System.Drawing.Size(426, 35);
             this.groupControl1.TabIndex = 14;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.labelControl1.ImageOptions.Image = global::TAP.UPDATER.Properties.Resources.convert_32x32;
+            this.labelControl1.Location = new System.Drawing.Point(116, 25);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(196, 36);
+            this.labelControl1.TabIndex = 15;
+            this.labelControl1.Text = "Intergrated System";
+            // 
             // PatcherMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 226);
+            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.fileProgressBar);
             this.Controls.Add(this.wholeProgressBar);
             this.Controls.Add(this.filecount);
             this.Controls.Add(this.speed);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.loggerDisplay);
             this.Controls.Add(this.downloaderDisplay);
             this.DoubleBuffered = true;
@@ -163,7 +165,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.loadWindow);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wholeProgressBar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileProgressBar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -179,11 +180,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label speed;
         private System.Windows.Forms.Label filecount;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private DevExpress.XtraEditors.ProgressBarControl wholeProgressBar;
         private DevExpress.XtraEditors.ProgressBarControl fileProgressBar;
         private DevExpress.XtraEditors.SimpleButton starter;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
 

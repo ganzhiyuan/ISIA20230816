@@ -75,3 +75,4 @@ D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe.config
 D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.exe.licenses
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.exe
+D:\Git_Project\ISIA\_bin\UPDATER\README.txt

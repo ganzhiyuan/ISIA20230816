@@ -1,4 +1,7 @@
-﻿namespace TAP.UPDATER.Resources.Configs {
+﻿using System;
+using System.Configuration;
+
+namespace TAP.UPDATER.Resources.Configs {
     /// <summary>
     /// The class with the required configuration to be used by the downloader.
     /// </summary>
@@ -6,22 +9,22 @@
         /// <summary>
         /// The number of attempts to successfully download a file before throwing a specific Exception.
         /// </summary>
-        public static readonly int MAX_DOWNLOAD_RETRIES_PER_FILE = 10;
+        public static readonly int MAX_DOWNLOAD_RETRIES_PER_FILE = Int32.Parse(ConfigurationManager.AppSettings["MAX_DOWNLOAD_RETRIES_PER_FILE"]);
 
         /// <summary>
         /// The base time (in milliseconds) that the downloader will spend sleeping before retrying a failed download.
         /// </summary>
-        public static readonly int BASE_MS_SLEEP_TIME_BETWEEN_DOWNLOAD_RETRIES = 1000;
+        public static readonly int BASE_MS_SLEEP_TIME_BETWEEN_DOWNLOAD_RETRIES = Int32.Parse(ConfigurationManager.AppSettings["BASE_MS_SLEEP_TIME_BETWEEN_DOWNLOAD_RETRIES"]);
 
         /// <summary>
         /// The time (in milliseconds) that the downloader will spend waiting for the current read request to be completed before closing the stream by force, thus throwing an <c>ObjectDisposedException</c>.
         /// </summary>
-        public static readonly int TIMEOUT_MS_WAITING_FOR_READ = 5000;
+        public static readonly int TIMEOUT_MS_WAITING_FOR_READ = Int32.Parse(ConfigurationManager.AppSettings["TIMEOUT_MS_WAITING_FOR_READ"]);
 
         /// <summary>
         /// The downloader's buffer size, in bytes.
         /// </summary>
-        public static readonly int BUFFER_SIZE = 8192;
+        public static readonly int BUFFER_SIZE = Int32.Parse(ConfigurationManager.AppSettings["BUFFER_SIZE"]);
 
         /// <summary>
         /// How many logs to the UI Thread will the downloader always omit between performed reads.
