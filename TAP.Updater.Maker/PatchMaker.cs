@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -31,6 +32,8 @@ namespace TAP.Updater.Maker
         {
             InitializeComponent();
             Hasher = new Md5Hasher();
+            txtAddress.Text = ConfigurationManager.AppSettings["SERVICE_ADDRESS"];
+            txtOutputFile.Text = ConfigurationManager.AppSettings["OUTPUTFILE"];
         }
 
         private void textEdit1_Click(object sender, EventArgs e)
