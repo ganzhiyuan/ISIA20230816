@@ -83,7 +83,7 @@ namespace ISIA.UI.TREND
         {
             try
             {
-                if (string.IsNullOrEmpty(cmbDbName.Text))
+                if (string.IsNullOrEmpty(tLUCKDbname.Text))
                 {
                     string errMessage = "Please select DB_NAME";
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
@@ -110,8 +110,8 @@ namespace ISIA.UI.TREND
         {
             args.StartTime = dtpStartTime.DateTime.ToString("yyyyMMdd");
             args.EndTime = dtpEndTime.DateTime.ToString("yyyyMMdd");
-            args.DBName = cmbDbName.Text.Split('(')[0];
-            args.DBID = cmbDbName.EditValue.ToString();
+            args.DBName = tLUCKDbname.Text.ToString().Split('(')[0];
+            args.DBID = tLUCKDbname.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
             if (cmbGroupUnit.EditValue.ToString()=="DAY")
             {
@@ -722,7 +722,7 @@ namespace ISIA.UI.TREND
 
         private void cmbDbName_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(cmbDbName.Text))
+            if (!string.IsNullOrEmpty(tLUCKDbname.Text))
             {
                 cmbInstance.EditValue = 1;
                 cmbInstance.Text = "1";
@@ -731,8 +731,14 @@ namespace ISIA.UI.TREND
 
         private void FrmWorkLoadTrendChartNew_Load(object sender, EventArgs e)
         {
-            cmbDbName.Setting();
-            cmbDbName.Properties.Items[0].CheckState = CheckState.Checked;
+            //cmbDbName.Setting();
+            //cmbDbName.Properties.Items[0].CheckState = CheckState.Checked;
+            tLUCKDbname.Setting();
+            var a = tLUCKDbname.Properties.DataSource as DataTable;
+            var b = a.AsEnumerable().FirstOrDefault().Field<string>("DBID");
+            //tLUCKDbname.SelectedText = b;
+            tLUCKDbname.Text = b;
+            tLUCKDbname.EditValue = b;
             btnSelect_Click(null,null);
         }
     }

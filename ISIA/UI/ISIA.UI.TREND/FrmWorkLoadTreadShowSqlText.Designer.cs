@@ -68,12 +68,12 @@ namespace ISIA.UI.TREND
             this.tChartSqlText = new Steema.TeeChart.TChart();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.dtpStartTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
+            this.dtpEndTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dtpEndTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -105,13 +105,13 @@ namespace ISIA.UI.TREND
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
@@ -271,34 +271,34 @@ namespace ISIA.UI.TREND
             // 
             // txtParsing
             // 
-            this.txtParsing.Location = new System.Drawing.Point(797, 41);
+            this.txtParsing.Location = new System.Drawing.Point(789, 41);
             this.txtParsing.Name = "txtParsing";
             this.txtParsing.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtParsing.Properties.Appearance.Options.UseBackColor = true;
             this.txtParsing.Properties.ReadOnly = true;
-            this.txtParsing.Size = new System.Drawing.Size(257, 20);
+            this.txtParsing.Size = new System.Drawing.Size(265, 20);
             this.txtParsing.StyleController = this.layoutControl1;
             this.txtParsing.TabIndex = 118;
             // 
             // txtMOdule
             // 
-            this.txtMOdule.Location = new System.Drawing.Point(797, 12);
+            this.txtMOdule.Location = new System.Drawing.Point(789, 12);
             this.txtMOdule.Name = "txtMOdule";
             this.txtMOdule.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtMOdule.Properties.Appearance.Options.UseBackColor = true;
             this.txtMOdule.Properties.ReadOnly = true;
-            this.txtMOdule.Size = new System.Drawing.Size(257, 20);
+            this.txtMOdule.Size = new System.Drawing.Size(265, 20);
             this.txtMOdule.StyleController = this.layoutControl1;
             this.txtMOdule.TabIndex = 117;
             // 
             // txtAction
             // 
-            this.txtAction.Location = new System.Drawing.Point(165, 41);
+            this.txtAction.Location = new System.Drawing.Point(157, 41);
             this.txtAction.Name = "txtAction";
             this.txtAction.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtAction.Properties.Appearance.Options.UseBackColor = true;
             this.txtAction.Properties.ReadOnly = true;
-            this.txtAction.Size = new System.Drawing.Size(401, 20);
+            this.txtAction.Size = new System.Drawing.Size(409, 20);
             this.txtAction.StyleController = this.layoutControl1;
             this.txtAction.TabIndex = 116;
             // 
@@ -345,13 +345,13 @@ namespace ISIA.UI.TREND
             this.SqlView.DragDropMode = DevExpress.XtraRichEdit.DragDropMode.Manual;
             this.SqlView.IsRequired = false;
             this.SqlView.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.SqlView.Location = new System.Drawing.Point(165, 70);
+            this.SqlView.Location = new System.Drawing.Point(157, 70);
             this.SqlView.Name = "SqlView";
             this.SqlView.NeedToTranslate = false;
             this.SqlView.Options.DocumentSaveOptions.CurrentFormat = DevExpress.XtraRichEdit.DocumentFormat.PlainText;
             this.SqlView.ReadOnly = true;
             this.SqlView.RepresentativeValue = "";
-            this.SqlView.Size = new System.Drawing.Size(889, 102);
+            this.SqlView.Size = new System.Drawing.Size(897, 102);
             this.SqlView.TabIndex = 113;
             // 
             // tButton1
@@ -389,12 +389,12 @@ namespace ISIA.UI.TREND
             // 
             // txtSqlId
             // 
-            this.txtSqlId.Location = new System.Drawing.Point(165, 12);
+            this.txtSqlId.Location = new System.Drawing.Point(157, 12);
             this.txtSqlId.Name = "txtSqlId";
             this.txtSqlId.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtSqlId.Properties.Appearance.Options.UseBackColor = true;
             this.txtSqlId.Properties.ReadOnly = true;
-            this.txtSqlId.Size = new System.Drawing.Size(401, 20);
+            this.txtSqlId.Size = new System.Drawing.Size(409, 20);
             this.txtSqlId.StyleController = this.layoutControl1;
             this.txtSqlId.TabIndex = 4;
             // 
@@ -1812,7 +1812,7 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
             this.dtpStartTime.Format = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.IsRequired = false;
-            this.dtpStartTime.Location = new System.Drawing.Point(789, 12);
+            this.dtpStartTime.Location = new System.Drawing.Point(781, 12);
             this.dtpStartTime.Margin = new System.Windows.Forms.Padding(2);
             this.dtpStartTime.Name = "dtpStartTime";
             this.dtpStartTime.NeedToTranslate = true;
@@ -1825,11 +1825,41 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
-            this.dtpStartTime.Size = new System.Drawing.Size(99, 20);
+            this.dtpStartTime.Size = new System.Drawing.Size(107, 20);
             this.dtpStartTime.StyleController = this.layoutControl3;
             this.dtpStartTime.TabIndex = 5;
+            // 
+            // dtpEndTime
+            // 
+            this.dtpEndTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.dtpEndTime.Checked = false;
+            this.dtpEndTime.ControlID = "dtpStartTime1";
+            this.dtpEndTime.CustomFormat = "yyyy-MM-dd";
+            this.dtpEndTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpEndTime.Format = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.IsRequired = false;
+            this.dtpEndTime.Location = new System.Drawing.Point(950, 12);
+            this.dtpEndTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.NeedToTranslate = true;
+            this.dtpEndTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.dtpEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpEndTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpEndTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
+            this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
+            this.dtpEndTime.Size = new System.Drawing.Size(104, 20);
+            this.dtpEndTime.StyleController = this.layoutControl3;
+            this.dtpEndTime.TabIndex = 5;
             // 
             // layoutControlGroup2
             // 
@@ -1879,34 +1909,6 @@ namespace ISIA.UI.TREND
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(711, 29);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // dtpEndTime
-            // 
-            this.dtpEndTime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.dtpEndTime.Checked = false;
-            this.dtpEndTime.ControlID = "dtpStartTime1";
-            this.dtpEndTime.CustomFormat = "yyyy-MM-dd";
-            this.dtpEndTime.EditValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
-            this.dtpEndTime.Format = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.IsRequired = false;
-            this.dtpEndTime.Location = new System.Drawing.Point(958, 12);
-            this.dtpEndTime.Margin = new System.Windows.Forms.Padding(2);
-            this.dtpEndTime.Name = "dtpEndTime";
-            this.dtpEndTime.NeedToTranslate = true;
-            this.dtpEndTime.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.dtpEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpEndTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpEndTime.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-            this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
-            this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
-            this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
-            this.dtpEndTime.Size = new System.Drawing.Size(96, 20);
-            this.dtpEndTime.StyleController = this.layoutControl3;
-            this.dtpEndTime.TabIndex = 5;
             // 
             // layoutControlItem16
             // 
@@ -1961,13 +1963,13 @@ namespace ISIA.UI.TREND
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpEndTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
 
