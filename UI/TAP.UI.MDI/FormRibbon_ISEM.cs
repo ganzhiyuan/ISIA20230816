@@ -370,8 +370,8 @@ namespace TAP.UI.MDI
                 {
                     if (TAP.Base.Configuration.ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.NeedToDeploy)
                     {                        
-                        Deploy deploy = new Deploy();
-                        deploy.DeployFiles();
+                        //Deploy deploy = new Deploy();
+                        //deploy.DeployFiles();
                         _uiLog.WriteLog("MDI", "T", TapBase.Instance.MachineName, TapBase.Instance.IPAddress, "Check last application files.....OK");
                         AsyncMessage.Progress++;                        
                     }

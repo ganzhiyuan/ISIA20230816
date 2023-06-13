@@ -53,13 +53,13 @@ namespace ISIA.UI.TREND
             //ver line添加数据
             linetime = dateTime;
            
-            foreach (DataColumn item in dt.Columns)
-            {
-                if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
-                {
-                    item.ColumnName = "PHYSICAL_WRITE_BLOCK_DELTA";
-                }
-            }
+            //foreach (DataColumn item in dt.Columns)
+            //{
+            //    if (item.ColumnName.ToUpper()=="PHYSICAL_WRITE_BYTES_DELTA")
+            //    {
+            //        item.ColumnName = "PHYSICAL_WRITE_BLOCK_DELTA";
+            //    }
+            //}
             if (groupUnit == "DAY")
             {
                 foreach (DataColumn item in dt.Columns)

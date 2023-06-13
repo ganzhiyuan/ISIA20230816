@@ -3486,6 +3486,26 @@ namespace ISIA.BIZ.COMMON
                 throw ex;
             }
         }
+        public void GetDatabaseValue()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("SELECT DBID,DBNAME,dbname||'('||dbid||')'  AS dbvalue FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
 
         public void GetRule()
         {
