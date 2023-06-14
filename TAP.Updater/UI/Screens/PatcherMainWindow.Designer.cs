@@ -132,13 +132,13 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.labelControl1.ImageOptions.Image = global::TAP.UPDATER.Properties.Resources.convert_32x32;
             this.labelControl1.Location = new System.Drawing.Point(116, 25);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(196, 36);
+            this.labelControl1.Size = new System.Drawing.Size(193, 36);
             this.labelControl1.TabIndex = 15;
             this.labelControl1.Text = "Intergrated System";
             // 
