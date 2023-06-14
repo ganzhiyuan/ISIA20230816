@@ -120,7 +120,7 @@ namespace ISIA.UI.TREND
 
 
             tChartSqlText.Tools.Add(cuTool);
-            cuTool.Pen.Color = Color.Blue;
+            cuTool.Pen.Color = Color.OrangeRed;
             cuTool.Pen.Visible = false;
             tChartSqlText.Draw();
             cuTool.XValue = linetime.ToOADate();
@@ -316,7 +316,7 @@ namespace ISIA.UI.TREND
                 line.YValues.DataMember = colName;
                 line.XValues.DataMember = "WORKDATE";
                 line.Legend.Visible = false;
-                line.Color = Color.OrangeRed;
+                line.Color = Color.FromArgb(66, 99, 235);
                 line.Title = dstable.Tables[0].Rows[0]["SQL_ID"].ToString();
                 line.Pointer.HorizSize = 1;
                 line.Pointer.VertSize = 1;

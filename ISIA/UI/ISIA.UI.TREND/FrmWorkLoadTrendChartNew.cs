@@ -36,7 +36,7 @@ namespace ISIA.UI.TREND
         object[] result = new object[2];
         DataSet ParamentRelationDS = new DataSet();
         public string groupUnit { get; set; }
-        List<Color> colors = new List<Color> { Color.FromArgb(218,129,55),Color.Red, Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
+        List<Color> colors = new List<Color> { Color.FromArgb(51, 154, 240),Color.DarkBlue, Color.FromArgb(74, 126, 187), Color.FromArgb(190, 75, 72), Color.FromArgb(152,185,84),
             Color.FromArgb(125,96,160), Color.FromArgb(70,170,197)  };
 
 
@@ -315,7 +315,7 @@ namespace ISIA.UI.TREND
             pc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             pc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             pc.LookAndFeel.UseDefaultLookAndFeel = false;
-            pc.Appearance.BorderColor = Color.Blue;
+            pc.Appearance.BorderColor = Color.Black;
             pc.Padding = new Padding(0);
             pc.Controls.Add(tChart);
             flowLayoutPanel1.Controls.Add(pc);
@@ -418,7 +418,8 @@ namespace ISIA.UI.TREND
             line.YValues.DataMember = "PARAMENT_VALUE";
             line.XValues.DataMember = "END_INTERVAL_TIME";
             line.Legend.Visible = false;
-            line.Color = colors[i];
+            //line.Color = colors[i];
+            line.Color = Color.FromArgb(66, 99, 235);
 
             
             line.Pointer.HorizSize = 1;
