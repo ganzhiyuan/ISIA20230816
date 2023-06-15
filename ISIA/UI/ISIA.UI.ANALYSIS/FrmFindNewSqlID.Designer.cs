@@ -38,7 +38,7 @@ namespace ISIA.UI.ANALYSIS
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarPeriod = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.lcPeriod = new DevExpress.XtraLayout.LayoutControl();
             this.dtpStartTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
@@ -53,7 +53,7 @@ namespace ISIA.UI.ANALYSIS
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -66,11 +66,11 @@ namespace ISIA.UI.ANALYSIS
             this.colWeek2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWeek3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWeek4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSqlType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSqlType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SqlView = new TAP.UIControls.BasicControlsDEV.THtmlView();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
@@ -282,7 +282,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup2;
+            this.navBarControl1.ActiveGroup = this.navBarPeriod;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer3);
@@ -290,8 +290,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup2,
-            this.navBarGroup1});
+            this.navBarPeriod,
+            this.navBarSearch});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem2});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
@@ -306,24 +306,24 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup2
+            // navBarPeriod
             // 
-            this.navBarGroup2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
-            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup2.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.navBarGroup2.Appearance.Options.UseBackColor = true;
-            this.navBarGroup2.Appearance.Options.UseFont = true;
-            this.navBarGroup2.Appearance.Options.UseForeColor = true;
-            this.navBarGroup2.AppearanceBackground.BackColor = System.Drawing.Color.White;
-            this.navBarGroup2.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
-            this.navBarGroup2.AppearanceBackground.Options.UseBackColor = true;
-            this.navBarGroup2.AppearanceBackground.Options.UseForeColor = true;
-            this.navBarGroup2.Caption = "Date Period";
-            this.navBarGroup2.ControlContainer = this.navBarGroupControlContainer1;
-            this.navBarGroup2.Expanded = true;
-            this.navBarGroup2.GroupClientHeight = 48;
-            this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup2.Name = "navBarGroup2";
+            this.navBarPeriod.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(236)))), ((int)(((byte)(252)))));
+            this.navBarPeriod.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.navBarPeriod.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.navBarPeriod.Appearance.Options.UseBackColor = true;
+            this.navBarPeriod.Appearance.Options.UseFont = true;
+            this.navBarPeriod.Appearance.Options.UseForeColor = true;
+            this.navBarPeriod.AppearanceBackground.BackColor = System.Drawing.Color.White;
+            this.navBarPeriod.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
+            this.navBarPeriod.AppearanceBackground.Options.UseBackColor = true;
+            this.navBarPeriod.AppearanceBackground.Options.UseForeColor = true;
+            this.navBarPeriod.Caption = "Date Period";
+            this.navBarPeriod.ControlContainer = this.navBarGroupControlContainer1;
+            this.navBarPeriod.Expanded = true;
+            this.navBarPeriod.GroupClientHeight = 48;
+            this.navBarPeriod.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarPeriod.Name = "navBarPeriod";
             // 
             // navBarGroupControlContainer1
             // 
@@ -522,16 +522,16 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // navBarGroup1
+            // navBarSearch
             // 
-            this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.navBarGroup1.Appearance.Options.UseBackColor = true;
-            this.navBarGroup1.Caption = "Search options";
-            this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.GroupClientHeight = 45;
-            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarSearch.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarSearch.Appearance.Options.UseBackColor = true;
+            this.navBarSearch.Caption = "Search options";
+            this.navBarSearch.ControlContainer = this.navBarGroupControlContainer3;
+            this.navBarSearch.Expanded = true;
+            this.navBarSearch.GroupClientHeight = 45;
+            this.navBarSearch.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarSearch.Name = "navBarSearch";
             // 
             // navBarItem2
             // 
@@ -661,14 +661,6 @@ namespace ISIA.UI.ANALYSIS
             this.colWeek4.Visible = true;
             this.colWeek4.VisibleIndex = 4;
             // 
-            // colSqlType
-            // 
-            this.colSqlType.Caption = "SqlType";
-            this.colSqlType.FieldName = "SqlType";
-            this.colSqlType.Name = "colSqlType";
-            this.colSqlType.Visible = true;
-            this.colSqlType.VisibleIndex = 10;
-            // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "MODULE";
@@ -700,6 +692,14 @@ namespace ISIA.UI.ANALYSIS
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 9;
+            // 
+            // colSqlType
+            // 
+            this.colSqlType.Caption = "SqlType";
+            this.colSqlType.FieldName = "SqlType";
+            this.colSqlType.Name = "colSqlType";
+            this.colSqlType.Visible = true;
+            this.colSqlType.VisibleIndex = 10;
             // 
             // SqlView
             // 
@@ -780,7 +780,7 @@ namespace ISIA.UI.ANALYSIS
         public DevExpress.XtraBars.Navigation.TabPane tabPane1;
         public DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
         public DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
+        public DevExpress.XtraNavBar.NavBarGroup navBarPeriod;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
         public DevExpress.XtraLayout.LayoutControl lcPeriod;
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
@@ -798,7 +798,7 @@ namespace ISIA.UI.ANALYSIS
         private DevExpress.XtraGrid.Columns.GridColumn colWeek4;
         private DevExpress.XtraGrid.Columns.GridColumn colAvg;
         private DevExpress.XtraGrid.Columns.GridColumn colSqlType;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraNavBar.NavBarGroup navBarSearch;
         public DevExpress.XtraLayout.LayoutControl layoutControl3;
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;

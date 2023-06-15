@@ -36,6 +36,7 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.txtMainCustom = new DevExpress.XtraEditors.TextEdit();
@@ -56,12 +57,12 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarOptions = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer4 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
             this.rdoIsalive = new DevExpress.XtraEditors.RadioGroup();
@@ -98,7 +99,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -353,14 +353,14 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup3;
+            this.navBarControl1.ActiveGroup = this.navBarSearch;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer2);
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup3});
+            this.navBarSearch});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem2});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
@@ -374,6 +374,19 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl1.Size = new System.Drawing.Size(235, 461);
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
+            // 
+            // navBarSearch
+            // 
+            this.navBarSearch.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarSearch.Appearance.Options.UseBackColor = true;
+            this.navBarSearch.Caption = "Search options";
+            this.navBarSearch.ControlContainer = this.navBarGroupControlContainer2;
+            this.navBarSearch.Expanded = true;
+            this.navBarSearch.GroupClientHeight = 168;
+            this.navBarSearch.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarSearch.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
+            this.navBarSearch.Name = "navBarSearch";
             // 
             // navBarGroupControlContainer2
             // 
@@ -607,19 +620,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // navBarGroup3
-            // 
-            this.navBarGroup3.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.navBarGroup3.Appearance.Options.UseBackColor = true;
-            this.navBarGroup3.Caption = "Search options";
-            this.navBarGroup3.ControlContainer = this.navBarGroupControlContainer2;
-            this.navBarGroup3.Expanded = true;
-            this.navBarGroup3.GroupClientHeight = 168;
-            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
-            this.navBarGroup3.Name = "navBarGroup3";
-            // 
             // navBarItem2
             // 
             this.navBarItem2.Caption = "navBarItem1";
@@ -677,14 +677,14 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup8;
+            this.navBarControl2.ActiveGroup = this.navBarOptions;
             this.navBarControl2.BackColor = System.Drawing.Color.White;
             this.navBarControl2.Controls.Add(this.navBarGroupControlContainer4);
             this.navBarControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl2.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl2.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl2.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup8});
+            this.navBarOptions});
             this.navBarControl2.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1});
             this.navBarControl2.Location = new System.Drawing.Point(0, 0);
@@ -698,6 +698,19 @@ namespace ISIA.UI.MANAGEMENT
             this.navBarControl2.Size = new System.Drawing.Size(235, 578);
             this.navBarControl2.TabIndex = 8;
             this.navBarControl2.Text = "navBarControl2";
+            // 
+            // navBarOptions
+            // 
+            this.navBarOptions.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarOptions.Appearance.Options.UseBackColor = true;
+            this.navBarOptions.Caption = "options";
+            this.navBarOptions.ControlContainer = this.navBarGroupControlContainer4;
+            this.navBarOptions.Expanded = true;
+            this.navBarOptions.GroupClientHeight = 416;
+            this.navBarOptions.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarOptions.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
+            this.navBarOptions.Name = "navBarOptions";
             // 
             // navBarGroupControlContainer4
             // 
@@ -1134,19 +1147,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
-            // navBarGroup8
-            // 
-            this.navBarGroup8.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.navBarGroup8.Appearance.Options.UseBackColor = true;
-            this.navBarGroup8.Caption = "options";
-            this.navBarGroup8.ControlContainer = this.navBarGroupControlContainer4;
-            this.navBarGroup8.Expanded = true;
-            this.navBarGroup8.GroupClientHeight = 416;
-            this.navBarGroup8.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
-            this.navBarGroup8.Name = "navBarGroup8";
-            // 
             // navBarItem1
             // 
             this.navBarItem1.Caption = "navBarItem1";
@@ -1420,12 +1420,12 @@ namespace ISIA.UI.MANAGEMENT
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
             // 
-            // FrmDataBaseManagement
+            // FrmCodeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 671);
-            this.Name = "FrmDataBaseManagement";
+            this.Name = "FrmCodeManagement";
             this.Text = "FrmDataBaseManagement";
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
@@ -1517,7 +1517,7 @@ namespace ISIA.UI.MANAGEMENT
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         public DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
+        public DevExpress.XtraNavBar.NavBarGroup navBarSearch;
         public DevExpress.XtraNavBar.NavBarItem navBarItem2;
         public DevExpress.XtraLayout.LayoutControlGroup Root;
         public DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
@@ -1555,7 +1555,7 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup8;
+        public DevExpress.XtraNavBar.NavBarGroup navBarOptions;
         public DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private TAP.UIControls.BasicControlsDEV.TButton btnDel;

@@ -34,7 +34,7 @@
             this.tPanel6 = new TAP.UIControls.BasicControls.TPanel();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup13 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarBasic = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.cboMessageType = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
@@ -47,7 +47,7 @@
             this.tPanel7 = new TAP.UIControls.BasicControls.TPanel();
             this.btnSave = new TAP.UIControls.BasicControlsDEV.TButton();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarbas = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer3 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.custom05 = new TAP.UIControls.BasicControlsDEV.TTextBox();
@@ -104,6 +104,7 @@
             this.dpnlRight_Container.SuspendLayout();
             this.dpnlLeft.SuspendLayout();
             this.tPanelBottomBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
             this.tabPane1.SuspendLayout();
@@ -183,11 +184,13 @@
             this.dpnlRight.Options.ShowCloseButton = false;
             this.dpnlRight.Options.ShowMaximizeButton = false;
             this.dpnlRight.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.dpnlRight.SavedSizeFactor = 1D;
             // 
             // dpnlRight_Container
             // 
             this.dpnlRight_Container.Controls.Add(this.gridControl1);
             this.dpnlRight_Container.Controls.Add(this.tPanel8);
+            this.dpnlRight_Container.Size = new System.Drawing.Size(796, 487);
             // 
             // dpnlLeft
             // 
@@ -199,10 +202,10 @@
             this.dpnlLeft.Appearance.Options.UseForeColor = true;
             this.dpnlLeft.Options.ShowCloseButton = false;
             this.dpnlLeft.Options.ShowMaximizeButton = false;
+            this.dpnlLeft.SavedSizeFactor = 1D;
             // 
             // tabPane1
             // 
-            this.tabPane1.AllowCollapse = DevExpress.Utils.DefaultBoolean.Default;
             this.tabPane1.Appearance.BackColor = System.Drawing.Color.White;
             this.tabPane1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.tabPane1.Appearance.Options.UseBackColor = true;
@@ -295,14 +298,14 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup13;
+            this.navBarControl1.ActiveGroup = this.navBarBasic;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup13});
+            this.navBarBasic});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
@@ -315,24 +318,24 @@
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup13
+            // navBarBasic
             // 
-            this.navBarGroup13.Appearance.BackColor = System.Drawing.Color.Bisque;
-            this.navBarGroup13.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup13.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.navBarGroup13.Appearance.Options.UseBackColor = true;
-            this.navBarGroup13.Appearance.Options.UseFont = true;
-            this.navBarGroup13.Appearance.Options.UseForeColor = true;
-            this.navBarGroup13.AppearanceBackground.BackColor = System.Drawing.Color.White;
-            this.navBarGroup13.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
-            this.navBarGroup13.AppearanceBackground.Options.UseBackColor = true;
-            this.navBarGroup13.AppearanceBackground.Options.UseForeColor = true;
-            this.navBarGroup13.Caption = "Basic";
-            this.navBarGroup13.ControlContainer = this.navBarGroupControlContainer1;
-            this.navBarGroup13.Expanded = true;
-            this.navBarGroup13.GroupClientHeight = 350;
-            this.navBarGroup13.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup13.Name = "navBarGroup13";
+            this.navBarBasic.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarBasic.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.navBarBasic.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.navBarBasic.Appearance.Options.UseBackColor = true;
+            this.navBarBasic.Appearance.Options.UseFont = true;
+            this.navBarBasic.Appearance.Options.UseForeColor = true;
+            this.navBarBasic.AppearanceBackground.BackColor = System.Drawing.Color.White;
+            this.navBarBasic.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
+            this.navBarBasic.AppearanceBackground.Options.UseBackColor = true;
+            this.navBarBasic.AppearanceBackground.Options.UseForeColor = true;
+            this.navBarBasic.Caption = "Basic";
+            this.navBarBasic.ControlContainer = this.navBarGroupControlContainer1;
+            this.navBarBasic.Expanded = true;
+            this.navBarBasic.GroupClientHeight = 350;
+            this.navBarBasic.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarBasic.Name = "navBarBasic";
             // 
             // navBarGroupControlContainer1
             // 
@@ -363,7 +366,9 @@
             // 
             // cboMessageType
             // 
+            this.cboMessageType.CheckItemSelectMode = false;
             this.cboMessageType.ControlID = "cboMessageType";
+            this.cboMessageType.DescriptionMember = null;
             this.cboMessageType.DisplayMember = null;
             this.cboMessageType.DominantControl = "";
             this.cboMessageType.EditValue = "";
@@ -377,6 +382,7 @@
             this.cboMessageType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboMessageType.RepresentativeValue = "";
+            this.cboMessageType.ShowDescription = false;
             this.cboMessageType.Size = new System.Drawing.Size(135, 20);
             this.cboMessageType.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetMessageType";
             this.cboMessageType.SqlDataBase = "";
@@ -506,12 +512,12 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup14;
+            this.navBarControl2.ActiveGroup = this.navBarbas;
             this.navBarControl2.Controls.Add(this.navBarGroupControlContainer3);
             this.navBarControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.navBarControl2.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl2.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup14});
+            this.navBarbas});
             this.navBarControl2.Location = new System.Drawing.Point(0, 0);
             this.navBarControl2.LookAndFeel.SkinName = "Office 2013";
             this.navBarControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
@@ -523,18 +529,18 @@
             this.navBarControl2.TabIndex = 35;
             this.navBarControl2.Text = "navBarControl2";
             // 
-            // navBarGroup14
+            // navBarbas
             // 
-            this.navBarGroup14.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
-            this.navBarGroup14.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup14.Appearance.Options.UseBackColor = true;
-            this.navBarGroup14.Appearance.Options.UseFont = true;
-            this.navBarGroup14.Caption = "Basic";
-            this.navBarGroup14.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup14.Expanded = true;
-            this.navBarGroup14.GroupClientHeight = 350;
-            this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup14.Name = "navBarGroup14";
+            this.navBarbas.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarbas.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.navBarbas.Appearance.Options.UseBackColor = true;
+            this.navBarbas.Appearance.Options.UseFont = true;
+            this.navBarbas.Caption = "Basic";
+            this.navBarbas.ControlContainer = this.navBarGroupControlContainer3;
+            this.navBarbas.Expanded = true;
+            this.navBarbas.GroupClientHeight = 350;
+            this.navBarbas.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarbas.Name = "navBarbas";
             // 
             // navBarGroupControlContainer3
             // 
@@ -1248,7 +1254,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(796, 451);
+            this.gridControl1.Size = new System.Drawing.Size(796, 452);
             this.gridControl1.TabIndex = 8;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1283,6 +1289,7 @@
             this.dpnlLeft.ResumeLayout(false);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
             this.tPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
             this.tabPane1.ResumeLayout(false);
@@ -1333,6 +1340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1353,11 +1361,11 @@
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
         private TAP.UIControls.BasicControls.TPanel tPanel6;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup13;
+        private DevExpress.XtraNavBar.NavBarGroup navBarBasic;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage2;
         private TAP.UIControls.BasicControls.TPanel tPanel7;
         private DevExpress.XtraNavBar.NavBarControl navBarControl2;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup14;
+        private DevExpress.XtraNavBar.NavBarGroup navBarbas;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
         private DevExpress.XtraEditors.ComboBoxEdit cobUSER_MAX;
         private DevExpress.XtraEditors.ComboBoxEdit cobUSER_MIN;
