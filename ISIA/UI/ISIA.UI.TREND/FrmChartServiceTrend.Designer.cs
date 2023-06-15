@@ -77,7 +77,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarchartop = new DevExpress.XtraNavBar.NavBarGroup();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -314,7 +314,7 @@ namespace ISIA.UI.TREND
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarPeriod,
             this.navBarSearch,
-            this.navBarGroup1});
+            this.navBarchartop});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem2});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
@@ -331,7 +331,7 @@ namespace ISIA.UI.TREND
             // 
             // navBarPeriod
             // 
-            this.navBarPeriod.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
+            this.navBarPeriod.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(236)))), ((int)(((byte)(252)))));
             this.navBarPeriod.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.navBarPeriod.Appearance.ForeColor = System.Drawing.Color.Black;
             this.navBarPeriod.Appearance.Options.UseBackColor = true;
@@ -391,7 +391,6 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 3, 25, 13, 53, 4, 51);
             this.dtpStartTime.Size = new System.Drawing.Size(104, 20);
@@ -917,7 +916,7 @@ namespace ISIA.UI.TREND
             // 
             // navBarSearch
             // 
-            this.navBarSearch.Appearance.BackColor = System.Drawing.Color.MistyRose;
+            this.navBarSearch.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
             this.navBarSearch.Appearance.Options.UseBackColor = true;
             this.navBarSearch.Caption = "Search options";
             this.navBarSearch.ControlContainer = this.navBarGroupControlContainer2;
@@ -933,16 +932,16 @@ namespace ISIA.UI.TREND
             this.navBarItem2.Caption = "navBarItem1";
             this.navBarItem2.Name = "navBarItem2";
             // 
-            // navBarGroup1
+            // navBarchartop
             // 
-            this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.Bisque;
-            this.navBarGroup1.Appearance.Options.UseBackColor = true;
-            this.navBarGroup1.Caption = "Chart Options";
-            this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.GroupClientHeight = 80;
-            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarchartop.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.navBarchartop.Appearance.Options.UseBackColor = true;
+            this.navBarchartop.Caption = "Chart Options";
+            this.navBarchartop.ControlContainer = this.navBarGroupControlContainer3;
+            this.navBarchartop.Expanded = true;
+            this.navBarchartop.GroupClientHeight = 80;
+            this.navBarchartop.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarchartop.Name = "navBarchartop";
             // 
             // Root
             // 
@@ -1097,7 +1096,7 @@ namespace ISIA.UI.TREND
         private TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraNavBar.NavBarGroup navBarchartop;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
         public DevExpress.XtraLayout.LayoutControl layoutControl3;
         private DevExpress.XtraEditors.ComboBoxEdit cmbCount;

@@ -35,7 +35,7 @@ namespace ISIA.UI.TREND
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarPeriod = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.lcPeriod = new DevExpress.XtraLayout.LayoutControl();
             this.dtpEndTime = new TAP.UIControls.BasicControlsDEV.TDateTimePicker();
@@ -75,9 +75,9 @@ namespace ISIA.UI.TREND
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarchartop = new DevExpress.XtraNavBar.NavBarGroup();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -305,7 +305,7 @@ namespace ISIA.UI.TREND
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup14;
+            this.navBarControl1.ActiveGroup = this.navBarPeriod;
             this.navBarControl1.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer2);
@@ -314,9 +314,9 @@ namespace ISIA.UI.TREND
             this.navBarControl1.ExplorerBarGroupOuterIndent = 0;
             this.navBarControl1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup14,
-            this.navBarGroup1,
-            this.navBarGroup2});
+            this.navBarPeriod,
+            this.navBarSearch,
+            this.navBarchartop});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
@@ -331,24 +331,24 @@ namespace ISIA.UI.TREND
             this.navBarControl1.TabIndex = 6;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup14
+            // navBarPeriod
             // 
-            this.navBarGroup14.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(246)))), ((int)(((byte)(233)))));
-            this.navBarGroup14.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.navBarGroup14.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.navBarGroup14.Appearance.Options.UseBackColor = true;
-            this.navBarGroup14.Appearance.Options.UseFont = true;
-            this.navBarGroup14.Appearance.Options.UseForeColor = true;
-            this.navBarGroup14.AppearanceBackground.BackColor = System.Drawing.Color.White;
-            this.navBarGroup14.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
-            this.navBarGroup14.AppearanceBackground.Options.UseBackColor = true;
-            this.navBarGroup14.AppearanceBackground.Options.UseForeColor = true;
-            this.navBarGroup14.Caption = "Date Period";
-            this.navBarGroup14.ControlContainer = this.navBarGroupControlContainer1;
-            this.navBarGroup14.Expanded = true;
-            this.navBarGroup14.GroupClientHeight = 71;
-            this.navBarGroup14.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup14.Name = "navBarGroup14";
+            this.navBarPeriod.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(236)))), ((int)(((byte)(252)))));
+            this.navBarPeriod.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.navBarPeriod.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.navBarPeriod.Appearance.Options.UseBackColor = true;
+            this.navBarPeriod.Appearance.Options.UseFont = true;
+            this.navBarPeriod.Appearance.Options.UseForeColor = true;
+            this.navBarPeriod.AppearanceBackground.BackColor = System.Drawing.Color.White;
+            this.navBarPeriod.AppearanceBackground.ForeColor = System.Drawing.Color.Transparent;
+            this.navBarPeriod.AppearanceBackground.Options.UseBackColor = true;
+            this.navBarPeriod.AppearanceBackground.Options.UseForeColor = true;
+            this.navBarPeriod.Caption = "Date Period";
+            this.navBarPeriod.ControlContainer = this.navBarGroupControlContainer1;
+            this.navBarPeriod.Expanded = true;
+            this.navBarPeriod.GroupClientHeight = 71;
+            this.navBarPeriod.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarPeriod.Name = "navBarPeriod";
             // 
             // navBarGroupControlContainer1
             // 
@@ -904,34 +904,38 @@ namespace ISIA.UI.TREND
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
             // 
-            // navBarGroup1
+            // navBarSearch
             // 
-            this.navBarGroup1.Appearance.BackColor = System.Drawing.Color.MistyRose;
-            this.navBarGroup1.Appearance.Options.UseBackColor = true;
-            this.navBarGroup1.Caption = "Search options";
-            this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer2;
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.GroupClientHeight = 149;
-            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            this.navBarSearch.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
+            this.navBarSearch.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.navBarSearch.Appearance.Options.UseBackColor = true;
+            this.navBarSearch.Appearance.Options.UseForeColor = true;
+            this.navBarSearch.Caption = "Search options";
+            this.navBarSearch.ControlContainer = this.navBarGroupControlContainer2;
+            this.navBarSearch.Expanded = true;
+            this.navBarSearch.GroupClientHeight = 149;
+            this.navBarSearch.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarSearch.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarSearch.Name = "navBarSearch";
             // 
             // navBarItem1
             // 
             this.navBarItem1.Caption = "navBarItem1";
             this.navBarItem1.Name = "navBarItem1";
             // 
-            // navBarGroup2
+            // navBarchartop
             // 
-            this.navBarGroup2.Appearance.BackColor = System.Drawing.Color.Bisque;
-            this.navBarGroup2.Appearance.Options.UseBackColor = true;
-            this.navBarGroup2.Caption = "Chart Options";
-            this.navBarGroup2.ControlContainer = this.navBarGroupControlContainer3;
-            this.navBarGroup2.Expanded = true;
-            this.navBarGroup2.GroupClientHeight = 99;
-            this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navBarGroup2.Name = "navBarGroup2";
+            this.navBarchartop.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.navBarchartop.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.navBarchartop.Appearance.Options.UseBackColor = true;
+            this.navBarchartop.Appearance.Options.UseForeColor = true;
+            this.navBarchartop.Caption = "Chart Options";
+            this.navBarchartop.ControlContainer = this.navBarGroupControlContainer3;
+            this.navBarchartop.Expanded = true;
+            this.navBarchartop.GroupClientHeight = 99;
+            this.navBarchartop.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navBarchartop.Name = "navBarchartop";
             // 
             // Root
             // 
@@ -1064,7 +1068,7 @@ namespace ISIA.UI.TREND
         public DevExpress.XtraBars.Navigation.TabPane tabPane1;
         public DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
         public DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup14;
+        public DevExpress.XtraNavBar.NavBarGroup navBarPeriod;
         public DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer1;
         public DevExpress.XtraLayout.LayoutControl lcPeriod;
         public TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpEndTime;
@@ -1082,7 +1086,7 @@ namespace ISIA.UI.TREND
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        public DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        public DevExpress.XtraNavBar.NavBarGroup navBarSearch;
         public DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
@@ -1097,7 +1101,7 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.XtraNavBar.NavBarGroupControlContainer navBarGroupControlContainer3;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
+        private DevExpress.XtraNavBar.NavBarGroup navBarchartop;
         public DevExpress.XtraLayout.LayoutControl layoutControl1;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel8;
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
