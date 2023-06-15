@@ -153,7 +153,7 @@ namespace ISIA.UI.TREND
             //try
             //{
             CreateChart();
-                if (string.IsNullOrEmpty(cmbDbName.Text))
+                if (string.IsNullOrEmpty(tLUCKDbname.Text))
                 {
                     string errMessage = "Please select DB_NAME";
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
@@ -290,8 +290,8 @@ namespace ISIA.UI.TREND
                 // 实际的查询逻辑
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-                args.DbName = cmbDbName.Text.Split('(')[0];
-                args.DbId = cmbDbName.EditValue.ToString();
+                args.DbName = tLUCKDbname.Text.Split('(')[0];
+                args.DbId = tLUCKDbname.EditValue.ToString();
                 args.InstanceNumber = insNum;
                 args.SnapId = "";
                 args.ChartName = dto.HeaderText;
@@ -346,8 +346,8 @@ namespace ISIA.UI.TREND
             // 实际的查询逻辑
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
             args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = cmbDbName.Text.Split('(')[0];
-            args.DbId = cmbDbName.EditValue.ToString();
+            args.DbName = tLUCKDbname.Text.Split('(')[0];
+            args.DbId = tLUCKDbname.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
             args.ChartName = dto.HeaderText;
@@ -399,8 +399,8 @@ namespace ISIA.UI.TREND
                 // 实际的查询逻辑
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-                args.DbName = cmbDbName.Text.Split('(')[0];
-                args.DbId = cmbDbName.EditValue.ToString();
+                args.DbName = tLUCKDbname.Text.Split('(')[0];
+                args.DbId = tLUCKDbname.EditValue.ToString();
                 args.InstanceNumber = cmbInstance.Text;
                 args.SnapId = "";
                 args.ChartName = dto.HeaderText;
@@ -478,8 +478,8 @@ namespace ISIA.UI.TREND
             // 实际的查询逻辑
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
             args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = cmbDbName.Text.Split('(')[0];
-            args.DbId = cmbDbName.EditValue.ToString();
+            args.DbName = tLUCKDbname.Text.Split('(')[0];
+            args.DbId = tLUCKDbname.EditValue.ToString();
             args.InstanceNumber = cmbInstance.EditValue.ToString();
             args.SnapId = "";
             args.ChartName = dto.HeaderText;
