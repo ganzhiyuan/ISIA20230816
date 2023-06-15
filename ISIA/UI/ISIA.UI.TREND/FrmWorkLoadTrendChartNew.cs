@@ -315,7 +315,7 @@ namespace ISIA.UI.TREND
             pc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             pc.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             pc.LookAndFeel.UseDefaultLookAndFeel = false;
-            pc.Appearance.BorderColor = Color.Blue;
+            pc.Appearance.BorderColor = Color.Gray;
             pc.Padding = new Padding(0);
             pc.Controls.Add(tChart);
             flowLayoutPanel1.Controls.Add(pc);
@@ -367,7 +367,7 @@ namespace ISIA.UI.TREND
                     chart.LookAndFeel.UseDefaultLookAndFeel = false;
                     chart.Appearance.BorderColor = Color.Blue;
                     chart.Padding = new Padding(0);*/
-                    chart.Appearance.BorderColor = Color.Blue;
+                    chart.Appearance.BorderColor = Color.Gray;
                 }
             }
             else
@@ -740,6 +740,31 @@ namespace ISIA.UI.TREND
             tLUCKDbname.Text = b;
             tLUCKDbname.EditValue = b;
             btnSelect_Click(null,null);
+        }
+
+        public LabelControl searchResult = new LabelControl() { Text = "Selected Items:0" };
+        private List<string> listSelDrugCode = new List<string>();
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            listSelDrugCode = new List<string>();
+            var a = sluParameter.Properties.View.GetSelectedRows();
+            foreach (var item in a)
+            {
+                var b = sluParameter.Properties.View.GetRowCellValue(item, "PARAMETER").ToString();
+                listSelDrugCode.Add(b);
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in listSelDrugCode)
+            {
+                sb.Append(",");
+                sb.Append(item);
+
+            }
+            sluParameter.Text = sb.ToString().TrimStart(',');
+            sluParameter.EditValue = sb.ToString().TrimStart(',');
+            //txtParamentName.Text = sb.ToString().TrimStart(',');
+            //PARAMETERNAME = txtParamentName.Text;
         }
     }
 
