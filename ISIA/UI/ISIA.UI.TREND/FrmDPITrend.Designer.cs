@@ -30,8 +30,8 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDPITrend));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.LeftPaneLayout = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -49,6 +49,8 @@ namespace ISIA.UI.TREND
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.lcSerachOptions = new DevExpress.XtraLayout.LayoutControl();
+            this.tLUCKDbname = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck();
+            this.tSearchLookUpEditCheck1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tLabel3 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -60,6 +62,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -74,9 +77,6 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tLUCKDbname = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck();
-            this.tSearchLookUpEditCheck1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -106,6 +106,8 @@ namespace ISIA.UI.TREND
             this.navBarGroupControlContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).BeginInit();
             this.lcSerachOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -114,6 +116,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
@@ -125,9 +128,6 @@ namespace ISIA.UI.TREND
             this.panelControl1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -387,7 +387,6 @@ namespace ISIA.UI.TREND
             this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 822);
             this.dtpEndTime.Size = new System.Drawing.Size(105, 20);
@@ -416,7 +415,6 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
             this.dtpStartTime.Size = new System.Drawing.Size(106, 20);
@@ -479,7 +477,7 @@ namespace ISIA.UI.TREND
             this.navBarGroupControlContainer2.Controls.Add(this.lcSerachOptions);
             this.navBarGroupControlContainer2.Margin = new System.Windows.Forms.Padding(2);
             this.navBarGroupControlContainer2.Name = "navBarGroupControlContainer2";
-            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(234, 84);
+            this.navBarGroupControlContainer2.Size = new System.Drawing.Size(234, 85);
             this.navBarGroupControlContainer2.TabIndex = 1;
             // 
             // lcSerachOptions
@@ -497,9 +495,46 @@ namespace ISIA.UI.TREND
             this.lcSerachOptions.Name = "lcSerachOptions";
             this.lcSerachOptions.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1176, 0, 812, 500);
             this.lcSerachOptions.Root = this.layoutControlGroup2;
-            this.lcSerachOptions.Size = new System.Drawing.Size(234, 84);
+            this.lcSerachOptions.Size = new System.Drawing.Size(234, 85);
             this.lcSerachOptions.TabIndex = 0;
             this.lcSerachOptions.Text = "layoutControl2";
+            // 
+            // tLUCKDbname
+            // 
+            this.tLUCKDbname.CheckItemSelectMode = false;
+            this.tLUCKDbname.ControlID = "tLUCKDbname";
+            this.tLUCKDbname.DescriptionMember = "DBID";
+            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DominantControl = "";
+            this.tLUCKDbname.EditValue = "";
+            this.tLUCKDbname.IsRequired = true;
+            this.tLUCKDbname.Location = new System.Drawing.Point(92, 3);
+            this.tLUCKDbname.Name = "tLUCKDbname";
+            this.tLUCKDbname.NeedToTranslate = false;
+            this.tLUCKDbname.ParameterID = "DBID";
+            this.tLUCKDbname.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.tLUCKDbname.Properties.Appearance.Options.UseBackColor = true;
+            this.tLUCKDbname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tLUCKDbname.Properties.NullText = "";
+            this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
+            this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
+            this.tLUCKDbname.RepresentativeValue = "";
+            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.Size = new System.Drawing.Size(139, 20);
+            this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
+            this.tLUCKDbname.SqlDataBase = "";
+            this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.tLUCKDbname.StyleController = this.lcSerachOptions;
+            this.tLUCKDbname.TabIndex = 34;
+            this.tLUCKDbname.ValueMember = "DBID";
+            // 
+            // tSearchLookUpEditCheck1View
+            // 
+            this.tSearchLookUpEditCheck1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.tSearchLookUpEditCheck1View.Name = "tSearchLookUpEditCheck1View";
+            this.tSearchLookUpEditCheck1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.tSearchLookUpEditCheck1View.OptionsView.ShowGroupPanel = false;
             // 
             // tLabel3
             // 
@@ -509,6 +544,7 @@ namespace ISIA.UI.TREND
             this.tLabel3.Margin = new System.Windows.Forms.Padding(4);
             this.tLabel3.Name = "tLabel3";
             this.tLabel3.NeedToTranslate = true;
+            this.tLabel3.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tLabel3.RepresentativeValue = "Row/Number";
             this.tLabel3.Size = new System.Drawing.Size(85, 20);
             this.tLabel3.StyleController = this.lcSerachOptions;
@@ -543,6 +579,7 @@ namespace ISIA.UI.TREND
             this.tLabel2.Margin = new System.Windows.Forms.Padding(4);
             this.tLabel2.Name = "tLabel2";
             this.tLabel2.NeedToTranslate = true;
+            this.tLabel2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tLabel2.RepresentativeValue = "Instance No";
             this.tLabel2.Size = new System.Drawing.Size(85, 20);
             this.tLabel2.StyleController = this.lcSerachOptions;
@@ -584,6 +621,7 @@ namespace ISIA.UI.TREND
             this.tLabelDB.Margin = new System.Windows.Forms.Padding(4);
             this.tLabelDB.Name = "tLabelDB";
             this.tLabelDB.NeedToTranslate = true;
+            this.tLabelDB.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.tLabelDB.RepresentativeValue = "Database Name";
             this.tLabelDB.Size = new System.Drawing.Size(85, 20);
             this.tLabelDB.StyleController = this.lcSerachOptions;
@@ -599,10 +637,11 @@ namespace ISIA.UI.TREND
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.layoutControlItem1,
-            this.layoutControlItem12});
+            this.layoutControlItem12,
+            this.layoutControlItem13});
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(234, 84);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(234, 85);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem9
@@ -643,7 +682,7 @@ namespace ISIA.UI.TREND
             this.layoutControlItem1.Control = this.comboBoxEdit1;
             this.layoutControlItem1.Location = new System.Drawing.Point(89, 48);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(143, 34);
+            this.layoutControlItem1.Size = new System.Drawing.Size(143, 35);
             this.layoutControlItem1.Text = "每行显示数量（测试）";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -655,10 +694,19 @@ namespace ISIA.UI.TREND
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(89, 24);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(89, 24);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(89, 34);
+            this.layoutControlItem12.Size = new System.Drawing.Size(89, 35);
             this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.tLUCKDbname;
+            this.layoutControlItem13.Location = new System.Drawing.Point(89, 0);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(143, 24);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // navBarSearch
             // 
@@ -667,7 +715,7 @@ namespace ISIA.UI.TREND
             this.navBarSearch.Caption = "Search options";
             this.navBarSearch.ControlContainer = this.navBarGroupControlContainer2;
             this.navBarSearch.Expanded = true;
-            this.navBarSearch.GroupClientHeight = 85;
+            this.navBarSearch.GroupClientHeight = 86;
             this.navBarSearch.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarSearch.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1)});
@@ -733,9 +781,8 @@ namespace ISIA.UI.TREND
             this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
             this.xtraTabControl1.AppearancePage.PageClient.BackColor = System.Drawing.Color.White;
             this.xtraTabControl1.AppearancePage.PageClient.Options.UseBackColor = true;
-            serializableAppearanceObject2.Options.UseFont = true;
             this.xtraTabControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
-            new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions1, serializableAppearanceObject1, "Cancel", null, null)});
+            new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions2, serializableAppearanceObject2, "Cancel", null, null)});
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
@@ -780,7 +827,7 @@ namespace ISIA.UI.TREND
             // 
             this.xtraTabPage2.Controls.Add(this.flowLayoutPanel2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(772, 590);
+            this.xtraTabPage2.Size = new System.Drawing.Size(795, 460);
             this.xtraTabPage2.Text = "Sheet2";
             // 
             // flowLayoutPanel2
@@ -789,14 +836,14 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(772, 590);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(795, 460);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.flowLayoutPanel3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(772, 590);
+            this.xtraTabPage3.Size = new System.Drawing.Size(795, 460);
             this.xtraTabPage3.Text = "Sheet3";
             // 
             // flowLayoutPanel3
@@ -805,54 +852,8 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(772, 590);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(795, 460);
             this.flowLayoutPanel3.TabIndex = 1;
-            // 
-            // tLUCKDbname
-            // 
-            this.tLUCKDbname.CheckItemSelectMode = false;
-            this.tLUCKDbname.ControlID = "tLUCKDbname";
-            this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
-            this.tLUCKDbname.DominantControl = "";
-            this.tLUCKDbname.EditValue = "";
-            this.tLUCKDbname.IsRequired = true;
-            this.tLUCKDbname.Location = new System.Drawing.Point(92, 3);
-            this.tLUCKDbname.Name = "tLUCKDbname";
-            this.tLUCKDbname.NeedToTranslate = false;
-            this.tLUCKDbname.ParameterID = "DBID";
-            this.tLUCKDbname.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.tLUCKDbname.Properties.Appearance.Options.UseBackColor = true;
-            this.tLUCKDbname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tLUCKDbname.Properties.NullText = "";
-            this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
-            this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
-            this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
-            this.tLUCKDbname.Size = new System.Drawing.Size(139, 20);
-            this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
-            this.tLUCKDbname.SqlDataBase = "";
-            this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.tLUCKDbname.StyleController = this.lcSerachOptions;
-            this.tLUCKDbname.TabIndex = 34;
-            this.tLUCKDbname.ValueMember = "DBID";
-            // 
-            // tSearchLookUpEditCheck1View
-            // 
-            this.tSearchLookUpEditCheck1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.tSearchLookUpEditCheck1View.Name = "tSearchLookUpEditCheck1View";
-            this.tSearchLookUpEditCheck1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.tSearchLookUpEditCheck1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.tLUCKDbname;
-            this.layoutControlItem13.Location = new System.Drawing.Point(89, 0);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(143, 24);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
             // 
             // FrmDPITrend
             // 
@@ -861,7 +862,7 @@ namespace ISIA.UI.TREND
             this.ClientSize = new System.Drawing.Size(1029, 675);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmDPITrend";
-            this.Text = "FrmMainForm";
+            this.Text = "DPI Trend";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDPITrend_FormClosed);
             this.Load += new System.EventHandler(this.FrmMainForm_Load);
             this.xtraUserControl1.ResumeLayout(false);
@@ -894,6 +895,8 @@ namespace ISIA.UI.TREND
             this.navBarGroupControlContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).EndInit();
             this.lcSerachOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -902,6 +905,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
@@ -913,9 +917,6 @@ namespace ISIA.UI.TREND
             this.panelControl1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
