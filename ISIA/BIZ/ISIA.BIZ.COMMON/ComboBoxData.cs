@@ -3492,7 +3492,59 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DBID,DBNAME,dbname||'('||dbid||')'  AS dbvalue FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+                tmpSql.Append("SELECT DBNAME,DBID,dbname||'('||dbid||')'  AS dbvalue FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetParamater()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append(@"SELECT * FROM (
+                    SELECT 'CPU_UTIL_PCT' AS parameter, 'CPU(%)' AS DESCRIPTION, 'true' AS ischeck, 1 AS numid  FROM dual
+                    UNION
+                    SELECT 'LOGICAL_READS_PSEC' AS parameter, 'Logical Reads Blocks' AS DESCRIPTION, 'true' AS ischeck, 2 AS numid   FROM dual
+                    UNION
+                    SELECT 'PHYSICAL_READS_PSEC' AS parameter, 'Physical Reads Blocks' AS DESCRIPTION, 'true' AS ischeck, 3 AS numid   FROM dual
+                    UNION
+                    SELECT 'PHYSICAL_WRITES_PSEC' AS parameter, 'Physical Writes Blocks' AS DESCRIPTION, 'true' AS ischeck, 4 AS numid   FROM dual
+                    UNION
+                    SELECT 'EXECS_PSEC_AVG' AS parameter, 'Execution Count' AS DESCRIPTION, 'true' AS ischeck, 5 AS numid  FROM dual
+                    UNION
+                    SELECT 'HARD_PARSE_CNT_PSEC' AS parameter, 'Hard Parse Count' AS DESCRIPTION, 'true' AS ischeck, 6 AS numid  FROM dual
+                    UNION
+                    SELECT 'SQL_SERVICE_RESPONSE_TIME' AS parameter, 'SQL Service Response Time' AS DESCRIPTION, 'true' AS ischeck, 7 AS numid  FROM dual
+                    UNION
+                    SELECT 'COMMIT_PSEC_AVG' AS parameter, 'Commit Count' AS DESCRIPTION, 'true' AS ischeck, 8 AS numid  FROM dual
+                    UNION
+                    SELECT 'REDO_MB_PSEC_AVG' AS parameter, 'Redo MB' AS DESCRIPTION, 'true' AS ischeck, 9 AS numid  FROM dual
+                    UNION
+                    SELECT 'USER_CALLS_PSEC' AS parameter, 'User Calls Count' AS DESCRIPTION, 'false' AS ischeck, 10 AS numid  FROM dual
+                    UNION
+                    SELECT 'DB_BLOCK_CHANGES_PSEC' AS parameter, 'DB Block Changes' AS DESCRIPTION, 'false' AS ischeck, 11 AS numid  FROM dual
+                    UNION
+                    SELECT 'DLM_MB_PSEC' AS parameter, 'DML MB' AS DESCRIPTION, 'false' AS ischeck, 12 AS numid  FROM dual
+                    UNION
+                    SELECT 'NET_MB_TO_CLIENT_PSEC' AS parameter, 'Net MB To Client' AS DESCRIPTION, 'false' AS ischeck, 13 AS numid  FROM dual
+                    UNION
+                    SELECT 'NET_MB_FROM_CLIENT_PSEC' AS parameter, 'Net MB From Client' AS DESCRIPTION, 'false' AS ischeck, 14 AS numid  FROM dual
+                    UNION
+                    SELECT 'NET_MB_FROM_DBLINK_PSEC' AS parameter, 'Net MB From DB Link' AS DESCRIPTION, 'false' AS ischeck, 15 AS numid  FROM dual
+                    UNION
+                    SELECT 'NET_MB_TO_DBLINK_PSEC' AS parameter, 'Net MB To DB Link' AS DESCRIPTION, 'false' AS ischeck, 16 AS numid  FROM dual) T ORDER BY t.numid ");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

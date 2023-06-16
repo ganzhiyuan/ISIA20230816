@@ -53,11 +53,9 @@ namespace ISIA.UI.TREND
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.cmbInstance = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.cmbDbName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabelDB = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -76,6 +74,9 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tLUCKDbname = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck();
+            this.tSearchLookUpEditCheck1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -107,10 +108,8 @@ namespace ISIA.UI.TREND
             this.lcSerachOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -126,6 +125,9 @@ namespace ISIA.UI.TREND
             this.panelControl1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -482,11 +484,11 @@ namespace ISIA.UI.TREND
             // 
             // lcSerachOptions
             // 
+            this.lcSerachOptions.Controls.Add(this.tLUCKDbname);
             this.lcSerachOptions.Controls.Add(this.tLabel3);
             this.lcSerachOptions.Controls.Add(this.comboBoxEdit1);
             this.lcSerachOptions.Controls.Add(this.tLabel2);
             this.lcSerachOptions.Controls.Add(this.cmbInstance);
-            this.lcSerachOptions.Controls.Add(this.cmbDbName);
             this.lcSerachOptions.Controls.Add(this.tLabelDB);
             this.lcSerachOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lcSerachOptions.Location = new System.Drawing.Point(0, 0);
@@ -553,7 +555,7 @@ namespace ISIA.UI.TREND
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
-            this.cmbInstance.DominantControl = "cmbDbName";
+            this.cmbInstance.DominantControl = "tLUCKDbname";
             this.cmbInstance.EditValue = "";
             this.cmbInstance.IsRequired = false;
             this.cmbInstance.Location = new System.Drawing.Point(92, 27);
@@ -573,34 +575,6 @@ namespace ISIA.UI.TREND
             this.cmbInstance.StyleController = this.lcSerachOptions;
             this.cmbInstance.TabIndex = 25;
             this.cmbInstance.ValueMember = "INSTANCE_NUMBER";
-            // 
-            // cmbDbName
-            // 
-            this.cmbDbName.CheckItemSelectMode = true;
-            this.cmbDbName.ControlID = "cmbDbName";
-            this.cmbDbName.DescriptionMember = "DBID";
-            this.cmbDbName.DisplayMember = "DBNAME";
-            this.cmbDbName.DominantControl = "";
-            this.cmbDbName.EditValue = "";
-            this.cmbDbName.IsRequired = true;
-            this.cmbDbName.Location = new System.Drawing.Point(92, 3);
-            this.cmbDbName.Name = "cmbDbName";
-            this.cmbDbName.NeedToTranslate = false;
-            this.cmbDbName.ParameterID = "DBID";
-            this.cmbDbName.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
-            this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbDbName.Properties.SelectAllItemVisible = false;
-            this.cmbDbName.RepresentativeValue = "";
-            this.cmbDbName.ShowDescription = true;
-            this.cmbDbName.Size = new System.Drawing.Size(139, 20);
-            this.cmbDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
-            this.cmbDbName.SqlDataBase = "";
-            this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cmbDbName.StyleController = this.lcSerachOptions;
-            this.cmbDbName.TabIndex = 24;
-            this.cmbDbName.ValueMember = "DBID";
             // 
             // tLabelDB
             // 
@@ -622,7 +596,6 @@ namespace ISIA.UI.TREND
             this.layoutControlGroup2.GroupBordersVisible = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem9,
-            this.layoutControlItem6,
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.layoutControlItem1,
@@ -643,15 +616,6 @@ namespace ISIA.UI.TREND
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.cmbDbName;
-            this.layoutControlItem6.Location = new System.Drawing.Point(89, 0);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(143, 24);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem10
             // 
@@ -769,7 +733,7 @@ namespace ISIA.UI.TREND
             this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
             this.xtraTabControl1.AppearancePage.PageClient.BackColor = System.Drawing.Color.White;
             this.xtraTabControl1.AppearancePage.PageClient.Options.UseBackColor = true;
-            serializableAppearanceObject1.Options.UseFont = true;
+            serializableAppearanceObject2.Options.UseFont = true;
             this.xtraTabControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
             new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions1, serializableAppearanceObject1, "Cancel", null, null)});
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -816,7 +780,7 @@ namespace ISIA.UI.TREND
             // 
             this.xtraTabPage2.Controls.Add(this.flowLayoutPanel2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(795, 460);
+            this.xtraTabPage2.Size = new System.Drawing.Size(772, 590);
             this.xtraTabPage2.Text = "Sheet2";
             // 
             // flowLayoutPanel2
@@ -825,14 +789,14 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(795, 460);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(772, 590);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.flowLayoutPanel3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(795, 460);
+            this.xtraTabPage3.Size = new System.Drawing.Size(772, 590);
             this.xtraTabPage3.Text = "Sheet3";
             // 
             // flowLayoutPanel3
@@ -841,8 +805,54 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(795, 460);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(772, 590);
             this.flowLayoutPanel3.TabIndex = 1;
+            // 
+            // tLUCKDbname
+            // 
+            this.tLUCKDbname.CheckItemSelectMode = false;
+            this.tLUCKDbname.ControlID = "tLUCKDbname";
+            this.tLUCKDbname.DescriptionMember = "DBID";
+            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DominantControl = "";
+            this.tLUCKDbname.EditValue = "";
+            this.tLUCKDbname.IsRequired = true;
+            this.tLUCKDbname.Location = new System.Drawing.Point(92, 3);
+            this.tLUCKDbname.Name = "tLUCKDbname";
+            this.tLUCKDbname.NeedToTranslate = false;
+            this.tLUCKDbname.ParameterID = "DBID";
+            this.tLUCKDbname.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.tLUCKDbname.Properties.Appearance.Options.UseBackColor = true;
+            this.tLUCKDbname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tLUCKDbname.Properties.NullText = "";
+            this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
+            this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
+            this.tLUCKDbname.RepresentativeValue = "";
+            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.Size = new System.Drawing.Size(139, 20);
+            this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
+            this.tLUCKDbname.SqlDataBase = "";
+            this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.tLUCKDbname.StyleController = this.lcSerachOptions;
+            this.tLUCKDbname.TabIndex = 34;
+            this.tLUCKDbname.ValueMember = "DBID";
+            // 
+            // tSearchLookUpEditCheck1View
+            // 
+            this.tSearchLookUpEditCheck1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.tSearchLookUpEditCheck1View.Name = "tSearchLookUpEditCheck1View";
+            this.tSearchLookUpEditCheck1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.tSearchLookUpEditCheck1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.tLUCKDbname;
+            this.layoutControlItem13.Location = new System.Drawing.Point(89, 0);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(143, 24);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // FrmDPITrend
             // 
@@ -886,10 +896,8 @@ namespace ISIA.UI.TREND
             this.lcSerachOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -905,6 +913,9 @@ namespace ISIA.UI.TREND
             this.panelControl1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -931,11 +942,9 @@ namespace ISIA.UI.TREND
         public DevExpress.XtraLayout.LayoutControl lcSerachOptions;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel2;
         public TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbInstance;
-        public TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabelDB;
         public DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         public DevExpress.XtraNavBar.NavBarGroup navBarSearch;
@@ -956,5 +965,8 @@ namespace ISIA.UI.TREND
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck tLUCKDbname;
+        private DevExpress.XtraGrid.Views.Grid.GridView tSearchLookUpEditCheck1View;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }
