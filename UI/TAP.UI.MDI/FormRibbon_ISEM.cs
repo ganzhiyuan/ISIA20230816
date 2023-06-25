@@ -1727,7 +1727,7 @@ namespace TAP.UI.MDI
                     case "MODELER": this.Icon = TAP.UI.MDI.Properties.Resources.modelerR1; break;
                     case "ADMIN": this.Icon = TAP.UI.MDI.Properties.Resources.admin; break;
                     case "ISEM": this.Icon = TAP.UI.MDI.Properties.Resources.ISEM_B_64; break;
-                    default: this.Icon = TAP.UI.MDI.Properties.Resources.tap_ico; break;
+                    default: this.Icon = TAP.UI.MDI.Properties.Resources.ISEM_B_64; break;
                 }
 
                 return;

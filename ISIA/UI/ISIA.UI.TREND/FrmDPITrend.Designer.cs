@@ -733,7 +733,6 @@ namespace ISIA.UI.TREND
             this.xtraTabControl1.AppearancePage.Header.Options.UseFont = true;
             this.xtraTabControl1.AppearancePage.PageClient.BackColor = System.Drawing.Color.White;
             this.xtraTabControl1.AppearancePage.PageClient.Options.UseBackColor = true;
-            serializableAppearanceObject2.Options.UseFont = true;
             this.xtraTabControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
             new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions1, serializableAppearanceObject1, "Cancel", null, null)});
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
