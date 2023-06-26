@@ -25,6 +25,7 @@ using DevExpress.XtraBars.Forms;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab.ViewInfo;
+using TAP.UPDATER.Engine;
 
 namespace TAP.UI.MDI
 {
@@ -369,7 +370,25 @@ namespace TAP.UI.MDI
                 try
                 {
                     if (TAP.Base.Configuration.ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.NeedToDeploy)
-                    {                        
+                    {
+                        IUpdateCheckEngine engine = new UpdateCheckEngine(TAP.Base.Configuration.ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.WebAddress);
+                        try
+                        {
+                            if(engine.Check())
+                            {                                                                
+                                Process.Start("TAP.UPDATER.exe");
+                                Environment.Exit(0);
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Process.Start("TAP.UPDATER.exe");
+                            Environment.Exit(0);
+                        }
+
+
+
                         //Deploy deploy = new Deploy();
                         //deploy.DeployFiles();
                         _uiLog.WriteLog("MDI", "T", TapBase.Instance.MachineName, TapBase.Instance.IPAddress, "Check last application files.....OK");

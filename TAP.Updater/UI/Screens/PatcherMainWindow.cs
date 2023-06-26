@@ -17,7 +17,7 @@ namespace TAP.UPDATER {
         /// Initializes a new instance of the main window.
         /// </summary>
         public PatcherMainWindow() {
-            InitializeComponent();
+            InitializeComponent();            
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.ProgressChanged += BackgroundWorker1_ProgressChanged;
         }
@@ -106,6 +106,7 @@ namespace TAP.UPDATER {
         /// </summary>
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
             BackgroundWorker bw = sender as BackgroundWorker;
+            System.Threading.Thread.Sleep(1000);
             IPatcherEngine engine = new PatcherEngine(bw);
             try {
                 engine.Patch();

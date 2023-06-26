@@ -55,6 +55,16 @@ namespace TAP.UPDATER.Downloaders {
         /// <summary>
         /// This method tries to download a specific file (<c>address</c>) a pre-defined number of times (<c>DownloaderConfigs.MAX_DOWNLOAD_RETRIES_PER_FILE</c>).
         /// If an expectedHash is used in this call, the hash of the downloaded file is compared to the expected hash received, triggering an InvalidDataException if they differ.
+        /// It returns the downloaded content as a <c>byte[]</c>.
+        /// </summary>
+        public byte[] DefaultDownloadDataToMemory(string address, string expectedHash = null)
+        {
+            return DefaultDownloadData(address, expectedHash);
+        }
+
+        /// <summary>
+        /// This method tries to download a specific file (<c>address</c>) a pre-defined number of times (<c>DownloaderConfigs.MAX_DOWNLOAD_RETRIES_PER_FILE</c>).
+        /// If an expectedHash is used in this call, the hash of the downloaded file is compared to the expected hash received, triggering an InvalidDataException if they differ.
         /// The downloaded content is saved in the disk, in the specified directory (filePath).
         /// </summary>
         public void DownloadDataToFile(string address, string filePath, string expectedHash = null) {
@@ -83,6 +93,38 @@ namespace TAP.UPDATER.Downloaders {
                         throw;
                     Thread.Sleep(ComputeNextSleepTime(DownloaderConfigs.BASE_MS_SLEEP_TIME_BETWEEN_DOWNLOAD_RETRIES, tries));
                     if (++tries == DownloaderConfigs.MAX_DOWNLOAD_RETRIES_PER_FILE)
+                        throw;
+                    continue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// This method tries to download a specific file (<c>address</c>) a pre-defined number of times (<c>DownloaderConfigs.MAX_DOWNLOAD_RETRIES_PER_FILE</c>).
+        /// It is also responsible for putting the BackgroundWorker Thread to sleep a pre-defined amount of time (<c>DownloaderConfigs.INTERVAL_MS_BETWEEN_DOWNLOAD_RETRIES</c>) between each download retry.
+        /// It uses the Download method for that purpose, calling it with the received arguments.
+        /// If no file path was received in argument (i.e., string.Empty), it waits for the returned Download's <c>Task</c> to finish before returning the downloaded content as an in-memory <c>byte[]</c>.
+        /// If there is a file path specified (i.e., different from string.Empty), this method returns null after the Download is finished.
+        /// </summary>
+        private static byte[] DefaultDownloadData(string address, string expectedHash, string filePath = null)
+        {
+            int tries = 0;
+            while (true)
+            {
+                try
+                {
+                    Task<byte[]> data = DefaultDownload(address, expectedHash, filePath);
+                    if (data == null)
+                        return null;
+                    data.Wait();
+                    return data.Result;
+                }
+                catch (Exception ex)
+                {
+                    if (!ExceptionTypeShouldRetry(ex))
+                        throw;
+                    Thread.Sleep(ComputeNextSleepTime(CheckDownloaderConfigs.BASE_MS_SLEEP_TIME_BETWEEN_DOWNLOAD_RETRIES, tries));
+                    if (++tries == CheckDownloaderConfigs.MAX_DOWNLOAD_RETRIES_PER_FILE)
                         throw;
                     continue;
                 }
@@ -165,6 +207,84 @@ namespace TAP.UPDATER.Downloaders {
                 }
             }
             catch(System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// This method tries to download a specific file from a specific url (<c>address</c>).
+        /// If no file path was received (i.e., file parameter is null), this method returns an in-memory byte[] with the downloaded file.
+        /// If there is a file path in the parameter path, the download is performed directly into a file with the same name and relative path as the one in the address and this method returns null.
+        /// If it completes the download and an expectedHash was received (i.e., the respective parameter isn't null), it checks if the hash of the downloaded file equals the expected hash of that same file (expectedHash), throwing an <c>InvalidDataException</c> if it doesn't.
+        /// This method also logs the download progress to the respective progress bar through the BackgroundWorker (bw), whenever it assumes it is necessary.
+        /// </summary>
+        private static async Task<byte[]> DefaultDownload(string address, string expectedHash, string file)
+        {
+            try
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();                
+                using (HttpResponseMessage response = HttpClient.GetAsync(address, HttpCompletionOption.ResponseHeadersRead).Result)
+                {
+                    if (!response.IsSuccessStatusCode)
+                        HandleStatusCode(response);
+                    response.EnsureSuccessStatusCode();
+                    long fileSize = response.Content.Headers.ContentLength.GetValueOrDefault();
+                    using (Stream contentStream = await response.Content.ReadAsStreamAsync())
+                    {
+                        long totalRead = 0;
+                        long totalReads = 0;
+                        byte[] buffer = new byte[CheckDownloaderConfigs.BUFFER_SIZE];
+                        bool moreLeftToRead = true;
+                        int lastMark = 0;
+                        float speedAverage = 0;
+                        using (MemoryStream memoryStream = file != null ? null : new MemoryStream())
+                        {
+                            using (FileStream fileStream = file == null ? null : File.Open(file, FileMode.Create))
+                            {
+                                do
+                                {
+                                    // A CancellationTokenSource is used to close the contentStream by force if it doesn't finish some ReadAsync()
+                                    // under a specific amount of time (DownloaderConfigs.TIMEOUT_MS_WAITING_FOR_READ),
+                                    // throwing an ObjectDisposedException or an AggregateException containing it, if that's the case.
+                                    using (var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(CheckDownloaderConfigs.TIMEOUT_MS_WAITING_FOR_READ)))
+                                    {
+                                        cts.Token.Register(() => contentStream.Close());
+                                        int read = await contentStream.ReadAsync(buffer, 0, buffer.Length, cts.Token);
+                                        if (read == 0)
+                                            moreLeftToRead = false;
+                                        else
+                                        {
+                                            if (fileStream == null)
+                                                await memoryStream.WriteAsync(buffer, 0, read);
+                                            else
+                                                await fileStream.WriteAsync(buffer, 0, read);
+                                            totalRead += read;
+                                            totalReads++;
+                                            // It only attempts to log the download progress every x reads (DownloaderConfigs.INFORM_PROGRESS_EVERY_X_READS), due to performance reasons.
+                                            if (fileSize != 0 && totalReads % CheckDownloaderConfigs.INFORM_PROGRESS_EVERY_X_READS == 0)
+                                            {
+                                                speedAverage = RecalculateSpeedAverage((float)totalRead / sw.ElapsedMilliseconds, speedAverage);
+                                                if ((float)totalRead / fileSize * 100 > lastMark)
+                                                {
+                                                    lastMark = Convert.ToInt32((float)totalRead / fileSize * 100);                                                   
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                while (moreLeftToRead);
+                            }
+                            sw.Stop();
+                            if (fileSize != 0 && totalRead != fileSize || expectedHash != null && !Hasher.GeneratedHashFromFile(file).Equals(expectedHash))
+                                throw new InvalidDataException();                            
+                            return file == null ? memoryStream.ToArray() : null;
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
             {
                 throw ex;
             }

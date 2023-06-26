@@ -17,14 +17,35 @@ namespace TAP.UPDATER.FileSystem {
         /// </summary>
         public static ConcurrentDictionary<string, FileMetadata> GenerateLocalMetadata(string[] filesPaths, IHasher hasher, int concurrencyLevel) {
             ConcurrentDictionary<string, FileMetadata> metadata = new ConcurrentDictionary<string, FileMetadata>(filesPaths.Length, concurrencyLevel);
-            Parallel.ForEach(filesPaths, (currentPath) => {
-                using (FileStream stream = File.OpenRead(currentPath)) {
+            Parallel.ForEach(filesPaths, (currentPath) => {                
+                using (FileStream stream = File.OpenRead(currentPath))
+                {
                     // The bigger the files to hash the bigger the speedup!
                     metadata[currentPath] = new FileMetadata(currentPath, hasher.GeneratedHashFromStream(stream));
                 }
             });
             return metadata;
         }
+
+        /// <summary>
+        /// Returns a refreshed version of the local metadata.
+        /// This method accomplishes this by reading from the disk all the files whose name match those in filePaths and calculating their hashes concurrently.
+        /// </summary>
+        //public static ConcurrentDictionary<string, FileMetadata> GenerateLocalMetadata(string[] filesPaths, IHasher hasher, int concurrencyLevel)
+        //{
+        //    ConcurrentDictionary<string, FileMetadata> metadata = new ConcurrentDictionary<string, FileMetadata>(filesPaths.Length, concurrencyLevel);
+        //    Parallel.ForEach(filesPaths, (currentPath) => {
+        //        if (File.Exists(currentPath))
+        //        {
+        //            using (FileStream stream = File.OpenRead(currentPath))
+        //            {
+        //                // The bigger the files to hash the bigger the speedup!
+        //                metadata[currentPath] = new FileMetadata(currentPath, hasher.GeneratedHashFromStream(stream));
+        //            }
+        //        }
+        //    });
+        //    return metadata;
+        //}
 
         /// <summary>
         /// Tries to download and write a specific file (resource) to the disk in a defined path.

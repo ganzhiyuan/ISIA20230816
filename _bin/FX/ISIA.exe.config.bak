@@ -24,7 +24,7 @@
     <!-- Developer must edit this section!!!-->
     <DatabaseSection Default="DEFAULT" TimeOut="500">
       <!--<Connection Key="DEFAULT" DBMS="MSSQL" DTC = "false" ConnectionString="Server=172.16.45.92;Database=ISEM;Uid=TAP;Password=1234@qwe" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT" />-->
-      <Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = ISEM)));User ID=ISIA;Password=isia;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>
+      <Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = ISEM)));User ID=ISIA;Password=ISIA;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>
     </DatabaseSection>
     <!-- XML Source-->
     <!-- Developer must edit this section!!!-->
@@ -40,18 +40,18 @@
     <!-- Logging-->
     <LogSection>
       <!-- Information Log-->
-      <Log Type="I" Logging="true" Path="Info" Extension="ilog" MaxSize="100000"/>
+      <Log Type="I" Logging="false" Path="Info" Extension="ilog" MaxSize="100000"/>
       <!-- SQL Log-->
-      <Log Type="S" Logging="true" Path="Sql" Extension="slog" MaxSize="100000"/>
+      <Log Type="S" Logging="false" Path="Sql" Extension="slog" MaxSize="100000"/>
       <!-- Trace Log-->
-      <Log Type="T" Logging="true" Path="Trace" Extension="tlog" MaxSize="100000"/>
+      <Log Type="T" Logging="false" Path="Trace" Extension="tlog" MaxSize="100000"/>
       <!--Unknown Log-->
-      <Log Type="W" Logging="true" Path="Warning" Extension="wlog" MaxSize="100000"/>
+      <Log Type="W" Logging="false" Path="Warning" Extension="wlog" MaxSize="100000"/>
       <!--Extend Log-->
-      <Log Type="E" Logging="true" Path="Error" Extension="elog" MaxSize="100000"/>
+      <Log Type="E" Logging="false" Path="Error" Extension="elog" MaxSize="100000"/>
     </LogSection>
     <LocalLogSection>
-      <Log Type="MODEL" Logging="true" Path="Model" Extension="mlog" MaxSize="100"/>
+      <Log Type="MODEL" Logging="false" Path="Model" Extension="mlog" MaxSize="100"/>
     </LocalLogSection>
     <!-- Messaging-->
     <MessagingSection PublicMessageInterval="30" HeartBeatInterval="60">
@@ -88,7 +88,8 @@
     <!-- Remote Biz Component Section-->
     <RemoteDeploySection Path="D:\SRC\XMATTEST\INPUT\">
       <BizComponent Assembly="" SubPath=""/>
-      <ClientDeployInfo NeedToDeploy="true" DeployMethod="WEB" WebAddress="http://isetsvr:7999" PhysicalFilePath="D:\ISIAPatch\Patch" HostName="isetsvr" RootDirectory="/ISIA_Patch" UserName="hp" Password="123" IgnoreExcetion="false"/>
+      <!--<ClientDeployInfo NeedToDeploy="false" HostName="172.16.45.93" RootDirectory="/ISEM_Patch2" UserName="ISEMFTP" Password="1234@qwe" IgnoreExcetion="false"/>-->
+		<ClientDeployInfo NeedToDeploy="false" DeployMethod="WEB" WebAddress="htp://172.29.20.159:7999"  PhysicalFilePath="D:\ISIA_PATCH\FX" HostName="isetsvr" RootDirectory="/ISEM_Patch" UserName="hp" Password="123" IgnoreExcetion="false"/>
     </RemoteDeploySection>
     <!-- Application Section-->
     <!-- Developer must edit this section!!!-->
@@ -118,7 +119,7 @@
         </MainMenu>
       </MainMenus>
       <ServiceGroups/>
-      <StartupUI Enabled="false" StartUpMainMenu="UI_MANAGEMENT" StartUpMenu="UI"/>
+      <StartupUI Enabled="true" StartUpMainMenu="AWR" StartUpMenu="WORKLOADTRENDCHART"/>
     </AppSection>
     <!-- Cross language section-->
     <CrossLanguageSection LocalFile="CrossLang.db" ServerDirectory="" NeedToDownLoad="false" NeedToApply="true"/>
