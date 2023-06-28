@@ -40,7 +40,6 @@
             this.cboMessageType = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.lcillblCategoy = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
@@ -117,7 +116,6 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboMessageType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcillblCategoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.tabNavigationPage2.SuspendLayout();
@@ -333,7 +331,7 @@
             this.navBarBasic.Caption = "Basic";
             this.navBarBasic.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarBasic.Expanded = true;
-            this.navBarBasic.GroupClientHeight = 350;
+            this.navBarBasic.GroupClientHeight = 35;
             this.navBarBasic.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
             this.navBarBasic.Name = "navBarBasic";
             // 
@@ -347,7 +345,7 @@
             this.navBarGroupControlContainer1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.navBarGroupControlContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(241, 349);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(241, 34);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl1
@@ -360,7 +358,7 @@
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(241, 349);
+            this.layoutControl1.Size = new System.Drawing.Size(241, 34);
             this.layoutControl1.TabIndex = 9;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -412,21 +410,12 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
             this.lcillblCategoy,
             this.layoutControlItem5});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(1, 1, 1, 1);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(241, 349);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(241, 34);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 24);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(239, 323);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lcillblCategoy
             // 
@@ -435,7 +424,7 @@
             this.lcillblCategoy.MaxSize = new System.Drawing.Size(100, 24);
             this.lcillblCategoy.MinSize = new System.Drawing.Size(100, 24);
             this.lcillblCategoy.Name = "lcillblCategoy";
-            this.lcillblCategoy.Size = new System.Drawing.Size(100, 24);
+            this.lcillblCategoy.Size = new System.Drawing.Size(100, 32);
             this.lcillblCategoy.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.lcillblCategoy.TextSize = new System.Drawing.Size(0, 0);
             this.lcillblCategoy.TextVisible = false;
@@ -445,7 +434,7 @@
             this.layoutControlItem5.Control = this.cboMessageType;
             this.layoutControlItem5.Location = new System.Drawing.Point(100, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(139, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(139, 32);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -1302,7 +1291,6 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboMessageType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcillblCategoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.tabNavigationPage2.ResumeLayout(false);
@@ -1385,7 +1373,6 @@
         private TAP.UIControls.BasicControlsDEV.TButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem lcillblCategoy;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
