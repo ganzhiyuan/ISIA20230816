@@ -14,14 +14,14 @@
     <framework targetVersion="4.6.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ISIA.exe.manifest" size="37525">
+    <dependentAssembly dependencyType="install" codebase="ISIA.exe.manifest" size="38166">
       <assemblyIdentity name="ISIA.exe" version="1.1.0.1" publicKeyToken="0000000000000000" language="en" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uGm2ffrozg2yK1JQ29X84BHd0ORW9a5RRxu8EjEBEtw=</dsig:DigestValue>
+        <dsig:DigestValue>3251K9RmAed8Js1nRIZkxwIQ2yiZMhQTl5eZ3AvY238=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

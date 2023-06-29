@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3095552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3096064">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>19SKShnzPKWpIyUezEBI4oFK14yJLE7sn4kQpsLh8ZI=</dsig:DigestValue>
+        <dsig:DigestValue>XUDi0edeNl/Om4NxMq055UT8lcL/OZ/hnIN/Zqt5skM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -487,14 +487,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="617472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UIControls.BasicControlsDEV.dll" size="622080">
       <assemblyIdentity name="TAP.UIControls.BasicControlsDEV" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/UBnZ7AgvyYDSCFruxTYmm0wmZGBffF7FF/lQi/z/UY=</dsig:DigestValue>
+        <dsig:DigestValue>CGOp/J6HrepeJ8BKlMdFEEHlzfHcCcr4DB5NJmcS/mE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -507,6 +507,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>owe4sVXPnl4S/lGu82eI+qDN4XdvHxbR2YiIq0+eC7A=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UPDATER.exe" size="138240">
+      <assemblyIdentity name="TAP.UPDATER" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>v+EN0zeYt4lnK2QhJi4s2xzzxKokANRswZXLwv2uUoM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

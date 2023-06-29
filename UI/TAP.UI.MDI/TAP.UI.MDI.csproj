@@ -247,6 +247,10 @@
       <HintPath>..\..\_bin\FX\TAP.UIControls.BasicControlsDEV.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TAP.UPDATER, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_bin\FX\TAP.UPDATER.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Deploy.cs" />
@@ -921,12 +925,6 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\TAP.Updater\TAP.Updater.csproj">
-      <Project>{a3dda186-afdf-4dcc-b304-34c04544ee18}</Project>
-      <Name>TAP.Updater</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
