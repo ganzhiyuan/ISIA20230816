@@ -278,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XUDi0edeNl/Om4NxMq055UT8lcL/OZ/hnIN/Zqt5skM=</dsig:DigestValue>
+        <dsig:DigestValue>Hd8sa9zWQeLqRa129uP4BiOt1D4RsWP9YsyqLoSL+PA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -458,7 +458,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dCGZc0hWAstNxHv5dbeHb0ktJylK1QiSSFt54ewxnr0=</dsig:DigestValue>
+        <dsig:DigestValue>sIwQBbTnsr8Dm/7L0hMoivkV948rU0xdV2Wx/QwUoOE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -511,14 +511,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UPDATER.exe" size="138240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TAP.UPDATER.dll" size="137728">
       <assemblyIdentity name="TAP.UPDATER" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v+EN0zeYt4lnK2QhJi4s2xzzxKokANRswZXLwv2uUoM=</dsig:DigestValue>
+        <dsig:DigestValue>nHzk/w4rc0oLNGVMN/EsW5BafVuhQw27v5ehscrxUfI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
