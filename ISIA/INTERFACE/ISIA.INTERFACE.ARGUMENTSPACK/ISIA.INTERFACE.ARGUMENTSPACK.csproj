@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateDataBaseArgsPack.cs" />
     <Compile Include="ClassicUIArgsPack.cs" />
     <Compile Include="CodeManagementArgsPack.cs" />
     <Compile Include="CommonArgsPack.cs" />

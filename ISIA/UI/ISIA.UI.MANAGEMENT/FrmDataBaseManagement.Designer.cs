@@ -105,6 +105,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnUpdate = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnImport = new TAP.UIControls.BasicControlsDEV.TButton();
             this.btnExport = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.tbadd = new TAP.UIControls.BasicControlsDEV.TButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -1206,6 +1207,7 @@ namespace ISIA.UI.MANAGEMENT
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btnImport);
             this.flowLayoutPanel1.Controls.Add(this.btnExport);
+            this.flowLayoutPanel1.Controls.Add(this.tbadd);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -1346,6 +1348,39 @@ namespace ISIA.UI.MANAGEMENT
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // tbadd
+            // 
+            this.tbadd.Appearance.BackColor = System.Drawing.Color.White;
+            this.tbadd.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tbadd.Appearance.Options.UseBackColor = true;
+            this.tbadd.Appearance.Options.UseBorderColor = true;
+            this.tbadd.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tbadd.AppearanceHovered.Options.UseBackColor = true;
+            this.tbadd.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.tbadd.AppearancePressed.Options.UseBackColor = true;
+            this.tbadd.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.tbadd.ControlID = "btnSave";
+            this.tbadd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tbadd.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tbadd.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.tbadd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("tbadd.ImageOptions.Image")));
+            this.tbadd.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.tbadd.IsRequired = false;
+            this.tbadd.Location = new System.Drawing.Point(425, 2);
+            this.tbadd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.tbadd.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.tbadd.Margin = new System.Windows.Forms.Padding(2);
+            this.tbadd.MaximumSize = new System.Drawing.Size(70, 27);
+            this.tbadd.MinimumSize = new System.Drawing.Size(70, 27);
+            this.tbadd.Name = "tbadd";
+            this.tbadd.NeedToTranslate = true;
+            this.tbadd.RepresentativeValue = " Add";
+            this.tbadd.Size = new System.Drawing.Size(70, 27);
+            this.tbadd.TabIndex = 128;
+            this.tbadd.Text = " Add";
+            this.tbadd.UseVisualStyleBackColor = true;
+            this.tbadd.Click += new System.EventHandler(this.tbadd_Click);
             // 
             // gridControl1
             // 
@@ -1630,5 +1665,6 @@ namespace ISIA.UI.MANAGEMENT
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
+        private TAP.UIControls.BasicControlsDEV.TButton tbadd;
     }
 }

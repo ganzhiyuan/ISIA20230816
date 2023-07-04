@@ -254,5 +254,12 @@ namespace ISIA.UI.MANAGEMENT
                 txt.BackColor = Color.White;
             }
         }
+
+        private void tbadd_Click(object sender, EventArgs e)
+        {
+            FrmAddDataBase frmAddData = new FrmAddDataBase();
+            frmAddData.ShowDialog();
+
+        }
     }
 }
