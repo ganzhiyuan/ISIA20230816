@@ -81,9 +81,9 @@ namespace ISIA.UI.TREND
 
                 dataSet1.Tables.Clear();
 
-                args.DbId = cmbDbName.EditValue.ToString();
+                args.DbId = tLUCKDbname.EditValue.ToString();
                 //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
-                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+                args.DbName = string.IsNullOrEmpty(tLUCKDbname.Text) ? "" : tLUCKDbname.Text.Split('(')[0];
                 
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");

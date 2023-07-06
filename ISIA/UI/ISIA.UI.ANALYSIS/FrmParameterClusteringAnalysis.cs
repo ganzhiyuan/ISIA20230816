@@ -93,12 +93,12 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                
+
 
                 //args.DbId = cmbDbName.EditValue.ToString();
                 //args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
-                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
-                args.DbId = cmbDbName.EditValue.ToString();
+                args.DbName = string.IsNullOrEmpty(tLUCKDbname.Text) ? "" : tLUCKDbname.Text.Split('(')[0];
+                args.DbId = tLUCKDbname.EditValue.ToString();
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.ParameterName = cmbParameterName.Text;

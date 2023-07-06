@@ -65,9 +65,9 @@ namespace ISIA.UI.ANALYSIS
             /*if (dataSet.Tables.Count == 0)
             {*/
                 dataSet1.Tables.Clear();
-                args.DbId = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[1];
-                args.DbId = args.DbId.Substring(0, args.DbId.Length - 1);
-                args.DbName = string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+                //args.DbId = string.IsNullOrEmpty(tLUCKDbname.Text) ? "" : tLUCKDbname.Text.Split('(')[1];
+                args.DbId = tLUCKDbname.EditValue.ToString();
+                args.DbName = string.IsNullOrEmpty(tLUCKDbname.Text) ? "" : tLUCKDbname.Text.Split('(')[0];
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
                 args.InstanceNumber = cmbInstance.Text.ToString();
@@ -435,7 +435,7 @@ namespace ISIA.UI.ANALYSIS
                     
 
                     SelectedComboBox(cmbParameterName, para);
-                    SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
+                    SelectedSearchEdit(tLUCKDbname, row1["DBID"].ToString());
                     dtpStartTime.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
                     dtpEndTime.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
 
@@ -597,7 +597,27 @@ namespace ISIA.UI.ANALYSIS
         }
 
 
-        
+        public void SelectedSearchEdit(TSearchLookUpEditCheck searchLookUpEdit, string str)
+        {
+            searchLookUpEdit.Setting();
+            if (str == "")
+            {
+                return;
+            }
+            DataTable searchTable = (DataTable)searchLookUpEdit.Properties.DataSource;
+            for (int i = 0; i < searchTable.Rows.Count; i++)
+            {
+                DataRow row = searchTable.Rows[i];
+
+                if (row["DBID"].ToString() == str)
+                {
+                    searchLookUpEdit.Text = row["DBVALUE"].ToString();
+                    searchLookUpEdit.EditValue = row["DBID"].ToString();
+                    break;
+                }
+            }
+
+        }
 
         public void SelectedDBComboBox(TCheckComboBox ComboBox, string str)
         {

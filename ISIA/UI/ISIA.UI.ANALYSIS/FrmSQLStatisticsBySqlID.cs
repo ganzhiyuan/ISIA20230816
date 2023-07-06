@@ -67,8 +67,8 @@ namespace ISIA.UI.ANALYSIS
         {
             dataSet1.Tables.Clear();
             PARAMENT_NAME = cmbParameterName.Text;
-            args.DbId = cmbDbName.EditValue.ToString();
-            args.DbName = cmbDbName.Text.Split('(')[0];
+            args.DbId = tLUCKDbname.EditValue.ToString();
+            args.DbName = tLUCKDbname.Text.Split('(')[0];
             args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
             args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
             args.ParameterName = cmbParameterName.Text;
@@ -538,7 +538,7 @@ namespace ISIA.UI.ANALYSIS
 
                     cmbParameterName.Text = row1["PARAMENT_NAME"].ToString();
                     
-                    SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
+                    //SelectedDBComboBox(cmbDbName, row1["DBID"].ToString());
                     dtpStartTime.DateTime = (DateTime)row1["END_INTERVAL_TIME"];
                     dtpEndTime.DateTime = (DateTime)row2["END_INTERVAL_TIME"];
 
@@ -662,7 +662,7 @@ namespace ISIA.UI.ANALYSIS
             try
             {
 
-                if (string.IsNullOrEmpty(cmbDbName.Text))
+                if (string.IsNullOrEmpty(tLUCKDbname.Text))
                 {
                     string errMessage = "Please select DB_NAME";
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);

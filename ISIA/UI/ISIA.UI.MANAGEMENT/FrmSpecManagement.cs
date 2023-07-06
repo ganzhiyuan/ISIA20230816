@@ -242,6 +242,5 @@ namespace ISIA.UI.MANAGEMENT
                 txt.BackColor = Color.White;
             }
         }
-
     }
 }

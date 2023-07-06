@@ -94,7 +94,7 @@ namespace ISIA.UI.ANALYSIS
                 EventArgPack.EndTime = endDateTime.ToString("yyyyMMdd");
                 EventArgPack.GroupingDateFormat = "yyyyMMdd";
 
-                EventArgPack.DBName = cmbDbName.Text.Split('(')[0];
+                EventArgPack.DBName = tLUCKDbname.Text.Split('(')[0];
 
                 dsTrend = bs.ExecuteDataSet("GetParmDailyTrendData", EventArgPack.getPack());
 
@@ -330,7 +330,7 @@ namespace ISIA.UI.ANALYSIS
             try
             {
 
-                if (string.IsNullOrEmpty(cmbDbName.Text))
+                if (string.IsNullOrEmpty(tLUCKDbname.Text))
                 {
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, "Please choose ParamanetName.");
                     return;

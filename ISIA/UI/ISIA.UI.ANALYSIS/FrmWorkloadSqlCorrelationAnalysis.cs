@@ -119,7 +119,7 @@ namespace ISIA.UI.ANALYSIS
         {
             try
             {
-                if (string.IsNullOrEmpty(cmbDbName.Text))
+                if (string.IsNullOrEmpty(tLUCKDbname.Text))
                 {
                     string errMessage = "Please select DB_NAME";
                     TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, TAP.UI.EnumMsgType.WARNING, errMessage);
@@ -240,7 +240,7 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName = cmbDbName.Text.Split('(')[0];
+            string dbName = tLUCKDbname.Text.Split('(')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
@@ -248,7 +248,7 @@ namespace ISIA.UI.ANALYSIS
             }
             argument.DBName = dbName;
 
-            argument.DBID = cmbDbName.EditValue.ToString();
+            argument.DBID = tLUCKDbname.EditValue.ToString();
 
             argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
 

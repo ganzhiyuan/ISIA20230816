@@ -1,6 +1,7 @@
 ﻿using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
@@ -42,7 +43,7 @@ namespace ISIA.UI.MANAGEMENT
 
             //setting触发控件
             cmbRuleName.Setting();
-            cmbAddDbName.Setting();
+            tLUCKAddDbname.Setting();
             //将cmbRuleName中value的值改变为description
             foreach (CheckedListBoxItem items in cmbRuleName.Properties.Items)
             {
@@ -70,7 +71,7 @@ namespace ISIA.UI.MANAGEMENT
         {
 
             args = new ParameterSpecManagementArgsPack();
-            args.DBID = cmbDbName.EditValue.ToString();
+            args.DBID = tLUCKDbname.EditValue.ToString();
             args.PARAMETERNAME = txtParam.Text;
 
             if (string.IsNullOrEmpty(cmbRuleMain.Text))
@@ -214,7 +215,7 @@ namespace ISIA.UI.MANAGEMENT
                 return;
             }*/
             args = new ParameterSpecManagementArgsPack();
-            args.DBID = cmbAddDbName.EditValue.ToString();
+            args.DBID = tLUCKAddDbname.EditValue.ToString();
             args.INSTANCE_NUMBER = cmbInstance.Text.ToString();
             args.PARAMETERID = searchid.EditValue.ToString();
             args.PARAMETERNAME = searchid.Text.ToString();
@@ -262,7 +263,8 @@ namespace ISIA.UI.MANAGEMENT
                 tabPane1.SelectedPage = tabNavigationPage2;
                 cmbInstance.Text = dr["INSTANCE_NUMBER"].ToString();
                 //cmbAddDbName.EditValue = dr["DBID"];
-                SelectedDBComboBox(cmbAddDbName, dr["DBID"].ToString());
+                //SelectedDBComboBox(tLUCKAddDbname, dr["DBID"].ToString());
+                SelectedSearchEdit(tLUCKAddDbname, dr["DBID"].ToString());
                 searchid.EditValue = dr["PARAMETERID"].ToString();
                 //cmbRuleName.Text= dr["RULENAME"].ToString();
                 //cmbRuleName.EditValue= dr["RULENO"].ToString();
@@ -406,6 +408,24 @@ namespace ISIA.UI.MANAGEMENT
         }
 
 
+        public void SelectedSearchEdit(TSearchLookUpEditCheck searchLookUpEdit, string str)
+        {
+            DataTable searchTable = (DataTable)searchLookUpEdit.Properties.DataSource;
+            for (int i = 0; i < searchTable.Rows.Count ; i++)
+            {
+                DataRow row = searchTable.Rows[i];
+
+                if (row["DBID"].ToString() == str)
+                {
+                    searchLookUpEdit.Text = row["DBVALUE"].ToString();
+                    searchLookUpEdit.EditValue = row["DBID"].ToString();
+                    break; 
+                }
+            }
+
+        }
+
+
         public void SelectedRuleNOComboBox(TCheckComboBox ComboBox, string ruleno, string rulename)
         {
 
@@ -427,9 +447,9 @@ namespace ISIA.UI.MANAGEMENT
         private void txtControlUpper_DoubleClick(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(cmbAddDbName.Text))
+            if (string.IsNullOrEmpty(tLUCKAddDbname.Text))
             {
-                cmbAddDbName.BackColor = Color.Orange;
+                tLUCKAddDbname.BackColor = Color.Orange;
                 return;
             }
             if (string.IsNullOrEmpty(cmbRuleName.Text))
@@ -445,8 +465,8 @@ namespace ISIA.UI.MANAGEMENT
             
 
             Spec spec = new Spec();
-            spec.DBID = cmbAddDbName.EditValue.ToString();
-            spec.DBNAME = cmbAddDbName.Text.Split('(')[0];
+            spec.DBID = tLUCKAddDbname.EditValue.ToString();
+            spec.DBNAME = tLUCKAddDbname.Text.Split('(')[0];
             spec.INSTANCE_NUMBER = cmbInstance.Text.ToString();
             spec.PARAMETERID = searchid.EditValue.ToString();
             spec.PARAMETERNAME = searchid.Text.ToString();

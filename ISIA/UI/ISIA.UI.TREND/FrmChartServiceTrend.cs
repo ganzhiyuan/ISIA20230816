@@ -248,7 +248,8 @@ namespace ISIA.UI.TREND
             ChartServiceArgsPack chartServiceArgs = new ChartServiceArgsPack();
                         
             chartServiceArgs.ReportDate = dtpStartTime.DateTime.ToString("yyyyMMdd");
-            chartServiceArgs.DbId = comboBoxUtil.SelectedTCheckComboBoxValue(cmbDbName);
+            //chartServiceArgs.DbId = comboBoxUtil.SelectedTCheckComboBoxValue(cmbDbName);
+            chartServiceArgs.DbId = tLUCKDbname.EditValue.ToString();
             chartServiceArgs.Instance_Number = cmbInstance.Text;
             chartServiceArgs.RuleName = cmbRuleName.Text;
             chartServiceArgs.RuleNo = cmbRuleNo.Text;

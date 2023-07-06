@@ -43,7 +43,7 @@ namespace ISIA.UI.ANALYSIS
                 {                    
                     args.StartTimeKey = dtNow.AddDays(-7*i).ToString("yyyy-MM-dd");
                     args.EndTimeKey = dtNow.AddDays(-7 * (i-1)).ToString("yyyy-MM-dd");
-                    args.DbName = cmbDbName.Text.Split('(')[0];
+                    args.DbName = tLUCKDbname.Text.Split('(')[0];
                     switch (i)
                     {
                         case 1:
@@ -163,9 +163,9 @@ namespace ISIA.UI.ANALYSIS
                 return;
             }
             AwrCommonArgsPack args = new AwrCommonArgsPack();
-            args.DbId = cmbDbName.EditValue.ToString();
+            args.DbId = tLUCKDbname.EditValue.ToString();
             args.SqlId = dr["SQL_ID"].ToString();
-            args.DbName = cmbDbName.Text.Split('(')[0].ToString() ;
+            args.DbName = tLUCKDbname.Text.Split('(')[0].ToString() ;
             DataTable dt = bs.ExecuteDataSet("GetSqltext", args.getPack()).Tables[0];
             SqlView.TextChangeBindSQLType(dt.Rows[0]["SQL_TEXT"].ToString());
         }

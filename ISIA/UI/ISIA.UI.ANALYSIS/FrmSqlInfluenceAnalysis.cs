@@ -90,7 +90,8 @@ namespace ISIA.UI.ANALYSIS
                     
                     if (hashtable["DBID"] != null)
                     {
-                        SelectedComboBox(cmbDbName, hashtable["DBID"].ToString());
+                        //SelectedComboBox(cmbDbName, hashtable["DBID"].ToString());
+                        SelectedSearchEdit(tLUCKDbname, hashtable["DBID"].ToString());
                         //SelectedDBComboBox(cmbDbName, hashtable["DBID"].ToString());
                     }
                     if (hashtable["INSTANCE_NUMBER"] != null)
@@ -354,14 +355,14 @@ namespace ISIA.UI.ANALYSIS
             argument.EndTime = endDateTime.ToString("yyyyMMddHHmmss");
 
             //combobox edit db name 
-            string dbName =string.IsNullOrEmpty(cmbDbName.Text) ? "" : cmbDbName.Text.Split('(')[0];
+            string dbName =string.IsNullOrEmpty(tLUCKDbname.Text) ? "" : tLUCKDbname.Text.Split('(')[0];
             if (string.IsNullOrEmpty(dbName))
             {
                 string errMessage = "Please select DB_NAME";
                 throw new Exception(errMessage);
             }
             argument.DBName = dbName;
-            argument.DBID = cmbDbName.EditValue.ToString();
+            argument.DBID = tLUCKDbname.EditValue.ToString();
 
 
             //combobox edit workload parm
@@ -508,6 +509,24 @@ namespace ISIA.UI.ANALYSIS
                     item.CheckState = CheckState.Checked;
                 }
             }
+        }
+
+
+        public void SelectedSearchEdit(TSearchLookUpEditCheck searchLookUpEdit, string str)
+        {
+            DataTable searchTable = (DataTable)searchLookUpEdit.Properties.DataSource;
+            for (int i = 0; i < searchTable.Rows.Count; i++)
+            {
+                DataRow row = searchTable.Rows[i];
+
+                if (row["DBID"].ToString() == str)
+                {
+                    searchLookUpEdit.Text = row["DBVALUE"].ToString();
+                    searchLookUpEdit.EditValue = row["DBID"].ToString();
+                    break;
+                }
+            }
+
         }
 
         public void SelectedComboBox(TCheckComboBox ComboBox, string str)

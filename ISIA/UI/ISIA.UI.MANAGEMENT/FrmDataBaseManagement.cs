@@ -39,8 +39,8 @@ namespace ISIA.UI.MANAGEMENT
         {
 
             args = new CodeManagementArgsPack();
-            args.DBID = cmbDbName.EditValue.ToString();
-            args.DBNAME = cmbDbName.Text.Split('(')[0].ToString();
+            args.DBID = tLUCKDbname.EditValue.ToString();
+            args.DBNAME = tLUCKDbname.Text.Split('(')[0].ToString();
             args.DBLINKNAME = txtMainDBLINKNAME.Text;
             args.SERVICENAME = txtMainSERVICENAME.Text;
             ds = bs.ExecuteDataSet("GetDB", args.getPack());
