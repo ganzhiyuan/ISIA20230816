@@ -127,17 +127,11 @@
   <data name="s_view" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\s_view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISIA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="image_tab_top_machine_name" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\image_tab_top_machine_name.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="32Dicon_Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\32Dicon_Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="create" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\create.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,17 +163,14 @@
   <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="05samsung1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\05samsung1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="logo_1024" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_1024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="oip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oip.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="32Dicon_Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32Dicon_Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="top_title1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\top_title1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,20 +181,17 @@
   <data name="samsung_bottomg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\samsung_bottomg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="16Dicon_Connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\16Dicon_Connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISEM_G_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM_G_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32Bicon_Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32Bicon_Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bottom_title" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bottom_title.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="samsunglogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\samsunglogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="modelerR1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\modelerR1.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="top_title12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\top_title11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISEM_ICO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM-ICO.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LoginTitle_oip1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoginTitle_oip1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -213,6 +201,12 @@
   </data>
   <data name="16Bicon_Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\16Bicon_Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ISEM_O_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM_O_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoFFFFFF_r2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoFFFFFF_r2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="modeler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\modeler.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,8 +220,8 @@
   <data name="light_a_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\light_a_off.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISIA1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISIA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,9 +232,6 @@
   <data name="ISEM_B_Half" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ISEM_B_Half.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="samsung_bottomgg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\samsung_bottomgg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="LoginTitle_oip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoginTitle_oip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -250,14 +241,17 @@
   <data name="logoFFFFFF_r2r1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoFFFFFF_r2r1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TITLEBAR_EDGE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TITLEBAR_EDGE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="16Dicon_Connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\16Dicon_Connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="samsunglogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\samsunglogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_B_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_B_32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ISFA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ISFA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="16Dicon_Start_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\16Dicon_Start_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,17 +262,20 @@
   <data name="32Bicon_Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\32Bicon_Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ISEM_B_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM_B_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="05samsung" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\05samsung.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chartyaxissettings_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chartyaxissettings_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TITLEBAR_EDGE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TITLEBAR_EDGE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TITLEBAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TITLEBAR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="samsung_BOTTOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\samsung_BOTTOM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ISEM_G_Half" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ISEM_G_Half.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,11 +283,14 @@
   <data name="help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="32Bicon_Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\32Bicon_Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="samsung_bottomgg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\samsung_bottomgg2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2g" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ISEM_W_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM_W_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="complete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\complete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,8 +319,8 @@
   <data name="admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\admin.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_W_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM_W_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="modelerR1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\modelerR1.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="s_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\s_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -331,17 +331,17 @@
   <data name="LoginTitle_modeler" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoginTitle_modeler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cim_portal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cim_portal1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="samsung_bottomgg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\samsung_bottomgg2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="top_title12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\top_title11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="크기변환_login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\크기변환_login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_001" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="top_title11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\top_title1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -358,23 +358,17 @@
   <data name="RMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RMA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image1g" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image1g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="LoginTitle_oip2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoginTitle_oip2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="32Bicon_Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\32Bicon_Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logoFFFFFF_r2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoFFFFFF_r2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="image3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="s_admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\s_admin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_ICO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM-ICO.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="05samsung1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\05samsung1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SAMSUNG_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SAMSUNG_21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -387,6 +381,9 @@
   </data>
   <data name="setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\setup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ISEM_W_Current" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ISEM_W_Current.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -409,8 +406,8 @@
   <data name="ISEM_O_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ISEM_O_64.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_O_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM_O_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="samsunglogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\samsunglogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -442,11 +439,14 @@
   <data name="LoginTitle_admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LoginTitle_admin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_B_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM_B_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISEM_O_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISEM_O_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cim_portal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cim_portal1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="samsung_BOTTOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\samsung_BOTTOM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="32Oicon_Alarm_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\32Oicon_Alarm_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -463,11 +463,11 @@
   <data name="SEM Feel Machine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SEM Feel Machine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_G_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM_G_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="image1g" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image1g.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISEM_O_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISEM_O_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="32Bicon_Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32Bicon_Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="32Bicon_Quit_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\32Bicon_Quit_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -475,8 +475,8 @@
   <data name="Type008_Question" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Type008_Question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo_B_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_B_32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="samsung_bottomgg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\samsung_bottomgg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ng" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ng.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -484,7 +484,7 @@
   <data name="imageTopTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imageTopTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ISIA1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ISIA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ISIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ISIA1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
