@@ -35,10 +35,10 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id 
                     AND A.INSTANCE_NUMBER = b.INSTANCE_NUMBER
                     AND A.DBID = b.DBID
-                    where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
-                    and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
+                    where 1=1 and b.begin_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
+                    and  b.begin_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DbId);
+                    tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
 
@@ -55,10 +55,10 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id
                     AND A.INSTANCE_NUMBER = b.INSTANCE_NUMBER
                     AND A.DBID = b.DBID
-                    where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
-                    and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
+                    where 1=1 and b.begin_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
+                    and  b.begin_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DbId);
+                    tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
 
@@ -74,12 +74,12 @@ namespace ISIA.BIZ.ANALYSIS
                     ", arguments.DbName);
 
                     tmpSql.AppendFormat(@" WHERE     1 = 1
-                    AND b.end_interval_time >
+                    AND b.begin_interval_time >
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                    AND b.end_interval_time <=
+                    AND b.begin_interval_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DbId);
+                    tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER  = {0} ", arguments.InstanceNumber);
 
@@ -98,10 +98,10 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(@" B on A.snap_id = b.snap_id  
                     AND A.INSTANCE_NUMBER = b.INSTANCE_NUMBER
                     AND A.DBID = b.DBID
-                    where 1=1 and b.end_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
-                    and  b.end_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
+                    where 1=1 and b.begin_interval_time>to_date('{0}','yyyy-MM-dd HH24:mi:ss')
+                    and  b.begin_interval_time <= to_date('{1}','yyyy-MM-dd HH24:mi:ss' ) ", arguments.StartTimeKey, arguments.EndTimeKey);
 
-                    tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);
+                    tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER  = {0} ", arguments.InstanceNumber);
 
@@ -116,9 +116,9 @@ namespace ISIA.BIZ.ANALYSIS
                     AND A.DBID = b.DBID ", arguments.DbName);
 
                     tmpSql.AppendFormat(@"  WHERE     1 = 1
-                    AND b.end_interval_time >
+                    AND b.begin_interval_time >
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                    AND b.end_interval_time <=
+                    AND b.begin_interval_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey, arguments.EndTimeKey);
 
                     tmpSql.AppendFormat(@" AND A.DBID IN '{0}' ", arguments.DbId);

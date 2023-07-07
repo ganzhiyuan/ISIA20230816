@@ -33,20 +33,17 @@ namespace ISIA.BIZ.ANALYSIS
                                         AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER
                                         WHERE  1 = 1 ", arguments.DbName);
 
-                    tmpSql.AppendFormat(@" AND B.END_INTERVAL_TIME > TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss' ) 
-                                           AND B.END_INTERVAL_TIME <= TO_DATE ('{1}' , 'yyyy-MM-dd HH24:mi:ss' )",
+                    tmpSql.AppendFormat(@" AND B.BEGIN_INTERVAL_TIME > TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss' ) 
+                                           AND B.BEGIN_INTERVAL_TIME <= TO_DATE ('{1}' , 'yyyy-MM-dd HH24:mi:ss' )",
                                            arguments.StartTimeKey, arguments.EndTimeKey);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
 
-                    tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DbId);
+                    tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
                     tmpSql.Append(" group by A.SQL_ID ,A.SNAP_ID, A.DBID,A.INSTANCE_NUMBER,B.END_INTERVAL_TIME ");
 
                     tmpSql.Append(" ORDER BY B.END_INTERVAL_TIME ");
-
-
-
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

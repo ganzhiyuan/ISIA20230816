@@ -287,7 +287,7 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-            chart.Axes.Bottom.Labels.DateTimeFormat = "yyyyMMdd hh:mm";
+            chart.Axes.Bottom.Labels.DateTimeFormat = "hh:mm";
             chart.Axes.Bottom.Labels.ExactDateTime = true;
             chart.Axes.Bottom.Ticks.Width = 0;
             chart.Axes.Left.Visible = true;

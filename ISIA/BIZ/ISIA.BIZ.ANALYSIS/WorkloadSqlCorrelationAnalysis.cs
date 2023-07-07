@@ -82,7 +82,7 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.Remove(tmpSql.Length - 1, 1);
                     tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
                        "stat.snap_id=snap.snap_id and stat.dbid=snap.dbid and stat.INSTANCE_NUMBER=snap.INSTANCE_NUMBER \r\n" +
-                       "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       "where  TO_CHAR (snap.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
                        " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id,stat.dbid,stat.instance_number\r\n" +
                        "order by snap_id),\r\n" +
@@ -118,8 +118,8 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.VALUE,\r\n" +
                        "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
-                       
-                       " and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
+
+                       " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
                        "  AND ss.DBID IN  ('{4}')  AND ss.INSTANCE_NUMBER  = {5}  " +
                        " ) t\r\n" +
                        " where 1=1\r\n" +
@@ -141,7 +141,7 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.Remove(tmpSql.Length - 1, 1);
                     tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
                        "stat.snap_id=snap.snap_id  and stat.dbid=snap.dbid and stat.INSTANCE_NUMBER=snap.INSTANCE_NUMBER  \r\n" +
-                       "where  TO_CHAR (snap.end_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                       "where  TO_CHAR (snap.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
                        " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id  ,stat.dbid, stat.instance_number\r\n" +
                        "order by snap_id),\r\n" +
@@ -163,8 +163,8 @@ namespace ISIA.BIZ.ANALYSIS
                        "ss.average,\r\n" +
                        "ss.METRIC_NAME,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
                        "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and METRIC_NAME='{3}' --configurable\r\n" +
-                       
-                       "and TO_CHAR(sn.end_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
+
+                       "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
                        "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  "  +
                        ") t\r\n" +
                        " where 1=1\r\n" +

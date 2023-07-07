@@ -47,10 +47,11 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.lcSerachOptions = new DevExpress.XtraLayout.LayoutControl();
+            this.tLUCKDbname = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck();
+            this.tSearchLookUpEditCheck1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.cmbInstance = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.lblInstance = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.cmbParameterName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
-            this.cmbDbName = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabel2 = new TAP.UIControls.BasicControlsDEV.TLabel();
             this.cmbModel = new TAP.UIControls.BasicControlsDEV.TCheckComboBox();
             this.tLabelParmNames = new TAP.UIControls.BasicControlsDEV.TLabel();
@@ -60,10 +61,10 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.navBarSearch = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -71,9 +72,6 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tLUCKDbname = new TAP.UIControls.BasicControlsDEV.TSearchLookUpEditCheck();
-            this.tSearchLookUpEditCheck1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
             this.dpnlRight.SuspendLayout();
@@ -103,27 +101,25 @@ namespace ISIA.UI.ANALYSIS
             this.navBarGroupControlContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).BeginInit();
             this.lcSerachOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbParameterName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbModel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraUserControl1
@@ -382,7 +378,6 @@ namespace ISIA.UI.ANALYSIS
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd HH:mm";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd HH:mm");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 4, 9, 21, 44, 95);
             this.dtpStartTime.Size = new System.Drawing.Size(111, 20);
@@ -487,7 +482,6 @@ namespace ISIA.UI.ANALYSIS
             this.lcSerachOptions.Controls.Add(this.cmbInstance);
             this.lcSerachOptions.Controls.Add(this.lblInstance);
             this.lcSerachOptions.Controls.Add(this.cmbParameterName);
-            this.lcSerachOptions.Controls.Add(this.cmbDbName);
             this.lcSerachOptions.Controls.Add(this.tLabel2);
             this.lcSerachOptions.Controls.Add(this.cmbModel);
             this.lcSerachOptions.Controls.Add(this.tLabelParmNames);
@@ -502,6 +496,43 @@ namespace ISIA.UI.ANALYSIS
             this.lcSerachOptions.Size = new System.Drawing.Size(244, 105);
             this.lcSerachOptions.TabIndex = 0;
             this.lcSerachOptions.Text = "layoutControl2";
+            // 
+            // tLUCKDbname
+            // 
+            this.tLUCKDbname.CheckItemSelectMode = false;
+            this.tLUCKDbname.ControlID = "tLUCKDbname";
+            this.tLUCKDbname.DescriptionMember = "DBID";
+            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DominantControl = "";
+            this.tLUCKDbname.EditValue = "";
+            this.tLUCKDbname.IsRequired = true;
+            this.tLUCKDbname.Location = new System.Drawing.Point(127, 4);
+            this.tLUCKDbname.Name = "tLUCKDbname";
+            this.tLUCKDbname.NeedToTranslate = false;
+            this.tLUCKDbname.ParameterID = "DBID";
+            this.tLUCKDbname.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.tLUCKDbname.Properties.Appearance.Options.UseBackColor = true;
+            this.tLUCKDbname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tLUCKDbname.Properties.NullText = "";
+            this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
+            this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
+            this.tLUCKDbname.RepresentativeValue = "";
+            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.Size = new System.Drawing.Size(113, 20);
+            this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
+            this.tLUCKDbname.SqlDataBase = "";
+            this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
+            this.tLUCKDbname.StyleController = this.lcSerachOptions;
+            this.tLUCKDbname.TabIndex = 38;
+            this.tLUCKDbname.ValueMember = "DBID";
+            // 
+            // tSearchLookUpEditCheck1View
+            // 
+            this.tSearchLookUpEditCheck1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.tSearchLookUpEditCheck1View.Name = "tSearchLookUpEditCheck1View";
+            this.tSearchLookUpEditCheck1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.tSearchLookUpEditCheck1View.OptionsView.ShowGroupPanel = false;
             // 
             // cmbInstance
             // 
@@ -554,7 +585,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbParameterName.ControlID = "cmbParameterName";
             this.cmbParameterName.DescriptionMember = null;
             this.cmbParameterName.DisplayMember = "PARAMETERNAME";
-            this.cmbParameterName.DominantControl = "cmbDbName";
+            this.cmbParameterName.DominantControl = "tLUCKDbname";
             this.cmbParameterName.EditValue = "";
             this.cmbParameterName.IsRequired = true;
             this.cmbParameterName.Location = new System.Drawing.Point(127, 76);
@@ -574,34 +605,6 @@ namespace ISIA.UI.ANALYSIS
             this.cmbParameterName.StyleController = this.lcSerachOptions;
             this.cmbParameterName.TabIndex = 22;
             this.cmbParameterName.ValueMember = "PARAMETERNAME";
-            // 
-            // cmbDbName
-            // 
-            this.cmbDbName.CheckItemSelectMode = true;
-            this.cmbDbName.ControlID = "cmbDbName";
-            this.cmbDbName.DescriptionMember = "DBID";
-            this.cmbDbName.DisplayMember = "DBNAME";
-            this.cmbDbName.DominantControl = "";
-            this.cmbDbName.EditValue = "";
-            this.cmbDbName.IsRequired = true;
-            this.cmbDbName.Location = new System.Drawing.Point(185, 4);
-            this.cmbDbName.Name = "cmbDbName";
-            this.cmbDbName.NeedToTranslate = false;
-            this.cmbDbName.ParameterID = "DBID";
-            this.cmbDbName.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.cmbDbName.Properties.Appearance.Options.UseBackColor = true;
-            this.cmbDbName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbDbName.Properties.SelectAllItemVisible = false;
-            this.cmbDbName.RepresentativeValue = "";
-            this.cmbDbName.ShowDescription = true;
-            this.cmbDbName.Size = new System.Drawing.Size(55, 20);
-            this.cmbDbName.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabase";
-            this.cmbDbName.SqlDataBase = "";
-            this.cmbDbName.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.cmbDbName.StyleController = this.lcSerachOptions;
-            this.cmbDbName.TabIndex = 21;
-            this.cmbDbName.ValueMember = "DBID";
             // 
             // tLabel2
             // 
@@ -624,7 +627,7 @@ namespace ISIA.UI.ANALYSIS
             this.cmbModel.ControlID = "cmbModel";
             this.cmbModel.DescriptionMember = null;
             this.cmbModel.DisplayMember = "PARAMETERNAME";
-            this.cmbModel.DominantControl = "cmbDbName";
+            this.cmbModel.DominantControl = "tLUCKDbname";
             this.cmbModel.EditValue = "";
             this.cmbModel.IsRequired = true;
             this.cmbModel.Location = new System.Drawing.Point(127, 52);
@@ -684,7 +687,6 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem10,
             this.layoutControlItem3,
             this.layoutControlItem4,
-            this.layoutControlItem1,
             this.layoutControlItem5,
             this.layoutControlItem7,
             this.layoutControlItem6,
@@ -741,17 +743,6 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.cmbDbName;
-            this.layoutControlItem1.Location = new System.Drawing.Point(181, 0);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(54, 24);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(59, 24);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.cmbParameterName;
@@ -785,6 +776,15 @@ namespace ISIA.UI.ANALYSIS
             this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.tLUCKDbname;
+            this.layoutControlItem13.Location = new System.Drawing.Point(123, 0);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(117, 24);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // navBarSearch
             // 
@@ -855,52 +855,6 @@ namespace ISIA.UI.ANALYSIS
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             // 
-            // tLUCKDbname
-            // 
-            this.tLUCKDbname.CheckItemSelectMode = false;
-            this.tLUCKDbname.ControlID = "tLUCKDbname";
-            this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
-            this.tLUCKDbname.DominantControl = "";
-            this.tLUCKDbname.EditValue = "";
-            this.tLUCKDbname.IsRequired = true;
-            this.tLUCKDbname.Location = new System.Drawing.Point(127, 4);
-            this.tLUCKDbname.Name = "tLUCKDbname";
-            this.tLUCKDbname.NeedToTranslate = false;
-            this.tLUCKDbname.ParameterID = "DBID";
-            this.tLUCKDbname.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.tLUCKDbname.Properties.Appearance.Options.UseBackColor = true;
-            this.tLUCKDbname.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tLUCKDbname.Properties.NullText = "";
-            this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
-            this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
-            this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
-            this.tLUCKDbname.Size = new System.Drawing.Size(54, 20);
-            this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
-            this.tLUCKDbname.SqlDataBase = "";
-            this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
-            this.tLUCKDbname.StyleController = this.lcSerachOptions;
-            this.tLUCKDbname.TabIndex = 38;
-            this.tLUCKDbname.ValueMember = "DBID";
-            // 
-            // tSearchLookUpEditCheck1View
-            // 
-            this.tSearchLookUpEditCheck1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.tSearchLookUpEditCheck1View.Name = "tSearchLookUpEditCheck1View";
-            this.tSearchLookUpEditCheck1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.tSearchLookUpEditCheck1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.tLUCKDbname;
-            this.layoutControlItem13.Location = new System.Drawing.Point(123, 0);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(58, 24);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
             // FrmSQLIDShereByModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -939,27 +893,25 @@ namespace ISIA.UI.ANALYSIS
             this.navBarGroupControlContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcSerachOptions)).EndInit();
             this.lcSerachOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbInstance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbParameterName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbDbName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbModel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tLUCKDbname.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tSearchLookUpEditCheck1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -996,8 +948,6 @@ namespace ISIA.UI.ANALYSIS
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         public TAP.UIControls.BasicControlsDEV.TLabel tLabel2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private TAP.UIControls.BasicControlsDEV.TCheckComboBox cmbDbName;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpStartTime;
         private TAP.UIControls.BasicControlsDEV.TDateTimePicker dtpEndTime;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;

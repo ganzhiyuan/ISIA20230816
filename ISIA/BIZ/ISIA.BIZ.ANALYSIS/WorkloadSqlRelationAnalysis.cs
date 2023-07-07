@@ -62,11 +62,11 @@ namespace ISIA.BIZ.ANALYSIS
                 where 1 = 1 ", arguments.DBName);
 
                 tmpSql.AppendFormat(@" 
-                 and A.end_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                 and A.end_interval_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime , arguments.EndTime);
+                 and A.begin_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')
+                 and A.begin_interval_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime , arguments.EndTime);
 
                 tmpSql.AppendFormat(@" 
-                 AND A.DBID IN ('{0}') ", arguments.DBID);
+                 AND A.DBID = '{0}' ", arguments.DBID);
 
                 
 
@@ -134,9 +134,9 @@ namespace ISIA.BIZ.ANALYSIS
                     AND A.DBID = b.DBID", arguments.DBName);
 
                 tmpSql.AppendFormat(@" WHERE     1 = 1
-                    AND b.end_interval_time >
+                    AND b.begin_interval_time >
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                    AND b.end_interval_time <=
+                    AND b.begin_interval_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
 
                 tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DBID);

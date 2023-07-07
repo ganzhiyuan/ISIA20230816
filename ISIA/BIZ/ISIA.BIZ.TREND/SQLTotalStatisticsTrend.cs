@@ -60,9 +60,9 @@ namespace ISIA.BIZ.TREND
                                 where t.snap_id in (SELECT T.Snap_Id FROM raw_dba_hist_snapshot_{0} T", arguments.DbName);
 
 
-                tmpSql.AppendFormat(" WHERE T.END_INTERVAL_TIME >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
+                tmpSql.AppendFormat(" WHERE T.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
 
-                tmpSql.AppendFormat(" and t.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+                tmpSql.AppendFormat(" and t.begin_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
@@ -131,9 +131,9 @@ namespace ISIA.BIZ.TREND
                                 where t.snap_id in (SELECT T.Snap_Id FROM raw_dba_hist_snapshot_{0} T", arguments.DbName);
 
 
-                tmpSql.AppendFormat(" WHERE T.END_INTERVAL_TIME >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
+                tmpSql.AppendFormat(" WHERE T.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
 
-                tmpSql.AppendFormat(" and t.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+                tmpSql.AppendFormat(" and t.begin_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
