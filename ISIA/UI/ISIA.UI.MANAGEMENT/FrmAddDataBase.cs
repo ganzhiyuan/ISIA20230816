@@ -136,12 +136,14 @@ namespace ISIA.UI.MANAGEMENT
                 memoinfo.AppendLine("Loading...");
 
 
-                wpbcreate.BeginInvoke(new Action( () =>
+                 wpbcreate.BeginInvoke(new Action( () =>
                 {
                     CreateDBlinkAsync();
+                    CreateDataTableAsync();
                  }));
+                
 
-               
+
 
                  string a = "asdqa";
             }
@@ -154,6 +156,7 @@ namespace ISIA.UI.MANAGEMENT
 
         }
 
+        #region CreateDBlink
         public void CreateDBlinkAsync()
         {
             ///1.创建dblink 
@@ -183,41 +186,104 @@ namespace ISIA.UI.MANAGEMENT
 
                 wpbcreate.DescriptionText = string.Format("Create DB LINK : {0}", dblinkname);
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
                 memoinfo.AppendLine("End of the program is run");
                 wpbcreate.AllowNext = true;
 
         }
-
+        #endregion
 
         public void CreateDataTableAsync()
         {
 
 
-            if (dblinksta)
+            /*if (dblinksta)
             {
                 int res1 = bs.ExecuteModify("DropDBlink", args.getPack());
             }
-            memoinfo.AppendLine(string.Format("Creating  DB LINK : {0}", dblinkname));
+            memoinfo.AppendLine(string.Format("Creating  DB LINK : {0}", dblinkname));*/
+            memoinfo.AppendLine("Creating  DataTable ...... ");
 
-            int res = bs.ExecuteModify("CreateDBLink", args.getPack());
-
-            if (res == -1)
+            foreach (string table in DataBaseInfo.datatablelist)
             {
-                memoinfo.AppendLine(string.Format("DB LINK : {0} is created successfully ", dblinkname));
+                string tablename = string.Format(table,dblinkname);
+                memoinfo.AppendLine(tablename + " is being created ...... ");
+                args.DataTableName = tablename;
+                if (bs.ExecuteDataTable("GetDataTable", args.getPack()).Rows.Count > 0)
+                {
+                    DialogResult result = XtraMessageBox.Show(this, "This DataTable already exists . Choose yes if you still use it ,\n otherwise choose no and will be covered.",
+                  "Warring", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+
+                        
+                    }
+                    else if (result == DialogResult.No)
+                    {
+
+                        int res1 = bs.ExecuteModify("DropDataTable", args.getPack());//删除已存在的表
+
+                        if (res1 == -1)
+                        {
+                            string input = tablename;
+                            int lastUnderscoreIndex = input.LastIndexOf("_");
+                            if (lastUnderscoreIndex != -1)
+                            {
+                                input = input.Substring(0, lastUnderscoreIndex);
+                            }
+
+                            string output = input.Replace("_", "");
+                            string methodName = "Create" + output;
+                            int restable = bs.ExecuteModify(methodName, args.getPack());//create table
+                            if (restable != -1) return;
+
+                            args.DataTablePKName = tablename + "_PK";//PK的名字
+
+                            string IndexmethodName = "CreateIndex" + output;//index方法的名字
+                            int resindex = bs.ExecuteModify(IndexmethodName, args.getPack());//create index
+                            if (resindex != -1) return;
+
+                            string PKmethodName = "CreatePK" + output;//PK方法的名字
+                            int respk = bs.ExecuteModify(PKmethodName, args.getPack());//create PK
+                            if (respk != -1) return;
+
+                            memoinfo.AppendLine(tablename + " cerate successfully .");
+                        }
+                    }
+                }
+                else {
+                    string input = tablename;
+                    int lastUnderscoreIndex = input.LastIndexOf("_"); 
+                    if (lastUnderscoreIndex != -1)
+                    {
+                        input = input.Substring(0, lastUnderscoreIndex); 
+                    }
+
+                    string output = input.Replace("_", "");
+                    string methodName = "Create" + output;
+                    int restable = bs.ExecuteModify(methodName, args.getPack());//create table
+                    if (restable != -1) return;
+
+                    args.DataTablePKName = tablename + "_PK";//PK的名字
+
+                    string IndexmethodName = "CreateIndex" + output;//index方法的名字
+                    int resindex = bs.ExecuteModify(IndexmethodName, args.getPack());//create index
+                    if (resindex != -1) return;
+
+                    string PKmethodName = "CreatePK" + output;//PK方法的名字
+                    int respk = bs.ExecuteModify(PKmethodName, args.getPack());//create PK
+                    if (respk != -1) return;
+
+                    memoinfo.AppendLine(tablename + " cerate successfully .");
+
+                } 
+
             }
-            else
-            {
-                memoinfo.AppendLine(string.Format("DB LINK : {0}  created fail ", dblinkname));
-            }
 
-            wpbcreate.DescriptionText = string.Format("Create DB LINK : {0}", dblinkname);
 
-            Thread.Sleep(5000);
 
-            memoinfo.AppendLine("End of the program is run");
-            wpbcreate.AllowNext = true;
 
         }
 
@@ -225,7 +291,7 @@ namespace ISIA.UI.MANAGEMENT
         {
             
              if (e.Page == wizardDBLink)
-            {
+             {
                 //DBLINK页面，判断同名dblink是否存在，不存在则跳转下一页
                 args = new CreateDataBaseArgsPack();
                 
@@ -298,7 +364,7 @@ namespace ISIA.UI.MANAGEMENT
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (finish) return;
-            if (XtraMessageBox.Show(this, "Do you want to exit the XtraWizard feature tour?", "XtraWizard", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (XtraMessageBox.Show(this, "Do you want to exit ?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 e.Cancel = true;
         }
 
@@ -408,7 +474,7 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     conn.Open();
                     Cursor.Current = Cursors.Default;
-                    XtraMessageBox.Show("Test Connecting successfully . You can Netx");
+                    XtraMessageBox.Show("Test Connecting successfully . You can Next");
                     using (OracleCommand cmd = conn.CreateCommand())
                     {
                         /*using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
@@ -475,11 +541,11 @@ namespace ISIA.UI.MANAGEMENT
         static DataBaseInfo()
         {
             datatablelist = new List<string> ();
-            datatablelist.Add("RAW_V_LOG_{0}");
-            datatablelist.Add("RAW_V_LOG1_{0}");
+            datatablelist.Add("RAW_DBA_HIST_ENQUEUE_STAT_{0}");
+            /*datatablelist.Add("RAW_V_LOG1_{0}");
             datatablelist.Add("RAW_V_LOG2_{0}");
             datatablelist.Add("RAW_V_LOG3_{0}");
-            datatablelist.Add("RAW_V_LOG4_{0}");
+            datatablelist.Add("RAW_V_LOG4_{0}");*/
 
             procedures = new List<string>();
             procedures.Add("GET_DATA");

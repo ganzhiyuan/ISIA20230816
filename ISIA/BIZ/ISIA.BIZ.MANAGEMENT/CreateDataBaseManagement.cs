@@ -90,60 +90,19 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
-        public void CheckTcode(CodeManagementArgsPack arguments)
+        public void GetDataTable(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                StringBuilder sbSel = new StringBuilder();
-                sbSel.Append("select * from tapctdatabase");
-                sbSel.Append(" where 1=1 ");
-                sbSel.AppendFormat(" and DBID='{0}' ", arguments.DBID);
-                sbSel.AppendFormat(" and DBNAME='{0}' ", arguments.DBNAME);
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                      sbSel.ToString(), false);
-
-                this.ExecutingValue = db.Select(sbSel.ToString());
-            }
-            catch (Exception ex)
-            {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
-                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
-                throw ex;
-            }
-        }
-
-        public void UpdateTcode(CodeManagementArgsPack arguments)
-        {
-            DBCommunicator db = new DBCommunicator();
-            try
-            {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("UPDATE tapctdatabase SET ");
-                tmpSql.AppendFormat("  DBID = '{0}' ,", arguments.DBID);
-                tmpSql.AppendFormat("  DBNAME = '{0}' ,", arguments.DBNAME);
-                tmpSql.AppendFormat("  DBLINKNAME = '{0}' ,", arguments.DBLINKNAME);
-                tmpSql.AppendFormat("  SERVICENAME = '{0}' ,", arguments.SERVICENAME);
-                tmpSql.AppendFormat("  IPADDRESS = '{0}' ,", arguments.IPADDRESS);
-                tmpSql.AppendFormat("  INSTANTCNT = '{0}' ,", arguments.INSTANTCNT);
-                tmpSql.AppendFormat("  SEQUENCES = '{0}' ,", arguments.SEQUENCES);
-                tmpSql.AppendFormat("  ISALIVE = '{0}' ,", arguments.ISALIVE);
-                tmpSql.AppendFormat("  DESCRIPTION = '{0}' ", arguments.DESCRIPTION);
-
-
-                tmpSql.Append(" where 1=1 ");
-                tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);
-                tmpSql.AppendFormat(" and DBNAME='{0}' ", arguments.DBNAME);
+                tmpSql.AppendFormat("SELECT table_name  FROM all_tables WHERE table_name = '{0}'", arguments.DataTableName);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
-                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
 
-
-
-
+                this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
             }
             catch (Exception ex)
             {
@@ -153,52 +112,15 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
-        public void SaveTCode(CodeManagementArgsPack arguments)
-        {
-            DBCommunicator db = new DBCommunicator();
-            try
-            {
-                StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION) values (  ");
-                tmpSql.AppendFormat(" '{0}',", arguments.DBID);
-                tmpSql.AppendFormat(" '{0}',", arguments.DBNAME);
-                tmpSql.AppendFormat(" '{0}',", arguments.DBLINKNAME);
-                tmpSql.AppendFormat(" '{0}',", arguments.SERVICENAME);
-                tmpSql.AppendFormat(" '{0}',", arguments.IPADDRESS);
-                tmpSql.AppendFormat(" '{0}',", arguments.INSTANTCNT);
-                tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
-                tmpSql.AppendFormat(" '{0}',", arguments.ISALIVE);
-                tmpSql.AppendFormat(" '{0}' )", arguments.DESCRIPTION);
-
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                       tmpSql.ToString(), false);
-                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
-            }
-            catch (Exception ex)
-            {
-                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
-                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
-                throw ex;
-            }
-        }
-
-        public void DelteTCODE(CodeManagementArgsPack arguments)
+        public void DropDataTable(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("DELETE FROM tapctdatabase WHERE ");
+                tmpSql.AppendFormat("DROP TABLE {0}; ", arguments.DataTableName);
 
-                if (!string.IsNullOrEmpty(arguments.ROWID))
-                {
-                    tmpSql.AppendFormat("ROWID =  '{0}'", arguments.ROWID);
-                }
-                else
-                {
-                    return;
-                }
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -212,5 +134,132 @@ namespace ISIA.BIZ.MANAGEMENT
                 throw ex;
             }
         }
+                   
+
+        public void CreateRAWDBAHISTENQUEUESTAT(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@"CREATE TABLE {0}
+                                        (
+                                          SNAP_ID          NUMBER,
+                                          DBID             NUMBER,
+                                          INSTANCE_NUMBER  NUMBER,
+                                          EQ_TYPE          VARCHAR2(2 BYTE),
+                                          REQ_REASON       VARCHAR2(64 BYTE),
+                                          TOTAL_REQ#       NUMBER,
+                                          TOTAL_WAIT#      NUMBER,
+                                          SUCC_REQ#        NUMBER,
+                                          FAILED_REQ#      NUMBER,
+                                          CUM_WAIT_TIME    NUMBER,
+                                          EVENT#           NUMBER,
+                                          CON_DBID         NUMBER,
+                                          CON_ID           NUMBER,
+                                          BEGIN_TIME       DATE,
+                                          END_TIME         DATE
+                                        )
+                                        TABLESPACE DEFAULT_TS
+                                        PCTUSED    0
+                                        PCTFREE    10
+                                        INITRANS   1
+                                        MAXTRANS   255
+                                        STORAGE    (
+                                                    INITIAL          64K
+                                                    NEXT             1M
+                                                    MINEXTENTS       1
+                                                    MAXEXTENTS       UNLIMITED
+                                                    PCTINCREASE      0
+                                                    BUFFER_POOL      DEFAULT
+                                                   )
+                                        LOGGING 
+                                        NOCOMPRESS 
+                                        NOCACHE
+                                        MONITORING", arguments.DataTableName);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+        public void CreateIndexRAWDBAHISTENQUEUESTAT(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@"CREATE UNIQUE INDEX {1} ON {0}
+                                    (DBID, SNAP_ID, INSTANCE_NUMBER, EQ_TYPE, REQ_REASON, 
+                                    CON_DBID, BEGIN_TIME, END_TIME)
+                                    LOGGING
+                                    TABLESPACE DEFAULT_IDX
+                                    PCTFREE    10
+                                    INITRANS   2
+                                    MAXTRANS   255
+                                    STORAGE    (
+                                                INITIAL          64K
+                                                NEXT             1M
+                                                MINEXTENTS       1
+                                                MAXEXTENTS       UNLIMITED
+                                                PCTINCREASE      0
+                                                BUFFER_POOL      DEFAULT
+                                               )", arguments.DataTableName ,arguments.DataTablePKName);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+        public void CreatePKRAWDBAHISTENQUEUESTAT(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@"ALTER TABLE {0} ADD (
+                                      CONSTRAINT {1}
+                                      PRIMARY KEY
+                                      (DBID, SNAP_ID, INSTANCE_NUMBER, EQ_TYPE, REQ_REASON, CON_DBID, BEGIN_TIME, END_TIME)
+                                      USING INDEX {1}
+                                      ENABLE VALIDATE)", arguments.DataTableName, arguments.DataTablePKName);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
     }
 }
