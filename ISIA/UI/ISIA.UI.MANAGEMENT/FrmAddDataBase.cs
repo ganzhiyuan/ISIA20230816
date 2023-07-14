@@ -44,6 +44,8 @@ namespace ISIA.UI.MANAGEMENT
 
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.CreateDataBaseManagement");
             welcomeWizardPage1.AllowNext = false;//next按钮是否启用属性
+
+            
         }
 
         public FrmAddDataBase(bool allowAnimation, WizardStyle style)
@@ -209,7 +211,13 @@ namespace ISIA.UI.MANAGEMENT
             {
                 string tablename = string.Format(table,dblinkname);
                 memoinfo.AppendLine(tablename + " is being created ...... ");
+
                 args.DataTableName = tablename;
+                
+                DateTime dateTime = DateTime.Now.Date;
+                DateTime dateTime1 = new DateTime(dateTime.Year,dateTime.Month,1);
+                args.DateNow = dateTime1;
+                
                 if (bs.ExecuteDataTable("GetDataTable", args.getPack()).Rows.Count > 0)
                 {
                     DialogResult result = XtraMessageBox.Show(this, "This DataTable already exists . Choose yes if you still use it ,\n otherwise choose no and will be covered.",
@@ -282,7 +290,7 @@ namespace ISIA.UI.MANAGEMENT
 
             }
 
-
+            memoinfo.AppendLine("End of the create datatable ");
 
 
         }
@@ -541,7 +549,38 @@ namespace ISIA.UI.MANAGEMENT
         static DataBaseInfo()
         {
             datatablelist = new List<string> ();
+            datatablelist.Add("RAW_DBA_HIST_ACTIVE_SESS_HISTORY_{0}");
+            datatablelist.Add("RAW_DBA_HIST_BUFFER_POOL_STAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_CR_BLOCK_SERVER_{0}");
+            datatablelist.Add("RAW_DBA_HIST_CURRENT_BLOCK_SERVER_{0}");
+            datatablelist.Add("RAW_DBA_HIST_DLM_MISC_{0}");
             datatablelist.Add("RAW_DBA_HIST_ENQUEUE_STAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_LATCH_MISSES_SUMMARY_{0}");
+            datatablelist.Add("RAW_DBA_HIST_LATCH_{0}");
+            datatablelist.Add("RAW_DBA_HIST_LIBRARYCACHE_{0}");
+            datatablelist.Add("RAW_DBA_HIST_OSSTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_PARAMETER_{0}");
+            datatablelist.Add("RAW_DBA_HIST_PGASTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_RESOURCE_LIMIT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_ROWCACHE_SUMMARY_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SEG_STAT_OBJ_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SEG_STAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SGASTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SGA_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SNAPSHOT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQLBIND_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQLSTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQLTEXT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQL_BIND_METADATA_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQL_PLAN_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQL_SUMMARY_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQL_WORKAREA_HSTGRM_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SYSSTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SYSTEM_EVENT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SYS_TIME_MODEL_{0}");
+            datatablelist.Add("RAW_DBA_HIST_THREAD_{0}");
+            datatablelist.Add("RAW_DBA_HIST_WAITSTAT_{0}");
             /*datatablelist.Add("RAW_V_LOG1_{0}");
             datatablelist.Add("RAW_V_LOG2_{0}");
             datatablelist.Add("RAW_V_LOG3_{0}");

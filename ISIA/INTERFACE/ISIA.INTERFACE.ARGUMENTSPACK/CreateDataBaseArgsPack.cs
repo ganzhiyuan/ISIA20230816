@@ -17,7 +17,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private string _DBLinkName = null;
         private string _DataTableName = null;
         private string _DataTablePKName = null;
-        private string _endTimeKey = null;
+        private DateTime _DateNow ;
         private string _imagePath = null;
         private string _detectionFlag = null;
 
@@ -39,7 +39,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         public string DataTablePKName { get { return _DataTablePKName; } set { _DataTablePKName = value; } }
 
-        public string EndTimeKey { get { return _endTimeKey; } set { _endTimeKey = value; } }
+        public DateTime DateNow { get { return _DateNow; } set { _DateNow = value; } }
 
         public string ImagePath { get { return _imagePath; } set { _imagePath = value; } }
 
