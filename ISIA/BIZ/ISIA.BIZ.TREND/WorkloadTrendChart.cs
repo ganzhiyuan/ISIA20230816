@@ -484,7 +484,7 @@ SELECT sm.dbid
                 {
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/1000000,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);                    
                 }
-                else if (arguments.ParamNamesString== "PHYSICAL_WRITE_BYTES_DELTA")
+                else if (arguments.ParamNamesString== "PHYSICAL_WRITE_BYTES_DELTA" || arguments.ParamNamesString == "PHYSICAL_READ_BYTES_DELTA")
                 {
                     tmpSql.AppendFormat("select sql_id,ROUND(sum({0})/8192,0) {0},instance_number,b.module,b.action,b.parsing_schema_name from (", arguments.ParamNamesString);
                 }
@@ -535,9 +535,9 @@ SELECT sm.dbid
                     tmpSql.AppendFormat("SELECT to_date(d.workdate,'{0}') workdate,ROUND(sum(d.{1})/1000000,0) {1},d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.PARADEF,arguments.ParamNamesString);
                     
                 }
-                else if (arguments.ParamNamesString == "PHYSICAL_WRITE_BLOCK"|| arguments.ParamNamesString == "PHYSICAL_WRITE_BYTES_DELTA" )
+                else if (arguments.ParamNamesString == "PHYSICAL_WRITE_BLOCK"|| arguments.ParamNamesString == "PHYSICAL_WRITE_BYTES_DELTA" || arguments.ParamNamesString == "PHYSICAL_READ_BYTES_DELTA")
                 {
-                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'{0}') workdate,ROUND(sum(d.{1})/8192,6) physical_write_block ,d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.PARADEF, arguments.ParamNamesString);
+                    tmpSql.AppendFormat("SELECT to_date(d.workdate,'{0}') workdate,ROUND(sum(d.{1})/8192,6) {1} ,d.sql_id,d.instance_number,d.module,d.action,d.parsing_schema_name  FROM ( ", arguments.PARADEF, arguments.ParamNamesString);
                 }
                 else
                 {

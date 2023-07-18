@@ -62,25 +62,40 @@ namespace ISIA.UI.TREND
             //}
             if (groupUnit == "DAY")
             {
+                string HeaderText = "";
+                bool HeaderModified = false;
                 foreach (DataColumn item in dt.Columns)
                 {
-                    if (item.ColumnName.ToUpper().Contains("_DELTA"))
+                     HeaderText = item.ColumnName;
+                    if (HeaderText.ToUpper().Contains("BYTES"))
                     {
-                        item.ColumnName = item.ColumnName.Substring(0, item.ColumnName.Length - 6);
+                        HeaderText = HeaderText.Replace("BYTES", "BLOCK");
+                        item.ColumnName = HeaderText;
+                        HeaderModified = true;
                     }
-                    if (item.ColumnName.ToUpper().Contains("_TOTAL"))
+                    if (HeaderText.ToUpper().Contains("_DELTA"))
                     {
-                        item.ColumnName = item.ColumnName.Substring(0, item.ColumnName.Length - 6);
+                        HeaderText = HeaderText.Substring(0, item.ColumnName.Length - 6);
+                        item.ColumnName = HeaderText;
+                        HeaderModified = true;
+                        break;
+                    }
+                    if (HeaderText.ToUpper().Contains("_TOTAL"))
+                    {
+                        HeaderText = HeaderText.Substring(0, item.ColumnName.Length - 6);
+                        item.ColumnName = HeaderText;
+                        HeaderModified = true;
+                        break;
                     }
                 }
-                string[] str = colName.Split('_');
-                string colNm = string.Empty;
-                for (int i = 0; i < str.Length - 1; i++)
+                if (HeaderModified)
                 {
-                    colNm += str[i];
-                    colNm += "_";
+                    tChartSqlText.Header.Text = HeaderText;
                 }
-                tChartSqlText.Header.Text = colNm.TrimEnd('_');
+                else
+                {
+                    tChartSqlText.Header.Text = colName;
+                }
                 
             }
             else
