@@ -82,7 +82,7 @@ namespace ISIA.UI.MANAGEMENT
                 List<string> pvalues = DataBaseInfo.procedures;
                 foreach (string item in pvalues)
                 {
-                    listBoxprocedure.Items.Add(item);
+                    listBoxprocedure.Items.Add(string.Format(item, dblinkname));
                 }
 
             }
@@ -142,10 +142,9 @@ namespace ISIA.UI.MANAGEMENT
                 {
                     CreateDBlinkAsync();
                     CreateDataTableAsync();
+                    CreateProceduresAsync();
                  }));
                 
-
-
 
                  string a = "asdqa";
             }
@@ -158,7 +157,7 @@ namespace ISIA.UI.MANAGEMENT
 
         }
 
-        #region CreateDBlink
+        #region CreateDBlinkAsync
         public void CreateDBlinkAsync()
         {
             ///1.创建dblink 
@@ -294,6 +293,82 @@ namespace ISIA.UI.MANAGEMENT
 
 
         }
+
+        #region Procedures
+        public void CreateProceduresAsync()
+        {
+            memoinfo.AppendLine("Creating  Procedures ...... ");
+
+            foreach (string procedures in DataBaseInfo.procedures)
+            {
+
+                string procedurename = string.Format(procedures, dblinkname);
+                memoinfo.AppendLine("Procedure "+ procedurename + " is being created ...... ");
+
+                args.ProcedureName = procedurename;
+
+                BizDataClient bs1 = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.CreateProceduresManagement");
+
+                if (bs1.ExecuteDataTable("GetProcedures", args.getPack()).Rows.Count > 0)
+                {
+                    DialogResult result = XtraMessageBox.Show(this, "This Procedure already exists . Choose yes if you still use it ,\n otherwise choose no and will be covered.",
+                  "Warring", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+
+
+                    }
+                    else if (result == DialogResult.No)
+                    {
+
+                        int res1 = bs1.ExecuteModify("DropProcedures", args.getPack());//删除已存在的存储过程
+
+                        if (res1 == -1)
+                        {
+                            string input = procedurename;
+                            int lastUnderscoreIndex = input.LastIndexOf("_");
+                            if (lastUnderscoreIndex != -1)
+                            {
+                                input = input.Substring(0, lastUnderscoreIndex);
+                            }
+
+                            string output = input.Replace("_", "");
+                            string methodName = "Create" + output;
+                            int restable = bs1.ExecuteModify(methodName, args.getPack());//create procedure
+                            if (restable != -1) return;
+
+                            
+
+                            memoinfo.AppendLine(procedurename + " cerate successfully .");
+                        }
+                    }
+                }
+                else
+                {
+
+
+                    string input = procedurename;
+                    int lastUnderscoreIndex = input.LastIndexOf("_");
+                    if (lastUnderscoreIndex != -1)
+                    {
+                        input = input.Substring(0, lastUnderscoreIndex);
+                    }
+
+                    string output = input.Replace("_", "");
+                    string methodName = "Create" + output;
+                    int restable = bs1.ExecuteModify(methodName, args.getPack());//create procedure
+                    if (restable != -1) return;
+
+                    memoinfo.AppendLine(procedurename + " cerate successfully .");
+
+                }
+
+            }
+
+
+        }
+        #endregion
 
         private void wizardControl1_NextClick(object sender, WizardCommandButtonClickEventArgs e)
         {
@@ -569,7 +644,7 @@ namespace ISIA.UI.MANAGEMENT
             datatablelist.Add("RAW_DBA_HIST_SGA_{0}");
             datatablelist.Add("RAW_DBA_HIST_SNAPSHOT_{0}");
             datatablelist.Add("RAW_DBA_HIST_SQLBIND_{0}");
-            datatablelist.Add("RAW_DBA_HIST_SQLSTAT_{0}");
+            datatablelist.Add("RAW_DBA_HIST_SQLSTAT_{0}");//sqlindex重复
             datatablelist.Add("RAW_DBA_HIST_SQLTEXT_{0}");
             datatablelist.Add("RAW_DBA_HIST_SQL_BIND_METADATA_{0}");
             datatablelist.Add("RAW_DBA_HIST_SQL_PLAN_{0}");
@@ -581,16 +656,13 @@ namespace ISIA.UI.MANAGEMENT
             datatablelist.Add("RAW_DBA_HIST_SYS_TIME_MODEL_{0}");
             datatablelist.Add("RAW_DBA_HIST_THREAD_{0}");
             datatablelist.Add("RAW_DBA_HIST_WAITSTAT_{0}");
-            /*datatablelist.Add("RAW_V_LOG1_{0}");
-            datatablelist.Add("RAW_V_LOG2_{0}");
-            datatablelist.Add("RAW_V_LOG3_{0}");
-            datatablelist.Add("RAW_V_LOG4_{0}");*/
+
 
             procedures = new List<string>();
-            procedures.Add("GET_DATA");
-            procedures.Add("GET_DATA1");
+            procedures.Add("GET_DATA_{0}");
+            /*procedures.Add("GET_DATA1");
             procedures.Add("GET_DATA2");
-            procedures.Add("GET_DATA3");
+            procedures.Add("GET_DATA3");*/
 
             databaseinfo = new List<string>();
             databaseinfo.Add("User ID : ");

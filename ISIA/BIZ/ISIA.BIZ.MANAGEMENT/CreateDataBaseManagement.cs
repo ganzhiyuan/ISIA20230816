@@ -118,7 +118,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("DROP TABLE {0}; ", arguments.DataTableName);
+                tmpSql.AppendFormat("DROP TABLE {0} ", arguments.DataTableName);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -286,6 +286,12 @@ namespace ISIA.BIZ.MANAGEMENT
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
 
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
+
                     string res = $"{year.ToString().Substring(2)}{month-1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION ACTIVE_SESS_HISTORY_{0}_{1} VALUES LESS THAN 
                                         (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
@@ -358,6 +364,12 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
+
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
 
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION ACTIVE_SESS_HISTORY_{0}_{1}
@@ -568,7 +580,7 @@ namespace ISIA.BIZ.MANAGEMENT
         #endregion
 
         #region RAW_DBA_HIST_CR_BLOCK_SERVER
-        public void CreateRAWDBAHISTCRBLOCKSERVERWXMMS(CreateDataBaseArgsPack arguments)
+        public void CreateRAWDBAHISTCRBLOCKSERVER(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -633,7 +645,7 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
-        public void CreateIndexRAWDBAHISTCRBLOCKSERVERWXMMS(CreateDataBaseArgsPack arguments)
+        public void CreateIndexRAWDBAHISTCRBLOCKSERVER(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -674,7 +686,7 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
-        public void CreatePKRAWDBAHISTCRBLOCKSERVERWXMMS(CreateDataBaseArgsPack arguments)
+        public void CreatePKRAWDBAHISTCRBLOCKSERVER(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -884,6 +896,12 @@ namespace ISIA.BIZ.MANAGEMENT
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
 
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
+
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION DLM_MISC_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -954,7 +972,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION DLM_MISC_{0}_{1}
                                         LOGGING
@@ -1198,7 +1220,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION LATCH_MISSES_SUMMARY_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -1269,7 +1295,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION LATCH_MISSES_SUMMARY_{0}_{1}
                                             LOGGING
@@ -1395,7 +1425,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION LATCH_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -1466,7 +1500,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION LATCH_{0}_{1}
                                             LOGGING
@@ -1714,7 +1752,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION OSSTAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -1785,7 +1827,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION OSSTAT_{0}_{1}
                                             LOGGING
@@ -1902,7 +1948,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION PARAMETER_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -1973,7 +2023,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION PARAMETER_{0}_{1}
                                             LOGGING
@@ -2347,7 +2401,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION ROWCACHE_SUMMARY_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -2418,7 +2476,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION ROWCACHE_SUMMARY_{0}_{1}
                                             LOGGING
@@ -2713,7 +2775,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SEG_STAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                             LOGGING
@@ -2784,7 +2850,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SEG_STAT_{0}_{1}
                                             LOGGING
@@ -2823,7 +2893,7 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
-        public void CreatePKRAWDBAHISTSEGSTATY(CreateDataBaseArgsPack arguments)
+        public void CreatePKRAWDBAHISTSEGSTAT(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
@@ -2899,7 +2969,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SGASTAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -2970,7 +3044,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SGASTAT_{0}_{1}
                                         LOGGING
@@ -3542,7 +3620,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQLSTAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -3591,16 +3673,17 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(@"CREATE UNIQUE INDEX {1} ON {0}
-                                    (SQL_ID, DBID, CON_DBID)
-                                    TABLESPACE PART_TS_IDX
-                                    PCTFREE    10
-                                    INITRANS   2
-                                    MAXTRANS   255
-                                    STORAGE    (
-                                                BUFFER_POOL      DEFAULT
-                                                )
-                                LOCAL (  
+                tmpSql.AppendFormat(@"CREATE UNIQUE  INDEX {1} ON {0}
+                                    (DBID, SNAP_ID, INSTANCE_NUMBER, SQL_ID, PLAN_HASH_VALUE, 
+                                    CON_DBID, BEGIN_TIME, END_TIME)
+                                      TABLESPACE PART_TS_IDX
+                                      PCTFREE    10
+                                      INITRANS   2
+                                      MAXTRANS   255
+                                      STORAGE    (
+                                                  BUFFER_POOL      DEFAULT
+                                                 )
+                                    LOCAL (  
                                     ", arguments.DataTableName, arguments.DataTablePKName);
 
 
@@ -3612,7 +3695,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQLSTAT_{0}_{1}
                                         LOGGING
@@ -3730,7 +3817,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQLTEXT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -3815,7 +3906,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQLTEXT_{0}_{1}
                                         LOGGING
@@ -4093,7 +4188,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQL_PLAN_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -4179,7 +4278,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SQL_PLAN_{0}_{1}
                                         LOGGING
@@ -4678,7 +4781,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYSSTAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -4749,7 +4856,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYSSTAT_{0}_{1}
                                         LOGGING
@@ -4871,7 +4982,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYSTEM_EVENT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -4942,7 +5057,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYSTEM_EVENT_{0}_{1}
                                         LOGGING
@@ -5057,7 +5176,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYS_TIME_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -5128,7 +5251,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION SYS_TIME_{0}_{1}
                                         LOGGING
@@ -5370,7 +5497,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION WAITSTAT_{0}_{1} VALUES LESS THAN (TO_DATE(' {2}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
                                         LOGGING
@@ -5441,7 +5572,11 @@ namespace ISIA.BIZ.MANAGEMENT
                     //string formatDateTime = AdddateTime.ToString("yyyy-MM-dd HH:mm:ss");//转格式为2023-07-01 00:00:00
                     int year = AdddateTime.Year;
                     int month = AdddateTime.Month;
-
+                    if (month - 1 == 0)
+                    {
+                        month = 13;
+                        year = year-1;
+                    }
                     string res = $"{year.ToString().Substring(2)}{month - 1:00}";//拼接字符串为
                     tmpSql.AppendFormat(@"PARTITION WAITSTAT_{0}_{1}
                                         LOGGING
