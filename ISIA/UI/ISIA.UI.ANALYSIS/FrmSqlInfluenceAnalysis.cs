@@ -44,6 +44,8 @@ namespace ISIA.UI.ANALYSIS
             this.InitializeControls();
             dtpStartTime.DateTime = DateTime.Now.AddDays(-1);
             dtpEndTime.DateTime = DateTime.Now;
+            DataTable dataTable = (new BizDataClient("ISIA.BIZ.COMMON.DLL", "ISIA.BIZ.COMMON.ComboBoxData").ExecuteDataSet("GetDatabaseValue") as DataSet).Tables[0];
+            tLUCKDbname.BindData(dataTable, false);
             //initialize bs
         }
 
@@ -486,6 +488,7 @@ namespace ISIA.UI.ANALYSIS
 
         public void SelectedDBComboBox(TCheckComboBox ComboBox, string str)
         {
+            ComboBox.DominantControl = "tLUCKDbname";
             ComboBox.Setting();
             if (str == "")
             {
