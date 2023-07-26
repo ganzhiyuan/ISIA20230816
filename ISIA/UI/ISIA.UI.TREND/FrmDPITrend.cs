@@ -408,12 +408,13 @@ namespace ISIA.UI.TREND
                 args.ChartName = dto.HeaderText;
                 Thread.Sleep(10);
                 DataSet[] dsArray=new DataSet[cmbInstance.Text.Split(',').Length];
+                int count = 0;
                 foreach(string instance in cmbInstance.Text.Split(','))
                 {
                     args.InstanceNumber = instance;
                     DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
                     dst.Tables[0].TableName = instance;
-                    dsArray.Append(dst);
+                    dsArray[count++]=dst;
                 }
                 //IEnumerable<IGrouping<string, DataRow>> res = dst.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["INSTANCE_NUMBER"].ToString());
                 //foreach (IGrouping<string, DataRow> data in res)
@@ -442,7 +443,7 @@ namespace ISIA.UI.TREND
                     //{
                     //    line = CreateLine2(dst.Tables[ins[i].ToString()], dto);
                     //}
-                    line= CreateLine2(dsArray[i].Tables[0], dto, i);
+                    line= CreateLine2(dsArray[i].Tables[0], dto, int.Parse(dsArray[i].Tables[0].TableName));
 
 
                     tChart.Invoke((MethodInvoker)delegate
@@ -586,9 +587,9 @@ namespace ISIA.UI.TREND
                 line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
             }
             line.YValues.DataMember = str;
-            line.Color = colors[i];
+            line.Color = colors[i-1];
             line.Legend.Visible = true;
-            line.Legend.Text = dto.FileNameList[0].FileNameParament+$"-{++i}";
+            line.Legend.Text = dto.FileNameList[0].FileNameParament+$"-{i}";
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
             line.Legend.BorderRound = 10;
