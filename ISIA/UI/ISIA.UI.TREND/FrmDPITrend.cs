@@ -1,4 +1,5 @@
-﻿using ISIA.INTERFACE.ARGUMENTSPACK;
+﻿using DevExpress.XtraEditors;
+using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using ISIA.UI.TREND.Dto;
 using Steema.TeeChart;
@@ -251,13 +252,16 @@ namespace ISIA.UI.TREND
             int count = list3.Count();
             string[] instanceNum = cmbInstance.Text.Split(',');
             //Thread[] threads = new Thread[count];
+            int temp = 0;
             for (int i = 0; i < count; i++)
             {
                 int chartIndex = i; 
-                ShowWaitIcon(charts1.ElementAt(chartIndex));
                 foreach (string item in instanceNum)
                 {
-                    Task.Factory.StartNew(() => QueryDataForTChart1(charts1.ElementAt(chartIndex), list3[chartIndex], item, token));
+                    int tempi = temp;
+                    ShowWaitIcon(charts1.ElementAt(tempi));
+                    Task.Factory.StartNew(() => QueryDataForTChart3(charts1.ElementAt(tempi), list3[chartIndex], item, token));
+                    temp++;
                 }
             }
             //for (int i = 0; i < count; i++)
@@ -283,7 +287,6 @@ namespace ISIA.UI.TREND
                 {
                     tChart.Series.Clear();
                 });
-
                 token.ThrowIfCancellationRequested();
 
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
@@ -392,7 +395,6 @@ namespace ISIA.UI.TREND
                 {
                     tChart.Series.Clear();
                 });
-
                 token.ThrowIfCancellationRequested();
 
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
@@ -405,36 +407,42 @@ namespace ISIA.UI.TREND
                 args.SnapId = "";
                 args.ChartName = dto.HeaderText;
                 Thread.Sleep(10);
-                DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-                dst.Tables[0].TableName = "TABLE";
-                IEnumerable<IGrouping<string, DataRow>> res = dst.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["INSTANCE_NUMBER"].ToString());
-                foreach (IGrouping<string, DataRow> data in res)
+                DataSet[] dsArray=new DataSet[cmbInstance.Text.Split(',').Length];
+                foreach(string instance in cmbInstance.Text.Split(','))
                 {
-                    DataTable dataTable = data.ToArray().CopyToDataTable();
-                    dataTable.TableName = data.Key;
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        dst.Tables.Add(dataTable);
-                    }
+                    args.InstanceNumber = instance;
+                    DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+                    dst.Tables[0].TableName = instance;
+                    dsArray.Append(dst);
                 }
-                string[] ins = cmbInstance.Text.Split(',').ToArray();
+                //IEnumerable<IGrouping<string, DataRow>> res = dst.Tables[0].Rows.Cast<DataRow>().GroupBy<DataRow, string>(dr => dr["INSTANCE_NUMBER"].ToString());
+                //foreach (IGrouping<string, DataRow> data in res)
+                //{
+                //    DataTable dataTable = data.ToArray().CopyToDataTable();
+                //    dataTable.TableName = data.Key;
+                //    if (dataTable.Rows.Count > 0)
+                //    {
+                //        dst.Tables.Add(dataTable);
+                //    }
+                //}
+                //string[] ins = cmbInstance.Text.Split(',').ToArray();
 
-                for (int i = 0; i < ins.Length; i++)
+                for (int i = 0; i < dsArray.Length; i++)
                 {
                     token.ThrowIfCancellationRequested();
 
                     Line line;
 
-                    if (dst.Tables[ins[i].ToString()] == null)
-                    {
-                        line = CreateLine2(dst.Tables[0], dto);
-                        i = ins.Length;
-                    }
-                    else
-                    {
-                        line = CreateLine2(dst.Tables[ins[i].ToString()], dto);
-                    }
-
+                    //if (dst.Tables[ins[i].ToString()] == null)
+                    //{
+                    //    line = CreateLine2(dst.Tables[0], dto);
+                    //    i = ins.Length;
+                    //}
+                    //else
+                    //{
+                    //    line = CreateLine2(dst.Tables[ins[i].ToString()], dto);
+                    //}
+                    line= CreateLine2(dsArray[i].Tables[0], dto, i);
 
 
                     tChart.Invoke((MethodInvoker)delegate
@@ -471,30 +479,96 @@ namespace ISIA.UI.TREND
                 // Ignore the exception
             }
         }
-        private void QueryDataForTChart3(TChart tChart, DPIDto dto)
+        private void QueryDataForTChart3(TChart tChart, DPIDto dto, string insNum, CancellationToken token)
         {
-            tChart.Series.Clear();
-            AwrCommonArgsPack args = new AwrCommonArgsPack();
-            // 实际的查询逻辑
-            args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-            args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
-            args.DbName = tLUCKDbname.Text.Split('(')[0];
-            args.DbId = tLUCKDbname.EditValue.ToString();
-            args.InstanceNumber = cmbInstance.EditValue.ToString();
-            args.SnapId = "";
-            args.ChartName = dto.HeaderText;
+            //tChart.Series.Clear();
+            //AwrCommonArgsPack args = new AwrCommonArgsPack();
+            //// 实际的查询逻辑
+            //args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+            //args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+            //args.DbName = tLUCKDbname.Text.Split('(')[0];
+            //args.DbId = tLUCKDbname.EditValue.ToString();
+            //args.InstanceNumber = cmbInstance.EditValue.ToString();
+            //args.SnapId = "";
+            //args.ChartName = dto.HeaderText;
 
-            DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
-            for (int i = 0; i < dto.FileNameList.Count(); i++)
+            //DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+            //for (int i = 0; i < dto.FileNameList.Count(); i++)
+            //{
+            //    Line line = CreateLine(dst.Tables[0], dto, i);
+            //    tChart.Series.Add(line);
+            //}
+            //// 将查询到的数据设置到TChart控件中
+            //HideWaitIcon(tChart, dto.HeaderText + "-" + args.DbName + "-" + args.InstanceNumber);
+            try
             {
-                Line line = CreateLine(dst.Tables[0], dto, i);
-                tChart.Series.Add(line);
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    tChart.Series.Clear();
+                });
+                token.ThrowIfCancellationRequested();
+
+                AwrCommonArgsPack args = new AwrCommonArgsPack();
+                // 实际的查询逻辑
+                args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.DbName = tLUCKDbname.Text.Split('(')[0];
+                args.DbId = tLUCKDbname.EditValue.ToString();
+                args.InstanceNumber = insNum;
+                args.SnapId = "";
+                args.ChartName = dto.HeaderText;
+                Thread.Sleep(10);
+                DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
+                for (int i = 0; i < dto.FileNameList.Count(); i++)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    int rankIndex = i+1;
+                    string lineLegendName;
+                    try
+                    {
+                        lineLegendName = dst.Tables[0].Rows.Cast<DataRow>().Where(dr => !string.IsNullOrEmpty(dr[$"rank{rankIndex}"].ToString())).ToList()[0][$"rank{rankIndex}"] as string;
+                    } catch(Exception ex)
+                    {
+                        lineLegendName = "no data";
+                    }
+                    Line line = CreateLine3(dst.Tables[0], dto, i, lineLegendName);
+                    tChart.Invoke((MethodInvoker)delegate
+                    {
+                        if (dto.YRValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Right;
+
+                            // 设置Y轴标签的显示格式为百分比（保留两位小数）
+                            yAxis.Labels.ValueFormat = "0.00%";
+                        }
+                        if (dto.YLValueType == 1)
+                        {
+                            Axis yAxis = tChart.Axes.Left;
+                            yAxis.Labels.ValueFormat = "0.00%";
+                        }
+                        tChart.Axes.Right.Visible = true;
+                        tChart.Axes.Left.Visible = true;
+                        tChart.Legend.Visible = true;
+                        tChart.Legend.LegendStyle = LegendStyles.Series;
+                        tChart.Legend.Alignment = Steema.TeeChart.LegendAlignments.Bottom;
+                        tChart.Series.Add(line);
+                    });
+                }
+                // 将查询到的数据设置到TChart控件中
+                tChart.Invoke((MethodInvoker)delegate
+                {
+                    HideWaitIcon(tChart, dto.HeaderText + "-" + args.DbName + "-" + insNum);
+                });
+                token.ThrowIfCancellationRequested();
             }
-            // 将查询到的数据设置到TChart控件中
-            HideWaitIcon(tChart, dto.HeaderText + "-" + args.DbName + "-" + args.InstanceNumber);
+            catch (OperationCanceledException)
+            {
+                // Ignore the exception
+            }
         }
 
-        private Line CreateLine2(DataTable dstable, DPIDto dto)
+        private Line CreateLine2(DataTable dstable, DPIDto dto,int i)
         {
             Line line = new Line();
 
@@ -512,9 +586,9 @@ namespace ISIA.UI.TREND
                 line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
             }
             line.YValues.DataMember = str;
-            line.Color = colors[0];
+            line.Color = colors[i];
             line.Legend.Visible = true;
-            line.Legend.Text = dto.FileNameList[0].FileNameParament;
+            line.Legend.Text = dto.FileNameList[0].FileNameParament+$"-{++i}";
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
             line.Legend.BorderRound = 10;
@@ -544,6 +618,36 @@ namespace ISIA.UI.TREND
             line.Color = colors[i];
             line.Legend.Visible = true;
             line.Legend.Text = dto.FileNameList[i].FileNameParament;
+            line.Pointer.HorizSize = 1;
+            line.Pointer.VertSize = 1;
+            line.Legend.BorderRound = 10;
+            line.Pointer.Style = PointerStyles.Circle;
+            line.Pointer.Visible = true;
+            line.XValues.DateTime = true;
+            return line;
+        }
+
+        private Line CreateLine3(DataTable dstable, DPIDto dto, int i, string legendName)
+        {
+            Line line = new Line();
+
+            line.DataSource = dstable;
+            //line.XValues.DataMember = dto.Xvalue;
+            line.LabelMember = dto.Xvalue;
+            line.Legend.Visible = false;
+            string str = dto.FileNameList[i].FileNameParament;
+            if (dto.FileNameList[i].IsLeftY)
+            {
+                line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Left;
+            }
+            else
+            {
+                line.VertAxis = Steema.TeeChart.Styles.VerticalAxis.Right;
+            }
+            line.YValues.DataMember = str;
+            line.Color = colors[i];
+            line.Legend.Visible = true;
+            line.Legend.Text = legendName;
             line.Pointer.HorizSize = 1;
             line.Pointer.VertSize = 1;
             line.Legend.BorderRound = 10;
@@ -717,7 +821,7 @@ namespace ISIA.UI.TREND
                      new DPIAboutY { FileNameParament = "Parse requests", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "Cursor cache hits", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "ReParsed requests", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "Cursor cache hit%", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "Cursor cache hit%", IsLeftY = false },
                  }
              };
              list.Add(dto);
@@ -757,10 +861,11 @@ namespace ISIA.UI.TREND
                  Xvalue = "TIMESTAMP",
                  HeaderText = "PGA Statistics",
                  FileNameList = new List<DPIAboutY> {
-                     new DPIAboutY { FileNameParament = "sqlarea(M)", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "lib.cache(M)", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "others(M)", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "free(M)", IsLeftY = false },
+                     new DPIAboutY { FileNameParament = "PGA Aggression Target(M)", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "Auto PGA Target(M)", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "PGA Mem Alloc(M)", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "Auto W/A(M)", IsLeftY = false },
+                     new DPIAboutY { FileNameParament = "Manual W/A(M)", IsLeftY = false }
                  }
              };
              list.Add(dto);
@@ -1164,6 +1269,48 @@ namespace ISIA.UI.TREND
             SetTchartList(charts2);
             var charts3 = GetTchartList(flowLayoutPanel3);
             SetTchartList(charts3);
+        }
+        private void TChart_DoubleClick(object sender, EventArgs e)
+        {
+            TChart tchart = sender as TChart;
+            string chartname = tchart.Text;
+            int width = flowLayoutPanel1.ClientSize.Width;
+            int height = flowLayoutPanel1.ClientSize.Height;
+            flowLayoutPanel1.AutoScroll = false;
+            if (tchart.Width > flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3))
+            {
+
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<PanelControl>().ToArray())
+                {
+                    chart.Width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(3) - 20;
+                    chart.Height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(3) - 10;
+                    chart.Visible = true;
+                    /*chart.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+                    chart.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+                    chart.LookAndFeel.UseDefaultLookAndFeel = false;
+                    chart.Appearance.BorderColor = Color.Blue;
+                    chart.Padding = new Padding(0);*/
+                    chart.Appearance.BorderColor = Color.Gray;
+                }
+            }
+            else
+            {
+                foreach (var chart in flowLayoutPanel1.Controls.OfType<PanelControl>().ToArray())
+                {
+                    if (chart.Name == tchart.Text)
+                    {
+                        chart.Width = width - 20;
+                        chart.Height = height - 20;
+                        chart.Appearance.BorderColor = Color.White;
+                    }
+                    else
+                    {
+                        chart.Visible = false;
+                    }
+
+                }
+            }
+
         }
 
         private void FrmDPITrend_FormClosed(object sender, FormClosedEventArgs e)

@@ -2,9 +2,11 @@
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TAP;
 using TAP.Data.DataBase.Communicators;
@@ -55,21 +57,21 @@ namespace ISIA.BIZ.TREND
                                  instance_number,
                                  dbid,
                                  sum(nvl(wait_count, 0)) wait_cnt
-                            from raw_dba_hist_waitstat_isfa
+                            from raw_dba_hist_waitstat_{0}
                            group by snap_id, instance_number, dbid) wa,
                          (select snap_id,
                                  instance_number,
                                  dbid,
                                  sum(nvl(pins, 0)) pins,
                                  sum(nvl(pinhits, 0)) pinhits
-                            from raw_dba_hist_librarycache_isfa
+                            from raw_dba_hist_librarycache_{0}
                            group by snap_id, instance_number, dbid) libcache,
                          (select snap_id,
                                  instance_number,
                                  dbid,
                                  sum(nvl(gets, 0)) gets,
                                  sum(nvl(misses, 0)) misses
-                            from raw_dba_hist_latch_ISFA
+                            from raw_dba_hist_latch_{0}
                            group by snap_id, instance_number, dbid) latch
                    where sy.snap_id = sn.snap_id
                      and sy.instance_number = sn.instance_number
@@ -554,20 +556,20 @@ namespace ISIA.BIZ.TREND
                                + max(decode(stat_name, 'gc cr blocks received', delta_val, 0))
                                + max(decode(stat_name, 'gc current blocks received', delta_val, 0)))
                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0))))), 2) ");
+                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0))))), 2)/100 ");
                 tmpSql.AppendFormat(" ) \"Buffer access - local cache%\", ");
                       tmpSql.AppendFormat(@"  decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
                                  + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
                                   round(100 * ((max(decode(stat_name, 'gc cr blocks received', delta_val, 0))
                                                + max(decode(stat_name, 'gc current blocks received', delta_val, 0)))
                                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2) ");
+                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2)/100 ");
                           tmpSql.AppendFormat("    ) \"Buffer access - remote cache%\", ");
                 tmpSql.AppendFormat(@"  decode(max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
                            + max(decode(stat_name, 'db block gets from cache', delta_val, 0)), 0, 0,
                                   round(100 * (max(decode(stat_name, 'physical reads cache', delta_val, 0))
                                                / (max(decode(stat_name, 'consistent gets from cache', delta_val, 0))
-                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2) ");
+                                                + max(decode(stat_name, 'db block gets from cache', delta_val, 0)))), 2)/100 ");
                 tmpSql.AppendFormat("   ) \"Buffer access - disk%\" ");
                tmpSql.AppendFormat(@"   from load_rac_v ");
                 tmpSql.AppendFormat(@" where snap_id >  ");
@@ -2472,6 +2474,7 @@ namespace ISIA.BIZ.TREND
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat("select sn.snap_id, ");
                 tmpSql.AppendFormat(" to_char(sn.end_interval_time,'yyyy-mm-dd hh24:mi:ss') \"Timestamp\",");
+                //modified 最下面的rank1~5的round函数去掉。
                       tmpSql.AppendFormat(@" round(max(decode(rank, 1, clwait / 1000000, 0)),6) rank1_clwait,
                        round(max(decode(rank, 2, clwait / 1000000, 0)),6) rank2_clwait,
                        round(max(decode(rank, 3, clwait / 1000000, 0)),6) rank3_clwait,
@@ -2497,11 +2500,11 @@ namespace ISIA.BIZ.TREND
                        round(decode(max(decode(rank, 3, elap, 0)), 0, 0, max(decode(rank, 3, clwait, 0)) / max(decode(rank, 3, elap, 0))),6) rank3_clwait_per_elap,
                        round(decode(max(decode(rank, 4, elap, 0)), 0, 0, max(decode(rank, 4, clwait, 0)) / max(decode(rank, 4, elap, 0))),6) rank4_clwait_per_elap,
                        round(decode(max(decode(rank, 5, elap, 0)), 0, 0, max(decode(rank, 5, clwait, 0)) / max(decode(rank, 5, elap, 0))),6) rank5_clwait_per_elap,
-                       round(max(decode(rank, 1, sql_id, null)),6) rank1,
-                       round(max(decode(rank, 2, sql_id, null)),6) rank2,
-                       round(max(decode(rank, 3, sql_id, null)),6) rank3,
-                       round(max(decode(rank, 4, sql_id, null)),6) rank4,
-                       round(max(decode(rank, 5, sql_id, null)),6) rank5
+                       max(decode(rank, 1, sql_id, null)) rank1,
+                       max(decode(rank, 2, sql_id, null)) rank2,
+                       max(decode(rank, 3, sql_id, null)) rank3,
+                       max(decode(rank, 4, sql_id, null)) rank4,
+                       max(decode(rank, 5, sql_id, null)) rank5
                   from(select v_sqlstat.snap_id,
                                  v_rank.rank,
                                  v_sqlstat.sql_id,
@@ -2577,6 +2580,10 @@ namespace ISIA.BIZ.TREND
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
+                //----test
+                DataTable dt = (this.ExecutingValue as DataSet).Tables[0];
+                List<DataRow> drlist= dt.Rows.Cast<DataRow>().Where(dr => !string.IsNullOrEmpty(dr["rank1"].ToString())).ToList();
+                //----test end
             }
             catch (Exception ex)
             {
@@ -2749,9 +2756,9 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.Append("  sn.snap_time \"Timestamp\", ");
                 //PGA Cache Hit %改名为PGA Cache Hit
-                tmpSql.Append("    sum(decode(name, 'bytes processed', delta, 0)) / (sum(decode(name, 'bytes processed', delta, 0)) + sum(decode(name, 'extra bytes read/written', delta, 0)) ) \"PGA Cache Hit%\", ");
+                tmpSql.Append("  round(SUM (DECODE (name, 'bytes processed', delta, 0)) / decode(SUM(DECODE(name, 'bytes processed', delta, 0))+ SUM(DECODE(name, 'extra bytes read/written', delta, 0)), 0, 1, SUM(DECODE(name, 'bytes processed', delta, 0))+ SUM(DECODE(name, 'extra bytes read/written', delta, 0))),4) \"PGA Cache Hit%\", ");
                 tmpSql.Append("  sum(decode(name, 'bytes processed', round(delta / 1024 / 1024), 0)) \"W /A MB Processed\", ");
-                tmpSql.Append("       sum(decode(name, 'extra bytes read/written', round(delta / 1024 / 1024), 0)) \"Extra W/A MB Read/Write\" ");
+                tmpSql.Append("  sum(decode(name, 'extra bytes read/written', round(delta / 1024 / 1024), 0)) \"Extra W/A MB Read/Write\" ");
 
                 tmpSql.AppendFormat(@" from(
                          select INSTANCE_NUMBER, snap_id,
@@ -3169,7 +3176,7 @@ tmpSql.AppendFormat(@" from(
                        max(decode(r.resource_name, 'ges_procs', max_utilization, 0)) ges_procs_max,
                        max(decode(r.resource_name, 'ges_procs', limit_value, 0)) ges_procs_limit
                   from raw_dba_hist_snapshot_{0} sn,
-                       dba_hist_resource_limit  r,
+                       raw_dba_hist_resource_limit_{0}  r,
                        (select snap_id, count(sample_id) cnt
                           from(
                                 select snap_id, sample_id,
@@ -3842,8 +3849,8 @@ tmpSql.AppendFormat(@" from(
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
                 tmpSql.Append(" and e.snap_id = ( ");
-
-                tmpSql.AppendFormat(" select min(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                //modified min to max
+                tmpSql.AppendFormat(" select max(snap_id) from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4890,7 +4897,8 @@ tmpSql.AppendFormat(@" from(
                           tmpSql.Append("   parse_req_total \"Parse requests\", ");
                                tmpSql.Append("  cursor_cache_hits   \"Cursor cache hits\", ");
                                 tmpSql.Append(" parse_req_total - cursor_cache_hits   \"ReParsed requests\", ");
-                            tmpSql.Append(" decode(parse_req_total, 0, 0, cursor_cache_hits / parse_req_total) \"Cursor cache hit%\" ");
+                //modified use round funtion otherwise throw ex whose message like 'Specified cast is not valid'
+                tmpSql.Append(" round(decode(parse_req_total, 0, 0, cursor_cache_hits / parse_req_total), 4) \"Cursor cache hit%\" ");
                         tmpSql.Append(@" from
                             (
                             select  snap_id,
@@ -4905,7 +4913,8 @@ tmpSql.AppendFormat(@" from(
                                     nvl(value - lag(value) over(partition by stat_name order by snap_id), 0)  value ");
                                tmpSql.AppendFormat(" from raw_dba_hist_sysstat_{0} ", arguments.DbName);
                 tmpSql.Append("               where snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{1}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
+                //modifided {1}->{2}
+                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
                     arguments.DbName,
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
@@ -4934,7 +4943,6 @@ tmpSql.AppendFormat(@" from(
 
                 RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
-
                 this.ExecutingValue = db.Select(tmpSql.ToString());
             }
             catch (Exception ex)
