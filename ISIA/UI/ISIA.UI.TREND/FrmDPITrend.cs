@@ -803,10 +803,10 @@ namespace ISIA.UI.TREND
                  DPIFileName = "GetBuffer_pool",
                  Xvalue = "TIMESTAMP",
                  HeaderText = "Cache Hit%",
-                 YLValueType = 1,
+                 YRValueType = 1,
                  FileNameList = new List<DPIAboutY> {
                      new DPIAboutY { FileNameParament = "free buffer wait", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "%Hit", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "%Hit", IsLeftY = false },
                      new DPIAboutY { FileNameParament = "buffer busy wait", IsLeftY = true },
                  }
              };
