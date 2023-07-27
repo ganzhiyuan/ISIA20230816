@@ -2249,13 +2249,13 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("    and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("            and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"              group by sql_id, dbid, module order by sum(nvl(executions_delta, 0)) desc
+                tmpSql.AppendFormat(@"              group by sql_id, dbid, module order by sum(nvl(executions_delta, 0)) desc
                           )
                         where rownum <= 5
                       ) v1,
-                      dba_hist_sqltext st
+                      raw_dba_hist_sqltext_{0} st
                 where st.sql_id(+) = v1.sql_id
-                  and st.dbid(+) = v1.dbid");
+                  and st.dbid(+) = v1.dbid", arguments.DbName);
 
                 RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
