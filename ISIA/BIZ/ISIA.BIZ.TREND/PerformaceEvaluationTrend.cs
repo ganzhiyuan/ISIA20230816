@@ -1208,7 +1208,7 @@ namespace ISIA.BIZ.TREND
                                        dbid,
                                        'open threads (derived)' stat_name,
                                        count(thread#) value
-                                  from dba_hist_thread
+                                  from raw_dba_hist_thread_{0}
                                  where status = 'OPEN'
                                   group by snap_id, instance_number, dbid
                                ) v1,
@@ -1427,12 +1427,12 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("                  and instance_number = {0}", arguments.InstanceNumber);
                 tmpSql.AppendFormat(" and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" group by sql_id, dbid, module  
+                tmpSql.AppendFormat(@" group by sql_id, dbid, module  
                                  order by sum(nvl(elapsed_time_delta, 0)) desc)
                        where rownum <= 5) v1,
-                     dba_hist_sqltext st
+                     raw_dba_hist_sqltext_{0} st
                 where st.sql_id(+) = v1.sql_id
-                and st.dbid(+) = v1.dbid ");
+                and st.dbid(+) = v1.dbid ",arguments.DbName);
 
                 RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -1835,13 +1835,13 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("                and instance_number ={0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("                 and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@" group by sql_id, dbid, module order by sum(nvl(buffer_gets_delta, 0)) desc
+                tmpSql.AppendFormat(@" group by sql_id, dbid, module order by sum(nvl(buffer_gets_delta, 0)) desc
                             )
                         where rownum <= 5
                       ) v1,
-                      dba_hist_sqltext st
+                      raw_dba_hist_sqltext_{0} st
                 where st.sql_id(+) = v1.sql_id
-                  and st.dbid(+) = v1.dbid");
+                  and st.dbid(+) = v1.dbid",arguments.DbName);
 
                 RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -2046,12 +2046,12 @@ namespace ISIA.BIZ.TREND
                     arguments.InstanceNumber);
                 tmpSql.AppendFormat("                and instance_number = {0} ", arguments.InstanceNumber);
                 tmpSql.AppendFormat("                 and dbid = {0} ", arguments.DbId);
-                tmpSql.Append(@"               group by sql_id, dbid, module order by sum(nvl(disk_reads_delta, 0)) desc)
+                tmpSql.AppendFormat(@"               group by sql_id, dbid, module order by sum(nvl(disk_reads_delta, 0)) desc)
                         where rownum <= 5
                       ) v1,
-                      dba_hist_sqltext st
+                      raw_dba_hist_sqltext_{0} st
                 where st.sql_id(+) = v1.sql_id
-                  and st.dbid(+) = v1.dbid");
+                  and st.dbid(+) = v1.dbid",arguments.DbName);
 
                 RemotingLog.Instance.WriteServerLog(arguments.ChartName, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -3523,7 +3523,7 @@ tmpSql.AppendFormat(@" from(
                                    , 'CONTENTION', null
                                    , '-',          null
                                    , ' ('||req_reason||')')             Enqueu_type
-                    from v$lock_type l,
+                    from TAPCTLOCKTYPE l,
                     (select ety,req_reason,wttm,rownum rank
                       from  (select e.eq_type  ety,e.req_reason req_reason
                                    ,e.cum_wait_time - b.cum_wait_time  wttm
@@ -3681,7 +3681,7 @@ tmpSql.AppendFormat(@" from(
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat(@"select ety || '-' ||req_reason|| ' ('||nvl(l.name,' ') ||')' Enqueu_type
-                    from v$lock_type l,
+                    from TAPCTLOCKTYPE l,
                     (select ety,req_reason,awttm,rownum rank
                       from  (select e.eq_type  ety,e.req_reason req_reason
                                    ,decode((e.total_wait#   - nvl(b.total_wait#,0)), 0, 0
@@ -3752,7 +3752,7 @@ tmpSql.AppendFormat(@" from(
                              / (e.total_wait#   - nvl(b.total_wait#,0))) \""Avg. Wait tm(ms)\""
                   from raw_DBA_HIST_ENQUEUE_STAT_{0} e
                      , raw_DBA_HIST_ENQUEUE_STAT_{0} b
-                     , v$lock_type              l
+                     , TAPCTLOCKTYPE              l
                      , raw_dba_hist_snapshot_{0} S
                  where b.snap_id(+) = e.snap_id - 1 ", arguments.DbName);
                 //tmpSql.AppendFormat("   and e.snap_id    between & snap_fr + 1 and & snap_to ");
@@ -3906,7 +3906,7 @@ tmpSql.AppendFormat(@" from(
             {
                 StringBuilder tmpSql = new StringBuilder();
                 tmpSql.AppendFormat(@"select n.latch_name latch5_Rank, rank
-                    from raw_DBA_HIST_LATCH_NAME_{0} n,
+                    from (select parameterid LATCH_HASH, parametername LATCH_NAME  TAPCTPARAMETERDEF where parametertype='LATCH') n,
                          (select latch_hash ,rownum rank
                            from ( select b.latch_hash latch_hash
                                        , e.WAIT_TIME - b.WAIT_TIME  WAIT_TIM
@@ -3934,7 +3934,7 @@ tmpSql.AppendFormat(@" from(
                            where rownum <= 5
                          ) top_5
                     where top_5.latch_hash = n.LATCH_HASH ");
-                tmpSql.AppendFormat(" and n.dbid={0} ", arguments.DbId);
+                //tmpSql.AppendFormat(" and n.dbid={0} ", arguments.DbId);
 
                 tmpSql.Append(" order by top_5.rank");
 
@@ -5117,6 +5117,7 @@ tmpSql.AppendFormat(@" from(
         /// 78
         /// </summary>
         /// <param name="arguments"></param>
+        /// no used
         public void GetDB_Info(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -5374,7 +5375,7 @@ tmpSql.AppendFormat(@" from(
                         , sum(executions_delta) executions
                         , sum(sorts_delta) sorts
                         , max(module) module
-                    from raw_dba_hist_sqlstat_{0} s, dba_hist_sqltext b
+                    from raw_dba_hist_sqlstat_{0} s, raw_dba_hist_sqltext_{0} b
 
                         where s.dbid = b.dbid
 
@@ -5514,9 +5515,9 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.Append("       group by sql_id, module, d.phy_VAL,e.Log_VAL,f.Parse_VAL ");
                 tmpSql.Append("       having sum(nvl(executions_delta, 0)) > 0 ) a, ");
                 tmpSql.AppendFormat("           RAW_DBA_HIST_SQLTEXT_{0} b, ", arguments.DbName);
-                tmpSql.Append("           RAW_DBA_HIST_SQLCOMMAND_NAME c ");
-                tmpSql.Append(" where b.dbid = c.DBID ");
-                tmpSql.Append("   and a.sql_id = b.sql_id ");
+                tmpSql.Append("           (SELECT PARAMETERID COMMAND_TYPE, PARAMETERNAME COMMAND_NAME  FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE='COMMAND') c ");
+                tmpSql.Append(" where  ");
+                tmpSql.Append("   a.sql_id = b.sql_id ");
                 tmpSql.Append("   and b.COMMAND_TYPE = c.COMMAND_TYPE) B ");
                 tmpSql.Append("order by 7 desc ");
 
@@ -5642,9 +5643,9 @@ tmpSql.AppendFormat(@" from(
                 tmpSql.Append("group by force_matching_signature, module, d.phy_VAL,e.Log_VAL,f.Parse_VAL ");
                 tmpSql.Append("having sum(nvl(executions_delta, 0)) > 0 and count(distinct sql_id) > 2) aa,  ");
                 tmpSql.AppendFormat("RAW_DBA_HIST_SQLTEXT_{0} b, ", arguments.DbName);
-                tmpSql.Append("RAW_DBA_HIST_SQLCOMMAND_NAME c ");
-                tmpSql.Append("where b.dbid = c.DBID ");
-                tmpSql.Append("and aa.sql_id = b.sql_id ");
+                tmpSql.Append(" (SELECT PARAMETERID COMMAND_TYPE, PARAMETERNAME COMMAND_NAME  FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE='COMMAND') c ");
+                tmpSql.Append("where  ");
+                tmpSql.Append(" aa.sql_id = b.sql_id ");
                 tmpSql.Append("and b.COMMAND_TYPE = c.COMMAND_TYPE) B ");
                 tmpSql.Append("order by 9 desc ");
 
@@ -6199,9 +6200,9 @@ where rownum <= 5 ");
                 )
         where rownum <= 5
       ) v1,
-      dba_hist_sqltext st
+      raw_dba_hist_sqltext_{0} st
 where st.sql_id(+) = v1.sql
-  and st.dbid(+) = v1.dbid");
+  and st.dbid(+) = v1.dbid",arguments.DbName);
 
 
                 this.ExecutingValue = db.Select(tmpSql.ToString());
