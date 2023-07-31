@@ -367,7 +367,7 @@ namespace TAP.UI.MDI
 
                 AsyncMessage.Message = "Check last application files";
 
-                try
+                /*try
                 {
                     if (TAP.Base.Configuration.ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.NeedToDeploy)
                     {
@@ -399,7 +399,7 @@ namespace TAP.UI.MDI
                 {
                     if (TAP.Base.Configuration.ConfigurationManager.Instance.RemoteDeploySection.ClientDeployInfo.IgnoreExcetion == false)
                     throw ex;
-                }
+                }*/
 
                 #endregion 
 
