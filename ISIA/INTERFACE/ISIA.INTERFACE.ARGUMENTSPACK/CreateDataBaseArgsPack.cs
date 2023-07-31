@@ -15,10 +15,10 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private string _IPPort = null;
         private string _ServiceName = null;
         private string _DBLinkName = null;
-        private string _ruleNo = null;
-        private string _startTimeKey = null;
-        private string _endTimeKey = null;
-        private string _imagePath = null;
+        private string _DataTableName = null;
+        private string _DataTablePKName = null;
+        private DateTime _DateNow ;
+        private string _ProcedureName = null;
         private string _detectionFlag = null;
 
         private ArgumentPack argsPack = new ArgumentPack();
@@ -35,13 +35,13 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         public string DBLinkName { get { return _DBLinkName; } set { _DBLinkName = value; } }
 
-        public string RuleNo { get { return _ruleNo; } set { _ruleNo = value; } }
+        public string DataTableName { get { return _DataTableName; } set { _DataTableName = value; } }
 
-        public string StartTimeKey { get { return _startTimeKey; } set { _startTimeKey = value; } }
+        public string DataTablePKName { get { return _DataTablePKName; } set { _DataTablePKName = value; } }
 
-        public string EndTimeKey { get { return _endTimeKey; } set { _endTimeKey = value; } }
+        public DateTime DateNow { get { return _DateNow; } set { _DateNow = value; } }
 
-        public string ImagePath { get { return _imagePath; } set { _imagePath = value; } }
+        public string ProcedureName { get { return _ProcedureName; } set { _ProcedureName = value; } }
 
         public string DetectionFlag { get { return _detectionFlag; } set { _detectionFlag = value; } }
 
