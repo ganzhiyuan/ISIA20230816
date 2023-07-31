@@ -72,7 +72,6 @@ D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.CoreCompileInputs.c
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.CopyComplete
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.pdb
 D:\Git_Project\ISIA\_bin\UPDATER\README.txt
-D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.dll.config
-D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.dll
-D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.dll.licenses
-D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.dll
+D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe.config
+D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe
+D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.exe
