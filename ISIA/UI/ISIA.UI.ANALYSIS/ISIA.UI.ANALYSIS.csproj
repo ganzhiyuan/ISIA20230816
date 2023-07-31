@@ -295,6 +295,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ISIA.UI.ANALYSIS.csproj.bak" />
     <None Include="packages.config" />
   </ItemGroup>
