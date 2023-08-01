@@ -54,7 +54,6 @@ D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.csproj.Assembl
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.PatchMaker.resources
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.Properties.Resources.resources
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.csproj.GenerateResource.cache
-D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.exe.licenses
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.csproj.CoreCompileInputs.cache
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.csproj.CopyComplete
 D:\Git_Project\ISIA\TAP.Updater.Maker\obj\Debug\TAP.Updater.Maker.exe
