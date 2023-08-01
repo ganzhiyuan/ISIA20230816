@@ -3151,11 +3151,7 @@ namespace TAP.UI.MDI
 
 
         #endregion
-
-
-
-
-
+        
         //private void tabMDIList_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    #region Code
