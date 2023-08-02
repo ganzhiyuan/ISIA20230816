@@ -62,7 +62,10 @@ C:\Users\Kim.Seoil\Downloads\generic-auto-updater-master\generic-auto-updater-ma
 C:\Users\Kim.Seoil\Downloads\generic-auto-updater-master\generic-auto-updater-master\TAP.Updater\obj\Debug\TAP.UPDATER.exe
 C:\Users\Kim.Seoil\Downloads\generic-auto-updater-master\generic-auto-updater-master\TAP.Updater\obj\Debug\TAP.UPDATER.pdb
 C:\Users\Kim.Seoil\Downloads\generic-auto-updater-master\generic-auto-updater-master\TAP.Updater\obj\Debug\TAP.Updater.csproj.AssemblyReference.cache
+D:\Git_Project\ISIA\_bin\UPDATER\README.txt
+D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe.config
 D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.xml
+D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe
 D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.pdb
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.AssemblyReference.cache
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.Properties.Resources.resources
@@ -70,8 +73,6 @@ D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.PatcherMainWindow.resource
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.GenerateResource.cache
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.CoreCompileInputs.cache
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.Updater.csproj.CopyComplete
-D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.pdb
-D:\Git_Project\ISIA\_bin\UPDATER\README.txt
-D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe.config
-D:\Git_Project\ISIA\_bin\UPDATER\TAP.UPDATER.exe
 D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.exe
+D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.pdb
+D:\Git_Project\ISIA\TAP.Updater\obj\Debug\TAP.UPDATER.exe.licenses

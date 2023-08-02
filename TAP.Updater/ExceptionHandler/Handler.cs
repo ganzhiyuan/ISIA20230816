@@ -26,14 +26,14 @@ namespace TAP.UPDATER.ExceptionHandler {
                 case FileNotFoundException _:
                 case DirectoryNotFoundException _:
                 case DataTamperedException _:
-                    ShowError(ErrorHandlerResources.AV_FALSE_POSITIVE, ErrorHandlerResources.ERROR_TITLE_AV);
+                    ShowError(ErrorHandlerResources.AV_FALSE_POSITIVE, ErrorHandlerResources.ERROR_TITLE_AV, ex.Message);
                     break;
                 case WebException _:
                 case HttpRequestException _:
                 case InvalidDataException _:
                 case DecoderFallbackException _:
                 case ObjectDisposedException _:
-                    ShowError(ErrorHandlerResources.TIMEOUT_DOWNLOADING_RESOURCE, ErrorHandlerResources.ERROR_TITLE_NETWORKING);
+                    ShowError(ErrorHandlerResources.TIMEOUT_DOWNLOADING_RESOURCE, ErrorHandlerResources.ERROR_TITLE_NETWORKING, ex.Message);
                     break;
                 case SecurityException _:
                 case UnauthorizedAccessException _:

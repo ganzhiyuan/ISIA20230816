@@ -112,6 +112,7 @@ namespace TAP.UPDATER {
                 engine.Patch();
             }
             catch (Exception ex) {
+                //memoEdit1.Text = ex.Message.ToString();
                 Handler.Handle(ex);
             }
         }
@@ -130,5 +131,6 @@ namespace TAP.UPDATER {
         private void button1_Click(object sender, EventArgs e) {
             Process.Start(MainWindowResources.WEBSITE);
         }
+
     }
 }
