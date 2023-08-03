@@ -303,8 +303,26 @@ namespace ISIA.UI.TREND
                 for (int i = 0; i < dto.FileNameList.Count(); i++)
                 {
                     token.ThrowIfCancellationRequested();
+                    Line line=null;
+                    if (isRankChartForChartC(dto))
+                    {
+                        int rankIndex = i + 1;
+                        string lineLegendName;
+                        try
+                        {
+                            lineLegendName = dst.Tables[0].Rows.Cast<DataRow>().Where(dr => !string.IsNullOrEmpty(dr[$"rank{rankIndex}"].ToString())).ToList()[0][$"rank{rankIndex}"] as string;
+                        }
+                        catch (Exception ex)
+                        {
+                            lineLegendName = "no data";
+                        }
+                        line = CreateLine3(dst.Tables[0], dto, i, lineLegendName);
+                    }
+                    else
+                    {
+                        line = CreateLine(dst.Tables[0], dto, i);
 
-                    Line line = CreateLine(dst.Tables[0], dto, i);
+                    }
                     tChart.Invoke((MethodInvoker)delegate
                     {
                         if (dto.YRValueType == 1)
@@ -338,6 +356,15 @@ namespace ISIA.UI.TREND
             {
                 // Ignore the exception
             }
+        }
+
+        private bool isRankChartForChartC(DPIDto dto)
+        {
+            if (dto.HeaderText.Equals("Top 5 Wait Events(time(s))") )
+            {
+                return true;
+            }
+            return false;
         }
         private void QueryDataForTChart(TChart tChart,DPIDto dto)
         {
@@ -874,14 +901,14 @@ namespace ISIA.UI.TREND
              //55--无法查询
              dto = new DPIDto
              {
-                 DPIFileName = "GetWorkarea_raw",
+                 DPIFileName = "GetWorkarea_01",
                  Xvalue = "TIMESTAMP",
                  HeaderText = "PGA Memory/Disk sort",
                  FileNameList = new List<DPIAboutY> {
-                     new DPIAboutY { FileNameParament = "one_exe", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "mul_exe", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "tot_exe", IsLeftY = true },
-                     new DPIAboutY { FileNameParament = "opt_exe", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "TOTAL_EXECUTIONS", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "OPTIMAL_EXECUTIONS", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "ONEPASS_EXECUTIONS", IsLeftY = true },
+                     new DPIAboutY { FileNameParament = "MULTIPASSES_EXECUTIONS", IsLeftY = true },
                  }
              };
              list.Add(dto);
