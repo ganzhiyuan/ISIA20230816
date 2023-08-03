@@ -82,6 +82,7 @@ namespace TAP.UPDATER.Downloaders {
             int tries = 0;
             while (true) {
                 try {
+                    Debug.Write(string.Format("Address : {0}, expectedHash : {1}, FilePath : {2}", address,expectedHash,filePath));
                     Task<byte[]> data = Download(address, expectedHash, filePath);
                     if (data == null)
                         return null;

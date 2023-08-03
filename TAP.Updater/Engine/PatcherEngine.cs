@@ -97,12 +97,15 @@ namespace TAP.UPDATER.Engine {
         /// </summary>
         private static void DownloadContent(int step, List<string> content, bool isMissingContent) {
             LogDownloadingEvent(content.Count, isMissingContent);
+            Debug.Write("Start - download and write a list of specific files");
             for (int i = 0; i < content.Count; i++) {
+                Debug.Write(string.Format("{0} of {1} - Path : {2}, Resource : {3}, ServerMetaData : {4}", i.ToString(), content.Count.ToString(), PatchDirectory + content[i], ServerMetadata[content[i]].ToString()));
                 Utils.Log(BW, content[i], ProgressiveWidgetsEnum.Label.DownloadLogger); Utils.Log(BW, string.Format(PatcherEngineResources.FILE_COUNT, i + 1, content.Count, Convert.ToInt32((i + 1f) / content.Count * 100)), ProgressiveWidgetsEnum.Label.FileCountLogger);
                 // The expected hash of the file to be downloaded is already saved in the ServerMetadata.
                 FileSystemExplorer.FetchFile(Downloader, content[i], PatchDirectory + content[i], isMissingContent, ServerMetadata[content[i]].Hash);
                 Utils.Progress(BW, Convert.ToInt32(GetCurrentStepProgress(step) + (i + 1f) / content.Count * (1f / Pipeline.Length * 100)), ProgressiveWidgetsEnum.ProgressBar.WholeProgressBar);
             }
+            Debug.Write("End - download and write a list of specific files");
             // Give time to AntiVirus for it to delete or tamper any of the recently downloaded files.
             Thread.Sleep(EngineConfigs.MS_TO_WAIT_FOR_AV_FALSE_POSITIVES);
             if (!isMissingContent)
@@ -118,7 +121,10 @@ namespace TAP.UPDATER.Engine {
         /// </summary>
         private static void GenerateServerMetadata(int step) {
             Utils.Log(BW, PatcherEngineResources.FETCHING, ProgressiveWidgetsEnum.Label.DownloadLogger);
+            Debug.Write("Start - server's metadata file into memory");
+            Debug.Write(string.Format("EngineConfigs.PATCH_METADATA - server's metadata file into memory", EngineConfigs.PATCH_METADATA));
             string[] metadataByLine = Encoding.Default.GetString(Downloader.DownloadDataToMemory(EngineConfigs.PATCH_METADATA)).Trim().Split(new[] { "\n" }, StringSplitOptions.None);
+            Debug.Write("End - server's metadata file into memory");
             // Assume that the first line of the server's metadata file is the url to the actual server directory with the files.
             PatchDirectory = metadataByLine[0].Trim();
             ServerMetadata = new Dictionary<string, FileMetadata>((metadataByLine.Length - 1) / 2);
