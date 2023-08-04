@@ -271,14 +271,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3096064">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ISIA.exe" size="3323392">
       <assemblyIdentity name="ISIA" version="1.0.6.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Hd8sa9zWQeLqRa129uP4BiOt1D4RsWP9YsyqLoSL+PA=</dsig:DigestValue>
+        <dsig:DigestValue>vVlvouzSCUySj9/jdkZI4QwS0BvNKJGF/v6ElIcGV4w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -458,7 +458,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sIwQBbTnsr8Dm/7L0hMoivkV948rU0xdV2Wx/QwUoOE=</dsig:DigestValue>
+        <dsig:DigestValue>/g8x/F5dZmBq+CdhrRj5IaTNmyWSJY0NIqUKcEXlnIY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -585,13 +585,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11530">
+  <file name="ISIA.exe.config" size="11837">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>9j0erROeoX0AWI7Sz/643k03qEEtWfv4Mk0j/K/YR4k=</dsig:DigestValue>
+      <dsig:DigestValue>Y33Rqpqwe2RRDTNbpYosh9giNIPXDc9YVF3HzRPnRfY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">

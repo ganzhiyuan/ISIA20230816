@@ -86,22 +86,41 @@ namespace TAP.UPDATER.Engine {
         /// </summary>
         bool IUpdateCheckEngine.Check() {
             bool bResult = false;
-            
+            Debug.WriteLine("Start - Check files");
             for (int i = 0; i < Pipeline.Length; i++) {
                 Pipeline[i].Item1.Invoke(i);                
             }
+            Debug.WriteLine("End = Check files");
+
+
+            Debug.WriteLine("Start - CalculateMissingContent");
             List<string> missingFiles = CalculateMissingContent();
+            Debug.WriteLine(missingFiles);
             if (missingFiles.Count > 0)
             {
-                
+                foreach (string temp in missingFiles)
+                {
+                    Debug.WriteLine(string.Format("Find MissingContent - {0}", temp));
+                }
                 return true;
             }
+            Debug.WriteLine("End - CalculateMissingContent");
+
+            Debug.WriteLine("Start - GenerateLocalMetadata");
             GenerateLocalMetadata();
+            Debug.WriteLine("End - GenerateLocalMetadata");
+            Debug.WriteLine("Start - CalculateOutdatedContent");
             List<string> OutDataFiles = CalculateOutdatedContent();
+            Debug.WriteLine(OutDataFiles);
             if (OutDataFiles.Count > 0)
             {
+                foreach (string temp in OutDataFiles)
+                {
+                    Debug.WriteLine(string.Format("Find OutdatedContent - {0}", temp));
+                }
                 return true;
             }
+            Debug.WriteLine("End - CalculateOutdatedContent");
             return bResult;
         }
 
@@ -127,6 +146,8 @@ namespace TAP.UPDATER.Engine {
         /// It then parses it, and stores its content in the ServerMetadata global variable.
         /// </summary>
         private static void GenerateServerMetadata(int step) {
+            Debug.WriteLine("Start - GenerateServerMetadata");
+            Debug.WriteLine(string.Format("PatchAddress - {0}", EngineConfigs.PATCH_METADATA));
             string[] metadataByLine = Encoding.Default.GetString(Downloader.DefaultDownloadDataToMemory(PatchAddress)).Trim().Split(new[] { "\n" }, StringSplitOptions.None);
             // Assume that the first line of the server's metadata file is the url to the actual server directory with the files.
             PatchDirectory = metadataByLine[0].Trim();
@@ -134,6 +155,8 @@ namespace TAP.UPDATER.Engine {
             // Every odd line number represents a file name, and every even line number its hash.
             for (int i = 1; i < metadataByLine.Length; i += 2)
                 ServerMetadata[metadataByLine[i].Trim()] = new FileMetadata(metadataByLine[i].Trim(), metadataByLine[i + 1].Trim());
+
+            Debug.WriteLine("End - GenerateServerMetadata");
         }
 
         /// <summary>
