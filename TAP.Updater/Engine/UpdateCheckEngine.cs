@@ -94,8 +94,7 @@ namespace TAP.UPDATER.Engine {
 
 
             Debug.WriteLine("Start - CalculateMissingContent");
-            List<string> missingFiles = CalculateMissingContent();
-            Debug.WriteLine(missingFiles);
+            List<string> missingFiles = CalculateMissingContent();            
             if (missingFiles.Count > 0)
             {
                 foreach (string temp in missingFiles)
@@ -110,8 +109,7 @@ namespace TAP.UPDATER.Engine {
             GenerateLocalMetadata();
             Debug.WriteLine("End - GenerateLocalMetadata");
             Debug.WriteLine("Start - CalculateOutdatedContent");
-            List<string> OutDataFiles = CalculateOutdatedContent();
-            Debug.WriteLine(OutDataFiles);
+            List<string> OutDataFiles = CalculateOutdatedContent();            
             if (OutDataFiles.Count > 0)
             {
                 foreach (string temp in OutDataFiles)
@@ -147,7 +145,7 @@ namespace TAP.UPDATER.Engine {
         /// </summary>
         private static void GenerateServerMetadata(int step) {
             Debug.WriteLine("Start - GenerateServerMetadata");
-            Debug.WriteLine(string.Format("PatchAddress - {0}", EngineConfigs.PATCH_METADATA));
+            Debug.WriteLine(string.Format("PatchAddress - {0}", PatchAddress));
             string[] metadataByLine = Encoding.Default.GetString(Downloader.DefaultDownloadDataToMemory(PatchAddress)).Trim().Split(new[] { "\n" }, StringSplitOptions.None);
             // Assume that the first line of the server's metadata file is the url to the actual server directory with the files.
             PatchDirectory = metadataByLine[0].Trim();
