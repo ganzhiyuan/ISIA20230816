@@ -152,8 +152,10 @@ namespace TAP.UPDATER.Engine {
             ServerMetadata = new Dictionary<string, FileMetadata>((metadataByLine.Length - 1) / 2);
             // Every odd line number represents a file name, and every even line number its hash.
             for (int i = 1; i < metadataByLine.Length; i += 2)
+            {
                 ServerMetadata[metadataByLine[i].Trim()] = new FileMetadata(metadataByLine[i].Trim(), metadataByLine[i + 1].Trim());
-
+                Debug.WriteLine(string.Format("ServerMetadata - {0}", metadataByLine[i].Trim()));
+            }
             Debug.WriteLine("End - GenerateServerMetadata");
         }
 

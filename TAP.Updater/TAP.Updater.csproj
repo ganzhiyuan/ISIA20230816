@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A3DDA186-AFDF-4DCC-B304-34C04544EE18}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>TAP.UPDATER</RootNamespace>
     <AssemblyName>TAP.UPDATER</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
