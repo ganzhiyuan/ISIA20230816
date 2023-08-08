@@ -310,7 +310,7 @@ namespace ISIA.UI.TREND
                         string lineLegendName;
                         try
                         {
-                            lineLegendName = dst.Tables[0].Rows.Cast<DataRow>().Where(dr => !string.IsNullOrEmpty(dr[$"rank{rankIndex}"].ToString())).ToList()[0][$"rank{rankIndex}"] as string;
+                         lineLegendName = dst.Tables[0].Rows.Cast<DataRow>().Where(dr => !string.IsNullOrEmpty(dr[$"rank{rankIndex}"].ToString())).ToList()[0].Field<string>($"rank{rankIndex}") ;
                         }
                         catch (Exception ex)
                         {
@@ -357,10 +357,10 @@ namespace ISIA.UI.TREND
                 // Ignore the exception
             }
         }
-
         private bool isRankChartForChartC(DPIDto dto)
         {
-            if (dto.HeaderText.Equals("Top 5 Wait Events(time(s))") )
+            if (dto.HeaderText.Equals("Top 5 Wait Events(time(s))")|| dto.HeaderText.Equals("Top wait time latch:Avg. wait time(ms)")|| 
+                dto.HeaderText.Equals("Avg.Top-5 En queue Wait Time(s)"))
             {
                 return true;
             }
@@ -546,6 +546,7 @@ namespace ISIA.UI.TREND
                 args.SnapId = "";
                 args.ChartName = dto.HeaderText;
                 Thread.Sleep(10);
+                
                 DataSet dst = bs.ExecuteDataSet(dto.DPIFileName, args.getPack());
                 for (int i = 0; i < dto.FileNameList.Count(); i++)
                 {

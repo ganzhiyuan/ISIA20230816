@@ -3485,19 +3485,27 @@ order by b.snap_id ");
                           ,round(max(decode(rank, 3,wait_tm, 0))/1000,6)  rank3_wait_tm
                           ,round(max(decode(rank, 4,wait_tm, 0))/1000,6)  rank4_wait_tm
                           ,round(max(decode(rank, 5,wait_tm, 0))/1000,6)  rank5_wait_tm
+                          ,max(decode(rank, 1,enq_name, null))  rank1
+                          ,max(decode(rank, 2,enq_name, null))  rank2
+                          ,max(decode(rank, 3,enq_name, null))  rank3
+                          ,max(decode(rank, 4,enq_name, null))  rank4
+                          ,max(decode(rank, 5,enq_name, null))  rank5
                     from (
                     select e.snap_id
                           ,to_char(s.end_interval_time,'yyyy-mm-dd hh24:mi:ss') Time_stamp
                           ,to_number(substr((s.end_interval_time-s.begin_interval_time)*86400,2,9)) interval
                           ,rank
                           ,(e.cum_wait_time - nvl(b.cum_wait_time,0))  wait_tm
+                          ,enq_name
+
                     from raw_DBA_HIST_ENQUEUE_STAT_{0} e
                        , raw_DBA_HIST_ENQUEUE_STAT_{0} b
                        , raw_dba_hist_snapshot_{0} S
-                       ,(select ety,req_reason,wttm, rownum rank
+                       ,(select ety,req_reason,wttm, enq_name,rownum rank
                            from ( select e.eq_type  ety
                                         ,e.req_reason
                                         ,e.cum_wait_time - b.cum_wait_time  wttm
+                                        ,e.eq_type||'_'||e.req_reason enq_name
                                     from raw_DBA_HIST_ENQUEUE_STAT_{0} e
                                         ,raw_DBA_HIST_ENQUEUE_STAT_{0} b ", arguments.DbName);
                 tmpSql.Append("   where b.snap_id   in (");
@@ -3883,11 +3891,11 @@ order by b.snap_id ");
                            round(max(decode(rank, 3, (e.misses - b.misses), 0)),6) rank3_misses,
                            round(max(decode(rank, 4, (e.misses - b.misses), 0)),6) rank4_misses,
                            round(max(decode(rank, 5, (e.misses - b.misses), 0)),6) rank5_misses,
-                           max(decode(rank,1,b.latch_hash,null)) rank1,
-                           max(decode(rank,2,b.latch_hash,null)) rank2,
-                           max(decode(rank,3,b.latch_hash,null)) rank3,
-                           max(decode(rank,4,b.latch_hash,null)) rank4,
-                           max(decode(rank,5,b.latch_hash,null)) rank5
+                           max(decode(rank,1,b.latch_name,null)) rank1,
+                           max(decode(rank,2,b.latch_name,null)) rank2,
+                           max(decode(rank,3,b.latch_name,null)) rank3,
+                           max(decode(rank,4,b.latch_name,null)) rank4,
+                           max(decode(rank,5,b.latch_name,null)) rank5
                     from raw_DBA_HIST_LATCH_{0} b
                        , raw_DBA_HIST_LATCH_{0} e
                        , (
