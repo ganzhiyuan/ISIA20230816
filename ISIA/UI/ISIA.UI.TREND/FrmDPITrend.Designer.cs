@@ -803,7 +803,7 @@ namespace ISIA.UI.TREND
             this.xtraTabPage1.Controls.Add(this.panelControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(772, 590);
-            this.xtraTabPage1.Text = "Chart-C";
+            this.xtraTabPage1.Text = "Chart-S";
             // 
             // panelControl1
             // 
@@ -828,7 +828,7 @@ namespace ISIA.UI.TREND
             this.xtraTabPage2.Controls.Add(this.flowLayoutPanel2);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(795, 460);
-            this.xtraTabPage2.Text = "Chart-S";
+            this.xtraTabPage2.Text = "Chart-C";
             // 
             // flowLayoutPanel2
             // 

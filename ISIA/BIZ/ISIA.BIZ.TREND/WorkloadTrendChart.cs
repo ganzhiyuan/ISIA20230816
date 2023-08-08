@@ -72,7 +72,7 @@ namespace ISIA.BIZ.TREND
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', average, 0)) Redo_Generated_psec
   ,SUM(DECODE(metric_name, 'Redo Generated Per Sec', maxval, 0)) Redo_Generated_max_psec
   ,SUM(DECODE(metric_name, 'Hard Parse Count Per Sec', maxval, 0)) HardParseCountPerSec
-    FROM (SELECT /*+  LEADING(sn sm) USE_HASH(sn sm) USE_HASH(sm.sn sm.m sn.mn) no_merge(sm) */
+    FROM (SELECT /*+   USE_HASH(sn sm)  */
            sm.*, sn.begin_interval_time, sn.end_interval_time ");
                 tmpSql.AppendFormat(" FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm ", arguments.DBName);
                 tmpSql.AppendFormat("  , RAW_DBA_HIST_SNAPSHOT_{0} sn ", arguments.DBName);
@@ -173,7 +173,7 @@ t1_sysstat AS
                            ,'ges messages sent'
                            ,VALUE
                            ,0)) gcs_msg_send
-            FROM (SELECT /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */
+            FROM (SELECT /*+ USE_HASH(sn ss)  */
                    ss.dbid
                   ,ss.instance_number
                   ,ss.snap_id
@@ -247,7 +247,7 @@ round(sum(nvl(DISK_READS_DELTA,0)),2) DISK_READS,
 round(sum(nvl(PARSE_CALLS_DELTA,0)),2) PARSE_CALL
 from
 (
-select/*+leading(sn ss) use_hash(sn ss) use_hash(ss.sn ss.s  ss.nm) no_merge(ss)*/
+select/*+ use_hash(sn ss) */
 ss. dbid,
 ss.instance_number as inst_id,
 ss.snap_id,
@@ -277,7 +277,7 @@ group by dbid, inst_id,snap_id
 )  ");
 
                 tmpSql.Append(@"
-SELECT sm.dbid
+SELECT /*+ use_hash(sm ss)*/sm.dbid
       ,sm.inst_id as INSTANCE_NUMBER
       ,sm.snap_id
       ,TO_CHAR(sm.begin_time, 'yyyyMMDDHH24MI') AS WORKDATE
