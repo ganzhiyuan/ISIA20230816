@@ -30,8 +30,8 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDPITrend));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.LeftPaneLayout = new DevExpress.XtraLayout.LayoutControl();
             this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -79,6 +79,7 @@ namespace ISIA.UI.TREND
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.xtraUserControl1.SuspendLayout();
             this.dpnlLeft_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dpnlRight.SuspendLayout();
             this.dpnlRight_Container.SuspendLayout();
             this.dpnlLeft.SuspendLayout();
@@ -387,6 +388,7 @@ namespace ISIA.UI.TREND
             this.dtpEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpEndTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpEndTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpEndTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpEndTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 822);
             this.dtpEndTime.Size = new System.Drawing.Size(105, 20);
@@ -415,6 +417,7 @@ namespace ISIA.UI.TREND
             this.dtpStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtpStartTime.Properties.EditFormat.FormatString = "yyyy-MM-dd";
             this.dtpStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.dtpStartTime.Properties.Mask.EditMask = "yyyy-MM-dd";
             this.dtpStartTime.Properties.MaskSettings.Set("mask", "yyyy-MM-dd");
             this.dtpStartTime.RepresentativeValue = new System.DateTime(2023, 4, 3, 14, 51, 15, 848);
             this.dtpStartTime.Size = new System.Drawing.Size(106, 20);
@@ -504,7 +507,7 @@ namespace ISIA.UI.TREND
             this.tLUCKDbname.CheckItemSelectMode = false;
             this.tLUCKDbname.ControlID = "tLUCKDbname";
             this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DisplayMember = "DBNAME";
             this.tLUCKDbname.DominantControl = "";
             this.tLUCKDbname.EditValue = "";
             this.tLUCKDbname.IsRequired = true;
@@ -520,7 +523,7 @@ namespace ISIA.UI.TREND
             this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
             this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
             this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.ShowDescription = true;
             this.tLUCKDbname.Size = new System.Drawing.Size(139, 20);
             this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
             this.tLUCKDbname.SqlDataBase = "";
@@ -782,7 +785,7 @@ namespace ISIA.UI.TREND
             this.xtraTabControl1.AppearancePage.PageClient.BackColor = System.Drawing.Color.White;
             this.xtraTabControl1.AppearancePage.PageClient.Options.UseBackColor = true;
             this.xtraTabControl1.CustomHeaderButtons.AddRange(new DevExpress.XtraTab.Buttons.CustomHeaderButton[] {
-            new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions2, serializableAppearanceObject2, "Cancel", null, null)});
+            new DevExpress.XtraTab.Buttons.CustomHeaderButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Undo, "Cancel", -1, true, true, editorButtonImageOptions1, serializableAppearanceObject1, "Cancel", null, null)});
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
@@ -867,6 +870,7 @@ namespace ISIA.UI.TREND
             this.Load += new System.EventHandler(this.FrmMainForm_Load);
             this.xtraUserControl1.ResumeLayout(false);
             this.dpnlLeft_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dpnlRight.ResumeLayout(false);
             this.dpnlRight_Container.ResumeLayout(false);
             this.dpnlLeft.ResumeLayout(false);

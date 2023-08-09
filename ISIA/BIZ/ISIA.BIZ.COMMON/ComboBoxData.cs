@@ -3492,7 +3492,7 @@ namespace ISIA.BIZ.COMMON
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("SELECT DBNAME,DBID,dbname||'('||dbid||')'  AS dbvalue FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
+                tmpSql.Append("SELECT DBNAME,DBID FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES'");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
