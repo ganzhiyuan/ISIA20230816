@@ -150,6 +150,7 @@ namespace TAP.UPDATER.Downloaders {
                     if (!response.IsSuccessStatusCode)
                         HandleStatusCode(response);
                     response.EnsureSuccessStatusCode();
+                    Debug.WriteLine(string.Format("HttpStatusCode - {0}", response.StatusCode.ToString()));
                     long fileSize = response.Content.Headers.ContentLength.GetValueOrDefault();
                     using (Stream contentStream = await response.Content.ReadAsStreamAsync())
                     {

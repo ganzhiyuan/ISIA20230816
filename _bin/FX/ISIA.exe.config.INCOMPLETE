@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="TAPConfiguration" type="TAP.Base.Configuration.TapConfigurations,TAP.Base.Configuration"/>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System">
+      <section name="DevExpress.LookAndFeel.Design.AppSettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
+    </sectionGroup>
+  </configSections>
+  <TAPConfiguration>
+    <!-- Environment Section-->
+    <!-- Developer must edit this section!!!-->
+    <EnvironmentSection Region="WX" ExecutePath="" InstallType="CLIENT"/>
+    <!-- Administrator-->
+    <!-- Developer must edit this section!!!-->
+    <AdminListenerSection>
+      <AdminListener IP="172.16.45.93" Port="9040"/>
+    </AdminListenerSection>
+    <!-- Data Source-->
+    <!-- If system uses database set 'DB' -->
+    <!-- If system uses xml file set 'XML' -->
+    <!-- Developer must edit this section!!!-->
+    <DataSourceSection DataSource="DB" InfoBase="FX"/>
+    <!-- Database-->
+    <!-- Developer must edit this section!!!-->
+    <DatabaseSection Default="DEFAULT" TimeOut="500">
+      <!--<Connection Key="DEFAULT" DBMS="MSSQL" DTC = "false" ConnectionString="Server=172.16.45.92;Database=ISEM;Uid=TAP;Password=1234@qwe" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT" />-->
+      <Connection Key="DEFAULT" DBMS="ORACLE" DTC="false" ConnectionString="Data source=(DESCRIPTION=(ADDRESS = (PROTOCOL = TCP)(HOST = isetsvr)(PORT = 1521))(CONNECT_DATA =(SERVICE_NAME = ISEM)));User ID=ISIA;Password=ISIA;" SelectCommandMethod="TEXT" ModifyCommandMethod="TEXT"/>
+    </DatabaseSection>
+    <!-- XML Source-->
+    <!-- Developer must edit this section!!!-->
+    <XMLSection FileName="C:\TAP\CLUSTER\CLUSTERMODEL.XML" RootNode="MODEL" BackupPath="C:\TAP\CLUSTER\BACKUP\"/>
+    <!-- Framework-->
+    <FrameworkSection>
+      <LocalPath Key="LocalLog" Path="E:\TAP\LocalLog\"/>
+      <LocalPath Key="UILog" Path="ui"/>
+      <LocalPath Key="ServiceLog" Path="service"/>
+      <LocalPath Key="ModelLog" Path="model"/>
+      <LocalPath Key="WorkflowLog" Path="workflow"/>
+    </FrameworkSection>
+    <!-- Logging-->
+    <LogSection>
+      <!-- Information Log-->
+      <Log Type="I" Logging="false" Path="Info" Extension="ilog" MaxSize="100000"/>
+      <!-- SQL Log-->
+      <Log Type="S" Logging="false" Path="Sql" Extension="slog" MaxSize="100000"/>
+      <!-- Trace Log-->
+      <Log Type="T" Logging="false" Path="Trace" Extension="tlog" MaxSize="100000"/>
+      <!--Unknown Log-->
+      <Log Type="W" Logging="false" Path="Warning" Extension="wlog" MaxSize="100000"/>
+      <!--Extend Log-->
+      <Log Type="E" Logging="false" Path="Error" Extension="elog" MaxSize="100000"/>
+    </LogSection>
+    <LocalLogSection>
+      <Log Type="MODEL" Logging="false" Path="Model" Extension="mlog" MaxSize="100"/>
+    </LocalLogSection>
+    <!-- Messaging-->
+    <MessagingSection PublicMessageInterval="30" HeartBeatInterval="60">
+      <Protocol Type="TCP" ReceiverPort="9031" AppBrowserReceiverPort="9032"/>
+      <Protocol Type="UDP" ReceiverPort="9033" AppBrowserReceiverPort="9034"/>
+    </MessagingSection>
+    <!-- Memory Watcher-->
+    <ProcessWatcherSection CriticalMemorySize="307200" CheckInterval="1000" ClosingWaitTime="1000" LastDataWaitTime="1000" LastDataWaitCount="10"/>
+    <!-- Listener-->
+    <!-- Developer must edit this section!!!-->
+    <RemoteListenerSection MultiConsole="true">
+      <ListenerHost IP="172.16.45.93" Port="9040" MinRemoteCount="1" RetryCount="3" RetryInterval="1500"/>
+      <ListenerWatcher Interval="1000"/>
+      <Emergency Key="F8FF170E-0046-42af-A555-09B0BF96AF6F"/>
+      <Listeners>
+        <Listener No="1" Port="9001" Enabled="true"/>
+        <Listener No="2" Port="9002" Enabled="false"/>
+        <Listener No="3" Port="9003" Enabled="false"/>
+        <Listener No="4" Port="9004" Enabled="false"/>
+        <Listener No="5" Port="9005" Enabled="false"/>
+      </Listeners>
+    </RemoteListenerSection>
+    <!--Mailing-->
+    <!-- Developer must edit this section!!!-->
+    <SMTPSection Default="DEFAUL">
+      <SMTPServer Key="DEFAUL" ServerIP="localhost"/>
+    </SMTPSection>
+    <TraceSection Enabled="true">
+    </TraceSection>
+    <!--Remote Section-->
+    <!-- Developer must edit this section!!!-->
+    <!--<RemoteAdapterSection HostIP="172.16.45.93" HostPort="9040" IsDebugMode="true" TestDBCode="" LocalPort ="9040"/>-->
+    <RemoteAdapterSection HostIP="localhost" HostPort="9040" IsDebugMode="true" TestDBCode="" LocalPort="9040"/>
+    <!-- Remote Biz Component Section-->
+    <RemoteDeploySection Path="D:\SRC\XMATTEST\INPUT\">
+      <BizComponent Assembly="" SubPath=""/>
+      <!--<ClientDeployInfo NeedToDeploy="false" HostName="172.16.45.93" RootDirectory="/ISEM_Patch2" UserName="ISEMFTP" Password="1234@qwe" IgnoreExcetion="false"/>-->
+		<ClientDeployInfo NeedToDeploy="true" DeployMethod="WEB" WebAddress="http://isetsvr:7999"  PhysicalFilePath="D:\ISIA_PATCH\FX" HostName="isetsvr" RootDirectory="/ISEM_Patch" UserName="hp" Password="123" IgnoreExcetion="false"/>
+    </RemoteDeploySection>
+    <!-- Application Section-->
+    <!-- Developer must edit this section!!!-->
+    <AppSection Facility="T1" ServerName="LOCAL" ServerIP="172.16.45.93" UserLanguage="KR" UILogging="false" ProductName="ISIA Client" MDIName="ISIA" AppDirectory="FX" MDIDisplayName="ISIA" AppConfigFileName="ISIA.config" AppConfigName="TAP.ISIA.Configuration">
+      <Apps>
+        <App Key="MES" Sequence="1">
+          <!--<SubApp  Key="MODELER" AppDirectory="minaSolar\modeler" Image="launcher_modeler.png" HoverImage="launcher_modeler_hover.png" Argument="" AppConfg="" Enabled="true" DisplayName="Modeler" />-->
+          <SubApp Key="OIP_SOLAR" AppDirectory="McWorkdClient\oip" Image="launcher_oip.png" HoverImage="launcher_oip_hover.png" Argument="" AppConfg="" Enabled="true" DisplayName="OIP"/>
+          <!--<SubApp  Key="REPORT" AppDirectory="minaSolar\oip" Image="launcher_report.png" HoverImage="launcher_report_hover.png" Argument="" AppConfg="" Enabled="true" DisplayName="Report" />-->
+          <!--<SubApp  Key="WMS" AppDirectory="minaSolar\oip" Image="launcher_report.png" HoverImage="launcher_report_hover.png" Argument="" AppConfg="" Enabled="true" DisplayName="WMS" />-->
+        </App>
+        <App Key="ADMIN" Sequence="2">
+          <SubApp Key="ADMIN" AppDirectory="McWorkdClient\admin" Image="launcher_admin.png" HoverImage="launcher_admin_hover.png" Argument="" AppConfg="" Enabled="true" DisplayName="Administrator's tools"/>
+          <!--<SubApp  Key="LODE" AppDirectory="minaSolar\lode" Image="launcher_lode.png" HoverImage="launcher_lode_hover.png" Argument="" AppConfg="" Enabled="false" DisplayName="Lode" />-->
+        </App>
+      </Apps>
+      <MainMenus>
+        <MainMenu Key="ADMIN" DisplayName="ADMIN" Sequence="1">
+          <Menu Key="USER" MainMenu="ADMIN" DisplayName="User Management" Icon="-1" Sequence="1" AssemblyFileName="TAP.Admin.User.dll" AssemblyName="TAP.Admin.User.ModelerClassicUser" Argument=""/>
+          <Menu Key="SPREATOR1" MainMenu="ADMIN" DisplayName="" Icon="-1" Sequence="2" AssemblyFileName="" AssemblyName="" Argument=""/>
+          <Menu Key="USERGROUP" MainMenu="ADMIN" DisplayName="User Group management" Icon="-1" Sequence="3" AssemblyFileName="TAP.Admin.User.dll" AssemblyName="TAP.Admin.User.ModelerClassicUserGroup" Argument=""/>
+        </MainMenu>
+        <MainMenu Key="UI_MANAGEMENT" DisplayName="UI Management" Sequence="2">
+          <Menu Key="MAINMENU" MainMenu="UI_MANAGEMENT" DisplayName="Main Menu Management" Icon="-1" Sequence="1" AssemblyFileName="TAP.Admin.UI.dll" AssemblyName="TAP.Admin.UI.ModelerClassicMainMenu" Argument=""/>
+          <Menu Key="UI" MainMenu="UI_MANAGEMENT" DisplayName="Menu Management" Icon="-1" Sequence="2" AssemblyFileName="TAP.Admin.UI.dll" AssemblyName="TAP.Admin.UI.ModelerClassicUI" Argument=""/>
+          <Menu Key="AUTHORITY" MainMenu="UI_MANAGEMENT" DisplayName="Authority Management" Icon="-1" Sequence="3" AssemblyFileName="TAP.Admin.UI.dll" AssemblyName="TAP.Admin.UI.ModelerClassicAuthority" Argument=""/>
+        </MainMenu>
+      </MainMenus>
+      <ServiceGroups/>
+      <StartupUI Enabled="true" StartUpMainMenu="AWR" StartUpMenu="WORKLOADTRENDCHART"/>
+    </AppSection>
+    <!-- Cross language section-->
+    <CrossLanguageSection LocalFile="CrossLang.db" ServerDirectory="" NeedToDownLoad="false" NeedToApply="true"/>
+    <!-- Install section-->
+    <InstallInfoSection DBSetup="true" SMTPSetup="true" BatchSetup="true">
+      <Batches>
+        <Batch Key="TapLodeService" Sequence="1" File="TAPLodeService.exe"/>
+        <Batch Key="TapLodeService2" Sequence="2" File="TAPLodeService2.exe"/>
+      </Batches>
+    </InstallInfoSection>
+  </TAPConfiguration>
+  <applicationSettings>
+    <DevExpress.LookAndFeel.Design.AppSettings>
+      <setting name="DefaultAppSkin" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="DefaultPalette" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="TouchUI" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="TouchScaleFactor" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="DirectX" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="RegisterUserSkins" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="RegisterBonusSkins" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="FontBehavior" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="DefaultAppFont" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+      <setting name="DPIAwarenessMode" serializeAs="String">
+        <value>
+        </value>
+      </setting>
+    </DevExpress.LookAndFeel.Design.AppSettings>
+  </applicationSettings>
+  <appSettings>
+    <add key="codebase" value="dev"/>
+    <add key="ClientSettingsProvider.ServiceUri" value=""/>
+  </appSettings>
+  <connectionStrings>
+    <add name="DefaultConnection" connectionString="Data Source = |SQL/CE|"/>
+    <add name="DefaultConnection1" connectionString="Data Source = |SQL/CE|"/>
+  </connectionStrings>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri=""/>
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400"/>
+      </providers>
+    </roleManager>
+  </system.web>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.2"/></startup></configuration>
