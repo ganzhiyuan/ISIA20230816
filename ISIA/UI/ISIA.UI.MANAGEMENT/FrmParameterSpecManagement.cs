@@ -71,7 +71,7 @@ namespace ISIA.UI.MANAGEMENT
         {
 
             args = new ParameterSpecManagementArgsPack();
-            args.DBID = tLUCKDbname.EditValue.ToString();
+            args.DBID = tLUCKDbname.EditValue as string;
             args.PARAMETERNAME = txtParam.Text;
 
             if (string.IsNullOrEmpty(cmbRuleMain.Text))
@@ -257,17 +257,19 @@ namespace ISIA.UI.MANAGEMENT
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            AwrArgsPack argument = new AwrArgsPack();
             DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle) as DataRow;
             if (dr != null)
             {
                 tabPane1.SelectedPage = tabNavigationPage2;
-                cmbInstance.Text = dr["INSTANCE_NUMBER"].ToString();
-                //cmbAddDbName.EditValue = dr["DBID"];
-                //SelectedDBComboBox(tLUCKAddDbname, dr["DBID"].ToString());
                 SelectedSearchEdit(tLUCKAddDbname, dr["DBID"].ToString());
+                argument.DBName = tLUCKAddDbname.Text.Split('(')[0];
+
+                cmbInstance.BindData(bs.ExecuteDataSet("GetInstanceNumber", argument.getPack()).Tables[0], false);
+                cmbInstance.Text= dr["INSTANCE_NUMBER"].ToString();
+
                 searchid.EditValue = dr["PARAMETERID"].ToString();
-                //cmbRuleName.Text= dr["RULENAME"].ToString();
-                //cmbRuleName.EditValue= dr["RULENO"].ToString();
+              
                 SelectedRuleNOComboBox(cmbRuleName, dr["RULENO"].ToString(), dr["RULENAME"].ToString());
 
                 txtAddDays.Text = dr["DAYS"].ToString();
@@ -417,7 +419,7 @@ namespace ISIA.UI.MANAGEMENT
 
                 if (row["DBID"].ToString() == str)
                 {
-                    searchLookUpEdit.Text = row["DBVALUE"].ToString();
+                    searchLookUpEdit.Text = row["DBNAME"].ToString();
                     searchLookUpEdit.EditValue = row["DBID"].ToString();
                     break; 
                 }

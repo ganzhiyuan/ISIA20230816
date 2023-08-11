@@ -25,7 +25,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.Append(" SELECT  PARAMETERTYPE, TO_CHAR(PARAMETERID) PARAMETERID ,PARAMETERNAME  FROM TAPCTPARAMETERDEF WHERE PARAMETERTYPE IN ('STATISTIC','METRIC')   ORDER BY PARAMETERTYPE , PARAMETERNAME  ");
-               
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
 
@@ -39,6 +39,42 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+        public void GetInstanceNumber(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(" SELECT INSTANTCNT as INSTANCE_NUMBER FROM TAPCTDATABASE WHERE 1=1 AND ISALIVE = 'YES' and dbname='{0}' ", arguments.DBName);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                    tmpSql.ToString(), false);
+                DataSet ds = db.Select(tmpSql.ToString());
+                DataSet returnDs = new DataSet();
+                if (ds != null)
+                {
+                    string index = ds.Tables[0].Rows[0][0].ToString();
+                    returnDs = ds.Clone();
+                    for (int i = 0; i < int.Parse(index); i++)
+                    {
+                        DataRow dr = returnDs.Tables[0].NewRow();
+
+                        dr[0] = (i + 1).ToString();
+
+                        returnDs.Tables[0].Rows.Add(dr);
+                    }
+                }
+
+                this.ExecutingValue = returnDs;
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                    string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void GetParameterType(AwrCommonArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -46,7 +82,7 @@ namespace ISIA.BIZ.MANAGEMENT
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat(" SELECT * FROM TAPCTPARAMETERDEF WHERE 1=1 AND  PARAMETERNAME = '{0}' AND PARAMETERID = '{1}' " , arguments.ParameterName, arguments.ParameterId);
+                tmpSql.AppendFormat(" SELECT * FROM TAPCTPARAMETERDEF WHERE 1=1 AND  PARAMETERNAME = '{0}' AND PARAMETERID = '{1}' ", arguments.ParameterName, arguments.ParameterId);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -160,7 +196,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  DETECTINGUSED = '{0}'  ,", arguments.DETECTINGUSED);
                 tmpSql.AppendFormat("  MAILUSED = '{0}'  ,", arguments.MAILUSED);
                 /*tmpSql.AppendFormat("  MMSUSED = '{0}'  ,", arguments.MMSUSED);*/
-               /* tmpSql.AppendFormat("  SPECLIMITUSED = '{0}'  ,", arguments.SPECLIMITUSED);*/
+                /* tmpSql.AppendFormat("  SPECLIMITUSED = '{0}'  ,", arguments.SPECLIMITUSED);*/
                 tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
                 tmpSql.Append(" where 1=1 ");
                 tmpSql.AppendFormat(" and DBID='{0}' ", arguments.DBID);
@@ -197,8 +233,8 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat(" '{0}',", arguments.DAYS);
                 tmpSql.AppendFormat(" '{0}',", arguments.TARGET);
                 tmpSql.AppendFormat(" '{0}',", arguments.SPECUPPERLIMIT);
-                
-                
+
+
                 tmpSql.AppendFormat(" '{0}',", arguments.SPECLOWERLIMIT);
                 tmpSql.AppendFormat(" '{0}',", arguments.CONTROLUPPERLIMIT);
                 tmpSql.AppendFormat(" '{0}',", arguments.CONTROLLOWERLIMIT);
@@ -238,7 +274,7 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.Append("  SELECT DISTINCT DBNAME ,DBID FROM TAPCTDATABASE");
                 tmpSql.Append("  WHERE 1=1");
 
-                
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];
@@ -344,10 +380,10 @@ namespace ISIA.BIZ.MANAGEMENT
                 {
                     tmpSql.AppendFormat("  ISALIVE = '{0}' ", arguments.ISALIVE);
                 }
-                
+
 
                 tmpSql.AppendFormat(" WHERE ROWID ='{0}'", arguments.ROWID);
-                
+
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
@@ -534,9 +570,10 @@ namespace ISIA.BIZ.MANAGEMENT
 
                 if (!string.IsNullOrEmpty(arguments.ROWID))
                 {
-                    tmpSql.AppendFormat("ROWID =  '{0}'",  arguments.ROWID);
+                    tmpSql.AppendFormat("ROWID =  '{0}'", arguments.ROWID);
                 }
-                else {
+                else
+                {
                     return;
                 }
 

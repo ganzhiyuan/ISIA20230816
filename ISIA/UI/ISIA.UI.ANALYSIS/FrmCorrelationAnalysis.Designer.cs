@@ -584,7 +584,7 @@
             this.tLUCKDbname.CheckItemSelectMode = false;
             this.tLUCKDbname.ControlID = "tLUCKDbname";
             this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DisplayMember = "DBNAME";
             this.tLUCKDbname.DominantControl = "";
             this.tLUCKDbname.EditValue = "";
             this.tLUCKDbname.IsRequired = true;
@@ -600,7 +600,7 @@
             this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
             this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
             this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.ShowDescription = true;
             this.tLUCKDbname.Size = new System.Drawing.Size(148, 20);
             this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
             this.tLUCKDbname.SqlDataBase = "";

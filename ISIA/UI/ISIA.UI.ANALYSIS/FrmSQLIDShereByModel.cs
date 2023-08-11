@@ -36,13 +36,16 @@ namespace ISIA.UI.ANALYSIS
 
             try
             {
+                validateModuleCount();
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                TAPMsgBox.Instance.ShowMessage(TAP.UI.EnumMsgType.CONFIRM, ex.Message);
             }
         }
+
+      
 
 
         public DataSet LoadData()
@@ -68,9 +71,10 @@ namespace ISIA.UI.ANALYSIS
                 DataSet dataSet = bs.ExecuteDataSet("GetSqlStatModuleAll", args.getPack());
                 return dataSet;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
+
             }
         }
         public void DisplayData(DataSet dataSet)
@@ -127,6 +131,14 @@ namespace ISIA.UI.ANALYSIS
                 //    //}
                 //}
             }
+        }
+        private void validateModuleCount()
+        {
+            if (cmbModel.Text.Split(',').Length > 1000)
+            {
+                throw new Exception("module count must less than 1000!");
+            }
+            return;
         }
     }
 }

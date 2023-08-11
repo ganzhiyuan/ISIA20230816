@@ -461,7 +461,7 @@ namespace ISIA.UI.TREND
             this.tLUCKDbname.CheckItemSelectMode = false;
             this.tLUCKDbname.ControlID = "tLUCKDbname";
             this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DisplayMember = "DBNAME";
             this.tLUCKDbname.DominantControl = "";
             this.tLUCKDbname.EditValue = "";
             this.tLUCKDbname.IsRequired = true;
@@ -477,7 +477,7 @@ namespace ISIA.UI.TREND
             this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
             this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
             this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.ShowDescription = true;
             this.tLUCKDbname.Size = new System.Drawing.Size(132, 20);
             this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
             this.tLUCKDbname.SqlDataBase = "";
@@ -499,7 +499,7 @@ namespace ISIA.UI.TREND
             this.cmbParameterName.ControlID = "cmbParameterName";
             this.cmbParameterName.DescriptionMember = null;
             this.cmbParameterName.DisplayMember = "PARAMETERNAME";
-            this.cmbParameterName.DominantControl = "cmbDbName,cmbInstance,cmbRuleName,cmbRuleNo";
+            this.cmbParameterName.DominantControl = "tLUCKDbname,cmbInstance,cmbRuleName,cmbRuleNo";
             this.cmbParameterName.EditValue = "";
             this.cmbParameterName.IsRequired = false;
             this.cmbParameterName.Location = new System.Drawing.Point(99, 99);
@@ -627,7 +627,7 @@ namespace ISIA.UI.TREND
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
-            this.cmbInstance.DominantControl = "cmbDbName";
+            this.cmbInstance.DominantControl = "tLUCKDbname";
             this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = false;
             this.cmbInstance.Location = new System.Drawing.Point(99, 27);

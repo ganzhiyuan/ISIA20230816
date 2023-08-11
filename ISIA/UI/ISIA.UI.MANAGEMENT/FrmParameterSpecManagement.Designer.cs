@@ -513,7 +513,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tLUCKDbname.CheckItemSelectMode = false;
             this.tLUCKDbname.ControlID = "tLUCKDbname";
             this.tLUCKDbname.DescriptionMember = "DBID";
-            this.tLUCKDbname.DisplayMember = "DBVALUE";
+            this.tLUCKDbname.DisplayMember = "DBNAME";
             this.tLUCKDbname.DominantControl = "";
             this.tLUCKDbname.EditValue = "";
             this.tLUCKDbname.IsRequired = true;
@@ -529,7 +529,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tLUCKDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
             this.tLUCKDbname.Properties.PopupView = this.tSearchLookUpEditCheck1View;
             this.tLUCKDbname.RepresentativeValue = "";
-            this.tLUCKDbname.ShowDescription = false;
+            this.tLUCKDbname.ShowDescription = true;
             this.tLUCKDbname.Size = new System.Drawing.Size(162, 20);
             this.tLUCKDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
             this.tLUCKDbname.SqlDataBase = "";
@@ -874,7 +874,7 @@ namespace ISIA.UI.MANAGEMENT
             this.cmbInstance.ControlID = "cmbInstance";
             this.cmbInstance.DescriptionMember = null;
             this.cmbInstance.DisplayMember = "INSTANCE_NUMBER";
-            this.cmbInstance.DominantControl = "cmbAddDbName";
+            this.cmbInstance.DominantControl = "tLUCKAddDbname";
             this.cmbInstance.EditValue = "1";
             this.cmbInstance.IsRequired = true;
             this.cmbInstance.Location = new System.Drawing.Point(130, 28);
@@ -2217,7 +2217,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tLUCKAddDbname.CheckItemSelectMode = false;
             this.tLUCKAddDbname.ControlID = "tLUCKDbname";
             this.tLUCKAddDbname.DescriptionMember = "DBID";
-            this.tLUCKAddDbname.DisplayMember = "DBVALUE";
+            this.tLUCKAddDbname.DisplayMember = "DBNAME";
             this.tLUCKAddDbname.DominantControl = "";
             this.tLUCKAddDbname.EditValue = "";
             this.tLUCKAddDbname.IsRequired = true;
@@ -2233,7 +2233,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tLUCKAddDbname.Properties.PopupFormSize = new System.Drawing.Size(300, 200);
             this.tLUCKAddDbname.Properties.PopupView = this.gridView2;
             this.tLUCKAddDbname.RepresentativeValue = "";
-            this.tLUCKAddDbname.ShowDescription = false;
+            this.tLUCKAddDbname.ShowDescription = true;
             this.tLUCKAddDbname.Size = new System.Drawing.Size(131, 20);
             this.tLUCKAddDbname.Sql = "ISIA.BIZ.COMMON.ComboBoxData.GetDatabaseValue";
             this.tLUCKAddDbname.SqlDataBase = "";
