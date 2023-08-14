@@ -2970,8 +2970,8 @@ namespace ISIA.BIZ.TREND
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select 	b.snap_id,
-		b.snap_time,
+                tmpSql.AppendFormat(@"select 	b.snap_id SnapID,
+		b.snap_time Timestamp,
 		a.total_executions,
 		a.optimal_executions,
 		a.onepass_executions,
@@ -3478,8 +3478,8 @@ order by b.snap_id ");
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.AppendFormat(@"select snap_id
-                          ,Time_stamp
+                tmpSql.AppendFormat(@"select snap_id SnapID
+                          ,Time_stamp Timestamp
                           ,round(max(decode(rank, 1,wait_tm, 0))/1000,6)  rank1_wait_tm
                           ,round(max(decode(rank, 2,wait_tm, 0))/1000,6)  rank2_wait_tm
                           ,round(max(decode(rank, 3,wait_tm, 0))/1000,6)  rank3_wait_tm

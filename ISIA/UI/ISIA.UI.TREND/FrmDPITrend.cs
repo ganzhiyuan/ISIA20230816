@@ -360,7 +360,7 @@ namespace ISIA.UI.TREND
         private bool isRankChartForChartC(DPIDto dto)
         {
             if (dto.HeaderText.Equals("Top 5 Wait Events(time(s))")|| dto.HeaderText.Equals("Top wait time latch:Avg. wait time(ms)")|| 
-                dto.HeaderText.Equals("Avg.Top-5 En queue Wait Time(s)"))
+                dto.HeaderText.Equals("Avg.Top-5 Enqueue Wait Time(s)"))
             {
                 return true;
             }
@@ -704,7 +704,7 @@ namespace ISIA.UI.TREND
              {
                  DPIFileName = "GetOsstat",
                  Xvalue = "TIMESTAMP",
-                 HeaderText = "CP Usage(%)",
+                 HeaderText = "CPU Usage(%)",
                  YLValueType = 1,
                  YRValueType=1,
                  FileNameList = new List<DPIAboutY> {
@@ -734,7 +734,7 @@ namespace ISIA.UI.TREND
              {
                  DPIFileName = "GetLoadSQL",
                  Xvalue = "TIMESTAMP",
-                 HeaderText = "Lgical/Physical Reads",
+                 HeaderText = "Logical/Physical Reads",
                  FileNameList = new List<DPIAboutY> {
                      new DPIAboutY { FileNameParament = "Logical reads", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "Physical reads", IsLeftY = false },
@@ -801,7 +801,7 @@ namespace ISIA.UI.TREND
              {
                  DPIFileName = "GetEnq_01",
                  Xvalue = "TIMESTAMP",
-                 HeaderText = "Avg.Top-5 En queue Wait Time(s)",
+                 HeaderText = "Avg.Top-5 Enqueue Wait Time(s)",
                  FileNameList = new List<DPIAboutY> {
                      new DPIAboutY { FileNameParament = "rank1_wait_tm", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "rank2_wait_tm", IsLeftY = true },
@@ -1075,7 +1075,7 @@ namespace ISIA.UI.TREND
                  DPIFileName = "GetSqlElap_01",
                  Xvalue = "TIMESTAMP",
                  YLValueType=1,
-                 HeaderText = "Top Elapsed Time SQL:elaped time per DBTime(%)",
+                 HeaderText = "Top Elapsed Time SQL:elapsed time per DBTime(%)",
                  FileNameList = new List<DPIAboutY> {
                      new DPIAboutY { FileNameParament = "rank1_elap_per_dbtim", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "rank2_elap_per_dbtim", IsLeftY = true },
@@ -1233,7 +1233,7 @@ namespace ISIA.UI.TREND
                  DPIFileName = "GetSql_clu_wait_01",
                  Xvalue = "TIMESTAMP",
                  YLValueType=1,
-                 HeaderText = "Top Cluster Wait SQL:cluster wait time per elaped time(%)",
+                 HeaderText = "Top Cluster Wait SQL:cluster wait time per elapsed time(%)",
                  FileNameList = new List<DPIAboutY> {
                      new DPIAboutY { FileNameParament = "rank1_cput", IsLeftY = true },
                      new DPIAboutY { FileNameParament = "rank2_cput", IsLeftY = true },

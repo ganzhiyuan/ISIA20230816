@@ -76,7 +76,7 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqltext_{0} T where t.dbid='{1}' and t.sql_id='{2}' ",arguments.DbName, arguments.DbId, arguments.SqlId);
+                tmpSql.AppendFormat("SELECT T.* FROM raw_dba_hist_sqltext_{0} T where t.dbid='{1}' and t.sql_id='{2}' ", arguments.DbName, arguments.DbId, arguments.SqlId);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -135,14 +135,14 @@ namespace ISIA.BIZ.ANALYSIS
                         SELECT DISTINCT  workDate, sql_id,c.module,parsing_schema_name,action,instance_number
                         FROM
                         (SELECT SUBSTR(a.end_interval_time,0,10) workDate, MAX(t.sql_id) sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number ");
-                 tmpSql.AppendFormat("     FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
+                tmpSql.AppendFormat("     FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
                 tmpSql.AppendFormat("     LEFT JOIN raw_dba_hist_snapshot_{0} a ", arguments.DbName);
                 tmpSql.AppendFormat(@"   ON t.snap_id = a.snap_id and t.instance_number=a.instance_number and t.dbid=a.dbid
                      WHERE t.snap_id IN
                            (SELECT T.Snap_Id ");
-                tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T )",arguments.DbName);
-                tmpSql.AppendFormat(" AND a.end_interval_time>TO_DATE('{0}', 'yyyy-MM-dd') ",arguments.StartTimeKey);
-                tmpSql.AppendFormat("          AND a.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd')",arguments.EndTimeKey);
+                tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T )", arguments.DbName);
+                tmpSql.AppendFormat(" AND a.end_interval_time>TO_DATE('{0}', 'yyyy-MM-dd') ", arguments.StartTimeKey);
+                tmpSql.AppendFormat("          AND a.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd')", arguments.EndTimeKey);
                 tmpSql.AppendFormat("  GROUP BY a.end_interval_time, t.sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number  ORDER BY sql_id) c) d ");
                 tmpSql.AppendFormat("  WHERE workDate >= TRUNC(TO_DATE('{0}', 'yyyy-MM-dd')) - 7 ", arguments.EndTimeKey);
                 tmpSql.AppendFormat("  GROUP BY sql_id,d.module,parsing_schema_name,action,instance_number  ORDER BY {0} DESC", arguments.ParameterName);
@@ -218,7 +218,7 @@ namespace ISIA.BIZ.ANALYSIS
 
                 tmpSql.Append("  from  ");
 
-                tmpSql.Append("(SELECT b.end_interval_time end_interval_time, a.command_type command_type, t.snap_id, t.dbid, t.sql_id, "); 
+                tmpSql.Append("(SELECT b.end_interval_time end_interval_time, a.command_type command_type, t.snap_id, t.dbid, t.sql_id, ");
                 tmpSql.Append("t.module, sum(t.FETCHES_TOTAL) FETCHES_TOTAL, sum(END_OF_FETCH_COUNT_TOTAL) END_OF_FETCH_COUNT_TOTAL, sum(SORTS_TOTAL) SORTS_TOTAL, ");
                 tmpSql.Append("sum(EXECUTIONS_TOTAL) EXECUTIONS_TOTAL, sum(PX_SERVERS_EXECS_TOTAL) PX_SERVERS_EXECS_TOTAL, sum(LOADS_TOTAL) LOADS_TOTAL, ");
                 tmpSql.Append("sum(INVALIDATIONS_TOTAL) INVALIDATIONS_TOTAL, sum(PARSE_CALLS_TOTAL) PARSE_CALLS_TOTAL, sum(DISK_READS_TOTAL) DISK_READS_TOTAL, ");
@@ -233,7 +233,7 @@ namespace ISIA.BIZ.ANALYSIS
                 tmpSql.AppendFormat("FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
                 tmpSql.AppendFormat("left join raw_dba_hist_sqltext_{0} a   on t.sql_id = a.sql_id and t.dbid = a.dbid  ", arguments.DbName);
                 tmpSql.AppendFormat("left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id and t.instance_number= b.instance_number ", arguments.DbName);
-                tmpSql.AppendFormat("where  b.begin_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey); 
+                tmpSql.AppendFormat("where  b.begin_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
                 tmpSql.AppendFormat("  and b.begin_interval_time <= to_date('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
 
 
@@ -245,7 +245,7 @@ namespace ISIA.BIZ.ANALYSIS
                 tmpSql.Append("group by b.end_interval_time, a.command_type, t.snap_id, t.dbid, t.sql_id, t.module) w ");
                 tmpSql.AppendFormat("    where 1=1 ");
                 if (!string.IsNullOrEmpty(arguments.CommandName))
-                    tmpSql.AppendFormat(" and   w.module in ({0}) ", Utils.MakeSqlQueryIn(arguments.CommandName,','));
+                    tmpSql.AppendFormat(" and   w.module in ({0}) ", convertStrToSqlInStr(arguments.CommandName, ','));
                 if (!string.IsNullOrEmpty(arguments.CommandName) && !string.IsNullOrEmpty(arguments.ChartUsed))
                     tmpSql.Append(" or   w.module is null ");
                 if (string.IsNullOrEmpty(arguments.CommandName) && !string.IsNullOrEmpty(arguments.ChartUsed))
@@ -264,5 +264,19 @@ namespace ISIA.BIZ.ANALYSIS
                 throw ex;
             }
         }
+
+        private string convertStrToSqlInStr(string str, char split)
+        {
+            StringBuilder tmpSql = new StringBuilder();
+            tmpSql.Append("");
+            string[] elements = str.Split(split);
+            foreach (string ele in elements)
+            {
+                tmpSql.Append($"select '{ele.Trim()}' from dual union all ");
+            }
+            string res = tmpSql.ToString().Remove(tmpSql.Length - "union all ".Length);
+            return res;
+        }
+
     }
 }

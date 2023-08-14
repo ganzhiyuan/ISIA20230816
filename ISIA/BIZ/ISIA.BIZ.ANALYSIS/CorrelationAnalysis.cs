@@ -181,7 +181,7 @@ namespace ISIA.BIZ.ANALYSIS
         {
             List<string> resultList = new List<string>();
             StringBuilder tmpSql = new StringBuilder();
-            tmpSql.AppendFormat("select parametername from TAPCTPARAMETERDEF where parametertype = {0} and parametername in ({1})", Utils.MakeSqlQueryIn2(type), Utils.MakeSqlQueryIn2(paramNames));
+            tmpSql.AppendFormat("select distinct(parametername) from TAPCTPARAMETERDEF where parametertype = {0} and parametername in ({1})", Utils.MakeSqlQueryIn2(type), Utils.MakeSqlQueryIn2(paramNames));
             DataSet ds = (DataSet)db.Select(tmpSql.ToString());
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);

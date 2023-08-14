@@ -36,7 +36,7 @@ namespace ISIA.UI.ANALYSIS
 
             try
             {
-                validateModuleCount();
+                //validateModuleCount();
                 base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
             }
             catch (Exception ex)
