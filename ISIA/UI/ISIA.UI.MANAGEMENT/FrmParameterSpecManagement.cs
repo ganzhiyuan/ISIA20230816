@@ -239,7 +239,8 @@ namespace ISIA.UI.MANAGEMENT
             //args.MMSUSED = rdoIsalive.Properties.Items[rdoMMsused.SelectedIndex].Value.ToString();
             //args.SPECLIMITUSED = rdoIsalive.Properties.Items[rdoSpec.SelectedIndex].Value.ToString();
             args.DETECTINGUSED = rdodetecting.Properties.Items[rdodetecting.SelectedIndex].Value.ToString();
-
+            args.USER = InfoBase._USER_INFO.UserName;
+            args.UPDATETIME = DateTime.Now.ToString("yyyyMMddHHmmss");
 
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
             if (dst == null || dst.Tables == null || dst.Tables[0].Rows.Count == 0)

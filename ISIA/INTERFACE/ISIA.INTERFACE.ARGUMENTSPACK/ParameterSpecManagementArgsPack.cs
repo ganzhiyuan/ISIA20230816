@@ -33,8 +33,13 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private string _PARAVAL3 = null;
         private string _PARAVAL4 = null;
         private string _PARAVAL5 = null;
+        private string _USER = null;
+        private string _UPDATETIME = null;
+        private string _CREATETIME = null;
 
-        
+
+
+
 
 
 
@@ -65,8 +70,45 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string PARAVAL3 { get { return _PARAVAL3; } set { _PARAVAL3 = value; } }
         public string PARAVAL4 { get { return _PARAVAL4; } set { _PARAVAL4 = value; } }
         public string PARAVAL5 { get { return _PARAVAL5; } set { _PARAVAL5 = value; } }
-       
 
+        public string USER
+        {
+            get
+            {
+                return _USER;
+            }
+
+            set
+            {
+                _USER = value;
+            }
+        }
+
+        public string UPDATETIME
+        {
+            get
+            {
+                return _UPDATETIME;
+            }
+
+            set
+            {
+                _UPDATETIME = value;
+            }
+        }
+
+        public string CREATETIME
+        {
+            get
+            {
+                return _CREATETIME;
+            }
+
+            set
+            {
+                _CREATETIME = value;
+            }
+        }
 
         public ArgumentPack getPack()
         {
