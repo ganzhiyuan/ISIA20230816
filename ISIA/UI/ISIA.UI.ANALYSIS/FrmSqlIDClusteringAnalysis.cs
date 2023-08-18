@@ -549,11 +549,11 @@ namespace ISIA.UI.ANALYSIS
             //line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["SQL_ID"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex][cmbParameterName.Text]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMENT_NAME :" + $"{dstable.Rows[e.ValueIndex]["SQL_ID"]}" + "\r\n" + "VALUE :" + $"{dstable.Rows[e.ValueIndex][cmbParameterName.Text]}" + "\r\n" + "TIME :" + $"{ dstable.Rows[e.ValueIndex]["END_TIME"]}";
             }
             line.DataSource = dstable;
             line.YValues.DataMember = cmbParameterName.Text;
-            line.XValues.DataMember = "END_INTERVAL_TIME";
+            line.XValues.DataMember = "END_TIME";
             line.Legend.Visible = true;
 
 
