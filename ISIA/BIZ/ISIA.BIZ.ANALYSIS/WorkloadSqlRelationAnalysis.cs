@@ -50,31 +50,27 @@ namespace ISIA.BIZ.ANALYSIS
 
                 tmpSql.AppendFormat(@" 
                 select * from(
-                select T.snap_id , T.DBID, T.INSTANCE_NUMBER, sum(T.{0}) {0}, A.end_interval_time ", arguments.WorkloadSqlParm);
+                select T.snap_id , T.DBID, T.INSTANCE_NUMBER, sum(T.{0}) {0}, T.end_time ", arguments.WorkloadSqlParm);
 
 
                 tmpSql.AppendFormat(@" 
                 from RAW_DBA_HIST_SQLSTAT_{0} T 
-                left join RAW_DBA_HIST_SNAPSHOT_{0} A 
-                on T.snap_id  = A.Snap_id
-                AND T.INSTANCE_NUMBER  = A.INSTANCE_NUMBER
-                AND T.DBID  = A.DBID
                 where 1 = 1 ", arguments.DBName);
 
                 tmpSql.AppendFormat(@" 
-                 and A.begin_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                 and A.begin_interval_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime , arguments.EndTime);
+                 and T.begin_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')
+                 and T.begin_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime , arguments.EndTime);
 
                 tmpSql.AppendFormat(@" 
-                 AND A.DBID = '{0}' ", arguments.DBID);
+                 AND T.DBID = '{0}' ", arguments.DBID);
 
                 
 
-                tmpSql.AppendFormat(@"  AND A.INSTANCE_NUMBER  = {0} ", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat(@"  AND T.INSTANCE_NUMBER  = {0} ", arguments.INSTANCE_NUMBER);
 
                 tmpSql.Append(@" 
-                  group by T.snap_id , T.DBID , T.INSTANCE_NUMBER , A.end_interval_time
-                  order by A.end_interval_time
+                  group by T.snap_id , T.DBID , T.INSTANCE_NUMBER , T.end_time
+                  order by T.end_time
                   )
                   UNPIVOT(
                   VALUE FOR PARAMETER IN(");
@@ -128,22 +124,28 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
                 tmpSql.AppendFormat(@"  SELECT A.SNAP_ID,A.DBID, A.METRIC_NAME PARAMETER, A.AVERAGE VALUE,
-                    B.end_interval_time FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} A LEFT JOIN RAW_DBA_HIST_SNAPSHOT_{0} B
-                    ON A.snap_id = b.snap_id
-                    AND A.INSTANCE_NUMBER = b.INSTANCE_NUMBER
-                    AND A.DBID = b.DBID", arguments.DBName);
+                    A.end_time FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} A ", arguments.DBName);
 
                 tmpSql.AppendFormat(@" WHERE     1 = 1
-                    AND b.begin_interval_time >
+                    AND A.begin_time >
                     TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                    AND b.begin_interval_time <=
+                    AND A.begin_time <=
                     TO_DATE ('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
 
                 tmpSql.AppendFormat(@" AND A.DBID IN ('{0}') ", arguments.DBID);
 
                 tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", arguments.INSTANCE_NUMBER);
 
-                tmpSql.AppendFormat(@" AND metric_name IN ( {0} ) order by a.metric_name ,B.end_interval_time", Utils.MakeSqlQueryIn2(arguments.PARADEF));
+                if (string.IsNullOrEmpty(arguments.PARADEF))
+                {
+                    tmpSql.Append(@" order by A.end_time");
+                }
+                else
+                {
+                    tmpSql.AppendFormat(@" AND metric_name IN ( {0} ) order by a.metric_name ,A.end_time", Utils.MakeSqlQueryIn2(arguments.PARADEF));
+                }
+
+                
 
 
 

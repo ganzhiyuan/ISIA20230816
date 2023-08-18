@@ -48,12 +48,12 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
 
-                tmpSql.AppendFormat(@" select rownum,t.* from (select stat.sql_id sql_id, min(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, NVL(sum({0}),0) {0} ", arguments.WorkloadSqlParm);
-                tmpSql.AppendFormat("  from ISIA.RAW_DBA_HIST_SQLSTAT_{0} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{0} snap on  stat.snap_id = snap.snap_id and stat.dbid = snap.dbid and stat.INSTANCE_NUMBER = snap.INSTANCE_NUMBER ", arguments.DBName);
-                tmpSql.AppendFormat(" where  TO_CHAR (snap.begin_interval_time, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}' ", arguments.StartTime, arguments.EndTime);
-                tmpSql.AppendFormat(" and stat.dbid IN ('{0}') ", arguments.DBID);
-                tmpSql.AppendFormat(" and stat.INSTANCE_NUMBER =  {0} ", arguments.INSTANCE_NUMBER);
-                tmpSql.AppendFormat(" group by stat.sql_id  order by {0} desc) t where rownum<11" , arguments.WorkloadSqlParm);
+                tmpSql.AppendFormat(@" select rownum,t.* from (select T.sql_id sql_id, min(begin_time) begin_interval_time,max(end_time) end_interval_time, NVL(sum({0}),0) {0} ", arguments.WorkloadSqlParm);
+                tmpSql.AppendFormat("  from ISIA.RAW_DBA_HIST_SQLSTAT_{0} T ", arguments.DBName);
+                tmpSql.AppendFormat(" where  TO_CHAR (T.begin_time, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}' ", arguments.StartTime, arguments.EndTime);
+                tmpSql.AppendFormat(" and T.dbid IN ('{0}') ", arguments.DBID);
+                tmpSql.AppendFormat(" and T.INSTANCE_NUMBER =  {0} ", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat(" group by T.sql_id  order by {0} desc) t where rownum<11" , arguments.WorkloadSqlParm);
                 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -77,19 +77,15 @@ namespace ISIA.BIZ.ANALYSIS
                 StringBuilder tmpSql = new StringBuilder();
 
 
-                tmpSql.AppendFormat("select snap.dbid ,stat.INSTANCE_NUMBER ,stat.sql_id , trunc(snap.end_interval_time ,'DD')  end_interval_time, sum(stat.{0}) {0}  ", arguments.WorkloadSqlParm);
-                tmpSql.AppendFormat(@" from  RAW_DBA_HIST_SQLSTAT_{0}  stat left join 
-                                        ISIA.RAW_DBA_HIST_SNAPSHOT_{0} snap
-                                        ON  stat.snap_id = snap.snap_id
-                                        AND stat.dbid = snap.dbid
-                                        AND stat.INSTANCE_NUMBER = snap.INSTANCE_NUMBER ", arguments.DBName);
-                tmpSql.AppendFormat(" where snap.end_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')  and  snap.end_interval_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
-                tmpSql.AppendFormat(" and stat.dbid = '{0}' ", arguments.DBID);
-                tmpSql.AppendFormat(" and stat.INSTANCE_NUMBER =  {0} ", arguments.INSTANCE_NUMBER);
-                tmpSql.AppendFormat(" and stat.sql_id =  '{0}' ", arguments.SQLID);
-                tmpSql.Append(" group by  snap.dbid ,stat.INSTANCE_NUMBER ,stat.sql_id , trunc(snap.end_interval_time ,'DD')");
+                tmpSql.AppendFormat("select t.dbid ,t.INSTANCE_NUMBER ,t.sql_id , trunc(t.end_time ,'DD')  end_interval_time, sum(t.{0}) {0}  ", arguments.WorkloadSqlParm);
+                tmpSql.AppendFormat(@" from  RAW_DBA_HIST_SQLSTAT_{0}  t  ", arguments.DBName);
+                tmpSql.AppendFormat(" where t.end_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')  and  t.end_time <= to_date('{1}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTime, arguments.EndTime);
+                tmpSql.AppendFormat(" and t.dbid = '{0}' ", arguments.DBID);
+                tmpSql.AppendFormat(" and t.INSTANCE_NUMBER =  {0} ", arguments.INSTANCE_NUMBER);
+                tmpSql.AppendFormat(" and t.sql_id =  '{0}' ", arguments.SQLID);
+                tmpSql.Append(" group by  t.dbid ,t.INSTANCE_NUMBER ,t.sql_id , trunc(t.end_time ,'DD')");
                 tmpSql.Append(" order by  end_interval_time ");
-
+                 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Select(tmpSql.ToString()).Tables[0];

@@ -23,27 +23,23 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-
-             
                 
-                    tmpSql.AppendFormat(" SELECT A.SNAP_ID,A.DBID,A.INSTANCE_NUMBER, A.SQL_ID , ROUND(avg(NVL (A.{0}, 0)) , 4) {0}, B.END_INTERVAL_TIME ", arguments.ParameterName);
+                    tmpSql.AppendFormat(" SELECT A.SNAP_ID,A.DBID,A.INSTANCE_NUMBER, A.SQL_ID , ROUND(avg(NVL (A.{0}, 0)) , 4) {0}, A.END_TIME ", arguments.ParameterName);
 
-                    tmpSql.AppendFormat(@" FROM RAW_DBA_HIST_SQLSTAT_{0} A LEFT JOIN RAW_DBA_HIST_SNAPSHOT_{0} B ON A.SNAP_ID = B.SNAP_ID
-                                        AND A.DBID = B.DBID
-                                        AND A.INSTANCE_NUMBER = B.INSTANCE_NUMBER
+                    tmpSql.AppendFormat(@" FROM RAW_DBA_HIST_SQLSTAT_{0} A
                                         WHERE  1 = 1 ", arguments.DbName);
 
-                    tmpSql.AppendFormat(@" AND B.BEGIN_INTERVAL_TIME > TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss' ) 
-                                           AND B.BEGIN_INTERVAL_TIME <= TO_DATE ('{1}' , 'yyyy-MM-dd HH24:mi:ss' )",
+                    tmpSql.AppendFormat(@" AND A.BEGIN_TIME > TO_DATE ('{0}', 'yyyy-MM-dd HH24:mi:ss' ) 
+                                           AND A.BEGIN_TIME <= TO_DATE ('{1}' , 'yyyy-MM-dd HH24:mi:ss' )",
                                            arguments.StartTimeKey, arguments.EndTimeKey);
 
                     tmpSql.AppendFormat(@" AND A.INSTANCE_NUMBER = {0} ", arguments.InstanceNumber);
 
                     tmpSql.AppendFormat(@" AND A.DBID = '{0}' ", arguments.DbId);
 
-                    tmpSql.Append(" group by A.SQL_ID ,A.SNAP_ID, A.DBID,A.INSTANCE_NUMBER,B.END_INTERVAL_TIME ");
+                    tmpSql.Append(" group by A.SQL_ID ,A.SNAP_ID, A.DBID,A.INSTANCE_NUMBER,A.END_TIME ");
 
-                    tmpSql.Append(" ORDER BY B.END_INTERVAL_TIME ");
+                    tmpSql.Append(" ORDER BY A.END_TIME ");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

@@ -215,10 +215,8 @@ namespace ISIA.BIZ.ANALYSIS
                 tmpSql.Append("sum(PHYSICAL_READ_BYTES_TOTAL) PHYSICAL_READ_BYTES_TOTAL,sum(PHYSICAL_WRITE_REQUESTS_TOTAL) PHYSICAL_WRITE_REQUESTS_TOTAL ");
                 tmpSql.Append(", sum(PHYSICAL_WRITE_BYTES_TOTAL) PHYSICAL_WRITE_BYTES_TOTAL,sum(OPTIMIZED_PHYSICAL_READS_TOTAL) OPTIMIZED_PHYSICAL_READS_TOTAL ");
                 tmpSql.Append(", sum(CELL_UNCOMPRESSED_BYTES_TOTAL) CELL_UNCOMPRESSED_BYTES_TOTAL,sum(IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL ");
-
                 tmpSql.Append("  from  ");
-
-                tmpSql.Append("(SELECT b.end_interval_time end_interval_time, a.command_type command_type, t.snap_id, t.dbid, t.sql_id, ");
+                tmpSql.Append("(SELECT t.end_time end_time, a.command_type command_type, t.snap_id, t.dbid, t.sql_id, ");
                 tmpSql.Append("t.module, sum(t.FETCHES_TOTAL) FETCHES_TOTAL, sum(END_OF_FETCH_COUNT_TOTAL) END_OF_FETCH_COUNT_TOTAL, sum(SORTS_TOTAL) SORTS_TOTAL, ");
                 tmpSql.Append("sum(EXECUTIONS_TOTAL) EXECUTIONS_TOTAL, sum(PX_SERVERS_EXECS_TOTAL) PX_SERVERS_EXECS_TOTAL, sum(LOADS_TOTAL) LOADS_TOTAL, ");
                 tmpSql.Append("sum(INVALIDATIONS_TOTAL) INVALIDATIONS_TOTAL, sum(PARSE_CALLS_TOTAL) PARSE_CALLS_TOTAL, sum(DISK_READS_TOTAL) DISK_READS_TOTAL, ");
@@ -232,17 +230,11 @@ namespace ISIA.BIZ.ANALYSIS
                 tmpSql.Append(", sum(CELL_UNCOMPRESSED_BYTES_TOTAL) CELL_UNCOMPRESSED_BYTES_TOTAL, sum(IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL ");
                 tmpSql.AppendFormat("FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
                 tmpSql.AppendFormat("left join raw_dba_hist_sqltext_{0} a   on t.sql_id = a.sql_id and t.dbid = a.dbid  ", arguments.DbName);
-                tmpSql.AppendFormat("left join raw_dba_hist_snapshot_{0} b on t.snap_id = b.snap_id and t.instance_number= b.instance_number ", arguments.DbName);
-                tmpSql.AppendFormat("where  b.begin_interval_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
-                tmpSql.AppendFormat("  and b.begin_interval_time <= to_date('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
-
-
+                tmpSql.AppendFormat("where  T.begin_time > to_date('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
+                tmpSql.AppendFormat("  and T.begin_time <= to_date('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.EndTimeKey);
                 tmpSql.AppendFormat("  AND T.DBID = '{0}'   ", arguments.DbId);
                 tmpSql.AppendFormat("  AND T.INSTANCE_NUMBER = {0}  ", arguments.InstanceNumber);
-
-
-
-                tmpSql.Append("group by b.end_interval_time, a.command_type, t.snap_id, t.dbid, t.sql_id, t.module) w ");
+                tmpSql.Append("group by T.end_time, a.command_type, t.snap_id, t.dbid, t.sql_id, t.module) w ");
                 tmpSql.AppendFormat("    where 1=1 ");
                 if (!string.IsNullOrEmpty(arguments.CommandName))
                     tmpSql.AppendFormat(" and   w.module in ({0}) ", convertStrToSqlInStr(arguments.CommandName, ','));
