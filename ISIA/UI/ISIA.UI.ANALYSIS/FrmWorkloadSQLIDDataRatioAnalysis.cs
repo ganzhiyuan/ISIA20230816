@@ -127,12 +127,6 @@ namespace ISIA.UI.ANALYSIS
         public static string TIME_SELECTION = "A";
 
 
-
-
-
-
-
-
         private void InitializeSqlId()
         {
             /*AwrArgsPack args = new AwrArgsPack();
@@ -141,7 +135,6 @@ namespace ISIA.UI.ANALYSIS
             sqlCollection = SLUEParamentName.PARAMETERNAME.Split(',').ToList<string>();*/
 
         }
-
 
 
         #endregion
@@ -161,10 +154,6 @@ namespace ISIA.UI.ANALYSIS
         {
             AwrArgsPack argument = new AwrArgsPack();
             //date period handling 
-
-
-
-
 
             argument.StartTime = dtpStartTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
             argument.EndTime = dtpEndTime.DateTime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -194,7 +183,7 @@ namespace ISIA.UI.ANALYSIS
             argument.INSTANCE_NUMBER = cmbInstance.Text.ToString();
 
             //
-            if (searchid.Text != null)
+            if (searchid.EditValue != null)
             {
                 argument.PARADEF = searchid.Text.ToString();
             }
@@ -248,10 +237,8 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-
             Line line = CreateLine(ds.Tables[0]);
             chart.Series.Add(line);
-
 
 
             if (searchid.Text != null)
@@ -285,8 +272,6 @@ namespace ISIA.UI.ANALYSIS
 
 
 
-
-
             chart.Axes.Bottom.Labels.DateTimeFormat = "hh:mm";
             chart.Axes.Bottom.Labels.ExactDateTime = true;
             chart.Axes.Bottom.Ticks.Width = 0;
@@ -302,7 +287,7 @@ namespace ISIA.UI.ANALYSIS
             Line line = new Line();
             line.DataSource = dt;
             line.YValues.DataMember = "VALUE";
-            line.XValues.DataMember = "END_INTERVAL_TIME";
+            line.XValues.DataMember = "END_TIME";
             line.ShowInLegend = true;
             line.Legend.Text = dt.TableName;
             line.Title = dt.TableName;
@@ -313,7 +298,7 @@ namespace ISIA.UI.ANALYSIS
             line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_TIME"]}";
             }
             return line;
         }
@@ -324,7 +309,7 @@ namespace ISIA.UI.ANALYSIS
             line.DataSource = dt;
             line.VertAxis = VerticalAxis.Right;
             line.YValues.DataMember = "VALUE";
-            line.XValues.DataMember = "END_INTERVAL_TIME";
+            line.XValues.DataMember = "END_TIME";
             line.ShowInLegend = true;
             line.Legend.Text = dt.TableName;
             line.Title = dt.TableName;
@@ -335,7 +320,7 @@ namespace ISIA.UI.ANALYSIS
             line.GetSeriesMark += Line_GetSeriesMark;
             void Line_GetSeriesMark(Series series, GetSeriesMarkEventArgs e)
             {
-                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_INTERVAL_TIME"]}";
+                e.MarkText = "PARAMETER_NAME :" + $"{dt.Rows[e.ValueIndex]["PARAMETER"]}" + "\r\n" + "VALUE :" + $"{dt.Rows[e.ValueIndex]["VALUE"]}" + "\r\n" + "TIME :" + $"{ dt.Rows[e.ValueIndex]["END_TIME"]}";
             }
             return line;
         }
