@@ -23,7 +23,7 @@ namespace ISIA.BIZ.ANALYSIS
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append("select DBID, DBNAME   from ISIA.TAPCTDATABASE ");
+                tmpSql.Append("select DBID, DBNAME   from TAPCTDATABASE ");
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -74,26 +74,25 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(
                         "with sql\r\n" +
                        "as\r\n" +
-                       "(select stat.snap_id, stat.dbid, stat.instance_number, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n");
+                       "(select stat.snap_id, stat.dbid, stat.instance_number, max(begin_time) begin_interval_time,max(end_time) end_interval_time, \r\n");
                     foreach (string sqlParm in AwrArgsPack.SqlParmsList)
                     {
                         tmpSql.AppendFormat("sum({0}) \"{0}\",", sqlParm);
                     }
                     tmpSql.Remove(tmpSql.Length - 1, 1);
-                    tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
-                       "stat.snap_id=snap.snap_id and stat.dbid=snap.dbid and stat.INSTANCE_NUMBER=snap.INSTANCE_NUMBER \r\n" +
-                       "where  TO_CHAR (snap.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                    tmpSql.AppendFormat("from RAW_DBA_HIST_SQLSTAT_{2} stat \r\n" +
+                       "where  TO_CHAR (stat.BEGIN_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
                        " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id,stat.dbid,stat.instance_number\r\n" +
                        "order by snap_id),\r\n" +
                        "workload as\r\n" +
-                       "(SELECT /*+ MATERIALIZE */\r\n" +
+                       "(SELECT \r\n" +
                        "                dbid,\r\n" +
                        "                INSTANCE_NUMBER,\r\n" +
                        "                   \r\n" +
                        "                snap_id,\r\n" +
-                       "                \"begin_interval_time\",\r\n" +
-                       "                \"end_interval_time\",\r\n" +
+                       "                \"begin_time\",\r\n" +
+                       "                \"endl_time\",\r\n" +
                        "                NVL(ROUND (\r\n" +
                        "                    (  \"{3}\"\r\n" +
                        "                     - LAG (\"{3}\", 1)\r\n" +
@@ -102,24 +101,24 @@ namespace ISIA.BIZ.ANALYSIS
                        "                    \"{3}\"\r\n" +
                        "from\r\n" +
                        "(select\r\n" +
-                       "/*+MATERIALIZE */\r\n" +
-                       "MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
-                       "MAX(end_interval_time) \"end_interval_time\",\r\n" +
+                       
+                       "MIN(begin_time) \"begin_interval_time\",\r\n" +
+                       "MAX(end_time) \"end_interval_time\",\r\n" +
                        "dbid,\r\n" +
                        "snap_id,\r\n" +
                        "instance_number ,\r\n" +
                        "SUM(DECODE(STAT_NAME,'{3}',value ,0))\r\n" +
                        "\"{3}\"\r\n" +
                        "FROM\r\n" +
-                       "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
+                       "(select \r\n" +
                        "ss.dbid,\r\n" +
                        "ss.instance_number,\r\n" +
                        "ss.snap_id,\r\n" +
                        "ss.VALUE,\r\n" +
-                       "ss.stat_name,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSSTAT_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
-                       "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and STAT_NAME='{3}' --configurable\r\n" +
+                       "ss.stat_name,ss.begin_time, ss.end_time from RAW_DBA_HIST_SYSSTAT_{2} ss \r\n" +
+                       "where 1=1  and STAT_NAME='{3}'\r\n" +
 
-                       " and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
+                       " and TO_CHAR(ss.BEGIN_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'  " +
                        "  AND ss.DBID IN  ('{4}')  AND ss.INSTANCE_NUMBER  = {5}  " +
                        " ) t\r\n" +
                        " where 1=1\r\n" +
@@ -133,38 +132,36 @@ namespace ISIA.BIZ.ANALYSIS
                     tmpSql.AppendFormat(
                         "with sql\r\n" +
                        "as\r\n" +
-                       "(select stat.snap_id, stat.dbid, stat.instance_number, max(begin_interval_time) begin_interval_time,max(end_interval_time) end_interval_time, \r\n");
+                       "(select stat.snap_id, stat.dbid, stat.instance_number, max(begin_time) begin_interval_time,max(end_time) end_interval_time, \r\n");
                     foreach (string sqlParm in AwrArgsPack.SqlParmsList)
                     {
                         tmpSql.AppendFormat("sum({0}) \"{0}\",", sqlParm);
                     }
                     tmpSql.Remove(tmpSql.Length - 1, 1);
-                    tmpSql.AppendFormat("from ISIA.RAW_DBA_HIST_SQLSTAT_{2} stat left join ISIA.RAW_DBA_HIST_SNAPSHOT_{2} snap on  \r\n" +
-                       "stat.snap_id=snap.snap_id  and stat.dbid=snap.dbid and stat.INSTANCE_NUMBER=snap.INSTANCE_NUMBER  \r\n" +
-                       "where  TO_CHAR (snap.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
+                    tmpSql.AppendFormat("from RAW_DBA_HIST_SQLSTAT_{2} stat    \r\n" +
+                       "where  TO_CHAR (stat.BEGIN_TIME, 'yyyyMMddHH24miss') BETWEEN '{0}' and '{1}'\r\n" +
                        " AND stat.DBID IN '{4}'  AND stat.INSTANCE_NUMBER IN  '{5}' " +
                        "group by stat.snap_id  ,stat.dbid, stat.instance_number\r\n" +
                        "order by snap_id),\r\n" +
                        "workload as\r\n" +
                        "(select\r\n" +
-                       "/*+MATERIALIZE */\r\n" +
-                       "MIN(begin_interval_time) \"begin_interval_time\",\r\n" +
-                       "MAX(end_interval_time) \"end_interval_time\",\r\n" +
+                       "MIN(begin_time) \"begin_interval_time\",\r\n" +
+                       "MAX(end_time) \"end_interval_time\",\r\n" +
                        "dbid,\r\n" +
                        "snap_id,\r\n" +
                        "instance_number ,\r\n" +
                        "SUM(DECODE(METRIC_NAME,'{3}',average ,0))\r\n" +
                        "\"{3}\"\r\n" +
                        "FROM\r\n" +
-                       "(select /*+  LEADING(sn ss) USE_HASH(sn ss) USE_HASH(ss.sn ss.s ss.nm) no_merge(ss) */\r\n" +
+                       "(select \r\n" +
                        "ss.dbid,\r\n" +
                        "ss.instance_number,\r\n" +
                        "ss.snap_id,\r\n" +
                        "ss.average,\r\n" +
-                       "ss.METRIC_NAME,sn.begin_interval_time, sn.end_interval_time from ISIA.RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss,ISIA.RAW_DBA_HIST_SNAPSHOT_{2} sn  \r\n" +
-                       "where 1=1 and ss.dbid=sn.dbid and ss.INSTANCE_NUMBER=SN.INSTANCE_NUMBER and ss.snap_id=sn.snap_id and METRIC_NAME='{3}' --configurable\r\n" +
+                       "ss.METRIC_NAME,ss.begin_time, ss.end_time from RAW_DBA_HIST_SYSMETRIC_SUMMARY_{2} ss  \r\n" +
+                       "where 1=1  and METRIC_NAME='{3}' \r\n" +
 
-                       "and TO_CHAR(sn.BEGIN_INTERVAL_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
+                       "and TO_CHAR(ss.BEGIN_TIME, 'yyyyMMddHH24miss') between '{0}' and '{1}'" +
                        "  AND ss.DBID IN '{4}'  AND ss.INSTANCE_NUMBER IN '{5}'  "  +
                        ") t\r\n" +
                        " where 1=1\r\n" +
