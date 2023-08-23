@@ -3988,12 +3988,9 @@ order by b.snap_id ");
                     arguments.StartTimeKey,
                     arguments.EndTimeKey,
                     arguments.InstanceNumber);
-                tmpSql.Append("   and e.snap_id in ( ");
-                tmpSql.AppendFormat(" select snap_id from raw_dba_hist_snapshot_{0} where BEGIN_INTERVAL_TIME >= to_date('{1}','yyyy-MM-dd') AND BEGIN_INTERVAL_TIME < to_date('{2}','yyyy-MM-dd') AND INSTANCE_NUMBER = {3} ) ",
-                    arguments.DbName,
-                    arguments.StartTimeKey,
-                    arguments.EndTimeKey,
-                    arguments.InstanceNumber);
+                tmpSql.AppendFormat("   and e.begin_time between TO_DATE ('{0}', 'yyyy-MM-dd') and TO_DATE ('{1}', 'yyyy-MM-dd') ",arguments.StartTimeKey,arguments.EndTimeKey);
+                tmpSql.AppendFormat("   and b.begin_time between TO_DATE ('{0}', 'yyyy-MM-dd') and TO_DATE ('{1}', 'yyyy-MM-dd') ", arguments.StartTimeKey, arguments.EndTimeKey);
+
                 tmpSql.AppendFormat("    and b.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("    and e.dbid = {0} ", arguments.DbId);
                 tmpSql.AppendFormat("    and b.dbid = e.dbid");
