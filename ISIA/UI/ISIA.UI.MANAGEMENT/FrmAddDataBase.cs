@@ -139,14 +139,14 @@ namespace ISIA.UI.MANAGEMENT
 
 
                  wpbcreate.BeginInvoke(new Action( () =>
-                {
+                 {
                     CreateDBlinkAsync();
                     CreateDataTableAsync();
                     CreateProceduresAsync();
                  }));
                 
 
-                 string a = "asdqa";
+                 //string a = "asdqa";
             }
 
             if (e.Page == wpfinish)
@@ -189,8 +189,7 @@ namespace ISIA.UI.MANAGEMENT
 
             //Thread.Sleep(5000);
 
-                memoinfo.AppendLine("End of the program is run");
-                wpbcreate.AllowNext = true;
+               
 
         }
         #endregion
@@ -365,8 +364,10 @@ namespace ISIA.UI.MANAGEMENT
                 }
 
             }
-
-
+            memoinfo.AppendLine("End of the create procedures ");
+            memoinfo.AppendLine("End of the program is run");
+            wpbcreate.DescriptionText = "End of the program";
+            wpbcreate.AllowNext = true;
         }
         #endregion
 
