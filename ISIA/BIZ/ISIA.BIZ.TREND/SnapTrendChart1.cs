@@ -99,15 +99,12 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.AppendFormat("SELECT a.end_interval_time,t.sql_id,{0} as typNum ", Convert.ToDecimal(arguments.ParameterType));
-                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T left join raw_dba_hist_snapshot_{0} a on t.snap_id=a.snap_id  ", arguments.DbName);
-                tmpSql.Append(" where t.snap_id in ");
-                tmpSql.Append(" (SELECT T.Snap_Id ");
-                tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T ", arguments.DbName);
-                tmpSql.Append(" WHERE T.END_INTERVAL_TIME > ");
+                tmpSql.AppendFormat("SELECT t.end_time as  end_interval_time,t.sql_id,{0} as typNum ", Convert.ToDecimal(arguments.ParameterType));
+                tmpSql.AppendFormat("  FROM raw_dba_hist_sqlstat_{0} T  ", arguments.DbName);
+                tmpSql.Append(" WHERE T.END_TIME > ");
                 tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss') ", arguments.StartTimeKey);
-                tmpSql.Append(" and t.end_interval_time <= ");
-                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+                tmpSql.Append(" and t.end_time <= ");
+                tmpSql.AppendFormat(" TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTimeKey);
                 //arguments.ParameterType 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -132,18 +129,13 @@ namespace ISIA.BIZ.TREND
 
                 tmpSql.AppendFormat("SELECT  sql_id,  COUNT(*) AS {0} ,d.module,parsing_schema_name,action,instance_number ", arguments.ParameterName);
                 tmpSql.Append(@" FROM(
-                        SELECT DISTINCT  workDate, sql_id,c.module,parsing_schema_name,action,instance_number
+                        SELECT  DISTINCT  workDate, sql_id,c.module,parsing_schema_name,action,instance_number
                         FROM
-                        (SELECT SUBSTR(a.end_interval_time,0,10) workDate, MAX(t.sql_id) sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number ");
+                        (SELECT SUBSTR(t.end_time,0,10) workDate, MAX(t.sql_id) sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number ");
                  tmpSql.AppendFormat("     FROM raw_dba_hist_sqlstat_{0} T ", arguments.DbName);
-                tmpSql.AppendFormat("     LEFT JOIN raw_dba_hist_snapshot_{0} a ", arguments.DbName);
-                tmpSql.AppendFormat(@"   ON t.snap_id = a.snap_id and t.instance_number=a.instance_number and t.dbid=a.dbid
-                     WHERE t.snap_id IN
-                           (SELECT T.Snap_Id ");
-                tmpSql.AppendFormat(" FROM raw_dba_hist_snapshot_{0} T )",arguments.DbName);
-                tmpSql.AppendFormat(" AND a.end_interval_time>TO_DATE('{0}', 'yyyy-MM-dd') ",arguments.StartTimeKey);
-                tmpSql.AppendFormat("          AND a.end_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd')",arguments.EndTimeKey);
-                tmpSql.AppendFormat("  GROUP BY a.end_interval_time, t.sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number  ORDER BY sql_id) c) d ");
+                tmpSql.AppendFormat(" where  t.end_time>TO_DATE('{0}', 'yyyy-MM-dd') ",arguments.StartTimeKey);
+                tmpSql.AppendFormat("    AND t.end_time <= TO_DATE('{0}', 'yyyy-MM-dd')",arguments.EndTimeKey);
+                tmpSql.AppendFormat("  GROUP BY t.end_time, t.sql_id,t.module,t.parsing_schema_name,t.action,t.instance_number  ORDER BY sql_id) c) d ");
                 tmpSql.AppendFormat("  WHERE workDate >= TRUNC(TO_DATE('{0}', 'yyyy-MM-dd')) - 7 ", arguments.EndTimeKey);
                 tmpSql.AppendFormat("  GROUP BY sql_id,d.module,parsing_schema_name,action,instance_number  ORDER BY {0} DESC", arguments.ParameterName);
                 //arguments.ParameterType 

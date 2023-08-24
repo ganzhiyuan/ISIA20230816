@@ -20,7 +20,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append(@" SELECT t.snap_id,a.end_interval_time,T.DBID,
+                tmpSql.Append(@" SELECT t.snap_id,t.end_time as end_interval_time,T.DBID,
                                 sum(t.FETCHES_TOTAL) FETCHES_TOTAL , sum(t.END_OF_FETCH_COUNT_TOTAL) END_OF_FETCH_COUNT_TOTAL,sum(t.SORTS_TOTAL) SORTS_TOTAL,
                                 sum(t.EXECUTIONS_TOTAL) EXECUTIONS_TOTAL,sum(t.PX_SERVERS_EXECS_TOTAL) PX_SERVERS_EXECS_TOTAL,sum(t.LOADS_TOTAL) LOADS_TOTAL,
                                 sum(t.INVALIDATIONS_TOTAL) INVALIDATIONS_TOTAL,sum(t.PARSE_CALLS_TOTAL) PARSE_CALLS_TOTAL,sum(t.DISK_READS_TOTAL) DISK_READS_TOTAL,
@@ -42,33 +42,19 @@ namespace ISIA.BIZ.TREND
                                 sum(t.OPTIMIZED_PHYSICAL_READS_TOTAL) OPTIMIZED_PHYSICAL_READS_TOTAL,
                                 sum(t.CELL_UNCOMPRESSED_BYTES_TOTAL) CELL_UNCOMPRESSED_BYTES_TOTAL,
                                 sum(t.IO_OFFLOAD_RETURN_BYTES_TOTAL) IO_OFFLOAD_RETURN_BYTES_TOTAL");
-                                /*FROM raw_dba_hist_sqlstat_isfa T  
-                                left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id
-                                where t.snap_id in
-                                (SELECT T.Snap_Id
-                                      FROM raw_dba_hist_snapshot_isfa T");
-                                      WHERE T.END_INTERVAL_TIME >=
-                                      TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                                      and t.end_interval_time <=
-                                      TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
-                                      and T.dbid in ('{2}')              
-                                 group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
+                                
 
-                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T   left join raw_dba_hist_snapshot_{0} a on t.snap_id = a.snap_id
-                                AND t.dbid = a.dbid
-                                AND t.INSTANCE_NUMBER = a.INSTANCE_NUMBER
-                                where t.snap_id in (SELECT T.Snap_Id FROM raw_dba_hist_snapshot_{0} T", arguments.DbName);
+                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T  ", arguments.DbName);
 
+                tmpSql.AppendFormat(" WHERE T.begin_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
 
-                tmpSql.AppendFormat(" WHERE T.begin_interval_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
-
-                tmpSql.AppendFormat(" and t.begin_interval_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss'))", arguments.EndTimeKey);
+                tmpSql.AppendFormat(" and t.begin_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTimeKey);
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
                 tmpSql.AppendFormat(" and T.INSTANCE_NUMBER  = {0} ", arguments.InstanceNumber);
 
-                tmpSql.Append(" group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");
+                tmpSql.Append(" group by t.snap_id ,t.end_interval_time,T.DBID order by end_interval_time ");
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
@@ -91,7 +77,7 @@ namespace ISIA.BIZ.TREND
             {
                 StringBuilder tmpSql = new StringBuilder();
 
-                tmpSql.Append(@" SELECT t.snap_id,t.end_time end_interval_time,T.DBID,
+                tmpSql.Append(@" SELECT t.snap_id,t.end_time as end_interval_time,T.DBID,
                                  sum(t.FETCHES_DELTA) FETCHES_DELTA , sum(t.END_OF_FETCH_COUNT_DELTA) END_OF_FETCH_COUNT_DELTA,sum(t.SORTS_DELTA) SORTS_DELTA,
                                 sum(t.EXECUTIONS_DELTA) EXECUTIONS_DELTA,sum(t.PX_SERVERS_EXECS_DELTA) PX_SERVERS_EXECS_DELTA,sum(t.LOADS_DELTA) LOADS_DELTA,
                                 sum(t.INVALIDATIONS_DELTA) INVALIDATIONS_DELTA,sum(t.PARSE_CALLS_DELTA) PARSE_CALLS_DELTA,sum(t.DISK_READS_DELTA) DISK_READS_DELTA,
@@ -113,23 +99,13 @@ namespace ISIA.BIZ.TREND
                                 sum(t.OPTIMIZED_PHYSICAL_READS_DELTA) OPTIMIZED_PHYSICAL_READS_DELTA,
                                 sum(t.CELL_UNCOMPRESSED_BYTES_DELTA) CELL_UNCOMPRESSED_BYTES_DELTA,
                                 sum(t.IO_OFFLOAD_RETURN_BYTES_DELTA) IO_OFFLOAD_RETURN_BYTES_DELTA");
-                /*FROM raw_dba_hist_sqlstat_isfa T  
-                left join raw_dba_hist_snapshot_isfa a on t.snap_id=a.snap_id
-                where t.snap_id in
-                (SELECT T.Snap_Id
-                      FROM raw_dba_hist_snapshot_isfa T");
-                      WHERE T.END_INTERVAL_TIME >=
-                      TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')
-                      and t.end_interval_time <=
-                      TO_DATE('{1}', 'yyyy-MM-dd HH24:mi:ss')) 
-                      and T.dbid in ('{2}')              
-                 group by t.snap_id ,a.end_interval_time,T.DBID order by a.end_interval_time ");*/
 
-                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T   
-                                where t.begin_time between to_date('{1}','yyyy-mm-dd hh24:mi:ss') and to_date('{2}','yyyy-mm-dd hh24:mi:ss')", 
-                                arguments.DbName,arguments.StartTimeKey,arguments.EndTimeKey);
+                tmpSql.AppendFormat(@" FROM raw_dba_hist_sqlstat_{0} T  ", arguments.DbName);
 
 
+                tmpSql.AppendFormat(" WHERE T.begin_time >= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.StartTimeKey);
+
+                tmpSql.AppendFormat(" and t.begin_time <= TO_DATE('{0}', 'yyyy-MM-dd HH24:mi:ss')", arguments.EndTimeKey);
 
                 tmpSql.AppendFormat(" and T.dbid in ('{0}')", arguments.DbId);
 
