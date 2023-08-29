@@ -585,13 +585,13 @@
       <dsig:DigestValue>N5DuvhZfk3ywIZE00rvl4jDihrlqv3PLLQ5x9zH9cRI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ISIA.exe.config" size="11837">
+  <file name="ISIA.exe.config" size="11832">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Y33Rqpqwe2RRDTNbpYosh9giNIPXDc9YVF3HzRPnRfY=</dsig:DigestValue>
+      <dsig:DigestValue>rXF7qQ79G9GYDy8WUJCPDb2o6v7bmshML2QXwvOrPA8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="logo_G_32.ico" size="4286">

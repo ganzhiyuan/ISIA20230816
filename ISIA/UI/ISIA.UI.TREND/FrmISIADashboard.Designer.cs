@@ -30,29 +30,31 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleDataBar formatConditionRuleDataBar1 = new DevExpress.XtraEditors.FormatConditionRuleDataBar();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleIconSet formatConditionRuleIconSet1 = new DevExpress.XtraEditors.FormatConditionRuleIconSet();
-            DevExpress.XtraEditors.FormatConditionIconSet formatConditionIconSet1 = new DevExpress.XtraEditors.FormatConditionIconSet();
-            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon1 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
+            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleDataBar formatConditionRuleDataBar2 = new DevExpress.XtraEditors.FormatConditionRuleDataBar();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleIconSet formatConditionRuleIconSet2 = new DevExpress.XtraEditors.FormatConditionRuleIconSet();
+            DevExpress.XtraEditors.FormatConditionIconSet formatConditionIconSet2 = new DevExpress.XtraEditors.FormatConditionIconSet();
+            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon3 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmISIADashBoard));
-            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon2 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
+            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon4 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
             this.processbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.conditionbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.xtraUserControl1 = new DevExpress.XtraEditors.XtraUserControl();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.tChart1 = new Steema.TeeChart.TChart();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.tChart1 = new Steema.TeeChart.TChart();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
@@ -75,14 +77,13 @@ namespace ISIA.UI.TREND
             this.idGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.idCardbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
             this.xtraUserControl1.SuspendLayout();
             this.dockPanel2.SuspendLayout();
             this.dockPanel2_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -90,6 +91,9 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
@@ -98,22 +102,23 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 814);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1264, 6);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 879);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1685, 16);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Size = new System.Drawing.Size(1264, 6);
+            this.tPanelTop.Size = new System.Drawing.Size(1685, 16);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.xtraUserControl1);
-            this.tPanelMain.Location = new System.Drawing.Point(0, 6);
-            this.tPanelMain.Size = new System.Drawing.Size(1264, 808);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 16);
+            this.tPanelMain.Size = new System.Drawing.Size(1685, 863);
             // 
             // processbandedGridColumn
             // 
@@ -147,8 +152,9 @@ namespace ISIA.UI.TREND
             this.xtraUserControl1.Controls.Add(this.dockPanel1);
             this.xtraUserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraUserControl1.Name = "xtraUserControl1";
-            this.xtraUserControl1.Size = new System.Drawing.Size(1264, 808);
+            this.xtraUserControl1.Size = new System.Drawing.Size(1685, 863);
             this.xtraUserControl1.TabIndex = 0;
             // 
             // dockPanel2
@@ -165,27 +171,42 @@ namespace ISIA.UI.TREND
             this.dockPanel2.Options.ShowCloseButton = false;
             this.dockPanel2.Options.ShowMaximizeButton = false;
             this.dockPanel2.Options.ShowMinimizeButton = false;
-            this.dockPanel2.OriginalSize = new System.Drawing.Size(1264, 200);
-            this.dockPanel2.Size = new System.Drawing.Size(1264, 264);
-            this.dockPanel2.Text = "dockPanel2";
+            this.dockPanel2.OriginalSize = new System.Drawing.Size(1685, 200);
+            this.dockPanel2.Size = new System.Drawing.Size(1685, 161);
             // 
             // dockPanel2_Container
             // 
-            this.dockPanel2_Container.Controls.Add(this.panelControl2);
             this.dockPanel2_Container.Controls.Add(this.panelControl1);
             this.dockPanel2_Container.Location = new System.Drawing.Point(0, 28);
             this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(1264, 236);
+            this.dockPanel2_Container.Size = new System.Drawing.Size(1685, 133);
             this.dockPanel2_Container.TabIndex = 0;
             // 
-            // panelControl2
+            // panelControl1
             // 
-            this.panelControl2.Controls.Add(this.tChart1);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(472, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(792, 236);
-            this.panelControl2.TabIndex = 1;
+            this.panelControl1.Controls.Add(this.layoutControl1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1685, 133);
+            this.panelControl1.TabIndex = 0;
+            // 
+            // layoutControl1
+            // 
+            this.layoutControl1.BackColor = System.Drawing.Color.White;
+            this.layoutControl1.Controls.Add(this.tChart1);
+            this.layoutControl1.Controls.Add(this.labelControl2);
+            this.layoutControl1.Controls.Add(this.labelControl1);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(2, 2);
+            this.layoutControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
+            this.layoutControl1.Root = this.Root;
+            this.layoutControl1.Size = new System.Drawing.Size(1681, 129);
+            this.layoutControl1.TabIndex = 0;
+            this.layoutControl1.Text = "layoutControl1";
             // 
             // tChart1
             // 
@@ -840,7 +861,6 @@ namespace ISIA.UI.TREND
             this.tChart1.Axes.Top.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Axes.Top.Title.Shadow.Brush.Solid = true;
             this.tChart1.Axes.Top.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // 
             // 
@@ -945,6 +965,7 @@ namespace ISIA.UI.TREND
             this.tChart1.Header.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.tChart1.Header.Shadow.Brush.Solid = true;
             this.tChart1.Header.Shadow.Brush.Visible = true;
+            this.tChart1.Header.Visible = false;
             // 
             // 
             // 
@@ -1061,7 +1082,7 @@ namespace ISIA.UI.TREND
             this.tChart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Location = new System.Drawing.Point(2, 2);
+            this.tChart1.Location = new System.Drawing.Point(661, 34);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1073,7 +1094,7 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            this.tChart1.Panel.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tChart1.Panel.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.tChart1.Panel.Brush.Solid = true;
             this.tChart1.Panel.Brush.Visible = true;
             // 
@@ -1097,12 +1118,12 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins1.Bottom = 100;
-            margins1.Left = 100;
-            margins1.Right = 100;
-            margins1.Top = 100;
-            this.tChart1.Printer.Margins = margins1;
-            this.tChart1.Size = new System.Drawing.Size(788, 232);
+            margins2.Bottom = 100;
+            margins2.Left = 100;
+            margins2.Right = 100;
+            margins2.Top = 100;
+            this.tChart1.Printer.Margins = margins2;
+            this.tChart1.Size = new System.Drawing.Size(1008, 73);
             // 
             // 
             // 
@@ -1207,7 +1228,7 @@ namespace ISIA.UI.TREND
             this.tChart1.SubHeader.Shadow.Brush.Color = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.tChart1.SubHeader.Shadow.Brush.Solid = true;
             this.tChart1.SubHeader.Shadow.Brush.Visible = true;
-            this.tChart1.TabIndex = 0;
+            this.tChart1.TabIndex = 6;
             // 
             // 
             // 
@@ -1345,41 +1366,22 @@ namespace ISIA.UI.TREND
             this.tChart1.Zoom.Brush.Solid = true;
             this.tChart1.Zoom.Brush.Visible = false;
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.layoutControl1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(472, 236);
-            this.panelControl1.TabIndex = 0;
-            // 
-            // layoutControl1
-            // 
-            this.layoutControl1.Controls.Add(this.labelControl2);
-            this.layoutControl1.Controls.Add(this.labelControl1);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(2, 2);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(468, 232);
-            this.layoutControl1.TabIndex = 0;
-            this.layoutControl1.Text = "layoutControl1";
-            // 
             // labelControl2
             // 
             this.labelControl2.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.labelControl2.AllowHtmlString = true;
+            this.labelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.labelControl2.Appearance.Options.UseBackColor = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Appearance.Options.UseTextOptions = true;
             this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl2.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl2.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelControl2.Location = new System.Drawing.Point(236, 12);
+            this.labelControl2.Location = new System.Drawing.Point(12, 12);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(220, 208);
+            this.labelControl2.Size = new System.Drawing.Size(309, 105);
             this.labelControl2.StyleController = this.layoutControl1;
             this.labelControl2.TabIndex = 5;
             this.labelControl2.Text = "<size=20><b>1345MB</b>\r\n</size><br><color=black>ttrytrtyrtyryrtyrtrrrrrrrrrrrrrr<" +
@@ -1390,16 +1392,18 @@ namespace ISIA.UI.TREND
             // 
             this.labelControl1.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.labelControl1.AllowHtmlString = true;
+            this.labelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.labelControl1.Appearance.Options.UseBackColor = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Appearance.Options.UseTextOptions = true;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelControl1.Location = new System.Drawing.Point(12, 12);
+            this.labelControl1.Location = new System.Drawing.Point(325, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(220, 208);
+            this.labelControl1.Size = new System.Drawing.Size(320, 105);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "<size=20><b>1345MB</b>\r\n</size><br><color=black>ttrytrtyrtyryrtyrtrrrrrrrrrrrrrr<" +
@@ -1411,19 +1415,22 @@ namespace ISIA.UI.TREND
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlItem2});
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.simpleLabelItem1,
+            this.emptySpaceItem1,
+            this.splitterItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(468, 232);
+            this.Root.Size = new System.Drawing.Size(1681, 129);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.labelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(224, 212);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(224, 212);
+            this.layoutControlItem1.Location = new System.Drawing.Point(313, 0);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(18, 80);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(224, 212);
+            this.layoutControlItem1.Size = new System.Drawing.Size(324, 109);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -1431,40 +1438,70 @@ namespace ISIA.UI.TREND
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.labelControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(224, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(224, 212);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(224, 212);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(18, 80);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(224, 212);
+            this.layoutControlItem2.Size = new System.Drawing.Size(313, 109);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.tChart1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(649, 22);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(104, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(1012, 77);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // simpleLabelItem1
+            // 
+            this.simpleLabelItem1.AllowHotTrack = false;
+            this.simpleLabelItem1.AllowHtmlStringInCaption = true;
+            this.simpleLabelItem1.Location = new System.Drawing.Point(649, 0);
+            this.simpleLabelItem1.Name = "simpleLabelItem1";
+            this.simpleLabelItem1.Size = new System.Drawing.Size(1012, 22);
+            this.simpleLabelItem1.Text = "<b><color=red>        Recent: Awr Snapshot Uploads Into AWR Warehouse</color></b>" +
+    "";
+            this.simpleLabelItem1.TextSize = new System.Drawing.Size(423, 18);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(649, 99);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1012, 10);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // dockPanel1
             // 
             this.dockPanel1.Appearance.BackColor = System.Drawing.Color.White;
             this.dockPanel1.Appearance.Options.UseBackColor = true;
             this.dockPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.dockPanel1.CausesValidation = false;
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+            this.dockPanel1.ForeColor = System.Drawing.Color.White;
             this.dockPanel1.ID = new System.Guid("dc137a21-698b-4875-8cc4-c7e8df369cad");
-            this.dockPanel1.Location = new System.Drawing.Point(0, 264);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 161);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.Options.ShowAutoHideButton = false;
             this.dockPanel1.Options.ShowCloseButton = false;
             this.dockPanel1.Options.ShowMaximizeButton = false;
             this.dockPanel1.Options.ShowMinimizeButton = false;
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 544);
-            this.dockPanel1.Size = new System.Drawing.Size(1264, 544);
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 702);
+            this.dockPanel1.Size = new System.Drawing.Size(1685, 702);
             this.dockPanel1.TabsPosition = DevExpress.XtraBars.Docking.TabsPosition.Top;
-            this.dockPanel1.Text = "dockPanel1";
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.tabPane1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(0, 29);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(1264, 515);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(1685, 673);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // tabPane1
@@ -1475,9 +1512,9 @@ namespace ISIA.UI.TREND
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(1264, 515);
+            this.tabPane1.RegularSize = new System.Drawing.Size(1685, 673);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(1264, 515);
+            this.tabPane1.Size = new System.Drawing.Size(1685, 673);
             this.tabPane1.TabIndex = 0;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -1486,7 +1523,7 @@ namespace ISIA.UI.TREND
             this.tabNavigationPage1.Caption = "tabNavigationPage1";
             this.tabNavigationPage1.Controls.Add(this.gridControl1);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(1264, 474);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(1685, 632);
             // 
             // gridControl1
             // 
@@ -1496,14 +1533,14 @@ namespace ISIA.UI.TREND
             this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl1.MainView = this.bandedGridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1580, 593);
+            this.gridControl1.Size = new System.Drawing.Size(1685, 632);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
             // 
             // bandedGridView1
             // 
-            this.bandedGridView1.Appearance.BandPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
+            this.bandedGridView1.Appearance.BandPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
             this.bandedGridView1.Appearance.BandPanel.BorderColor = System.Drawing.Color.White;
             this.bandedGridView1.Appearance.BandPanel.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(3)));
             this.bandedGridView1.Appearance.BandPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
@@ -1538,28 +1575,28 @@ namespace ISIA.UI.TREND
             this.idCardbandedGridColumn,
             this.processbandedGridColumn,
             this.conditionbandedGridColumn});
-            gridFormatRule1.Column = this.processbandedGridColumn;
-            gridFormatRule1.Name = "processFormat";
-            formatConditionRuleDataBar1.AllowNegativeAxis = false;
-            formatConditionRuleDataBar1.DrawAxisAtMiddle = true;
-            formatConditionRuleDataBar1.MinimumType = DevExpress.XtraEditors.FormatConditionValueType.Number;
-            formatConditionRuleDataBar1.PredefinedName = "Blue Gradient";
-            gridFormatRule1.Rule = formatConditionRuleDataBar1;
-            gridFormatRule2.Column = this.conditionbandedGridColumn;
-            gridFormatRule2.Name = "imageFormat";
-            formatConditionIconSet1.CategoryName = "Symbols";
-            formatConditionIconSetIcon1.Icon = ((System.Drawing.Image)(resources.GetObject("formatConditionIconSetIcon1.Icon")));
-            formatConditionIconSetIcon1.PredefinedName = "Symbols3_1.png";
-            formatConditionIconSetIcon2.PredefinedName = "Symbols3_3.png";
-            formatConditionIconSetIcon2.ValueComparison = DevExpress.XtraEditors.FormatConditionComparisonType.GreaterOrEqual;
-            formatConditionIconSet1.Icons.Add(formatConditionIconSetIcon1);
-            formatConditionIconSet1.Icons.Add(formatConditionIconSetIcon2);
-            formatConditionIconSet1.Name = "Symbols3Uncircled";
-            formatConditionIconSet1.ValueType = DevExpress.XtraEditors.FormatConditionValueType.Number;
-            formatConditionRuleIconSet1.IconSet = formatConditionIconSet1;
-            gridFormatRule2.Rule = formatConditionRuleIconSet1;
-            this.bandedGridView1.FormatRules.Add(gridFormatRule1);
-            this.bandedGridView1.FormatRules.Add(gridFormatRule2);
+            gridFormatRule3.Column = this.processbandedGridColumn;
+            gridFormatRule3.Name = "processFormat";
+            formatConditionRuleDataBar2.AllowNegativeAxis = false;
+            formatConditionRuleDataBar2.DrawAxisAtMiddle = true;
+            formatConditionRuleDataBar2.MinimumType = DevExpress.XtraEditors.FormatConditionValueType.Number;
+            formatConditionRuleDataBar2.PredefinedName = "Blue Gradient";
+            gridFormatRule3.Rule = formatConditionRuleDataBar2;
+            gridFormatRule4.Column = this.conditionbandedGridColumn;
+            gridFormatRule4.Name = "imageFormat";
+            formatConditionIconSet2.CategoryName = "Symbols";
+            formatConditionIconSetIcon3.Icon = ((System.Drawing.Image)(resources.GetObject("formatConditionIconSetIcon3.Icon")));
+            formatConditionIconSetIcon3.PredefinedName = "Symbols3_1.png";
+            formatConditionIconSetIcon4.PredefinedName = "Symbols3_3.png";
+            formatConditionIconSetIcon4.ValueComparison = DevExpress.XtraEditors.FormatConditionComparisonType.GreaterOrEqual;
+            formatConditionIconSet2.Icons.Add(formatConditionIconSetIcon3);
+            formatConditionIconSet2.Icons.Add(formatConditionIconSetIcon4);
+            formatConditionIconSet2.Name = "Symbols3Uncircled";
+            formatConditionIconSet2.ValueType = DevExpress.XtraEditors.FormatConditionValueType.Number;
+            formatConditionRuleIconSet2.IconSet = formatConditionIconSet2;
+            gridFormatRule4.Rule = formatConditionRuleIconSet2;
+            this.bandedGridView1.FormatRules.Add(gridFormatRule3);
+            this.bandedGridView1.FormatRules.Add(gridFormatRule4);
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.Name = "bandedGridView1";
             this.bandedGridView1.OptionsImageLoad.DesiredThumbnailSize = new System.Drawing.Size(10, 0);
@@ -1730,11 +1767,19 @@ namespace ISIA.UI.TREND
             "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
             "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
             // 
+            // splitterItem1
+            // 
+            this.splitterItem1.AllowHotTrack = true;
+            this.splitterItem1.Location = new System.Drawing.Point(637, 0);
+            this.splitterItem1.Name = "splitterItem1";
+            this.splitterItem1.Size = new System.Drawing.Size(12, 109);
+            // 
             // FrmISIADashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 820);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1685, 895);
             this.Name = "FrmISIADashBoard";
             this.Text = "FrmISIADashboard";
             this.tPanelBottomBase.ResumeLayout(false);
@@ -1744,8 +1789,6 @@ namespace ISIA.UI.TREND
             this.xtraUserControl1.ResumeLayout(false);
             this.dockPanel2.ResumeLayout(false);
             this.dockPanel2_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -1753,6 +1796,9 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.dockPanel1.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
@@ -1761,6 +1807,7 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1795,8 +1842,6 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand idGridBand;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn idCardbandedGridColumn;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private Steema.TeeChart.TChart tChart1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -1804,5 +1849,10 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private Steema.TeeChart.TChart tChart1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.SplitterItem splitterItem1;
     }
 }
