@@ -60,6 +60,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _SQLID;
 
+        private string _TABLENAME;
+
         static AwrArgsPack()
         {
             //_WorkloadParamNamesList
@@ -467,6 +469,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _SQLID = value;
+            }
+        }
+
+        public string TABLENAME
+        {
+            get
+            {
+                return _TABLENAME;
+            }
+
+            set
+            {
+                _TABLENAME = value;
             }
         }
 

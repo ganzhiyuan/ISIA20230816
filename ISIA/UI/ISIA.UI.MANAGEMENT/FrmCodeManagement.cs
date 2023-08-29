@@ -59,6 +59,8 @@ namespace ISIA.UI.MANAGEMENT
 
         public void GridViewDataBinding()
         {
+
+
             gridControl1.DataSource = ds.Tables[0];
             gridView1.BestFitColumns();
         }
