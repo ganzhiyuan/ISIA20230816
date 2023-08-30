@@ -30,17 +30,19 @@ namespace ISIA.UI.TREND
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Steema.TeeChart.Margins margins2 = new Steema.TeeChart.Margins();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleDataBar formatConditionRuleDataBar2 = new DevExpress.XtraEditors.FormatConditionRuleDataBar();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleIconSet formatConditionRuleIconSet2 = new DevExpress.XtraEditors.FormatConditionRuleIconSet();
-            DevExpress.XtraEditors.FormatConditionIconSet formatConditionIconSet2 = new DevExpress.XtraEditors.FormatConditionIconSet();
-            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon3 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
+            Steema.TeeChart.Margins margins1 = new Steema.TeeChart.Margins();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmISIADashBoard));
-            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon4 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
-            this.processbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.conditionbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleDataBar formatConditionRuleDataBar1 = new DevExpress.XtraEditors.FormatConditionRuleDataBar();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleIconSet formatConditionRuleIconSet1 = new DevExpress.XtraEditors.FormatConditionRuleIconSet();
+            DevExpress.XtraEditors.FormatConditionIconSet formatConditionIconSet1 = new DevExpress.XtraEditors.FormatConditionIconSet();
+            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon1 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
+            DevExpress.XtraEditors.FormatConditionIconSetIcon formatConditionIconSetIcon2 = new DevExpress.XtraEditors.FormatConditionIconSetIcon();
+            this.CNTbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.statusbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.MINTIMEbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.MAXTIMEbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.xtraUserControl1 = new DevExpress.XtraEditors.XtraUserControl();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -52,32 +54,59 @@ namespace ISIA.UI.TREND
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.pageInfoLable = new DevExpress.XtraEditors.LabelControl();
+            this.btnNext = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPre = new DevExpress.XtraEditors.SimpleButton();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnSelect = new TAP.UIControls.BasicControlsDEV.TButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
-            this.nameGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.namebandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.sexGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.ageBandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.heightGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.heightbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.processgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.timeGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.startTimeGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.starttimebandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.endTimeGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.endtimebandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.conditiongridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.idGridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.idCardbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.DbNamegridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.DBNAMEbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.CdbNamegridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.CDBNAMEbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.VersiongridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.VERSIONBandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.statusgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.TargetTypegridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.TARGETTYPEbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.SnapShotgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.MinTimegridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.MaxTimegridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.countgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.retentionDaysgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.RETENTIONDAYSbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.uploadIntervalgridBand = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.UPLOADINTERVALbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.RETENTIONPERIODbandedGridColumn = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -91,60 +120,95 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
             this.tabPane1.SuspendLayout();
             this.tabNavigationPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 879);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(1685, 16);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 871);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(1582, 20);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Size = new System.Drawing.Size(1685, 16);
+            this.tPanelTop.Size = new System.Drawing.Size(1582, 26);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.xtraUserControl1);
-            this.tPanelMain.Location = new System.Drawing.Point(0, 16);
-            this.tPanelMain.Size = new System.Drawing.Size(1685, 863);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 26);
+            this.tPanelMain.Size = new System.Drawing.Size(1582, 845);
             // 
-            // processbandedGridColumn
+            // CNTbandedGridColumn
             // 
-            this.processbandedGridColumn.Caption = "process";
-            this.processbandedGridColumn.FieldName = "process";
-            this.processbandedGridColumn.MinWidth = 25;
-            this.processbandedGridColumn.Name = "processbandedGridColumn";
-            this.processbandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.processbandedGridColumn.Visible = true;
-            this.processbandedGridColumn.Width = 94;
+            this.CNTbandedGridColumn.Caption = "CNT";
+            this.CNTbandedGridColumn.FieldName = "CNT";
+            this.CNTbandedGridColumn.MinWidth = 25;
+            this.CNTbandedGridColumn.Name = "CNTbandedGridColumn";
+            this.CNTbandedGridColumn.Visible = true;
+            this.CNTbandedGridColumn.Width = 94;
             // 
-            // conditionbandedGridColumn
+            // statusbandedGridColumn
             // 
-            this.conditionbandedGridColumn.AppearanceCell.ForeColor = System.Drawing.Color.White;
-            this.conditionbandedGridColumn.AppearanceCell.Options.UseForeColor = true;
-            this.conditionbandedGridColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.conditionbandedGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.conditionbandedGridColumn.Caption = "condition";
-            this.conditionbandedGridColumn.FieldName = "condition";
-            this.conditionbandedGridColumn.MinWidth = 25;
-            this.conditionbandedGridColumn.Name = "conditionbandedGridColumn";
-            this.conditionbandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.conditionbandedGridColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.conditionbandedGridColumn.OptionsColumn.ReadOnly = true;
-            this.conditionbandedGridColumn.Visible = true;
-            this.conditionbandedGridColumn.Width = 94;
+            this.statusbandedGridColumn.Caption = "STATUS";
+            this.statusbandedGridColumn.FieldName = "STATUS";
+            this.statusbandedGridColumn.MinWidth = 25;
+            this.statusbandedGridColumn.Name = "statusbandedGridColumn";
+            this.statusbandedGridColumn.Visible = true;
+            this.statusbandedGridColumn.Width = 94;
+            // 
+            // MINTIMEbandedGridColumn
+            // 
+            this.MINTIMEbandedGridColumn.Caption = "MINTIME";
+            this.MINTIMEbandedGridColumn.FieldName = "MINTIME";
+            this.MINTIMEbandedGridColumn.MinWidth = 25;
+            this.MINTIMEbandedGridColumn.Name = "MINTIMEbandedGridColumn";
+            this.MINTIMEbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.MINTIMEbandedGridColumn.Visible = true;
+            this.MINTIMEbandedGridColumn.Width = 94;
+            // 
+            // MAXTIMEbandedGridColumn
+            // 
+            this.MAXTIMEbandedGridColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.MAXTIMEbandedGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.MAXTIMEbandedGridColumn.Caption = "MAXTIME";
+            this.MAXTIMEbandedGridColumn.FieldName = "MAXTIME";
+            this.MAXTIMEbandedGridColumn.MinWidth = 25;
+            this.MAXTIMEbandedGridColumn.Name = "MAXTIMEbandedGridColumn";
+            this.MAXTIMEbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.MAXTIMEbandedGridColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.MAXTIMEbandedGridColumn.OptionsColumn.ReadOnly = true;
+            this.MAXTIMEbandedGridColumn.Visible = true;
+            this.MAXTIMEbandedGridColumn.Width = 94;
             // 
             // xtraUserControl1
             // 
@@ -154,7 +218,7 @@ namespace ISIA.UI.TREND
             this.xtraUserControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraUserControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.xtraUserControl1.Name = "xtraUserControl1";
-            this.xtraUserControl1.Size = new System.Drawing.Size(1685, 863);
+            this.xtraUserControl1.Size = new System.Drawing.Size(1582, 845);
             this.xtraUserControl1.TabIndex = 0;
             // 
             // dockPanel2
@@ -171,15 +235,15 @@ namespace ISIA.UI.TREND
             this.dockPanel2.Options.ShowCloseButton = false;
             this.dockPanel2.Options.ShowMaximizeButton = false;
             this.dockPanel2.Options.ShowMinimizeButton = false;
-            this.dockPanel2.OriginalSize = new System.Drawing.Size(1685, 200);
-            this.dockPanel2.Size = new System.Drawing.Size(1685, 161);
+            this.dockPanel2.OriginalSize = new System.Drawing.Size(1582, 200);
+            this.dockPanel2.Size = new System.Drawing.Size(1582, 212);
             // 
             // dockPanel2_Container
             // 
             this.dockPanel2_Container.Controls.Add(this.panelControl1);
             this.dockPanel2_Container.Location = new System.Drawing.Point(0, 28);
             this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(1685, 133);
+            this.dockPanel2_Container.Size = new System.Drawing.Size(1582, 184);
             this.dockPanel2_Container.TabIndex = 0;
             // 
             // panelControl1
@@ -189,7 +253,7 @@ namespace ISIA.UI.TREND
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1685, 133);
+            this.panelControl1.Size = new System.Drawing.Size(1582, 184);
             this.panelControl1.TabIndex = 0;
             // 
             // layoutControl1
@@ -204,7 +268,7 @@ namespace ISIA.UI.TREND
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1681, 129);
+            this.layoutControl1.Size = new System.Drawing.Size(1578, 180);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -1082,7 +1146,7 @@ namespace ISIA.UI.TREND
             this.tChart1.Legend.Title.Shadow.Brush.Color = System.Drawing.Color.DarkGray;
             this.tChart1.Legend.Title.Shadow.Brush.Solid = true;
             this.tChart1.Legend.Title.Shadow.Brush.Visible = true;
-            this.tChart1.Location = new System.Drawing.Point(661, 34);
+            this.tChart1.Location = new System.Drawing.Point(637, 34);
             this.tChart1.Name = "tChart1";
             // 
             // 
@@ -1118,12 +1182,12 @@ namespace ISIA.UI.TREND
             // 
             // 
             // 
-            margins2.Bottom = 100;
-            margins2.Left = 100;
-            margins2.Right = 100;
-            margins2.Top = 100;
-            this.tChart1.Printer.Margins = margins2;
-            this.tChart1.Size = new System.Drawing.Size(1008, 73);
+            margins1.Bottom = 100;
+            margins1.Left = 100;
+            margins1.Right = 100;
+            margins1.Top = 100;
+            this.tChart1.Printer.Margins = margins1;
+            this.tChart1.Size = new System.Drawing.Size(929, 123);
             // 
             // 
             // 
@@ -1370,7 +1434,7 @@ namespace ISIA.UI.TREND
             // 
             this.labelControl2.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.labelControl2.AllowHtmlString = true;
-            this.labelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.labelControl2.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.labelControl2.Appearance.Options.UseBackColor = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
@@ -1381,7 +1445,7 @@ namespace ISIA.UI.TREND
             this.labelControl2.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl2.Location = new System.Drawing.Point(12, 12);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(309, 105);
+            this.labelControl2.Size = new System.Drawing.Size(289, 156);
             this.labelControl2.StyleController = this.layoutControl1;
             this.labelControl2.TabIndex = 5;
             this.labelControl2.Text = "<size=20><b>1345MB</b>\r\n</size><br><color=black>ttrytrtyrtyryrtyrtrrrrrrrrrrrrrr<" +
@@ -1392,7 +1456,7 @@ namespace ISIA.UI.TREND
             // 
             this.labelControl1.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
             this.labelControl1.AllowHtmlString = true;
-            this.labelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.labelControl1.Appearance.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DarkSlateBlue;
             this.labelControl1.Appearance.Options.UseBackColor = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
@@ -1401,9 +1465,9 @@ namespace ISIA.UI.TREND
             this.labelControl1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl1.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelControl1.Location = new System.Drawing.Point(325, 12);
+            this.labelControl1.Location = new System.Drawing.Point(305, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(320, 105);
+            this.labelControl1.Size = new System.Drawing.Size(306, 156);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "<size=20><b>1345MB</b>\r\n</size><br><color=black>ttrytrtyrtyryrtyrtrrrrrrrrrrrrrr<" +
@@ -1416,21 +1480,22 @@ namespace ISIA.UI.TREND
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem3,
             this.simpleLabelItem1,
             this.emptySpaceItem1,
-            this.splitterItem1});
+            this.splitterItem1,
+            this.layoutControlItem3,
+            this.emptySpaceItem10});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1681, 129);
+            this.Root.Size = new System.Drawing.Size(1578, 180);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.labelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(313, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(293, 0);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(18, 80);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(324, 109);
+            this.layoutControlItem1.Size = new System.Drawing.Size(310, 160);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -1441,29 +1506,18 @@ namespace ISIA.UI.TREND
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(18, 80);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(313, 109);
+            this.layoutControlItem2.Size = new System.Drawing.Size(293, 160);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.tChart1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(649, 22);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(104, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1012, 77);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // simpleLabelItem1
             // 
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.AllowHtmlStringInCaption = true;
-            this.simpleLabelItem1.Location = new System.Drawing.Point(649, 0);
+            this.simpleLabelItem1.Location = new System.Drawing.Point(625, 0);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(1012, 22);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(933, 22);
             this.simpleLabelItem1.Text = "<b><color=red>        Recent: Awr Snapshot Uploads Into AWR Warehouse</color></b>" +
     "";
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(423, 18);
@@ -1471,37 +1525,67 @@ namespace ISIA.UI.TREND
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(649, 99);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(625, 149);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1012, 10);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(933, 11);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // splitterItem1
+            // 
+            this.splitterItem1.AllowHotTrack = true;
+            this.splitterItem1.Location = new System.Drawing.Point(613, 0);
+            this.splitterItem1.Name = "splitterItem1";
+            this.splitterItem1.Size = new System.Drawing.Size(12, 160);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.tChart1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(625, 22);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(104, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(933, 127);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // emptySpaceItem10
+            // 
+            this.emptySpaceItem10.AllowHotTrack = false;
+            this.emptySpaceItem10.Location = new System.Drawing.Point(603, 0);
+            this.emptySpaceItem10.Name = "emptySpaceItem10";
+            this.emptySpaceItem10.Size = new System.Drawing.Size(10, 160);
+            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // dockPanel1
             // 
-            this.dockPanel1.Appearance.BackColor = System.Drawing.Color.White;
+            this.dockPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.dockPanel1.Appearance.Options.UseBackColor = true;
             this.dockPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.dockPanel1.CausesValidation = false;
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-            this.dockPanel1.ForeColor = System.Drawing.Color.White;
+            this.dockPanel1.FloatVertical = true;
+            this.dockPanel1.ForeColor = System.Drawing.Color.Navy;
             this.dockPanel1.ID = new System.Guid("dc137a21-698b-4875-8cc4-c7e8df369cad");
-            this.dockPanel1.Location = new System.Drawing.Point(0, 161);
+            this.dockPanel1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("dockPanel1.ImageOptions.Image")));
+            this.dockPanel1.Location = new System.Drawing.Point(0, 212);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.Options.ShowAutoHideButton = false;
             this.dockPanel1.Options.ShowCloseButton = false;
             this.dockPanel1.Options.ShowMaximizeButton = false;
             this.dockPanel1.Options.ShowMinimizeButton = false;
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 702);
-            this.dockPanel1.Size = new System.Drawing.Size(1685, 702);
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 633);
+            this.dockPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dockPanel1.Size = new System.Drawing.Size(1582, 633);
             this.dockPanel1.TabsPosition = DevExpress.XtraBars.Docking.TabsPosition.Top;
+            this.dockPanel1.Text = "Databases Uploading AWR Snapshots";
             // 
             // dockPanel1_Container
             // 
             this.dockPanel1_Container.Controls.Add(this.tabPane1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(0, 29);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(1685, 673);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(1582, 604);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // tabPane1
@@ -1512,235 +1596,528 @@ namespace ISIA.UI.TREND
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1});
-            this.tabPane1.RegularSize = new System.Drawing.Size(1685, 673);
+            this.tabPane1.RegularSize = new System.Drawing.Size(1582, 604);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(1685, 673);
+            this.tabPane1.Size = new System.Drawing.Size(1582, 604);
             this.tabPane1.TabIndex = 0;
             this.tabPane1.Text = "tabPane1";
             // 
             // tabNavigationPage1
             // 
             this.tabNavigationPage1.Caption = "tabNavigationPage1";
-            this.tabNavigationPage1.Controls.Add(this.gridControl1);
+            this.tabNavigationPage1.Controls.Add(this.layoutControl2);
             this.tabNavigationPage1.Name = "tabNavigationPage1";
-            this.tabNavigationPage1.Size = new System.Drawing.Size(1685, 632);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(1582, 563);
+            // 
+            // layoutControl2
+            // 
+            this.layoutControl2.Controls.Add(this.pageInfoLable);
+            this.layoutControl2.Controls.Add(this.btnNext);
+            this.layoutControl2.Controls.Add(this.btnPre);
+            this.layoutControl2.Controls.Add(this.textBox2);
+            this.layoutControl2.Controls.Add(this.btnSelect);
+            this.layoutControl2.Controls.Add(this.labelControl3);
+            this.layoutControl2.Controls.Add(this.gridControl1);
+            this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl2.Name = "layoutControl2";
+            this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(-1008, 498, 812, 500);
+            this.layoutControl2.OptionsView.RightToLeftMirroringApplied = true;
+            this.layoutControl2.Root = this.layoutControlGroup1;
+            this.layoutControl2.Size = new System.Drawing.Size(1978, 704);
+            this.layoutControl2.TabIndex = 2;
+            this.layoutControl2.Text = "layoutControl2";
+            // 
+            // pageInfoLable
+            // 
+            this.pageInfoLable.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.pageInfoLable.Appearance.Options.UseForeColor = true;
+            this.pageInfoLable.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.pageInfoLable.Location = new System.Drawing.Point(1165, 815);
+            this.pageInfoLable.Name = "pageInfoLable";
+            this.pageInfoLable.Size = new System.Drawing.Size(65, 27);
+            this.pageInfoLable.StyleController = this.layoutControl2;
+            this.pageInfoLable.TabIndex = 117;
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNext.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.ImageOptions.Image")));
+            this.btnNext.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnNext.Location = new System.Drawing.Point(1251, 815);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(81, 27);
+            this.btnNext.StyleController = this.layoutControl2;
+            this.btnNext.TabIndex = 116;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPre
+            // 
+            this.btnPre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPre.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPre.ImageOptions.Image")));
+            this.btnPre.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnPre.Location = new System.Drawing.Point(1061, 815);
+            this.btnPre.Name = "btnPre";
+            this.btnPre.Size = new System.Drawing.Size(79, 27);
+            this.btnPre.StyleController = this.layoutControl2;
+            this.btnPre.TabIndex = 115;
+            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(180, 15);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(225, 41);
+            this.textBox2.TabIndex = 114;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnSelect.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.btnSelect.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.btnSelect.Appearance.Options.UseBackColor = true;
+            this.btnSelect.Appearance.Options.UseBorderColor = true;
+            this.btnSelect.Appearance.Options.UseFont = true;
+            this.btnSelect.AppearanceHovered.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSelect.AppearanceHovered.Options.UseBackColor = true;
+            this.btnSelect.AppearancePressed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSelect.AppearancePressed.Options.UseBackColor = true;
+            this.btnSelect.CommandType = TAP.UIControls.BasicControlsDEV.EnumCommandType.SEARCH;
+            this.btnSelect.ControlID = "btnSelect";
+            this.btnSelect.FlatStyle = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.btnSelect.IconColorType = TAP.UIControls.BasicControlsDEV.EnumColorType.BLACK;
+            this.btnSelect.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.ImageOptions.Image")));
+            this.btnSelect.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSelect.IsRequired = false;
+            this.btnSelect.Location = new System.Drawing.Point(2325, 15);
+            this.btnSelect.MaximumSize = new System.Drawing.Size(93, 33);
+            this.btnSelect.MinimumSize = new System.Drawing.Size(93, 33);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.NeedToTranslate = true;
+            this.btnSelect.RepresentativeValue = "Search";
+            this.btnSelect.Size = new System.Drawing.Size(93, 33);
+            this.btnSelect.StyleController = this.layoutControl2;
+            this.btnSelect.TabIndex = 112;
+            this.btnSelect.Text = "Search";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseForeColor = true;
+            this.labelControl3.Appearance.Options.UseTextOptions = true;
+            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl3.Location = new System.Drawing.Point(48, 15);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(128, 41);
+            this.labelControl3.StyleController = this.layoutControl2;
+            this.labelControl3.TabIndex = 4;
+            this.labelControl3.Text = "dbname";
             // 
             // gridControl1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(31, 61);
             this.gridControl1.LookAndFeel.SkinName = "Office 2013 Light Gray";
             this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl1.MainView = this.bandedGridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1685, 632);
+            this.gridControl1.Size = new System.Drawing.Size(2410, 749);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridView1});
+            this.gridControl1.Load += new System.EventHandler(this.FrmISIADashBoard_Load);
             // 
             // bandedGridView1
             // 
-            this.bandedGridView1.Appearance.BandPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
-            this.bandedGridView1.Appearance.BandPanel.BorderColor = System.Drawing.Color.White;
-            this.bandedGridView1.Appearance.BandPanel.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(3)));
+            this.bandedGridView1.Appearance.BandPanel.BackColor = System.Drawing.Color.Azure;
             this.bandedGridView1.Appearance.BandPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.bandedGridView1.Appearance.BandPanel.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.ControlText;
             this.bandedGridView1.Appearance.BandPanel.Options.UseBackColor = true;
-            this.bandedGridView1.Appearance.BandPanel.Options.UseBorderColor = true;
             this.bandedGridView1.Appearance.BandPanel.Options.UseFont = true;
-            this.bandedGridView1.Appearance.BandPanel.Options.UseForeColor = true;
-            this.bandedGridView1.Appearance.BandPanel.Options.UseTextOptions = true;
-            this.bandedGridView1.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridView1.Appearance.FocusedCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.bandedGridView1.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.bandedGridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bandedGridView1.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.bandedGridView1.Appearance.RowSeparator.BackColor = System.Drawing.Color.Transparent;
-            this.bandedGridView1.Appearance.RowSeparator.Options.UseBackColor = true;
+            this.bandedGridView1.Appearance.OddRow.BackColor = System.Drawing.Color.White;
+            this.bandedGridView1.Appearance.OddRow.Options.UseBackColor = true;
+            this.bandedGridView1.Appearance.Row.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.bandedGridView1.Appearance.Row.Options.UseBackColor = true;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.nameGridBand,
-            this.sexGridBand,
-            this.heightGridBand,
-            this.processgridBand,
-            this.timeGridBand,
-            this.conditiongridBand1,
-            this.idGridBand});
+            this.DbNamegridBand,
+            this.CdbNamegridBand,
+            this.VersiongridBand,
+            this.statusgridBand,
+            this.TargetTypegridBand,
+            this.SnapShotgridBand});
             this.bandedGridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.bandedGridView1.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
-            this.namebandedGridColumn,
-            this.ageBandedGridColumn,
-            this.heightbandedGridColumn,
-            this.starttimebandedGridColumn,
-            this.endtimebandedGridColumn,
-            this.idCardbandedGridColumn,
-            this.processbandedGridColumn,
-            this.conditionbandedGridColumn});
-            gridFormatRule3.Column = this.processbandedGridColumn;
-            gridFormatRule3.Name = "processFormat";
-            formatConditionRuleDataBar2.AllowNegativeAxis = false;
-            formatConditionRuleDataBar2.DrawAxisAtMiddle = true;
-            formatConditionRuleDataBar2.MinimumType = DevExpress.XtraEditors.FormatConditionValueType.Number;
-            formatConditionRuleDataBar2.PredefinedName = "Blue Gradient";
-            gridFormatRule3.Rule = formatConditionRuleDataBar2;
-            gridFormatRule4.Column = this.conditionbandedGridColumn;
-            gridFormatRule4.Name = "imageFormat";
-            formatConditionIconSet2.CategoryName = "Symbols";
-            formatConditionIconSetIcon3.Icon = ((System.Drawing.Image)(resources.GetObject("formatConditionIconSetIcon3.Icon")));
-            formatConditionIconSetIcon3.PredefinedName = "Symbols3_1.png";
-            formatConditionIconSetIcon4.PredefinedName = "Symbols3_3.png";
-            formatConditionIconSetIcon4.ValueComparison = DevExpress.XtraEditors.FormatConditionComparisonType.GreaterOrEqual;
-            formatConditionIconSet2.Icons.Add(formatConditionIconSetIcon3);
-            formatConditionIconSet2.Icons.Add(formatConditionIconSetIcon4);
-            formatConditionIconSet2.Name = "Symbols3Uncircled";
-            formatConditionIconSet2.ValueType = DevExpress.XtraEditors.FormatConditionValueType.Number;
-            formatConditionRuleIconSet2.IconSet = formatConditionIconSet2;
-            gridFormatRule4.Rule = formatConditionRuleIconSet2;
-            this.bandedGridView1.FormatRules.Add(gridFormatRule3);
-            this.bandedGridView1.FormatRules.Add(gridFormatRule4);
+            this.DBNAMEbandedGridColumn,
+            this.VERSIONBandedGridColumn,
+            this.RETENTIONDAYSbandedGridColumn,
+            this.CDBNAMEbandedGridColumn,
+            this.RETENTIONPERIODbandedGridColumn,
+            this.UPLOADINTERVALbandedGridColumn,
+            this.MINTIMEbandedGridColumn,
+            this.MAXTIMEbandedGridColumn,
+            this.CNTbandedGridColumn,
+            this.TARGETTYPEbandedGridColumn,
+            this.statusbandedGridColumn});
+            gridFormatRule1.Column = this.CNTbandedGridColumn;
+            gridFormatRule1.Name = "processFormat";
+            formatConditionRuleDataBar1.AllowNegativeAxis = false;
+            formatConditionRuleDataBar1.DrawAxisAtMiddle = true;
+            formatConditionRuleDataBar1.MinimumType = DevExpress.XtraEditors.FormatConditionValueType.Number;
+            formatConditionRuleDataBar1.PredefinedName = "Blue Gradient";
+            gridFormatRule1.Rule = formatConditionRuleDataBar1;
+            gridFormatRule2.Column = this.statusbandedGridColumn;
+            gridFormatRule2.Name = "imageFormat";
+            formatConditionIconSet1.CategoryName = "Symbols";
+            formatConditionIconSetIcon1.Icon = ((System.Drawing.Image)(resources.GetObject("formatConditionIconSetIcon1.Icon")));
+            formatConditionIconSetIcon1.PredefinedName = "Symbols3_1.png";
+            formatConditionIconSetIcon2.PredefinedName = "Symbols3_3.png";
+            formatConditionIconSetIcon2.ValueComparison = DevExpress.XtraEditors.FormatConditionComparisonType.GreaterOrEqual;
+            formatConditionIconSet1.Icons.Add(formatConditionIconSetIcon1);
+            formatConditionIconSet1.Icons.Add(formatConditionIconSetIcon2);
+            formatConditionIconSet1.Name = "Symbols3Uncircled";
+            formatConditionIconSet1.ValueType = DevExpress.XtraEditors.FormatConditionValueType.Number;
+            formatConditionRuleIconSet1.IconSet = formatConditionIconSet1;
+            gridFormatRule2.Rule = formatConditionRuleIconSet1;
+            this.bandedGridView1.FormatRules.Add(gridFormatRule1);
+            this.bandedGridView1.FormatRules.Add(gridFormatRule2);
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.Name = "bandedGridView1";
             this.bandedGridView1.OptionsImageLoad.DesiredThumbnailSize = new System.Drawing.Size(10, 0);
             this.bandedGridView1.OptionsSelection.UseIndicatorForSelection = false;
+            this.bandedGridView1.OptionsView.EnableAppearanceOddRow = true;
             this.bandedGridView1.OptionsView.ShowColumnHeaders = false;
             this.bandedGridView1.OptionsView.ShowGroupPanel = false;
             this.bandedGridView1.OptionsView.ShowIndicator = false;
-            this.bandedGridView1.PaintStyleName = "MixedXP";
+            this.bandedGridView1.PaintStyleName = "Flat";
+            this.bandedGridView1.AfterPrintRow += new DevExpress.XtraGrid.Views.Base.AfterPrintRowEventHandler(this.bandedGridView1_AfterPrintRow);
             // 
-            // nameGridBand
+            // DbNamegridBand
             // 
-            this.nameGridBand.Caption = "姓名";
-            this.nameGridBand.Columns.Add(this.namebandedGridColumn);
-            this.nameGridBand.Name = "nameGridBand";
-            this.nameGridBand.VisibleIndex = 0;
-            this.nameGridBand.Width = 94;
+            this.DbNamegridBand.Caption = "DB Name";
+            this.DbNamegridBand.Columns.Add(this.DBNAMEbandedGridColumn);
+            this.DbNamegridBand.Name = "DbNamegridBand";
+            this.DbNamegridBand.VisibleIndex = 0;
+            this.DbNamegridBand.Width = 94;
             // 
-            // namebandedGridColumn
+            // DBNAMEbandedGridColumn
             // 
-            this.namebandedGridColumn.Caption = "name";
-            this.namebandedGridColumn.FieldName = "name";
-            this.namebandedGridColumn.MinWidth = 25;
-            this.namebandedGridColumn.Name = "namebandedGridColumn";
-            this.namebandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.namebandedGridColumn.Visible = true;
-            this.namebandedGridColumn.Width = 94;
+            this.DBNAMEbandedGridColumn.Caption = "DBNAME";
+            this.DBNAMEbandedGridColumn.FieldName = "DBNAME";
+            this.DBNAMEbandedGridColumn.MinWidth = 25;
+            this.DBNAMEbandedGridColumn.Name = "DBNAMEbandedGridColumn";
+            this.DBNAMEbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.DBNAMEbandedGridColumn.Visible = true;
+            this.DBNAMEbandedGridColumn.Width = 94;
             // 
-            // sexGridBand
+            // CdbNamegridBand
             // 
-            this.sexGridBand.Caption = "年龄";
-            this.sexGridBand.Columns.Add(this.ageBandedGridColumn);
-            this.sexGridBand.Name = "sexGridBand";
-            this.sexGridBand.VisibleIndex = 1;
-            this.sexGridBand.Width = 102;
+            this.CdbNamegridBand.Caption = "CDB Name";
+            this.CdbNamegridBand.Columns.Add(this.CDBNAMEbandedGridColumn);
+            this.CdbNamegridBand.Name = "CdbNamegridBand";
+            this.CdbNamegridBand.VisibleIndex = 1;
+            this.CdbNamegridBand.Width = 94;
             // 
-            // ageBandedGridColumn
+            // CDBNAMEbandedGridColumn
             // 
-            this.ageBandedGridColumn.Caption = "age";
-            this.ageBandedGridColumn.FieldName = "age";
-            this.ageBandedGridColumn.MinWidth = 25;
-            this.ageBandedGridColumn.Name = "ageBandedGridColumn";
-            this.ageBandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.ageBandedGridColumn.Visible = true;
-            this.ageBandedGridColumn.Width = 102;
+            this.CDBNAMEbandedGridColumn.Caption = "CDBNAME";
+            this.CDBNAMEbandedGridColumn.FieldName = "CDBNAME";
+            this.CDBNAMEbandedGridColumn.MinWidth = 25;
+            this.CDBNAMEbandedGridColumn.Name = "CDBNAMEbandedGridColumn";
+            this.CDBNAMEbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.CDBNAMEbandedGridColumn.Visible = true;
+            this.CDBNAMEbandedGridColumn.Width = 94;
             // 
-            // heightGridBand
+            // VersiongridBand
             // 
-            this.heightGridBand.Caption = "身高";
-            this.heightGridBand.Columns.Add(this.heightbandedGridColumn);
-            this.heightGridBand.Name = "heightGridBand";
-            this.heightGridBand.VisibleIndex = 2;
-            this.heightGridBand.Width = 107;
+            this.VersiongridBand.Caption = "Version";
+            this.VersiongridBand.Columns.Add(this.VERSIONBandedGridColumn);
+            this.VersiongridBand.Name = "VersiongridBand";
+            this.VersiongridBand.VisibleIndex = 2;
+            this.VersiongridBand.Width = 102;
             // 
-            // heightbandedGridColumn
+            // VERSIONBandedGridColumn
             // 
-            this.heightbandedGridColumn.Caption = "height";
-            this.heightbandedGridColumn.FieldName = "height";
-            this.heightbandedGridColumn.MinWidth = 25;
-            this.heightbandedGridColumn.Name = "heightbandedGridColumn";
-            this.heightbandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.heightbandedGridColumn.OptionsFilter.AllowFilter = false;
-            this.heightbandedGridColumn.Visible = true;
-            this.heightbandedGridColumn.Width = 107;
+            this.VERSIONBandedGridColumn.Caption = "VERSION";
+            this.VERSIONBandedGridColumn.FieldName = "VERSION";
+            this.VERSIONBandedGridColumn.MinWidth = 25;
+            this.VERSIONBandedGridColumn.Name = "VERSIONBandedGridColumn";
+            this.VERSIONBandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.VERSIONBandedGridColumn.Visible = true;
+            this.VERSIONBandedGridColumn.Width = 102;
             // 
-            // processgridBand
+            // statusgridBand
             // 
-            this.processgridBand.Caption = "进度";
-            this.processgridBand.Columns.Add(this.processbandedGridColumn);
-            this.processgridBand.Name = "processgridBand";
-            this.processgridBand.VisibleIndex = 3;
-            this.processgridBand.Width = 94;
+            this.statusgridBand.Caption = "Status";
+            this.statusgridBand.Columns.Add(this.statusbandedGridColumn);
+            this.statusgridBand.Name = "statusgridBand";
+            this.statusgridBand.VisibleIndex = 3;
+            this.statusgridBand.Width = 94;
             // 
-            // timeGridBand
+            // TargetTypegridBand
             // 
-            this.timeGridBand.Caption = "时间";
-            this.timeGridBand.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
-            this.startTimeGridBand,
-            this.endTimeGridBand});
-            this.timeGridBand.Name = "timeGridBand";
-            this.timeGridBand.VisibleIndex = 4;
-            this.timeGridBand.Width = 188;
+            this.TargetTypegridBand.Caption = "Target Type";
+            this.TargetTypegridBand.Columns.Add(this.TARGETTYPEbandedGridColumn);
+            this.TargetTypegridBand.Name = "TargetTypegridBand";
+            this.TargetTypegridBand.VisibleIndex = 4;
+            this.TargetTypegridBand.Width = 94;
             // 
-            // startTimeGridBand
+            // TARGETTYPEbandedGridColumn
             // 
-            this.startTimeGridBand.Caption = "开始时间";
-            this.startTimeGridBand.Columns.Add(this.starttimebandedGridColumn);
-            this.startTimeGridBand.Name = "startTimeGridBand";
-            this.startTimeGridBand.VisibleIndex = 0;
-            this.startTimeGridBand.Width = 94;
+            this.TARGETTYPEbandedGridColumn.Caption = "TARGETTYPE";
+            this.TARGETTYPEbandedGridColumn.FieldName = "TARGETTYPE";
+            this.TARGETTYPEbandedGridColumn.MinWidth = 25;
+            this.TARGETTYPEbandedGridColumn.Name = "TARGETTYPEbandedGridColumn";
+            this.TARGETTYPEbandedGridColumn.Visible = true;
+            this.TARGETTYPEbandedGridColumn.Width = 94;
             // 
-            // starttimebandedGridColumn
+            // SnapShotgridBand
             // 
-            this.starttimebandedGridColumn.Caption = "starttime";
-            this.starttimebandedGridColumn.FieldName = "startTime";
-            this.starttimebandedGridColumn.MinWidth = 25;
-            this.starttimebandedGridColumn.Name = "starttimebandedGridColumn";
-            this.starttimebandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.starttimebandedGridColumn.Visible = true;
-            this.starttimebandedGridColumn.Width = 94;
+            this.SnapShotgridBand.Caption = "SnapShot";
+            this.SnapShotgridBand.Children.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.MinTimegridBand,
+            this.MaxTimegridBand,
+            this.countgridBand,
+            this.retentionDaysgridBand,
+            this.uploadIntervalgridBand});
+            this.SnapShotgridBand.Name = "SnapShotgridBand";
+            this.SnapShotgridBand.VisibleIndex = 5;
+            this.SnapShotgridBand.Width = 483;
             // 
-            // endTimeGridBand
+            // MinTimegridBand
             // 
-            this.endTimeGridBand.Caption = "结束时间";
-            this.endTimeGridBand.Columns.Add(this.endtimebandedGridColumn);
-            this.endTimeGridBand.Name = "endTimeGridBand";
-            this.endTimeGridBand.VisibleIndex = 1;
-            this.endTimeGridBand.Width = 94;
+            this.MinTimegridBand.Caption = "Min Time";
+            this.MinTimegridBand.Columns.Add(this.MINTIMEbandedGridColumn);
+            this.MinTimegridBand.Name = "MinTimegridBand";
+            this.MinTimegridBand.VisibleIndex = 0;
+            this.MinTimegridBand.Width = 94;
             // 
-            // endtimebandedGridColumn
+            // MaxTimegridBand
             // 
-            this.endtimebandedGridColumn.Caption = "endtime";
-            this.endtimebandedGridColumn.FieldName = "endTime";
-            this.endtimebandedGridColumn.MinWidth = 25;
-            this.endtimebandedGridColumn.Name = "endtimebandedGridColumn";
-            this.endtimebandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.endtimebandedGridColumn.Visible = true;
-            this.endtimebandedGridColumn.Width = 94;
+            this.MaxTimegridBand.Caption = "Max Time";
+            this.MaxTimegridBand.Columns.Add(this.MAXTIMEbandedGridColumn);
+            this.MaxTimegridBand.Name = "MaxTimegridBand";
+            this.MaxTimegridBand.VisibleIndex = 1;
+            this.MaxTimegridBand.Width = 94;
             // 
-            // conditiongridBand1
+            // countgridBand
             // 
-            this.conditiongridBand1.Caption = "状态";
-            this.conditiongridBand1.Columns.Add(this.conditionbandedGridColumn);
-            this.conditiongridBand1.Name = "conditiongridBand1";
-            this.conditiongridBand1.OptionsBand.AllowMove = false;
-            this.conditiongridBand1.VisibleIndex = 5;
-            this.conditiongridBand1.Width = 94;
+            this.countgridBand.Caption = "Count";
+            this.countgridBand.Columns.Add(this.CNTbandedGridColumn);
+            this.countgridBand.Name = "countgridBand";
+            this.countgridBand.VisibleIndex = 2;
+            this.countgridBand.Width = 94;
             // 
-            // idGridBand
+            // retentionDaysgridBand
             // 
-            this.idGridBand.Caption = "身份证号";
-            this.idGridBand.Columns.Add(this.idCardbandedGridColumn);
-            this.idGridBand.Name = "idGridBand";
-            this.idGridBand.VisibleIndex = 6;
-            this.idGridBand.Width = 94;
+            this.retentionDaysgridBand.Caption = "Retention Days";
+            this.retentionDaysgridBand.Columns.Add(this.RETENTIONDAYSbandedGridColumn);
+            this.retentionDaysgridBand.Name = "retentionDaysgridBand";
+            this.retentionDaysgridBand.VisibleIndex = 3;
+            this.retentionDaysgridBand.Width = 107;
             // 
-            // idCardbandedGridColumn
+            // RETENTIONDAYSbandedGridColumn
             // 
-            this.idCardbandedGridColumn.Caption = "idcard";
-            this.idCardbandedGridColumn.FieldName = "idCard";
-            this.idCardbandedGridColumn.MinWidth = 25;
-            this.idCardbandedGridColumn.Name = "idCardbandedGridColumn";
-            this.idCardbandedGridColumn.OptionsColumn.AllowEdit = false;
-            this.idCardbandedGridColumn.Visible = true;
-            this.idCardbandedGridColumn.Width = 94;
+            this.RETENTIONDAYSbandedGridColumn.Caption = "RETENTIONDAYS";
+            this.RETENTIONDAYSbandedGridColumn.FieldName = "RETENTIONDAYS";
+            this.RETENTIONDAYSbandedGridColumn.MinWidth = 25;
+            this.RETENTIONDAYSbandedGridColumn.Name = "RETENTIONDAYSbandedGridColumn";
+            this.RETENTIONDAYSbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.RETENTIONDAYSbandedGridColumn.OptionsFilter.AllowFilter = false;
+            this.RETENTIONDAYSbandedGridColumn.Visible = true;
+            this.RETENTIONDAYSbandedGridColumn.Width = 107;
+            // 
+            // uploadIntervalgridBand
+            // 
+            this.uploadIntervalgridBand.Caption = "Upload Interval";
+            this.uploadIntervalgridBand.Columns.Add(this.UPLOADINTERVALbandedGridColumn);
+            this.uploadIntervalgridBand.Columns.Add(this.RETENTIONPERIODbandedGridColumn);
+            this.uploadIntervalgridBand.Name = "uploadIntervalgridBand";
+            this.uploadIntervalgridBand.VisibleIndex = 4;
+            this.uploadIntervalgridBand.Width = 94;
+            // 
+            // UPLOADINTERVALbandedGridColumn
+            // 
+            this.UPLOADINTERVALbandedGridColumn.Caption = "UPLOADINTERVAL";
+            this.UPLOADINTERVALbandedGridColumn.FieldName = "UPLOADINTERVAL";
+            this.UPLOADINTERVALbandedGridColumn.MinWidth = 25;
+            this.UPLOADINTERVALbandedGridColumn.Name = "UPLOADINTERVALbandedGridColumn";
+            this.UPLOADINTERVALbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.UPLOADINTERVALbandedGridColumn.Visible = true;
+            this.UPLOADINTERVALbandedGridColumn.Width = 94;
+            // 
+            // RETENTIONPERIODbandedGridColumn
+            // 
+            this.RETENTIONPERIODbandedGridColumn.Caption = "RETENTIONPERIOD";
+            this.RETENTIONPERIODbandedGridColumn.FieldName = "RETENTIONPERIOD";
+            this.RETENTIONPERIODbandedGridColumn.MinWidth = 25;
+            this.RETENTIONPERIODbandedGridColumn.Name = "RETENTIONPERIODbandedGridColumn";
+            this.RETENTIONPERIODbandedGridColumn.OptionsColumn.AllowEdit = false;
+            this.RETENTIONPERIODbandedGridColumn.Width = 94;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4,
+            this.emptySpaceItem3,
+            this.emptySpaceItem2,
+            this.emptySpaceItem4,
+            this.emptySpaceItem5,
+            this.emptySpaceItem6,
+            this.emptySpaceItem7,
+            this.emptySpaceItem9,
+            this.emptySpaceItem8,
+            this.layoutControlItem10,
+            this.layoutControlItem7,
+            this.layoutControlItem6,
+            this.layoutControlItem5,
+            this.layoutControlItem8,
+            this.layoutControlItem9});
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1978, 704);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.gridControl1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(13, 37);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(1932, 603);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(1671, 0);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(177, 37);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(13, 640);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(13, 0);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(13, 37);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(1945, 0);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(13, 640);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem6
+            // 
+            this.emptySpaceItem6.AllowHotTrack = false;
+            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 640);
+            this.emptySpaceItem6.Name = "emptySpaceItem6";
+            this.emptySpaceItem6.Size = new System.Drawing.Size(837, 31);
+            this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem7
+            // 
+            this.emptySpaceItem7.AllowHotTrack = false;
+            this.emptySpaceItem7.Location = new System.Drawing.Point(316, 0);
+            this.emptySpaceItem7.Name = "emptySpaceItem7";
+            this.emptySpaceItem7.Size = new System.Drawing.Size(1355, 37);
+            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem9
+            // 
+            this.emptySpaceItem9.AllowHotTrack = false;
+            this.emptySpaceItem9.Location = new System.Drawing.Point(1074, 640);
+            this.emptySpaceItem9.Name = "emptySpaceItem9";
+            this.emptySpaceItem9.Size = new System.Drawing.Size(884, 31);
+            this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem8
+            // 
+            this.emptySpaceItem8.AllowHotTrack = false;
+            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 671);
+            this.emptySpaceItem8.Name = "emptySpaceItem8";
+            this.emptySpaceItem8.Size = new System.Drawing.Size(1958, 13);
+            this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.pageInfoLable;
+            this.layoutControlItem10.Location = new System.Drawing.Point(920, 640);
+            this.layoutControlItem10.MaxSize = new System.Drawing.Size(69, 31);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(69, 31);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(69, 31);
+            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnSelect;
+            this.layoutControlItem7.Location = new System.Drawing.Point(1848, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(97, 37);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.textBox2;
+            this.layoutControlItem6.Location = new System.Drawing.Point(132, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(184, 37);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.labelControl3;
+            this.layoutControlItem5.Location = new System.Drawing.Point(26, 0);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(85, 22);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(106, 37);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.btnPre;
+            this.layoutControlItem8.Location = new System.Drawing.Point(837, 640);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(83, 31);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(83, 31);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(83, 31);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.btnNext;
+            this.layoutControlItem9.Location = new System.Drawing.Point(989, 640);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(85, 31);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(85, 31);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(85, 31);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
             // 
             // dockManager1
             // 
@@ -1767,21 +2144,15 @@ namespace ISIA.UI.TREND
             "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
             "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
             // 
-            // splitterItem1
-            // 
-            this.splitterItem1.AllowHotTrack = true;
-            this.splitterItem1.Location = new System.Drawing.Point(637, 0);
-            this.splitterItem1.Name = "splitterItem1";
-            this.splitterItem1.Size = new System.Drawing.Size(12, 109);
-            // 
             // FrmISIADashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1685, 895);
+            this.ClientSize = new System.Drawing.Size(1582, 891);
             this.Name = "FrmISIADashBoard";
             this.Text = "FrmISIADashboard";
+            this.Load += new System.EventHandler(this.FrmISIADashBoard_Load);
             this.tPanelBottomBase.ResumeLayout(false);
             this.tPanelBottomBase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).EndInit();
@@ -1796,18 +2167,37 @@ namespace ISIA.UI.TREND
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             this.dockPanel1.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
             this.tabPane1.ResumeLayout(false);
             this.tabNavigationPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1824,23 +2214,14 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridView1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand nameGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn namebandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand sexGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn ageBandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand heightGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn heightbandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand processgridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn processbandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand timeGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand startTimeGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn starttimebandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand endTimeGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn endtimebandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand conditiongridBand1;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn conditionbandedGridColumn;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand idGridBand;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn idCardbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn DBNAMEbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn VERSIONBandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn RETENTIONDAYSbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn MINTIMEbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn CDBNAMEbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn RETENTIONPERIODbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn MAXTIMEbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn UPLOADINTERVALbandedGridColumn;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
@@ -1854,5 +2235,43 @@ namespace ISIA.UI.TREND
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.LabelControl pageInfoLable;
+        private DevExpress.XtraEditors.SimpleButton btnNext;
+        private DevExpress.XtraEditors.SimpleButton btnPre;
+        private System.Windows.Forms.TextBox textBox2;
+        public TAP.UIControls.BasicControlsDEV.TButton btnSelect;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem9;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn CNTbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn TARGETTYPEbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn statusbandedGridColumn;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand DbNamegridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand CdbNamegridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand VersiongridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand statusgridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand TargetTypegridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand SnapShotgridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand MinTimegridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand MaxTimegridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand countgridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand retentionDaysgridBand;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand uploadIntervalgridBand;
     }
 }

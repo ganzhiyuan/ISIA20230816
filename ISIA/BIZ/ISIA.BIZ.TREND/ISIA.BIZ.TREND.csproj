@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChartServiceTrend.cs" />
+    <Compile Include="ISIADashboard.cs" />
     <Compile Include="PerformaceEvaluationTrend.cs" />
     <Compile Include="SQLAnalysisBySQL_ID.cs" />
     <Compile Include="SQLAnalysisChart.cs" />
