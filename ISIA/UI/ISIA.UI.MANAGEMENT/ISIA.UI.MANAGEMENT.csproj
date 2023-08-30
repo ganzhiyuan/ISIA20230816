@@ -199,6 +199,12 @@
     <Compile Include="FrmAddDataBase.Designer.cs">
       <DependentUpon>FrmAddDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDropPartitionin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDropPartitionin.Designer.cs">
+      <DependentUpon>FrmDropPartitionin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDataTableManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddDataBase.resx">
       <DependentUpon>FrmAddDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDropPartitionin.resx">
+      <DependentUpon>FrmDropPartitionin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddPartitionin.resx">
       <DependentUpon>FrmAddPartitionin.cs</DependentUpon>

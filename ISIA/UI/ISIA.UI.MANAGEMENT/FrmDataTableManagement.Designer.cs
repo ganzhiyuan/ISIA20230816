@@ -345,6 +345,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnUpdate.TabIndex = 125;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnImport
@@ -411,6 +412,7 @@ namespace ISIA.UI.MANAGEMENT
             this.btnExport.TabIndex = 127;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Visible = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // tbadd

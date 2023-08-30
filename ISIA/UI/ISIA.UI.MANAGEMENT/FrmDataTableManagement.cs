@@ -103,6 +103,24 @@ namespace ISIA.UI.MANAGEMENT
 
         private void btnDel_Click(object sender, EventArgs e)
         {
+
+            FrmDropPartitionin frmDropPartitionin = new FrmDropPartitionin();
+
+            if (gridViewPartition.DataRowCount <= 0 )
+            {
+                TAP.UI.TAPMsgBox.Instance.ShowMessage("Error" ,EnumMsgType.WARNING, "Please select partition!");
+                return;
+                
+            }
+            else
+            {
+                frmDropPartitionin.partitionName = gridViewPartition.GetFocusedDataRow()[0].ToString();
+                frmDropPartitionin.objectName = args.TABLENAME;
+
+                frmDropPartitionin.StartPosition = FormStartPosition.CenterParent;
+                frmDropPartitionin.ShowDialog(this);
+            }
+
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
