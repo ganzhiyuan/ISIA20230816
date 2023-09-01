@@ -20,16 +20,26 @@ namespace ISIA.UI.TREND
     {
 
         int pageNumber = 1;
-        IPagedList<DbInfo> list;
+        IPagedList<DbInfo> allDataPagedlist;
+        IPagedList<DbInfo> searchPagedList;
+        IPagedList<DbInfo> currentPagedList;
+
+
+
         BizDataClient bs = null;
-        List<DbInfo> stDataList = null;
+        List<DbInfo> allDataList = null;
+        List<DbInfo> searchList = null;
+        List<DbInfo> currentList = null;
+
+        public const string GET_DB_STATUS_FUNC = "GetDBFetchAwrDataStatus";
+        public const string errorFetchPeriodHour = "100";
+
 
 
         public FrmISIADashBoard()
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.ISIADashboard");
-
         }
 
      
@@ -50,11 +60,15 @@ namespace ISIA.UI.TREND
         //    stDataList = stList;
         //}
 
-        private async Task<List<T>> GetDashBoardData<T>() where T : new()
+        private async Task<List<T>> GetDashBoardData<T>(AwrArgsPack argsPack =null, string func= "GetDashBoardData") where T : new()
         {
             return await Task.Factory.StartNew(() =>
             {
-                DataSet ds= bs.ExecuteDataSet("GetDashBoardData", new AwrArgsPack().getPack());
+                DataSet ds= bs.ExecuteDataSet(func, argsPack==null?new AwrArgsPack().getPack():argsPack.getPack());
+                if (ds == null)
+                {
+                    return new List<T>();
+                }
                 List<T> restlt=Utils.DataTableToList<T>(ds.Tables[0]);
                 return restlt;
             }
@@ -63,35 +77,41 @@ namespace ISIA.UI.TREND
             
         private async void FrmISIADashBoard_Load(object sender, EventArgs e)
         {
-            stDataList= await GetDashBoardData<DbInfo>();
-            list = await GetPagedAsyncList(stDataList);
-            btnPre.Enabled = list.HasPreviousPage;
-            btnNext.Enabled = list.HasNextPage;
-            gridControl1.DataSource = list.ToList();
-            pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, list.PageCount);
+            allDataList = await GetDashBoardData<DbInfo>();
+            List<DbInfo> errorDbList = await GetDashBoardData<DbInfo>(new AwrArgsPack() {StartTime= errorFetchPeriodHour }, GET_DB_STATUS_FUNC);
+            checkDbStatus(allDataList, errorDbList);
+            allDataPagedlist = await GetPagedAsyncList(allDataList);
+            WrapperGridView(allDataPagedlist);
+            currentList = allDataList;
+            currentPagedList = allDataPagedlist;
+            WrapperLabelControl();
+
+
         }
 
         private async void btnPre_Click(object sender, EventArgs e)
         {
-            if (list.HasPreviousPage)
+            if (currentPagedList.HasPreviousPage)
             {
-                list = await GetPagedAsyncList(stDataList,--pageNumber);
-                btnPre.Enabled = list.HasPreviousPage;
-                btnNext.Enabled = list.HasNextPage;
-                gridControl1.DataSource = list.ToList();
-                pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, list.PageCount);
+                currentPagedList = await GetPagedAsyncList(currentList, --pageNumber);
+                WrapperGridView(currentPagedList);
+                //btnPre.Enabled = currentPagedList.HasPreviousPage;
+                //btnNext.Enabled = currentPagedList.HasNextPage;
+                //gridControl1.DataSource = currentPagedList.ToList();
+                //pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, currentPagedList.PageCount);
             }
         }
 
         private async void btnNext_Click(object sender, EventArgs e)
         {
-            if (list.HasNextPage)
+            if (currentPagedList.HasNextPage)
             {
-                list = await GetPagedAsyncList(stDataList,++pageNumber);
-                btnPre.Enabled = list.HasPreviousPage;
-                btnNext.Enabled = list.HasNextPage;
-                gridControl1.DataSource = list.ToList();
-                pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, list.PageCount);
+                currentPagedList = await GetPagedAsyncList(currentList, ++pageNumber);
+                WrapperGridView(currentPagedList);
+                //btnPre.Enabled = currentPagedList.HasPreviousPage;
+                //btnNext.Enabled = currentPagedList.HasNextPage;
+                //gridControl1.DataSource = currentPagedList.ToList();
+                //pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, currentPagedList.PageCount);
 
             }
         }
@@ -115,6 +135,69 @@ namespace ISIA.UI.TREND
             );
         }
 
+        
+       
+      
+
+        private void bandedGridView1_AfterPrintRow(object sender, DevExpress.XtraGrid.Views.Printing.PrintRowEventArgs e)
+        {
+            DataRow list=bandedGridView1.GetDataRow(0);
+        }
+
+        private async void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                currentList = allDataList;
+                currentPagedList= await GetPagedAsyncList(currentList, pageNumber=1);
+                WrapperGridView(currentPagedList);
+                return;
+            }
+            AwrArgsPack argsPack = new AwrArgsPack();
+            argsPack.DBName = textBox.Text;
+            searchList = await GetDashBoardData<DbInfo>(argsPack);
+            searchPagedList = await GetPagedAsyncList(searchList);
+            WrapperGridView(searchPagedList);
+            //change current page list
+            currentPagedList = searchPagedList;
+            currentList = searchList;
+        }
+
+        private void checkDbStatus(List<DbInfo> allDbs, List<DbInfo> errorDbs) 
+        {
+            List<string> errorDbList = new List<string>();
+            errorDbs.ForEach(db => 
+            {
+                int index=db.DBNAME.LastIndexOf('_');
+                errorDbList.Add(db.DBNAME.Substring(++index));
+            });
+            allDbs.ForEach(db =>
+            {
+                if (errorDbList.Contains(db.DBNAME))
+                {
+                    db.STATUS = 0;
+                }
+            });
+        }
+
+        private void WrapperGridView<T>(IPagedList<T> pageList)
+        {
+            btnPre.Enabled = pageList.HasPreviousPage;
+            btnNext.Enabled = pageList.HasNextPage;
+            gridControl1.DataSource = pageList.ToList();
+            pageInfoLable.Text = string.Format("Page {0}/{1}", pageNumber, pageList.PageCount);
+        }
+
+        private void WrapperLabelControl()
+        {
+            int dbCount = allDataList.Count;
+            int pdbCount = allDataList.AsEnumerable<DbInfo>().Where(t => t.TARGETTYPE.Equals("pdb")).ToList().Count;
+            labelControl1.AllowHtmlString = true;
+            labelControl2.AllowHtmlString = true;
+            labelControl2.Text = string.Format("<size=30><b>{0} DBS</b></size ><br><br><color = black><b>total count of dbs including pdbs</b></color>", dbCount);
+            labelControl1.Text = string.Format("<size=30><b>{0} PDBS</b></size ><br><br><color = black><b>total count of pdbs</b></color>", pdbCount);
+        }
+
         public class DbInfo
         {
 
@@ -123,19 +206,6 @@ namespace ISIA.UI.TREND
 
             }
 
-            public DbInfo(string version, string dbName, int retentionDays, string cdbName, string retentionPeriod, string uploadInterval, string minTime, string maxTime, int cnt, string targetType)
-            {
-                this.version = version;
-                this.dbName = dbName;
-                this.retentionDays = retentionDays;
-                this.cdbName = cdbName;
-                this.retentionPeriod = retentionPeriod;
-                this.uploadInterval = uploadInterval;
-                this.minTime = minTime;
-                this.maxTime = maxTime;
-                this.cnt = cnt;
-                this.targetType = targetType;
-            }
 
             private string version;
             private string dbName;
@@ -148,7 +218,7 @@ namespace ISIA.UI.TREND
             private int cnt;
             private string targetType;
             private int status;
-
+            private int instanceCount;
 
             public string VERSION { get => version; set => version = value; }
             public string DBNAME { get => dbName; set => dbName = value; }
@@ -161,44 +231,9 @@ namespace ISIA.UI.TREND
             public int CNT { get => cnt; set => cnt = value; }
             public string TARGETTYPE { get => targetType; set => targetType = value; }
             public int STATUS { get => status; set => status = value; }
-        }
-        public class Student
-        {
-            private string name1;
-            private int age1;
-            private int height1;
-            private string startTime1;
-            private string endTime1;
-            private string idCard1;
-            private int process1;
-            private int condition1;
+            public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
 
-            public Student() { }
-            public Student(string name, int age, int height, string startTime, string endTime, string idCard, int process, int condition)
-            {
-                this.name = name;
-                this.age1 = age;
-                this.height1 = height;
-                this.startTime1 = startTime;
-                this.endTime1 = endTime;
-                this.idCard1 = idCard;
-                this.process1 = process;
-                this.condition1 = condition;
-            }
-
-            public string name { get => name1; set => name1 = value; }
-            public int age { get => age1; set => age1 = value; }
-            public int height { get => height1; set => height1 = value; }
-            public string startTime { get => startTime1; set => startTime1 = value; }
-            public string endTime { get => endTime1; set => endTime1 = value; }
-            public string idCard { get => idCard1; set => idCard1 = value; }
-            public int process { get => process1; set => process1 = value; }
-            public int condition { get => condition1; set => condition1 = value; }
         }
 
-        private void bandedGridView1_AfterPrintRow(object sender, DevExpress.XtraGrid.Views.Printing.PrintRowEventArgs e)
-        {
-            DataRow list=bandedGridView1.GetDataRow(0);
-        }
     }
 }

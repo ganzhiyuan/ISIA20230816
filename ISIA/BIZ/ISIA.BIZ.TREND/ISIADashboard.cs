@@ -23,18 +23,10 @@ namespace ISIA.BIZ.TREND
             List<DbInfo> dbInfos = new List<DbInfo>();
             try
             {
-                if (string.IsNullOrEmpty(arguments.DBName))
+                List<string> dbNameList = GetDbNames(db, arguments);
+                foreach (string dbName in dbNameList)
                 {
-
-                    List<string> dbNameList = GetDbNames(db);
-                    foreach (string dbName in dbNameList)
-                    {
-                        dbInfos.Add(GetSingleDbInfo(db, dbName));
-                    }
-                }
-                else
-                {
-                    dbInfos.Add(GetSingleDbInfo(db, arguments.DBName));
+                    dbInfos.Add(GetSingleDbInfo(db, dbName));
                 }
                 result = Utils.ConvertToDataSet<DbInfo>(dbInfos);
                 this.ExecutingValue = result;
@@ -48,40 +40,41 @@ namespace ISIA.BIZ.TREND
             }
         }
 
-        
-
-        //DataTable转List
-        public static List<T> GetList<T>(DataTable table)
+        public void GetDBFetchAwrDataStatus(AwrArgsPack arguments)
         {
-            List<T> list = new List<T>();
-            T t = default(T);
-            PropertyInfo[] propertypes = null;
-            string tempName = string.Empty;
-            foreach (DataRow row in table.Rows)
+            DBCommunicator db = new DBCommunicator();
+            try
             {
-                t = Activator.CreateInstance<T>();
-                propertypes = t.GetType().GetProperties();
-                foreach (PropertyInfo pro in propertypes)
-                {
-                    tempName = pro.Name;
-                    if (table.Columns.Contains(tempName))
-                    {
-                        object value = row[tempName];
-                        if (!value.ToString().Equals(""))
-                        {
-                            pro.SetValue(t, value, null);
-                        }
-                    }
-                }
-                list.Add(t);
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@" SELECT process_name dbname
+                                   FROM log_tab
+                                   WHERE start_time >= TO_CHAR (SYSDATE - {0} / 24, 'yyyymmddhh24miss')
+                                   GROUP BY process_name, success_flag
+                                   having success_flag='N'", arguments.StartTime);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+
             }
-            return list.Count == 0 ? null : list;
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
         }
 
-        private List<string> GetDbNames(DBCommunicator db)
+
+
+        private List<string> GetDbNames(DBCommunicator db, AwrArgsPack argsPack)
         {
             StringBuilder dbNameSql = new StringBuilder();
             dbNameSql.Append(@"select dbname from ISIA.TAPCTDATABASE where isalive='YES'");
+            if (!string.IsNullOrEmpty(argsPack.DBName))
+            {
+                dbNameSql.AppendFormat(" and  dbname like '%{0}%'", argsPack.DBName);
+            }
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                       dbNameSql.ToString(), false);
             DataSet dbNameDs = db.Select(dbNameSql.ToString());
@@ -106,15 +99,14 @@ from (select distinct p.value version, d.dbname, d.retentiondays,
        else
        (select dbname from tapctdatabase where dbid = p.con_dbid)
        end cdbname
-       ,decode(isalive,'YES', 1,0) STATUS, '10 min'  uploadinterval, s.mintime, s.maxtime, s.cnt
+       ,decode(isalive,'YES', 1,0) STATUS, '10 min'  uploadinterval, s.mintime, s.maxtime, s.cnt ,d.instantcnt instancecount 
 from RAW_DBA_HIST_PARAMETER_{0} p,
      tapctdatabase d,
      (select to_char(min(s.begin_interval_time), 'YYYY-MM-DD HH24:MI:SS') mintime, to_char(max(s.end_interval_time), 'YYYY-MM-DD HH24:MI:SS') maxtime,count(s.snap_id) cnt
 from raw_dba_hist_snapshot_{0} s) s
-where p.snap_id = (select snap_id
-                    from RAW_DBA_HIST_PARAMETER_{0}
-                   where begin_time > sysdate - 2/24 
-                   and rownum = 1 )
+where p.snap_id = (select min(snap_id)
+                    from raw_dba_hist_snapshot_{0}
+                    where begin_interval_time > sysdate - 2/24  )
 and p.parameter_name = 'compatible'
 and p.dbid = d.dbid) dbInfo", dbName);
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
@@ -131,20 +123,7 @@ and p.dbid = d.dbid) dbInfo", dbName);
 
             }
 
-            public DbInfo(string version, string dbName, int retentionDays, string cdbName, string retentionPeriod, string uploadInterval, string minTime, string maxTime, int cnt, string targetType)
-            {
-                this.version = version;
-                this.dbName = dbName;
-                this.retentionDays = retentionDays;
-                this.cdbName = cdbName;
-                this.retentionPeriod = retentionPeriod;
-                this.uploadInterval = uploadInterval;
-                this.minTime = minTime;
-                this.maxTime = maxTime;
-                this.cnt = cnt;
-                this.targetType = targetType;
-            }
-
+           
             private string version;
             private string dbName;
             private int retentionDays;
@@ -156,6 +135,7 @@ and p.dbid = d.dbid) dbInfo", dbName);
             private int cnt;
             private string targetType;
             private int status;
+            private int instanceCount;
 
 
             public string VERSION { get => version; set => version = value; }
@@ -169,6 +149,7 @@ and p.dbid = d.dbid) dbInfo", dbName);
             public int CNT { get => cnt; set => cnt = value; }
             public string TARGETTYPE { get => targetType; set => targetType = value; }
             public int STATUS { get => status; set => status = value; }
+            public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
         }
     }
 }
