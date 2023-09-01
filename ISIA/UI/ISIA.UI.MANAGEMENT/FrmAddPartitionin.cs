@@ -30,6 +30,7 @@ namespace ISIA.UI.MANAGEMENT
 
         private void FrmAddPartitionin_Load(object sender, EventArgs e)
         {
+            
             string columsName = "BEGIN_TIME";
             string dateType = "DATE";
             textpartitionName.Text = partitionName;
@@ -42,5 +43,19 @@ namespace ISIA.UI.MANAGEMENT
         {
             this.Close();
         }
+
+        private void tButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            /*StringBuilder stringBuilder = new StringBuilder();*/
+
+
+            FrmShowPartitioninSql frmShowPartitioninSql = new FrmShowPartitioninSql();
+            frmShowPartitioninSql.StartPosition = FormStartPosition.CenterScreen;
+            frmShowPartitioninSql.Show();
+
+        }
+
+        
     }
 }

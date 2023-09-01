@@ -108,6 +108,7 @@ namespace ISIA.UI.MANAGEMENT
 
             if (gridViewPartition.DataRowCount <= 0 )
             {
+
                 TAP.UI.TAPMsgBox.Instance.ShowMessage("Error" ,EnumMsgType.WARNING, "Please select partition!");
                 return;
                 
@@ -117,8 +118,8 @@ namespace ISIA.UI.MANAGEMENT
                 frmDropPartitionin.partitionName = gridViewPartition.GetFocusedDataRow()[0].ToString();
                 frmDropPartitionin.objectName = args.TABLENAME;
 
-                frmDropPartitionin.StartPosition = FormStartPosition.CenterParent;
-                frmDropPartitionin.ShowDialog(this);
+                frmDropPartitionin.StartPosition = FormStartPosition.CenterScreen;
+                frmDropPartitionin.Show(this);
             }
 
         }
@@ -153,10 +154,10 @@ namespace ISIA.UI.MANAGEMENT
             if (dsPartition.Tables[0].Rows.Count > 0 )
             {
                 string tname = args.TABLENAME;
-                int lastUnderscoreIndex = tname.LastIndexOf('_');
-                string result = tname.Substring(lastUnderscoreIndex + 1);
-                string parName = "ACTIVE_SESS_HISTORY_{0}_{1}";
-                frmAdd.partitionName = string.Format(parName, result, res);
+                string[] parts = tname.Split('_');
+                string result = string.Join("_", parts.Skip(3));
+                result = result + "_{0}";
+                frmAdd.partitionName = string.Format( result, res);
             }
             else
             {
@@ -164,12 +165,16 @@ namespace ISIA.UI.MANAGEMENT
                 frmAdd.partitionName = string.Format(parName, res);
             }
             string upperBound = "TO_DATE('{0}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN')";
-            frmAdd.StartPosition = FormStartPosition.CenterParent;
             frmAdd.upperBound = string.Format(upperBound, dateTimeNow);
-            frmAdd.ShowDialog(this);
+
+
+            frmAdd.StartPosition = FormStartPosition.CenterScreen;
+            
+            frmAdd.Show(this);
             
 
-            
+
+
 
         }
 

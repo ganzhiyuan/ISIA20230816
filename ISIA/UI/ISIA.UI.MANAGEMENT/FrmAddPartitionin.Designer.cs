@@ -143,6 +143,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tButton2.TabIndex = 6;
             this.tButton2.Text = "  OK";
             this.tButton2.UseVisualStyleBackColor = false;
+            this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
             // 
             // tButton1
             // 
