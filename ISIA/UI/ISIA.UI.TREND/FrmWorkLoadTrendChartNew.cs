@@ -9,6 +9,7 @@ using Steema.TeeChart.Components;
 using Steema.TeeChart.Styles;
 using Steema.TeeChart.Tools;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TAP;
 using TAP.Data.Client;
 using TAP.UI;
 
@@ -731,19 +733,44 @@ namespace ISIA.UI.TREND
             }
         }
 
-        private void FrmWorkLoadTrendChartNew_Load(object sender, EventArgs e)
-        {
-            //cmbDbName.Setting();
-            //cmbDbName.Properties.Items[0].CheckState = CheckState.Checked;
-            tLUCKDbname.Setting();
-            var a = tLUCKDbname.Properties.DataSource as DataTable;
-            var b = a.AsEnumerable().FirstOrDefault().Field<string>("DBID");
-            //tLUCKDbname.SelectedText = b;
-            tLUCKDbname.Text = b;
-            tLUCKDbname.EditValue = b;
-            btnSelect_Click(null,null);
-        }
+        //private void FrmWorkLoadTrendChartNew_Load(object sender, EventArgs e)
+        //{
+        //    //cmbDbName.Setting();
+        //    //cmbDbName.Properties.Items[0].CheckState = CheckState.Checked;
+        //    tLUCKDbname.Setting();
+        //    var a = tLUCKDbname.Properties.DataSource as DataTable;
+        //    var b = a.AsEnumerable().FirstOrDefault().Field<string>("DBID");
+        //    //tLUCKDbname.SelectedText = b;
+        //    tLUCKDbname.Text = b;
+        //    tLUCKDbname.EditValue = b;
+        //    btnSelect_Click(null,null);
+        //}
 
+        public override void ExecuteCommand(ArgumentPack arguments)
+        {
+
+            Hashtable hashtable = new Hashtable();
+
+            foreach (string tmpstr in arguments.ArgumentNames)
+            {
+                if (tmpstr == "_hashTable")
+                {
+
+                    hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
+                    tLUCKDbname.Setting();
+                    var a = tLUCKDbname.Properties.DataSource as DataTable;
+                    var b = a.AsEnumerable().Where<DataRow>(row=>row["DBNAME"].Equals(hashtable["DBNAME"])).ToList()[0].Field<string>("DBID");
+                    //tLUCKDbname.SelectedText = b;
+                    tLUCKDbname.Text = b;
+                    tLUCKDbname.EditValue = b;
+
+                }
+
+            }
+            btnSelect_Click(null, null);
+
+
+        }
         public LabelControl searchResult = new LabelControl() { Text = "Selected Items:0" };
         private List<string> listSelDrugCode = new List<string>();
 

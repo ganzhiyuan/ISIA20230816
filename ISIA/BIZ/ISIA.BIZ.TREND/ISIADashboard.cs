@@ -65,6 +65,31 @@ namespace ISIA.BIZ.TREND
             }
         }
 
+        public void GetSnapAlreadyFetchCount(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@" select   to_char(begin_interval_time, 'yyyy-mm-dd') workdate, count(*) count
+ from raw_dba_hist_snapshot_{0} 
+ group by to_char(begin_interval_time, 'yyyy-mm-dd')
+ having to_char(begin_interval_time, 'yyyy-mm-dd')>= to_char(sysdate-{1}, 'yyyy-mm-dd')
+order by to_char(begin_interval_time, 'yyyy-mm-dd')", arguments.DBName,arguments.StartTime);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
 
 
         private List<string> GetDbNames(DBCommunicator db, AwrArgsPack argsPack)
