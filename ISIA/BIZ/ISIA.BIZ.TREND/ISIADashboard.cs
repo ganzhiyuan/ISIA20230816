@@ -90,6 +90,30 @@ order by to_char(begin_interval_time, 'yyyy-mm-dd')", arguments.DBName,arguments
             }
         }
 
+        public void GetFetchProcedureErrorMessage(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.AppendFormat(@"SELECT process_name processname, start_time starttime, end_time endtime, error_msg errormessage
+ FROM log_tab
+WHERE start_time >= TO_CHAR (SYSDATE - {0} / 24, 'yyyymmddhh24miss') and  success_flag='N'
+order by start_time desc ",  arguments.StartTime);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                      tmpSql.ToString(), false);
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
 
 
         private List<string> GetDbNames(DBCommunicator db, AwrArgsPack argsPack)
