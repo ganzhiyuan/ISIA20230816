@@ -37,14 +37,14 @@ namespace ISIA.UI.MANAGEMENT
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.memoEditpratitionsql = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -52,14 +52,14 @@ namespace ISIA.UI.MANAGEMENT
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditpratitionsql.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -100,6 +100,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tButton2.TabIndex = 6;
             this.tButton2.Text = "  OK";
             this.tButton2.UseVisualStyleBackColor = false;
+            this.tButton2.Click += new System.EventHandler(this.tButton2_Click);
             // 
             // tButton1
             // 
@@ -149,7 +150,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // layoutControl2
             // 
-            this.layoutControl2.Controls.Add(this.memoEdit1);
+            this.layoutControl2.Controls.Add(this.memoEditpratitionsql);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -157,6 +158,14 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl2.Size = new System.Drawing.Size(513, 219);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
+            // 
+            // memoEditpratitionsql
+            // 
+            this.memoEditpratitionsql.Location = new System.Drawing.Point(2, 2);
+            this.memoEditpratitionsql.Name = "memoEditpratitionsql";
+            this.memoEditpratitionsql.Size = new System.Drawing.Size(509, 215);
+            this.memoEditpratitionsql.StyleController = this.layoutControl2;
+            this.memoEditpratitionsql.TabIndex = 4;
             // 
             // layoutControlGroup1
             // 
@@ -168,6 +177,15 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup1.Size = new System.Drawing.Size(513, 219);
             this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.memoEditpratitionsql;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(513, 219);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
             // 
             // Root
             // 
@@ -223,23 +241,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
-            // memoEdit1
-            // 
-            this.memoEdit1.Location = new System.Drawing.Point(2, 2);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(509, 215);
-            this.memoEdit1.StyleController = this.layoutControl2;
-            this.memoEdit1.TabIndex = 4;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.memoEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(513, 219);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
             // FrmShowPartitioninSql
             // 
             this.ClientSize = new System.Drawing.Size(539, 298);
@@ -248,7 +249,8 @@ namespace ISIA.UI.MANAGEMENT
             this.MaximumSize = new System.Drawing.Size(1999, 314);
             this.MinimumSize = new System.Drawing.Size(16, 312);
             this.Name = "FrmShowPartitioninSql";
-            this.Load += new System.EventHandler(this.FrmAddPartitionin_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmShowPartitioninSql_FormClosed);
+            this.Load += new System.EventHandler(this.FrmShowPartitioninSql_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -256,14 +258,14 @@ namespace ISIA.UI.MANAGEMENT
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memoEditpratitionsql.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -280,7 +282,7 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit memoEditpratitionsql;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
         #endregion

@@ -62,6 +62,8 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
 
         private string _TABLENAME;
 
+        private StringBuilder _PartitionSql;
+
         static AwrArgsPack()
         {
             //_WorkloadParamNamesList
@@ -482,6 +484,18 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
             set
             {
                 _TABLENAME = value;
+            }
+        }
+        public StringBuilder PartitionSql
+        {
+            get
+            {
+                return _PartitionSql;
+            }
+
+            set
+            {
+                _PartitionSql = value;
             }
         }
 

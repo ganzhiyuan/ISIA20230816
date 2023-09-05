@@ -1,21 +1,19 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.PerformanceTests.PerfomanceMonitor;
+using DevExpress.XtraEditors;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using ISIA.UI.BASE;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TAP.Data.Client;
-using TAP.Fressage;
 using TAP.UI;
 
 namespace ISIA.UI.MANAGEMENT
 {
+
+    
     public partial class FrmDataTableManagement : DockUIBase1T1
     {
         #region Feild
@@ -25,24 +23,22 @@ namespace ISIA.UI.MANAGEMENT
         DataSet ds = new DataSet();
         DataSet dsPartition = new DataSet();
 
-
         #endregion
         public FrmDataTableManagement()
         {
-
             InitializeComponent();
-
             args = new AwrArgsPack();
-
             bs = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.CreateDataTableManagement");
             
         }
 
+        public void closeSqlPar() {
+            showPartition();
+        }
+
         private void FrmDataTableManagement_Load(object sender, EventArgs e)
         {
-
             base.BeginAsyncCall("LoadData", "DisplayData", EnumDataObject.DATASET);
-
         }
 
         public DataSet LoadData()
@@ -97,27 +93,23 @@ namespace ISIA.UI.MANAGEMENT
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-          
-
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-
-            FrmDropPartitionin frmDropPartitionin = new FrmDropPartitionin();
 
             if (gridViewPartition.DataRowCount <= 0 )
             {
 
                 TAP.UI.TAPMsgBox.Instance.ShowMessage("Error" ,EnumMsgType.WARNING, "Please select partition!");
                 return;
-                
             }
             else
             {
+                FrmDropPartitionin frmDropPartitionin = new FrmDropPartitionin();
                 frmDropPartitionin.partitionName = gridViewPartition.GetFocusedDataRow()[0].ToString();
                 frmDropPartitionin.objectName = args.TABLENAME;
-
+                frmDropPartitionin.MyEvent += closeSqlPar;
                 frmDropPartitionin.StartPosition = FormStartPosition.CenterScreen;
                 frmDropPartitionin.Show(this);
             }
@@ -166,24 +158,22 @@ namespace ISIA.UI.MANAGEMENT
             }
             string upperBound = "TO_DATE('{0}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN')";
             frmAdd.upperBound = string.Format(upperBound, dateTimeNow);
-
-
+            frmAdd.objectName = args.TABLENAME;
             frmAdd.StartPosition = FormStartPosition.CenterScreen;
-            
+            frmAdd.MyEvent += closeSqlPar;
             frmAdd.Show(this);
             
-
-
-
-
         }
-
-
 
         private void gridViewTableName_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
+            showPartition();
+        }
 
-            DataRow rowTable =  gridViewTableName.GetFocusedDataRow();
+        private void showPartition()
+        {
+
+            DataRow rowTable = gridViewTableName.GetFocusedDataRow();
 
             string tableName = rowTable["TABLE_NAME"].ToString();
 
@@ -201,5 +191,6 @@ namespace ISIA.UI.MANAGEMENT
 
             gridViewPartition.BestFitColumns();
         }
+
     }
 }

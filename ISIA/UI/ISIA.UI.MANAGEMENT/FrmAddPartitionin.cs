@@ -15,9 +15,12 @@ namespace ISIA.UI.MANAGEMENT
 {
     public partial class FrmAddPartitionin : XtraForm
     {
+        public delegate void MyDelegate();
+        public event MyDelegate MyEvent;
 
         public string partitionName { get; set; } 
         public string upperBound { get; set; }
+        public string objectName { get; set; }
 
         public FrmAddPartitionin()
         {
@@ -48,14 +51,21 @@ namespace ISIA.UI.MANAGEMENT
         {
             this.Close();
             /*StringBuilder stringBuilder = new StringBuilder();*/
+            StringBuilder strsql = new StringBuilder();
 
+            strsql.AppendFormat("ALTER TABLE {0} ADD PARTITION {1} VALUES LESS THAN ({2})", objectName, textpartitionName.Text, textupperBound.Text);
 
             FrmShowPartitioninSql frmShowPartitioninSql = new FrmShowPartitioninSql();
+            frmShowPartitioninSql.partitionsql = strsql;
             frmShowPartitioninSql.StartPosition = FormStartPosition.CenterScreen;
+            frmShowPartitioninSql.MyEvent += closeSqlPar;
             frmShowPartitioninSql.Show();
 
         }
 
-        
+        private void closeSqlPar()
+        {
+            MyEvent?.Invoke();
+        }
     }
 }

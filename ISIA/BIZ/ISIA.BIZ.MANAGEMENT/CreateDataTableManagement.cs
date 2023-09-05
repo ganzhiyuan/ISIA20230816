@@ -117,5 +117,24 @@ namespace ISIA.BIZ.MANAGEMENT
         }
 
 
+        public void AlterPartition(AwrArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql = arguments.PartitionSql;
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
     }
 }

@@ -16,6 +16,8 @@ namespace ISIA.UI.MANAGEMENT
     public partial class FrmDropPartitionin : XtraForm
     {
 
+        public delegate void MyDelegate();
+        public event MyDelegate MyEvent;
         public string partitionName { get; set; } 
         public string objectName { get; set; }
 
@@ -39,9 +41,6 @@ namespace ISIA.UI.MANAGEMENT
         }
 
 
-
-
-
         private void CheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckedListBoxControl checkedListBoxControl =  sender as CheckedListBoxControl;
@@ -61,6 +60,24 @@ namespace ISIA.UI.MANAGEMENT
             int index = tCheckedListBox1.SelectedIndex;
 
             tCheckedListBox1.SetItemChecked(index, true);
+        }
+
+        private void tButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            StringBuilder strsql = new StringBuilder();
+
+            strsql.AppendFormat("ALTER TABLE {0} DROP PARTITION  {1}", textobjectName.Text, textpartitionName.Text);
+            FrmShowPartitioninSql frmShowPartitioninSql = new FrmShowPartitioninSql();
+            frmShowPartitioninSql.partitionsql = strsql;
+            frmShowPartitioninSql.StartPosition = FormStartPosition.CenterScreen;
+            frmShowPartitioninSql.MyEvent += closeSqlPar;
+            frmShowPartitioninSql.Show();
+        }
+
+        private void closeSqlPar()
+        {
+            MyEvent?.Invoke();
         }
     }
 }
