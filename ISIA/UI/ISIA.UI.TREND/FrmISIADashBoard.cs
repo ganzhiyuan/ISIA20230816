@@ -54,36 +54,7 @@ namespace ISIA.UI.TREND
 
 
 
-        //private void GetTestData()
-        //{
-        //    DateTime currentTime = DateTime.Now;
-        //    DateTime beforeTime = currentTime.AddHours(-1);
-        //    string format = "yyyy-MM-dd HH:mm:ss";
-        //    string endStr = currentTime.ToString(format);
-        //    string startStr = beforeTime.ToString(format);
-        //    List<Student> stList = new List<Student>();
-        //    for (int i = 0; i < 50; i++)
-        //    {
-        //        Student st = new Student("John" + i, i, i, startStr, endStr, "2231231231", i, i);
-        //        stList.Add(st);
-        //    }
-        //    stDataList = stList;
-        //}
-
-        private async Task<List<T>> GetDashBoardData<T>(AwrArgsPack argsPack = null, string func = "GetDashBoardData") where T : new()
-        {
-            return await Task.Factory.StartNew(() =>
-            {
-                DataSet ds = bs.ExecuteDataSet(func, argsPack == null ? new AwrArgsPack().getPack() : argsPack.getPack());
-                if (ds == null)
-                {
-                    return new List<T>();
-                }
-                List<T> restlt = Utils.DataTableToList<T>(ds.Tables[0]);
-                return restlt;
-            }
-            );
-        }
+       
 
         private async void FrmISIADashBoard_Load(object sender, EventArgs e)
         {
@@ -140,15 +111,7 @@ namespace ISIA.UI.TREND
         {
 
         }
-        private async Task<IPagedList<T>> GetPagedAsyncList<T>(List<T> data, int pageNumber = 1, int pagesize = 10)
-        {
-            return await Task.Factory.StartNew(() =>
-            {
-                PagedList<T> pagedList = new PagedList<T>(data, pageNumber, pagesize);
-                return pagedList;
-            }
-            );
-        }
+      
 
 
 
@@ -180,6 +143,48 @@ namespace ISIA.UI.TREND
         private void timer1_Tick(object sender, EventArgs e)
         {
             btnSelect_Click(null, null);
+        }
+
+      
+
+        private void bandedGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            DbInfo row = (DbInfo)bandedGridView1.GetFocusedRow();
+            if (row is null)
+            {
+                return;
+            }
+
+            Hashtable dataLinkToWorkloadHashTable = new Hashtable();
+            dataLinkToWorkloadHashTable.Add("DBNAME", row.DBNAME);
+            base.OpenUI("WORKLOADTRENDCHART", "AWR", "WORKLOADTRENDCHART", null, dataLinkToWorkloadHashTable);
+        }
+
+        private void bandedGridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            if (e.Column.FieldName.Equals("DBNAME") || e.Column.FieldName.Equals("STATUS"))
+            {
+                AwrArgsPack awrArgs = new AwrArgsPack();
+                awrArgs.DBName = bandedGridView1.GetRowCellValue(e != null ? e.RowHandle : 0, "DBNAME").ToString();
+                awrArgs.StartTime = DB_SNAP_FETCH_DAYS;
+                ShowProcedureErrorMessage(awrArgs, e);
+
+            }
+        }
+
+        private async Task<List<T>> GetDashBoardData<T>(AwrArgsPack argsPack = null, string func = "GetDashBoardData") where T : new()
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                DataSet ds = bs.ExecuteDataSet(func, argsPack == null ? new AwrArgsPack().getPack() : argsPack.getPack());
+                if (ds == null)
+                {
+                    return new List<T>();
+                }
+                List<T> restlt = Utils.DataTableToList<T>(ds.Tables[0]);
+                return restlt;
+            }
+            );
         }
 
         private void checkDbStatus(List<DbInfo> allDbs, List<DbInfo> errorDbs)
@@ -268,18 +273,14 @@ namespace ISIA.UI.TREND
             bar1.GetSeriesMark += Bar_GetSeriesMark;//提示信息事件
 
         }
-
-        private void bandedGridView1_DoubleClick(object sender, EventArgs e)
+        private async Task<IPagedList<T>> GetPagedAsyncList<T>(List<T> data, int pageNumber = 1, int pagesize = 10)
         {
-            DbInfo row = (DbInfo)bandedGridView1.GetFocusedRow();
-            if (row is null)
+            return await Task.Factory.StartNew(() =>
             {
-                return;
+                PagedList<T> pagedList = new PagedList<T>(data, pageNumber, pagesize);
+                return pagedList;
             }
-
-            Hashtable dataLinkToWorkloadHashTable = new Hashtable();
-            dataLinkToWorkloadHashTable.Add("DBNAME", row.DBNAME);
-            base.OpenUI("WORKLOADTRENDCHART", "AWR", "WORKLOADTRENDCHART", null, dataLinkToWorkloadHashTable);
+            );
         }
 
         public class DbInfo
@@ -337,16 +338,6 @@ namespace ISIA.UI.TREND
             public string ERRORMESSAGE { get => errorMessage; set => errorMessage = value; }
         }
 
-        private void bandedGridView1_RowCellClick(object sender, RowCellClickEventArgs e)
-        {
-            if(e.Column.FieldName.Equals("DBNAME")|| e.Column.FieldName.Equals("STATUS"))
-            {
-                AwrArgsPack awrArgs = new AwrArgsPack();
-                awrArgs.DBName = bandedGridView1.GetRowCellValue(e != null ? e.RowHandle : 0, "DBNAME").ToString();
-                awrArgs.StartTime = DB_SNAP_FETCH_DAYS;
-                ShowProcedureErrorMessage(awrArgs, e);
-
-            }
-        }
+        
     }
 }

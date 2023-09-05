@@ -14,10 +14,11 @@ using Oracle.ManagedDataAccess.Client;
 using TAP.Data.Client;
 using ISIA.INTERFACE.ARGUMENTSPACK;
 using System.Threading;
+using TAP.UI;
 
 namespace ISIA.UI.MANAGEMENT
 {
-    public partial class FrmAddDataBase : XtraForm
+    public partial class FrmAddDataBase : UIBase
     {
         Int32 ltTimer = 0;
         bool finish = false;
@@ -379,7 +380,7 @@ namespace ISIA.UI.MANAGEMENT
                 //DBLINK页面，判断同名dblink是否存在，不存在则跳转下一页
                 args = new CreateDataBaseArgsPack();
                 
-                if (textdblinkname.EditValue == null || textdblinkname.EditValue.ToString() == "")
+                if (dbLinkTextBox.EditValue == null || dbLinkTextBox.EditValue.ToString() == "")
                 {
                     XtraMessageBox.Show(this, "Please input DB Link Name .  ",
                    "Warring", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -389,7 +390,7 @@ namespace ISIA.UI.MANAGEMENT
                 }
                 else
                 {
-                    dblinkname = textdblinkname.EditValue.ToString().ToUpper();
+                    dblinkname = dbLinkTextBox.EditValue.ToString().ToUpper();
                 }
 
                 args.DBLinkName = dblinkname;
@@ -480,7 +481,7 @@ namespace ISIA.UI.MANAGEMENT
         private void btntestconn_Click(object sender, EventArgs e)
         {
             //userid
-            if (textuser.EditValue == null || textuser.EditValue.ToString() == "")
+            if (dbNameTextbox.EditValue == null || dbNameTextbox.EditValue.ToString() == "")
             {
                 XtraMessageBox.Show(this, "Please input User Id ",
                "Warring", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -489,7 +490,7 @@ namespace ISIA.UI.MANAGEMENT
             }
             else
             {
-                userId = textuser.EditValue.ToString();
+                userId = dbNameTextbox.EditValue.ToString();
             }
 
             //password
@@ -506,7 +507,7 @@ namespace ISIA.UI.MANAGEMENT
             }
 
             //string ip = string.Empty;
-            if (textip.EditValue == null || textip.EditValue.ToString() == "")
+            if (ipTextBox.EditValue == null || ipTextBox.EditValue.ToString() == "")
             {
                 XtraMessageBox.Show(this, "Please input IP ",
                "Warring", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -515,11 +516,11 @@ namespace ISIA.UI.MANAGEMENT
             }
             else
             {
-                ip = textip.EditValue.ToString();
+                ip = ipTextBox.EditValue.ToString();
             }
 
             //string port = string.Empty;
-            if (textport.EditValue == null || textport.EditValue.ToString() == "")
+            if (descriptionTextBox.EditValue == null || descriptionTextBox.EditValue.ToString() == "")
             {
                 XtraMessageBox.Show(this, "Please input PORT ",
                "Warring", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -528,11 +529,11 @@ namespace ISIA.UI.MANAGEMENT
             }
             else
             {
-                port = textport.EditValue.ToString();
+                port = descriptionTextBox.EditValue.ToString();
             }
 
             
-            if (textservicename.EditValue == null || textservicename.EditValue.ToString() == "")
+            if (retentionTextBox.EditValue == null || retentionTextBox.EditValue.ToString() == "")
             {
                 XtraMessageBox.Show(this, "Please input Service Name ",
                "Warring", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -541,7 +542,7 @@ namespace ISIA.UI.MANAGEMENT
             }
             else
             {
-                serviceName = textservicename.EditValue.ToString();
+                serviceName = retentionTextBox.EditValue.ToString();
             }
 
             /*args.UserID = userId;
