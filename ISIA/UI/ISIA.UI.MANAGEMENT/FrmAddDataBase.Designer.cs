@@ -157,6 +157,7 @@ namespace ISIA.UI.MANAGEMENT
             // welcomeWizardPage1
             // 
             this.welcomeWizardPage1.Controls.Add(this.layoutControl1);
+            this.welcomeWizardPage1.Enabled = true;
             this.welcomeWizardPage1.IntroductionText = "\r\n";
             this.welcomeWizardPage1.Name = "welcomeWizardPage1";
             this.welcomeWizardPage1.ProceedText = "Please click the Test connection button first, and then click the Next button if " +
@@ -191,6 +192,9 @@ namespace ISIA.UI.MANAGEMENT
             this.textservicename.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textservicename.Location = new System.Drawing.Point(177, 190);
             this.textservicename.Name = "textservicename";
+            // 
+            // 
+            // 
             this.textservicename.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.textservicename.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.textservicename.Properties.Appearance.Options.UseBackColor = true;
@@ -238,6 +242,9 @@ namespace ISIA.UI.MANAGEMENT
             this.textport.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textport.Location = new System.Drawing.Point(177, 156);
             this.textport.Name = "textport";
+            // 
+            // 
+            // 
             this.textport.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.textport.Properties.Appearance.Options.UseForeColor = true;
             this.textport.Properties.NullText = "Input IP Address Port";
@@ -272,6 +279,9 @@ namespace ISIA.UI.MANAGEMENT
             this.textuser.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textuser.Location = new System.Drawing.Point(177, 54);
             this.textuser.Name = "textuser";
+            // 
+            // 
+            // 
             this.textuser.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.textuser.Properties.Appearance.Options.UseForeColor = true;
             this.textuser.Properties.NullText = "Iuput User ID";
@@ -286,6 +296,9 @@ namespace ISIA.UI.MANAGEMENT
             this.textip.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textip.Location = new System.Drawing.Point(177, 122);
             this.textip.Name = "textip";
+            // 
+            // 
+            // 
             this.textip.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.textip.Properties.Appearance.Options.UseForeColor = true;
             this.textip.Properties.NullText = "Input IP Address";
@@ -319,6 +332,9 @@ namespace ISIA.UI.MANAGEMENT
             this.textpassword.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textpassword.Location = new System.Drawing.Point(177, 88);
             this.textpassword.Name = "textpassword";
+            // 
+            // 
+            // 
             this.textpassword.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.textpassword.Properties.Appearance.Options.UseForeColor = true;
             this.textpassword.Properties.NullText = "Input password";
@@ -556,6 +572,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.wpprocedures.Controls.Add(this.listBoxprocedure);
             this.wpprocedures.DescriptionText = "The following is the information for the Procedure to be created";
+            this.wpprocedures.Enabled = true;
             this.wpprocedures.Name = "wpprocedures";
             this.wpprocedures.Padding = new System.Windows.Forms.Padding(19, 17, 19, 9);
             this.wpprocedures.Size = new System.Drawing.Size(790, 354);
@@ -580,6 +597,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpdbinfo.Controls.Add(this.labelControl1);
             this.wpdbinfo.DescriptionText = "Please check you\'re going to create all of the information is correct.If correct," +
     ".please select YES";
+            this.wpdbinfo.Enabled = true;
             this.wpdbinfo.Name = "wpdbinfo";
             this.wpdbinfo.Padding = new System.Windows.Forms.Padding(19, 17, 19, 17);
             this.wpdbinfo.Size = new System.Drawing.Size(790, 354);
@@ -620,6 +638,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // wpfinish
             // 
+            this.wpfinish.Enabled = true;
             this.wpfinish.FinishText = "Congratulations to you . \r\n\r\nYou have successfully created the DB Link, DataTable" +
     ", and Procedure.\r\n\r\nClick finish to close .";
             this.wpfinish.Name = "wpfinish";
@@ -637,6 +656,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wizardDBLink.Controls.Add(this.labelControl10);
             this.wizardDBLink.DescriptionText = "After entering the db link name and oracle version you will create a DB link conn" +
     "ection";
+            this.wizardDBLink.Enabled = true;
             this.wizardDBLink.Name = "wizardDBLink";
             this.wizardDBLink.Size = new System.Drawing.Size(790, 354);
             this.wizardDBLink.Text = "Creat DBLink";
@@ -662,8 +682,11 @@ namespace ISIA.UI.MANAGEMENT
             this.comboBoxEdit1.EditValue = "oracle 11g";
             this.comboBoxEdit1.Location = new System.Drawing.Point(201, 123);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
+            // 
+            // 
+            // 
             this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
             this.comboBoxEdit1.Size = new System.Drawing.Size(129, 20);
             this.comboBoxEdit1.TabIndex = 3;
             // 
@@ -671,7 +694,6 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.labelControl11.Location = new System.Drawing.Point(71, 126);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(75, 14);
             this.labelControl11.TabIndex = 2;
             this.labelControl11.Text = "Oracle Edition";
             // 
@@ -695,6 +717,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.wpdatatable.Controls.Add(this.listBoxdatatable);
             this.wpdatatable.DescriptionText = "The following is the information for the DataTable to be created";
+            this.wpdatatable.Enabled = true;
             this.wpdatatable.Name = "wpdatatable";
             this.wpdatatable.Padding = new System.Windows.Forms.Padding(19, 17, 19, 9);
             this.wpdatatable.Size = new System.Drawing.Size(790, 354);
@@ -723,6 +746,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpbcreate.Controls.Add(this.memoinfo);
             this.wpbcreate.DescriptionText = "DB Link: ISII is created successfully  DataTable : 8 is created successfully.   P" +
     "rocedure : 1 is created successfully";
+            this.wpbcreate.Enabled = true;
             this.wpbcreate.Name = "wpbcreate";
             this.wpbcreate.Padding = new System.Windows.Forms.Padding(10);
             this.wpbcreate.Size = new System.Drawing.Size(790, 354);
@@ -733,8 +757,11 @@ namespace ISIA.UI.MANAGEMENT
             this.memoinfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.memoinfo.Location = new System.Drawing.Point(10, 10);
             this.memoinfo.Name = "memoinfo";
+            // 
+            // 
+            // 
             this.memoinfo.Properties.AllowFocused = false;
-            this.memoinfo.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memoinfo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memoinfo.Properties.Appearance.Options.UseFont = true;
             this.memoinfo.Properties.ReadOnly = true;
             this.memoinfo.Size = new System.Drawing.Size(770, 334);
