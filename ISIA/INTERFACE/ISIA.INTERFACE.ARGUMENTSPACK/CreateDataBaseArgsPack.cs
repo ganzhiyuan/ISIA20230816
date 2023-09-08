@@ -20,6 +20,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         private DateTime _DateNow ;
         private string _ProcedureName = null;
         private string _detectionFlag = null;
+        private string _Script = null;
 
         private ArgumentPack argsPack = new ArgumentPack();
 
@@ -44,6 +45,19 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string ProcedureName { get { return _ProcedureName; } set { _ProcedureName = value; } }
 
         public string DetectionFlag { get { return _detectionFlag; } set { _detectionFlag = value; } }
+
+        public string Script
+        {
+            get
+            {
+                return _Script;
+            }
+
+            set
+            {
+                _Script = value;
+            }
+        }
 
         public ArgumentPack getPack()
         {

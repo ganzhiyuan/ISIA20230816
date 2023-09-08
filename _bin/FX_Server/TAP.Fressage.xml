@@ -16,8 +16,8 @@
         </member>
         <member name="P:TAP.Fressage.Cn.MsgTemplate.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.Cn.MsgTemplate.BE2_CAN">
@@ -648,7 +648,7 @@
         </member>
         <member name="T:TAP.Fressage.CodeLoader">
             <summary>
-            This class provides code collection.
+            This class provides library to loading code collection data.
             </summary>
         </member>
         <member name="P:TAP.Fressage.CodeLoader.CodeCharactoer">
@@ -671,54 +671,22 @@
             Verbs
             </summary>
         </member>
-        <member name="P:TAP.Fressage.CodeLoader.PrepositionHash">
+        <member name="M:TAP.Fressage.CodeLoader.#ctor(TAP.Fressage.EnumLanguage)">
             <summary>
-            Preposition
+            This creates instance of CodeLoader.
             </summary>
+            <param name="argLanguage"></param>
         </member>
-        <member name="P:TAP.Fressage.CodeLoader.AcronymHash">
+        <member name="M:TAP.Fressage.CodeLoader.#ctor(TAP.Fressage.EnumLanguage,System.String)">
             <summary>
-            Acronym
-            </summary>
-        </member>
-        <member name="P:TAP.Fressage.CodeLoader.ConjunctionHash">
-            <summary>
-            Conjunction
-            </summary>
-        </member>
-        <member name="P:TAP.Fressage.CodeLoader.AdverbHash">
-            <summary>
-            Adverb
-            </summary>
-        </member>
-        <member name="P:TAP.Fressage.CodeLoader.IdomHash">
-            <summary>
-            Idom
-            </summary>
-        </member>
-        <member name="M:TAP.Fressage.CodeLoader.#ctor">
-            <summary>
-            This creates an instance of this class.
-            </summary>
-        </member>
-        <member name="M:TAP.Fressage.CodeLoader.GetInstance(TAP.Fressage.EnumLanguage)">
-            <summary>
-            This is static accessor of this class.
+            This creates instance of CodeLoader.
             </summary>
             <param name="argLanguage">User Language</param>
-            <returns>Instance of CodeLoader</returns>
+            <param name="codeCollectionPath">Code collecation file path</param>
         </member>
-        <member name="M:TAP.Fressage.CodeLoader.GetInstance(TAP.Fressage.EnumLanguage,System.String)">
+        <member name="M:TAP.Fressage.CodeLoader.LoadData(System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,TAP.Fressage.Idoms}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@)">
             <summary>
-            This is static accessor of this class.
-            </summary>
-            <param name="argLanguage">User Language</param>
-            <param name="codeCollectionPath">File path of code collection</param>
-            <returns>Instance of CodeLoader</returns>
-        </member>
-        <member name="M:TAP.Fressage.CodeLoader.LoadData(System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,TAP.Fressage.Idioms}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@,System.Collections.Generic.Dictionary{System.String,System.String}@)">
-            <summary>
-            This method loads code collection data.
+            This method loads code data.
             </summary>
             <param name="argNounHash">Noun code hashtable</param>
             <param name="argVerbHash">Verb code hashtable</param>
@@ -732,7 +700,7 @@
         </member>
         <member name="M:TAP.Fressage.CodeLoader.LoadData(TAP.Fressage.EnumLanguage,TAP.Fressage.EnumPartOfSpeech)">
             <summary>
-            This method loads part of position specified.
+            This method load part of position data assigned.
             </summary>
             <param name="argLanguage">Language code</param>
             <param name="argPartOfSpeech">Part of Speech</param>
@@ -9529,21 +9497,6 @@
             Work
             </summary>
         </member>
-        <member name="F:TAP.Fressage.EnumVerbs.LOSS">
-            <summary>
-            Loss
-            </summary>
-        </member>
-        <member name="F:TAP.Fressage.EnumVerbs.REWORK">
-            <summary>
-            Rework
-            </summary>
-        </member>
-        <member name="F:TAP.Fressage.EnumVerbs.SHIP">
-            <summary>
-            Ship
-            </summary>
-        </member>
         <member name="T:TAP.Fressage.EnumBEVerb">
             <summary>
             This enumeratior is BE verb list supported.
@@ -9571,8 +9524,8 @@
         </member>
         <member name="P:TAP.Fressage.En.IrregularVerb.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.En.IrregularVerb.BEAR">
@@ -10077,8 +10030,8 @@
         </member>
         <member name="P:TAP.Fressage.En.MsgTemplate.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.En.MsgTemplate.BE2_CAN">
@@ -10687,44 +10640,44 @@
               Looks up a localized string similar to set,set.
             </summary>
         </member>
-        <member name="T:TAP.Fressage.Idioms">
+        <member name="T:TAP.Fressage.Idoms">
             <summary>
-            This class provides processing idioms.
+            This class provides libararies for processing idioms.
             </summary>
         </member>
-        <member name="M:TAP.Fressage.Idioms.#ctor">
+        <member name="M:TAP.Fressage.Idoms.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of Idoms.. 
             </summary>
         </member>
-        <member name="M:TAP.Fressage.Idioms.#ctor(System.String,TAP.Fressage.EnumPartOfSpeech)">
+        <member name="M:TAP.Fressage.Idoms.#ctor(System.String,TAP.Fressage.EnumPartOfSpeech)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of Idoms.. 
             </summary>
             <param name="argCode">Code</param>
             <param name="argPartOfSpeech">Part of speech</param>
         </member>
-        <member name="P:TAP.Fressage.Idioms.CODE">
+        <member name="P:TAP.Fressage.Idoms.CODE">
             <summary>
             Code
             </summary>
         </member>
-        <member name="P:TAP.Fressage.Idioms.PartOfSpeech">
+        <member name="P:TAP.Fressage.Idoms.PartOfSpeech">
             <summary>
             Part of speech
             </summary>
         </member>
-        <member name="P:TAP.Fressage.Idioms.POS">
+        <member name="P:TAP.Fressage.Idoms.POS">
             <summary>
             Part of speech
             </summary>
         </member>
-        <member name="P:TAP.Fressage.Idioms.NATIVE">
+        <member name="P:TAP.Fressage.Idoms.NATIVE">
             <summary>
             Native
             </summary>
         </member>
-        <member name="P:TAP.Fressage.Idioms.Values">
+        <member name="P:TAP.Fressage.Idoms.Values">
             <summary>
             Values
             </summary>
@@ -10741,8 +10694,8 @@
         </member>
         <member name="P:TAP.Fressage.IrregularPPCode.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.IrregularPPCode.BEATEN">
@@ -11177,8 +11130,8 @@
         </member>
         <member name="P:TAP.Fressage.Kr.MsgTemplate.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.Kr.MsgTemplate.BE2_CAN">
@@ -13060,19 +13013,19 @@
         </member>
         <member name="M:TAP.Fressage.Neutral.Initialize">
             <summary>
-            This method initializes the  instance.
+            This method initialize instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Neutral.ToUpperFirstCharacter(System.String)">
             <summary>
-            This method changes first character to upper case.
+            This method change first character to upper case.
             </summary>
             <param name="argNaturePhrase">Nature Phrase converted</param>
             <returns>Nature Phrase changed first character to upper case</returns>
         </member>
         <member name="T:TAP.Fressage.NeutralConverter">
             <summary>
-            This class support fressage code converting.
+            This class converts fressage code phrase to language-neutral nature Phrase.
             </summary>
         </member>
         <member name="P:TAP.Fressage.NeutralConverter.CurrentLanguage">
@@ -13097,7 +13050,7 @@
         </member>
         <member name="M:TAP.Fressage.NeutralConverter.#ctor(TAP.Fressage.EnumLanguage,TAP.Fressage.EnumUseFor,System.Boolean)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of NeutralConverter.
             </summary>
             <param name="argLanguages">User language</param>
             <param name="argUserFor">Converting text for user interface or for user message</param>
@@ -13105,7 +13058,7 @@
         </member>
         <member name="M:TAP.Fressage.NeutralConverter.#ctor(TAP.Fressage.EnumLanguage,TAP.Fressage.EnumUseFor,System.Boolean,System.String)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of NeutralConverter.
             </summary>
             <param name="argLanguages">User language</param>
             <param name="argUserFor">Converting text for user interface or for user message</param>
@@ -13114,7 +13067,7 @@
         </member>
         <member name="M:TAP.Fressage.NeutralConverter.Initialize">
             <summary>
-            This method initializes the intance.
+            This method initialize this intance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.NeutralConverter.ConvertPhrase(System.String)">
@@ -13234,8 +13187,8 @@
         </member>
         <member name="P:TAP.Fressage.Resource1.Culture">
             <summary>
-              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
-              재정의합니다.
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대한 현재 스레드의 CurrentUICulture
+              속성을 재정의합니다.
             </summary>
         </member>
         <member name="P:TAP.Fressage.Resource1.HAVE_ALTERNATIVE">
@@ -13245,7 +13198,7 @@
         </member>
         <member name="T:TAP.Fressage.SpecifiedBase">
             <summary>
-            This class is abstract class of language-specific classes.
+            This class is abstract class of language-specified classes.
             </summary>
         </member>
         <member name="F:TAP.Fressage.SpecifiedBase._fressageCodePath">
@@ -13460,7 +13413,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedBase.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.SpecifiedBase.FixVerbChange(System.String,TAP.Fressage.EnumVerbChange,System.Collections.Hashtable)">
@@ -13474,33 +13427,33 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedBase.ToUpperFirstCharacter(System.String)">
             <summary>
-            This method changes first character to upper case.
+            This method change first character to upper case.
             </summary>
             <param name="argNaturePhrase">Nature Phrase converted</param>
             <returns>Nature Phrase changed first character to upper case</returns>
         </member>
         <member name="M:TAP.Fressage.SpecifiedBase.IncludeNumericCode(System.String)">
             <summary>
-            This method judges wheter specified code includes numerical nature.
+            This method judge wheter specified code includes numerical nature.
             </summary>
             <param name="code">Code</param>
             <returns>If 'TRUE', code includes numerical nature</returns>
         </member>
         <member name="M:TAP.Fressage.SpecifiedBase.MakeReverseString(System.String)">
             <summary>
-            This method makes the reverse phrase
+            This method makes reverse phrase
             </summary>
             <param name="phrase">Phrase</param>
             <returns>Reverse phrase</returns>
         </member>
         <member name="T:TAP.Fressage.SpecifiedConverter">
             <summary>
-            This class is abstract class of language-specific converter classes.
+            This class is abstract class of language specified converter classes.
             </summary>
         </member>
         <member name="M:TAP.Fressage.SpecifiedConverter.Convert(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},TAP.Fressage.EnumSyntax,TAP.Fressage.EnumUseFor,System.String[],System.String@,System.String@)">
             <summary>
-            This method converts the language-neutral nature phrase to language-specified nature phrase.
+            This method converts language-neutral nature phrase to language-specified nature phrase.
             </summary>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
             <param name="argPartOfSpeech">Part of speech list</param>
@@ -13514,7 +13467,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedConverter.ChangePartOfSpeech(System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.String[],System.String@,System.String@)">
             <summary>
-            This method changes the language-neutral part of speech to lanugage-specified part of speach.
+            This method changes language-neutral part of speech to lanugage-specified part of speach.
             </summary>
             <param name="argPartOfSpeech">Part of speach list</param>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
@@ -13563,7 +13516,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedConverter.ApplyingPrePosition(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.Collections.Generic.List{System.String}@,System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech}@,TAP.Fressage.EnumUseFor,System.String@)">
             <summary>
-            This method applies the postposition instead of preposition  in specified language grammar.
+            This method applies postposition instead of preposition  in specified language grammar.
             </summary>
             <param name="argNaturePhrase">Nature phrase</param>
             <param name="argPartOfSpeech">Language-neutral Part of position list</param>
@@ -13582,14 +13535,14 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedConverter.IsAlphabet(System.String)">
             <summary>
-            This method checks if assigned string is alphabet.
+            This method checks that assigned string is alphabet.
             </summary>
             <param name="argString">String</param>
             <returns>If assigned string is alphabet, this method returns 'TRUE'.</returns>
         </member>
         <member name="M:TAP.Fressage.SpecifiedConverter.ConvertPostPosition(System.String,TAP.Fressage.EnumCodeCharacter)">
             <summary>
-            This method converts the preposition.
+            This method converts preposition.
             </summary>
             <param name="argPostposition">Preposition code</param>
             <param name="argCodeCharacter">Character code</param>
@@ -13607,7 +13560,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.ConvertTemplateSpcified(System.Boolean,System.String,System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method converts the tempalate to specified language.
+            This method convert tempalate to specified language
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb</param>
             <param name="message">Native message</param>
@@ -13622,7 +13575,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.SpecifyArguments(System.String,System.String)">
             <summary>
-            This method converts the argument for specified language.
+            This method convert argument for specified language
             </summary>
             <param name="codeArgumen">Code</param>
             <param name="nativeArgument">Native</param>
@@ -13630,7 +13583,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.SetAdverb(System.Boolean,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method sets adverbs
+            This method set adverb
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb.</param>
             <param name="message">Native Message</param>
@@ -13641,7 +13594,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.ChageVerb(System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method changes the verb of template for specified language.
+            This method changes verb of template for specified language.
             </summary>
             <param name="verb">Verb</param>
             <param name="tmpType">Template type</param>
@@ -13649,7 +13602,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.ArrangePrePositionPhrase(System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method arranges the prepositionphrase
+            This method arrange prepositionphrase
             </summary>
             <param name="verb">Native verb</param>
             <param name="argument">Native argument</param>
@@ -13671,7 +13624,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.GetGeneralTempate(System.String,System.String@)">
             <summary>
-            This method gets the template
+            This method gets template
             </summary>
             <param name="templateCode">General template type</param>
             <param name="tmplate">Template message</param>
@@ -13679,7 +13632,7 @@
         </member>
         <member name="M:TAP.Fressage.SpecifiedTranslator.GetBETemplate(System.String,System.String@)">
             <summary>
-            This method gets the template
+            This method gets template
             </summary>
             <param name="templateCode">BE template type</param>
             <param name="tmplate">Template message</param>
@@ -13687,22 +13640,22 @@
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedConverterCN">
             <summary>
-            This class provides Chinese-specific converting.
+            This class provides Chinese-specified converting.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterCN.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedConverterCN.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterCN.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterCN.Convert(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},TAP.Fressage.EnumSyntax,TAP.Fressage.EnumUseFor,System.String[],System.String@,System.String@)">
             <summary>
-            This method converts language-neutral nature phrase to chinese-specific nature phrase.
+            This method converts language-neutral nature phrase to language-specified nature phrase.
             </summary>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
             <param name="argPartOfSpeech">Part of speech list</param>
@@ -13716,7 +13669,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterCN.ChangePartOfSpeech(System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.String[],System.String@,System.String@)">
             <summary>
-            This method changes language-neutral part of speech to chinese-specific part of speach.
+            This method changes language-neutral part of speech to lanugage-specified part of speach.
             </summary>
             <param name="argPartOfSpeech">Part of speach list</param>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
@@ -13728,7 +13681,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterCN.MakeFinalNaturePhrase(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter})">
             <summary>
-            This method fixes final phrase in Chinese grammar.
+            This method fixes final phrase in specified language grammar.
             </summary>
             <param name="argNaturePhrase">Nature phrase</param>
             <param name="argPartOfSpeech">Part of speeach list</param>
@@ -13754,22 +13707,22 @@
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedConverterEN">
             <summary>
-            This class provides English-specific converting.
+            This class provides English-specified converting.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedConverterEN.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.Convert(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},TAP.Fressage.EnumSyntax,TAP.Fressage.EnumUseFor,System.String[],System.String@,System.String@)">
             <summary>
-            This method converts language-neutral nature phrase to English-specific nature phrase.
+            This method converts language-neutral nature phrase to language-specified nature phrase.
             </summary>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
             <param name="argPartOfSpeech">Part of speech list</param>
@@ -13783,7 +13736,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.ChangePartOfSpeech(System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.String[],System.String@,System.String@)">
             <summary>
-            This method changes language-neutral part of speech to English-specific part of speach.
+            This method changes language-neutral part of speech to lanugage-specified part of speach.
             </summary>
             <param name="argPartOfSpeech">Part of speach list</param>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
@@ -13795,7 +13748,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.MakeFinalNaturePhrase(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter})">
             <summary>
-            This method fixes final phrase in English grammar.
+            This method fixes final phrase in specified language grammar.
             </summary>
             <param name="argNaturePhrase">Nature phrase</param>
             <param name="argPartOfSpeech">Part of speeach list</param>
@@ -13820,36 +13773,36 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.MakePP(System.String)">
             <summary>
-            This method changes the verb to PP.
+            This method changes vert to PP.
             </summary>
             <param name="verb">Verb</param>
             <returns>PP of verb</returns>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterEN.MakeIng(System.String)">
             <summary>
-            This method changes the vert to ING.
+            This method changes vert to ING.
             </summary>
             <param name="verb">Verb</param>
             <returns>ING of verb</returns>
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedConverterKR">
             <summary>
-            This class provides Korean-specific converting.
+            This class provides Korean-specified converting.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedConverterKR.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.Initialize">
             <summary>
-            This method initializes the this instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.Convert(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},TAP.Fressage.EnumSyntax,TAP.Fressage.EnumUseFor,System.String[],System.String@,System.String@)">
             <summary>
-            This method converts language-neutral nature phrase to Korean-specific nature phrase.
+            This method converts language-neutral nature phrase to language-specified nature phrase.
             </summary>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
             <param name="argPartOfSpeech">Part of speech list</param>
@@ -13863,7 +13816,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.ChangePartOfSpeech(System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.String[],System.String@,System.String@)">
             <summary>
-            This method changes language-neutral part of speech to Korean-specific part of speach.
+            This method changes language-neutral part of speech to lanugage-specified part of speach.
             </summary>
             <param name="argPartOfSpeech">Part of speach list</param>
             <param name="argNaturePhrase">Language-neutral nature phrase</param>
@@ -13875,7 +13828,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.MakeFinalNaturePhrase(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter})">
             <summary>
-            This method fixes final phrase in Korean grammar.
+            This method fixes final phrase in specified language grammar.
             </summary>
             <param name="argNaturePhrase">Nature phrase</param>
             <param name="argPartOfSpeech">Part of speeach list</param>
@@ -13884,7 +13837,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedConverterKR.ApplyingPostPosition(System.Collections.Generic.List{System.String},System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech},System.Collections.Generic.List{TAP.Fressage.EnumCodeCharacter},System.Collections.Generic.List{System.String}@,System.Collections.Generic.List{TAP.Fressage.EnumPartOfSpeech}@,System.Int32@,TAP.Fressage.EnumUseFor)">
             <summary>
-            This method applies postposition instead of preposition  in Korean grammar.
+            This method applies postposition instead of preposition  in specified language grammar.
             </summary>
             <param name="argNaturePhrase">Nature phrase</param>
             <param name="argPartOfPosition">Language-neutral Part of position list</param>
@@ -13904,34 +13857,34 @@
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedTranslatorCn">
             <summary>
-            This class provides Chinese-specific translatring.
+            This class provides Chinese-specified translatring.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorCn.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.#ctor(System.String)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorCn.
             </summary>
             <param name="codePath">Code path</param>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.Initialize(System.String)">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
             <param name="codePath">Code Path</param>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.ConvertTemplateSpcified(System.Boolean,System.String,System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method convert tempalate to Chinese.
+            This method convert tempalate to specified language
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb</param>
             <param name="message">Native message</param>
@@ -13946,7 +13899,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.SpecifyArguments(System.String,System.String)">
             <summary>
-            This method convert argument for Chinese.
+            This method convert argument for specified language
             </summary>
             <param name="codeArgumen">Code</param>
             <param name="nativeArgument">Native</param>
@@ -13954,7 +13907,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.SetAdverb(System.Boolean,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method sets the adverb
+            This method set adverb
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb.</param>
             <param name="message">Native Message</param>
@@ -13965,7 +13918,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.ChageVerb(System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method changes verb of template forChinese.
+            This method changes verb of template for specified language.
             </summary>
             <param name="verb">Verb</param>
             <param name="tmpType">Template type</param>
@@ -13973,7 +13926,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorCn.ArrangePrePositionPhrase(System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method arrange the prepositionphrase
+            This method arrange prepositionphrase
             </summary>
             <param name="verb">Native verb</param>
             <param name="argument">Native argument</param>
@@ -13986,34 +13939,34 @@
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedTranslatorEn">
             <summary>
-            This class provides English-specific translatring.
+            This class provides English-specified translatring.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorEn.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.#ctor(System.String)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorEn.
             </summary>
             <param name="codePath">Code Path</param>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.Initialize(System.String)">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
             <param name="codePath">Code Path</param>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.ConvertTemplateSpcified(System.Boolean,System.String,System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method convert tempalate to English language
+            This method convert tempalate to specified language
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb</param>
             <param name="message">Native message</param>
@@ -14028,7 +13981,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.SpecifyArguments(System.String,System.String)">
             <summary>
-            This method convert argument for English
+            This method convert argument for specified language
             </summary>
             <param name="codeArgument">Code</param>
             <param name="nativeArgument">Native</param>
@@ -14036,7 +13989,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.SetAdverb(System.Boolean,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method sets the adverb
+            This method set adverb
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb.</param>
             <param name="message">Native Message</param>
@@ -14047,7 +14000,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.ChageVerb(System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method changes the verb of template for English
+            This method changes verb of template for specified language.
             </summary>
             <param name="verb">Verb</param>
             <param name="tmpType">Template type</param>
@@ -14055,21 +14008,21 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.IsNeedPP(TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method judges if specified template needs "PP" type.
+            This method judges that specified template needs "PP" type or not.
             </summary>
             <param name="template">Template type</param>
             <returns>If 'TRUE', specified template needs "PP"</returns>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.IsNeedIng(TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method judges if specified template needs "ING".
+            This method judges that specified template needs "ING" type or not.
             </summary>
             <param name="template">Template type</param>
             <returns>If 'TRUE', specified template needs "ING"</returns>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorEn.ArrangePrePositionPhrase(System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method arranges the prepositionphrase
+            This method arrange prepositionphrase
             </summary>
             <param name="verb">Native verb</param>
             <param name="argument">Native argument</param>
@@ -14082,28 +14035,28 @@
         </member>
         <member name="T:TAP.Fressage.Specified.SpecifiedTranslatorKr">
             <summary>
-            This class provides Korean-specific translatring.
+            This class provides Korean-specified translatring.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.#ctor">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorKr.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.#ctor(System.String)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of SpecifiedTranslatorKr.
             </summary>
             <param name="codePath">Code file path</param>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.Initialize">
             <summary>
-            This method initializes the instance.
+            This method initialize this instance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.ConvertTemplateSpcified(System.Boolean,System.String,System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method convert tempalate to Korean.
+            This method convert tempalate to specified language
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb</param>
             <param name="message">Native message</param>
@@ -14118,7 +14071,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.ConvertAdjectiveSpecified(TAP.Fressage.EnumBETemplateType,System.String,System.String)">
             <summary>
-            This method converts adjectives for Korean.
+            This method converts adjectives for Korean
             </summary>
             <param name="tmpType">Templit Type</param>
             <param name="originalArgu">Original Argument</param>
@@ -14127,7 +14080,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.SpecifyArguments(System.String,System.String)">
             <summary>
-            This method convert argument for Korean.
+            This method convert argument for specified language
             </summary>
             <param name="codeArgumen">Code</param>
             <param name="nativeArgument">Native</param>
@@ -14135,7 +14088,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.SetAdverb(System.Boolean,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method sets the adverb.
+            This method set adverb
             </summary>
             <param name="isBE">If true, verb of this sentence is BE-verb.</param>
             <param name="message">Native Message</param>
@@ -14146,7 +14099,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.ChageVerb(System.String,TAP.Fressage.EnumGeneralTemplateType)">
             <summary>
-            This method changes verb of template Korean.
+            This method changes verb of template for specified language.
             </summary>
             <param name="verb">Verb</param>
             <param name="tmpType">Template type</param>
@@ -14154,7 +14107,7 @@
         </member>
         <member name="M:TAP.Fressage.Specified.SpecifiedTranslatorKr.ArrangePrePositionPhrase(System.String,System.String,System.String,System.String,TAP.Fressage.EnumGeneralTemplateType,System.String,System.String)">
             <summary>
-            This method arranges the prepositionphrase
+            This method arrange prepositionphrase
             </summary>
             <param name="verb">Native verb</param>
             <param name="argument">Native argument</param>
@@ -14205,7 +14158,7 @@
         </member>
         <member name="T:TAP.Fressage.TemplateConverter">
             <summary>
-            This class translate fressage code sentence to language-specific nature phrase.
+            This class translate fressage code sentence to language-neutral nature Phrase.
             </summary>
         </member>
         <member name="P:TAP.Fressage.TemplateConverter.CodeCollectionFilePath">
@@ -14215,12 +14168,12 @@
         </member>
         <member name="P:TAP.Fressage.TemplateConverter.Instance">
             <summary>
-            Static accessor of this class
+            Static accessor of NeutralTranslator. If you want use this property, you must create instance of this class using method 'CreateInstance'.
             </summary>
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.CreateInstance(TAP.Fressage.EnumLanguage,System.Boolean)">
             <summary>
-            Static accessor of this class
+            Static accessor of NeutralTranslator
             </summary>
             <param name="argLanguages">User's languate</param>
             <param name="argTestingMode">If "TRUE", this class will be operated on tesint mode</param>
@@ -14228,7 +14181,7 @@
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.CreateInstance(TAP.Fressage.EnumLanguage,System.Boolean,System.String)">
             <summary>
-            Static accessor of this class
+            Static accessor of NeutralTranslator
             </summary>
             <param name="argLanguages">User's languate</param>
             <param name="argTestingMode">If "TRUE", this class will be operated on tesint mode</param>
@@ -14237,14 +14190,14 @@
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.#ctor(TAP.Fressage.EnumLanguage,System.Boolean)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of NeutralConverter.
             </summary>
             <param name="argLanguages">User language</param>
             <param name="argTestingMode">Converting text for user interface or for user message</param>
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.#ctor(TAP.Fressage.EnumLanguage,System.Boolean,System.String)">
             <summary>
-            This creates an instance of this class.
+            This creates instance of NeutralConverter.
             </summary>
             <param name="argLanguages">User language</param>
             <param name="argTestingMode">Converting text for user interface or for user message</param>
@@ -14257,7 +14210,7 @@
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.Initialize">
             <summary>
-            This method initializes the intance.
+            This method initialize this intance.
             </summary>
         </member>
         <member name="M:TAP.Fressage.TemplateConverter.ConvertGeneralTemplate(TAP.Fressage.EnumVerbs,TAP.Fressage.EnumGeneralTemplateType,System.String)">
