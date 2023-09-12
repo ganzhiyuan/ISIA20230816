@@ -43,8 +43,7 @@ namespace ISIA.UI.MANAGEMENT
         {
             args.PartitionSql = partitionsql;
             MyEvent?.Invoke();
-            this.Close();
-            return;
+            
             int ds = bs.ExecuteModify("AlterPartition", args.getPack());
 
             if (ds == -1)
@@ -59,8 +58,9 @@ namespace ISIA.UI.MANAGEMENT
                 TAP.UI.TAPMsgBox.Instance.ShowMessage("Warring", EnumMsgType.WARNING, "Drop Partition fail!");
                 this.Close();
             }
+            this.Close();
+            return;
 
-            
         }
 
         private void FrmShowPartitioninSql_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
