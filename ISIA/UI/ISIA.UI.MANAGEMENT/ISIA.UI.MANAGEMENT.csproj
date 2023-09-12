@@ -199,6 +199,24 @@
     <Compile Include="FrmAddDataBase.Designer.cs">
       <DependentUpon>FrmAddDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmShowPartitioninSql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmShowPartitioninSql.Designer.cs">
+      <DependentUpon>FrmShowPartitioninSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDropPartitionin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDropPartitionin.Designer.cs">
+      <DependentUpon>FrmDropPartitionin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDataTableManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDataTableManagement.Designer.cs">
+      <DependentUpon>FrmDataTableManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmParameterspecdata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +280,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RepType.cs" />
+    <Compile Include="FrmAddPartitionin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddPartitionin.Designer.cs">
+      <DependentUpon>FrmAddPartitionin.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmAdd.resx">
@@ -269,6 +293,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddDataBase.resx">
       <DependentUpon>FrmAddDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmShowPartitioninSql.resx">
+      <DependentUpon>FrmShowPartitioninSql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDropPartitionin.resx">
+      <DependentUpon>FrmDropPartitionin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddPartitionin.resx">
+      <DependentUpon>FrmAddPartitionin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDataTableManagement.resx">
+      <DependentUpon>FrmDataTableManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDataBaseManagement.resx">
       <DependentUpon>FrmDataBaseManagement.cs</DependentUpon>
