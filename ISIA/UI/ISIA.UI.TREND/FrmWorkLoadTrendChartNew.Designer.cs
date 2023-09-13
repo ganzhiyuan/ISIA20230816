@@ -562,7 +562,7 @@ namespace ISIA.UI.TREND
             this.tLUCKDbname.SqlType = TAP.UIControls.EnumSqlType.Biz;
             this.tLUCKDbname.StyleController = this.lcSerachOptions;
             this.tLUCKDbname.TabIndex = 33;
-            this.tLUCKDbname.ValueMember = "DBID";
+            this.tLUCKDbname.ValueMember = "DBNAME";
             // 
             // tSearchLookUpEditCheck1View
             // 

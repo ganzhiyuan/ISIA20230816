@@ -75,7 +75,8 @@ namespace ISIA.BIZ.TREND
                 tmpSql.AppendFormat("sm.* FROM RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0} sm WHERE 1 = 1 ", arguments.DBName);
                 tmpSql.AppendFormat(" AND  sm.INSTANCE_NUMBER  = {0}  ", arguments.INSTANCE_NUMBER);
                 tmpSql.AppendFormat("  AND sm.dbid = {0}  ", arguments.DBID);
-                 tmpSql.Append(@"  AND TO_CHAR(sm.BEGIN_TIME, 'YYYYMMDD-HH24MI') BETWEEN
+
+                tmpSql.Append(@"  AND TO_CHAR(sm.BEGIN_TIME, 'YYYYMMDD-HH24MI') BETWEEN
                  ");
 
                 tmpSql.AppendFormat("  '{0}-0000' AND '{1}-2400' ", arguments.StartTime,arguments.EndTime);
@@ -353,6 +354,7 @@ namespace ISIA.BIZ.TREND
                                 ");
                 tmpSql.Append(" FROM sum_workload T where 1=1 ");
                 tmpSql.AppendFormat(" and DBID='{0}'", arguments.DBID);
+
                 if (!string.IsNullOrEmpty(arguments.INSTANCE_NUMBER))
                 {
                     tmpSql.AppendFormat(" and INSTANCE_NUMBER in ({0})", Utils.MakeSqlQueryIn2(arguments.INSTANCE_NUMBER));

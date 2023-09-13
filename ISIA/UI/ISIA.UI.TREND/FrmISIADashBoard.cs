@@ -40,7 +40,7 @@ namespace ISIA.UI.TREND
         List<DbInfo> currentList = null;
 
         public const string GET_DB_STATUS_FUNC = "GetDBFetchAwrDataStatus";
-        public const string ERROR_FETCH_HOURS = "100";
+        public const string ERROR_FETCH_HOURS = "1";
         public const string DB_SNAP_FETCH_DAYS = "2";
 
 
@@ -50,6 +50,7 @@ namespace ISIA.UI.TREND
         {
             InitializeComponent();
             bs = new BizDataClient("ISIA.BIZ.TREND.DLL", "ISIA.BIZ.TREND.ISIADashboard");
+         
         }
 
 
@@ -67,7 +68,7 @@ namespace ISIA.UI.TREND
             currentPagedList = allDataPagedlist;
             WrapperLabelControl();
             bandedGridView1_RowClick(null, null);
-            timer1.Interval = 1000 * 10;
+            timer1.Interval = 6000 * 10*10;
             timer1.Enabled = true;
 
         }
@@ -142,6 +143,7 @@ namespace ISIA.UI.TREND
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            WrapperLabelControl();
             btnSelect_Click(null, null);
         }
 
@@ -168,7 +170,6 @@ namespace ISIA.UI.TREND
                 awrArgs.DBName = bandedGridView1.GetRowCellValue(e != null ? e.RowHandle : 0, "DBNAME").ToString();
                 awrArgs.StartTime = DB_SNAP_FETCH_DAYS;
                 ShowProcedureErrorMessage(awrArgs, e);
-
             }
         }
 

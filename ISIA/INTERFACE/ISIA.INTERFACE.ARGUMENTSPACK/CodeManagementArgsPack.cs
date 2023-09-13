@@ -26,6 +26,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public decimal SEQUENCES { get; set; }
         public string ISALIVE { get; set; }
         public string DESCRIPTION { get; set; }
+        public string RETENTIONDAYS { get; set; }
 
 
 

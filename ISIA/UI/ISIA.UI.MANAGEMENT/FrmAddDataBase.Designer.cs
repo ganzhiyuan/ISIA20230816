@@ -94,6 +94,8 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
             this.tableCreateProcessmemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.procedureWizardPage = new DevExpress.XtraWizard.WizardPage();
+            this.procedureCreateMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -151,6 +153,8 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            this.procedureWizardPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.procedureCreateMemoEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
@@ -182,6 +186,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wizardControl.Controls.Add(this.dbLinkProcesswizardPage);
             this.wizardControl.Controls.Add(this.tableCreationwizardPage);
             this.wizardControl.Controls.Add(this.tableCreateProcesswizardPage);
+            this.wizardControl.Controls.Add(this.procedureWizardPage);
             this.wizardControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wizardControl.HeaderImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("wizardControl.HeaderImageOptions.Image")));
             this.wizardControl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("wizardControl.ImageOptions.Image")));
@@ -196,6 +201,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkProcesswizardPage,
             this.tableCreationwizardPage,
             this.tableCreateProcesswizardPage,
+            this.procedureWizardPage,
             this.wpdatatable,
             this.wpprocedures,
             this.wpdbinfo,
@@ -953,6 +959,22 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // procedureWizardPage
+            // 
+            this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
+            this.procedureWizardPage.DescriptionText = "Now Creating procedure, Please wait... ";
+            this.procedureWizardPage.Name = "procedureWizardPage";
+            this.procedureWizardPage.Size = new System.Drawing.Size(829, 360);
+            this.procedureWizardPage.Text = "Create Procedure";
+            // 
+            // procedureCreateMemoEdit
+            // 
+            this.procedureCreateMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.procedureCreateMemoEdit.Location = new System.Drawing.Point(0, 0);
+            this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
+            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.procedureCreateMemoEdit.TabIndex = 0;
+            // 
             // FrmAddDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1025,6 +1047,8 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            this.procedureWizardPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.procedureCreateMemoEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1099,5 +1123,7 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private WizardPage tableCreateProcesswizardPage;
         private DevExpress.XtraEditors.MemoEdit tableCreateProcessmemoEdit;
+        private WizardPage procedureWizardPage;
+        private DevExpress.XtraEditors.MemoEdit procedureCreateMemoEdit;
     }
 }
