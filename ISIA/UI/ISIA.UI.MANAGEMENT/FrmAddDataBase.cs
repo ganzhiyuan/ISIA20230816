@@ -44,6 +44,7 @@ namespace ISIA.UI.MANAGEMENT
         //控制
         private bool isAlreadyCreateDbLink = false;
         private bool isAlreadyCreateTables = false;
+        private bool isAlreadyCreateProcedure = false;
         //定义实体类
         public static DbVersionEntity dbVersionEntity = null;
         public DbLinkEntity dbLinkEntity = new DbLinkEntity();
@@ -141,335 +142,14 @@ namespace ISIA.UI.MANAGEMENT
 
         }
 
-
-        private void wizardControl1_SelectedPageChangingAsync(object sender, DevExpress.XtraWizard.WizardPageChangingEventArgs e)
-        {
-            if (e.Page == dbLinkProcesswizardPage)
-            {
-                //GenerateDbLink(e);
-            }
-            if (e.Page == wpdatatable)
-            {
-                listBoxdatatable.Items.Clear();
-                List<string> dvalues = DataBaseInfo.datatablelist;
-                foreach (string item in dvalues)
-                {
-                    listBoxdatatable.Items.Add(string.Format(item, dblinkname));
-                }
-
-            }
-
-            if (e.Page == wpprocedures)
-            {
-                listBoxprocedure.Items.Clear();
-                List<string> pvalues = DataBaseInfo.procedures;
-                foreach (string item in pvalues)
-                {
-                    listBoxprocedure.Items.Add(string.Format(item, dblinkname));
-                }
-
-            }
-
-            if (e.Page == wpdbinfo)
-            {
-                listBoxdbinfo.Items.Clear();
-                List<string> dbvalues = DataBaseInfo.databaseinfo;
-                foreach (string item in dbvalues)
-                {
-                    if (item.Contains("User ID"))
-                    {
-                        listBoxdbinfo.Items.Add(item + userId);
-                    }
-                    if (item.Contains("Service "))
-                    {
-                        listBoxdbinfo.Items.Add(item + serviceName);
-                    }
-                    if (item.Contains("IP") && !item.Contains("Port"))
-                    {
-                        listBoxdbinfo.Items.Add(item + ip);
-                    }
-                    if (item.Contains("Port"))
-                    {
-                        listBoxdbinfo.Items.Add(item + port);
-                    }
-                    if (item.Contains("DB Link"))
-                    {
-                        listBoxdbinfo.Items.Add(item + dblinkname);
-                    }
-                    if (item.Contains("Oracle"))
-                    {
-                        listBoxdbinfo.Items.Add(item);
-                    }
-                }
-                foreach (var item in listBoxdatatable.Items)
-                {
-                    listBoxdbinfo.Items.Add(item.ToString());
-                }
-                foreach (var item in listBoxprocedure.Items)
-                {
-                    listBoxdbinfo.Items.Add(item.ToString());
-                }
-
-            }
-            if (e.Page == wpbcreate)
-            {
-                wpbcreate.AllowNext = false;
-                wpbcreate.AllowBack = false;
-                wpbcreate.DescriptionText = "Program is being created";
-
-                memoinfo.Lines.Initialize();
-                memoinfo.AppendLine("Loading...");
-
-
-                wpbcreate.BeginInvoke(new Action(() =>
-               {
-                   CreateDBlinkAsync();
-                   CreateDataTableAsync();
-                   CreateProceduresAsync();
-               }));
-
-
-                //string a = "asdqa";
-            }
-
-            if (e.Page == wpfinish)
-            {
-                wpfinish.AllowBack = false;
-
-            }
-
-        }
-
-        #region CreateDBlinkAsync
-        public void CreateDBlinkAsync()
-        {
-            ///1.创建dblink 
-            args.UserID = userId;
-            args.Password = password;
-            args.IPAddress = ip;
-            args.IPPort = port;
-            args.ServiceName = serviceName;
-            args.DBLinkName = dblinkname;
-
-            if (dblinksta)
-            {
-                int res1 = bs.ExecuteModify("DropDBlink", args.getPack());
-            }
-            memoinfo.AppendLine(string.Format("Creating  DB LINK : {0}", dblinkname));
-
-            int res = bs.ExecuteModify("CreateDBLink", args.getPack());
-
-            if (res == -1)
-            {
-                memoinfo.AppendLine(string.Format("DB LINK : {0} is created successfully ", dblinkname));
-            }
-            else
-            {
-                memoinfo.AppendLine(string.Format("DB LINK : {0}  created fail ", dblinkname));
-            }
-
-            wpbcreate.DescriptionText = string.Format("Create DB LINK : {0}", dblinkname);
-
-            //Thread.Sleep(5000);
-
-
-
-        }
-        #endregion
-
-        public void CreateDataTableAsync()
-        {
-
-
-            /*if (dblinksta)
-            {
-                int res1 = bs.ExecuteModify("DropDBlink", args.getPack());
-            }
-            memoinfo.AppendLine(string.Format("Creating  DB LINK : {0}", dblinkname));*/
-            memoinfo.AppendLine("Creating  DataTable ...... ");
-
-            foreach (string table in DataBaseInfo.datatablelist)
-            {
-                string tablename = string.Format(table, dblinkname);
-                memoinfo.AppendLine(tablename + " is being created ...... ");
-
-                args.DataTableName = tablename;
-
-                DateTime dateTime = DateTime.Now.Date;
-                DateTime dateTime1 = new DateTime(dateTime.Year, dateTime.Month, 1);
-                args.DateNow = dateTime1;
-
-                if (bs.ExecuteDataTable("GetDataTable", args.getPack()).Rows.Count > 0)
-                {
-                    DialogResult result = XtraMessageBox.Show(this, "This DataTable already exists . Choose yes if you still use it ,\n otherwise choose no and will be covered.",
-                  "Warring", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.Yes)
-                    {
-
-
-                    }
-                    else if (result == DialogResult.No)
-                    {
-
-                        int res1 = bs.ExecuteModify("DropDataTable", args.getPack());//删除已存在的表
-
-                        if (res1 == -1)
-                        {
-                            string input = tablename;
-                            int lastUnderscoreIndex = input.LastIndexOf("_");
-                            if (lastUnderscoreIndex != -1)
-                            {
-                                input = input.Substring(0, lastUnderscoreIndex);
-                            }
-
-                            string output = input.Replace("_", "");
-                            string methodName = "Create" + output;
-                            int restable = bs.ExecuteModify(methodName, args.getPack());//create table
-                            if (restable != -1) return;
-
-                            args.DataTablePKName = tablename + "_PK";//PK的名字
-
-                            string IndexmethodName = "CreateIndex" + output;//index方法的名字
-                            int resindex = bs.ExecuteModify(IndexmethodName, args.getPack());//create index
-                            if (resindex != -1) return;
-
-                            string PKmethodName = "CreatePK" + output;//PK方法的名字
-                            int respk = bs.ExecuteModify(PKmethodName, args.getPack());//create PK
-                            if (respk != -1) return;
-
-                            memoinfo.AppendLine(tablename + " cerate successfully .");
-                        }
-                    }
-                }
-                else
-                {
-                    string input = tablename;
-                    int lastUnderscoreIndex = input.LastIndexOf("_");
-                    if (lastUnderscoreIndex != -1)
-                    {
-                        input = input.Substring(0, lastUnderscoreIndex);
-                    }
-
-                    string output = input.Replace("_", "");
-                    string methodName = "Create" + output;
-                    int restable = bs.ExecuteModify(methodName, args.getPack());//create table
-                    if (restable != -1) return;
-
-                    args.DataTablePKName = tablename + "_PK";//PK的名字
-
-                    string IndexmethodName = "CreateIndex" + output;//index方法的名字
-                    int resindex = bs.ExecuteModify(IndexmethodName, args.getPack());//create index
-                    if (resindex != -1) return;
-
-                    string PKmethodName = "CreatePK" + output;//PK方法的名字
-                    int respk = bs.ExecuteModify(PKmethodName, args.getPack());//create PK
-                    if (respk != -1) return;
-
-                    memoinfo.AppendLine(tablename + " cerate successfully .");
-
-                }
-
-            }
-
-            memoinfo.AppendLine("End of the create datatable ");
-
-
-        }
-
-        #region Procedures
-        public void CreateProceduresAsync()
-        {
-            memoinfo.AppendLine("Creating  Procedures ...... ");
-
-            foreach (string procedures in DataBaseInfo.procedures)
-            {
-
-                string procedurename = string.Format(procedures, dblinkname);
-                memoinfo.AppendLine("Procedure " + procedurename + " is being created ...... ");
-
-                args.ProcedureName = procedurename;
-
-                BizDataClient bs1 = new BizDataClient("ISIA.BIZ.MANAGEMENT.DLL", "ISIA.BIZ.MANAGEMENT.CreateProceduresManagement");
-
-                if (bs1.ExecuteDataTable("GetProcedures", args.getPack()).Rows.Count > 0)
-                {
-                    DialogResult result = XtraMessageBox.Show(this, "This Procedure already exists . Choose yes if you still use it ,\n otherwise choose no and will be covered.",
-                  "Warring", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.Yes)
-                    {
-
-
-                    }
-                    else if (result == DialogResult.No)
-                    {
-
-                        int res1 = bs1.ExecuteModify("DropProcedures", args.getPack());//删除已存在的存储过程
-
-                        if (res1 == -1)
-                        {
-                            string input = procedurename;
-                            int lastUnderscoreIndex = input.LastIndexOf("_");
-                            if (lastUnderscoreIndex != -1)
-                            {
-                                input = input.Substring(0, lastUnderscoreIndex);
-                            }
-
-                            string output = input.Replace("_", "");
-                            string methodName = "Create" + output;
-                            int restable = bs1.ExecuteModify(methodName, args.getPack());//create procedure
-                            if (restable != -1) return;
-
-
-
-                            memoinfo.AppendLine(procedurename + " cerate successfully .");
-                        }
-                    }
-                }
-                else
-                {
-
-
-                    string input = procedurename;
-                    int lastUnderscoreIndex = input.LastIndexOf("_");
-                    if (lastUnderscoreIndex != -1)
-                    {
-                        input = input.Substring(0, lastUnderscoreIndex);
-                    }
-
-                    string output = input.Replace("_", "");
-                    string methodName = "Create" + output;
-                    int restable = bs1.ExecuteModify(methodName, args.getPack());//create procedure
-                    if (restable != -1) return;
-
-                    memoinfo.AppendLine(procedurename + " cerate successfully .");
-
-                }
-
-            }
-            memoinfo.AppendLine("End of the create procedures ");
-            memoinfo.AppendLine("End of the program is run");
-            wpbcreate.DescriptionText = "End of the program";
-            wpbcreate.AllowNext = true;
-        }
-        #endregion
-
-
-
-        private void sbPlay_Click(object sender, EventArgs e)
-        {
-            XtraMessageBox.Show(this, string.Format("Sorry, but we don’t have that song in our library...\r\nBut we agree with you that \"{0}\" is an excellent choice.", listBoxprocedure.SelectedValue),
-                "XtraWizard", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // wizardControl1.SelectedPage = wpLongText;
-        }
+     
 
         private void lbcPlay_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void wizardControl1_FinishClick(object sender, CancelEventArgs e)
+        private void wizardControl_FinishClick(object sender, CancelEventArgs e)
         {
             finish = true;
 
@@ -478,7 +158,7 @@ namespace ISIA.UI.MANAGEMENT
             this.Close();
         }
 
-        private void wizardControl1_CancelClick(object sender, CancelEventArgs e)
+        private void wizardControl_CancelClick(object sender, CancelEventArgs e)
         {
             this.Close();
         }
@@ -2180,70 +1860,6 @@ and exists (select 1
         }
 
 
-        public class DataBaseInfo
-        {
-
-            public static List<string> datatablelist;
-
-            public static List<string> procedures;
-
-            public static List<string> databaseinfo;
-
-            static DataBaseInfo()
-            {
-                datatablelist = new List<string>();
-                datatablelist.Add("RAW_DBA_HIST_ACTIVE_SESS_HISTORY_{0}");
-                datatablelist.Add("RAW_DBA_HIST_BUFFER_POOL_STAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_CR_BLOCK_SERVER_{0}");
-                datatablelist.Add("RAW_DBA_HIST_CURRENT_BLOCK_SERVER_{0}");
-                datatablelist.Add("RAW_DBA_HIST_DLM_MISC_{0}");
-                datatablelist.Add("RAW_DBA_HIST_ENQUEUE_STAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_LATCH_MISSES_SUMMARY_{0}");
-                datatablelist.Add("RAW_DBA_HIST_LATCH_{0}");
-                datatablelist.Add("RAW_DBA_HIST_LIBRARYCACHE_{0}");
-                datatablelist.Add("RAW_DBA_HIST_OSSTAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_PARAMETER_{0}");
-                datatablelist.Add("RAW_DBA_HIST_PGASTAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_RESOURCE_LIMIT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_ROWCACHE_SUMMARY_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SEG_STAT_OBJ_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SEG_STAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SGASTAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SGA_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SNAPSHOT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQLBIND_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQLSTAT_{0}");//sqlindex重复
-                datatablelist.Add("RAW_DBA_HIST_SQLTEXT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQL_BIND_METADATA_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQL_PLAN_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQL_SUMMARY_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SQL_WORKAREA_HSTGRM_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SYSMETRIC_SUMMARY_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SYSSTAT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SYSTEM_EVENT_{0}");
-                datatablelist.Add("RAW_DBA_HIST_SYS_TIME_MODEL_{0}");
-                datatablelist.Add("RAW_DBA_HIST_THREAD_{0}");
-                datatablelist.Add("RAW_DBA_HIST_WAITSTAT_{0}");
-
-
-                procedures = new List<string>();
-                procedures.Add("GET_DATA_{0}");
-                /*procedures.Add("GET_DATA1");
-                procedures.Add("GET_DATA2");
-                procedures.Add("GET_DATA3");*/
-
-                databaseinfo = new List<string>();
-                databaseinfo.Add("User ID : ");
-                databaseinfo.Add("IP : ");
-                databaseinfo.Add("IP Port : ");
-                databaseinfo.Add("Service Name : ");
-                databaseinfo.Add("DB link :");
-                databaseinfo.Add("Oracle Edition : 11c");
-
-            }
-
-        }
-
         private void wizardControl1_NextClick_1(object sender, WizardCommandButtonClickEventArgs e)
         {
             if (e.Page == welcomeWizardPage1)
@@ -2269,6 +1885,11 @@ and exists (select 1
             {
                 if (XtraMessageBox.Show(this, "Do you want to create procedure?", " ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) e.Handled = true;
             }
+            if (e.Page == procedureWizardPage)
+            {
+                wizardControl.SelectedPage = wpfinish;
+
+            }
         }
 
         private void wizardControl_SelectedPageChanged(object sender, WizardPageChangedEventArgs e)
@@ -2287,7 +1908,7 @@ and exists (select 1
                 //Todo根据grid表格生成table
                 GenerateTable(e);
             }
-            if (e.Page == procedureWizardPage)
+            if (e.Page == procedureWizardPage&& !isAlreadyCreateProcedure)
             {
                 //Todo根据grid表格生成table
                 GenerateProcedure(e);

@@ -297,6 +297,7 @@ namespace ISIA.UI.TREND
             private string dbName;
             private int retentionDays;
             private string cdbName;
+            private string cdbId;
             private string retentionPeriod;
             private string uploadInterval;
             private string minTime;
@@ -318,7 +319,7 @@ namespace ISIA.UI.TREND
             public string TARGETTYPE { get => targetType; set => targetType = value; }
             public int STATUS { get => status; set => status = value; }
             public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
-
+            public string CDBID { get => cdbId; set => cdbId = value; }
         }
 
         public class ProcedureMessage

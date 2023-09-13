@@ -121,15 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dockPanel1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAddEVYdFRpdGxlAERhdGFiYXNlO0RCO1NvdXJjZTtT
-        dG9yrLHqcgAAAIhJREFUOE9j+P//P8O7I0UgLADEUUA8C4jPAfEnJAzig8RB8iB1YH0gDDPACIiXAvF/
-        IjBInRG6AXOQFBCD56Ab8A5NASH8juoGUOwFMyAmJRDN0A1IA2JPICYmGkHq0tANAIXBAyAGKYoDYl0g
-        5kHCID5IHCQPUjcaBrQIA4ozEwiTkZ3/MwAAShbqQY39CKgAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="btnNext.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABt0RVh0VGl0
@@ -199,6 +190,15 @@
         JYrkGJ0T71OUaVxGSxjh8Vv3HJD5jqSc3Imi2iCou0JxqZuDi2YOTn4fjFRVAF45yhzgPQrTo69zZzvG
         JLSAfokbyFg+0cnPFcZJmGaBnAU3Chb4R5jWl0Q7Tnk+xdhC6hh0PZ1zZ//7+VdE70Tb6Xu+meBD8CZs
         IjxB8Ph/fceYhPoHAkQRj5PgdPMAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="dockPanel1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAddEVYdFRpdGxlAERhdGFiYXNlO0RCO1NvdXJjZTtT
+        dG9yrLHqcgAAAIhJREFUOE9j+P//P8O7I0UgLADEUUA8C4jPAfEnJAzig8RB8iB1YH0gDDPACIiXAvF/
+        IjBInRG6AXOQFBCD56Ab8A5NASH8juoGUOwFMyAmJRDN0A1IA2JPICYmGkHq0tANAIXBAyAGKYoDYl0g
+        5kHCID5IHCQPUjcaBrQIA4ozEwiTkZ3/MwAAShbqQY39CKgAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="dockManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

@@ -192,6 +192,7 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             private string dbName;
             private int retentionDays;
             private string cdbName;
+            private string cdbId;
             private string retentionPeriod;
             private string uploadInterval;
             private string minTime;
@@ -214,6 +215,7 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             public string TARGETTYPE { get => targetType; set => targetType = value; }
             public int STATUS { get => status; set => status = value; }
             public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
+            public string CDBID { get => cdbId; set => cdbId = value; }
         }
     }
 }

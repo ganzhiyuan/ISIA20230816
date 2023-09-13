@@ -185,7 +185,8 @@ namespace ISIA.UI.MANAGEMENT
             this.wizardControl.Size = new System.Drawing.Size(829, 498);
             this.wizardControl.Text = "ISIA";
             this.wizardControl.SelectedPageChanged += new DevExpress.XtraWizard.WizardPageChangedEventHandler(this.wizardControl_SelectedPageChanged);
-            this.wizardControl.SelectedPageChanging += new DevExpress.XtraWizard.WizardPageChangingEventHandler(this.wizardControl1_SelectedPageChangingAsync);
+            this.wizardControl.CancelClick += new System.ComponentModel.CancelEventHandler(this.wizardControl_CancelClick);
+            this.wizardControl.FinishClick += new System.ComponentModel.CancelEventHandler(this.wizardControl_FinishClick);
             this.wizardControl.NextClick += new DevExpress.XtraWizard.WizardCommandButtonClickEventHandler(this.wizardControl1_NextClick_1);
             // 
             // welcomeWizardPage1
@@ -618,8 +619,11 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // wpfinish
             // 
-            this.wpfinish.FinishText = "Congratulations to you . \r\n\r\nYou have successfully created the DB Link, DataTable" +
-    ", and Procedure.\r\n\r\nClick finish to close .";
+            this.wpfinish.AllowBack = false;
+            this.wpfinish.AllowNext = false;
+            this.wpfinish.CausesValidation = true;
+            this.wpfinish.FinishText = "You have successfully created the DB Link, DataTable, and Procedure.\r\n\r\nClick fin" +
+    "ish to close .";
             this.wpfinish.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wpfinish.Name = "wpfinish";
             this.wpfinish.ProceedText = "";
