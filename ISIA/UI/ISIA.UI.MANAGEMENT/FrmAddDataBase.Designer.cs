@@ -64,11 +64,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.wpprocedures = new DevExpress.XtraWizard.WizardPage();
-            this.listBoxprocedure = new DevExpress.XtraEditors.ListBoxControl();
-            this.wpdbinfo = new DevExpress.XtraWizard.WizardPage();
-            this.listBoxdbinfo = new DevExpress.XtraEditors.ListBoxControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.wpfinish = new DevExpress.XtraWizard.CompletionWizardPage();
             this.wizardDBLink = new DevExpress.XtraWizard.WizardPage();
             this.acessPermissionlabelControl = new DevExpress.XtraEditors.LabelControl();
@@ -80,10 +75,6 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkTextBox = new DevExpress.XtraEditors.TextEdit();
             this.dbLinklabelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tnsDescriptiontextEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.wpdatatable = new DevExpress.XtraWizard.WizardPage();
-            this.listBoxdatatable = new DevExpress.XtraEditors.ListBoxControl();
-            this.wpbcreate = new DevExpress.XtraWizard.WizardPage();
-            this.memoinfo = new DevExpress.XtraEditors.MemoEdit();
             this.wpConfirmDbLink = new DevExpress.XtraWizard.WizardPage();
             this.dblinkConfirmmemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.dbLinkProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
@@ -93,9 +84,9 @@ namespace ISIA.UI.MANAGEMENT
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableCreateProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
             this.tableCreateProcessmemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.procedureWizardPage = new DevExpress.XtraWizard.WizardPage();
             this.procedureCreateMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -131,18 +122,10 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            this.wpprocedures.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxprocedure)).BeginInit();
-            this.wpdbinfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxdbinfo)).BeginInit();
             this.wizardDBLink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.permissioncomboBoxEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbLinkTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tnsDescriptiontextEdit.Properties)).BeginInit();
-            this.wpdatatable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxdatatable)).BeginInit();
-            this.wpbcreate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoinfo.Properties)).BeginInit();
             this.wpConfirmDbLink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dblinkConfirmmemoEdit.Properties)).BeginInit();
             this.dbLinkProcesswizardPage.SuspendLayout();
@@ -152,9 +135,9 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableCreateProcesswizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.procedureWizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.procedureCreateMemoEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // tPanelBottomBase
@@ -176,12 +159,8 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.wizardControl.AllowPagePadding = false;
             this.wizardControl.Controls.Add(this.welcomeWizardPage1);
-            this.wizardControl.Controls.Add(this.wpprocedures);
-            this.wizardControl.Controls.Add(this.wpdbinfo);
             this.wizardControl.Controls.Add(this.wpfinish);
             this.wizardControl.Controls.Add(this.wizardDBLink);
-            this.wizardControl.Controls.Add(this.wpdatatable);
-            this.wizardControl.Controls.Add(this.wpbcreate);
             this.wizardControl.Controls.Add(this.wpConfirmDbLink);
             this.wizardControl.Controls.Add(this.dbLinkProcesswizardPage);
             this.wizardControl.Controls.Add(this.tableCreationwizardPage);
@@ -202,10 +181,6 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage,
             this.tableCreateProcesswizardPage,
             this.procedureWizardPage,
-            this.wpdatatable,
-            this.wpprocedures,
-            this.wpdbinfo,
-            this.wpbcreate,
             this.wpfinish});
             this.wizardControl.Size = new System.Drawing.Size(829, 498);
             this.wizardControl.Text = "ISIA";
@@ -641,76 +616,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
-            // wpprocedures
-            // 
-            this.wpprocedures.Controls.Add(this.listBoxprocedure);
-            this.wpprocedures.DescriptionText = "The following is the information for the Procedure to be created";
-            this.wpprocedures.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.wpprocedures.Name = "wpprocedures";
-            this.wpprocedures.Padding = new System.Windows.Forms.Padding(22, 21, 22, 11);
-            this.wpprocedures.Size = new System.Drawing.Size(829, 360);
-            this.wpprocedures.Text = "Create Procedures";
-            // 
-            // listBoxprocedure
-            // 
-            this.listBoxprocedure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxprocedure.Items.AddRange(new object[] {
-            "FN_SPLIT",
-            "GET_DATA",
-            "GET_DATA2"});
-            this.listBoxprocedure.Location = new System.Drawing.Point(22, 21);
-            this.listBoxprocedure.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxprocedure.Name = "listBoxprocedure";
-            this.listBoxprocedure.Size = new System.Drawing.Size(785, 328);
-            this.listBoxprocedure.TabIndex = 0;
-            // 
-            // wpdbinfo
-            // 
-            this.wpdbinfo.Controls.Add(this.listBoxdbinfo);
-            this.wpdbinfo.Controls.Add(this.labelControl1);
-            this.wpdbinfo.DescriptionText = "Please check you\'re going to create all of the information is correct.If correct," +
-    ".please select YES";
-            this.wpdbinfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.wpdbinfo.Name = "wpdbinfo";
-            this.wpdbinfo.Padding = new System.Windows.Forms.Padding(22, 21, 22, 21);
-            this.wpdbinfo.Size = new System.Drawing.Size(829, 360);
-            this.wpdbinfo.Text = "Install";
-            // 
-            // listBoxdbinfo
-            // 
-            this.listBoxdbinfo.Items.AddRange(new object[] {
-            "DATABASE:ISII",
-            "IP:192.168.1.1",
-            "PORT:1521",
-            "SERVICE_NAME:ISII",
-            "DBLINK_NAME:ISII",
-            "ORACLE_EDITION:12G",
-            "Table_Name:Table1",
-            "Table_Name:Table2",
-            "Table_Name:Table3",
-            "Table_Name:Table4",
-            "Table_Name:Table5",
-            "Table_Name:Table6",
-            "Table_Name:Table7",
-            "Table_Name:Table8",
-            "Procedures:GET_DATA"});
-            this.listBoxdbinfo.Location = new System.Drawing.Point(17, 57);
-            this.listBoxdbinfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxdbinfo.Name = "listBoxdbinfo";
-            this.listBoxdbinfo.Size = new System.Drawing.Size(864, 362);
-            this.listBoxdbinfo.TabIndex = 3;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
-            this.labelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelControl1.Location = new System.Drawing.Point(22, 21);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(785, 18);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Please confirm the installation information";
-            // 
             // wpfinish
             // 
             this.wpfinish.FinishText = "Congratulations to you . \r\n\r\nYou have successfully created the DB Link, DataTable" +
@@ -825,59 +730,6 @@ namespace ISIA.UI.MANAGEMENT
             this.tnsDescriptiontextEdit.Size = new System.Drawing.Size(550, 145);
             this.tnsDescriptiontextEdit.TabIndex = 6;
             // 
-            // wpdatatable
-            // 
-            this.wpdatatable.Controls.Add(this.listBoxdatatable);
-            this.wpdatatable.DescriptionText = "The following is the information for the DataTable to be created";
-            this.wpdatatable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.wpdatatable.Name = "wpdatatable";
-            this.wpdatatable.Padding = new System.Windows.Forms.Padding(22, 21, 22, 11);
-            this.wpdatatable.Size = new System.Drawing.Size(829, 360);
-            this.wpdatatable.Text = "Create DataTable";
-            // 
-            // listBoxdatatable
-            // 
-            this.listBoxdatatable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxdatatable.Items.AddRange(new object[] {
-            "Table1",
-            "Table2",
-            "Table3",
-            "Table4",
-            "Table5",
-            "Table6",
-            "Table7",
-            "Table8"});
-            this.listBoxdatatable.Location = new System.Drawing.Point(22, 21);
-            this.listBoxdatatable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxdatatable.Name = "listBoxdatatable";
-            this.listBoxdatatable.Padding = new System.Windows.Forms.Padding(22, 21, 22, 11);
-            this.listBoxdatatable.Size = new System.Drawing.Size(785, 328);
-            this.listBoxdatatable.TabIndex = 1;
-            // 
-            // wpbcreate
-            // 
-            this.wpbcreate.Controls.Add(this.memoinfo);
-            this.wpbcreate.DescriptionText = "DB Link: ISII is created successfully  DataTable : 8 is created successfully.   P" +
-    "rocedure : 1 is created successfully";
-            this.wpbcreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.wpbcreate.Name = "wpbcreate";
-            this.wpbcreate.Padding = new System.Windows.Forms.Padding(11, 12, 11, 12);
-            this.wpbcreate.Size = new System.Drawing.Size(829, 360);
-            this.wpbcreate.Text = "Install";
-            // 
-            // memoinfo
-            // 
-            this.memoinfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoinfo.Location = new System.Drawing.Point(11, 12);
-            this.memoinfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.memoinfo.Name = "memoinfo";
-            this.memoinfo.Properties.AllowFocused = false;
-            this.memoinfo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.memoinfo.Properties.Appearance.Options.UseFont = true;
-            this.memoinfo.Properties.ReadOnly = true;
-            this.memoinfo.Size = new System.Drawing.Size(807, 336);
-            this.memoinfo.TabIndex = 0;
-            // 
             // wpConfirmDbLink
             // 
             this.wpConfirmDbLink.Controls.Add(this.dblinkConfirmmemoEdit);
@@ -951,14 +803,6 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 360);
             this.tableCreateProcessmemoEdit.TabIndex = 0;
             // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 94);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // procedureWizardPage
             // 
             this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
@@ -974,6 +818,14 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
             this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 360);
             this.procedureCreateMemoEdit.TabIndex = 0;
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 94);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // FrmAddDataBase
             // 
@@ -1024,19 +876,11 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            this.wpprocedures.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxprocedure)).EndInit();
-            this.wpdbinfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxdbinfo)).EndInit();
             this.wizardDBLink.ResumeLayout(false);
             this.wizardDBLink.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.permissioncomboBoxEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbLinkTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tnsDescriptiontextEdit.Properties)).EndInit();
-            this.wpdatatable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxdatatable)).EndInit();
-            this.wpbcreate.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoinfo.Properties)).EndInit();
             this.wpConfirmDbLink.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dblinkConfirmmemoEdit.Properties)).EndInit();
             this.dbLinkProcesswizardPage.ResumeLayout(false);
@@ -1046,9 +890,9 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableCreateProcesswizardPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.procedureWizardPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.procedureCreateMemoEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1085,11 +929,6 @@ namespace ISIA.UI.MANAGEMENT
         private EmptySpaceItem emptySpaceItem8;
         private EmptySpaceItem emptySpaceItem1;
         private LayoutControlItem layoutControlItem10;
-        private WizardPage wpprocedures;
-        private DevExpress.XtraEditors.ListBoxControl listBoxprocedure;
-        private WizardPage wpdbinfo;
-        private DevExpress.XtraEditors.ListBoxControl listBoxdbinfo;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private CompletionWizardPage wpfinish;
         private WizardPage wizardDBLink;
         private DevExpress.XtraEditors.LabelControl labelControl6;
@@ -1097,10 +936,6 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraEditors.LabelControl tnsDescriptionlabelControl;
         private DevExpress.XtraEditors.TextEdit dbLinkTextBox;
         private DevExpress.XtraEditors.LabelControl dbLinklabelControl1;
-        private WizardPage wpdatatable;
-        private DevExpress.XtraEditors.ListBoxControl listBoxdatatable;
-        private WizardPage wpbcreate;
-        private DevExpress.XtraEditors.MemoEdit memoinfo;
         private EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraEditors.MemoEdit tnsDescriptiontextEdit;
         private DevExpress.XtraEditors.LabelControl acessPermissionlabelControl;

@@ -759,7 +759,7 @@ namespace ISIA.UI.TREND
                     hashtable = (Hashtable)arguments["_hashTable"].ArgumentValue;
                     tLUCKDbname.Setting();
                     var a = tLUCKDbname.Properties.DataSource as DataTable;
-                    var b = a.AsEnumerable().Where<DataRow>(row=>row["DBNAME"].Equals(hashtable["DBNAME"])).ToList()[0].Field<string>("DBNAME");
+                    var b = a.AsEnumerable().Where<DataRow>(row=>row["DBNAME"].Equals(hashtable["DBNAME"])).ToList()[0].Field<string>("DBID");
                     //tLUCKDbname.SelectedText = b;
         
                     tLUCKDbname.Text = b;

@@ -139,11 +139,11 @@ namespace ISIA.UI.TREND
             //change current page list
             currentPagedList = searchPagedList;
             currentList = searchList;
+            WrapperLabelControl();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            WrapperLabelControl();
             btnSelect_Click(null, null);
         }
 
