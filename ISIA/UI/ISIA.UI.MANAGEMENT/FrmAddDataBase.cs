@@ -2156,11 +2156,7 @@ END;
                 if (i == -1)
                 {
                     procedureCreateMemoEdit.AppendLine($"Creating SUMMARY_WORKLOAD JOB success!!!");
-
                 }
-
-
-
                 e.Page.AllowNext = true;
             }
             catch (Exception ex)

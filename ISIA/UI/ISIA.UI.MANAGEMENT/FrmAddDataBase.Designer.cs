@@ -82,17 +82,17 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage = new DevExpress.XtraWizard.WizardPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tableCreateProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
-            this.tableCreateProcessmemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.procedureWizardPage = new DevExpress.XtraWizard.WizardPage();
-            this.procedureCreateMemoEdit = new DevExpress.XtraEditors.MemoEdit();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.tableNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partitionyngridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partitionUnitgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.retentionMonthgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dataTBSPgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.indexTBSPgridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.tableCreateProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
+            this.tableCreateProcessmemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.procedureWizardPage = new DevExpress.XtraWizard.WizardPage();
+            this.procedureCreateMemoEdit = new DevExpress.XtraEditors.MemoEdit();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -230,7 +230,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // passwordtextEdit
             // 
-            this.passwordtextEdit.EditValue = "awr_view";
+            this.passwordtextEdit.EditValue = "";
             this.passwordtextEdit.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.passwordtextEdit.Location = new System.Drawing.Point(202, 254);
             this.passwordtextEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -259,7 +259,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // userIDtextEdit
             // 
-            this.userIDtextEdit.EditValue = "C##AWR_VIEW";
+            this.userIDtextEdit.EditValue = "";
             this.userIDtextEdit.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.userIDtextEdit.Location = new System.Drawing.Point(202, 216);
             this.userIDtextEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -286,7 +286,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // retentionTextBox
             // 
-            this.retentionTextBox.EditValue = "365";
+            this.retentionTextBox.EditValue = "";
             this.retentionTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.retentionTextBox.Location = new System.Drawing.Point(202, 178);
             this.retentionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -324,7 +324,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.EditValue = "test";
+            this.descriptionTextBox.EditValue = "";
             this.descriptionTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.descriptionTextBox.Location = new System.Drawing.Point(202, 139);
             this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -360,7 +360,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // dbNameTextbox
             // 
-            this.dbNameTextbox.EditValue = "gzytest";
+            this.dbNameTextbox.EditValue = "";
             this.dbNameTextbox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.dbNameTextbox.Location = new System.Drawing.Point(202, 61);
             this.dbNameTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -375,7 +375,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // ipTextBox
             // 
-            this.ipTextBox.EditValue = "test";
+            this.ipTextBox.EditValue = "";
             this.ipTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.ipTextBox.Location = new System.Drawing.Point(202, 100);
             this.ipTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -804,46 +804,6 @@ namespace ISIA.UI.MANAGEMENT
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // tableCreateProcesswizardPage
-            // 
-            this.tableCreateProcesswizardPage.Controls.Add(this.tableCreateProcessmemoEdit);
-            this.tableCreateProcesswizardPage.DescriptionText = "Please Wait...";
-            this.tableCreateProcesswizardPage.Name = "tableCreateProcesswizardPage";
-            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(829, 360);
-            this.tableCreateProcesswizardPage.Text = "Now Creating Tables";
-            // 
-            // tableCreateProcessmemoEdit
-            // 
-            this.tableCreateProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableCreateProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
-            this.tableCreateProcessmemoEdit.Name = "tableCreateProcessmemoEdit";
-            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 360);
-            this.tableCreateProcessmemoEdit.TabIndex = 0;
-            // 
-            // procedureWizardPage
-            // 
-            this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
-            this.procedureWizardPage.DescriptionText = "Now Creating procedure, Please wait... ";
-            this.procedureWizardPage.Name = "procedureWizardPage";
-            this.procedureWizardPage.Size = new System.Drawing.Size(829, 360);
-            this.procedureWizardPage.Text = "Create Procedure";
-            // 
-            // procedureCreateMemoEdit
-            // 
-            this.procedureCreateMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.procedureCreateMemoEdit.Location = new System.Drawing.Point(0, 0);
-            this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
-            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 360);
-            this.procedureCreateMemoEdit.TabIndex = 0;
-            // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 94);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // tableNamegridColumn
             // 
             this.tableNamegridColumn.Caption = "Table Name";
@@ -904,6 +864,46 @@ namespace ISIA.UI.MANAGEMENT
             this.indexTBSPgridColumn1.Visible = true;
             this.indexTBSPgridColumn1.VisibleIndex = 5;
             this.indexTBSPgridColumn1.Width = 94;
+            // 
+            // tableCreateProcesswizardPage
+            // 
+            this.tableCreateProcesswizardPage.Controls.Add(this.tableCreateProcessmemoEdit);
+            this.tableCreateProcesswizardPage.DescriptionText = "Please Wait...";
+            this.tableCreateProcesswizardPage.Name = "tableCreateProcesswizardPage";
+            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(829, 360);
+            this.tableCreateProcesswizardPage.Text = "Now Creating Tables";
+            // 
+            // tableCreateProcessmemoEdit
+            // 
+            this.tableCreateProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableCreateProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
+            this.tableCreateProcessmemoEdit.Name = "tableCreateProcessmemoEdit";
+            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.tableCreateProcessmemoEdit.TabIndex = 0;
+            // 
+            // procedureWizardPage
+            // 
+            this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
+            this.procedureWizardPage.DescriptionText = "Now Creating procedure, Please wait... ";
+            this.procedureWizardPage.Name = "procedureWizardPage";
+            this.procedureWizardPage.Size = new System.Drawing.Size(829, 360);
+            this.procedureWizardPage.Text = "Create Procedure";
+            // 
+            // procedureCreateMemoEdit
+            // 
+            this.procedureCreateMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.procedureCreateMemoEdit.Location = new System.Drawing.Point(0, 0);
+            this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
+            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.procedureCreateMemoEdit.TabIndex = 0;
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.Location = new System.Drawing.Point(0, 94);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // FrmAddDataBase
             // 
