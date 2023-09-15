@@ -151,6 +151,29 @@ order by sequences
             }
         }
 
+        public void DropPublicDBlink(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("DROP PUBLIC DATABASE LINK {0} ", arguments.DBLinkName);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
 
 
         public void CreateDBLink(CreateDataBaseArgsPack arguments)
@@ -175,6 +198,27 @@ order by sequences
         }
 
         public void CreateProcedure(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(arguments.Script);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void CreatJob(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try

@@ -87,6 +87,12 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureWizardPage = new DevExpress.XtraWizard.WizardPage();
             this.procedureCreateMemoEdit = new DevExpress.XtraEditors.MemoEdit();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.tableNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.partitionyngridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.partitionUnitgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.retentionMonthgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dataTBSPgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.indexTBSPgridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tPanelBottomBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PopMenuBase)).BeginInit();
             this.tPanelMain.SuspendLayout();
@@ -787,6 +793,13 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.tableNamegridColumn,
+            this.partitionyngridColumn,
+            this.partitionUnitgridColumn,
+            this.retentionMonthgridColumn,
+            this.dataTBSPgridColumn,
+            this.indexTBSPgridColumn1});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -830,6 +843,67 @@ namespace ISIA.UI.MANAGEMENT
             this.emptySpaceItem5.Name = "emptySpaceItem5";
             this.emptySpaceItem5.Size = new System.Drawing.Size(434, 42);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // tableNamegridColumn
+            // 
+            this.tableNamegridColumn.Caption = "Table Name";
+            this.tableNamegridColumn.FieldName = "Table Name";
+            this.tableNamegridColumn.MinWidth = 25;
+            this.tableNamegridColumn.Name = "tableNamegridColumn";
+            this.tableNamegridColumn.OptionsColumn.AllowEdit = false;
+            this.tableNamegridColumn.Visible = true;
+            this.tableNamegridColumn.VisibleIndex = 0;
+            this.tableNamegridColumn.Width = 94;
+            // 
+            // partitionyngridColumn
+            // 
+            this.partitionyngridColumn.Caption = "Partitioning Yn";
+            this.partitionyngridColumn.FieldName = "Partitioning Yn";
+            this.partitionyngridColumn.MinWidth = 25;
+            this.partitionyngridColumn.Name = "partitionyngridColumn";
+            this.partitionyngridColumn.Visible = true;
+            this.partitionyngridColumn.VisibleIndex = 1;
+            this.partitionyngridColumn.Width = 94;
+            // 
+            // partitionUnitgridColumn
+            // 
+            this.partitionUnitgridColumn.Caption = "Partitioning Unit";
+            this.partitionUnitgridColumn.FieldName = "Partitioning Unit";
+            this.partitionUnitgridColumn.MinWidth = 25;
+            this.partitionUnitgridColumn.Name = "partitionUnitgridColumn";
+            this.partitionUnitgridColumn.Visible = true;
+            this.partitionUnitgridColumn.VisibleIndex = 2;
+            this.partitionUnitgridColumn.Width = 94;
+            // 
+            // retentionMonthgridColumn
+            // 
+            this.retentionMonthgridColumn.Caption = "Retention Month";
+            this.retentionMonthgridColumn.FieldName = "Retention Month";
+            this.retentionMonthgridColumn.MinWidth = 25;
+            this.retentionMonthgridColumn.Name = "retentionMonthgridColumn";
+            this.retentionMonthgridColumn.Visible = true;
+            this.retentionMonthgridColumn.VisibleIndex = 3;
+            this.retentionMonthgridColumn.Width = 94;
+            // 
+            // dataTBSPgridColumn
+            // 
+            this.dataTBSPgridColumn.Caption = "Data TBSP";
+            this.dataTBSPgridColumn.FieldName = "Data TBSP";
+            this.dataTBSPgridColumn.MinWidth = 25;
+            this.dataTBSPgridColumn.Name = "dataTBSPgridColumn";
+            this.dataTBSPgridColumn.Visible = true;
+            this.dataTBSPgridColumn.VisibleIndex = 4;
+            this.dataTBSPgridColumn.Width = 94;
+            // 
+            // indexTBSPgridColumn1
+            // 
+            this.indexTBSPgridColumn1.Caption = "Index TBSP";
+            this.indexTBSPgridColumn1.FieldName = "Index TBSP";
+            this.indexTBSPgridColumn1.MinWidth = 25;
+            this.indexTBSPgridColumn1.Name = "indexTBSPgridColumn1";
+            this.indexTBSPgridColumn1.Visible = true;
+            this.indexTBSPgridColumn1.VisibleIndex = 5;
+            this.indexTBSPgridColumn1.Width = 94;
             // 
             // FrmAddDataBase
             // 
@@ -964,5 +1038,11 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraEditors.MemoEdit tableCreateProcessmemoEdit;
         private WizardPage procedureWizardPage;
         private DevExpress.XtraEditors.MemoEdit procedureCreateMemoEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn tableNamegridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn partitionyngridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn partitionUnitgridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn retentionMonthgridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn dataTBSPgridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn indexTBSPgridColumn1;
     }
 }

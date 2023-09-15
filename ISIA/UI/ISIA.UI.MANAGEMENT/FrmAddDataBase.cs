@@ -16,6 +16,8 @@ using ISIA.INTERFACE.ARGUMENTSPACK;
 using System.Threading;
 using TAP.UI;
 using ISIA.COMMON;
+using DevExpress.XtraGrid.Columns;
+using ComboBox = DevExpress.XtraEditors.ComboBox;
 
 namespace ISIA.UI.MANAGEMENT
 {
@@ -48,16 +50,6 @@ namespace ISIA.UI.MANAGEMENT
         //定义实体类
         public static DbVersionEntity dbVersionEntity = null;
         public DbLinkEntity dbLinkEntity = new DbLinkEntity();
-
-
-        //创建dblink
-        string userId = string.Empty;
-        string password = string.Empty;
-        string ip = string.Empty;
-        string port = string.Empty;
-        string serviceName = string.Empty;
-        string dblinkname = string.Empty;
-        bool dblinksta;
 
         //
         public FrmAddDataBase() : this(true, WizardStyle.Wizard97)
@@ -98,7 +90,13 @@ namespace ISIA.UI.MANAGEMENT
                     throw new Exception();
                 }
                 dbLinkProcessmemoEdit.AppendLine("now droping existed dblink... ");
-                int res = bs.ExecuteModify("DropDBlink", args.getPack());
+                int res = 0;
+                if (ds.Tables[0].Rows[0].Field<string>("OWNER").Equals("PUBLIC"))
+                {
+                    res = bs.ExecuteModify("DropPublicDBlink", args.getPack());
+
+                }
+                res = bs.ExecuteModify("DropDBlink", args.getPack());
                 if (res == -1)
                 {
                     dbLinkProcessmemoEdit.AppendLine("drop success... ");
@@ -351,6 +349,9 @@ namespace ISIA.UI.MANAGEMENT
             public const string YES = "Y";
             public const string NO = "N";
 
+            public const string MONTH = "M";
+            public const string YEAR = "Y";
+
 
 
 
@@ -397,7 +398,15 @@ namespace ISIA.UI.MANAGEMENT
                 }
                 else
                 {
-                    script.AppendLine($"INSERT_TIME DATE");
+                    //针对该table不需要添加insert-time
+                    if (tableName.Equals("DBA_HIST_SNAPSHOT"))
+                    {
+                        script.Remove(script.Length - 3, 1);
+                    }
+                    else
+                    {
+                        script.AppendLine($"INSERT_TIME DATE");
+                    }
                 }
                 script.AppendLine($")");
                 script.AppendLine($"TABLESPACE {dataTableSpace}");
@@ -424,35 +433,72 @@ namespace ISIA.UI.MANAGEMENT
                         partitionBy = "INSERT_TIME".ToUpper();
                     }
                     script.AppendLine($"PARTITION BY RANGE ({partitionBy}) ");
-                    script.AppendLine($"INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))");
-                    script.AppendLine("(");
-                    for (int i = 0; i < int.Parse(retentionMonth); i++)
+                    //month partition
+                    if (partitionUnit.Equals(MONTH))
                     {
-                        DateTime now1 = DateTime.Now;
-                        DateTime now = now1.AddMonths(i);
-                        DateTime next = now.AddMonths(1);
-                        string tabletime_suffix = now.ToString("yyyyMM");
-                        string toptime = new DateTime(next.Year, next.Month, 1).ToString("yyyy-MM-dd HH:mm:ss");
-                        script.AppendLine($"PARTITION {tableName}_{dbName}_{tabletime_suffix} VALUES LESS THAN (TO_DATE(' {toptime}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))");
-                        script.AppendLine($"TABLESPACE {dataTableSpace}");
-                        AddLobProPertyForSpecialTabelPartition(script);
-                        script.AppendLine($"PCTFREE 10");
-                        script.AppendLine($"INITRANS 1");
-                        script.AppendLine($"MAXTRANS 255");
-                        script.AppendLine("NOCOMPRESS");
-                        script.AppendLine(@"STORAGE    (
+                        script.AppendLine($"INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))");
+                        script.AppendLine("(");
+                        for (int i = 0; i < int.Parse(retentionMonth); i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddMonths(i);
+                            DateTime next = now.AddMonths(1);
+                            string tabletime_suffix = now.ToString("yyyyMM");
+                            string toptime = new DateTime(next.Year, next.Month, 1).ToString("yyyy-MM-dd HH:mm:ss");
+                            script.AppendLine($"PARTITION {tableName}_{dbName}_{tabletime_suffix} VALUES LESS THAN (TO_DATE(' {toptime}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))");
+                            script.AppendLine($"TABLESPACE {dataTableSpace}");
+                            AddLobProPertyForSpecialTabelPartition(script);
+                            script.AppendLine($"PCTFREE 10");
+                            script.AppendLine($"INITRANS 1");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
                                          INITIAL          64K
                                          NEXT             1M
                                          MINEXTENTS       1
                                          MAXEXTENTS       UNLIMITED
                                          PCTINCREASE      0
                                          BUFFER_POOL      DEFAULT),");
-                    }
-                    script.Remove(script.Length - 3, 1);
-                    script.AppendLine("");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine("");
 
-                    script.AppendLine(")");
-                    script.AppendLine("NOCACHE;");
+                        script.AppendLine(")");
+                        script.AppendLine("NOCACHE;");
+                    }//year partition
+                    if (partitionUnit.Equals(YEAR))
+                    {
+                        script.AppendLine($"INTERVAL (NUMTOYMINTERVAL(1, 'YEAR'))");
+                        script.AppendLine("(");
+                        int partitionCnt = int.Parse(retentionMonth) % 12 == 0 ? int.Parse(retentionMonth) / 12 : int.Parse(retentionMonth) + 1;
+                        for (int i = 0; i < partitionCnt; i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddYears(i);
+                            DateTime next = now.AddYears(1);
+                            string tabletime_suffix = now.ToString("yyyy");
+                            string toptime = new DateTime(next.Year, 1, 1).ToString("yyyy-MM-dd HH:mm:ss");
+                            script.AppendLine($"PARTITION {tableName}_{dbName}_{tabletime_suffix} VALUES LESS THAN (TO_DATE(' {toptime}', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))");
+                            script.AppendLine($"TABLESPACE {dataTableSpace}");
+                            AddLobProPertyForSpecialTabelPartition(script);
+                            script.AppendLine($"PCTFREE 10");
+                            script.AppendLine($"INITRANS 1");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
+                                         INITIAL          64K
+                                         NEXT             1M
+                                         MINEXTENTS       1
+                                         MAXEXTENTS       UNLIMITED
+                                         PCTINCREASE      0
+                                         BUFFER_POOL      DEFAULT),");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine("");
+
+                        script.AppendLine(")");
+                        script.AppendLine("NOCACHE;");
+                    }
                     //index part
                     script.AppendLine($"CREATE UNIQUE INDEX ISIA.RAW_{tableName}_{dbName}_PK ON ISIA.RAW_{tableName}_{dbName}");
                     if (dbVersionEntity.IsLater12CIndex)
@@ -471,26 +517,56 @@ namespace ISIA.UI.MANAGEMENT
                                           BUFFER_POOL      DEFAULT ) ");
 
                     script.AppendLine($"LOCAL (");
-                    for (int i = 0; i < int.Parse(retentionMonth); i++)
+                    if (partitionUnit.Equals(MONTH))
                     {
-                        DateTime now1 = DateTime.Now;
-                        DateTime now = now1.AddMonths(i);
-                        DateTime next = now.AddMonths(1);
-                        string tabletime_suffix = now.ToString("yyyyMM");
-                        script.AppendLine($" PARTITION {tableName}_{dbName}_{tabletime_suffix}");
-                        script.AppendLine($"INITRANS 2");
-                        script.AppendLine($"MAXTRANS 255");
-                        script.AppendLine($"TABLESPACE {indexTableSpace}");
-                        script.AppendLine("NOCOMPRESS");
-                        script.AppendLine(@"STORAGE    (
+                        for (int i = 0; i < int.Parse(retentionMonth); i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddMonths(i);
+                            DateTime next = now.AddMonths(1);
+                            string tabletime_suffix = now.ToString("yyyyMM");
+                            script.AppendLine($" PARTITION {tableName}_{dbName}_{tabletime_suffix}");
+                            script.AppendLine($"INITRANS 2");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine($"TABLESPACE {indexTableSpace}");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
                                          INITIAL          64K
                                          NEXT             1M
                                          MINEXTENTS       1
                                          MAXEXTENTS       UNLIMITED
                                          BUFFER_POOL      DEFAULT),");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine(");");
                     }
-                    script.Remove(script.Length - 3, 1);
-                    script.AppendLine(");");
+                    if (partitionUnit.Equals(YEAR))
+                    {
+                        int partitionCnt = int.Parse(retentionMonth) % 12 == 0 ? int.Parse(retentionMonth) / 12 : int.Parse(retentionMonth) + 1;
+
+                        for (int i = 0; i < partitionCnt; i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddYears(i);
+                            DateTime next = now.AddYears(1);
+                            string tabletime_suffix = now.ToString("yyyy");
+                            script.AppendLine($" PARTITION {tableName}_{dbName}_{tabletime_suffix}");
+                            script.AppendLine($"INITRANS 2");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine($"TABLESPACE {indexTableSpace}");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
+                                         INITIAL          64K
+                                         NEXT             1M
+                                         MINEXTENTS       1
+                                         MAXEXTENTS       UNLIMITED
+                                         BUFFER_POOL      DEFAULT),");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine(");");
+                    }
+                    
+                    AppendSpecialTableIndex(script);
                 }
                 else
                 {
@@ -524,6 +600,79 @@ namespace ISIA.UI.MANAGEMENT
                 return script.ToString();
             }
 
+            private void AppendSpecialTableIndex(StringBuilder script)
+            {
+                if (tableName.Equals("DBA_HIST_SQLSTAT"))
+                {
+                    script.AppendLine($"CREATE INDEX ISIA.RAW_{tableName}_{dbName}_IDX01 ON ISIA.RAW_{tableName}_{dbName}");
+                    if (dbVersionEntity.IsLater12CIndex)
+                    {
+                        script.AppendLine($"(SQL_ID,DBID, CON_DBID)");
+                    }
+                    else
+                    {
+                        script.AppendLine($"(SQL_ID, DBID)");
+                    }
+                    script.AppendLine($"  TABLESPACE {indexTableSpace}");
+                    script.AppendLine(@" PCTFREE    10
+                                          INITRANS   2
+                                          MAXTRANS   255
+                                          STORAGE    (
+                                          BUFFER_POOL      DEFAULT ) ");
+
+                    script.AppendLine($"LOCAL (");
+                    if (partitionUnit.Equals(MONTH))
+                    {
+                        for (int i = 0; i < int.Parse(retentionMonth); i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddMonths(i);
+                            DateTime next = now.AddMonths(1);
+                            string tabletime_suffix = now.ToString("yyyyMM");
+                            script.AppendLine($" PARTITION {tableName}_{dbName}_{tabletime_suffix}");
+                            script.AppendLine($"INITRANS 2");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine($"TABLESPACE {indexTableSpace}");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
+                                         INITIAL          64K
+                                         NEXT             1M
+                                         MINEXTENTS       1
+                                         MAXEXTENTS       UNLIMITED
+                                         BUFFER_POOL      DEFAULT),");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine(");");
+                    }
+                    if (partitionUnit.Equals(YEAR))
+                    {
+                        int partitionCnt = int.Parse(retentionMonth) % 12 == 0 ? int.Parse(retentionMonth) / 12 : int.Parse(retentionMonth) + 1;
+
+                        for (int i = 0; i < partitionCnt; i++)
+                        {
+                            DateTime now1 = DateTime.Now;
+                            DateTime now = now1.AddYears(i);
+                            DateTime next = now.AddYears(1);
+                            string tabletime_suffix = now.ToString("yyyy");
+                            script.AppendLine($" PARTITION {tableName}_{dbName}_{tabletime_suffix}");
+                            script.AppendLine($"INITRANS 2");
+                            script.AppendLine($"MAXTRANS 255");
+                            script.AppendLine($"TABLESPACE {indexTableSpace}");
+                            script.AppendLine("NOCOMPRESS");
+                            script.AppendLine(@"STORAGE    (
+                                         INITIAL          64K
+                                         NEXT             1M
+                                         MINEXTENTS       1
+                                         MAXEXTENTS       UNLIMITED
+                                         BUFFER_POOL      DEFAULT),");
+                        }
+                        script.Remove(script.Length - 3, 1);
+                        script.AppendLine(");");
+                    }
+                }
+
+            }
+
             private void AddLobProPertyForSpecialTabel(StringBuilder script)
             {
                 if (tableName.Equals("DBA_HIST_SQLTEXT"))
@@ -534,7 +683,14 @@ namespace ISIA.UI.MANAGEMENT
                                          CHUNK       8192
                                          RETENTION
                                          NOCACHE
-                                         LOGGING)");
+                                         LOGGING
+                                         STORAGE    (
+                                                      INITIAL          1M
+                                                      NEXT             1M
+                                                      MINEXTENTS       1
+                                                      MAXEXTENTS       UNLIMITED
+                                                      PCTINCREASE      0
+                                                      BUFFER_POOL      DEFAULT))");
                 }
                 if (tableName.Equals("DBA_HIST_SQL_PLAN"))
                 {
@@ -544,7 +700,14 @@ namespace ISIA.UI.MANAGEMENT
                                          CHUNK       8192
                                          RETENTION
                                          NOCACHE
-                                         LOGGING)");
+                                         LOGGING
+                                         STORAGE    (
+                                                      INITIAL          1M
+                                                      NEXT             1M
+                                                      MINEXTENTS       1
+                                                      MAXEXTENTS       UNLIMITED
+                                                      PCTINCREASE      0
+                                                      BUFFER_POOL      DEFAULT))");
                 }
             }
 
@@ -560,7 +723,7 @@ namespace ISIA.UI.MANAGEMENT
                                           NOCACHE
                                           LOGGING
                                           STORAGE    (
-                                                      INITIAL          104K
+                                                      INITIAL          1M
                                                       NEXT             1M
                                                       MINEXTENTS       1
                                                       MAXEXTENTS       UNLIMITED
@@ -577,7 +740,7 @@ namespace ISIA.UI.MANAGEMENT
                                          NOCACHE
                                          LOGGING
                                          STORAGE    (
-                                                     INITIAL          104K
+                                                     INITIAL          1M
                                                      NEXT             1M
                                                      MINEXTENTS       1
                                                      MAXEXTENTS       UNLIMITED
@@ -1789,7 +1952,7 @@ END SUMMARY_WORKLOAD_{dbName};");
                 return script.ToString();
             }
 
-            private string GenerateInsertSting(string localTable, string fetchTable)
+            public string GenerateInsertSting(string localTable, string fetchTable)
             {
                 StringBuilder insertScript = new StringBuilder("");
                 CreateDataBaseArgsPack arg = new CreateDataBaseArgsPack();
@@ -1846,6 +2009,43 @@ and exists (select 1
                 return insertStr.ToString();
 
 
+            }
+
+            public string GenerateGetDataJobString()
+            {
+                StringBuilder script = new StringBuilder("");
+                script.AppendLine($@"DECLARE
+  NewJobID NUMBER;
+BEGIN
+  SYS.DBMS_JOB.SUBMIT
+    ( job       => NewJobID 
+     ,what      => 'GET_DATA_{dbName}(''H'', 1, SYSDATE);'
+     ,next_date => trunc(sysdate + 1/24, 'HH24') + 5/24/60     
+     ,interval  => 'SYSDATE + 1/24'
+     ,no_parse  => FALSE);
+END;
+
+");
+                return script.ToString();
+            }
+
+            public string GenerateSummarayJobString()
+            {
+                StringBuilder script = new StringBuilder("");
+                script.AppendLine($@"DECLARE
+  NewJobID NUMBER;
+BEGIN
+  SYS.DBMS_JOB.SUBMIT
+    ( job       => NewJobID 
+     ,what      => 'SUMMARY_WORKLOAD_{dbName}(TO_CHAR(SYSDATE, ''YYYYMMDD''));'
+     ,next_date => trunc(sysdate + 1/24, 'HH24') + 10/24/60     
+     ,interval  => 'SYSDATE + 1/24'
+     ,no_parse  => FALSE);
+
+END;
+
+");
+                return script.ToString();
             }
 
             public string DbName { get => dbName; set => dbName = value; }
@@ -1941,6 +2141,26 @@ and exists (select 1
                 bs.ExecuteModify("CreateProcedure", arg.getPack());
                 procedureCreateMemoEdit.AppendLine($"generation of SUMMARY_WORKLOAD_{dbLinkEntity.DbName} procedure success!!!");
 
+                procedureCreateMemoEdit.AppendLine($"now create GET_DATA JOB");
+                arg.Script = procedureEntity.GenerateGetDataJobString();
+                int i=bs.ExecuteModify("CreatJob", arg.getPack());
+                if (i == -1)
+                {
+                    procedureCreateMemoEdit.AppendLine($"Creating GET_DATA JOB success!!!");
+
+                }
+
+                procedureCreateMemoEdit.AppendLine($"now create SUMMARY_WORKLOAD JOB");
+                arg.Script = procedureEntity.GenerateSummarayJobString();
+                 i = bs.ExecuteModify("CreatJob", arg.getPack());
+                if (i == -1)
+                {
+                    procedureCreateMemoEdit.AppendLine($"Creating SUMMARY_WORKLOAD JOB success!!!");
+
+                }
+
+
+
                 e.Page.AllowNext = true;
             }
             catch (Exception ex)
@@ -2007,6 +2227,12 @@ and exists (select 1
         {
             DataSet ds = bs.ExecuteDataSet("GetToCreateAwrTableMessage", args.getPack());
             gridControl1.DataSource = ds.Tables[0];
+
+
+
+
+
+
         }
         private async void GenerateTable(WizardPageChangedEventArgs e)
         {
