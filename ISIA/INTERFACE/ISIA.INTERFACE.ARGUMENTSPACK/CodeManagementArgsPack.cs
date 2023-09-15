@@ -27,6 +27,7 @@ namespace ISIA.INTERFACE.ARGUMENTSPACK
         public string ISALIVE { get; set; }
         public string DESCRIPTION { get; set; }
         public string RETENTIONDAYS { get; set; }
+        public string ISAUTOPARTITIONDROP { get; set; }
 
 
 

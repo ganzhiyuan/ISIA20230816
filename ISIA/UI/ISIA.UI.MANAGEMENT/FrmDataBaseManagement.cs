@@ -59,6 +59,7 @@ namespace ISIA.UI.MANAGEMENT
 
         public void GridViewDataBinding()
         {
+            gridControl1.DataSource = null;
             gridControl1.DataSource = ds.Tables[0];
             gridView1.BestFitColumns();
         }
@@ -138,6 +139,11 @@ namespace ISIA.UI.MANAGEMENT
                 txtIPADDRESS.BackColor = Color.Orange;
                 return;
             }
+            if (string.IsNullOrEmpty(spinEditRETENTIONDAYS.Text))
+            {
+                spinEditRETENTIONDAYS.BackColor = Color.Orange;
+                return;
+            }
             args = new CodeManagementArgsPack();
             args.DBID = txtDBID.Text;
             args.SERVICENAME = txtSERVICENAME.Text;
@@ -148,7 +154,9 @@ namespace ISIA.UI.MANAGEMENT
             args.SERVICENAME = txtSERVICENAME.Text;
             args.INSTANTCNT = Convert.ToDecimal(txtINSTANTCNT.EditValue);
             args.SEQUENCES = Convert.ToDecimal(txtSEQUENCES.Text);
+            args.RETENTIONDAYS = spinEditRETENTIONDAYS.Text;
             args.ISALIVE= rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
+            args.ISAUTOPARTITIONDROP = radioGroupISAUTOPARTITIONDRO.EditValue.ToString();
             DataSet dst = bs.ExecuteDataSet("CheckTcode", args.getPack());
             if (dst==null||dst.Tables==null||dst.Tables[0].Rows.Count==0)
             {
@@ -161,6 +169,7 @@ namespace ISIA.UI.MANAGEMENT
                 args.UPDATETIME = DateTime.Now.ToString("yyyyMMddHHmmss");
                 args.UPDATEUSER= TAP.UI.InfoBase._USER_INFO.Name; 
                 int i = bs.ExecuteModify("UpdateTcode", args.getPack());
+                int asd = 1111;
             }
 
             TAP.UI.TAPMsgBox.Instance.ShowMessage(Text, EnumMsgType.WARNING, "Success.");
@@ -181,7 +190,9 @@ namespace ISIA.UI.MANAGEMENT
                 args.SERVICENAME = txtSERVICENAME.Text;
                 args.INSTANTCNT = Convert.ToDecimal(txtINSTANTCNT.EditValue);
                 args.SEQUENCES = Convert.ToDecimal(txtSEQUENCES.Text);
+                args.RETENTIONDAYS = spinEditRETENTIONDAYS.Text;
                 args.ISALIVE = rdoIsalive.Properties.Items[rdoIsalive.SelectedIndex].Value.ToString();
+                args.ISAUTOPARTITIONDROP = radioGroupISAUTOPARTITIONDRO.EditValue.ToString();
 
                 tabPane1.SelectedPage = tabNavigationPage2;
                 txtDBID.Text = dr["DBID"].ToString();
@@ -193,6 +204,7 @@ namespace ISIA.UI.MANAGEMENT
                 txtSERVICENAME.Text = dr["SERVICENAME"].ToString();
                 txtINSTANTCNT.Text = dr["INSTANTCNT"].ToString();
                 txtSEQUENCES.Text = dr["SEQUENCES"].ToString();
+                spinEditRETENTIONDAYS.Text = dr["RETENTIONDAYS"].ToString();
 
                 if (dr["ISALIVE"].ToString() == "YES")
                 {
@@ -201,6 +213,15 @@ namespace ISIA.UI.MANAGEMENT
                 else
                 {
                     rdoIsalive.SelectedIndex = 1;
+                }
+
+                if (dr["ISAUTOPARTITIONDROP"].ToString() == "Y")
+                {
+                    radioGroupISAUTOPARTITIONDRO.EditValue = "Y";
+                }
+                else
+                {
+                    radioGroupISAUTOPARTITIONDRO.EditValue = "N";
                 }
 
             }

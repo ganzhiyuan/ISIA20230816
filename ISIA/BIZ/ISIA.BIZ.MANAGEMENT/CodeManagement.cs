@@ -91,7 +91,10 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat("  INSTANTCNT = '{0}' ,", arguments.INSTANTCNT);
                 tmpSql.AppendFormat("  SEQUENCES = '{0}' ,", arguments.SEQUENCES);
                 tmpSql.AppendFormat("  ISALIVE = '{0}' ,", arguments.ISALIVE);
+                tmpSql.AppendFormat("  RETENTIONDAYS = '{0}', ", arguments.RETENTIONDAYS);
+                tmpSql.AppendFormat("  ISAUTOPARTITIONDROP = '{0}', ", arguments.ISAUTOPARTITIONDROP);
                 tmpSql.AppendFormat("  DESCRIPTION = '{0}' ", arguments.DESCRIPTION);
+                
 
 
                 tmpSql.Append(" where 1=1 ");
@@ -120,7 +123,7 @@ namespace ISIA.BIZ.MANAGEMENT
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION) values (  ");
+                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION ,RETENTIONDAYS,ISAUTOPARTITIONDROP ) values (  ");
                 tmpSql.AppendFormat(" '{0}',", arguments.DBID);
                 tmpSql.AppendFormat(" '{0}',", arguments.DBNAME);
                 tmpSql.AppendFormat(" '{0}',", arguments.DBLINKNAME);
@@ -129,7 +132,9 @@ namespace ISIA.BIZ.MANAGEMENT
                 tmpSql.AppendFormat(" '{0}',", arguments.INSTANTCNT);
                 tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
                 tmpSql.AppendFormat(" '{0}',", arguments.ISALIVE);
-                tmpSql.AppendFormat(" '{0}' )", arguments.DESCRIPTION);
+                tmpSql.AppendFormat(" '{0}' , ", arguments.DESCRIPTION);
+                tmpSql.AppendFormat(" '{0}' ,", arguments.RETENTIONDAYS);
+                tmpSql.AppendFormat(" '{0}' )", arguments.ISAUTOPARTITIONDROP);
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
