@@ -1,6 +1,7 @@
 ﻿using ISIA.INTERFACE.ARGUMENTSPACK;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,6 +37,97 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+        public void GetToCreateAwrTableMessage(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("select TABLENAME \"Table Name\", ISPARTITIONING \"Partitioning Yn\",PARTITIONUNIT \"Partitionin" +
+                    "g Unit\",RETENTIONMONTH \"Retention Month\",DATATBSPNAME \"Data TBSP\",INDEXTBSPNAME \"Index TBSP\" " +
+                    "from tapctretentionpolicy a order by sequences ");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetInsertTableAndPdbTableName()
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(@" select tablename, pdbtablename
+from tapctretentionpolicy a
+where isalive = 'YES'
+and later12ckeycolumns not like '%INSERT_TIME%'
+order by sequences
+ ");
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetInsertTableAndPdbTableName(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(arguments.Script );
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+        public void GetInsertProcedureScript(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat(arguments.Script);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
         public void DropDBlink(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -59,26 +151,118 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+        public void DropPublicDBlink(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("DROP PUBLIC DATABASE LINK {0} ", arguments.DBLinkName);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+
+
         public void CreateDBLink(CreateDataBaseArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                
-                tmpSql.AppendFormat(" CREATE DATABASE LINK {0}", arguments.DBLinkName);
-                tmpSql.AppendFormat("  CONNECT TO {0} ", arguments.UserID);
-                tmpSql.AppendFormat("  IDENTIFIED BY {0} ", arguments.Password);
-                tmpSql.AppendFormat("USING '(DESCRIPTION =(ADDRESS=(PROTOCOL=TCP)(HOST={0})", arguments.IPAddress);
-                tmpSql.AppendFormat("(PORT={0}))", arguments.IPPort);
-                tmpSql.AppendFormat("(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = test)))'", arguments.ServiceName);
 
+                tmpSql.Append(arguments.Script);
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
 
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
 
+        public void CreateProcedure(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
 
+                tmpSql.Append(arguments.Script);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void CreatJob(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(arguments.Script);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void CreateTable(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append(arguments.Script);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                string[] cmds = tmpSql.ToString().Split(';');
+                foreach(string cmd in cmds)
+                {
+                    try
+                    {
+                        this.ExecutingValue = db.Save(new string[] { cmd });
+                    }
+                    catch(Exception ex)
+                    {
+                        RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                    }
+                }
+                
 
             }
             catch (Exception ex)
@@ -125,6 +309,97 @@ namespace ISIA.BIZ.MANAGEMENT
                        tmpSql.ToString(), false);
 
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetTableColumnDesc(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("select column_name \"Column\", Data_type \"Type\", Data_length \"DataLength\" from dba_tab_columns where table_name='{0}'order by column_id ", arguments.DataTableName);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetTableIndexKey(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.AppendFormat("select prev12ckeycolumns ,later12ckeycolumns from tapctretentionpolicy where  tablename='{0}' ", arguments.DataTableName);
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Select(tmpSql.ToString());
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void GetDbLinkVersion(CreateDataBaseArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                try
+                {
+                    StringBuilder tmpSql = new StringBuilder();
+
+                    tmpSql.AppendFormat(@"	select DBID, NAME SERVICENAME, version VERSION, 
+                             (select count(instance_number) from gv$instance@{0}) instancecount, 'yes' ispdb
+                              from v$pdbs@{0} d,
+                              v$instance@{0} i ", arguments.DBLinkName);
+
+                    RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                           tmpSql.ToString(), false);
+                    DataSet res=db.Select(tmpSql.ToString());
+                    if (res.Tables[0].Rows.Count == 0)
+                    {
+                        throw new Exception();
+                    }
+                    this.ExecutingValue = res;
+                    return;
+                }
+                catch
+                {
+                    StringBuilder tmpSql = new StringBuilder();
+
+                    tmpSql.AppendFormat(@"select DBID, NAME SERVICENAME, version, 
+                                 (select count(*) from v$active_instances@{0}) instancecount, 'no' ispdb
+                                   from v$database@{0} d,
+                                    v$instance@{0} i   ", arguments.DBLinkName);
+
+                    RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                           tmpSql.ToString(), false);
+
+                    this.ExecutingValue = db.Select(tmpSql.ToString());
+                }
             }
             catch (Exception ex)
             {

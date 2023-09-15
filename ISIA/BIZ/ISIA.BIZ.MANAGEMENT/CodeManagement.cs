@@ -143,6 +143,41 @@ namespace ISIA.BIZ.MANAGEMENT
             }
         }
 
+        public void SaveDbInfo(CodeManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION,RETENTIONDAYS,INSERTUSER,INSERTTIME) values (  ");
+                tmpSql.AppendFormat(" '{0}',", arguments.DBID);
+                tmpSql.AppendFormat(" '{0}',", arguments.DBNAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.DBLINKNAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.SERVICENAME);
+                tmpSql.AppendFormat(" '{0}',", arguments.IPADDRESS);
+                tmpSql.AppendFormat(" '{0}',", arguments.INSTANTCNT);
+                tmpSql.AppendFormat(" '{0}',", arguments.SEQUENCES);
+                tmpSql.AppendFormat(" '{0}',", arguments.ISALIVE);
+                tmpSql.AppendFormat(" '{0}', ", arguments.DESCRIPTION);
+                tmpSql.AppendFormat(" '{0}',", arguments.RETENTIONDAYS);
+
+                tmpSql.AppendFormat(" '{0}',", arguments.INSERTUSER);
+
+                tmpSql.AppendFormat(" '{0}')", arguments.INSERTTIME);
+
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
         public void DelteTCODE(CodeManagementArgsPack arguments)
         {
             DBCommunicator db = new DBCommunicator();
@@ -155,6 +190,37 @@ namespace ISIA.BIZ.MANAGEMENT
                 if (!string.IsNullOrEmpty(arguments.ROWID))
                 {
                     tmpSql.AppendFormat("ROWID =  '{0}'", arguments.ROWID);
+                }
+                else
+                {
+                    return;
+                }
+
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
+
+                this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
+            }
+            catch (Exception ex)
+            {
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_ERROR, this.Requester.IP,
+                       string.Format(" Biz Component Exception occured: {0}", ex.ToString()), false);
+                throw ex;
+            }
+        }
+
+        public void DeleteDBInfoByDBName(CodeManagementArgsPack arguments)
+        {
+            DBCommunicator db = new DBCommunicator();
+            try
+            {
+                StringBuilder tmpSql = new StringBuilder();
+
+                tmpSql.Append("DELETE FROM tapctdatabase WHERE ");
+
+                if (!string.IsNullOrEmpty(arguments.DBNAME))
+                {
+                    tmpSql.AppendFormat("DBNAME =  '{0}'", arguments.DBNAME);
                 }
                 else
                 {

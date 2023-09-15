@@ -113,7 +113,7 @@ namespace ISIA.UI.TREND
             args.StartTime = dtpStartTime.DateTime.ToString("yyyyMMdd");
             args.EndTime = dtpEndTime.DateTime.ToString("yyyyMMdd");
             args.DBName = tLUCKDbname.Text.ToString().Split('(')[0];
-            args.DBID = tLUCKDbname.EditValue.ToString();
+            args.DBID = tLUCKDbname.Text.ToString().Split('(')[1].Remove(tLUCKDbname.Text.ToString().Split('(')[1].Length-1, 1);
             args.INSTANCE_NUMBER = cmbInstance.EditValue.ToString();
             if (cmbGroupUnit.EditValue.ToString()=="DAY")
             {
@@ -761,6 +761,7 @@ namespace ISIA.UI.TREND
                     var a = tLUCKDbname.Properties.DataSource as DataTable;
                     var b = a.AsEnumerable().Where<DataRow>(row=>row["DBNAME"].Equals(hashtable["DBNAME"])).ToList()[0].Field<string>("DBID");
                     //tLUCKDbname.SelectedText = b;
+        
                     tLUCKDbname.Text = b;
                     tLUCKDbname.EditValue = b;
 

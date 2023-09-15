@@ -25,8 +25,13 @@ namespace ISIA.BIZ.TREND
             {
                 List<string> dbNameList = GetDbNames(db, arguments);
                 foreach (string dbName in dbNameList)
-                {
-                    dbInfos.Add(GetSingleDbInfo(db, dbName));
+                {//刚开始添加新的数据库的时候，可能不存在数据所以返回null；
+                    DbInfo info = GetSingleDbInfo(db, dbName);
+                    if (info == null)
+                    {
+                        continue;
+                    }
+                    dbInfos.Add(info);
                 }
                 result = Utils.ConvertToDataSet<DbInfo>(dbInfos);
                 this.ExecutingValue = result;
@@ -142,12 +147,12 @@ order by start_time desc ",  arguments.StartTime);
         private DbInfo GetSingleDbInfo(DBCommunicator db, string dbName)
         {
             StringBuilder dbInfoSql = new StringBuilder();
-            dbInfoSql.AppendFormat(@"select dbInfo.*,case when cdbname is null then null else 'pdb' end targettype
+            dbInfoSql.AppendFormat(@"select dbInfo.*,case when cdbid is null then null else 'pdb' end targettype
 from (select distinct p.value version, d.dbname, d.retentiondays,
        case when p.con_dbid = p.dbid then null
        else
-       (select dbname from tapctdatabase where dbid = p.con_dbid)
-       end cdbname
+       (select distinct dbid from tapctdatabase where dbid = p.con_dbid)
+       end cdbid
        ,decode(isalive,'YES', 1,0) STATUS, '10 min'  uploadinterval, s.mintime, s.maxtime, s.cnt ,d.instantcnt instancecount 
 from RAW_DBA_HIST_PARAMETER_{0} p,
      tapctdatabase d,
@@ -157,12 +162,22 @@ where p.snap_id = (select min(snap_id)
                     from raw_dba_hist_snapshot_{0}
                     where begin_interval_time > sysdate - 2/24  )
 and p.parameter_name = 'compatible'
-and p.dbid = d.dbid) dbInfo", dbName);
+and d.dbname='{0}'
+and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                       dbInfoSql.ToString(), false);
             DataSet dbInfoSqlDs = db.Select(dbInfoSql.ToString());
+            try
+            {
+                DbInfo dbInfo = Utils.DataTableToList<DbInfo>(dbInfoSqlDs.Tables[0])[0];
+                return dbInfo;
 
-            return Utils.DataTableToList<DbInfo>(dbInfoSqlDs.Tables[0])[0];
+            }
+            catch
+            {
+                return null;
+            }
+
         }
         public class DbInfo
         {
@@ -177,6 +192,7 @@ and p.dbid = d.dbid) dbInfo", dbName);
             private string dbName;
             private int retentionDays;
             private string cdbName;
+            private string cdbId;
             private string retentionPeriod;
             private string uploadInterval;
             private string minTime;
@@ -199,6 +215,7 @@ and p.dbid = d.dbid) dbInfo", dbName);
             public string TARGETTYPE { get => targetType; set => targetType = value; }
             public int STATUS { get => status; set => status = value; }
             public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
+            public string CDBID { get => cdbId; set => cdbId = value; }
         }
     }
 }
