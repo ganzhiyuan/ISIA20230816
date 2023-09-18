@@ -154,7 +154,7 @@ namespace ISIA.BIZ.MANAGEMENT
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION,RETENTIONDAYS,INSERTUSER,INSERTTIME) values (  ");
+                tmpSql.Append("Insert INTO tapctdatabase (DBID,DBNAME,DBLINKNAME,SERVICENAME,IPADDRESS,INSTANTCNT,SEQUENCES,ISALIVE,DESCRIPTION,RETENTIONDAYS,INSERTUSER,INSERTTIME,ISAUTOPARTITIONDROP) values (  ");
                 tmpSql.AppendFormat(" '{0}',", arguments.DBID);
                 tmpSql.AppendFormat(" '{0}',", arguments.DBNAME);
                 tmpSql.AppendFormat(" '{0}',", arguments.DBLINKNAME);
@@ -168,7 +168,9 @@ namespace ISIA.BIZ.MANAGEMENT
 
                 tmpSql.AppendFormat(" '{0}',", arguments.INSERTUSER);
 
-                tmpSql.AppendFormat(" '{0}')", arguments.INSERTTIME);
+                tmpSql.AppendFormat(" '{0}',", arguments.INSERTTIME);
+                tmpSql.AppendFormat(" '{0}')", arguments.ISAUTOPARTITIONDROP);
+
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,

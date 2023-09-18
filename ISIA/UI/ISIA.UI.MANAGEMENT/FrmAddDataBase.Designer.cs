@@ -41,13 +41,12 @@ namespace ISIA.UI.MANAGEMENT
             this.dbNamelabelControl = new DevExpress.XtraEditors.LabelControl();
             this.descriptionlabelControl = new DevExpress.XtraEditors.LabelControl();
             this.dbNameTextbox = new DevExpress.XtraEditors.TextEdit();
-            this.ipTextBox = new DevExpress.XtraEditors.TextEdit();
             this.iplabelControl = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEditAutoDrop = new DevExpress.XtraEditors.ComboBoxEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -64,6 +63,7 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.wpfinish = new DevExpress.XtraWizard.CompletionWizardPage();
             this.wizardDBLink = new DevExpress.XtraWizard.WizardPage();
             this.acessPermissionlabelControl = new DevExpress.XtraEditors.LabelControl();
@@ -84,9 +84,12 @@ namespace ISIA.UI.MANAGEMENT
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableNamegridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partitionyngridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxIsPartition = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.partitionUnitgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxPartitionUnit = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.retentionMonthgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dataTBSPgridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxTBSP = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.indexTBSPgridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableCreateProcesswizardPage = new DevExpress.XtraWizard.WizardPage();
             this.tableCreateProcessmemoEdit = new DevExpress.XtraEditors.MemoEdit();
@@ -106,12 +109,11 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.retentionTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.descriptionTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbNameTextbox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAutoDrop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
@@ -128,6 +130,7 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             this.wizardDBLink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.permissioncomboBoxEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbLinkTextBox.Properties)).BeginInit();
@@ -139,6 +142,9 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxIsPartition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPartitionUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTBSP)).BeginInit();
             this.tableCreateProcesswizardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).BeginInit();
             this.procedureWizardPage.SuspendLayout();
@@ -148,18 +154,18 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 504);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(829, 6);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 500);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(829, 10);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Size = new System.Drawing.Size(829, 6);
+            this.tPanelTop.Size = new System.Drawing.Size(829, 10);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.wizardControl);
-            this.tPanelMain.Location = new System.Drawing.Point(0, 6);
-            this.tPanelMain.Size = new System.Drawing.Size(829, 498);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 10);
+            this.tPanelMain.Size = new System.Drawing.Size(829, 490);
             // 
             // wizardControl
             // 
@@ -188,7 +194,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage,
             this.procedureWizardPage,
             this.wpfinish});
-            this.wizardControl.Size = new System.Drawing.Size(829, 498);
+            this.wizardControl.Size = new System.Drawing.Size(829, 490);
             this.wizardControl.Text = "ISIA";
             this.wizardControl.SelectedPageChanged += new DevExpress.XtraWizard.WizardPageChangedEventHandler(this.wizardControl_SelectedPageChanged);
             this.wizardControl.CancelClick += new System.ComponentModel.CancelEventHandler(this.wizardControl_CancelClick);
@@ -202,7 +208,7 @@ namespace ISIA.UI.MANAGEMENT
             this.welcomeWizardPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.welcomeWizardPage1.Name = "welcomeWizardPage1";
             this.welcomeWizardPage1.ProceedText = "";
-            this.welcomeWizardPage1.Size = new System.Drawing.Size(563, 382);
+            this.welcomeWizardPage1.Size = new System.Drawing.Size(563, 374);
             this.welcomeWizardPage1.Text = "";
             // 
             // layoutControl1
@@ -218,8 +224,8 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControl1.Controls.Add(this.dbNamelabelControl);
             this.layoutControl1.Controls.Add(this.descriptionlabelControl);
             this.layoutControl1.Controls.Add(this.dbNameTextbox);
-            this.layoutControl1.Controls.Add(this.ipTextBox);
             this.layoutControl1.Controls.Add(this.iplabelControl);
+            this.layoutControl1.Controls.Add(this.comboBoxEditAutoDrop);
             this.layoutControl1.Location = new System.Drawing.Point(98, 28);
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.layoutControl1.Name = "layoutControl1";
@@ -232,7 +238,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.passwordtextEdit.EditValue = "";
             this.passwordtextEdit.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.passwordtextEdit.Location = new System.Drawing.Point(202, 254);
+            this.passwordtextEdit.Location = new System.Drawing.Point(202, 282);
             this.passwordtextEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.passwordtextEdit.Name = "passwordtextEdit";
             this.passwordtextEdit.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -249,7 +255,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // pwdlabelControl
             // 
-            this.pwdlabelControl.Location = new System.Drawing.Point(12, 254);
+            this.pwdlabelControl.Location = new System.Drawing.Point(12, 282);
             this.pwdlabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pwdlabelControl.Name = "pwdlabelControl";
             this.pwdlabelControl.Size = new System.Drawing.Size(186, 24);
@@ -261,7 +267,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.userIDtextEdit.EditValue = "";
             this.userIDtextEdit.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.userIDtextEdit.Location = new System.Drawing.Point(202, 216);
+            this.userIDtextEdit.Location = new System.Drawing.Point(202, 227);
             this.userIDtextEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userIDtextEdit.Name = "userIDtextEdit";
             this.userIDtextEdit.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -276,7 +282,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // userIdlabelControl
             // 
-            this.userIdlabelControl.Location = new System.Drawing.Point(12, 216);
+            this.userIdlabelControl.Location = new System.Drawing.Point(12, 227);
             this.userIdlabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.userIdlabelControl.Name = "userIdlabelControl";
             this.userIdlabelControl.Size = new System.Drawing.Size(186, 24);
@@ -288,15 +294,15 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.retentionTextBox.EditValue = "";
             this.retentionTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.retentionTextBox.Location = new System.Drawing.Point(202, 178);
+            this.retentionTextBox.Location = new System.Drawing.Point(202, 186);
             this.retentionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.retentionTextBox.Name = "retentionTextBox";
             this.retentionTextBox.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.retentionTextBox.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.retentionTextBox.Properties.Appearance.Options.UseBackColor = true;
             this.retentionTextBox.Properties.Appearance.Options.UseForeColor = true;
-            this.retentionTextBox.Properties.NullText = "Input Connecting Name";
-            this.retentionTextBox.Properties.NullValuePrompt = "Input Connecting Name";
+            this.retentionTextBox.Properties.NullText = "Input Retention Day";
+            this.retentionTextBox.Properties.NullValuePrompt = "Input Retention Day";
             this.retentionTextBox.Size = new System.Drawing.Size(240, 24);
             this.retentionTextBox.StyleController = this.layoutControl1;
             this.retentionTextBox.TabIndex = 13;
@@ -314,7 +320,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // retentionDaylabelControl
             // 
-            this.retentionDaylabelControl.Location = new System.Drawing.Point(12, 178);
+            this.retentionDaylabelControl.Location = new System.Drawing.Point(12, 186);
             this.retentionDaylabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.retentionDaylabelControl.Name = "retentionDaylabelControl";
             this.retentionDaylabelControl.Size = new System.Drawing.Size(186, 24);
@@ -326,13 +332,13 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.descriptionTextBox.EditValue = "";
             this.descriptionTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.descriptionTextBox.Location = new System.Drawing.Point(202, 139);
+            this.descriptionTextBox.Location = new System.Drawing.Point(202, 140);
             this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.descriptionTextBox.Properties.Appearance.Options.UseForeColor = true;
-            this.descriptionTextBox.Properties.NullText = "Input IP Address Port";
-            this.descriptionTextBox.Properties.NullValuePrompt = "Input IP Address Port";
+            this.descriptionTextBox.Properties.NullText = "Input Description";
+            this.descriptionTextBox.Properties.NullValuePrompt = "Input Description";
             this.descriptionTextBox.Properties.UseMaskAsDisplayFormat = true;
             this.descriptionTextBox.Size = new System.Drawing.Size(240, 24);
             this.descriptionTextBox.StyleController = this.layoutControl1;
@@ -350,10 +356,10 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // descriptionlabelControl
             // 
-            this.descriptionlabelControl.Location = new System.Drawing.Point(12, 139);
+            this.descriptionlabelControl.Location = new System.Drawing.Point(12, 140);
             this.descriptionlabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.descriptionlabelControl.Name = "descriptionlabelControl";
-            this.descriptionlabelControl.Size = new System.Drawing.Size(186, 25);
+            this.descriptionlabelControl.Size = new System.Drawing.Size(186, 30);
             this.descriptionlabelControl.StyleController = this.layoutControl1;
             this.descriptionlabelControl.TabIndex = 6;
             this.descriptionlabelControl.Text = "Description";
@@ -367,36 +373,36 @@ namespace ISIA.UI.MANAGEMENT
             this.dbNameTextbox.Name = "dbNameTextbox";
             this.dbNameTextbox.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.dbNameTextbox.Properties.Appearance.Options.UseForeColor = true;
-            this.dbNameTextbox.Properties.NullText = "Iuput User ID";
-            this.dbNameTextbox.Properties.NullValuePrompt = "Iuput User ID";
+            this.dbNameTextbox.Properties.NullText = "Iuput Database Name";
+            this.dbNameTextbox.Properties.NullValuePrompt = "Iuput Database Name";
             this.dbNameTextbox.Size = new System.Drawing.Size(240, 24);
             this.dbNameTextbox.StyleController = this.layoutControl1;
             this.dbNameTextbox.TabIndex = 1;
-            // 
-            // ipTextBox
-            // 
-            this.ipTextBox.EditValue = "";
-            this.ipTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ipTextBox.Location = new System.Drawing.Point(202, 100);
-            this.ipTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ipTextBox.Name = "ipTextBox";
-            this.ipTextBox.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.ipTextBox.Properties.Appearance.Options.UseForeColor = true;
-            this.ipTextBox.Properties.NullText = "Input IP Address";
-            this.ipTextBox.Properties.NullValuePrompt = "Input IP Address";
-            this.ipTextBox.Size = new System.Drawing.Size(240, 24);
-            this.ipTextBox.StyleController = this.layoutControl1;
-            this.ipTextBox.TabIndex = 5;
             // 
             // iplabelControl
             // 
             this.iplabelControl.Location = new System.Drawing.Point(12, 100);
             this.iplabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iplabelControl.Name = "iplabelControl";
-            this.iplabelControl.Size = new System.Drawing.Size(186, 25);
+            this.iplabelControl.Size = new System.Drawing.Size(186, 24);
             this.iplabelControl.StyleController = this.layoutControl1;
             this.iplabelControl.TabIndex = 4;
-            this.iplabelControl.Text = "*IP";
+            this.iplabelControl.Text = "*Auto Drop";
+            // 
+            // comboBoxEditAutoDrop
+            // 
+            this.comboBoxEditAutoDrop.EditValue = "Y";
+            this.comboBoxEditAutoDrop.Location = new System.Drawing.Point(202, 100);
+            this.comboBoxEditAutoDrop.Name = "comboBoxEditAutoDrop";
+            this.comboBoxEditAutoDrop.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEditAutoDrop.Properties.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.comboBoxEditAutoDrop.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEditAutoDrop.Size = new System.Drawing.Size(240, 24);
+            this.comboBoxEditAutoDrop.StyleController = this.layoutControl1;
+            this.comboBoxEditAutoDrop.TabIndex = 18;
             // 
             // Root
             // 
@@ -406,7 +412,6 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem5,
-            this.layoutControlItem6,
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem9,
@@ -422,7 +427,8 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem11,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlItem14});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(454, 351);
             this.Root.TextVisible = false;
@@ -455,29 +461,18 @@ namespace ISIA.UI.MANAGEMENT
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 88);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(17, 22);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(190, 29);
+            this.layoutControlItem5.Size = new System.Drawing.Size(190, 28);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.ipTextBox;
-            this.layoutControlItem6.Location = new System.Drawing.Point(190, 88);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(62, 29);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(244, 29);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.descriptionlabelControl;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 127);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 128);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(40, 22);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(190, 29);
+            this.layoutControlItem7.Size = new System.Drawing.Size(190, 34);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
@@ -485,10 +480,10 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.descriptionTextBox;
-            this.layoutControlItem8.Location = new System.Drawing.Point(190, 127);
+            this.layoutControlItem8.Location = new System.Drawing.Point(190, 128);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(62, 29);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(244, 29);
+            this.layoutControlItem8.Size = new System.Drawing.Size(244, 34);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
@@ -496,7 +491,7 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.retentionDaylabelControl;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 166);
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 174);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(103, 22);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(190, 28);
@@ -507,17 +502,17 @@ namespace ISIA.UI.MANAGEMENT
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 232);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 243);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(434, 10);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(434, 27);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 194);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 202);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(434, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(434, 13);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
@@ -531,17 +526,17 @@ namespace ISIA.UI.MANAGEMENT
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 117);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 116);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(434, 10);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(434, 12);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(0, 156);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(0, 162);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(434, 10);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(434, 12);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem12
@@ -558,9 +553,9 @@ namespace ISIA.UI.MANAGEMENT
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 270);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 298);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(434, 61);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(434, 33);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem1
@@ -574,7 +569,7 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.retentionTextBox;
-            this.layoutControlItem10.Location = new System.Drawing.Point(190, 166);
+            this.layoutControlItem10.Location = new System.Drawing.Point(190, 174);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(244, 28);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
@@ -583,7 +578,7 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.userIdlabelControl;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 204);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 215);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(190, 28);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(190, 28);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -595,7 +590,7 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.userIDtextEdit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(190, 204);
+            this.layoutControlItem4.Location = new System.Drawing.Point(190, 215);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(66, 28);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(244, 28);
@@ -606,7 +601,7 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.pwdlabelControl;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 242);
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 270);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(55, 22);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(190, 28);
@@ -617,11 +612,20 @@ namespace ISIA.UI.MANAGEMENT
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.passwordtextEdit;
-            this.layoutControlItem13.Location = new System.Drawing.Point(190, 242);
+            this.layoutControlItem13.Location = new System.Drawing.Point(190, 270);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(244, 28);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.comboBoxEditAutoDrop;
+            this.layoutControlItem14.Location = new System.Drawing.Point(190, 88);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(244, 28);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem14.TextVisible = false;
             // 
             // wpfinish
             // 
@@ -633,7 +637,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpfinish.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wpfinish.Name = "wpfinish";
             this.wpfinish.ProceedText = "";
-            this.wpfinish.Size = new System.Drawing.Size(563, 326);
+            this.wpfinish.Size = new System.Drawing.Size(563, 318);
             this.wpfinish.Text = "ISIA Data Base Information is successfully created";
             // 
             // wizardDBLink
@@ -651,7 +655,7 @@ namespace ISIA.UI.MANAGEMENT
     "ection";
             this.wizardDBLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wizardDBLink.Name = "wizardDBLink";
-            this.wizardDBLink.Size = new System.Drawing.Size(829, 360);
+            this.wizardDBLink.Size = new System.Drawing.Size(829, 352);
             this.wizardDBLink.Text = "Creat DBLink";
             // 
             // acessPermissionlabelControl
@@ -745,7 +749,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpConfirmDbLink.Controls.Add(this.dblinkConfirmmemoEdit);
             this.wpConfirmDbLink.DescriptionText = "Please Confirm the DB Link creation script!";
             this.wpConfirmDbLink.Name = "wpConfirmDbLink";
-            this.wpConfirmDbLink.Size = new System.Drawing.Size(829, 360);
+            this.wpConfirmDbLink.Size = new System.Drawing.Size(829, 352);
             this.wpConfirmDbLink.Text = "DBLink Conform";
             // 
             // dblinkConfirmmemoEdit
@@ -753,7 +757,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dblinkConfirmmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dblinkConfirmmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.dblinkConfirmmemoEdit.Name = "dblinkConfirmmemoEdit";
-            this.dblinkConfirmmemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.dblinkConfirmmemoEdit.Size = new System.Drawing.Size(829, 352);
             this.dblinkConfirmmemoEdit.TabIndex = 0;
             // 
             // dbLinkProcesswizardPage
@@ -761,7 +765,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkProcesswizardPage.Controls.Add(this.dbLinkProcessmemoEdit);
             this.dbLinkProcesswizardPage.DescriptionText = "please wait... ";
             this.dbLinkProcesswizardPage.Name = "dbLinkProcesswizardPage";
-            this.dbLinkProcesswizardPage.Size = new System.Drawing.Size(829, 360);
+            this.dbLinkProcesswizardPage.Size = new System.Drawing.Size(829, 352);
             this.dbLinkProcesswizardPage.Text = "Now Creating DB link";
             // 
             // dbLinkProcessmemoEdit
@@ -769,7 +773,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dbLinkProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.dbLinkProcessmemoEdit.Name = "dbLinkProcessmemoEdit";
-            this.dbLinkProcessmemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.dbLinkProcessmemoEdit.Size = new System.Drawing.Size(829, 352);
             this.dbLinkProcessmemoEdit.TabIndex = 0;
             // 
             // tableCreationwizardPage
@@ -777,7 +781,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage.Controls.Add(this.gridControl1);
             this.tableCreationwizardPage.DescriptionText = "Please check the table creation attribute. ";
             this.tableCreationwizardPage.Name = "tableCreationwizardPage";
-            this.tableCreationwizardPage.Size = new System.Drawing.Size(829, 360);
+            this.tableCreationwizardPage.Size = new System.Drawing.Size(829, 352);
             this.tableCreationwizardPage.Text = "Table Creation";
             // 
             // gridControl1
@@ -786,7 +790,11 @@ namespace ISIA.UI.MANAGEMENT
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(829, 360);
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemComboBoxIsPartition,
+            this.repositoryItemComboBoxPartitionUnit,
+            this.repositoryItemComboBoxTBSP});
+            this.gridControl1.Size = new System.Drawing.Size(829, 352);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -818,6 +826,7 @@ namespace ISIA.UI.MANAGEMENT
             // partitionyngridColumn
             // 
             this.partitionyngridColumn.Caption = "Partitioning Yn";
+            this.partitionyngridColumn.ColumnEdit = this.repositoryItemComboBoxIsPartition;
             this.partitionyngridColumn.FieldName = "Partitioning Yn";
             this.partitionyngridColumn.MinWidth = 25;
             this.partitionyngridColumn.Name = "partitionyngridColumn";
@@ -825,15 +834,38 @@ namespace ISIA.UI.MANAGEMENT
             this.partitionyngridColumn.VisibleIndex = 1;
             this.partitionyngridColumn.Width = 94;
             // 
+            // repositoryItemComboBoxIsPartition
+            // 
+            this.repositoryItemComboBoxIsPartition.AutoHeight = false;
+            this.repositoryItemComboBoxIsPartition.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxIsPartition.Items.AddRange(new object[] {
+            "Y",
+            "N"});
+            this.repositoryItemComboBoxIsPartition.Name = "repositoryItemComboBoxIsPartition";
+            this.repositoryItemComboBoxIsPartition.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            // 
             // partitionUnitgridColumn
             // 
             this.partitionUnitgridColumn.Caption = "Partitioning Unit";
+            this.partitionUnitgridColumn.ColumnEdit = this.repositoryItemComboBoxPartitionUnit;
             this.partitionUnitgridColumn.FieldName = "Partitioning Unit";
             this.partitionUnitgridColumn.MinWidth = 25;
             this.partitionUnitgridColumn.Name = "partitionUnitgridColumn";
             this.partitionUnitgridColumn.Visible = true;
             this.partitionUnitgridColumn.VisibleIndex = 2;
             this.partitionUnitgridColumn.Width = 94;
+            // 
+            // repositoryItemComboBoxPartitionUnit
+            // 
+            this.repositoryItemComboBoxPartitionUnit.AutoHeight = false;
+            this.repositoryItemComboBoxPartitionUnit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxPartitionUnit.Items.AddRange(new object[] {
+            "M",
+            "Y"});
+            this.repositoryItemComboBoxPartitionUnit.Name = "repositoryItemComboBoxPartitionUnit";
+            this.repositoryItemComboBoxPartitionUnit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // retentionMonthgridColumn
             // 
@@ -848,6 +880,7 @@ namespace ISIA.UI.MANAGEMENT
             // dataTBSPgridColumn
             // 
             this.dataTBSPgridColumn.Caption = "Data TBSP";
+            this.dataTBSPgridColumn.ColumnEdit = this.repositoryItemComboBoxTBSP;
             this.dataTBSPgridColumn.FieldName = "Data TBSP";
             this.dataTBSPgridColumn.MinWidth = 25;
             this.dataTBSPgridColumn.Name = "dataTBSPgridColumn";
@@ -855,9 +888,18 @@ namespace ISIA.UI.MANAGEMENT
             this.dataTBSPgridColumn.VisibleIndex = 4;
             this.dataTBSPgridColumn.Width = 94;
             // 
+            // repositoryItemComboBoxTBSP
+            // 
+            this.repositoryItemComboBoxTBSP.AutoHeight = false;
+            this.repositoryItemComboBoxTBSP.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxTBSP.Name = "repositoryItemComboBoxTBSP";
+            this.repositoryItemComboBoxTBSP.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            // 
             // indexTBSPgridColumn1
             // 
             this.indexTBSPgridColumn1.Caption = "Index TBSP";
+            this.indexTBSPgridColumn1.ColumnEdit = this.repositoryItemComboBoxTBSP;
             this.indexTBSPgridColumn1.FieldName = "Index TBSP";
             this.indexTBSPgridColumn1.MinWidth = 25;
             this.indexTBSPgridColumn1.Name = "indexTBSPgridColumn1";
@@ -870,7 +912,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage.Controls.Add(this.tableCreateProcessmemoEdit);
             this.tableCreateProcesswizardPage.DescriptionText = "Please Wait...";
             this.tableCreateProcesswizardPage.Name = "tableCreateProcesswizardPage";
-            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(829, 360);
+            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(829, 352);
             this.tableCreateProcesswizardPage.Text = "Now Creating Tables";
             // 
             // tableCreateProcessmemoEdit
@@ -878,7 +920,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableCreateProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.tableCreateProcessmemoEdit.Name = "tableCreateProcessmemoEdit";
-            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 352);
             this.tableCreateProcessmemoEdit.TabIndex = 0;
             // 
             // procedureWizardPage
@@ -886,7 +928,7 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
             this.procedureWizardPage.DescriptionText = "Now Creating procedure, Please wait... ";
             this.procedureWizardPage.Name = "procedureWizardPage";
-            this.procedureWizardPage.Size = new System.Drawing.Size(829, 360);
+            this.procedureWizardPage.Size = new System.Drawing.Size(829, 352);
             this.procedureWizardPage.Text = "Create Procedure";
             // 
             // procedureCreateMemoEdit
@@ -894,7 +936,7 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureCreateMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.procedureCreateMemoEdit.Location = new System.Drawing.Point(0, 0);
             this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
-            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 360);
+            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 352);
             this.procedureCreateMemoEdit.TabIndex = 0;
             // 
             // emptySpaceItem5
@@ -932,12 +974,11 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.retentionTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.descriptionTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbNameTextbox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEditAutoDrop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
@@ -954,6 +995,7 @@ namespace ISIA.UI.MANAGEMENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             this.wizardDBLink.ResumeLayout(false);
             this.wizardDBLink.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.permissioncomboBoxEdit.Properties)).EndInit();
@@ -966,6 +1008,9 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxIsPartition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxPartitionUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxTBSP)).EndInit();
             this.tableCreateProcesswizardPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableCreateProcessmemoEdit.Properties)).EndInit();
             this.procedureWizardPage.ResumeLayout(false);
@@ -988,13 +1033,11 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraEditors.LabelControl dbNamelabelControl;
         private DevExpress.XtraEditors.LabelControl descriptionlabelControl;
         private DevExpress.XtraEditors.TextEdit dbNameTextbox;
-        private DevExpress.XtraEditors.TextEdit ipTextBox;
         private DevExpress.XtraEditors.LabelControl iplabelControl;
         private LayoutControlGroup Root;
         private LayoutControlItem layoutControlItem1;
         private LayoutControlItem layoutControlItem2;
         private LayoutControlItem layoutControlItem5;
-        private LayoutControlItem layoutControlItem6;
         private LayoutControlItem layoutControlItem7;
         private LayoutControlItem layoutControlItem8;
         private LayoutControlItem layoutControlItem9;
@@ -1044,5 +1087,10 @@ namespace ISIA.UI.MANAGEMENT
         private DevExpress.XtraGrid.Columns.GridColumn retentionMonthgridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn dataTBSPgridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn indexTBSPgridColumn1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxIsPartition;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxPartitionUnit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxTBSP;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEditAutoDrop;
+        private LayoutControlItem layoutControlItem14;
     }
 }

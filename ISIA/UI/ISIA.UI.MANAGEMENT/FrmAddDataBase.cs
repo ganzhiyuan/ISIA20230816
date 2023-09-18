@@ -227,7 +227,7 @@ namespace ISIA.UI.MANAGEMENT
                 dbNamelabelControl.ForeColor = Color.Red;
                 canNext = false;
             }
-            if (string.IsNullOrEmpty(ipTextBox.Text))
+            if (string.IsNullOrEmpty(comboBoxEditAutoDrop.Text))
             {
                 iplabelControl.ForeColor = Color.Red;
                 canNext = false;
@@ -289,7 +289,7 @@ namespace ISIA.UI.MANAGEMENT
             dbLinkEntity.DbLink = dbLinkTextBox.Text.ToUpper();
             dbLinkEntity.DbName = dbNameTextbox.Text.ToUpper();
             dbLinkEntity.Description = descriptionTextBox.Text;
-            dbLinkEntity.Ip = ipTextBox.Text;
+            dbLinkEntity.IsAutoDrop = comboBoxEditAutoDrop.Text;
             dbLinkEntity.Permission = permissioncomboBoxEdit.Text;
             dbLinkEntity.UserId = userIDtextEdit.Text;
             dbLinkEntity.Pwd = passwordtextEdit.Text;
@@ -302,6 +302,7 @@ namespace ISIA.UI.MANAGEMENT
 
             private string dbName;
             private string ip;
+            private string isAutoDrop;
             private string description;
             private string retentionDay;
             private string userId;
@@ -319,6 +320,7 @@ namespace ISIA.UI.MANAGEMENT
             public string DbLink { get => dbLink; set => dbLink = value; }
             public string Permission { get => permission; set => permission = value; }
             public string TnsDescription { get => tnsDescription; set => tnsDescription = value; }
+            public string IsAutoDrop { get => isAutoDrop; set => isAutoDrop = value; }
 
             public string generateDbLinkCreationScript()
             {
@@ -2184,6 +2186,7 @@ END;
             arg.RETENTIONDAYS = dbLinkEntity.RetentionDay;
             arg.INSERTTIME = DateTime.Now.ToString("yyyyMMddHHmmss");
             arg.INSERTUSER = TAP.UI.InfoBase._USER_INFO.Name;
+            arg.ISAUTOPARTITIONDROP = dbLinkEntity.IsAutoDrop;
             try
             {
                 bsDatabaseManagement.ExecuteModify("DeleteDBInfoByDBName", arg.getPack());
@@ -2224,11 +2227,11 @@ END;
             DataSet ds = bs.ExecuteDataSet("GetToCreateAwrTableMessage", args.getPack());
             gridControl1.DataSource = ds.Tables[0];
 
-
-
-
-
-
+            DataSet d2 = bs.ExecuteDataSet("GetTableSpaceName", args.getPack());
+            foreach(DataRow dr in d2.Tables[0].Rows)
+            {
+                repositoryItemComboBoxTBSP.Items.Add(dr.Field<string>("tablespace_name"));
+            }
         }
         private async void GenerateTable(WizardPageChangedEventArgs e)
         {
