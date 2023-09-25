@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CorrelationAnalysis.cs" />
     <Compile Include="EquipmentAnalysis.cs" />
+    <Compile Include="PartitionJobAndAlertInfo.cs" />
     <Compile Include="SQLIDShereByModel.cs" />
     <Compile Include="SqlIDClusteringAnalysis.cs" />
     <Compile Include="ParameterClusteringAnalysis.cs" />

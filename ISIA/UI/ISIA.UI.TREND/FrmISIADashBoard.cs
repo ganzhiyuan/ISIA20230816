@@ -42,6 +42,7 @@ namespace ISIA.UI.TREND
         public const string GET_DB_STATUS_FUNC = "GetDBFetchAwrDataStatus";
         public const string ERROR_FETCH_HOURS = "1";
         public const string DB_SNAP_FETCH_DAYS = "2";
+        public const int TIMER_INTERVAL = 10000;
 
 
 
@@ -68,7 +69,7 @@ namespace ISIA.UI.TREND
             currentPagedList = allDataPagedlist;
             WrapperLabelControl();
             bandedGridView1_RowClick(null, null);
-            timer1.Interval = 6000 * 10*10;
+            timer1.Interval = TIMER_INTERVAL;
             timer1.Enabled = true;
 
         }
@@ -127,6 +128,7 @@ namespace ISIA.UI.TREND
                 currentList = allDataList;
                 currentPagedList = await GetPagedAsyncList(currentList, pageNumber = 1);
                 WrapperGridView(currentPagedList);
+                WrapperLabelControl();
                 return;
             }
             AwrArgsPack argsPack = new AwrArgsPack();

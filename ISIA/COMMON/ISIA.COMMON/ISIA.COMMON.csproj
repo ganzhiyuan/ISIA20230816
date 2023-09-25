@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTableExtend.cs" />
+    <Compile Include="Entity\Class1.cs" />
     <Compile Include="LinkAgeHelper.cs" />
     <Compile Include="RepHelper.cs" />
     <Compile Include="RawPrinterHelper.cs" />

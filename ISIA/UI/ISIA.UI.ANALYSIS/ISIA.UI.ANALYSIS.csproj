@@ -243,6 +243,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="FrmPartitionJobAndAlertInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPartitionJobAndAlertInfo.Designer.cs">
+      <DependentUpon>FrmPartitionJobAndAlertInfo.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmCorrelationAnalysis.resx">
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFindNewSqlID.resx">
       <DependentUpon>FrmFindNewSqlID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPartitionJobAndAlertInfo.resx">
+      <DependentUpon>FrmPartitionJobAndAlertInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSqlIDClusteringAnalysis.resx">
       <DependentUpon>FrmSqlIDClusteringAnalysis.cs</DependentUpon>

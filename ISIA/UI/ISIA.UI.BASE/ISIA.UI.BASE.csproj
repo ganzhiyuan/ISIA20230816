@@ -341,6 +341,12 @@
       <DependentUpon>DockUIBase1T4.cs</DependentUpon>
     </Compile>
     <Compile Include="PickBox.cs" />
+    <Compile Include="PopupMemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopupMemo.Designer.cs">
+      <DependentUpon>PopupMemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PopupGrid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DockPanelTemp\DockUIBase1T4.resx">
       <DependentUpon>DockUIBase1T4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopupMemo.resx">
+      <DependentUpon>PopupMemo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PopupGrid.resx">
       <DependentUpon>PopupGrid.cs</DependentUpon>

@@ -1646,13 +1646,13 @@ END SUMMARY_WORKLOAD_{dbName};");
                 else
                 {
                     script.AppendFormat(@"  OPEN SEG_STAT_CUR FOR
-      SELECT DISTINCT DBID, TS#, OBJ#, DATAOBJ#, CON_DBID
+      SELECT DISTINCT DBID, TS#, OBJ#, DATAOBJ#
         FROM RAW_DBA_HIST_SEG_STAT_{0}
        WHERE SNAP_ID >= MIN_SNAP_ID
          AND SNAP_ID <= MAX_SNAP_ID;", DbName);
                     script.AppendLine("");
                     script.AppendLine("LOOP");
-                    script.AppendLine(@" FETCH SEG_STAT_CUR INTO SEG_STAT_REC.DBID, SEG_STAT_REC.TS#, SEG_STAT_REC.OBJ#, SEG_STAT_REC.DATAOBJ#, SEG_STAT_REC.CON_DBID;
+                    script.AppendLine(@" FETCH SEG_STAT_CUR INTO SEG_STAT_REC.DBID, SEG_STAT_REC.TS#, SEG_STAT_REC.OBJ#, SEG_STAT_REC.DATAOBJ#;
       EXIT WHEN SEG_STAT_CUR%NOTFOUND;");
                     string stat_obj = isPdb ? "AWR_PDB_SEG_STAT_OBJ" : "DBA_HIST_SEG_STAT_OBJ";
                     script.AppendLine($"LOG_REC.TABLE_NAME := '{stat_obj}';");
@@ -1712,13 +1712,13 @@ END SUMMARY_WORKLOAD_{dbName};");
                     script.AppendLine();
                     string sqlStatTable = isPdb ? "AWR_PDB_SQLSTAT" : "DBA_HIST_SQLSTAT";
                     script.AppendLine($@" OPEN SQLSTAT_CUR FOR
-      SELECT DISTINCT DBID, SQL_ID, CON_DBID
+      SELECT DISTINCT DBID, SQL_ID
         FROM {sqlStatTable}@{DbLinkName}
        WHERE SNAP_ID >= MIN_SNAP_ID
          AND SNAP_ID <= MAX_SNAP_ID;
 
    LOOP
-      FETCH SQLSTAT_CUR INTO SQLSTAT_REC.DBID, SQLSTAT_REC.SQL_ID, SQLSTAT_REC.CON_DBID;
+      FETCH SQLSTAT_CUR INTO SQLSTAT_REC.DBID, SQLSTAT_REC.SQL_ID;
       EXIT WHEN SQLSTAT_CUR%NOTFOUND;");
                     string sqltext = isPdb ? "AWR_PDB_SQLTEXT" : "DBA_HIST_SQLTEXT";
                     script.AppendLine($" LOG_REC.TABLE_NAME := '{sqltext}';");
@@ -1726,7 +1726,7 @@ END SUMMARY_WORKLOAD_{dbName};");
 	         USING (SELECT DBID,
 	                       SQL_ID,
 	                       SQL_TEXT,
-	                       COMMAND_TYPE,
+	                       COMMAND_TYPE
 	                     
 	                  FROM {2}@{1}
 	                 WHERE DBID = SQLSTAT_REC.DBID
@@ -2107,12 +2107,10 @@ END;
             }
             if (e.Page == tableCreateProcesswizardPage && !isAlreadyCreateTables)
             {
-                //Todo根据grid表格生成table
                 GenerateTable(e);
             }
             if (e.Page == procedureWizardPage&& !isAlreadyCreateProcedure)
             {
-                //Todo根据grid表格生成table
                 GenerateProcedure(e);
             }
         }
@@ -2192,7 +2190,7 @@ END;
                 bsDatabaseManagement.ExecuteModify("DeleteDBInfoByDBName", arg.getPack());
             }
             catch
-            {
+            { 
 
             }
             bsDatabaseManagement.ExecuteModify("SaveDbInfo", arg.getPack());
