@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TAP.Data.Client;
@@ -55,13 +56,25 @@ namespace ISIA.UI.ANALYSIS
             gridControlJob.DataSource = ds.Tables[0];
 
         }
-        private void ShowAlertMessage()
-        {
+        private async void ShowAlertMessage()
+        { Console.WriteLine($"Main Thread - {Thread.CurrentThread.ManagedThreadId}");
             arg.RowAlertCount = AlertRowCount;
             arg.RowJobCount = JobRowCount;
-            DataSet ds = bs.ExecuteDataSet("GetAlertInfo", arg.getPack());
+            DataSet ds = await GetAlertData();
+
+            Console.WriteLine($"Async Thread - {Thread.CurrentThread.ManagedThreadId}");
             gridControlError.DataSource = ds.Tables[0];
 
+        }
+
+        private   Task<DataSet> GetAlertData()
+        {
+            return  Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(10000);
+
+                return bs.ExecuteDataSet("GetAlertInfo", arg.getPack());
+            });
         }
 
         private void RowCount_SelectedIndexChanged(object sender, EventArgs e)

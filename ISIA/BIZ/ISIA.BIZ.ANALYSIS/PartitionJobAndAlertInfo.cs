@@ -69,7 +69,7 @@ select to_char(ORIGINATING_TIMESTAMP, 'YYYY/MM/DD HH24:MI:SS FF6') ORIGINATING_T
 from V$DIAG_ALERT_EXT@UMSDB
 where 1=1
 --and trunc(ORIGINATING_TIMESTAMP) = trunc(sysdate)
-and (MESSAGE_TEXT like 'ORA-75%' OR MESSAGE_TEXT like 'INF-%')
+--and (MESSAGE_TEXT like 'ORA-75%' OR MESSAGE_TEXT like 'INF-%')
 order by ORIGINATING_TIMESTAMP desc
 )
 where rownum <= {arguments.RowAlertCount}");

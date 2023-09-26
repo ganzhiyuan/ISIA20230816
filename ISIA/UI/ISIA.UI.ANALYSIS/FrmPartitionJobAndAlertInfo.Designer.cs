@@ -408,8 +408,8 @@ namespace ISIA.UI.ANALYSIS
             this.navBarControl2.Margin = new System.Windows.Forms.Padding(5);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.NavigationPaneMaxVisibleGroups = 0;
-            this.navBarControl2.OptionsNavPane.ExpandedWidth = 347;
-            this.navBarControl2.Size = new System.Drawing.Size(347, 755);
+            this.navBarControl2.OptionsNavPane.ExpandedWidth = 434;
+            this.navBarControl2.Size = new System.Drawing.Size(434, 944);
             this.navBarControl2.TabIndex = 6;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -464,7 +464,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             // comboBoxEditErrorInterval
             // 
-            this.comboBoxEditErrorInterval.EditValue = "5";
+            this.comboBoxEditErrorInterval.EditValue = "30";
             this.comboBoxEditErrorInterval.Location = new System.Drawing.Point(140, 45);
             this.comboBoxEditErrorInterval.Name = "comboBoxEditErrorInterval";
             this.comboBoxEditErrorInterval.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -472,7 +472,8 @@ namespace ISIA.UI.ANALYSIS
             this.comboBoxEditErrorInterval.Properties.Items.AddRange(new object[] {
             "3",
             "5",
-            "10"});
+            "10",
+            "30"});
             this.comboBoxEditErrorInterval.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.comboBoxEditErrorInterval.Size = new System.Drawing.Size(202, 24);
             this.comboBoxEditErrorInterval.StyleController = this.layoutControl1;
