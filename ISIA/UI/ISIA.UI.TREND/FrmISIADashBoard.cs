@@ -297,7 +297,7 @@ namespace ISIA.UI.TREND
 
             private string version;
             private string dbName;
-            private int retentionDays;
+            private string retentionDays;
             private string cdbName;
             private string cdbId;
             private string retentionPeriod;
@@ -308,10 +308,12 @@ namespace ISIA.UI.TREND
             private string targetType;
             private int status;
             private int instanceCount;
+            private string intervalMinutes;
+
+
 
             public string VERSION { get => version; set => version = value; }
             public string DBNAME { get => dbName; set => dbName = value; }
-            public int RETENTIONDAYS { get => retentionDays; set => retentionDays = value; }
             public string CDBNAME { get => cdbName; set => cdbName = value; }
             public string RETENTIONPERIOD { get => retentionPeriod; set => retentionPeriod = value; }
             public string UPLOADINTERVAL { get => uploadInterval; set => uploadInterval = value; }
@@ -322,6 +324,8 @@ namespace ISIA.UI.TREND
             public int STATUS { get => status; set => status = value; }
             public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
             public string CDBID { get => cdbId; set => cdbId = value; }
+            public string INTERVALMINUTES { get => intervalMinutes; set => intervalMinutes = value; }
+            public string RETENTIONDAYS { get => retentionDays; set => retentionDays = value; }
         }
 
         public class ProcedureMessage

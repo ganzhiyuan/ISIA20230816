@@ -6,17 +6,18 @@
     <members>
         <member name="T:TAP.Data.DataBase.Communicators.DBCommunicator">
             <summary>
-            This excutes commnunication with DBMS. 
+            This class supports user's command executing on DBMS instance. <br/>
+            Methods of this class executes user's command on connection that defiend in DBMS instance.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.#ctor">
             <summary>
-            This creates intance of DBCommunicator.
+            This creates a intance of this class.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Select(System.String,System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method loads data from DB.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -26,7 +27,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Select(System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method loads data from DB.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="tableName">Table name for saving data</param>
@@ -35,14 +36,14 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Select(System.String)">
             <summary>
-            This method loads data from DB using string typed-query.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="query">Query string</param>
             <returns>DataSet  object</returns>
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Select(System.String,System.String)">
             <summary>
-            This method loads data from DB using string typed-query.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="query">Query string</param>
             <param name="tableName">Table name</param>
@@ -50,7 +51,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -59,7 +60,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,TAP.ArgumentPack,System.Boolean)">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="arguments">Argument list</param>
@@ -68,7 +69,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,TAP.ArgumentPack[])">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="procedureName">Prefix of procedure name</param>
             <param name="arguments">Argument list array</param>
@@ -76,7 +77,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,System.String,TAP.ArgumentPack[])">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -85,7 +86,8 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,System.Collections.Generic.List{TAP.ArgumentPack})">
             <summary>
-            This method executes Insert/Update/Delete on DB. 
+            This method executs user's query and returns result as instance of DataSet. <br/>
+            This method does not support generic type.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="arguments">Argument list</param>
@@ -93,7 +95,8 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String,System.String,System.Collections.Generic.List{TAP.ArgumentPack})">
             <summary>
-            This method executes Insert/Update/Delete on DB. 
+            This method exeuctes user's non-query command.<br/>
+            This method does not support generic type.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -102,28 +105,36 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.String[])">
             <summary>
-            This method executes Insert/Update/Delete on DB using string typed-command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command string</param>
             <returns>Numer of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.Save(System.Collections.Generic.List{System.String})">
             <summary>
-            This method executes Insert/Update/Delete on DB using string typed-command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command string</param>
             <returns>Numer of rows applied</returns>
         </member>
+        <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.SaveWithPamameter(System.String,TAP.ArgumentPack)">
+            <summary>
+            This method exeuctes user's non-query command with specifed parameters.
+            </summary>
+            <param name="query">SQL</param>
+            <param name="args">Parameters</param>
+            <returns>Numer of rows applied</returns>
+        </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicator.SaveWithoutTransaction(System.Collections.Generic.List{System.String})">
             <summary>
-            This method executes Insert/Update/Delete on DB without transaction
+            This method exeuctes user's non-query command without transaction.
             </summary>
             <param name="query">Command string</param>
             <returns>Numer of rows applied</returns>
         </member>
         <member name="T:TAP.Data.DataBase.Communicators.DBCommunicatorCustom">
             <summary>
-            This excutes commnunication with Custom DBMS. 
+            This class supports user's command executing on independent connection.
             </summary>
         </member>
         <member name="P:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.IsConnected">
@@ -133,7 +144,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.#ctor(TAP.Data.DataBase.EnumDBMS,System.String,System.String,System.String)">
             <summary>
-            This creates intance of DBCommunicatorCustom
+            This creates a intance of this class.
             </summary>
             <param name="dbms">DBMS</param>
             <param name="tns">TNS name</param>
@@ -142,7 +153,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Select(System.String,System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method loads data from DB.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -152,7 +163,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Select(System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method loads data from DB.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="tableName">Table name for saving data</param>
@@ -161,14 +172,14 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Select(System.String)">
             <summary>
-            This method loads data from DB using string typed-query.
+            This method executs user's query and returns result as instance of DataSet.
             </summary>
             <param name="query">Query string</param>
             <returns>DataSet  object</returns>
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,System.String,TAP.ArgumentPack)">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -177,7 +188,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,TAP.ArgumentPack,System.Boolean)">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="arguments">Argument list</param>
@@ -186,7 +197,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,TAP.ArgumentPack[])">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="procedureName">Prefix of procedure name</param>
             <param name="arguments">Argument list array</param>
@@ -194,7 +205,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,System.String,TAP.ArgumentPack[])">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -203,7 +214,8 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,System.Collections.Generic.List{TAP.ArgumentPack})">
             <summary>
-            This method executes Insert/Update/Delete on DB. 
+            This method executs user's query and returns result as instance of DataSet. <br/>
+            This method does not support generic type.
             </summary>
             <param name="procedureName">Procedure name</param>
             <param name="arguments">Argument list</param>
@@ -211,7 +223,8 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String,System.String,System.Collections.Generic.List{TAP.ArgumentPack})">
             <summary>
-            This method executes Insert/Update/Delete on DB.
+            This method exeuctes user's non-query command.<br/>
+            This method does not support generic type.
             </summary>
             <param name="packageName">Package name</param>
             <param name="procedureName">Procedure name</param>
@@ -220,15 +233,15 @@
         </member>
         <member name="M:TAP.Data.DataBase.Communicators.DBCommunicatorCustom.Save(System.String[])">
             <summary>
-            This method executes Insert/Update/Delete on DB usint string typed-command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command string</param>
             <returns>Numer of rows applied</returns>
         </member>
         <member name="T:TAP.Data.DataBase.Database">
             <summary>
-            This class creates object that interacts with DBMS and executes user commands.
-            A class that interacts with DBMS must be derived from this class.
+            This class support the database connection.<br/>
+            A class that interacts with DBMS class must be derived from this class.
             </summary>
         </member>
         <member name="F:TAP.Data.DataBase.Database._executer">
@@ -238,19 +251,19 @@
         </member>
         <member name="M:TAP.Data.DataBase.Database.#ctor">
             <summary>
-            This creates instance of Database.
+            This  creates an instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.Database.#ctor(TAP.Data.DataBase.EnumDBMS,System.String)">
             <summary>
-            This creates instance of Database.
+            This  creates an instance of this class.
             </summary>
             <param name="dbms">Kind of DBMS</param>
             <param name="connectionKey">DBMS identificator</param>
         </member>
         <member name="M:TAP.Data.DataBase.Database.#ctor(TAP.Data.DataBase.EnumDBMS,System.String,System.String,System.String)">
             <summary>
-            This creates instance of Database.
+            This  creates an instance of this class.
             </summary>
             <param name="dbms">Kind of DBMS</param>
             <param name="tns">TNS name</param>
@@ -259,7 +272,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.Database.Initialize(TAP.Data.DataBase.EnumDBMS,System.String,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This method initializes executer.
+            This method initializes the executer.
             </summary>
             <param name="argDBMS">Kind of DBMS</param>
             <param name="argConnectionKey">DBMS identificator</param>
@@ -267,18 +280,17 @@
         </member>
         <member name="T:TAP.Data.DataBase.DatabaseCreator">
             <summary>
-            This class provides methods that creates DBMS-specifed object that is derived from Database.
+            This class creates the instance of DBMS that user specified.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.DatabaseCreator.#ctor">
             <summary>
-            This creates instance of DatabaseCreator.<br></br>
-            DatabaseCreator 개체의 인스턴스를 생성합니다. 
+            This creates an instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.DatabaseCreator.CreateDataBase(TAP.Data.DataBase.EnumDBMS,System.String,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This method creates DBMS-specifed object that is derived from Database.
+            This method creates the DBMS-specifed object that is derived from Database.
             </summary>
             <param name="dbms">Kind of DBMS</param>
             <param name="connectionKey">DBMS identificator</param>
@@ -287,7 +299,7 @@
         </member>
         <member name="T:TAP.Data.DataBase.DataExecuter">
             <summary>
-            This class provides methods that exeuctes user's command on database.
+            This class provides database commands.
             </summary>
         </member>
         <member name="F:TAP.Data.DataBase.DataExecuter._dbms">
@@ -302,7 +314,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.#ctor(TAP.Data.DataBase.EnumDBMS,System.String,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This creates instance of DataExecuter.
+            This creates an instance of this class.
             </summary>
             <param name="dbms">Kind of DBMS</param>
             <param name="connectionKey">DBMS identifactor</param>
@@ -310,7 +322,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteNonQuery(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method exeuctes user's command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command text</param>
             <param name="parameterArray">Parameter list</param>
@@ -319,7 +331,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteNonQuery(System.String,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method exeuctes user's command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command text</param>
             <param name="argumentPack">Parameter list</param>
@@ -328,28 +340,28 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteNonQuery(System.Collections.Generic.List{System.String})">
             <summary>
-            This method exeuctes user's command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="sqls">Command lilst</param>
             <returns>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteNonQueryWithoutTransaction(System.Collections.Generic.List{System.String})">
             <summary>
-            This method exeuctes user's command without transaction
+            This method exeuctes user's non-query command without transaction.
             </summary>
             <param name="sqls">Command lilst</param>
             <returns>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteNonQuery(System.String[])">
             <summary>
-            This method exeuctes user's command.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="sqls">Command lilst</param>
             <returns>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteScalar(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="parameterArray">Parameter list</param>
@@ -358,7 +370,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteScalar(System.String,System.Data.IDataParameter[])">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="parameterArray">Parameter list</param>
@@ -366,7 +378,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteScalar(System.String,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="argumentPack">Parameter list</param>
@@ -375,7 +387,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteScalar(System.String,TAP.ArgumentPack)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="argumentPack">Parameter list</param>
@@ -383,14 +395,14 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteScalar(System.String)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>>
             <param name="query">SQL</param>
             <returns>First column value of first row of result</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteReader(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method executes user's query and returns result as DataReader object.
+            This method executes user's query command and returns result as DataReader object.
             </summary>
             <param name="query">SQL</param>
             <param name="parameterArray">Parameter list</param>
@@ -399,7 +411,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteReader(System.String,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method executes user's query and returns result as DataReader object.
+            This method executes the user's query command and returns result as DataReader object.
             </summary>
             <param name="query">SQL</param>
             <param name="argumentPack">Parameter list</param>
@@ -408,7 +420,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteReader(System.String,System.Data.IDataParameter[])">
             <summary>
-            This method executes user's query and returns result as DataReader object.
+            This method executes user's query command and returns result as DataReader object.
             </summary>
             <param name="query">SQL</param>
             <param name="parameterArray">Parameter list</param>
@@ -416,7 +428,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteReader(System.String,TAP.ArgumentPack)">
             <summary>
-            This method executes user's query and returns result as DataReader object.
+            This method executes user's query command and returns result as DataReader object.
             </summary>
             <param name="query">SQL</param>
             <param name="argumentPack">Parameter list</param>
@@ -424,14 +436,14 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.ExecuteReader(System.String)">
             <summary>
-            This method executes user's query and returns result as DataReader object.
+            This method executes user's query command and returns result as DataReader object.
             </summary>
             <param name="query">SQL</param>
             <returns>DataReader object</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.Select(System.String,System.String,System.Data.DataSet@,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns result as DataSet.
+            This method executs user's query command and returns result as DataSet.
             </summary>
             <param name="query">SQL</param>
             <param name="tableName">Table name for saving result</param>
@@ -441,7 +453,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.Select(System.String,System.String,System.Data.DataSet@,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns result as DataSet.
+            This method executs user's query command and returns result as DataSet.
             </summary>
             <param name="query">SQL</param>
             <param name="tableName">Table name for saving result</param>
@@ -451,7 +463,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.Select(System.String,System.String,System.Data.DataSet@,System.Data.IDataParameter[])">
             <summary>
-            This method executs user's query and returns result as DataSet.
+            This method executs user's query command and returns result as DataSet.
             </summary>
             <param name="query">SQL</param>
             <param name="tableName">Table name for saving result</param>
@@ -460,7 +472,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DataExecuter.Select(System.String,System.String,System.Data.DataSet@,TAP.ArgumentPack)">
             <summary>
-            This method executs user's query and returns result as DataSet.
+            This method executs user's query command and returns result as DataSet.
             </summary>
             <param name="query">SQL</param>
             <param name="tableName">Table name for saving result</param>
@@ -494,19 +506,19 @@
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.#ctor">
             <summary>
-            This creates instance of DBMS.
+            This creates an instance of this class.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.LoadConnectionString(System.String)">
             <summary>
-            This method loads DB connection information from Configuration file.
+            This method loads the DB connection information from FXConfig or APPConfig.
             </summary>
             <param name="argConnectionKey">DB  Key</param>
             <returns>DB connection information</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteNonQuery(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method executes user's command and returns number of rows applied.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command</param>
             <param name="parameterArray">Parameter list</param>
@@ -515,7 +527,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteNonQuery(System.String,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method executes user's command and returns number of rows applied.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="query">Command</param>
             <param name="argumentPack">Parameter list</param>
@@ -524,28 +536,28 @@
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteNonQuery(System.Collections.Generic.List{System.String})">
             <summary>
-            This method executes user's command and returns number of rows applied.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="sql">command test list</param>
             <returns>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteNonQuery(System.String[])">
             <summary>
-            This method executes user's command and returns number of rows applied.
+            This method exeuctes user's non-query command.
             </summary>
             <param name="sql">command test list</param>
             <returns>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteNonQueryWithOutTransaction(System.Collections.Generic.List{System.String})">
             <summary>
-            This method executes user's command and returns number of rows applied without transaction.
+            This method exeuctes user's non-query command without transaction.
             </summary>
             <param name="sql">command test list</param>
             <returns>>Number of rows applied</returns>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteScalar(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="parameterArray">Parameter list</param>
@@ -554,7 +566,7 @@
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.ExecuteScalar(System.String,TAP.ArgumentPack,System.Data.CommandType)">
             <summary>
-            This method executs user's query and returns first column value of first row.
+            This method executs user's query command and returns first column of first row.
             </summary>
             <param name="query">SQL</param>
             <param name="argumentPack">Parameter list</param>
@@ -563,12 +575,12 @@
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.OpenConnection">
             <summary>
-            This method connects DBMS
+            This method connects to DBMS
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.CloseConnection">
             <summary>
-            This method disconnects DBMS.
+            This method disconnects from DBMS.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.DBMS.SetCommand(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
@@ -674,6 +686,11 @@
             MDB
             </summary>
         </member>
+        <member name="F:TAP.Data.DataBase.EnumDBMS.SQLITE">
+            <summary>
+            SQLite
+            </summary>
+        </member>
         <member name="T:TAP.Data.DataBase.EnumConnectionMethod">
             <summary>
             This enumeratior is kind of connection method
@@ -691,12 +708,12 @@
         </member>
         <member name="T:TAP.Data.DataBase.MDB">
             <summary>
-            This class executes user's command using MDB.
+            This is implemted class of DBMS for MDB.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.MDB.#ctor(System.String,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This creates instance of MDB.
+            This creates an instance of this class.
             </summary>
             <param name="connectionKey">Connection key</param>
             <param name="connMethod">Method of connection</param>
@@ -781,12 +798,12 @@
         </member>
         <member name="T:TAP.Data.DataBase.OracleDBMSWithODP">
             <summary>
-            This class executs user's command using Oracle DBMS.
+            This is implemted class of DBMS for Oracle.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.OracleDBMSWithODP.#ctor(System.Object,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This creates instance of OracleDBMS.
+            This creates an instance of this class.
             </summary>
             <param name="connectionKey">Connection key</param>
             <param name="connMethod">Method of connection</param>
@@ -890,7 +907,7 @@
             <param name="argTypeName">Type name</param>
             <returns>OracleDbType</returns>
         </member>
-        <member name="M:TAP.Data.DataBase.OracleDBMSWithODP.SetDefaultValue(Oracle.DataAccess.Client.OracleParameter)">
+        <member name="M:TAP.Data.DataBase.OracleDBMSWithODP.SetDefaultValue(Oracle.ManagedDataAccess.Client.OracleParameter)">
             <summary>
             This method assign default value to oracle parameters.
             </summary>
@@ -906,12 +923,12 @@
         </member>
         <member name="T:TAP.Data.DataBase.SqlDBMS">
             <summary>
-            This class executs user's command using MS-SQL DBMS.
+            This is implemted class of DBMS for SQL Server.
             </summary>
         </member>
         <member name="M:TAP.Data.DataBase.SqlDBMS.#ctor(System.String,TAP.Data.DataBase.EnumConnectionMethod)">
             <summary>
-            This creates instance of SqlDBMS.
+            This creates an instance of this class.
             </summary>
             <param name="connectionKey">Connection key</param>
             <param name="connMethod">Method of connection</param>
@@ -1001,6 +1018,96 @@
             <param name="argArgumentPack">Parameter list for Instance of Command object</param>
         </member>
         <member name="M:TAP.Data.DataBase.SqlDBMS.Deriveparameters(System.Data.IDbCommand,System.Data.IDbConnection)">
+            <summary>
+            This method assigns parameter list of stored procedure to instance of command object.
+            </summary>
+            <param name="argCommand">Instance of Command object</param>
+            <param name="argConnection">Instance of Connection object</param>
+            <returns>Instance of Command object</returns>
+        </member>
+        <member name="T:TAP.Data.DataBase.Sqlite">
+            <summary>
+            This is implemted class of DBMS for SQLite
+            </summary>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.#ctor(System.String,TAP.Data.DataBase.EnumConnectionMethod)">
+            <summary>
+            This creates an instance of this class.
+            </summary>
+            <param name="connectionKey">Connection key</param>
+            <param name="connMethod">Method of connection</param>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.SetCommand(System.String,TAP.ArgumentPack,System.Data.CommandType)">
+            <summary>
+            This method sets instance of Command object.
+            </summary>
+            <param name="argQuery">SQL</param>
+            <param name="argArgumentPack">Parameter list</param>
+            <param name="argCommandType">Command type</param>
+            <returns>Instance of Command object</returns>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.SetCommand(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
+            <summary>
+            This method sets instance of Command object.
+            </summary>
+            <param name="argQuery">SQL</param>
+            <param name="argParameterArray">Parameter list</param>
+            <param name="argCommandType">Command type</param>
+            <returns>Instance of Command object</returns>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.ExecuteReader(System.String,TAP.ArgumentPack,System.Data.CommandType)">
+            <summary>
+            This method is not supported in this class
+            </summary>
+            <param name="query"></param>
+            <param name="argumentPack"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.ExecuteReader(System.String,System.Data.IDataParameter[],System.Data.CommandType)">
+            <summary>
+            This method is not supported in this class
+            </summary>
+            <param name="query"></param>
+            <param name="parameterArray"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.Select(System.String,System.String,System.Data.DataSet@,System.Data.IDataParameter[],System.Data.CommandType)">
+            <summary>
+            This method executs user's query and returns result as instance of DataSet.
+            </summary>
+            <param name="query">SQL</param>
+            <param name="tableName">Table name for saving result</param>
+            <param name="dataSet">DataSet object for saving result tables</param>
+            <param name="parameterArray">Parameter list</param>
+            <param name="commandType">Command type</param>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.Select(System.String,System.String,System.Data.DataSet@,TAP.ArgumentPack,System.Data.CommandType)">
+            <summary>
+            This method executs user's query and returns result as instance of DataSet.
+            </summary>
+            <param name="query">SQL</param>
+            <param name="tableName">Table name for saving result</param>
+            <param name="dataSet">DataSet object for saving result tables</param>
+            <param name="argumentPack">Parameter list</param>
+            <param name="commandType">Command type</param>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.SetParameter(System.Data.IDbCommand,System.Data.IDataParameter[])">
+            <summary>
+            This method assigns values to parameters.
+            </summary>
+            <param name="argCommand">Instance of Command object</param>
+            <param name="argParameterArray">Parameter list for Instance of Command object</param>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.SetParameter(System.Data.IDbCommand,TAP.ArgumentPack)">
+            <summary>
+            This method assigns values to parameters.
+            </summary>
+            <param name="argCommand">Instance of Command object</param>
+            <param name="argArgumentPack">Parameter list for Instance of Command object</param>
+        </member>
+        <member name="M:TAP.Data.DataBase.Sqlite.Deriveparameters(System.Data.IDbCommand,System.Data.IDbConnection)">
             <summary>
             This method assigns parameter list of stored procedure to instance of command object.
             </summary>

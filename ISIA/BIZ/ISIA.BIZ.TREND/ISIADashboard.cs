@@ -23,10 +23,10 @@ namespace ISIA.BIZ.TREND
             List<DbInfo> dbInfos = new List<DbInfo>();
             try
             {
-                List<string> dbNameList = GetDbNames(db, arguments);
-                foreach (string dbName in dbNameList)
+                List<DbLinkInfo> dbLinkList = GetDbNames(db, arguments);
+                foreach (DbLinkInfo ele in dbLinkList)
                 {//刚开始添加新的数据库的时候，可能不存在数据所以返回null；
-                    DbInfo info = GetSingleDbInfo(db, dbName);
+                    DbInfo info = GetSingleDbInfo(db, ele);
                     if (info == null)
                     {
                         continue;
@@ -121,10 +121,10 @@ order by start_time desc ",  arguments.StartTime);
 
 
 
-        private List<string> GetDbNames(DBCommunicator db, AwrArgsPack argsPack)
+        private List<DbLinkInfo> GetDbNames(DBCommunicator db, AwrArgsPack argsPack)
         {
             StringBuilder dbNameSql = new StringBuilder();
-            dbNameSql.Append(@"select dbname from ISIA.TAPCTDATABASE where isalive='YES'");
+            dbNameSql.Append(@"select dbname, dbid, DBLINKNAME DBLINK from ISIA.TAPCTDATABASE where isalive='YES'");
             if (!string.IsNullOrEmpty(argsPack.DBName))
             {
                 dbNameSql.AppendFormat(" and  dbname like '%{0}%'", argsPack.DBName);
@@ -133,37 +133,39 @@ order by start_time desc ",  arguments.StartTime);
                       dbNameSql.ToString(), false);
             DataSet dbNameDs = db.Select(dbNameSql.ToString());
             DataTable dt = dbNameDs.Tables[0];
-            //取出第一列
-            DataColumn dc = dt.Columns[0];
-            //取出第一列的值
-            List<string> list = new List<string>();
-            foreach (DataRow dr in dt.Rows)
-            {
-                list.Add(dr[dc].ToString());
-            }
+            List<DbLinkInfo> list = Utils.DataTableToList<DbLinkInfo>(dt);
+            
             return list;
         }
 
-        private DbInfo GetSingleDbInfo(DBCommunicator db, string dbName)
+        private DbInfo GetSingleDbInfo(DBCommunicator db, DbLinkInfo dbLinkInfo)
         {
             StringBuilder dbInfoSql = new StringBuilder();
-            dbInfoSql.AppendFormat(@"select dbInfo.*,case when cdbid is null then null else 'pdb' end targettype
-from (select distinct p.value version, d.dbname, d.retentiondays,
+            dbInfoSql.AppendFormat($@"SELECT *
+  FROM (
+select dbInfo.*, db.dbname  cdbname,
+case when cdbid is null then null else 'pdb' end targettype
+from (select distinct p.value version, d.dbname, 
        case when p.con_dbid = p.dbid then null
        else
        (select distinct dbid from tapctdatabase where dbid = p.con_dbid)
        end cdbid
-       ,decode(isalive,'YES', 1,0) STATUS, '10 min'  uploadinterval, s.mintime, s.maxtime, s.cnt ,d.instantcnt instancecount 
-from RAW_DBA_HIST_PARAMETER_{0} p,
+       ,decode(isalive,'YES', 1,0) STATUS, s.mintime, s.maxtime, s.cnt ,d.instantcnt instancecount 
+from RAW_DBA_HIST_PARAMETER_{dbLinkInfo.DBNAME.ToUpper()} p,
      tapctdatabase d,
      (select to_char(min(s.begin_interval_time), 'YYYY-MM-DD HH24:MI:SS') mintime, to_char(max(s.end_interval_time), 'YYYY-MM-DD HH24:MI:SS') maxtime,count(s.snap_id) cnt
-from raw_dba_hist_snapshot_{0} s) s
+from raw_dba_hist_snapshot_{dbLinkInfo.DBNAME.ToUpper()} s) s
 where p.snap_id = (select min(snap_id)
-                    from raw_dba_hist_snapshot_{0}
+                    from raw_dba_hist_snapshot_{dbLinkInfo.DBNAME.ToUpper()}
                     where begin_interval_time > sysdate - 2/24  )
 and p.parameter_name = 'compatible'
-and d.dbname='{0}'
-and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
+and d.dbname='{dbLinkInfo.DBNAME.ToUpper()}'
+and p.dbid = d.dbid) dbInfo  LEFT JOIN tapctdatabase db ON dbinfo.cdbid = db.dbid
+         WHERE ROWNUM <= 1) d,
+       (SELECT EXTRACT (DAY FROM retention)           RETENTIONDAYS,
+               EXTRACT(MINUTE FROM snap_interval)    INTERVALMINUTES
+          FROM dba_hist_wr_control@{dbLinkInfo.DBLINK}
+         WHERE dbid = {dbLinkInfo.DBID}) f");
             RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                       dbInfoSql.ToString(), false);
             DataSet dbInfoSqlDs = db.Select(dbInfoSql.ToString());
@@ -179,6 +181,25 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             }
 
         }
+
+        public class DbLinkInfo
+        {
+
+            private string dbName;
+            private string dbId;
+            private string dbLink;
+
+
+
+            public DbLinkInfo()
+            {
+
+            }
+
+            public string DBNAME { get => dbName; set => dbName = value; }
+            public string DBID { get => dbId; set => dbId = value; }
+            public string DBLINK { get => dbLink; set => dbLink = value; }
+        }
         public class DbInfo
         {
 
@@ -190,7 +211,7 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
            
             private string version;
             private string dbName;
-            private int retentionDays;
+            private string retentionDays;
             private string cdbName;
             private string cdbId;
             private string retentionPeriod;
@@ -201,11 +222,12 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             private string targetType;
             private int status;
             private int instanceCount;
+            private string intervalMinutes;
+
 
 
             public string VERSION { get => version; set => version = value; }
             public string DBNAME { get => dbName; set => dbName = value; }
-            public int RETENTIONDAYS { get => retentionDays; set => retentionDays = value; }
             public string CDBNAME { get => cdbName; set => cdbName = value; }
             public string RETENTIONPERIOD { get => retentionPeriod; set => retentionPeriod = value; }
             public string UPLOADINTERVAL { get => uploadInterval; set => uploadInterval = value; }
@@ -216,6 +238,8 @@ and p.dbid = d.dbid) dbInfo", dbName.ToUpper());
             public int STATUS { get => status; set => status = value; }
             public int INSTANCECOUNT { get => instanceCount; set => instanceCount = value; }
             public string CDBID { get => cdbId; set => cdbId = value; }
+            public string INTERVALMINUTES { get => intervalMinutes; set => intervalMinutes = value; }
+            public string RETENTIONDAYS { get => retentionDays; set => retentionDays = value; }
         }
     }
 }
