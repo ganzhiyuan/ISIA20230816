@@ -92,6 +92,7 @@ namespace ISIA.UI.TREND
 
         private void FrmMainForm_Load(object sender, EventArgs e)
         {
+            comboBoxEdit1.Text = "2";
             //CreateChart();
             //comboBoxEdit1_SelectedIndexChanged(null, null);
             //CreateCharts();
@@ -107,6 +108,9 @@ namespace ISIA.UI.TREND
             flowLayoutPanel2.Controls.Clear();
             flowLayoutPanel3.Controls.Clear();
             funcNameAndDsMapDict = new Dictionary<string, DataSet>();
+            int width = flowLayoutPanel1.ClientSize.Width / Convert.ToInt32(comboBoxEdit1.EditValue);
+            int height = flowLayoutPanel1.ClientSize.Height / Convert.ToInt32(comboBoxEdit1.EditValue);
+
 
             //Instancenumber多选时，每个Instancenumber生成不同chart
             string[] instanceNum = cmbInstance.Text.Split(',');
@@ -118,8 +122,8 @@ namespace ISIA.UI.TREND
                     // 创建 TChart 控件
                     TChart tChart = new TChart();
                     tChart.Tag = i;
-                    tChart.Width = 300;
-                    tChart.Height = 200;
+                    tChart.Width = width - 10;
+                    tChart.Height = height - 10;
                     // 设置每个 TChart 控件的其他属性或数据
 
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
@@ -130,8 +134,8 @@ namespace ISIA.UI.TREND
                     // 创建 TChart 控件
                     TChart tChart = new TChart();
                     tChart.Tag = i;
-                    tChart.Width = 300;
-                    tChart.Height = 200;
+                    tChart.Width = width - 10;
+                    tChart.Height = height - 10;
                     // 设置每个 TChart 控件的其他属性或数据
 
                     // 将 TChart 控件添加到 FlowLayoutPanel 中
@@ -144,8 +148,8 @@ namespace ISIA.UI.TREND
                 // 创建 TChart 控件
                 TChart tChart = new TChart();
                 tChart.Tag = i;
-                tChart.Width = 300;
-                tChart.Height = 200;
+                tChart.Width = width - 10;
+                tChart.Height = height - 10;
                 // 设置每个 TChart 控件的其他属性或数据
 
                 // 将 TChart 控件添加到 FlowLayoutPanel 中
