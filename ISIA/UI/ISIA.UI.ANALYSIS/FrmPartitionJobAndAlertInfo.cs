@@ -50,6 +50,7 @@ namespace ISIA.UI.ANALYSIS
 
         private void ShowJobMessage()
         {
+
             arg.RowAlertCount = AlertRowCount;
             arg.RowJobCount = JobRowCount;
             DataSet ds = bs.ExecuteDataSet("GetJobInfo", arg.getPack());
@@ -57,12 +58,10 @@ namespace ISIA.UI.ANALYSIS
 
         }
         private async void ShowAlertMessage()
-        { Console.WriteLine($"Main Thread - {Thread.CurrentThread.ManagedThreadId}");
+        {
             arg.RowAlertCount = AlertRowCount;
             arg.RowJobCount = JobRowCount;
             DataSet ds = await GetAlertData();
-
-            Console.WriteLine($"Async Thread - {Thread.CurrentThread.ManagedThreadId}");
             gridControlError.DataSource = ds.Tables[0];
 
         }

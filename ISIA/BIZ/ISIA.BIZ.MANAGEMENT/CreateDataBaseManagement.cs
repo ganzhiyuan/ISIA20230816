@@ -134,13 +134,21 @@ order by sequences
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-
+                StringBuilder tmpSqlCLoseSession = new StringBuilder();
+                tmpSqlCLoseSession.AppendFormat("ALTER SESSION CLOSE DATABASE LINK {0}", arguments.DBLinkName);
                 tmpSql.AppendFormat("DROP DATABASE LINK {0} ", arguments.DBLinkName);
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSqlCLoseSession.ToString(), false);
+                try
+                {
+                    this.ExecutingValue = db.Save(new string[] { tmpSqlCLoseSession.ToString() });
+                }
+                catch
+                {
 
-
+                }
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
                        tmpSql.ToString(), false);
-
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
             }
             catch (Exception ex)
@@ -157,13 +165,23 @@ order by sequences
             try
             {
                 StringBuilder tmpSql = new StringBuilder();
-
+                StringBuilder tmpSqlCLoseSession = new StringBuilder();
+                tmpSqlCLoseSession.AppendFormat("ALTER SESSION CLOSE DATABASE LINK {0}", arguments.DBLinkName);
                 tmpSql.AppendFormat("DROP PUBLIC DATABASE LINK {0} ", arguments.DBLinkName);
 
 
                 RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
-                       tmpSql.ToString(), false);
+                       tmpSqlCLoseSession.ToString(), false);
+                try
+                {
+                    this.ExecutingValue = db.Save(new string[] { tmpSqlCLoseSession.ToString() });
+                }
+                catch
+                {
 
+                }
+                RemotingLog.Instance.WriteServerLog(MethodInfo.GetCurrentMethod().Name, LogBase._LOGTYPE_TRACE_INFO, this.Requester.IP,
+                       tmpSql.ToString(), false);
                 this.ExecutingValue = db.Save(new string[] { tmpSql.ToString() });
             }
             catch (Exception ex)

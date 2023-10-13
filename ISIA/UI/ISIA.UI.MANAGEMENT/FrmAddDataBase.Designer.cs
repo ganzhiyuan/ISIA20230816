@@ -154,18 +154,18 @@ namespace ISIA.UI.MANAGEMENT
             // 
             // tPanelBottomBase
             // 
-            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 500);
-            this.tPanelBottomBase.Size = new System.Drawing.Size(829, 10);
+            this.tPanelBottomBase.Location = new System.Drawing.Point(0, 498);
+            this.tPanelBottomBase.Size = new System.Drawing.Size(835, 16);
             // 
             // tPanelTop
             // 
-            this.tPanelTop.Size = new System.Drawing.Size(829, 10);
+            this.tPanelTop.Size = new System.Drawing.Size(835, 22);
             // 
             // tPanelMain
             // 
             this.tPanelMain.Controls.Add(this.wizardControl);
-            this.tPanelMain.Location = new System.Drawing.Point(0, 10);
-            this.tPanelMain.Size = new System.Drawing.Size(829, 490);
+            this.tPanelMain.Location = new System.Drawing.Point(0, 22);
+            this.tPanelMain.Size = new System.Drawing.Size(835, 476);
             // 
             // wizardControl
             // 
@@ -194,7 +194,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage,
             this.procedureWizardPage,
             this.wpfinish});
-            this.wizardControl.Size = new System.Drawing.Size(829, 490);
+            this.wizardControl.Size = new System.Drawing.Size(835, 476);
             this.wizardControl.Text = "ISIA";
             this.wizardControl.SelectedPageChanged += new DevExpress.XtraWizard.WizardPageChangedEventHandler(this.wizardControl_SelectedPageChanged);
             this.wizardControl.CancelClick += new System.ComponentModel.CancelEventHandler(this.wizardControl_CancelClick);
@@ -208,7 +208,7 @@ namespace ISIA.UI.MANAGEMENT
             this.welcomeWizardPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.welcomeWizardPage1.Name = "welcomeWizardPage1";
             this.welcomeWizardPage1.ProceedText = "";
-            this.welcomeWizardPage1.Size = new System.Drawing.Size(563, 374);
+            this.welcomeWizardPage1.Size = new System.Drawing.Size(569, 360);
             this.welcomeWizardPage1.Text = "";
             // 
             // layoutControl1
@@ -637,7 +637,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpfinish.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wpfinish.Name = "wpfinish";
             this.wpfinish.ProceedText = "";
-            this.wpfinish.Size = new System.Drawing.Size(563, 318);
+            this.wpfinish.Size = new System.Drawing.Size(569, 304);
             this.wpfinish.Text = "ISIA Data Base Information is successfully created";
             // 
             // wizardDBLink
@@ -655,7 +655,7 @@ namespace ISIA.UI.MANAGEMENT
     "ection";
             this.wizardDBLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wizardDBLink.Name = "wizardDBLink";
-            this.wizardDBLink.Size = new System.Drawing.Size(829, 352);
+            this.wizardDBLink.Size = new System.Drawing.Size(835, 338);
             this.wizardDBLink.Text = "Creat DBLink";
             // 
             // acessPermissionlabelControl
@@ -749,7 +749,7 @@ namespace ISIA.UI.MANAGEMENT
             this.wpConfirmDbLink.Controls.Add(this.dblinkConfirmmemoEdit);
             this.wpConfirmDbLink.DescriptionText = "Please Confirm the DB Link creation script!";
             this.wpConfirmDbLink.Name = "wpConfirmDbLink";
-            this.wpConfirmDbLink.Size = new System.Drawing.Size(829, 352);
+            this.wpConfirmDbLink.Size = new System.Drawing.Size(835, 338);
             this.wpConfirmDbLink.Text = "DBLink Conform";
             // 
             // dblinkConfirmmemoEdit
@@ -757,7 +757,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dblinkConfirmmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dblinkConfirmmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.dblinkConfirmmemoEdit.Name = "dblinkConfirmmemoEdit";
-            this.dblinkConfirmmemoEdit.Size = new System.Drawing.Size(829, 352);
+            this.dblinkConfirmmemoEdit.Size = new System.Drawing.Size(835, 338);
             this.dblinkConfirmmemoEdit.TabIndex = 0;
             // 
             // dbLinkProcesswizardPage
@@ -765,7 +765,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkProcesswizardPage.Controls.Add(this.dbLinkProcessmemoEdit);
             this.dbLinkProcesswizardPage.DescriptionText = "please wait... ";
             this.dbLinkProcesswizardPage.Name = "dbLinkProcesswizardPage";
-            this.dbLinkProcesswizardPage.Size = new System.Drawing.Size(829, 352);
+            this.dbLinkProcesswizardPage.Size = new System.Drawing.Size(835, 338);
             this.dbLinkProcesswizardPage.Text = "Now Creating DB link";
             // 
             // dbLinkProcessmemoEdit
@@ -773,7 +773,7 @@ namespace ISIA.UI.MANAGEMENT
             this.dbLinkProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dbLinkProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.dbLinkProcessmemoEdit.Name = "dbLinkProcessmemoEdit";
-            this.dbLinkProcessmemoEdit.Size = new System.Drawing.Size(829, 352);
+            this.dbLinkProcessmemoEdit.Size = new System.Drawing.Size(835, 338);
             this.dbLinkProcessmemoEdit.TabIndex = 0;
             // 
             // tableCreationwizardPage
@@ -781,7 +781,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreationwizardPage.Controls.Add(this.gridControl1);
             this.tableCreationwizardPage.DescriptionText = "Please check the table creation attribute. ";
             this.tableCreationwizardPage.Name = "tableCreationwizardPage";
-            this.tableCreationwizardPage.Size = new System.Drawing.Size(829, 352);
+            this.tableCreationwizardPage.Size = new System.Drawing.Size(835, 338);
             this.tableCreationwizardPage.Text = "Table Creation";
             // 
             // gridControl1
@@ -794,7 +794,7 @@ namespace ISIA.UI.MANAGEMENT
             this.repositoryItemComboBoxIsPartition,
             this.repositoryItemComboBoxPartitionUnit,
             this.repositoryItemComboBoxTBSP});
-            this.gridControl1.Size = new System.Drawing.Size(829, 352);
+            this.gridControl1.Size = new System.Drawing.Size(835, 338);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -912,7 +912,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcesswizardPage.Controls.Add(this.tableCreateProcessmemoEdit);
             this.tableCreateProcesswizardPage.DescriptionText = "Please Wait...";
             this.tableCreateProcesswizardPage.Name = "tableCreateProcesswizardPage";
-            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(829, 352);
+            this.tableCreateProcesswizardPage.Size = new System.Drawing.Size(835, 338);
             this.tableCreateProcesswizardPage.Text = "Now Creating Tables";
             // 
             // tableCreateProcessmemoEdit
@@ -920,7 +920,7 @@ namespace ISIA.UI.MANAGEMENT
             this.tableCreateProcessmemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableCreateProcessmemoEdit.Location = new System.Drawing.Point(0, 0);
             this.tableCreateProcessmemoEdit.Name = "tableCreateProcessmemoEdit";
-            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(829, 352);
+            this.tableCreateProcessmemoEdit.Size = new System.Drawing.Size(835, 338);
             this.tableCreateProcessmemoEdit.TabIndex = 0;
             // 
             // procedureWizardPage
@@ -928,7 +928,7 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureWizardPage.Controls.Add(this.procedureCreateMemoEdit);
             this.procedureWizardPage.DescriptionText = "Now Creating procedure, Please wait... ";
             this.procedureWizardPage.Name = "procedureWizardPage";
-            this.procedureWizardPage.Size = new System.Drawing.Size(829, 352);
+            this.procedureWizardPage.Size = new System.Drawing.Size(835, 338);
             this.procedureWizardPage.Text = "Create Procedure";
             // 
             // procedureCreateMemoEdit
@@ -936,7 +936,7 @@ namespace ISIA.UI.MANAGEMENT
             this.procedureCreateMemoEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.procedureCreateMemoEdit.Location = new System.Drawing.Point(0, 0);
             this.procedureCreateMemoEdit.Name = "procedureCreateMemoEdit";
-            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(829, 352);
+            this.procedureCreateMemoEdit.Size = new System.Drawing.Size(835, 338);
             this.procedureCreateMemoEdit.TabIndex = 0;
             // 
             // emptySpaceItem5
@@ -951,7 +951,7 @@ namespace ISIA.UI.MANAGEMENT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 510);
+            this.ClientSize = new System.Drawing.Size(835, 514);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;

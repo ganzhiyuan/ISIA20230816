@@ -464,7 +464,7 @@ namespace ISIA.UI.ANALYSIS
             // 
             // comboBoxEditErrorInterval
             // 
-            this.comboBoxEditErrorInterval.EditValue = "30";
+            this.comboBoxEditErrorInterval.EditValue = "5";
             this.comboBoxEditErrorInterval.Location = new System.Drawing.Point(140, 45);
             this.comboBoxEditErrorInterval.Name = "comboBoxEditErrorInterval";
             this.comboBoxEditErrorInterval.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

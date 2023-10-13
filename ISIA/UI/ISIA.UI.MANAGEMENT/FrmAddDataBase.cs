@@ -297,6 +297,8 @@ namespace ISIA.UI.MANAGEMENT
             dbLinkEntity.TnsDescription = tnsDescriptiontextEdit.Text;
         }
 
+        #region entity
+
         public class DbLinkEntity
         {
 
@@ -334,7 +336,6 @@ namespace ISIA.UI.MANAGEMENT
                 return scriptStr.ToString();
             }
         }
-
         public class DbTableCreateEntity
         {
             private string dbName;
@@ -784,7 +785,6 @@ namespace ISIA.UI.MANAGEMENT
             public string Type { get => type; set => type = value; }
             public Decimal DataLength { get => dataLength; set => dataLength = value; }
         }
-
         public class DbVersionEntity
         {
 
@@ -2022,8 +2022,8 @@ BEGIN
   SYS.DBMS_JOB.SUBMIT
     ( job       => NewJobID 
      ,what      => 'GET_DATA_{dbName}(''H'', 1, SYSDATE);'
-     ,next_date => trunc(sysdate + 1/24, 'HH24') + 5/24/60     
-     ,interval  => 'SYSDATE + 1/24'
+     ,next_date => sysdate + 1/24/60     
+     ,interval  => 'trunc(sysdate + 1/24, ''HH24'') + 5/24/60'
      ,no_parse  => FALSE);
 END;
 
@@ -2040,10 +2040,10 @@ BEGIN
   SYS.DBMS_JOB.SUBMIT
     ( job       => NewJobID 
      ,what      => 'SUMMARY_WORKLOAD_{dbName}(TO_CHAR(SYSDATE, ''YYYYMMDD''));'
-     ,next_date => trunc(sysdate + 1/24, 'HH24') + 10/24/60     
-     ,interval  => 'SYSDATE + 1/24'
+     ,next_date => sysdate + 1/24/60      
+     ,interval  => 'trunc(sysdate + 1/24, ''HH24'') + 10/24/60'
      ,no_parse  => FALSE);
-
+ 
 END;
 
 ");
@@ -2061,7 +2061,7 @@ END;
             public bool IsLater12c { get => isLater12c; set => isLater12c = value; }
         }
 
-
+        #endregion
         private void wizardControl1_NextClick_1(object sender, WizardCommandButtonClickEventArgs e)
         {
             if (e.Page == welcomeWizardPage1)
@@ -2118,7 +2118,7 @@ END;
         private void GenerateProcedure(WizardPageChangedEventArgs e)
         {
             try
-            {
+            { 
                 procedureCreateMemoEdit.Clear();
                 e.Page.AllowNext = false;
                 e.Page.AllowBack = false;

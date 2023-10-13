@@ -301,7 +301,7 @@ namespace ISIA.UI.TREND
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 // 实际的查询逻辑
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 args.DbName = tLUCKDbname.Text.Split('(')[0];
                 args.DbId = tLUCKDbname.EditValue.ToString();
                 args.InstanceNumber = insNum;
@@ -448,7 +448,7 @@ namespace ISIA.UI.TREND
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 // 实际的查询逻辑
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 args.DbName = tLUCKDbname.Text.Split('(')[0];
                 args.DbId = tLUCKDbname.EditValue.ToString();
                 args.InstanceNumber = cmbInstance.Text;
@@ -570,7 +570,7 @@ namespace ISIA.UI.TREND
                 AwrCommonArgsPack args = new AwrCommonArgsPack();
                 // 实际的查询逻辑
                 args.StartTimeKey = dtpStartTime.DateTime.ToString("yyyy-MM-dd");
-                args.EndTimeKey = dtpEndTime.DateTime.ToString("yyyy-MM-dd");
+                args.EndTimeKey = dtpEndTime.DateTime.AddDays(1).ToString("yyyy-MM-dd");
                 args.DbName = tLUCKDbname.Text.Split('(')[0];
                 args.DbId = tLUCKDbname.EditValue.ToString();
                 args.InstanceNumber = insNum;

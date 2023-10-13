@@ -42,7 +42,7 @@ namespace ISIA.UI.TREND
         public const string GET_DB_STATUS_FUNC = "GetDBFetchAwrDataStatus";
         public const string ERROR_FETCH_HOURS = "1";
         public const string DB_SNAP_FETCH_DAYS = "2";
-        public const int TIMER_INTERVAL = 10000;
+        public const int TIMER_INTERVAL = 10000*60;
 
 
 
